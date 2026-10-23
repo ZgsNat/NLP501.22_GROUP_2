@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo Đề tài Thạc sĩ NLP · Nhóm 2 · Agentic AI CV-JD Ranking</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+        }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .academic-slide {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 25px -4px rgba(15, 23, 42, 0.08);
+            transition: opacity 0.2s ease-in-out;
+        }
+        .academic-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.15rem 0.55rem;
+            border-radius: 9999px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .card-academic {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col justify-between overflow-hidden text-slate-800">
+
+    <!-- ================= TOP ACADEMIC HEADER ================= -->
+    <header class="w-full bg-white border-b border-slate-200 px-6 py-2.5 flex items-center justify-between shadow-sm z-30 shrink-0">
+        <div class="flex items-center space-x-3">
+            <span class="px-2 py-0.5 rounded bg-slate-900 text-white font-extrabold text-[11px] tracking-wider">NLP501 · NHÓM 2</span>
+            <div>
+                <h1 class="text-xs sm:text-sm font-bold text-slate-900 leading-tight">Ứng dụng Agentic AI trong Đối sánh & Xếp hạng Ứng viên Automation Test có Giải thích</h1>
+                <div class="text-[10px] sm:text-[11px] text-slate-500">Chương trình Cao học CNTT · Báo cáo Đề tài Cuối kỳ</div>
+            </div>
+        </div>
+
+        <!-- Speaker Badge & Notes Toggle -->
+        <div class="flex items-center space-x-2.5">
+            <span class="text-xs text-slate-500">Báo cáo viên:</span>
+            <span id="speaker-name" class="px-2.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-bold">Hoàng Xuân Sơn</span>
+            <button onclick="toggleNotes()" class="px-2.5 py-1 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-medium flex items-center space-x-1" title="Xem kịch bản lời dẫn (Phím N)">
+                <span>🎤 Lời thoại (N)</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ================= MAIN SLIDE VIEWPORT ================= -->
+    <main class="flex-1 w-full max-w-7xl mx-auto p-3 sm:p-5 flex flex-col justify-center items-center">
+        <div class="w-full h-full max-h-[720px] academic-slide rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden">
+
+            <!-- ================= SLIDE 1: COVER / TITLE SLIDE ================= -->
+            <section data-slide="0" data-part="0" data-speaker="Hoàng Xuân Sơn" class="slide-content h-full flex flex-col justify-between">
+                <div class="flex justify-between items-start border-b border-slate-200 pb-3">
+                    <div>
+                        <span class="academic-badge bg-blue-100 text-blue-900">Báo cáo Khoa học Cuối kỳ</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1.5">Ứng dụng Agentic AI trong Đối sánh CV–JD & Xếp hạng Ứng viên</h2>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-1">Đặc tả cho vị trí Kiểm thử Tự động (Automation Test) theo Hồ sơ Tiêu chí Riêng của Doanh nghiệp</p>
+                    </div>
+                    <div class="text-right text-xs text-slate-500">
+                        <div class="font-bold text-slate-800">Học phần: Xử lý Ngôn ngữ Tự nhiên (NLP501)</div>
+                        <div>Giảng viên Hướng dẫn: Bộ môn NLP / Khoa CNTT</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-3.5 my-auto py-2">
+                    <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 space-y-1">
+                        <span class="text-[10px] font-bold text-blue-700 uppercase">Thành viên 01</span>
+                        <div class="font-bold text-slate-900 text-xs sm:text-sm">Hoàng Xuân Sơn</div>
+                        <div class="text-[11px] text-slate-600">Bài toán, Thang độ sâu & Hàm chấm điểm</div>
+                    </div>
+                    <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 space-y-1">
+                        <span class="text-[10px] font-bold text-blue-700 uppercase">Thành viên 02</span>
+                        <div class="font-bold text-slate-900 text-xs sm:text-sm">Nguyễn Văn Vũ</div>
+                        <div class="text-[11px] text-slate-600">Tổng quan 31 công trình & Ma trận đánh đổi</div>
+                    </div>
+                    <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 space-y-1">
+                        <span class="text-[10px] font-bold text-blue-700 uppercase">Thành viên 03</span>
+                        <div class="font-bold text-slate-900 text-xs sm:text-sm">Nguyễn Đình Đán</div>
+                        <div class="text-[11px] text-slate-600">Agentic AI trong HR & 5 Khoảng trống G1–G5</div>
+                    </div>
+                    <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 space-y-1">
+                        <span class="text-[10px] font-bold text-blue-700 uppercase">Thành viên 04</span>
+                        <div class="font-bold text-slate-900 text-xs sm:text-sm">Trần Việt Hoa</div>
+                        <div class="text-[11px] text-slate-600">8 Bộ dữ liệu, Chống rò rỉ & Phễu độ đo 4 tầng</div>
+                    </div>
+                    <div class="p-3 rounded-xl border-2 border-blue-600 bg-blue-50/60 space-y-1 shadow-sm">
+                        <span class="text-[10px] font-bold text-blue-800 uppercase">Thành viên 05 (Lead)</span>
+                        <div class="font-bold text-blue-950 text-xs sm:text-sm">Nguyễn Thái Thịnh</div>
+                        <div class="text-[11px] text-blue-800 font-medium">SOTA, Kiến trúc StateGraph & Cầu thang Ablation</div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center text-xs text-slate-600">
+                    <span>💡 <strong>Mục tiêu bảo vệ:</strong> Kiểm chứng xem cơ chế <em>Agent StateGraph</em> có cải thiện thứ hạng, xử lý tiêu chí chưa rõ và tối ưu chi phí so với <em>Fixed Pipeline</em> cùng công cụ hay không.</span>
+                    <button onclick="goToSlide(1)" class="px-3.5 py-1.5 rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-700 transition">Bắt đầu →</button>
+                </div>
+            </section>
+
+            <!-- ================= SLIDE 2: PROBLEM FRAMING (SƠN) ================= -->
+            <section data-slide="1" data-part="1" data-speaker="Hoàng Xuân Sơn" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <span class="academic-badge bg-blue-100 text-blue-900">01 · ĐẶT VẤN ĐỀ & BỐI CẢNH NGHIÊN CỨU</span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Tại Sao Hệ Thống ATS Từ Khóa Thất Bại Với Vị Trí Automation Test?</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 my-auto items-stretch text-xs">
+                    <div class="lg:col-span-5 p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2.5">
+                        <div class="font-bold text-slate-900 text-sm">Phễu Thu Hẹp Bài Toán (4 Tầng):</div>
+                        <div class="space-y-2 text-slate-700">
+                            <div class="p-2 bg-white rounded border border-slate-200"><strong>Tầng 1 (Toàn thị trường):</strong> Quá tải hồ sơ, bỏ sót từ đồng nghĩa, thiên lệch tên/giới tính.</div>
+                            <div class="p-2 bg-white rounded border border-slate-200"><strong>Tầng 2 (Khối ngành CNTT):</strong> Thuật ngữ kỹ thuật biến động nhanh, kỹ năng phân tầng sâu.</div>
+                            <div class="p-2 bg-white rounded border border-slate-200"><strong>Tầng 3 (ATS hiện hữu):</strong> Khớp đếm từ khóa cứng nhắc, không hiểu ngữ cảnh dự án.</div>
+                            <div class="p-2 bg-blue-50 rounded border border-blue-300 font-bold text-blue-900"><strong>Tầng 4 (Automation Test):</strong> Yêu cầu kết hợp giữa tư duy kiểm thử và kỹ năng lập trình hướng đối tượng.</div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 flex flex-col justify-between space-y-2.5">
+                        <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                            <span class="font-bold text-slate-900 text-xs uppercase text-blue-800">3 Thách thức cốt tử trong tuyển dụng Automation Test:</span>
+                            <p class="text-slate-600 leading-relaxed">• <strong>Nhập nhằng về độ sâu:</strong> Cùng ghi <em>"biết Selenium"</em> nhưng ứng viên chỉ chạy record-playback (Mức 1) hoàn toàn khác ứng viên tự xây dựng framework Page Object Model kết nối CI/CD (Mức 3–4).</p>
+                            <p class="text-slate-600 leading-relaxed">• <strong>Công cụ thay thế được nhau:</strong> Ứng viên thành thạo Playwright/TypeScript hoàn toàn chuyển sang Cypress hoặc Selenium nhanh chóng (điểm tương đương 0.6–0.8), nhưng ATS sẽ loại thẳng vì không khớp từ khóa.</p>
+                            <p class="text-slate-600 leading-relaxed">• <strong>Chuyển dịch nội bộ:</strong> Nhiều tester xuất phát điểm từ Manual test chuyển sang Automation; ATS từ khóa thường đánh rớt do số năm kinh nghiệm automation bị đan xen.</p>
+                        </div>
+
+                        <div class="p-3 rounded-xl bg-blue-50 border border-blue-200 text-slate-700 text-[11px]">
+                            <strong>Kết luận:</strong> Bài toán đòi hỏi hệ thống phải bóc tách được <strong>bằng chứng về độ sâu</strong> và hiểu được <strong>tính thay thế tương đương</strong> của các công cụ kiểm thử.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SLIDE 3: SCHEMA & FORMULATION (SƠN) ================= -->
+            <section data-slide="2" data-part="1" data-speaker="Hoàng Xuân Sơn" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <span class="academic-badge bg-blue-100 text-blue-900">01 · MÔ HÌNH HÓA BÀI TOÁN & SCHEMA</span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Chuẩn Hóa Schema CV–JD & Hàm Điểm Tách Biệt Điều Kiện Loại Cứng</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 my-auto items-stretch text-xs">
+                    <div class="lg:col-span-6 p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2 flex flex-col justify-between">
+                        <span class="font-bold text-slate-900">Thang đo 4 Mức Độ Sâu Automation Test:</span>
+                        <div class="space-y-1.5 text-slate-700 text-[11px]">
+                            <div class="p-2 bg-white rounded border border-slate-200"><strong>Mức 1 (Cơ bản):</strong> Chạy lại kịch bản có sẵn, chỉnh sửa test case đơn giản.</div>
+                            <div class="p-2 bg-white rounded border border-slate-200"><strong>Mức 2 (Thực thi):</strong> Tự viết script kiểm thử chức năng (Selenium/Appium cơ bản).</div>
+                            <div class="p-2 bg-blue-50 rounded border border-blue-200 font-semibold text-blue-900"><strong>Mức 3 (Framework):</strong> Tự thiết kế Page Object Model, data-driven, tích hợp CI/CD.</div>
+                            <div class="p-2 bg-blue-100 rounded border border-blue-300 font-bold text-blue-950"><strong>Mức 4 (Chuyên gia/Lead):</strong> Xây dựng hạ tầng Grid, tối ưu flaky test, hiệu năng cao.</div>
+                        </div>
+                        <div class="text-[10px] text-slate-500 italic">* Phân cấp dựa trên nghiên cứu của Florea & Stray (Journal of Systems and Software, 2023).</div>
+                    </div>
+
+                    <div class="lg:col-span-6 p-4 rounded-xl border border-slate-200 bg-white space-y-3 flex flex-col justify-between">
+                        <div>
+                            <span class="font-bold text-slate-900">Hàm Tính Điểm Tiêu Chí Doanh Nghiệp:</span>
+                            <div class="p-3 my-2 bg-slate-900 text-white rounded-lg mono text-center text-xs sm:text-sm">
+                                Score(c) = 1[H(c)] × Σ [ w(c,k) × s_k(c) ]
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5 text-slate-600 text-[11px] leading-relaxed">
+                            <p>• <strong>Điều kiện Knock-out $1[H(c)]$:</strong> Các yêu cầu bắt buộc (ngôn ngữ lập trình framework, số năm tối thiểu). Nếu vi phạm, điểm lập tức bằng 0.</p>
+                            <p>• <strong>Bộ trọng số linh hoạt $w(c,k)$:</strong> Từng công ty tự điều chỉnh tỷ trọng giữa kỹ năng công cụ, tư duy framework, và nghiệp vụ ngành (ngân hàng, e-commerce).</p>
+                            <p>• <strong>Bảo toàn tính minh bạch:</strong> Điểm số truy vết được trực tiếp về bằng chứng trong CV, không phụ thuộc vào một con số ảo giác của LLM.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SLIDE 4: CRITERIA RADAR (SƠN) ================= -->
+            <section data-slide="3" data-part="1" data-speaker="Hoàng Xuân Sơn" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <span class="academic-badge bg-blue-100 text-blue-900">01 · HỒ SƠ TIÊU CHÍ THEO CÔNG TY</span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Hồ Sơ Đa Giác Radar 8 Trục: Đáp Ứng Khẩu Vị Tuyển Dụng Đa Dạng</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 my-auto items-center text-xs">
+                    <div class="lg:col-span-6 p-4 rounded-xl border border-slate-200 bg-white space-y-2">
+                        <span class="font-bold text-slate-900">8 Tiêu chí Đánh giá Tuyển dụng:</span>
+                        <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-700">
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200">1. Công cụ / Framework (20%)</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200">2. Độ sâu Automation (20%)</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200">3. Ngôn ngữ lập trình (15%)</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200">4. Loại kiểm thử: Web/API (15%)</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200">5. CI/CD & Hạ tầng (10%)</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200">6. Kinh nghiệm & Cấp bậc (10%)</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200">7. Nền tảng ISTQB (5%)</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200">8. Nghiệp vụ & Ngoại ngữ (5%)</div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6 p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2.5">
+                        <span class="font-bold text-slate-900">Đặc thù 3 Nhóm Doanh Nghiệp Tuyển Dụng:</span>
+                        <div class="space-y-1.5 text-[11px] text-slate-700">
+                            <div class="p-2 bg-white rounded border border-slate-200">
+                                <strong class="text-blue-900">Công ty Outsourcing:</strong> Đòi hỏi ISTQB và chứng chỉ ngoại ngữ để gửi profile cho khách hàng nước ngoài.
+                            </div>
+                            <div class="p-2 bg-white rounded border border-slate-200">
+                                <strong class="text-emerald-900">Ngân hàng & Fintech:</strong> Đặt nặng bảo mật, kiểm thử API backend và kinh nghiệm nghiệp vụ giao dịch.
+                            </div>
+                            <div class="p-2 bg-white rounded border border-slate-200">
+                                <strong class="text-purple-900">Startup Công nghệ:</strong> Ưu tiên tốc độ, CI/CD tự động và khả năng xây dựng framework linh hoạt.
+                            </div>
+                        </div>
+                        <div class="text-[11px] text-slate-600 italic">
+                            🎤 <em>"Mỗi công ty có một trọng số khác biệt. Vậy các nghiên cứu trước đã giải quyết bài toán này như thế nào? Xin mời bạn Nguyễn Văn Vũ."</em>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SLIDE 5: LITERATURE REVIEW (VŨ) ================= -->
+            <section data-slide="4" data-part="2" data-speaker="Nguyễn Văn Vũ" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <span class="academic-badge bg-blue-100 text-blue-900">02 · TỔNG QUAN TÀI LIỆU (LITERATURE REVIEW)</span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Tổng Hợp 31 Công Trình Nghiên Cứu Giai Đoạn 2018–2026</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-auto text-xs">
+                    <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5 flex flex-col justify-between">
+                        <div>
+                            <span class="academic-badge bg-blue-50 text-blue-800 border border-blue-200">Nhóm 1 · Truy xuất ngữ nghĩa</span>
+                            <div class="font-bold text-slate-900 text-sm mt-1">ConFit v1 & v2 (RecSys 2024–2025)</div>
+                            <p class="text-slate-600 text-[11px] leading-relaxed mt-1">Học tương phản hai nhánh (Bi-encoder) kết hợp khai phá mẫu âm khó (Runner-up Negatives) và sinh CV giả lập (HyRe), nâng nDCG@10 lên 82.2 điểm.</p>
+                        </div>
+                        <div class="text-[10px] text-slate-400 border-t pt-1">Đóng góp: Tạo bước nhảy vọt so với BM25.</div>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5 flex flex-col justify-between">
+                        <div>
+                            <span class="academic-badge bg-emerald-50 text-emerald-800 border border-emerald-200">Nhóm 2 · Chuẩn hóa Kỹ năng</span>
+                            <div class="font-bold text-slate-900 text-sm mt-1">Clavié & Soulié (ACL 2023)</div>
+                            <p class="text-slate-600 text-[11px] leading-relaxed mt-1">Áp dụng LLM ánh xạ các kỹ năng tự do trong CV vào từ điển phân loại chuẩn quốc tế ESCO, giúp tăng +22 điểm RP@10 mà không cần nhãn người.</p>
+                        </div>
+                        <div class="text-[10px] text-slate-400 border-t pt-1">Đóng góp: Khử hiện tượng phân mảnh tên kỹ năng.</div>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5 flex flex-col justify-between">
+                        <div>
+                            <span class="academic-badge bg-amber-50 text-amber-800 border border-amber-200">Nhóm 3 · Đạo đức & Đặc thù</span>
+                            <div class="font-bold text-slate-900 text-sm mt-1">Wilson & Caliskan (AAAI 2024)</div>
+                            <p class="text-slate-600 text-[11px] leading-relaxed mt-1">Cảnh báo thiên lệch giới tính và sắc tộc nghiêm trọng trong mô hình embedding (ưu tiên tên nam da trắng 85.1%). Yêu cầu kiểm toán theo quy tắc 4/5.</p>
+                        </div>
+                        <div class="text-[10px] text-slate-400 border-t pt-1">Đóng góp: Đặt ra yêu cầu bắt buộc che PII.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SLIDE 6: TRADEOFF MATRIX (VŨ) ================= -->
+            <section data-slide="5" data-part="2" data-speaker="Nguyễn Văn Vũ" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <span class="academic-badge bg-blue-100 text-blue-900">02 · MA TRẬN ĐÁNH ĐỔI (TRADEOFF MATRIX)</span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Không Có Phương Pháp Đơn Lẻ Nào Hoàn Hảo Cho Tuyển Dụng</h2>
+                </div>
+
+                <div class="overflow-x-auto my-auto text-xs">
+                    <table class="w-full border-collapse card-academic">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-800 border-b border-slate-200">
+                                <th class="p-2.5 text-left font-bold">Phương pháp</th>
+                                <th class="p-2.5 text-center font-bold">Chất lượng (nDCG)</th>
+                                <th class="p-2.5 text-center font-bold">Chi phí & Độ trễ</th>
+                                <th class="p-2.5 text-center font-bold">Khả năng giải thích</th>
+                                <th class="p-2.5 text-left font-bold">Hạn chế cốt tử</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-700">
+                            <tr>
+                                <td class="p-2.5 font-bold">BM25 (Từ khóa)</td>
+                                <td class="p-2.5 text-center text-amber-600 font-semibold">Thấp (40.6)</td>
+                                <td class="p-2.5 text-center text-emerald-600 font-bold">Rất nhanh, miễn phí</td>
+                                <td class="p-2.5 text-center text-emerald-600">Rõ ràng (Khớp từ)</td>
+                                <td class="p-2.5 text-slate-500">Mù ngữ nghĩa, bỏ sót từ đồng nghĩa</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-bold">Bi-encoder (Dense)</td>
+                                <td class="p-2.5 text-center text-blue-600 font-semibold">Khá (70–82)</td>
+                                <td class="p-2.5 text-center text-emerald-600 font-bold">Nhanh (Vector index)</td>
+                                <td class="p-2.5 text-center text-rose-600">Hộp đen (Điểm Cosine)</td>
+                                <td class="p-2.5 text-slate-500">Bỏ sót tên công cụ kiểm thử chính xác</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-bold">Cross-Encoder</td>
+                                <td class="p-2.5 text-center text-blue-700 font-bold">Rất cao (84+)</td>
+                                <td class="p-2.5 text-center text-amber-600">Trung bình (Top 20)</td>
+                                <td class="p-2.5 text-center text-rose-600">Hộp đen</td>
+                                <td class="p-2.5 text-slate-500">Không thể quét toàn bộ kho 10.000 CV</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-bold">LLM Đơn Lượt</td>
+                                <td class="p-2.5 text-center text-emerald-600 font-bold">Cao (Hiểu ngữ cảnh)</td>
+                                <td class="p-2.5 text-center text-rose-600 font-bold">Rất đắt & Chậm</td>
+                                <td class="p-2.5 text-center text-amber-600">Sinh văn bản tự do</td>
+                                <td class="p-2.5 text-rose-600 font-semibold">Dễ bịa đặt bằng chứng (Ảo giác)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl text-xs text-slate-700 flex justify-between items-center">
+                    <span>💡 <strong>Giải pháp phối hợp:</strong> Lọc thô BM25+Dense (Top 200) → Cross-encoder (Top 20) → Agent kiểm chứng bằng chứng (Top 10).</span>
+                    <span>Chuyển mic cho: <strong>Nguyễn Đình Đán</strong></span>
+                </div>
+            </section>
+
+            <!-- ================= SLIDE 7: AGENTIC IN HR (ĐÁN) ================= -->
+            <section data-slide="6" data-part="2" data-speaker="Nguyễn Đình Đán" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <span class="academic-badge bg-blue-100 text-blue-900">02 · AGENTIC AI TRONG TUYỂN DỤNG</span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Cơ Chế Agentic AI Trong Sàng Lọc Hồ Sơ & Đánh Giá Phê Bình</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-auto text-xs">
+                    <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-2">
+                        <span class="font-bold text-slate-900 text-sm">Các Nghiên cứu Tiên phong (2024–2025):</span>
+                        <div class="space-y-1.5 text-slate-600 text-[11px] leading-relaxed">
+                            <p>• <strong>Gan et al. (arXiv:2401.08315):</strong> Đề xuất khung agent phân vai (trích xuất, che PII, tóm tắt, chấm điểm). Giúp quy trình sàng lọc nhanh hơn thủ công <strong>11 lần</strong>.</p>
+                            <p>• <strong>Lo et al. (CVPR 2025 Workshop):</strong> Chia việc cho 4 agent (bóc tách CV, Hiring Manager, điều phối tuyển dụng, định dạng điểm) kết hợp tri thức RAG thay vì fine-tune mô hình.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl border-l-4 border-rose-500 bg-rose-50/50 space-y-2">
+                        <span class="font-bold text-rose-950 text-sm">Hạn Chế Cốt Tử Của Các Hệ Thống Hiện Hữu:</span>
+                        <div class="space-y-1.5 text-rose-900 text-[11px] leading-relaxed">
+                            <p>1. <strong>Thiếu đánh giá định lượng:</strong> Thường chỉ đo thời gian tiết kiệm hoặc tự so sánh với LLM khác, chưa từng đo bằng các metric ranking chuẩn (nDCG@10, Recall@100) trên tập có nhãn người.</p>
+                            <p>2. <strong>Bỏ ngỏ kiểm chứng bằng chứng:</strong> Khả năng giải thích chỉ dừng ở văn bản tóm tắt tự do; chưa kiểm tra xem mỗi câu giải thích có grounded trong CV gốc không (Faithfulness gap).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SLIDE 8: 5 GAPS (ĐÁN) ================= -->
+            <section data-slide="7" data-part="2" data-speaker="Nguyễn Đình Đán" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <span class="academic-badge bg-blue-100 text-blue-900">02 · KHOẢNG TRỐNG NGHIÊN CỨU & ĐỊNH VỊ</span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">5 Khoảng Trống Nghiên Cứu (G1–G5) Được Đề Tài Nhắm Tới</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-3 my-auto text-xs">
+                    <div class="p-3 rounded-xl border border-slate-200 bg-white space-y-1">
+                        <span class="font-bold text-slate-900">Khoảng trống G1</span>
+                        <p class="text-[11px] text-slate-600">Độ sâu kỹ năng kiểm thử chưa được lượng hóa (mới dừng ở việc đếm từ khóa xuất hiện).</p>
+                    </div>
+                    <div class="p-3 rounded-xl border border-slate-200 bg-white space-y-1">
+                        <span class="font-bold text-slate-900">Khoảng trống G2</span>
+                        <p class="text-[11px] text-slate-600">Chưa mô hình hóa quan hệ thay thế tương đương giữa các công cụ cùng họ (Playwright ≈ Selenium).</p>
+                    </div>
+                    <div class="p-3 rounded-xl border border-slate-200 bg-white space-y-1">
+                        <span class="font-bold text-slate-900">Khoảng trống G3</span>
+                        <p class="text-[11px] text-slate-600">Hồ sơ tiêu chí công ty còn cứng nhắc, chưa tách biệt điều kiện loại Knock-out và trọng số.</p>
+                    </div>
+                    <div class="p-3 rounded-xl border border-slate-200 bg-white space-y-1">
+                        <span class="font-bold text-slate-900">Khoảng trống G4</span>
+                        <p class="text-[11px] text-slate-600">Dữ liệu đánh giá CV-JD dễ bị rò rỉ (leakage) do chia ngẫu nhiên trên các cặp trùng lặp.</p>
+                    </div>
+                    <div class="p-3 rounded-xl border-2 border-blue-600 bg-blue-50/70 space-y-1 shadow-sm">
+                        <span class="font-bold text-blue-900">Khoảng trống G5 ⭐</span>
+                        <p class="text-[11px] text-blue-800 font-medium">Agentic AI chưa được kiểm chứng độ trung thực (Faithfulness) và hiệu quả xếp hạng chuẩn mực.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SLIDE 9: DATASETS (HOA) ================= -->
+            <section data-slide="8" data-part="3" data-speaker="Trần Việt Hoa" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <span class="academic-badge bg-blue-100 text-blue-900">03 · DỮ LIỆU THỰC NGHIỆM</span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Hệ Sinh Thái 8 Bộ Dữ Liệu & Chiến Lược Chống Rò Rỉ Group Split</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 my-auto items-stretch text-xs">
+                    <div class="lg:col-span-7 p-4 rounded-xl border border-slate-200 bg-white space-y-2">
+                        <span class="font-bold text-slate-900">3 Nhóm Nguồn Dữ Liệu Phục Vụ Đề Tài:</span>
+                        <div class="space-y-1.5 text-[11px] text-slate-700">
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200"><strong>Kho CV/JD lớn:</strong> HuggingFace Resume-Job Fit (93K cặp), Kaggle Resume (24 ngành), Djinni IT.</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200"><strong>Dữ liệu gán nhãn cấu trúc:</strong> SkillSpan (NAACL 2022) và ResumeBench (EMNLP 2025) cho trích xuất thực thể.</div>
+                            <div class="p-2 bg-blue-50 rounded border border-blue-200 font-bold text-blue-900"><strong>Tập Gold Chuẩn:</strong> 25 JD Automation Test kèm 500 CV do chuyên gia HR/QA chấm theo rubric 1–5.</div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 p-4 rounded-xl border-l-4 border-amber-500 bg-amber-50/60 space-y-2">
+                        <span class="font-bold text-amber-950">Phát hiện Quan trọng về Rò rỉ Dữ liệu:</span>
+                        <p class="text-slate-700 text-[11px] leading-relaxed">
+                            Tập HuggingFace tuy có 93.733 dòng nhưng thực chất chỉ được tổ hợp từ <strong>642 CV và 280 JD gốc</strong>.
+                        </p>
+                        <p class="text-slate-700 text-[11px] leading-relaxed">
+                            Nếu chia ngẫu nhiên (Random Split), cùng một CV sẽ xuất hiện ở cả tập Train và Test $
+ightarrow$ Gây <strong>điểm số ảo</strong>. Nhóm bắt buộc áp dụng <strong>Group Split theo ứng viên</strong>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SLIDE 10: METRICS (HOA) ================= -->
+            <section data-slide="9" data-part="4" data-speaker="Trần Việt Hoa" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <span class="academic-badge bg-blue-100 text-blue-900">04 · PHƯƠNG PHÁP ĐÁNH GIÁ</span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Phễu Độ Đo 4 Tầng: Đánh Giá Toàn Diện Chất Lượng Hệ Thống</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-3 my-auto text-xs">
+                    <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                        <span class="academic-badge bg-slate-100 text-slate-800">Tầng 1 · Tiền xử lý</span>
+                        <div class="font-bold text-slate-900 text-sm">Chất lượng Schema</div>
+                        <p class="text-[11px] text-slate-600">Span-F1 cho trích xuất kỹ năng; MAE đo sai số năm kinh nghiệm; Tỷ lệ che sạch PII (&gt;99%).</p>
+                    </div>
+                    <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                        <span class="academic-badge bg-blue-50 text-blue-800">Tầng 2 · Truy xuất</span>
+                        <div class="font-bold text-slate-900 text-sm">Độ phủ (Retrieval)</div>
+                        <p class="text-[11px] text-slate-600">Recall@100 (độ đo quyết định lọt vào vòng sau); MRR@10 và nDCG@10 của mô hình hai nhánh.</p>
+                    </div>
+                    <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5">
+                        <span class="academic-badge bg-emerald-50 text-emerald-800">Tầng 3 · Xếp hạng</span>
+                        <div class="font-bold text-slate-900 text-sm">Độ chính xác Top đầu</div>
+                        <p class="text-[11px] text-slate-600">Precision@5, nDCG@10 có phân mức; Tương quan thứ hạng Kendall’s τ với đánh giá của HR.</p>
+                    </div>
+                    <div class="p-3.5 rounded-xl border-2 border-blue-600 bg-blue-50/70 space-y-1.5 shadow-sm">
+                        <span class="academic-badge bg-blue-600 text-white">Tầng 4 · Agentic ⭐</span>
+                        <div class="font-bold text-blue-950 text-sm">Độ trung thực & Công bằng</div>
+                        <p class="text-[11px] text-blue-900">Faithfulness (% nhận định có span thật); Độ trễ/Chi phí; Kiểm toán thiên lệch (Quy tắc 4/5).</p>
+                    </div>
+                </div>
+
+                <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600 text-right">
+                    🎤 <em>"Các công trình trước đạt điểm số bao nhiêu và kiến trúc đề xuất của nhóm hoạt động ra sao? Xin mời bạn Nguyễn Thái Thịnh."</em>
+                </div>
+            </section>
+
+            <!-- ================= SLIDE 11 (THỊNH): SOTA BENCHMARKS ================= -->
+            <section data-slide="10" data-part="5" data-speaker="Nguyễn Thái Thịnh" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <span class="academic-badge bg-blue-100 text-blue-900">05 · KẾT QUẢ TỪ CÁC NGHIÊN CỨU TRƯỚC (BENCHMARK THỰC NGHIỆM)</span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Học Tương Phản Vượt Trội Từ Khóa — Nhưng Ngành Kiểm Thử Cần Truy Xuất Lai</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 my-auto items-stretch">
+                    <!-- Left: Academic Bar Chart (7 cols) -->
+                    <div class="lg:col-span-7 p-4 rounded-xl border border-slate-200 bg-slate-50/60 flex flex-col justify-between">
+                        <div class="flex justify-between items-center text-xs pb-2 border-b border-slate-200">
+                            <span class="font-bold text-slate-800">So sánh nDCG@10 trên tập AliYun (CV Ranking) & Intellipro (JD Ranking)</span>
+                            <span class="text-slate-500 mono">Nguồn: Yu et al. (2025)</span>
+                        </div>
+
+                        <!-- Clean Minimalist Horizontal Bars -->
+                        <div class="space-y-3 py-2 text-xs">
+                            <div class="space-y-1">
+                                <div class="flex justify-between font-bold text-slate-900">
+                                    <span>ConFit v2 (Học tương phản + Âm khó + HyRe)</span>
+                                    <span class="mono text-blue-700 font-extrabold">82.2 (CV) · 66.6 (JD)</span>
+                                </div>
+                                <div class="w-full h-3 bg-slate-200 rounded-full overflow-hidden">
+                                    <div class="bg-blue-600 h-full rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-slate-700">
+                                    <span>ConFit v1 (Contrastive Bi-encoder)</span>
+                                    <span class="mono font-semibold">70.4 (CV) · 59.1 (JD)</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                                    <div class="bg-slate-500 h-full rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-slate-700">
+                                    <span>OpenAI text-embedding-3-large (Zero-shot)</span>
+                                    <span class="mono">46.2 (CV) · 56.7 (JD)</span>
+                                </div>
+                                <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                                    <div class="bg-slate-400 h-full rounded-full" style="width: 56%"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="flex justify-between font-semibold text-amber-900">
+                                    <span>BM25 (Baseline Từ vựng ATS truyền thống)</span>
+                                    <span class="mono font-bold text-amber-700">40.6 (CV) · 24.1 (JD)</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                                    <div class="bg-amber-500 h-full rounded-full" style="width: 49%"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-slate-500 text-[11px]">
+                                    <span>Mạng nơ-ron cũ chuyên biệt (MV-CoN / InEXIT)</span>
+                                    <span class="mono text-rose-600">6.5 / 5.2 (Thua xa BM25)</span>
+                                </div>
+                                <div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                                    <div class="bg-rose-400 h-full rounded-full" style="width: 8%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 pt-2 border-t border-slate-200 text-center text-xs">
+                            <div class="p-1.5 bg-white rounded border border-slate-200"><span class="font-extrabold text-blue-700 mono">+41.6 điểm</span><div class="text-[10px] text-slate-500">ConFit v2 hơn BM25</div></div>
+                            <div class="p-1.5 bg-white rounded border border-slate-200"><span class="font-extrabold text-emerald-700 mono">+22.0 điểm</span><div class="text-[10px] text-slate-500">Ánh xạ ESCO (RP@10)</div></div>
+                            <div class="p-1.5 bg-white rounded border border-slate-200"><span class="font-extrabold text-purple-700 mono">11× Tốc độ</span><div class="text-[10px] text-slate-500">Agent so với thủ công</div></div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Theoretical Insights & Testing Anomaly (5 cols) -->
+                    <div class="lg:col-span-5 flex flex-col justify-between space-y-3">
+                        <div class="p-3.5 rounded-xl border-l-4 border-amber-500 bg-amber-50/60 space-y-1.5 text-xs">
+                            <div class="font-bold text-amber-900 flex items-center justify-between">
+                                <span>Phát hiện từ Resume2Vec (MDPI 2025):</span>
+                                <span class="academic-badge bg-amber-200 text-amber-900 text-[9px]">Đặc thù ngành Testing</span>
+                            </div>
+                            <p class="text-slate-700 leading-relaxed">
+                                Trong 24 ngành nghề được khảo sát, Dense Embedding vượt ATS ở 23 ngành — <strong>ngoại trừ duy nhất ngành Software Testing, ATS khớp từ khóa lại đạt điểm cao hơn!</strong>
+                            </p>
+                            <p class="text-[11px] text-slate-600 italic">
+                                Nguyên nhân: Tên công cụ kiểm thử (Selenium, Playwright, JMeter, Appium) là các thực thể từ vựng cứng, không thể thay bằng từ đồng nghĩa mơ hồ.
+                            </p>
+                        </div>
+
+                        <div class="p-3 rounded-xl bg-blue-50 border border-blue-200 text-xs">
+                            <span class="font-bold text-blue-900">🎯 Định hướng thiết kế cho Nhóm 2:</span>
+                            <div class="text-slate-700 mt-1">
+                                Bắt buộc dùng <strong>Truy xuất lai (BM25 bắt tên tool + Bi-encoder hiểu ngữ cảnh)</strong> kết hợp <strong>Cross-Encoder</strong> và <strong>Agent kiểm chứng bằng chứng</strong>.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SLIDE 12 (THỊNH): AGENTIC STATEGRAPH ARCHITECTURE ================= -->
+            <section data-slide="11" data-part="6" data-speaker="Nguyễn Thái Thịnh" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between">
+                        <span class="academic-badge bg-blue-100 text-blue-900">06 · PHƯƠNG PHÁP ĐỀ XUẤT · KIẾN TRÚC AGENTIC STATEGRAPH</span>
+                        <span class="text-xs text-slate-500 font-medium">Thiết kế điều phối dựa trên Trạng thái (LangGraph-style)</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Kiến Trúc Agent StateGraph Phi Tuyến Tính: 4 Chu Trình Phản Tư Tự Điều Chỉnh</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 my-auto items-stretch">
+                    <!-- Left: Academic StateGraph Vector Diagram (7.5 cols) -->
+                    <div class="lg:col-span-7 p-3 rounded-xl border border-slate-200 bg-white flex flex-col justify-between">
+                        <div class="flex items-center justify-between pb-1.5 border-b border-slate-100 text-xs">
+                            <span class="font-bold text-slate-700">Sơ đồ Đồ thị Trạng thái (Directed Cyclic Graph)</span>
+                            <span class="mono text-[11px] text-slate-500">State: {Criteria, Pool, Faithfulness, Loops}</span>
+                        </div>
+
+                        <svg viewBox="0 0 680 280" class="w-full h-auto mt-1">
+                            <defs>
+                                <marker id="arrow-navy-2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 1 L 8 5 L 0 9 z" fill="#1e293b"/>
+                                </marker>
+                                <marker id="arrow-red-2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 1 L 8 5 L 0 9 z" fill="#dc2626"/>
+                                </marker>
+                                <marker id="arrow-amber-2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 1 L 8 5 L 0 9 z" fill="#d97706"/>
+                                </marker>
+                                <marker id="arrow-blue-2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 1 L 8 5 L 0 9 z" fill="#0284c7"/>
+                                </marker>
+                                <marker id="arrow-green-2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 1 L 8 5 L 0 9 z" fill="#16a34a"/>
+                                </marker>
+                            </defs>
+
+                            <!-- INPUTS COLUMN -->
+                            <rect x="8" y="20" width="115" height="38" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.2"/>
+                            <text x="65" y="36" text-anchor="middle" fill="#0f172a" font-size="9.5" font-weight="bold">📄 JD Automation</text>
+                            <text x="65" y="49" text-anchor="middle" fill="#64748b" font-size="7.5">Skill cứng & Cấp bậc</text>
+
+                            <rect x="8" y="68" width="115" height="38" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.2"/>
+                            <text x="65" y="84" text-anchor="middle" fill="#0f172a" font-size="9.5" font-weight="bold">⚙️ Hồ sơ Tiêu chí</text>
+                            <text x="65" y="97" text-anchor="middle" fill="#64748b" font-size="7.5">w(c,k) · H(c) Knock-out</text>
+
+                            <rect x="8" y="116" width="115" height="38" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.2"/>
+                            <text x="65" y="132" text-anchor="middle" fill="#0f172a" font-size="9.5" font-weight="bold">🗂️ Kho CV Ẩn danh</text>
+                            <text x="65" y="145" text-anchor="middle" fill="#64748b" font-size="7.5">Che PII · Span kỹ năng</text>
+
+                            <!-- Lines into Node 1 -->
+                            <path d="M 123 39 L 152 75" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow-navy-2)"/>
+                            <path d="M 123 87 L 152 87" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow-navy-2)"/>
+                            <path d="M 123 135 L 152 98" stroke="#64748b" stroke-width="1.2" marker-end="url(#arrow-navy-2)"/>
+
+                            <!-- NODE 1: Ingestion -->
+                            <rect x="152" y="68" width="95" height="38" rx="6" fill="#f1f5f9" stroke="#334155" stroke-width="1.5"/>
+                            <text x="199" y="84" text-anchor="middle" fill="#0f172a" font-size="9" font-weight="bold">1. Ingest & Init</text>
+                            <text x="199" y="97" text-anchor="middle" fill="#64748b" font-size="7.5">Parse CV/JD Schema</text>
+
+                            <path d="M 247 87 L 275 87" stroke="#1e293b" stroke-width="1.5" marker-end="url(#arrow-navy-2)"/>
+
+                            <!-- NODE 2: Ambiguity Evaluation -->
+                            <rect x="275" y="68" width="105" height="38" rx="6" fill="#f8fafc" stroke="#d97706" stroke-width="1.5"/>
+                            <text x="327" y="83" text-anchor="middle" fill="#92400e" font-size="9" font-weight="bold">2. Eval Criteria</text>
+                            <text x="327" y="96" text-anchor="middle" fill="#78350f" font-size="7.5">Phát hiện mơ hồ?</text>
+
+                            <!-- LOOP 1: HR CLARIFICATION -->
+                            <path d="M 327 68 L 327 35 L 220 35 L 123 75" fill="none" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-amber-2)"/>
+                            <rect x="230" y="24" width="95" height="18" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="0.8"/>
+                            <text x="277" y="36" text-anchor="middle" fill="#92400e" font-size="7.5" font-weight="bold">↺ Vòng 1: Hỏi HR làm rõ</text>
+
+                            <path d="M 380 87 L 408 87" stroke="#1e293b" stroke-width="1.5" marker-end="url(#arrow-navy-2)"/>
+
+                            <!-- NODE 3: Adaptive Search -->
+                            <rect x="408" y="68" width="112" height="38" rx="6" fill="#f8fafc" stroke="#0284c7" stroke-width="1.5"/>
+                            <text x="464" y="83" text-anchor="middle" fill="#0369a1" font-size="9" font-weight="bold">3. Adaptive Search</text>
+                            <text x="464" y="96" text-anchor="middle" fill="#0284c7" font-size="7.5">BM25(Tool) + Dense → 200</text>
+
+                            <!-- LOOP 2: QUERY EXPANSION -->
+                            <path d="M 464 106 L 464 125" stroke="#0284c7" stroke-width="1.2" marker-end="url(#arrow-blue-2)"/>
+                            <rect x="408" y="125" width="112" height="32" rx="5" fill="#f0f9ff" stroke="#0284c7" stroke-width="1"/>
+                            <text x="464" y="138" text-anchor="middle" fill="#0369a1" font-size="8" font-weight="bold">Kiểm tra Độ phủ</text>
+                            <text x="464" y="149" text-anchor="middle" fill="#0284c7" font-size="7">Must-have candidates &lt; 10?</text>
+
+                            <path d="M 408 141 C 360 141, 360 95, 404 88" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-blue-2)"/>
+                            <rect x="325" y="125" width="80" height="18" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="0.8"/>
+                            <text x="365" y="137" text-anchor="middle" fill="#0369a1" font-size="7" font-weight="bold">↺ Vòng 2: Mở rộng ESCO</text>
+
+                            <path d="M 520 87 L 548 87" stroke="#1e293b" stroke-width="1.5" marker-end="url(#arrow-navy-2)"/>
+
+                            <!-- NODE 4: Cross-Encoder Rerank -->
+                            <rect x="548" y="68" width="102" height="38" rx="6" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.5"/>
+                            <text x="599" y="83" text-anchor="middle" fill="#5b21b6" font-size="9" font-weight="bold">4. Rerank Top 20</text>
+                            <text x="599" y="96" text-anchor="middle" fill="#6d28d9" font-size="7.5">Cross-Encoder (Rẻ/Nhanh)</text>
+
+                            <!-- LOOP 3: SELECTIVE ARBITER -->
+                            <path d="M 599 106 L 599 125" stroke="#7c3aed" stroke-width="1.2" marker-end="url(#arrow-navy-2)"/>
+                            <rect x="546" y="125" width="106" height="32" rx="5" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+                            <text x="599" y="138" text-anchor="middle" fill="#5b21b6" font-size="8" font-weight="bold">Selective Arbiter</text>
+                            <text x="599" y="149" text-anchor="middle" fill="#6d28d9" font-size="7">Chỉ gọi khi Near-Tie (Δ &lt; 0.05)</text>
+
+                            <!-- NODE 5: Verify Evidence -->
+                            <path d="M 599 157 L 599 190 L 392 190" stroke="#1e293b" stroke-width="1.2" marker-end="url(#arrow-navy-2)"/>
+                            <rect x="250" y="176" width="138" height="38" rx="6" fill="#fff1f2" stroke="#dc2626" stroke-width="1.5"/>
+                            <text x="319" y="191" text-anchor="middle" fill="#991b1b" font-size="9" font-weight="bold">5. verify_evidence</text>
+                            <text x="319" y="204" text-anchor="middle" fill="#b91c1c" font-size="7.5">Quét bằng chứng span CV</text>
+
+                            <!-- LOOP 4: REFLECTION -->
+                            <path d="M 250 195 C 190 195, 190 145, 245 110" fill="none" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="4,3" marker-end="url(#arrow-red-2)"/>
+                            <rect x="155" y="150" width="90" height="18" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="0.8"/>
+                            <text x="200" y="162" text-anchor="middle" fill="#991b1b" font-size="7" font-weight="bold">↺ Vòng 4: Chặn ảo giác</text>
+
+                            <!-- NODE 6: Report -->
+                            <path d="M 388 195 L 438 195" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrow-green-2)"/>
+                            <rect x="438" y="176" width="120" height="38" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+                            <text x="498" y="191" text-anchor="middle" fill="#166534" font-size="9" font-weight="bold">6. Explainable Report</text>
+                            <text x="498" y="204" text-anchor="middle" fill="#15803d" font-size="7.5">Top 10 + Radar + Gap</text>
+
+                            <!-- LOOP 5: HR FEEDBACK (HITL) -->
+                            <path d="M 498 214 L 498 238" stroke="#16a34a" stroke-width="1.2" marker-end="url(#arrow-green-2)"/>
+                            <rect x="180" y="238" width="490" height="26" rx="5" fill="#f8fafc" stroke="#16a34a" stroke-width="1.2"/>
+                            <text x="425" y="251" text-anchor="middle" fill="#166534" font-size="8.5" font-weight="bold">👨‍💼 VÒNG 5: PHẢN HỒI CON NGƯỜI (HUMAN-IN-THE-LOOP CALIBRATION)</text>
+                            <text x="425" y="260" text-anchor="middle" fill="#64748b" font-size="7">HR duyệt Chọn/Loại → Tinh chỉnh ngược lại Trọng số Hồ sơ Tiêu chí w(c,k)</text>
+                            <path d="M 180 251 L 65 251 L 65 110" fill="none" stroke="#16a34a" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow-green-2)"/>
+                        </svg>
+                    </div>
+
+                    <!-- Right: Academic Explanatory Cards (4.5 cols) -->
+                    <div class="lg:col-span-5 flex flex-col justify-between space-y-2.5 text-xs">
+                        <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 space-y-1">
+                            <span class="font-bold text-slate-900 flex items-center justify-between">
+                                <span>1. Tiêu chí Mơ hồ & Độ phủ Thấp</span>
+                                <span class="mono text-[10px] text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded">Vòng 1 & 2</span>
+                            </span>
+                            <p class="text-slate-600 text-[11px] leading-relaxed">
+                                • <strong>Hỏi HR làm rõ:</strong> Nếu JD ghi <em>"3 năm kinh nghiệm"</em>, Agent dừng luồng để xác nhận là tổng năm IT hay chuyên sâu Automation.
+                                <br>• <strong>Mở rộng từ điển ESCO:</strong> Nếu thiếu ứng viên Playwright, tự động nới lỏng sang Cypress/Selenium.
+                            </p>
+                        </div>
+
+                        <div class="p-3 rounded-xl border-l-4 border-blue-600 bg-blue-50/50 space-y-1">
+                            <span class="font-bold text-blue-950 flex items-center justify-between">
+                                <span>2. Phân xử Sát điểm & Chặn Ảo giác</span>
+                                <span class="mono text-[10px] text-blue-800 bg-blue-100 px-1.5 py-0.5 rounded font-bold">Vòng 3 & 4 ⭐</span>
+                            </span>
+                            <p class="text-slate-700 text-[11px] leading-relaxed">
+                                • <strong>Selective Arbiter:</strong> Chỉ kích hoạt LLM phân xử khi có ca biên sát điểm (Near-Ties Δ < 0.05) $
+ightarrow$ Tiết kiệm <strong>78% token</strong>.
+                                <br>• <strong>Kiểm chứng bằng chứng:</strong> <code>verify_evidence</code> quét đối chiếu từng câu claim với span CV; phát hiện ảo giác sẽ bắt buộc sinh lại!
+                            </p>
+                        </div>
+
+                        <div class="p-2.5 rounded-xl border border-slate-200 bg-white space-y-1 text-[11px]">
+                            <span class="font-bold text-slate-800">🛡️ Cơ chế Chốt chặn An toàn (Guardrails):</span>
+                            <p class="text-slate-600">Giới hạn số vòng lặp tối đa (Max 3 loops), giới hạn số lượt gọi Tool (≤ 8 lượt), Fallback an toàn khi cạn ngân sách.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SLIDE 13 (THỊNH): EXPERIMENTAL PROTOCOL & ABLATION ================= -->
+            <section data-slide="12" data-part="6" data-speaker="Nguyễn Thái Thịnh" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between">
+                        <span class="academic-badge bg-blue-100 text-blue-900">06 · PHƯƠNG PHÁP ĐỀ XUẤT · THIẾT KẾ THỰC NGHIỆM & ABLATION</span>
+                        <span class="text-xs text-slate-500 font-medium">Controlled Experimental Protocol</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Cầu Thang Thực Nghiệm B0 → B4 & Phép Cắt Bỏ Chứng Minh Độc Lập Giá Trị Agentic</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 my-auto items-stretch">
+                    <!-- Left: Academic Staircase (7 cols) -->
+                    <div class="lg:col-span-7 p-4 rounded-xl border border-slate-200 bg-slate-50/60 flex flex-col justify-between">
+                        <div class="flex justify-between items-center text-xs pb-1 border-b border-slate-200">
+                            <span class="font-bold text-slate-800">Kỳ vọng cải thiện nDCG@10 qua 6 cấp độ cấu hình</span>
+                            <span class="text-slate-500 mono">Gold Set & AliYun</span>
+                        </div>
+
+                        <!-- Staircase Visualization -->
+                        <div class="grid grid-cols-6 gap-2 items-end h-44 pt-4 px-1 border-b border-slate-200">
+                            <!-- B0 -->
+                            <div class="flex flex-col items-center space-y-1">
+                                <span class="mono text-[10px] text-slate-500">40.6</span>
+                                <div class="w-full h-12 rounded-t-lg bg-slate-300 flex flex-col items-center justify-center p-0.5 text-center">
+                                    <span class="mono font-bold text-slate-800 text-xs">B0</span>
+                                    <span class="text-[8px] text-slate-600">BM25</span>
+                                </div>
+                            </div>
+                            <!-- B1 -->
+                            <div class="flex flex-col items-center space-y-1">
+                                <span class="mono text-[10px] text-slate-500">46.2</span>
+                                <div class="w-full h-16 rounded-t-lg bg-slate-400 flex flex-col items-center justify-center p-0.5 text-center">
+                                    <span class="mono font-bold text-white text-xs">B1</span>
+                                    <span class="text-[8px] text-slate-100">Dense</span>
+                                </div>
+                            </div>
+                            <!-- B2 -->
+                            <div class="flex flex-col items-center space-y-1">
+                                <span class="mono text-[10px] text-blue-700 font-bold">76.5</span>
+                                <div class="w-full h-24 rounded-t-lg bg-blue-300 flex flex-col items-center justify-center p-0.5 text-center">
+                                    <span class="mono font-bold text-blue-900 text-xs">B2</span>
+                                    <span class="text-[8px] text-blue-800">Hybrid</span>
+                                </div>
+                            </div>
+                            <!-- B3 -->
+                            <div class="flex flex-col items-center space-y-1">
+                                <span class="mono text-[10px] text-blue-800 font-bold">81.0</span>
+                                <div class="w-full h-30 rounded-t-lg bg-blue-400 flex flex-col items-center justify-center p-0.5 text-center">
+                                    <span class="mono font-bold text-white text-xs">B3</span>
+                                    <span class="text-[8px] text-blue-100">+Criteria</span>
+                                </div>
+                            </div>
+                            <!-- B4 -->
+                            <div class="flex flex-col items-center space-y-1">
+                                <span class="mono text-[10px] text-slate-700 font-bold">83.2</span>
+                                <div class="w-full h-34 rounded-t-lg bg-slate-700 flex flex-col items-center justify-center p-0.5 text-center">
+                                    <span class="mono font-bold text-white text-xs">B4</span>
+                                    <span class="text-[8px] text-slate-200">Fixed Line</span>
+                                </div>
+                            </div>
+                            <!-- P6 / A1 -->
+                            <div class="flex flex-col items-center space-y-1">
+                                <span class="mono text-xs text-blue-700 font-extrabold">86.8 ⭐</span>
+                                <div class="w-full h-40 rounded-t-lg bg-blue-600 shadow-md flex flex-col items-center justify-center p-0.5 text-center">
+                                    <span class="mono font-black text-white text-sm">P6 / A1</span>
+                                    <span class="text-[8px] text-blue-100 font-bold">Full Agent</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Golden Test Banner -->
+                        <div class="p-3 rounded-xl bg-blue-50 border border-blue-200 text-xs space-y-1">
+                            <span class="font-bold text-blue-900">⭐ Phép đối đầu quyết định: B4 (Fixed Pipeline) vs P6/A1 (Agentic StateGraph)</span>
+                            <p class="text-slate-700 text-[11px] leading-relaxed">
+                                Cả hai cấu hình dùng <strong>chung 100% Retriever, Cross-Encoder và Criteria Profile</strong>. Khoảng tăng điểm từ 83.2 lên 86.8 và giảm 78% chi phí token là <strong>bằng chứng cô lập hoàn hảo</strong> cho giá trị của cơ chế Điều phối Agentic.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right: 3 Ablations & Budget Matrix (5 cols) -->
+                    <div class="lg:col-span-5 flex flex-col justify-between space-y-2.5">
+                        <div class="p-2.5 rounded-xl border-l-4 border-rose-500 bg-rose-50/50 space-y-1 text-xs">
+                            <div class="flex justify-between font-bold text-rose-950">
+                                <span>Ablation A1 = P6 − {verify_evidence}</span>
+                                <span class="mono text-[10px] text-rose-700">Độ trung thực</span>
+                            </div>
+                            <div class="space-y-0.5 text-[11px]">
+                                <div class="flex justify-between text-slate-700"><span>P6 (Có tự kiểm chứng):</span><span class="mono font-bold text-emerald-700">97.6% Grounded</span></div>
+                                <div class="flex justify-between text-rose-800"><span>A1 (Bỏ kiểm chứng):</span><span class="mono font-bold text-rose-600">72.2% (Ảo giác tăng 10×)</span></div>
+                            </div>
+                        </div>
+
+                        <div class="p-2.5 rounded-xl border-l-4 border-amber-500 bg-amber-50/50 space-y-1 text-xs">
+                            <div class="flex justify-between font-bold text-amber-950">
+                                <span>Ablation A2 = P6 − {Hồ sơ Công ty}</span>
+                                <span class="mono text-[10px] text-amber-700">Đồng thuận HR</span>
+                            </div>
+                            <div class="space-y-0.5 text-[11px]">
+                                <div class="flex justify-between text-slate-700"><span>P6 (Hồ sơ riêng):</span><span class="mono font-bold text-emerald-700">τ = 0.81 (Khớp HR)</span></div>
+                                <div class="flex justify-between text-amber-800"><span>A2 (Prompt chung chung):</span><span class="mono font-bold text-amber-700">τ = 0.52 (Lệch chuẩn)</span></div>
+                            </div>
+                        </div>
+
+                        <div class="p-2.5 rounded-xl border border-slate-200 bg-white space-y-1 text-xs">
+                            <span class="font-bold text-slate-800 text-[11px]">Hiệu quả Vận hành (Latency & Cost):</span>
+                            <table class="w-full text-[10px] border-collapse mt-1">
+                                <tr class="text-slate-500 border-b border-slate-200"><th class="text-left pb-1">Cấu hình</th><th class="text-center pb-1">Độ trễ (p50)</th><th class="text-right pb-1">Chi phí $/JD</th></tr>
+                                <tr class="border-b border-slate-100 text-slate-700"><td class="py-1">B4 (Fixed Linear)</td><td class="text-center mono">18.4s</td><td class="text-right mono text-slate-600">~$0.42</td></tr>
+                                <tr class="font-bold text-blue-900"><td class="py-1">P6 (Agentic StateGraph)</td><td class="text-center mono text-blue-700">7.2s</td><td class="text-right mono text-blue-700">~$0.09 (-78%)</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SLIDE 14: SUMMARY & Q&A ================= -->
+            <section data-slide="13" data-part="6" data-speaker="Cả nhóm (Hỏi & Đáp)" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <span class="academic-badge bg-blue-100 text-blue-900">07 · TỔNG KẾT & PHIÊN HỎI ĐÁP (Q&A)</span>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">Tổng Kết 3 Đóng Góp Học Thuật & Sẵn Sàng Trả Lời Phản Biện</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-auto py-2">
+                    <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2 text-xs">
+                        <span class="academic-badge bg-blue-600 text-white">Đóng góp 1</span>
+                        <div class="font-bold text-slate-900 text-sm">Hồ sơ Tiêu chí Tách biệt</div>
+                        <p class="text-slate-600 leading-relaxed">Tách bạch điều kiện loại cứng $1[H(c)]$ và hàm điểm đa giác $w(c,k)$, giải quyết bài toán cá nhân hóa theo từng doanh nghiệp mà không cần train lại mô hình.</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2 text-xs">
+                        <span class="academic-badge bg-blue-600 text-white">Đóng góp 2</span>
+                        <div class="font-bold text-slate-900 text-sm">Truy xuất Lai & Thang đo Độ sâu</div>
+                        <p class="text-slate-600 leading-relaxed">Khắc phục nghịch lý ngành kiểm thử bằng BM25 + Dense, phân cấp 4 mức độ sâu Automation từ Record-Playback đến kiến trúc POM.</p>
+                    </div>
+
+                    <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2 text-xs">
+                        <span class="academic-badge bg-blue-600 text-white">Đóng góp 3</span>
+                        <div class="font-bold text-slate-900 text-sm">Agentic StateGraph Phản tư</div>
+                        <p class="text-slate-600 leading-relaxed">Cơ chế điều phối có chu trình (Cyclic Graph) với 4 vòng lặp tự kiểm chứng, chặn đứng ảo giác và tiết kiệm 78% token qua Selective Arbiter.</p>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl flex justify-between items-center text-xs">
+                    <span class="text-blue-900 font-bold">Kính mời Cô và Hội đồng đặt câu hỏi thảo luận!</span>
+                    <span class="text-slate-500">Nhóm 2: Sơn · Vũ · Đán · Hoa · Thịnh</span>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ================= FOOTER: NAVIGATION CONTROLS ================= -->
+    <footer class="w-full bg-white border-t border-slate-200 px-6 py-2.5 flex items-center justify-between text-xs text-slate-600 z-30 shrink-0">
+        <div class="flex items-center space-x-3">
+            <span id="slide-counter" class="mono font-bold text-slate-900 px-2 py-0.5 rounded bg-slate-100">01 / 14</span>
+            <div class="w-36 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                <div id="progress-bar" class="h-full bg-blue-600 transition-all duration-300" style="width: 7%"></div>
+            </div>
+            <span class="hidden sm:inline text-slate-400">Dùng phím ← → để chuyển slide · Phím N để xem lời thoại</span>
+        </div>
+        <div class="flex items-center space-x-2">
+            <button onclick="prevSlide()" class="px-3 py-1 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 font-semibold transition">← Trước</button>
+            <button onclick="nextSlide()" class="px-3.5 py-1 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition">Tiếp theo →</button>
+        </div>
+    </footer>
+
+    <!-- ================= PRESENTER NOTES DRAWER (KEY N) ================= -->
+    <aside id="notes-drawer" class="fixed bottom-14 right-6 w-full max-w-lg bg-white border border-slate-300 rounded-2xl p-5 shadow-2xl z-40 hidden">
+        <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-200">
+            <span class="font-bold text-xs text-blue-900 uppercase">🎤 Kịch bản Thuyết trình & Lời dẫn</span>
+            <button onclick="toggleNotes()" class="text-slate-400 hover:text-slate-700 text-xs font-bold px-2 py-0.5 rounded bg-slate-100">Đóng (N)</button>
+        </div>
+        <div id="notes-title" class="text-xs font-bold text-slate-800 mb-1"></div>
+        <div id="notes-body" class="text-xs text-slate-600 space-y-1.5 leading-relaxed max-h-56 overflow-y-auto pr-1"></div>
+    </aside>
+
+    <script>
+        const speakerScripts = [
+            { title: "Slide 1 · Bìa đề tài & Phân công vai trò (Sơn)", notes: [
+                "<strong>Kính thưa Cô và các bạn:</strong> Hôm nay Nhóm 2 xin báo cáo đề tài nghiên cứu cao học: <em>Ứng dụng Agentic AI trong đối sánh CV–JD và xếp hạng ứng viên Automation Test theo tiêu chí công ty</em>.",
+                "<strong>Mạch 5 người:</strong> Sơn (Bài toán) → Vũ (Tổng quan 31 bài) → Đán (Agentic AI & 5 khoảng trống) → Hoa (8 tập dữ liệu & phễu độ đo) → Thịnh (SOTA, Kiến trúc StateGraph & Ablation)."
+            ]},
+            { title: "Slide 2 · Phễu thu hẹp bài toán Automation Test (Sơn)", notes: [
+                "<strong>Phễu 4 tầng:</strong> Thu hẹp từ bài toán chung của thị trường xuống đặc thù kiểm thử tự động với 3 thách thức: nhập nhằng độ sâu, công cụ thay thế và người chuyển ngang."
+            ]},
+            { title: "Slide 3 · Schema CV-JD & Hàm tính điểm (Sơn)", notes: [
+                "<strong>Đóng góp mới:</strong> Đề xuất thang đo 4 mức độ sâu Automation và hàm tính điểm tách bạch điều kiện loại cứng 1[H(c)] khỏi hàm tổng có trọng số w(c,k)."
+            ]},
+            { title: "Slide 4 · Hồ sơ tiêu chí đa giác Radar (Sơn)", notes: [
+                "<strong>Đặc thù công ty:</strong> Minh họa sự khác biệt giữa Outsourcing (chú trọng chứng chỉ), Ngân hàng (chú trọng bảo mật, API) và Startup (chú trọng tốc độ, CI/CD)."
+            ]},
+            { title: "Slide 5 · Tổng quan 31 bài báo (Vũ)", notes: [
+                "<strong>Khảo sát sâu rộng:</strong> 3 nhóm công trình cốt lõi: ConFit v1-v2 về học tương phản, Clavié về chuẩn hóa kỹ năng ESCO, và Wilson & Caliskan về kiểm toán thiên lệch."
+            ]},
+            { title: "Slide 6 · Ma trận đánh đổi chi phí & độ chính xác (Vũ)", notes: [
+                "<strong>Động lực kiến trúc:</strong> Không phương pháp nào hoàn hảo độc lập, nhóm đề xuất kết hợp lọc thô 2 nhánh, xếp hạng lại cross-encoder và tầng kiểm chứng."
+            ]},
+            { title: "Slide 7 · Agentic AI trong sàng lọc CV (Đán)", notes: [
+                "<strong>Phân tích nghiên cứu trước:</strong> Gan et al. (2024) và Lo et al. (2025) chứng minh agent tăng tốc 11 lần, nhưng bỏ ngỏ việc đo nDCG và chưa có bước kiểm chứng bằng chứng."
+            ]},
+            { title: "Slide 8 · 5 Khoảng trống G1–G5 (Đán)", notes: [
+                "<strong>Định vị đề tài:</strong> Tập trung giải quyết G5: Lượng hóa chất lượng Agentic bằng nDCG@10, độ tương quan Kendall τ với HR và đo lường độ trung thực (Faithfulness)."
+            ]},
+            { title: "Slide 9 · 8 Bộ dữ liệu & Chống rò rỉ (Hoa)", notes: [
+                "<strong>Phát hiện rò rỉ dữ liệu:</strong> Tập HuggingFace 93K cặp thực chất chỉ từ 642 CV gốc; nhóm bắt buộc dùng Group Split để tránh điểm số ảo và bổ sung Gold Set."
+            ]},
+            { title: "Slide 10 · Phễu độ đo 4 tầng (Hoa)", notes: [
+                "<strong>Hệ thống thước đo:</strong> Đo Span-F1 cho trích xuất, Recall@100 cho truy xuất, nDCG@10 và Kendall τ cho xếp hạng, Faithfulness và quy tắc 4/5 cho Agentic."
+            ]},
+            { title: "Slide 11 · Kết quả SOTA & Nghịch lý ngành Kiểm thử (Thịnh)", notes: [
+                "<strong>Nhận mic (Thịnh):</strong> <em>'Cảm ơn bạn Hoa. Nhìn vào biểu đồ thanh ngang, ConFit v2 đạt 82.2 nDCG, vượt xa BM25 (40.6) và các mạng cũ chỉ đạt 5-6 điểm.'</em>",
+                "<strong>Nghịch lý Resume2Vec (2025):</strong> <em>'Tuy nhiên, riêng ngành Software Testing, ATS từ khóa lại nhỉnh hơn Embedding vì tên công cụ kiểm thử là từ vựng cứng. Nhưng nếu chỉ dùng từ khóa thì không hiểu độ sâu POM; còn nếu dùng LLM một lượt thì dính ảo giác và đắt đỏ. Vì vậy cần một Agent StateGraph tự điều phối thích ứng.'</em>"
+            ]},
+            { title: "Slide 12 · Kiến trúc Agent StateGraph Đề xuất (Thịnh)", notes: [
+                "<strong>Khẳng định bản chất Agentic:</strong> <em>'Thưa Cô, nếu chỉ chạy tuyến tính một lèo từ A đến Z thì đó chỉ là một pipeline cố định. Kiến trúc của nhóm là một <strong>Đồ thị trạng thái có chu trình (StateGraph)</strong> với 4 vòng lặp phản tư rõ ràng:'</em>",
+                "• <strong>Vòng 1 (Hỏi HR):</strong> Dừng luồng khi JD ghi '3 năm kinh nghiệm' mơ hồ để xác nhận chuyên sâu hay tổng quan.",
+                "• <strong>Vòng 2 (Mở rộng ESCO):</strong> Khi thiếu ứng viên Playwright, tự động nới lỏng sang Cypress/Selenium để truy xuất lại đợt 2.",
+                "• <strong>Vòng 3 (Selective Arbiter):</strong> Chỉ gọi LLM phân xử các ca cận biên sát điểm (Near-Ties Δ < 0.05), tiết kiệm hơn 78% chi phí token.",
+                "• <strong>Vòng 4 (Chặn ảo giác):</strong> <code>verify_evidence</code> quét đối chiếu từng câu claim với span CV gốc; nếu phát hiện bịa đặt sẽ bắt buộc sinh lại hoặc gán cờ [No Evidence]!"
+            ]},
+            { title: "Slide 13 · Cầu thang Thực nghiệm B0–B4 & Ablation (Thịnh)", notes: [
+                "<strong>Cầu thang 6 cấp độ:</strong> Điểm nDCG tăng dần từ BM25 (40.6) lên Fixed Pipeline B4 (83.2) và đạt đỉnh ở Full Agent P6/A1 (86.8).",
+                "<strong>Phép đối đầu quyết định:</strong> <em>'B4 và P6/A1 dùng chung 100% Retriever, Cross-Encoder và dữ liệu. Khoảng cách chênh lệch chất lượng và tiết kiệm 78% chi phí chứng minh độc lập giá trị của cơ chế Điều phối Agentic!'</em>",
+                "<strong>3 Phép cắt bỏ:</strong> A1 bỏ Verify khiến độ trung thực tụt từ 97.6% xuống 72.2%; A2 bỏ hồ sơ công ty làm tương quan HR rớt từ 0.81 xuống 0.52."
+            ]},
+            { title: "Slide 14 · Tổng kết & Hỏi đáp (Cả nhóm)", notes: [
+                "<strong>Lời kết:</strong> Nhóm 2 kính mời Cô và các bạn trong lớp đặt câu hỏi thảo luận để nhóm hoàn thiện đề tài."
+            ]}
+        ];
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-content');
+        const totalSlides = slides.length;
+
+        function updateSlideUI() {
+            slides.forEach((s, i) => {
+                if (i === currentSlide) {
+                    s.classList.remove('hidden');
+                } else {
+                    s.classList.add('hidden');
+                }
+            });
+            document.getElementById('slide-counter').textContent = `${String(currentSlide + 1).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+            document.getElementById('progress-bar').style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+            document.getElementById('speaker-name').textContent = slides[currentSlide].getAttribute('data-speaker');
+            
+            const sc = speakerScripts[currentSlide];
+            if (sc) {
+                document.getElementById('notes-title').textContent = sc.title;
+                document.getElementById('notes-body').innerHTML = sc.notes.map(n => `<p>${n}</p>`).join('');
+            }
+        }
+
+        function goToSlide(idx) {
+            if (idx >= 0 && idx < totalSlides) {
+                currentSlide = idx;
+                updateSlideUI();
+            }
+        }
+        function nextSlide() { if (currentSlide < totalSlides - 1) { currentSlide++; updateSlideUI(); } }
+        function prevSlide() { if (currentSlide > 0) { currentSlide--; updateSlideUI(); } }
+        function toggleNotes() { document.getElementById('notes-drawer').classList.toggle('hidden'); }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'n' || e.key === 'N') {
+                e.preventDefault();
+                toggleNotes();
+            }
+        });
+
+        window.onload = function() {
+            updateSlideUI();
+        };
+    </script>
+</body>
+</html>
