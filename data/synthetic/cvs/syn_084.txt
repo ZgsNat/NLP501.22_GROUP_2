@@ -1,0 +1,12 @@
+Lê T~% L#nh
+Aut#mati%n T#@t%Engi%#e~
+Ema#@:#@#nh@3#@@ample.c@m
+P@o%e: #910~##109
+Ge@der: @em%l@#Date o#@bir#%: 17/#2#2@03
+%#U~MA~Y~~%@ea@# ~f%%xper@~n~e in%s@ftw~re tes~#ng%
+
+~X~ER~E~%E
+#ompany D#(2023 ~ Pr#se%#)
+- Designe% an% built~~ Pa%@ Object%Mo@@l automation fr%me%ork%@nd @%teg#at~d%#t ~n%o the CI pi~e#ine.#-@Us#d P~%yw%ight% Cu~umb~r fo% ui~~es~in@.
+- Ran #%sts on A#ure DevOps, G%#~a@%CI.
+

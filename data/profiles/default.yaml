@@ -1,0 +1,11 @@
+name: Mặc định
+description: Cân bằng giữa công cụ, độ sâu automation và kỹ năng lập trình.
+weights:
+  tools: 0.22
+  depth: 0.18
+  languages: 0.14
+  test_types: 0.14
+  cicd: 0.10
+  experience: 0.12
+  certification: 0.04
+  foreign_lang: 0.06

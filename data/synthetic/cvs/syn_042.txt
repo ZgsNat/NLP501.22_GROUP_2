@@ -1,0 +1,22 @@
+Lê Thu Lan
+Automation Test Engineer
+Email: lan70@example.com
+Phone: 0986697457
+Gender: Female
+Date of birth: 24/01/2000
+
+SUMMARY
+10 years of experience in software testing.
+
+EXPERIENCE
+Company C (2016 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.
+- Used Playwright, Cypress, Postman, Pytest for api testing, ui testing.
+- Ran tests on GitLab CI, Jenkins, Docker.
+
+SKILLS
+Programming: Java, JavaScript
+Certification: ISTQB CTFL
+Languages: English (TOEIC 750)
+
+Address: 44 Nguyen Trai Street, District 7

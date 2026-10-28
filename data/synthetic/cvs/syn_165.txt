@@ -1,0 +1,19 @@
+Đặng Mai Vy
+QA/QC Engineer
+Email: vy78@example.com
+Điện thoại: 0978919151
+Giới tính: Nữ
+Ngày sinh: 03/03/2002
+
+TÓM TẮT
+Mới tốt nghiệp, đam mê kiểm thử.
+
+KINH NGHIỆM
+- Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.
+- Sử dụng Postman, Rest Assured cho kiểm thử api testing, manual testing.
+- Chạy test trên Azure DevOps.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: C#
+
+Địa chỉ: 261 Nguyen Trai Street, District 7

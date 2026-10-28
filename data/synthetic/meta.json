@@ -1,0 +1,2140 @@
+{
+ "synthetic": true,
+ "seed": 42,
+ "n_cvs": 200,
+ "rationale": {
+  "syn_000": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Sử dụng Selenium WebDriver, XCUITest cho kiểm thử mobile testing, ui testing.",
+   "Chạy test trên Docker."
+  ],
+  "syn_001": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, WebdriverIO, Rest Assured, Postman, Cucumber cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Docker."
+  ],
+  "syn_002": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Pytest, JUnit for ui testing."
+  ],
+  "syn_003": [
+   "10 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Playwright, XCUITest, Cucumber, Robot Framework for mobile testing, ui testing.",
+   "Ran tests on GitLab CI."
+  ],
+  "syn_004": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, WebdriverIO, Rest Assured, Cucumber, Robot Framework for api testing, ui testing."
+  ],
+  "syn_005": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Cypress, Postman, Robot Framework, JUnit cho kiểm thử api testing, ui testing."
+  ],
+  "syn_006": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Espresso, Postman, k6, Robot Framework for api testing, manual testing, mobile testing, performance testing.",
+   "Ran tests on Docker."
+  ],
+  "syn_007": [
+   "7 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, WebdriverIO, Appium, Postman, TestNG for api testing, mobile testing, ui testing.",
+   "Ran tests on Jenkins."
+  ],
+  "syn_008": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng WebdriverIO, Postman, k6, Cucumber, Robot Framework cho kiểm thử api testing, performance testing, ui testing.",
+   "Chạy test trên Azure DevOps."
+  ],
+  "syn_009": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Postman, TestNG for api testing, ui testing.",
+   "Ran tests on Azure DevOps, Docker."
+  ],
+  "syn_010": [
+   "8 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Postman, Gatling, Pytest for api testing, manual testing, performance testing.",
+   "Ran tests on Azure DevOps, GitLab CI, Jenkins."
+  ],
+  "syn_011": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Selenium WebDriver, Gatling, Pytest, JUnit cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên GitLab CI, GitHub Actions."
+  ],
+  "syn_012": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Playwright, WebdriverIO, k6, JUnit, Cucumber cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên Jenkins."
+  ],
+  "syn_013": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Playwright, Cypress, Rest Assured, Postman, JMeter, Pytest, TestNG for api testing, performance testing, ui testing."
+  ],
+  "syn_014": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, JMeter, Pytest for performance testing, ui testing."
+  ],
+  "syn_015": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, XCUITest, JUnit, Pytest for mobile testing, ui testing.",
+   "Ran tests on Jenkins."
+  ],
+  "syn_016": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Pytest, Cucumber for ui testing.",
+   "Ran tests on GitLab CI."
+  ],
+  "syn_017": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, Espresso, Rest Assured, k6, Pytest for api testing, mobile testing, performance testing, ui testing.",
+   "Ran tests on GitHub Actions, Azure DevOps, GitLab CI."
+  ],
+  "syn_018": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Cypress, Rest Assured, Postman, Robot Framework cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Docker, GitHub Actions."
+  ],
+  "syn_019": [
+   "Executed manual test cases and reported defects in Jira.",
+   "Used Cucumber for manual testing."
+  ],
+  "syn_020": [
+   "10 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng WebdriverIO, Cypress, Rest Assured, Postman, Cucumber, Pytest cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Azure DevOps, GitLab CI, Docker."
+  ],
+  "syn_021": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, k6, Robot Framework, Cucumber for performance testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ],
+  "syn_022": [
+   "4 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Cypress, XCUITest, Cucumber for mobile testing, ui testing.",
+   "Ran tests on Azure DevOps, Jenkins."
+  ],
+  "syn_023": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Rest Assured, Cucumber, Pytest for api testing, ui testing.",
+   "Ran tests on GitHub Actions, Azure DevOps."
+  ],
+  "syn_024": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Postman, TestNG, JUnit for api testing, ui testing.",
+   "Ran tests on Docker."
+  ],
+  "syn_025": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Espresso, Postman, TestNG cho kiểm thử api testing, manual testing, mobile testing.",
+   "Chạy test trên Jenkins, GitHub Actions, Azure DevOps."
+  ],
+  "syn_026": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Cypress, Rest Assured, Cucumber, Robot Framework for api testing, ui testing."
+  ],
+  "syn_027": [
+   "Executed manual test cases and reported defects in Jira.",
+   "Used WebdriverIO, Rest Assured, Postman, Robot Framework for api testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ],
+  "syn_028": [
+   "4 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, WebdriverIO, Espresso, Postman, Rest Assured, TestNG, JUnit for api testing, mobile testing, ui testing.",
+   "Ran tests on Azure DevOps, GitHub Actions, Docker."
+  ],
+  "syn_029": [
+   "2 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Playwright, Espresso, Rest Assured, Cucumber cho kiểm thử api testing, mobile testing, ui testing.",
+   "Chạy test trên Azure DevOps."
+  ],
+  "syn_030": [
+   "10 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng Appium, k6, JUnit cho kiểm thử manual testing, mobile testing, performance testing.",
+   "Chạy test trên Docker, GitLab CI."
+  ],
+  "syn_031": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used JMeter, Pytest for manual testing, performance testing."
+  ],
+  "syn_032": [
+   "Executed manual test cases and reported defects in Jira.",
+   "Used Cypress, WebdriverIO, Rest Assured, Cucumber for api testing, ui testing."
+  ],
+  "syn_033": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Playwright, Rest Assured, Postman, Pytest, Robot Framework for api testing, ui testing."
+  ],
+  "syn_034": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Playwright, TestNG, Cucumber for ui testing.",
+   "Ran tests on Jenkins, GitLab CI."
+  ],
+  "syn_035": [
+   "4 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Cypress, XCUITest, Postman, Cucumber, TestNG for api testing, mobile testing, ui testing.",
+   "Ran tests on GitLab CI, GitHub Actions, Docker."
+  ],
+  "syn_036": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, WebdriverIO, k6, JUnit for performance testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ],
+  "syn_037": [
+   "10 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Cypress, Selenium WebDriver, Rest Assured, Postman, Pytest, Robot Framework cho kiểm thử api testing, ui testing.",
+   "Chạy test trên GitLab CI."
+  ],
+  "syn_038": [
+   "3 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, WebdriverIO, TestNG, Cucumber for ui testing.",
+   "Ran tests on GitLab CI."
+  ],
+  "syn_039": [
+   "10 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Cypress, Appium, Postman, Rest Assured, k6, TestNG for api testing, mobile testing, performance testing, ui testing.",
+   "Ran tests on Jenkins."
+  ],
+  "syn_040": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Playwright, Espresso, JUnit for mobile testing, ui testing.",
+   "Ran tests on Jenkins, Azure DevOps."
+  ],
+  "syn_041": [
+   "6 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Playwright, WebdriverIO, Postman, Robot Framework, Pytest cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Jenkins."
+  ],
+  "syn_042": [
+   "10 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Playwright, Cypress, Postman, Pytest for api testing, ui testing.",
+   "Ran tests on GitLab CI, Jenkins, Docker."
+  ],
+  "syn_043": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Espresso, Pytest, TestNG for manual testing, mobile testing.",
+   "Ran tests on Azure DevOps."
+  ],
+  "syn_044": [
+   "4 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng XCUITest, JMeter, TestNG, Pytest cho kiểm thử manual testing, mobile testing, performance testing.",
+   "Chạy test trên Azure DevOps, GitHub Actions, Docker."
+  ],
+  "syn_045": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Cypress, WebdriverIO, Gatling, Robot Framework, JUnit for performance testing, ui testing.",
+   "Ran tests on GitHub Actions."
+  ],
+  "syn_046": [
+   "6 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Playwright, Selenium WebDriver, Espresso, Postman, k6, JUnit cho kiểm thử api testing, mobile testing, performance testing, ui testing.",
+   "Chạy test trên GitLab CI, Docker, Jenkins."
+  ],
+  "syn_047": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Rest Assured, JMeter, TestNG, JUnit for api testing, performance testing, ui testing.",
+   "Ran tests on Docker."
+  ],
+  "syn_048": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Cypress, Rest Assured, Postman, Gatling, Cucumber for api testing, performance testing, ui testing.",
+   "Ran tests on Docker, GitLab CI."
+  ],
+  "syn_049": [
+   "4 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Selenium WebDriver, Rest Assured, Cucumber cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Jenkins, GitHub Actions."
+  ],
+  "syn_050": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng WebdriverIO, XCUITest, Postman, TestNG, Cucumber cho kiểm thử api testing, mobile testing, ui testing.",
+   "Chạy test trên Docker."
+  ],
+  "syn_051": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Playwright, WebdriverIO, XCUITest, Robot Framework cho kiểm thử mobile testing, ui testing.",
+   "Chạy test trên GitHub Actions."
+  ],
+  "syn_052": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Playwright, Rest Assured, Robot Framework, TestNG for api testing, ui testing."
+  ],
+  "syn_053": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Selenium WebDriver, Playwright, Gatling, TestNG, JUnit cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên GitLab CI."
+  ],
+  "syn_054": [
+   "4 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Postman, Rest Assured, Cucumber for api testing, ui testing."
+  ],
+  "syn_055": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, Selenium WebDriver, Espresso, Robot Framework, TestNG for mobile testing, ui testing.",
+   "Ran tests on GitHub Actions."
+  ],
+  "syn_056": [
+   "3 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Appium, Postman, Cucumber, Robot Framework for api testing, mobile testing, ui testing.",
+   "Ran tests on Jenkins."
+  ],
+  "syn_057": [
+   "2 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, WebdriverIO, Postman, Rest Assured, Cucumber, TestNG cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Docker."
+  ],
+  "syn_058": [
+   "7 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Pytest, Robot Framework for ui testing.",
+   "Ran tests on Docker, Jenkins, GitHub Actions."
+  ],
+  "syn_059": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, WebdriverIO, Rest Assured, JUnit, TestNG for api testing, ui testing.",
+   "Ran tests on GitHub Actions."
+  ],
+  "syn_060": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Cypress, Pytest for ui testing.",
+   "Ran tests on GitLab CI."
+  ],
+  "syn_061": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Sử dụng Postman, Rest Assured cho kiểm thử api testing, manual testing.",
+   "Chạy test trên GitLab CI."
+  ],
+  "syn_062": [
+   "5 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used k6, Robot Framework, JUnit for manual testing, performance testing.",
+   "Ran tests on GitHub Actions."
+  ],
+  "syn_063": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used XCUITest, TestNG for manual testing, mobile testing.",
+   "Ran tests on Azure DevOps, Docker, GitHub Actions."
+  ],
+  "syn_064": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, Appium, Postman, Rest Assured, Robot Framework, TestNG cho kiểm thử api testing, mobile testing, ui testing.",
+   "Chạy test trên Azure DevOps."
+  ],
+  "syn_065": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used JMeter, Cucumber, TestNG for manual testing, performance testing."
+  ],
+  "syn_066": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Cypress, WebdriverIO, JUnit, Robot Framework cho kiểm thử ui testing."
+  ],
+  "syn_067": [
+   "10 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Cypress, Selenium WebDriver, Rest Assured, Cucumber, Robot Framework for api testing, ui testing.",
+   "Ran tests on Azure DevOps, GitHub Actions, Docker."
+  ],
+  "syn_068": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, Postman, Rest Assured, Pytest for api testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ],
+  "syn_069": [
+   "Executed manual test cases and reported defects in Jira.",
+   "Used Postman, Rest Assured for api testing, manual testing.",
+   "Ran tests on GitLab CI."
+  ],
+  "syn_070": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Appium, JUnit, TestNG for manual testing, mobile testing.",
+   "Ran tests on GitLab CI."
+  ],
+  "syn_071": [
+   "6 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Playwright, Cypress, JMeter, Robot Framework, JUnit for performance testing, ui testing.",
+   "Ran tests on GitLab CI."
+  ],
+  "syn_072": [
+   "5 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Cypress, JUnit for ui testing.",
+   "Ran tests on Docker."
+  ],
+  "syn_073": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Playwright, Rest Assured, TestNG, Pytest for api testing, ui testing.",
+   "Ran tests on GitLab CI, GitHub Actions."
+  ],
+  "syn_074": [
+   "6 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used XCUITest, Postman, Gatling, JUnit, Cucumber for api testing, manual testing, mobile testing, performance testing.",
+   "Ran tests on Docker, GitHub Actions, Azure DevOps."
+  ],
+  "syn_075": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng Playwright, WebdriverIO, Rest Assured, Postman, Pytest cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Azure DevOps."
+  ],
+  "syn_076": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Cypress, Selenium WebDriver, Rest Assured, Postman, Cucumber for api testing, ui testing.",
+   "Ran tests on Jenkins."
+  ],
+  "syn_077": [
+   "10 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng Espresso, Postman, Rest Assured, TestNG, Cucumber cho kiểm thử api testing, manual testing, mobile testing.",
+   "Chạy test trên Docker, Jenkins, Azure DevOps."
+  ],
+  "syn_078": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Rest Assured, k6, JUnit, Robot Framework for api testing, manual testing, performance testing."
+  ],
+  "syn_079": [
+   "7 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Cypress, WebdriverIO, Espresso, Robot Framework for mobile testing, ui testing.",
+   "Ran tests on Jenkins, Azure DevOps, Docker."
+  ],
+  "syn_080": [
+   "Executed manual test cases and reported defects in Jira.",
+   "Used Postman, Rest Assured for api testing, manual testing."
+  ],
+  "syn_081": [
+   "4 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used XCUITest, Robot Framework, Cucumber for manual testing, mobile testing.",
+   "Ran tests on Docker."
+  ],
+  "syn_082": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Rest Assured, k6, JUnit, Pytest for api testing, manual testing, performance testing.",
+   "Ran tests on Jenkins, GitHub Actions, GitLab CI."
+  ],
+  "syn_083": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Playwright, XCUITest, Postman, k6, TestNG, JUnit for api testing, mobile testing, performance testing, ui testing."
+  ],
+  "syn_084": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Playwright, Cucumber for ui testing.",
+   "Ran tests on Azure DevOps, GitLab CI."
+  ],
+  "syn_085": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Rest Assured, Postman, JMeter, JUnit, Cucumber for api testing, manual testing, performance testing.",
+   "Ran tests on GitHub Actions, Docker, Azure DevOps."
+  ],
+  "syn_086": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Playwright, Rest Assured, Postman, k6, Cucumber cho kiểm thử api testing, performance testing, ui testing.",
+   "Chạy test trên Docker, Jenkins, GitLab CI."
+  ],
+  "syn_087": [
+   "6 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used XCUITest, JUnit for manual testing, mobile testing.",
+   "Ran tests on Azure DevOps."
+  ],
+  "syn_088": [
+   "8 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, Selenium WebDriver, Postman, TestNG, JUnit for api testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ],
+  "syn_089": [
+   "7 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Selenium WebDriver, Espresso, TestNG for mobile testing, ui testing.",
+   "Ran tests on GitLab CI, Docker."
+  ],
+  "syn_090": [
+   "4 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Cypress, Rest Assured, Gatling, Robot Framework, JUnit for api testing, performance testing, ui testing."
+  ],
+  "syn_091": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Playwright, WebdriverIO, Postman, Robot Framework, TestNG for api testing, ui testing."
+  ],
+  "syn_092": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Playwright, Rest Assured, Postman, k6, Robot Framework cho kiểm thử api testing, performance testing, ui testing.",
+   "Chạy test trên GitHub Actions, Jenkins."
+  ],
+  "syn_093": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Sử dụng Rest Assured, Postman cho kiểm thử api testing, manual testing.",
+   "Chạy test trên Jenkins."
+  ],
+  "syn_094": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Cypress, Postman, TestNG for api testing, ui testing.",
+   "Ran tests on Docker, GitLab CI, Azure DevOps."
+  ],
+  "syn_095": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Playwright, Rest Assured, Cucumber, Pytest cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Azure DevOps, Docker, Jenkins."
+  ],
+  "syn_096": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Pytest, JUnit for ui testing.",
+   "Ran tests on Azure DevOps."
+  ],
+  "syn_097": [
+   "7 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Playwright, Selenium WebDriver, Postman, TestNG for api testing, ui testing.",
+   "Ran tests on GitLab CI."
+  ],
+  "syn_098": [
+   "6 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Cypress, Postman, Rest Assured, JMeter, JUnit for api testing, performance testing, ui testing.",
+   "Ran tests on GitHub Actions, Docker, GitLab CI."
+  ],
+  "syn_099": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Postman, Rest Assured, Cucumber for api testing, ui testing."
+  ],
+  "syn_100": [
+   "6 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used JMeter, Robot Framework for manual testing, performance testing."
+  ],
+  "syn_101": [
+   "3 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Cypress, Espresso, Rest Assured, Pytest, TestNG for api testing, mobile testing, ui testing."
+  ],
+  "syn_102": [
+   "8 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Cypress, Pytest, Robot Framework cho kiểm thử ui testing.",
+   "Chạy test trên GitHub Actions."
+  ],
+  "syn_103": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Cypress, TestNG, Pytest cho kiểm thử ui testing."
+  ],
+  "syn_104": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Rest Assured, Cucumber for api testing, ui testing."
+  ],
+  "syn_105": [
+   "4 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Playwright, WebdriverIO, k6, Cucumber, JUnit cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên GitHub Actions, Jenkins."
+  ],
+  "syn_106": [
+   "7 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Playwright, Rest Assured, Cucumber for api testing, ui testing.",
+   "Ran tests on Azure DevOps, Docker, GitHub Actions."
+  ],
+  "syn_107": [
+   "7 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Playwright, Rest Assured, Cucumber, TestNG for api testing, ui testing.",
+   "Ran tests on GitLab CI, Docker."
+  ],
+  "syn_108": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Sử dụng Postman cho kiểm thử api testing, manual testing.",
+   "Chạy test trên GitHub Actions."
+  ],
+  "syn_109": [
+   "Executed manual test cases and reported defects in Jira.",
+   "Used XCUITest, Robot Framework for manual testing, mobile testing."
+  ],
+  "syn_110": [
+   "4 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Playwright, Postman, Pytest cho kiểm thử api testing, ui testing.",
+   "Chạy test trên GitHub Actions."
+  ],
+  "syn_111": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng XCUITest, Postman, Rest Assured, Pytest cho kiểm thử api testing, manual testing, mobile testing.",
+   "Chạy test trên GitLab CI, Azure DevOps."
+  ],
+  "syn_112": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Cypress, Appium, JUnit, Robot Framework for mobile testing, ui testing.",
+   "Ran tests on Azure DevOps, Docker."
+  ],
+  "syn_113": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Playwright, Cypress, Robot Framework, TestNG for ui testing.",
+   "Ran tests on Docker."
+  ],
+  "syn_114": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Appium, Postman, Rest Assured, JUnit cho kiểm thử api testing, manual testing, mobile testing.",
+   "Chạy test trên Docker."
+  ],
+  "syn_115": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Appium, Rest Assured, Postman, JUnit for api testing, manual testing, mobile testing.",
+   "Ran tests on GitLab CI, Docker, Jenkins."
+  ],
+  "syn_116": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Selenium WebDriver, Rest Assured, Pytest, Cucumber for api testing, ui testing.",
+   "Ran tests on Jenkins, Azure DevOps, GitHub Actions."
+  ],
+  "syn_117": [
+   "10 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used WebdriverIO, Espresso, TestNG for mobile testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ],
+  "syn_118": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Cypress, Selenium WebDriver, Espresso, Cucumber cho kiểm thử mobile testing, ui testing."
+  ],
+  "syn_119": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Sử dụng Playwright, Rest Assured cho kiểm thử api testing, ui testing."
+  ],
+  "syn_120": [
+   "6 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Postman, JMeter, Pytest, Cucumber cho kiểm thử api testing, manual testing, performance testing.",
+   "Chạy test trên Jenkins."
+  ],
+  "syn_121": [
+   "10 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Rest Assured, Cucumber for api testing, ui testing."
+  ],
+  "syn_122": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Selenium WebDriver, Rest Assured, Cucumber cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Azure DevOps, Jenkins."
+  ],
+  "syn_123": [
+   "8 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used JMeter, Cucumber, JUnit for manual testing, performance testing.",
+   "Ran tests on Azure DevOps."
+  ],
+  "syn_124": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, JUnit, Pytest cho kiểm thử ui testing."
+  ],
+  "syn_125": [
+   "4 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, Appium, Postman, TestNG for api testing, mobile testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ],
+  "syn_126": [
+   "2 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Cypress, Selenium WebDriver, XCUITest, Postman, Cucumber cho kiểm thử api testing, mobile testing, ui testing.",
+   "Chạy test trên GitHub Actions."
+  ],
+  "syn_127": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng Gatling, JUnit cho kiểm thử manual testing, performance testing.",
+   "Chạy test trên GitLab CI."
+  ],
+  "syn_128": [
+   "10 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Rest Assured, JMeter, Pytest, Cucumber for api testing, performance testing, ui testing.",
+   "Ran tests on Docker."
+  ],
+  "syn_129": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Cypress, XCUITest, Rest Assured, Postman, JMeter, Robot Framework for api testing, mobile testing, performance testing, ui testing."
+  ],
+  "syn_130": [
+   "4 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Appium, Postman, Rest Assured, JUnit, TestNG cho kiểm thử api testing, manual testing, mobile testing.",
+   "Chạy test trên Docker, Jenkins."
+  ],
+  "syn_131": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng WebdriverIO, Appium, Postman, k6, TestNG, Pytest cho kiểm thử api testing, mobile testing, performance testing, ui testing."
+  ],
+  "syn_132": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, WebdriverIO, Rest Assured, Postman, JUnit, Pytest for api testing, ui testing.",
+   "Ran tests on GitHub Actions."
+  ],
+  "syn_133": [
+   "3 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Rest Assured, Robot Framework for api testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ],
+  "syn_134": [
+   "Executed manual test cases and reported defects in Jira."
+  ],
+  "syn_135": [
+   "8 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Playwright, Selenium WebDriver, Rest Assured, Postman, Robot Framework, JUnit cho kiểm thử api testing, ui testing.",
+   "Chạy test trên GitHub Actions, GitLab CI, Azure DevOps."
+  ],
+  "syn_136": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Playwright, WebdriverIO, Appium, Robot Framework for mobile testing, ui testing.",
+   "Ran tests on Azure DevOps, Jenkins, GitLab CI."
+  ],
+  "syn_137": [
+   "6 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used JMeter, Cucumber for manual testing, performance testing.",
+   "Ran tests on Jenkins."
+  ],
+  "syn_138": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, Postman, k6, JUnit, TestNG cho kiểm thử api testing, performance testing, ui testing.",
+   "Chạy test trên GitLab CI."
+  ],
+  "syn_139": [
+   "4 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Playwright, Postman, Rest Assured, Pytest for api testing, ui testing.",
+   "Ran tests on Jenkins."
+  ],
+  "syn_140": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Rest Assured, JMeter, TestNG for api testing, manual testing, performance testing.",
+   "Ran tests on Docker, GitHub Actions."
+  ],
+  "syn_141": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Playwright, XCUITest, TestNG for mobile testing, ui testing.",
+   "Ran tests on Jenkins."
+  ],
+  "syn_142": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Playwright, Rest Assured, Postman, JMeter, Robot Framework, TestNG for api testing, performance testing, ui testing."
+  ],
+  "syn_143": [
+   "10 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used JMeter, Pytest, TestNG for manual testing, performance testing.",
+   "Ran tests on Azure DevOps."
+  ],
+  "syn_144": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Playwright, Rest Assured, Postman, Gatling, Robot Framework, Pytest for api testing, performance testing, ui testing."
+  ],
+  "syn_145": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Pytest, Cucumber for ui testing.",
+   "Ran tests on GitLab CI."
+  ],
+  "syn_146": [
+   "7 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Appium, Rest Assured, Postman, JUnit for api testing, manual testing, mobile testing.",
+   "Ran tests on Azure DevOps, GitHub Actions, GitLab CI."
+  ],
+  "syn_147": [
+   "7 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used XCUITest, Gatling, JUnit, TestNG for manual testing, mobile testing, performance testing.",
+   "Ran tests on Jenkins."
+  ],
+  "syn_148": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Playwright, Robot Framework, Pytest for ui testing.",
+   "Ran tests on Jenkins, GitHub Actions, Docker."
+  ],
+  "syn_149": [
+   "6 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng WebdriverIO, Gatling, JUnit cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên GitHub Actions, Azure DevOps, GitLab CI."
+  ],
+  "syn_150": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Gatling, Pytest, TestNG cho kiểm thử manual testing, performance testing.",
+   "Chạy test trên GitHub Actions, Docker."
+  ],
+  "syn_151": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Chạy test trên GitLab CI."
+  ],
+  "syn_152": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, WebdriverIO, Pytest, Robot Framework cho kiểm thử ui testing.",
+   "Chạy test trên Jenkins."
+  ],
+  "syn_153": [
+   "10 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Playwright, Appium, Rest Assured, Postman, Gatling, TestNG for api testing, mobile testing, performance testing, ui testing.",
+   "Ran tests on Jenkins, Docker."
+  ],
+  "syn_154": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng WebdriverIO, Playwright, Postman, Gatling, TestNG, Pytest cho kiểm thử api testing, performance testing, ui testing."
+  ],
+  "syn_155": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Selenium WebDriver, Rest Assured, Postman, Pytest, JUnit cho kiểm thử api testing, ui testing.",
+   "Chạy test trên GitLab CI."
+  ],
+  "syn_156": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Cypress, WebdriverIO, JMeter, TestNG cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên Azure DevOps."
+  ],
+  "syn_157": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Cypress, Rest Assured, Robot Framework for api testing, ui testing."
+  ],
+  "syn_158": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Playwright, Cypress, Espresso, Postman, Robot Framework cho kiểm thử api testing, mobile testing, ui testing."
+  ],
+  "syn_159": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Rest Assured, Cucumber, TestNG for api testing, ui testing."
+  ],
+  "syn_160": [
+   "7 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Rest Assured, Postman, TestNG for api testing, ui testing.",
+   "Ran tests on Jenkins."
+  ],
+  "syn_161": [
+   "8 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used WebdriverIO, Selenium WebDriver, Rest Assured, Robot Framework for api testing, ui testing.",
+   "Ran tests on Docker, Jenkins, GitLab CI."
+  ],
+  "syn_162": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Sử dụng WebdriverIO, Rest Assured, Postman, Cucumber cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Jenkins."
+  ],
+  "syn_163": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, Selenium WebDriver, Rest Assured, Postman, Cucumber, TestNG for api testing, ui testing.",
+   "Ran tests on GitHub Actions."
+  ],
+  "syn_164": [
+   "Executed manual test cases and reported defects in Jira.",
+   "Used Cypress, Postman, Rest Assured for api testing, ui testing."
+  ],
+  "syn_165": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Sử dụng Postman, Rest Assured cho kiểm thử api testing, manual testing.",
+   "Chạy test trên Azure DevOps."
+  ],
+  "syn_166": [
+   "4 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Cypress, WebdriverIO, Postman, Pytest, JUnit for api testing, ui testing.",
+   "Ran tests on Jenkins."
+  ],
+  "syn_167": [
+   "10 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng WebdriverIO, XCUITest, Postman, Rest Assured, TestNG cho kiểm thử api testing, mobile testing, ui testing.",
+   "Chạy test trên Azure DevOps, Jenkins."
+  ],
+  "syn_168": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Rest Assured, k6, Pytest, TestNG for api testing, manual testing, performance testing."
+  ],
+  "syn_169": [
+   "8 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Cypress, JMeter, Cucumber cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên Docker, GitHub Actions."
+  ],
+  "syn_170": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Chạy test trên Docker."
+  ],
+  "syn_171": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, WebdriverIO, Postman, Cucumber, TestNG for api testing, ui testing."
+  ],
+  "syn_172": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, WebdriverIO, TestNG for ui testing.",
+   "Ran tests on Jenkins."
+  ],
+  "syn_173": [
+   "7 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Selenium WebDriver, Appium, Pytest for mobile testing, ui testing.",
+   "Ran tests on Azure DevOps, Docker, GitLab CI."
+  ],
+  "syn_174": [
+   "7 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Playwright, Postman, Rest Assured, JMeter, JUnit for api testing, performance testing, ui testing.",
+   "Ran tests on GitLab CI, GitHub Actions, Azure DevOps."
+  ],
+  "syn_175": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, XCUITest, Rest Assured, JUnit, Cucumber cho kiểm thử api testing, mobile testing, ui testing."
+  ],
+  "syn_176": [
+   "10 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Cypress, Rest Assured, k6, JUnit, Robot Framework for api testing, performance testing, ui testing."
+  ],
+  "syn_177": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Appium, Postman, Pytest, Robot Framework cho kiểm thử api testing, manual testing, mobile testing.",
+   "Chạy test trên Azure DevOps, Docker."
+  ],
+  "syn_178": [
+   "10 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, Cypress, Appium, Robot Framework, JUnit cho kiểm thử mobile testing, ui testing.",
+   "Chạy test trên Docker."
+  ],
+  "syn_179": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Postman, Robot Framework for api testing, ui testing."
+  ],
+  "syn_180": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Postman, Cucumber, Robot Framework for api testing, ui testing.",
+   "Ran tests on GitHub Actions, Jenkins, Docker."
+  ],
+  "syn_181": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Appium, Robot Framework cho kiểm thử manual testing, mobile testing.",
+   "Chạy test trên Azure DevOps, Jenkins."
+  ],
+  "syn_182": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Cypress, Pytest, TestNG cho kiểm thử ui testing."
+  ],
+  "syn_183": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Gatling, Robot Framework, TestNG for performance testing, ui testing.",
+   "Ran tests on Docker."
+  ],
+  "syn_184": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng WebdriverIO, Cypress, XCUITest, Rest Assured, Postman, JMeter, JUnit, TestNG cho kiểm thử api testing, mobile testing, performance testing, ui testing.",
+   "Chạy test trên Docker, Jenkins, GitHub Actions."
+  ],
+  "syn_185": [
+   "8 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng Selenium WebDriver, Cypress, Rest Assured, Pytest, TestNG cho kiểm thử api testing, ui testing.",
+   "Chạy test trên GitLab CI, Jenkins."
+  ],
+  "syn_186": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, Rest Assured, Postman, Gatling, Robot Framework, Pytest for api testing, performance testing, ui testing.",
+   "Ran tests on Docker, Azure DevOps."
+  ],
+  "syn_187": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng WebdriverIO, Gatling, Pytest, TestNG cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên Jenkins, Docker, Azure DevOps."
+  ],
+  "syn_188": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng JMeter, Cucumber cho kiểm thử manual testing, performance testing.",
+   "Chạy test trên Docker, GitHub Actions, Jenkins."
+  ],
+  "syn_189": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Selenium WebDriver, Cucumber, JUnit cho kiểm thử ui testing.",
+   "Chạy test trên Docker."
+  ],
+  "syn_190": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Rest Assured, JMeter, Robot Framework, TestNG for api testing, manual testing, performance testing.",
+   "Ran tests on GitHub Actions."
+  ],
+  "syn_191": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng Cypress, Rest Assured, Postman, TestNG, Cucumber cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Azure DevOps, GitHub Actions."
+  ],
+  "syn_192": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Postman, Rest Assured, k6, JUnit for api testing, manual testing, performance testing."
+  ],
+  "syn_193": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Rest Assured, Postman, Cucumber, JUnit for api testing, ui testing."
+  ],
+  "syn_194": [
+   "10 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Cypress, WebdriverIO, XCUITest, Rest Assured, JUnit, Pytest for api testing, mobile testing, ui testing.",
+   "Ran tests on Docker, GitHub Actions."
+  ],
+  "syn_195": [
+   "2 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Playwright, Postman, Robot Framework cho kiểm thử api testing, ui testing."
+  ],
+  "syn_196": [
+   "10 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng Espresso, Rest Assured, JMeter, JUnit cho kiểm thử api testing, manual testing, mobile testing, performance testing.",
+   "Chạy test trên GitHub Actions, Docker."
+  ],
+  "syn_197": [
+   "3 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Cypress, k6, TestNG, Cucumber for performance testing, ui testing."
+  ],
+  "syn_198": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Playwright, WebdriverIO, Rest Assured, Postman, Robot Framework, Cucumber for api testing, ui testing."
+  ],
+  "syn_199": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, Espresso, Postman, TestNG cho kiểm thử api testing, mobile testing, ui testing."
+  ]
+ },
+ "groups": {
+  "syn_000": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_001": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_002": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_003": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_004": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_005": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_006": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_007": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_008": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_009": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_010": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_011": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_012": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_013": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_014": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_015": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_016": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_017": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_018": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_019": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_020": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_021": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_022": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_023": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_024": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_025": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_026": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_027": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_028": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_029": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_030": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_031": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_032": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_033": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_034": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_035": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_036": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_037": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_038": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_039": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_040": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_041": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_042": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_043": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_044": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_045": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_046": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_047": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_048": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_049": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_050": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_051": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_052": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_053": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_054": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_055": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_056": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_057": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_058": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_059": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_060": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_061": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_062": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_063": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_064": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_065": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_066": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_067": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_068": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_069": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_070": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_071": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_072": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_073": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_074": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_075": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_076": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_077": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_078": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_079": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_080": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_081": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_082": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_083": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_084": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_085": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_086": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_087": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_088": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_089": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_090": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_091": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_092": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_093": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_094": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_095": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_096": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_097": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_098": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_099": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_100": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_101": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_102": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_103": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_104": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_105": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_106": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_107": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_108": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_109": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_110": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_111": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_112": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_113": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_114": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_115": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_116": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_117": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_118": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_119": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_120": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_121": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_122": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_123": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_124": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_125": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_126": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_127": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_128": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_129": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_130": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_131": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_132": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_133": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_134": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_135": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_136": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_137": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_138": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_139": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_140": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_141": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_142": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_143": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_144": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_145": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_146": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_147": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_148": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_149": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_150": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_151": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_152": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_153": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_154": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_155": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_156": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_157": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_158": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_159": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_160": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_161": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_162": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_163": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_164": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_165": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_166": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_167": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_168": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_169": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_170": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_171": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_172": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_173": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_174": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_175": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_176": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_177": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_178": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_179": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_180": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_181": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_182": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_183": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_184": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_185": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_186": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_187": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_188": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_189": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_190": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_191": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_192": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_193": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_194": {
+   "gender": "F",
+   "lang_cv": "en"
+  },
+  "syn_195": {
+   "gender": "F",
+   "lang_cv": "vi"
+  },
+  "syn_196": {
+   "gender": "M",
+   "lang_cv": "vi"
+  },
+  "syn_197": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_198": {
+   "gender": "M",
+   "lang_cv": "en"
+  },
+  "syn_199": {
+   "gender": "M",
+   "lang_cv": "vi"
+  }
+ },
+ "names": {
+  "syn_000": "Lê Đức Phúc",
+  "syn_001": "Bùi Thu Thảo",
+  "syn_002": "Hồ Mai Thảo",
+  "syn_003": "Trần Mai Trang",
+  "syn_004": "Lê Thu Trang",
+  "syn_005": "Nguyễn Mai Trang",
+  "syn_006": "Đặng Quốc Nam",
+  "syn_007": "Phạm Minh Tuấn",
+  "syn_008": "Lê Minh Hùng",
+  "syn_009": "Vũ Văn Nam",
+  "syn_010": "Bùi Thị Hương",
+  "syn_011": "Bùi Minh Khoa",
+  "syn_012": "Trần Quốc Nam",
+  "syn_013": "Bùi Ngọc Vy",
+  "syn_014": "Đặng Minh Tuấn",
+  "syn_015": "Hoàng Đức Tuấn",
+  "syn_016": "Nguyễn Đức Tuấn",
+  "syn_017": "Bùi Ngọc Trang",
+  "syn_018": "Nguyễn Văn Tuấn",
+  "syn_019": "Vũ Minh Khoa",
+  "syn_020": "Nguyễn Quốc Long",
+  "syn_021": "Đỗ Minh Tuấn",
+  "syn_022": "Bùi Thu Trang",
+  "syn_023": "Hồ Minh Phúc",
+  "syn_024": "Bùi Đức Phúc",
+  "syn_025": "Trần Văn Nam",
+  "syn_026": "Hồ Mai Vy",
+  "syn_027": "Hồ Thị Lan",
+  "syn_028": "Đỗ Mai Trang",
+  "syn_029": "Trần Ngọc Thảo",
+  "syn_030": "Phạm Đức Phúc",
+  "syn_031": "Đặng Thị Hương",
+  "syn_032": "Hồ Mai Trang",
+  "syn_033": "Vũ Ngọc Thảo",
+  "syn_034": "Đặng Thị Vy",
+  "syn_035": "Phạm Đức Tuấn",
+  "syn_036": "Vũ Đức Nam",
+  "syn_037": "Hồ Quốc Phúc",
+  "syn_038": "Hồ Thị Thảo",
+  "syn_039": "Vũ Quốc Khoa",
+  "syn_040": "Hoàng Thị Trang",
+  "syn_041": "Đặng Mai Thảo",
+  "syn_042": "Lê Thu Lan",
+  "syn_043": "Đỗ Mai Vy",
+  "syn_044": "Đặng Đức Long",
+  "syn_045": "Bùi Văn Tuấn",
+  "syn_046": "Hồ Đức Phúc",
+  "syn_047": "Trần Minh Phúc",
+  "syn_048": "Lê Mai Linh",
+  "syn_049": "Vũ Ngọc Hương",
+  "syn_050": "Đỗ Văn Khoa",
+  "syn_051": "Bùi Văn Hùng",
+  "syn_052": "Lê Quốc Phúc",
+  "syn_053": "Vũ Thu Thảo",
+  "syn_054": "Hồ Quốc Nam",
+  "syn_055": "Trần Minh Hùng",
+  "syn_056": "Đặng Mai Linh",
+  "syn_057": "Đỗ Quốc Tuấn",
+  "syn_058": "Nguyễn Ngọc Vy",
+  "syn_059": "Hồ Quốc Phúc",
+  "syn_060": "Lê Quốc Phúc",
+  "syn_061": "Đặng Thu Lan",
+  "syn_062": "Bùi Thị Hương",
+  "syn_063": "Bùi Văn Long",
+  "syn_064": "Đỗ Thị Linh",
+  "syn_065": "Hoàng Ngọc Lan",
+  "syn_066": "Lê Thị Vy",
+  "syn_067": "Trần Thu Trang",
+  "syn_068": "Lê Đức Long",
+  "syn_069": "Lê Thị Trang",
+  "syn_070": "Phạm Quốc Long",
+  "syn_071": "Nguyễn Ngọc Linh",
+  "syn_072": "Hoàng Đức Phúc",
+  "syn_073": "Nguyễn Văn Phúc",
+  "syn_074": "Trần Minh Long",
+  "syn_075": "Vũ Đức Tuấn",
+  "syn_076": "Đỗ Thị Vy",
+  "syn_077": "Nguyễn Văn Hùng",
+  "syn_078": "Hồ Đức Khoa",
+  "syn_079": "Hoàng Mai Vy",
+  "syn_080": "Lê Văn Tuấn",
+  "syn_081": "Lê Quốc Hùng",
+  "syn_082": "Lê Mai Hương",
+  "syn_083": "Trần Thu Linh",
+  "syn_084": "Lê Thu Linh",
+  "syn_085": "Trần Đức Long",
+  "syn_086": "Hoàng Thu Vy",
+  "syn_087": "Lê Thu Trang",
+  "syn_088": "Phạm Đức Phúc",
+  "syn_089": "Trần Ngọc Lan",
+  "syn_090": "Đỗ Thu Hương",
+  "syn_091": "Phạm Minh Nam",
+  "syn_092": "Vũ Đức Phúc",
+  "syn_093": "Bùi Ngọc Lan",
+  "syn_094": "Nguyễn Đức Khoa",
+  "syn_095": "Vũ Quốc Nam",
+  "syn_096": "Nguyễn Ngọc Hương",
+  "syn_097": "Nguyễn Mai Trang",
+  "syn_098": "Vũ Thị Hương",
+  "syn_099": "Hồ Văn Phúc",
+  "syn_100": "Trần Minh Hùng",
+  "syn_101": "Nguyễn Thị Linh",
+  "syn_102": "Nguyễn Quốc Tuấn",
+  "syn_103": "Trần Mai Lan",
+  "syn_104": "Lê Mai Linh",
+  "syn_105": "Đặng Thu Vy",
+  "syn_106": "Phạm Quốc Khoa",
+  "syn_107": "Hồ Ngọc Linh",
+  "syn_108": "Lê Mai Thảo",
+  "syn_109": "Trần Quốc Tuấn",
+  "syn_110": "Hoàng Văn Phúc",
+  "syn_111": "Hồ Thu Trang",
+  "syn_112": "Lê Quốc Hùng",
+  "syn_113": "Bùi Minh Tuấn",
+  "syn_114": "Đỗ Văn Hùng",
+  "syn_115": "Hồ Quốc Tuấn",
+  "syn_116": "Lê Đức Hùng",
+  "syn_117": "Bùi Ngọc Vy",
+  "syn_118": "Lê Mai Linh",
+  "syn_119": "Bùi Ngọc Hương",
+  "syn_120": "Trần Quốc Khoa",
+  "syn_121": "Bùi Quốc Nam",
+  "syn_122": "Đặng Mai Lan",
+  "syn_123": "Lê Minh Long",
+  "syn_124": "Vũ Quốc Nam",
+  "syn_125": "Hồ Đức Tuấn",
+  "syn_126": "Nguyễn Mai Trang",
+  "syn_127": "Hoàng Mai Lan",
+  "syn_128": "Trần Mai Hương",
+  "syn_129": "Hồ Văn Tuấn",
+  "syn_130": "Trần Văn Phúc",
+  "syn_131": "Vũ Mai Linh",
+  "syn_132": "Lê Thu Thảo",
+  "syn_133": "Lê Mai Trang",
+  "syn_134": "Phạm Văn Khoa",
+  "syn_135": "Phạm Quốc Long",
+  "syn_136": "Vũ Thu Linh",
+  "syn_137": "Phạm Ngọc Linh",
+  "syn_138": "Đặng Đức Hùng",
+  "syn_139": "Phạm Mai Lan",
+  "syn_140": "Hồ Quốc Long",
+  "syn_141": "Đặng Mai Vy",
+  "syn_142": "Hoàng Mai Thảo",
+  "syn_143": "Lê Minh Long",
+  "syn_144": "Trần Thị Vy",
+  "syn_145": "Lê Minh Nam",
+  "syn_146": "Bùi Mai Hương",
+  "syn_147": "Phạm Thu Lan",
+  "syn_148": "Phạm Mai Vy",
+  "syn_149": "Đặng Quốc Nam",
+  "syn_150": "Nguyễn Ngọc Lan",
+  "syn_151": "Hoàng Quốc Hùng",
+  "syn_152": "Trần Thu Vy",
+  "syn_153": "Đỗ Đức Nam",
+  "syn_154": "Nguyễn Minh Nam",
+  "syn_155": "Đặng Thu Vy",
+  "syn_156": "Đặng Văn Tuấn",
+  "syn_157": "Vũ Văn Nam",
+  "syn_158": "Hoàng Văn Khoa",
+  "syn_159": "Nguyễn Ngọc Trang",
+  "syn_160": "Hồ Mai Lan",
+  "syn_161": "Bùi Thị Lan",
+  "syn_162": "Lê Văn Nam",
+  "syn_163": "Vũ Mai Vy",
+  "syn_164": "Lê Minh Long",
+  "syn_165": "Đặng Mai Vy",
+  "syn_166": "Đỗ Mai Linh",
+  "syn_167": "Hồ Thị Thảo",
+  "syn_168": "Hoàng Thị Hương",
+  "syn_169": "Lê Thu Lan",
+  "syn_170": "Hồ Minh Tuấn",
+  "syn_171": "Hoàng Thu Lan",
+  "syn_172": "Hoàng Văn Phúc",
+  "syn_173": "Hồ Đức Khoa",
+  "syn_174": "Đặng Minh Nam",
+  "syn_175": "Hồ Quốc Long",
+  "syn_176": "Hồ Đức Hùng",
+  "syn_177": "Đỗ Đức Long",
+  "syn_178": "Nguyễn Ngọc Hương",
+  "syn_179": "Đỗ Thu Vy",
+  "syn_180": "Vũ Mai Hương",
+  "syn_181": "Nguyễn Văn Hùng",
+  "syn_182": "Nguyễn Đức Khoa",
+  "syn_183": "Trần Quốc Nam",
+  "syn_184": "Vũ Văn Hùng",
+  "syn_185": "Đặng Đức Long",
+  "syn_186": "Vũ Minh Long",
+  "syn_187": "Bùi Mai Lan",
+  "syn_188": "Lê Đức Khoa",
+  "syn_189": "Vũ Đức Long",
+  "syn_190": "Đỗ Ngọc Linh",
+  "syn_191": "Vũ Thị Hương",
+  "syn_192": "Vũ Ngọc Trang",
+  "syn_193": "Nguyễn Đức Hùng",
+  "syn_194": "Nguyễn Thị Vy",
+  "syn_195": "Lê Thị Hương",
+  "syn_196": "Lê Minh Khoa",
+  "syn_197": "Hồ Đức Phúc",
+  "syn_198": "Đặng Minh Tuấn",
+  "syn_199": "Trần Văn Khoa"
+ }
+}

@@ -1,0 +1,97 @@
+# Base configuration — every experiment (configs/experiments.yaml) overrides parts of this.
+seed: 42
+
+paths:
+  runs_dir: runs            # per-run outputs: ranking, cards, llm_calls.jsonl
+  cache_dir: .cache/llm     # LLM response cache (reproducibility + speed)
+  audit_log: runs/audit_log.jsonl
+
+llm:
+  backend: ollama           # ollama | openai_compat | heuristic (offline, tests only)
+  model: qwen2.5:7b
+  host: http://localhost:11434
+  timeout_s: 300
+  num_ctx: 4096
+  cv_chars: 700             # evidence-line digest per CV in pairwise prompts (NFR-04)
+  claims_cv_chars: 1000     # digest size for claim generation
+  max_output_tokens:        # Ollama num_predict per task; outputs dominate CPU latency
+    pairwise: 64
+    claims: 200
+    listwise: 256
+    planner: 96
+  # openai_compat: base_url: http://localhost:8000 ; api_key_env: LLM_API_KEY
+
+budget:                     # FR-26 / NFR-03 — per JD
+  max_tokens: 120000
+  max_calls: 120
+  timeout_s: 900
+
+ingest:
+  dedup_threshold: 0.85
+
+criteria:
+  enabled: true             # false => retrieval-only baselines (B0-B2)
+  profile: Mặc định         # Mặc định | Outsourcing | Ngân hàng | Startup | Uniform (A2)
+  generic_prompt: false     # A2: no criteria in LLM prompts
+  clarification:
+    enabled: false
+    max_rounds: 3
+
+retrieval:
+  mode: hybrid              # bm25 | dense | hybrid
+  top_k: 200
+  rrf_k: 60
+  dense:
+    encoder: hashing        # hashing | sentence_transformers | ollama
+    model: intfloat/multilingual-e5-base
+  query_expansion:
+    enabled: false
+    min_must_pass: 10       # expand when fewer candidates pass must-haves
+    max_rounds: 3
+
+rerank:
+  enabled: false
+  reranker: lexical         # lexical | cross_encoder
+  model: BAAI/bge-reranker-base
+  top_n: 20
+  # within_criteria (default since 2026-10-27): criteria ranks everyone; the reranker only orders ties inside
+  #   the criteria top_n. Deviates from FR-15 on purpose — see README "Thay đổi so với FR-15".
+  # filter (FR-15 as written): keep only the reranker's top_n, then score criteria on them
+  mode: within_criteria
+
+judge:
+  mode: none                # none | pointwise (claims only) | selective (arbiter) | all_pairs (LLM-all) | listwise
+  # Chosen on the dev split with `python -m cv_agent tune` (2026-10-26, qwen2.5:3b and 7b):
+  # tie/0.01/0.02/0.05 gave identical nDCG@10 and pair counts on dev (all top-10 near-ties were
+  # exact ties), so the pre-registered rule (cheapest, then smallest) picks exact ties only.
+  near_tie_threshold: 1.0e-9
+  passes: 2                 # A/B then B/A; a 1-1 split keeps the original order
+  max_rank: 10              # selective: only pairs that can change the top-10 shortlist
+
+verify:
+  enabled: false
+  max_rounds: 3
+  on_fail: flag             # flag => keep as "No evidence" | remove
+  fuzzy_threshold: 0.85
+  nli: lexical              # lexical | hf
+  nli_model: cross-encoder/nli-deberta-v3-base
+
+report:
+  top_n: 10
+  claims: true              # false => skip LLM claim generation (used when tuning the arbiter)
+
+agent:                      # bounded LLM agent (cv_agent/agent): planner picks tools, rules guard, critic checks goal
+  enabled: false            # true => [plan -> act]* loop instead of the fixed stage order (configs AG, AG-rules)
+  planner: llm              # llm | rules (deterministic policy, also the fallback for invalid LLM decisions)
+  max_steps: 20             # tool calls per JD; then finish with what is there
+  compare_max_delta: 0.05   # the agent may LLM-judge adjacent shortlist pairs closer than this
+  max_inspects: 5
+  max_compares: 6           # pairwise judgements per JD (each = judge.passes LLM calls)
+  goals:
+    min_must_pass_shortlist: 5
+    require_verified_claims: true
+    resolve_near_ties: true
+  memory:
+    enabled: true
+    path: data/memory/agent_memory.json
+    apply_weights: true     # reuse HR-calibrated weights saved for the profile (FR-30)

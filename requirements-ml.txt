@@ -1,0 +1,11 @@
+# Optional neural components (GPU recommended). Enable them in configs/base.yaml:
+#   retrieval.dense.encoder: sentence_transformers   (multilingual-e5 / bge-m3)
+#   rerank.reranker: cross_encoder                   (BAAI/bge-reranker-base)
+#   verify.nli: hf                                   (MNLI cross-encoder)
+-r requirements.txt
+sentence-transformers>=3.0
+torch>=2.2
+scipy>=1.11
+datasets>=2.19     # fine-tuning only (python -m cv_agent finetune / notebooks/finetune_colab.ipynb)
+accelerate>=0.26
+# faiss-cpu  # only needed for corpora much larger than the ~200-CV Gold Set

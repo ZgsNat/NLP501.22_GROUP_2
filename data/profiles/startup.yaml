@@ -1,0 +1,11 @@
+name: Startup
+description: Đội nhỏ, cần người tự xây framework và CI/CD, ít quan tâm chứng chỉ.
+weights:
+  tools: 0.22
+  depth: 0.24
+  languages: 0.16
+  test_types: 0.10
+  cicd: 0.16
+  experience: 0.06
+  certification: 0.02
+  foreign_lang: 0.04

@@ -1,0 +1,11 @@
+name: Outsourcing
+description: Dự án offshore (vd. FPT Software) — coi trọng ngoại ngữ (Anh/Nhật), đa công cụ, chứng chỉ ISTQB.
+weights:
+  tools: 0.20
+  depth: 0.14
+  languages: 0.12
+  test_types: 0.12
+  cicd: 0.08
+  experience: 0.12
+  certification: 0.07
+  foreign_lang: 0.15

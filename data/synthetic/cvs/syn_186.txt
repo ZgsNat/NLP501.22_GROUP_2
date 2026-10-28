@@ -1,0 +1,22 @@
+Vũ Minh Long
+Automation Test Engineer
+Email: long19@example.com
+Phone: 0910292428
+Gender: Male
+Date of birth: 28/03/1992
+
+SUMMARY
+5 years of experience in software testing.
+
+EXPERIENCE
+Company C (2021 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.
+- Used Cypress, Rest Assured, Postman, Gatling, Robot Framework, Pytest for api testing, performance testing, ui testing.
+- Ran tests on Docker, Azure DevOps.
+
+SKILLS
+Programming: TypeScript, Python
+Certification: ISTQB CTFL
+Languages: English (TOEIC 750)
+
+Address: 76 Nguyen Trai Street, District 7

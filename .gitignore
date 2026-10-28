@@ -3,3 +3,12 @@ __pycache__/
 *.pyc
 .uv/
 .python-version
+.cache/
+.claude/
+.coverage
+.pytest_cache/
+.idea/
+runs/
+models/
+data/public/
+data/memory/

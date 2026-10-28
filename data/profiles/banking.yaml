@@ -1,0 +1,11 @@
+name: Ngân hàng
+description: Hệ thống core banking — coi trọng API/security/DB testing, kinh nghiệm và chứng chỉ.
+weights:
+  tools: 0.16
+  depth: 0.14
+  languages: 0.10
+  test_types: 0.20
+  cicd: 0.08
+  experience: 0.18
+  certification: 0.10
+  foreign_lang: 0.04

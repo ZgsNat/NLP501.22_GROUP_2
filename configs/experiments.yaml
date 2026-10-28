@@ -1,0 +1,78 @@
+# Nine configurations (Kế hoạch thực nghiệm). Each block overrides configs/base.yaml.
+B0:   # BM25 baseline
+  criteria: {enabled: false}
+  retrieval: {mode: bm25}
+
+B1:   # Dense
+  criteria: {enabled: false}
+  retrieval: {mode: dense}
+
+B2:   # BM25 + dense (RRF) — H1
+  criteria: {enabled: false}
+  retrieval: {mode: hybrid}
+
+B3:   # B2 + Criteria scoring — H2
+  retrieval: {mode: hybrid}
+
+B4:   # B3 + cross-encoder + LLM judges top 20 (claims), fixed pipeline — control for H0
+  rerank: {enabled: true}
+  judge: {mode: pointwise}
+
+LLM-all:  # B4 + LLM judges EVERY adjacent pair of the top 20 (same protocol as the arbiter) — baseline for H3
+  rerank: {enabled: true}
+  judge: {mode: all_pairs}   # alternative: listwise (one call over the whole top 20)
+
+P6:   # Full agent: clarification, query expansion, Selective Arbiter, verify_evidence
+  criteria:
+    clarification: {enabled: true}
+  retrieval:
+    query_expansion: {enabled: true}
+  rerank: {enabled: true}
+  judge: {mode: selective}
+  verify: {enabled: true}
+
+A1:   # P6 without verify_evidence — H4
+  criteria:
+    clarification: {enabled: true}
+  retrieval:
+    query_expansion: {enabled: true}
+  rerank: {enabled: true}
+  judge: {mode: selective}
+  verify: {enabled: false}
+
+A2:   # P6 with generic prompt instead of Criteria Profile — H2
+  criteria:
+    profile: Uniform
+    generic_prompt: true
+    clarification: {enabled: true}
+  retrieval:
+    query_expansion: {enabled: true}
+  rerank: {enabled: true}
+  judge: {mode: selective}
+  verify: {enabled: true}
+
+AG:   # P6 components driven by the LLM planner + critic (bounded agent) — H7
+  criteria:
+    clarification: {enabled: true}
+  retrieval:
+    query_expansion: {enabled: true}
+  rerank: {enabled: true}
+  judge: {mode: selective}
+  verify: {enabled: true}
+  agent:
+    enabled: true
+    planner: llm
+    memory: {enabled: false}   # experiments must not carry HR answers across JDs/runs
+
+AG-rules:  # same tools, goals and budget, deterministic rule planner — control for H7
+  criteria:
+    clarification: {enabled: true}
+  retrieval:
+    query_expansion: {enabled: true}
+  rerank: {enabled: true}
+  judge: {mode: selective}
+  verify: {enabled: true}
+  agent:
+    enabled: true
+    planner: rules
+    memory: {enabled: false}
