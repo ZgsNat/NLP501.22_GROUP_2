@@ -31,6 +31,9 @@ ollama pull qwen2.5:7b                   # LLM local mặc định (NFR-02: PII 
 | Fine-tune dense encoder + cross-encoder (nên chạy trên Colab GPU) | [`notebooks/finetune_colab.ipynb`](notebooks/finetune_colab.ipynb) hoặc `python -m cv_agent finetune` |
 | Fine-tune 3 seed, in trung bình ± độ lệch chuẩn | `python -m cv_agent finetune --seeds 42,7,13` (seed 42 giữ thư mục mặc định, seed khác thêm `-s<seed>`) |
 | Kiểm định lại H0–H7 của một lượt đã chạy (không chạy lại mô hình) | `python -m cv_agent rescore runs/experiments/<timestamp>` |
+| Huấn luyện tagger skill JobBERT trên SkillSpan (nên chạy trên Colab GPU) | `python -m cv_agent train-tagger` (ghi `models/jobbert-base-cased-skillspan-tagger/tagger_metrics.json`) |
+| Chấm span SkillSpan test: từ điển, tagger, hai bộ hợp lại | `python -m cv_agent eval-spans --tagger models/jobbert-base-cased-skillspan-tagger --hybrid` |
+| Phân tích lỗi theo JD của một lượt (post hoc) | `python -m cv_agent error-analysis runs/experiments/<timestamp> --data data/public` |
 | Thực nghiệm với mô hình đã fine-tune | `python -m cv_agent experiments --neural --dense-model models/multilingual-e5-base-rjf-ft --rerank-model models/bge-reranker-base-rjf-ft` |
 | Demo app cho HR | `streamlit run app/streamlit_app.py` |
 | Unit test + coverage | `pytest --cov=cv_agent` |
@@ -263,10 +266,10 @@ dữ liệu công khai ở `runs/experiments/20261028-232304`.
     "không kém hơn". Bản đầu tiên của README và slide xét trung bình nên ghi nhầm là chấp nhận.
   * H4: claim không căn cứ 10.5% so với 41.2%, p = 0.03.
 * A2 (prompt chung) có nDCG@10 cao nhất (0.867), nhưng Kendall τ của nó không thấp hơn P6. Vì vậy H2 không được ủng hộ.
-* **Dữ liệu công khai không lặp lại được lợi thế.** Dense B1 tốt nhất; P6 (0.566) thấp hơn BM25.
-  * Criteria Profile được viết cho Gold Set, còn nhãn công khai thô (3 mức) và chỉ gán một phần.
-  * Cần viết profile riêng cho từng JD công khai trước khi rút ra kết luận.
-* SkillSpan test: precision khớp chính xác 0.706, recall 0.074. Trên các span thuộc taxonomy, recall là 0.866.
+* **Dữ liệu công khai không lặp lại được lợi thế ở trung bình.** Dense B1 tốt nhất; P6 (0.566) thấp hơn BM25.
+  Phân tích lỗi theo JD (mục "Phân tích lỗi" bên dưới) tìm ra nguyên nhân chính.
+* SkillSpan test: từ điển taxonomy có precision khớp chính xác 0.706, recall 0.074 (trên các span thuộc taxonomy
+  recall là 0.866). Tagger JobBERT học trên SkillSpan train đạt span F1 0.592 (mục "Tagger skill" bên dưới).
 * Slide: `scripts/build_results_slides.py` tạo `Slide_Group2_NLP501-3.pptx` từ các thư mục run này. Bản gốc `-2` giữ nguyên.
 
 ## Fine-tune trên Colab (thí nghiệm tuỳ chọn kiểu ConFit)
@@ -321,6 +324,34 @@ Chạy lại thực nghiệm với hai mô hình này: Gold Set ở `runs/experi
 * Ở hai lượt này chỉ chạy B0–B4 và P6, nên các hypothesis cần A1 / A2 / LLM-all hiện "BÁC BỎ" vì thiếu cấu hình. Kiểm định hypothesis lấy từ lượt 28/10.
 
 
+## Tagger skill học trên SkillSpan (FR-03)
+
+Từ điển taxonomy chỉ biết thuật ngữ Automation Test nên recall trên SkillSpan thấp là đúng thiết kế. Để có một mốc
+so sánh với tài liệu, `cv_agent/training/skill_tagger.py` fine-tune `jjzha/jobbert-base-cased` thành bộ gán nhãn BIO:
+
+* Dữ liệu: `jjzha/skillspan` (CC-BY-4.0), train 4,800 / dev 3,174 / test 3,569 câu. Hai lớp skill và knowledge gộp
+  thành một tập nhãn (`B/I-SKILL`, `B/I-KNOWLEDGE`, `O`); khi chồng nhau thì skill thắng.
+* Chọn mô hình: epoch có span F1 khớp chính xác cao nhất trên dev; test chỉ chấm một lần sau khi huấn luyện.
+* Cùng cách chấm span với từ điển (`cv_agent/eval/span_scoring.py`).
+
+Kết quả 29/10/2026 (3 epoch, batch 16, max_len 128, seed 42, CPU ~1h50):
+
+| SkillSpan test | Precision | Recall | F1 khớp chính xác | F1 chồng lấn |
+|---|---|---|---|---|
+| Từ điển taxonomy | 0.706 | 0.074 | 0.134 | 0.155 |
+| Tagger JobBERT | 0.559 | 0.628 | **0.592** | **0.873** |
+| Hai bộ hợp lại | 0.549 | 0.634 | 0.589 | 0.870 |
+
+* Dev F1 theo epoch: 0.494 → 0.568 → 0.578.
+* Bài báo SkillSpan (Zhang et al. 2022, Bảng 5) báo cáo JobBERT 59.7 ± 0.4 (trung bình 5 seed). Kết quả 1 seed của
+  nhóm nằm trong khoảng đó; nhóm nói "gần với bài báo", không nói "vượt".
+* Gộp hai lớp thành một nhãn mỗi token nên span knowledge nằm trong span skill bị mất. Đây là trần recall của cách
+  gộp; bài báo dùng hai đầu ra riêng.
+* Hợp tagger với từ điển không tăng F1: từ điển chỉ thêm ít span đúng (recall +0.006) nhưng làm precision giảm.
+* Hệ thống vẫn dùng từ điển để gắn concept ID làm bằng chứng. Tagger dùng để báo skill ngoài từ điển, không thay
+  bước matching.
+* Notebook Colab có ô `TRAIN_TAGGER` chạy cùng bước này trên GPU.
+
 ## Thay đổi so với FR-15
 
 FR-15 viết: cross-encoder rerank top-k → **top 20**, sau đó mới chấm Criteria (FR-16). Từ 27/10/2026 mặc định là
@@ -355,12 +386,31 @@ mức hơn B3 (+0.008 nDCG) nằm trong nhiễu với 6 JD. Báo cáo cần ghi 
 * `python -m cv_agent rescore <run>` tính lại hypothesis từ `results.csv` khi quy tắc thay đổi; bản đầu tiên được giữ ở `summary.pre-rescore.json`. Các lượt 27–29/10 đã
   được tính lại: H3 (Gold Set 28/10) và H7 (7b, `20261028-072307`) đổi từ chấp nhận sang bác bỏ, các kết luận khác giữ nguyên.
 
+## Phân tích lỗi trên dữ liệu công khai (post hoc)
+
+`python -m cv_agent error-analysis runs/experiments/20261028-232304` ghi `error_analysis.json`: nDCG@10 theo từng
+JD, các JD trùng lặp (Jaccard 3-gram từ ≥ 0.8) và trung bình khi mỗi nhóm trùng chỉ tính một lần. Nhóm được xác định
+từ văn bản JD, không từ kết quả, nhưng phân tích vẫn làm **sau khi thấy kết quả** nên chỉ là gợi ý.
+
+* 3/6 JD (`…2d30eda156`, `…4c8a607c3c`, `…5412e21ef1`) là **cùng một tin tuyển "Software Developer (Playbook,
+  Ansible)"** đăng ở ba thành phố. Tin này lọt bộ lọc QA nhờ hai cụm lỏng ("automation testing", "test cases"), nhưng
+  không phải vai trò Automation Test, nên Criteria Profile áp tiêu chí sai: B3 0.301 so với BM25 0.409.
+* Trên 3 JD còn lại (đúng vai trò QA): B3 0.889, B1 0.827, BM25 0.747, P6 0.845.
+* Khi mỗi tin trùng chỉ tính một lần (n hiệu dụng = 4): B3 0.742, B4 0.739, B1 0.729, P6 0.705, BM25 0.662.
+* P6 có tỷ lệ claim không căn cứ 0.29–0.50 trên CV công khai, so với 0.04–0.18 trên CV tổng hợp: verify_evidence kém
+  hơn trên CV thật (văn bản dài, định dạng tự do).
+* Nhóm **không đổi tập đánh giá** sau khi thấy kết quả. Việc cần làm: lọc JD theo tiêu đề, bỏ tin trùng, rồi chạy lại.
+
 ## Threats to validity
 
 * **Gold Set tổng hợp và Criteria Profile cùng do nhóm viết.** Bước nhảy B2 → B3 (0.533 → 0.827) có thể một phần đến từ
-  việc profile "biết" cách gán nhãn. Bằng chứng ngược chiều: trên dữ liệu công khai, B3 (0.595) thấp hơn B1 (0.631).
+  việc profile "biết" cách gán nhãn. Trên dữ liệu công khai (nhãn do người khác gán), B3 thấp hơn B1 ở trung bình
+  6 JD nhưng cao nhất trên 3 JD đúng vai trò QA (0.889 so với 0.827): profile có giúp khi đúng vai trò, nhưng đây là
+  phân tích post hoc trên 3 JD.
   Cần Gold Set thật do người gán nhãn độc lập với người viết profile, kèm Cohen κ giữa 2 người gán.
-* **n = 6 JD mỗi lượt**: CI rộng; một JD có thể đổi kết luận.
+* **n = 6 JD mỗi lượt**: CI rộng; một JD có thể đổi kết luận. Trên dữ liệu công khai, 3 JD là cùng một tin nên n hiệu
+  dụng chỉ là 4.
+* **Bộ lọc JD công khai dựa trên từ khoá** để lọt một tin không phải QA (xem "Phân tích lỗi").
 * **Fine-tune 1 seed**: chưa có độ lệch chuẩn. Notebook mặc định chạy 3 seed (`SEEDS`), CLI có `--seeds`.
 * **LLM nhỏ (Qwen 3B / 7B trên CPU)**: kết luận về LLM-all, arbiter và planner có thể khác với LLM lớn hơn.
 * **Impact ratio** đo trên CV tổng hợp; tên đã bị che nên lệch đến từ thuộc tính khác tương quan với nhóm.

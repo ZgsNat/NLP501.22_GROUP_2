@@ -464,13 +464,22 @@ def slide_prior(prs, syn, pub, ctx, page, total):
          f"PII masking trước encode{audit_text(ctx.get('audit'))}; impact ratio trung bình {fmt(ir)}",
          ("Đạt luật 4/5", g) if ir and ir >= 0.8 else ("Chưa đạt 4/5 ở mọi JD → cần audit thêm", r)],
     ]
+    tagger = ctx.get("tagger")
+    if tagger:
+        tf1 = tagger["test"]["tagger"]["f1_exact"]
+        rows.append(["SkillSpan · Zhang et al. 2022", f"JobBERT span F1 {SKILLSPAN_PAPER_F1 * 100:.1f} (test, 5 seed)",
+                     f"JobBERT tagger span F1 {fmt(tf1)} (1 seed)" +
+                     (f"; từ điển {fmt(ctx['spans']['f1_exact'])}" if ctx.get("spans") else ""),
+                     ("Gần với bài báo (1 seed so với trung bình 5 seed)", g)
+                     if abs(tf1 - SKILLSPAN_PAPER_F1) <= 0.03 else
+                     (f"Lệch {tf1 - SKILLSPAN_PAPER_F1:+.3f} so với bài báo", {"color": AMBER, "bold": True})])
     if pub:
         pb0, pp6 = mean(pub, "B0", "ndcg@10"), mean(pub, "P6", "ndcg@10")
         rows.append(["resume-job-description-fit (HF, công khai)", "Bộ nhãn Fit / Potential / No Fit, chưa có "
                      "baseline ranking công bố", f"nDCG@10 BM25 {fmt(pb0)} → P6 {fmt(pp6)} trên {pub['n_jds']} JD",
                      ("Cùng hướng ngoài dữ liệu tổng hợp", g) if pp6 >= pb0 else
                      (f"Không lặp lại: P6 < BM25; tốt nhất là {best_config(pub)}", r)])
-    table(s, 213 * PX, 1.8, 1173 * PX, rows, [2.2, 2.9, 3.0, 2.3], size=8.5, row_h=0.5)
+    table(s, 213 * PX, 1.8, 1173 * PX, rows, [2.2, 2.9, 3.0, 2.3], size=8.5, row_h=0.5 if len(rows) <= 8 else 0.44)
 
 
 def confit_row(syn, pub, ctx, g, r) -> List[Any]:
@@ -557,7 +566,27 @@ def slide_agent(prs, h7: Dict[str, Dict[str, Any]], page, total):
          "tăng nDCG. Cần Gold Set thật để thấy lợi ích của tự lập kế hoạch.", "amber")
 
 
-def slide_public(prs, pub, spans, page, total):
+SKILLSPAN_PAPER_F1 = 0.597  # Zhang et al. 2022, Table 5: JobBERT, COMBINED, TEST, mean of 5 seeds
+
+
+def _span_rows(spans, tagger) -> List[List[Any]]:
+    cols = [("Từ điển taxonomy", spans)]
+    if tagger:
+        cols += [(label, tagger["test"][key]) for key, label in (("tagger", "JobBERT tagger"),
+                                                                ("hybrid", "Hai bộ hợp lại"))
+                 if key in tagger["test"]]
+    rows = [["SkillSpan test"] + [c for c, _ in cols]]
+    for key, label in (("precision_exact", "Precision (chính xác)"), ("recall_exact", "Recall (chính xác)"),
+                       ("f1_exact", "F1 (chính xác)"), ("f1_overlap", "F1 (chồng lấn)")):
+        best = max((r[key] for _, r in cols if not math.isnan(r[key])), default=float("nan"))
+        win = len(cols) > 1
+        rows.append([label] + [(fmt(r[key]), {"bold": win and r[key] == best,
+                                              "color": GREEN if win and r[key] == best else INK})
+                               for _, r in cols])
+    return rows
+
+
+def slide_public(prs, pub, spans, page, total, ctx=None):
     s = frame(prs, "Dữ Liệu Công Khai & Trích Xuất Skill: Kiểm Tra Ngoài Bộ Dữ Liệu Tự Tạo",
               [(SECTION, "section"), ("HF resume-job-description-fit · SkillSpan", "violet")], page, total, *nav(page))
     x0 = 213 * PX
@@ -566,23 +595,73 @@ def slide_public(prs, pub, spans, page, total):
         bar_chart(s, x0, 1.9, 5.3, 2.95, order, {"nDCG@10": [mean(pub, c, "ndcg@10") for c in order]}, [GREY_BAR],
                   f"Công khai: nDCG@10 ({pub['n_jds']} JD, {pub['n_cvs']} CV)", max_val=1.1,
                   highlight=order.index("P6") if "P6" in order else None)
-        note(s, x0, 4.95, 5.3, 1.2, "Không lặp lại được:",
-             f"trên nhãn Fit/Potential/No Fit, {best_config(pub)} tốt nhất, P6 {fmt(mean(pub, 'P6', 'ndcg@10'))} "
-             f"thấp hơn BM25 {fmt(mean(pub, 'B0', 'ndcg@10'))}. Criteria Profile viết cho Gold Set, nhãn thô 3 mức "
-             f"và CI rộng: cần profile riêng cho từng JD công khai.", "amber", size=9)
+        note(s, x0, 4.95, 5.3, 1.2, "Trung bình 6 JD không lặp lại:",
+             f"{best_config(pub)} tốt nhất, P6 {fmt(mean(pub, 'P6', 'ndcg@10'))} thấp hơn BM25 "
+             f"{fmt(mean(pub, 'B0', 'ndcg@10'))}." + (" Slide sau tách theo JD để tìm nguyên nhân."
+                                                      if (ctx or {}).get("errors") else ""), "amber", size=9)
+    tagger = (ctx or {}).get("tagger")
     if spans:
-        rows = [["Chỉ số (SkillSpan test)", "Giá trị"],
-                ["Precision (khớp chính xác)", fmt(spans["precision_exact"])],
-                ["Recall (khớp chính xác)", fmt(spans["recall_exact"])],
-                ["F1 (khớp chính xác)", fmt(spans["f1_exact"])],
-                ["F1 (chồng lấn)", fmt(spans["f1_overlap"])],
-                ["Recall trên span có trong taxonomy", fmt(spans["recall_in_taxonomy_exact"])]]
-        table(s, x0 + 5.5, 1.9, 4.28, rows, [2.9, 1.0], size=9.5, row_h=0.32)
-        note(s, x0 + 5.5, 4.05, 4.28, 2.1, "Đọc kết quả:",
-             f"bộ trích xuất là từ điển ESCO/taxonomy nên precision cao ({pct(spans['precision_exact'], 0)}) nhưng "
-             f"recall thấp: SkillSpan gán cả kỹ năng mềm và span dài ngoài taxonomy Automation Test. Trên span "
-             f"thuộc taxonomy, recall {pct(spans['recall_in_taxonomy_exact'], 0)}. Đúng với thiết kế: ưu tiên "
-             f"không bịa skill hơn là phủ rộng.", "violet", size=9)
+        rows = _span_rows(spans, tagger)
+        table(s, x0 + 5.5, 1.9, 4.28, rows, [1.45] + [0.94] * (len(rows[0]) - 1), size=9, row_h=0.32)
+        if tagger:
+            t = tagger["test"]["tagger"]
+            body = (f"từ điển chỉ biết thuật ngữ Automation Test nên recall {fmt(spans['recall_exact'])}. Tagger "
+                    f"JobBERT học trên SkillSpan train ({tagger['data']['train']} câu, chọn epoch theo dev) đạt span "
+                    f"F1 {fmt(t['f1_exact'])}; bài báo SkillSpan báo cáo {SKILLSPAN_PAPER_F1:.3f} (JobBERT, 5 seed). "
+                    "Hệ thống dùng từ điển để gắn concept ID làm bằng chứng, tagger để không bỏ sót skill ngoài "
+                    "từ điển.")
+        else:
+            body = (f"bộ trích xuất là từ điển ESCO/taxonomy nên precision cao ({pct(spans['precision_exact'], 0)}) "
+                    "nhưng recall thấp: SkillSpan gán cả kỹ năng mềm và span dài ngoài taxonomy Automation Test.")
+        note(s, x0 + 5.5, 3.65, 4.28, 2.5, "Đọc kết quả:", body, "violet", size=9)
+
+
+DUPLICATE_JACCARD = 0.8  # same threshold as cv_agent.eval.error_analysis
+
+
+def _jd_label(jd: str, dup_of: Dict[str, int]) -> str:
+    return f"…{jd[-6:]}" + (f"  (tin trùng #{dup_of[jd]})" if jd in dup_of else "")
+
+
+def slide_errors(prs, pub, ctx, page, total):
+    ea = ctx["errors"]
+    dups = ea["near_duplicates"]
+    dup_of = {jd: i + 1 for i, grp in enumerate(dups) for jd in grp}
+    n_dup = sum(len(grp) for grp in dups)
+    d, g = ea["dedup"], ea["groups"]
+    dup_signals = sorted({sig for grp in dups for jd in grp for sig in ea["per_jd"][jd]["qa_signal_list"]})
+    what = "Một Tin Đăng Lặp Lại" if len(dups) == 1 else f"{len(dups)} Tin Đăng Lặp Lại"
+    s = frame(prs, f"Phân Tích Lỗi: {n_dup}/{pub['n_jds']} JD Công Khai Là {what}, Chỉ {len(dup_signals)} "
+                   "Tín Hiệu QA",
+              [(SECTION, "section"), ("POST HOC · KHÔNG PHẢI HYPOTHESIS", "amber")], page, total, *nav(page))
+    x0 = 213 * PX
+    cfgs = [c for c in ("B0", "B1", "B3", "P6") if c in d]
+    rows = [["JD công khai", "Tín hiệu QA"] + cfgs + ["Claim không căn cứ P6"]]
+    for jd, info in sorted(ea["per_jd"].items(), key=lambda kv: (kv[0] in dup_of, kv[0])):
+        vals = info["ndcg@10"]
+        best = max(vals.get(c, 0) for c in cfgs)
+        rows.append([_jd_label(jd, dup_of), str(info["qa_signals"])] +
+                    [(fmt(vals.get(c)), {"bold": vals.get(c) == best, "color": GREEN if vals.get(c) == best else INK})
+                     for c in cfgs] + [pct(info["unsupported_rate"].get("P6"), 0)])
+    text(s, x0, 1.82, 5.4, 0.3, "nDCG@10 theo từng JD (mô hình gốc)", size=10, bold=True)
+    table(s, x0, 2.12, 5.4, rows, [1.75, 0.65] + [0.55] * len(cfgs) + [0.8], size=8.5, row_h=0.31)
+    y = 2.3 + 0.31 * len(rows)
+    quoted = ", ".join(f"'{sig}'" for sig in dup_signals)
+    note(s, x0, y, 5.4, 6.12 - y, "Nguyên nhân:",
+         f"{n_dup} JD trùng nhau (độ trùng 3-gram ≥ {DUPLICATE_JACCARD}), lọt bộ lọc QA chỉ nhờ {quoted}: đọc văn "
+         f"bản thì đây là tin tuyển lập trình viên hạ tầng, không phải Automation Test. Criteria Profile áp tiêu chí "
+         f"sai vai trò: B3 {fmt(g['distinct']['B3'])} trên JD khác nhau, {fmt(g['duplicate_postings']['B3'])} trên "
+         f"tin trùng, và tin này bị tính {n_dup} lần trong trung bình.", "amber", size=9)
+    groups = [("JD khác nhau", g["distinct"]), (f"Tin trùng ({n_dup})", g["duplicate_postings"]),
+              (f"Bỏ trùng (n = {ea['effective_n_jds']})", d)]
+    bar_chart(s, x0 + 5.6, 1.85, 4.18, 2.75, [lab for lab, _ in groups],
+              {c: [m[c] for _, m in groups] for c in cfgs}, [GREY_BAR, BLUE, GREEN, VIOLET][:len(cfgs)],
+              "nDCG@10 theo nhóm JD", number_format="0.00", max_val=1.1, legend=True)
+    best_d, worst_d = max(cfgs, key=lambda c: d[c]), min(cfgs, key=lambda c: d[c])
+    note(s, x0 + 5.6, 4.72, 4.18, 1.4, "Đọc cẩn thận:",
+         f"khi mỗi tin trùng chỉ tính một lần, {best_d} cao nhất ({fmt(d[best_d])}), {worst_d} thấp nhất "
+         f"({fmt(d[worst_d])}). Phân tích làm sau khi thấy kết quả nên chỉ là gợi ý; tập đánh giá giữ nguyên, "
+         "bước tiếp theo là lọc JD theo tiêu đề và bỏ tin trùng trước khi chạy lại.", "blue", size=9)
 
 
 def slide_conclusion(prs, syn, pub, ctx, page, total):
@@ -597,10 +676,14 @@ def slide_conclusion(prs, syn, pub, ctx, page, total):
             "verify_evidence giảm claim không căn cứ (H4/H0)",
             "Arbiter chọn lọc ít judge call hơn LLM-all (CI95 < 0)",
             "Agent có guardrail: không vượt checkpoint HR",
+            *([f"Tagger JobBERT: span F1 {fmt(ctx['tagger']['test']['tagger']['f1_exact'])} trên SkillSpan "
+               f"(bài báo {SKILLSPAN_PAPER_F1})"] if (ctx.get("tagger") or {}).get("test", {}).get("tagger") else []),
             "Đổi tên ứng viên: Δrank = 0 (PII che trước encode)" if worst_swap(ctx) == 0 else
             "PII che trước mọi bước encode / gọi LLM"]),
         ("amber", "Chưa đạt / cần thận trọng", [
-            "Dữ liệu công khai: P6 không hơn BM25" if pub and mean(pub, "P6", "ndcg@10") <
+            (f"Công khai: P6 < BM25; {sum(map(len, ctx['errors']['near_duplicates']))}/{pub['n_jds']} JD là "
+             "tin trùng, sai vai trò" if ctx.get("errors") and ctx["errors"]["near_duplicates"] else
+             "Dữ liệu công khai: P6 không hơn BM25") if pub and mean(pub, "P6", "ndcg@10") <
             mean(pub, "B0", "ndcg@10") else "Dense zero-shot kém BM25 trên Gold Set",
             ", ".join(h for h in ("H1", "H2", "H3", "H4", "H5", "H6")
                       if not syn["hypotheses"].get(h, {}).get("accepted")) + " bị bác bỏ: báo cáo như finding",
@@ -612,7 +695,7 @@ def slide_conclusion(prs, syn, pub, ctx, page, total):
             "Gold Set thật ~200 CV, 2 QA Lead gán nhãn độc lập với người viết profile, đo Cohen κ",
             "Fine-tune trên Gold Set thật: notebook Colab có sẵn" if ctx.get("ft") else
             "Fine-tune bi-encoder (hướng ConFit) khi đủ label",
-            "Audit fairness bằng name swap trên dữ liệu thật",
+            "Lọc JD theo tiêu đề, bỏ tin trùng; audit fairness trên dữ liệu thật",
             "GPU / LLM 7B+ để giảm latency"]),
     ]
     cw, x0 = 3.13, 213 * PX
@@ -756,8 +839,13 @@ SPEAKER_NOTES = {
                 "rồi biểu đồ phải (tập đánh giá của nhóm).",
     "agent": "Planner LLM chỉ chọn trong công cụ có guardrail. Với 7B sau khi sửa ngân sách, H7 được chấp nhận nhưng "
              "AG vẫn tốn LLM call hơn luật.",
-    "public": "Trên dữ liệu công khai lợi thế không lặp lại: báo cáo trung thực. SkillSpan: precision cao, recall thấp "
-              "vì bộ trích xuất là taxonomy.",
+    "public": "Trên dữ liệu công khai lợi thế không lặp lại ở trung bình: slide sau giải thích. SkillSpan: từ điển "
+              "precision cao nhưng recall thấp vì chỉ biết thuật ngữ Automation Test; tagger JobBERT học trên SkillSpan "
+              "train đạt span F1 gần mức bài báo (1 seed). Gộp tagger với từ điển không tăng F1: từ điển chỉ thêm ít span "
+              "đúng mà precision giảm.",
+    "errors": "Phân tích sau khi thấy kết quả, không phải hypothesis. Ba JD công khai là cùng một tin tuyển lập trình "
+              "viên Ansible, lọt bộ lọc QA nhờ hai cụm từ lỏng; profile Automation Test áp sai vai trò. Bỏ trùng thì "
+              "thứ tự thay đổi, nhưng nhóm không đổi tập đánh giá: bước tiếp theo là lọc JD tốt hơn rồi chạy lại.",
     "nfr": "Fairness: audit đổi tên cho Δrank = 0 nhờ che PII trước encode; luật 4/5 chưa đạt ở mọi JD. Latency: "
            "p50/p95 đo khi tắt cache, đạt mục tiêu vài phút một JD trên laptop.",
     "conclusion": "Tóm tắt điều đứng vững, điều chưa đạt và hướng tiếp theo; mời câu hỏi.",
@@ -801,6 +889,8 @@ def main() -> None:
     ap.add_argument("--public-ft", help="run dir on data/public with the fine-tuned models")
     ap.add_argument("--audit", help="JSON lines printed by `cv_agent audit`, one per JD")
     ap.add_argument("--bench", help="bench.json written by `cv_agent bench`")
+    ap.add_argument("--errors", help="error_analysis.json written by `cv_agent error-analysis` (public run)")
+    ap.add_argument("--tagger", help="model dir with tagger_metrics.json from `cv_agent train-tagger`")
     args = ap.parse_args()
 
     syn = load_summary(Path(args.synthetic))
@@ -815,7 +905,10 @@ def main() -> None:
            "pub_ft": load_summary(Path(args.public_ft)) if args.public_ft else None,
            "audit": [json.loads(line) for line in Path(args.audit).read_text(encoding="utf-8").splitlines()
                      if line.strip()] if args.audit else None,
-           "bench": json.loads(Path(args.bench).read_text(encoding="utf-8")) if args.bench else None}
+           "bench": json.loads(Path(args.bench).read_text(encoding="utf-8")) if args.bench else None,
+           "errors": json.loads(Path(args.errors).read_text(encoding="utf-8")) if args.errors else None,
+           "tagger": json.loads((Path(args.tagger) / "tagger_metrics.json").read_text(encoding="utf-8"))
+           if args.tagger else None, "spans": spans}
 
     prs = Presentation(args.deck)
     n_before = len(prs.slides)
@@ -835,7 +928,9 @@ def main() -> None:
         ("agent", "Agentic H7", "Agent LLM tự lập kế hoạch có tốt hơn luật cố định?",
          lambda pg, t: slide_agent(prs, h7, pg, t)),
         ("public", "Public data & SkillSpan", "Dữ liệu công khai và trích xuất skill cho kết quả gì?",
-         lambda pg, t: slide_public(prs, pub, spans, pg, t)),
+         lambda pg, t: slide_public(prs, pub, spans, pg, t, ctx)),
+        ("errors", "Phân tích lỗi", "Vì sao trên dữ liệu công khai Criteria Profile lại thua?",
+         lambda pg, t: slide_errors(prs, pub, ctx, pg, t)),
         ("nfr", "Fairness & latency", "Có thiên lệch theo tên không, và một JD chạy mất bao lâu?",
          lambda pg, t: slide_nfr(prs, syn, ctx, pg, t)),
         ("conclusion", "Kết luận", "Tổng kết: điều gì đứng vững, điều gì cần làm tiếp?",
@@ -843,6 +938,7 @@ def main() -> None:
     ]
     skip = {"finetune"} if not ft else set()
     skip |= {"nfr"} if not (ctx["audit"] or ctx["bench"]) else set()
+    skip |= {"errors"} if not (pub and ctx["errors"] and ctx["errors"]["near_duplicates"]) else set()
     plan = [p for p in plan if p[0] not in skip]
     set_nav(n_before, [(label, question) for _, label, question, _ in plan])
     for i, (key, _, _, build) in enumerate(plan, 1):

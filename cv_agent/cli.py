@@ -96,11 +96,33 @@ def cmd_fetch_datasets(args) -> int:
 def cmd_eval_spans(args) -> int:
     """Span-level P/R/F1 of the entity extractor on SkillSpan (FR-03)."""
     from cv_agent.data.public import fetch_skillspan
-    from cv_agent.eval.span_metrics import load_skillspan, score_sentences
+    from cv_agent.eval.span_metrics import load_skillspan, score_sentences, taxonomy_predictor
     paths = [p for p in fetch_skillspan(Path(args.raw)) if p.name.endswith(f"{args.split}.json")]
-    res = score_sentences(s for p in paths for s in load_skillspan(p))
+    predict = taxonomy_predictor
+    if args.hybrid and not args.tagger:
+        print("--hybrid cần --tagger <thư mục tagger>.")
+        return 2
+    if args.tagger:
+        from cv_agent.training.skill_tagger import load_predictor, union_predictor
+        tagger = load_predictor(Path(args.tagger))
+        predict = union_predictor(tagger, taxonomy_predictor) if args.hybrid else tagger
+    res = score_sentences((s for p in paths for s in load_skillspan(p)), predict=predict)
     print(json.dumps({"split": args.split, **{k: round(v, 4) if isinstance(v, float) else v for k, v in res.items()}},
                      ensure_ascii=False, indent=1))
+    return 0
+
+
+def cmd_train_tagger(args) -> int:
+    """Fine-tune the open-vocabulary skill tagger on SkillSpan and compare it with the taxonomy extractor."""
+    from cv_agent.training.skill_tagger import DEFAULT_BASE, TaggerConfig, run
+    base = args.base_model or DEFAULT_BASE
+    cfg = TaggerConfig(base_model=base, out_dir=Path(args.out_dir) / f"{base.split('/')[-1]}-skillspan-tagger",
+                       epochs=args.epochs, batch_size=args.batch_size, max_len=args.max_len, seed=args.seed,
+                       limit=args.limit)
+    report = run(cfg, Path(args.raw))
+    for name, res in report["test"].items():
+        print(f"{name}: test P/R/F1 exact {res['precision_exact']:.3f} / {res['recall_exact']:.3f} / "
+              f"{res['f1_exact']:.3f}, overlap F1 {res['f1_overlap']:.3f}")
     return 0
 
 
@@ -205,6 +227,18 @@ def cmd_finetune(args) -> int:
     return 0
 
 
+def cmd_error_analysis(args) -> int:
+    """Per-JD breakdown, near-duplicate JDs and de-duplicated means of a finished run (post hoc)."""
+    from cv_agent.eval.error_analysis import analyse_run
+    from cv_agent.eval.experiments import specs_for
+    report = analyse_run(Path(args.run), specs_for(Path(args.data)))
+    print(f"{args.run}: JD trùng lặp {report['near_duplicates'] or 'không có'}; "
+          f"số JD hiệu dụng {report['effective_n_jds']}")
+    for name, means in {**report["groups"], "dedup": report["dedup"]}.items():
+        print(f"  {name}: " + ", ".join(f"{k} {v:.3f}" for k, v in means.items() if k != "n_jds"))
+    return 0
+
+
 def cmd_rescore(args) -> int:
     from cv_agent.eval.experiments import rescore
     failed = 0
@@ -282,7 +316,19 @@ def build_parser() -> argparse.ArgumentParser:
     sp = sub.add_parser("eval-spans", help="span P/R/F1 of the entity extractor on SkillSpan (FR-03)")
     sp.add_argument("--raw", default=str(ROOT / "data" / "public" / "raw"))
     sp.add_argument("--split", default="test", choices=["dev", "test"])
+    sp.add_argument("--tagger", default=None, help="folder of a tagger from train-tagger (default: taxonomy extractor)")
+    sp.add_argument("--hybrid", action="store_true", help="with --tagger: union of tagger and taxonomy spans")
     sp.set_defaults(fn=cmd_eval_spans)
+    tg = sub.add_parser("train-tagger", help="fine-tune a BIO skill/knowledge tagger on SkillSpan (FR-03)")
+    tg.add_argument("--base-model", default=None, help="default: jjzha/jobbert-base-cased")
+    tg.add_argument("--out-dir", default=str(ROOT / "models"))
+    tg.add_argument("--raw", default=str(ROOT / "data" / "public" / "raw"))
+    tg.add_argument("--epochs", type=int, default=3)
+    tg.add_argument("--batch-size", type=int, default=16)
+    tg.add_argument("--max-len", type=int, default=128)
+    tg.add_argument("--seed", type=int, default=42)
+    tg.add_argument("--limit", type=int, default=None, help="smoke run: cap sentences per split")
+    tg.set_defaults(fn=cmd_train_tagger)
     e = sub.add_parser("experiments", help="run configurations and test H0-H6")
     e.add_argument("--configs", default="all")
     e.add_argument("--data", default=str(ROOT / "data" / "synthetic"))
@@ -306,6 +352,10 @@ def build_parser() -> argparse.ArgumentParser:
     f.add_argument("--limit", type=int, default=None, help="smoke run: cap training examples and eval JDs")
     f.add_argument("--seeds", default="42", help="comma-separated seeds; several give mean ± sd of the gain")
     f.set_defaults(fn=cmd_finetune)
+    ea = sub.add_parser("error-analysis", help="per-JD breakdown and duplicate JDs of a finished run (post hoc)")
+    ea.add_argument("run", help="runs/experiments/<timestamp> folder")
+    ea.add_argument("--data", default=str(ROOT / "data" / "public"), help="data folder of that run (for JD texts)")
+    ea.set_defaults(fn=cmd_error_analysis)
     rs = sub.add_parser("rescore", help="re-test H0-H7 of finished runs from results.csv (no model re-run)")
     rs.add_argument("runs", nargs="+", help="runs/experiments/<timestamp> folders")
     rs.set_defaults(fn=cmd_rescore)

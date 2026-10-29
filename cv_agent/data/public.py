@@ -31,7 +31,7 @@ HF_BASE = "https://huggingface.co/datasets"
 RJF_REPO = "cnamuangtoun/resume-job-description-fit"
 RJF_FILES = ("train.csv", "test.csv")
 SKILLSPAN_REPO = "jjzha/skillspan"
-SKILLSPAN_FILES = ("dev.json", "test.json")
+SKILLSPAN_FILES = ("train.json", "dev.json", "test.json")
 LABELS = {"No Fit": 0, "Potential Fit": 1, "Good Fit": 2}
 # Strong QA signals; a JD is kept when it contains at least MIN_QA_SIGNALS *different* ones. A single loose
 # mention ("QA", "test cases") also matches business-analyst or electrical-engineer postings.

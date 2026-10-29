@@ -16,8 +16,8 @@ ROOT = Path(__file__).resolve().parents[1]
 NOTEBOOK = ROOT / "notebooks" / "finetune_colab.ipynb"
 # every cv_agent module the training code imports, in package order
 EMBEDDED = ("cv_agent/__init__.py", "cv_agent/data/__init__.py", "cv_agent/data/public.py",
-            "cv_agent/eval/__init__.py", "cv_agent/eval/metrics.py", "cv_agent/training/__init__.py",
-            "cv_agent/training/finetune.py")
+            "cv_agent/eval/__init__.py", "cv_agent/eval/metrics.py", "cv_agent/eval/span_scoring.py",
+            "cv_agent/training/__init__.py", "cv_agent/training/finetune.py", "cv_agent/training/skill_tagger.py")
 
 INTRO = """# Fine-tune dense encoder & cross-encoder trên Colab (NLP501 · Nhóm 2)
 
@@ -27,6 +27,7 @@ Notebook này chạy phần **huấn luyện** của dự án trên GPU miễn p
 |---|---|---|---|
 | Dense encoder | `intfloat/multilingual-e5-base` | Contrastive (CachedMultipleNegativesRankingLoss), triplet (JD, Good Fit, No Fit), in-batch negative, hướng ConFit | B1, B2 và retrieval của P6 |
 | Cross-encoder | `BAAI/bge-reranker-base` | Binary cross-entropy, nhãn No Fit / Potential / Good = 0 / 0.5 / 1 | B4, P6 (rerank) |
+| Skill tagger | `jjzha/jobbert-base-cased` | Gán nhãn BIO (skill / knowledge) trên SkillSpan train, chọn epoch theo span F1 trên dev | Trích xuất skill mở (FR-03) |
 
 **Dữ liệu:** `cnamuangtoun/resume-job-description-fit` được tải thẳng từ Hugging Face. Không có CV nào trên máy nhóm được gửi lên (NFR-02).
 
@@ -83,6 +84,15 @@ display(pd.DataFrame(rows))
 pd.DataFrame([{"mô hình": t, "tập": s, **{k: round(v, 3) for k, v in m.items()}}
               for t, splits in seed_summary(reports).items() for s, m in splits.items()])"""
 
+TAGGER = """# Skill tagger (FR-03): học trên SkillSpan train, chọn epoch theo dev, chấm test một lần
+from cv_agent.training.skill_tagger import DEFAULT_BASE as TAGGER_BASE, TaggerConfig, run as run_tagger
+
+TRAIN_TAGGER = True
+if TRAIN_TAGGER:
+    tagger_report = run_tagger(TaggerConfig(out_dir=Path(OUT_DIR) / f"{TAGGER_BASE.split('/')[-1]}-skillspan-tagger",
+                                            limit=LIMIT), Path(RAW_DIR))
+    display(pd.DataFrame(tagger_report["test"]).T[["precision_exact", "recall_exact", "f1_exact", "f1_overlap"]])"""
+
 EXPORT = """import shutil
 import re, zipfile
 for ckpt in Path(OUT_DIR).glob("*/checkpoints"):
@@ -112,6 +122,13 @@ python -m cv_agent experiments --data data/public --neural --llm ollama --model 
     --dense-model models/multilingual-e5-base-rjf-ft --rerank-model models/bge-reranker-base-rjf-ft
 ```
 
+Chấm skill tagger trên SkillSpan test bằng cùng thước đo với bộ trích xuất taxonomy:
+
+```bash
+python -m cv_agent eval-spans --tagger models/jobbert-base-cased-skillspan-tagger
+python -m cv_agent eval-spans --tagger models/jobbert-base-cased-skillspan-tagger --hybrid
+```
+
 `finetune_metrics.json` trong mỗi thư mục mô hình ghi lại cấu hình, số cặp train / dev / test và nDCG@10 trước / sau. Seed 42 nằm ở thư mục không hậu tố; seed khác có hậu tố `-s<seed>`.
 """
 
@@ -138,7 +155,8 @@ def build_notebook() -> Dict:
         source = (ROOT / rel).read_text(encoding="utf-8")
         cells.append(_code(f"%%writefile {rel}\n{source}"))
     cells += [_md("## Tham số"), _code(PARAMS), _md("## Huấn luyện và đánh giá trước / sau"), _code(TRAIN),
-              _code(RESULTS), _md("## Tải mô hình về"), _code(EXPORT), _md(USE_LOCALLY)]
+              _code(RESULTS), _md("## Skill tagger trên SkillSpan"), _code(TAGGER), _md("## Tải mô hình về"),
+              _code(EXPORT), _md(USE_LOCALLY)]
     return {"cells": cells, "nbformat": 4, "nbformat_minor": 5,
             "metadata": {"accelerator": "GPU", "colab": {"provenance": [], "gpuType": "T4"},
                          "kernelspec": {"display_name": "Python 3", "name": "python3"},
