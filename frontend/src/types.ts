@@ -33,7 +33,8 @@ export interface RunRequest {
 export type ResumeBody =
   | { answers: Record<string, string> }
   | { action: 'approve' }
-  | { action: 'adjust'; weights: Record<string, number> }
+  | { action: 'adjust'; weights?: Record<string, number>; instruction?: string }
+  | { accept: Record<string, string[]> } // substitutes: must-have → accepted related tools ([] = reject)
 
 export interface Requirements {
   title: string
@@ -46,14 +47,18 @@ export interface Requirements {
   ambiguities: string[]
 }
 
-export interface Evidence { quote: string; grounded: boolean | null }
+// grounded: quote exists in the CV; supported: the section it came from actually demonstrates the claim
+// (grounded but unsupported = "listed, not demonstrated", e.g. depth evidence quoted from a skills list).
+export interface Evidence { quote: string; grounded: boolean | null; supported: boolean | null; section: string | null }
 export interface CriterionScore { score: number; rationale: string; evidence: Evidence[] }
 export interface Assessment {
   criteria: Record<Criterion, CriterionScore>
   knocked_out: boolean
   knockout_reason: string | null
   attempts: number
+  facts?: Facts
 }
+export interface Facts { depth_level: number | null; years: number | null; depth_cue: number | null; years_automation: number | null }
 export interface RankRow {
   rank: number
   cv_id: string
@@ -61,7 +66,12 @@ export interface RankRow {
   total: number
   knocked_out: boolean
   arbiter_note: string | null
+  status: RankStatus
+  tier: Tier | null // only set for status "ranked"
+  reason: string | null
 }
+export type RankStatus = 'ranked' | 'needs_review' | 'not_shortlisted' | 'knocked_out'
+export type Tier = 'strong' | 'possible' | 'weak'
 export interface Report {
   summary: string
   candidates: { cv_id: string; explanation: string; strengths: string[]; gaps: string[] }[]
@@ -82,9 +92,17 @@ export interface Values {
   loops: Loops
 }
 
+export interface SubstituteProposal { must_have: string; covered: number; related: string[] }
+
 export type Interrupt =
   | { kind: 'clarification'; payload: { questions: string[] } }
-  | { kind: 'review'; payload: { ranking: RankRow[]; weights: Record<string, number> } }
+  | { kind: 'substitutes'; payload: { proposals: SubstituteProposal[] } }
+  | { kind: 'review'; payload: { ranking: RankRow[]; weights: Record<string, number>; adjustments_left?: number } }
+
+// Graph node that owns each interrupt (it shows "waiting for HR" in the graph).
+export const INTERRUPT_NODE: Record<Interrupt['kind'], NodeName> = {
+  clarification: 'clarify', substitutes: 'expand_query', review: 'hr_review',
+}
 
 export type LogLevel = 'info' | 'loop' | 'warn'
 export type StreamEvent =
@@ -112,7 +130,25 @@ export interface Usage {
   by_node: Record<string, { calls: number; input_tokens: number; output_tokens: number }>
 }
 
-export interface CV { id: string; headline: string; text: string }
+export interface CVListItem { id: string; headline: string; lang: Lang; uploaded: boolean }
+export interface CV { id: string; headline: string; text: string; profile: CVProfileView }
+
+// Output of the CV NLP pipeline (language → redaction → sections → chunks → skills/facts).
+export type Lang = 'en' | 'vi' | 'mixed'
+export type SkillStrength = 'used' | 'listed' | 'hedged'
+export interface CVProfileView {
+  id: string
+  headline: string
+  lang: Lang
+  redactions: Record<string, number>
+  sections: { kind: string; heading: string }[]
+  chunks: { id: string; section: string; header: string; text: string }[]
+  skills: { skill: string; strength: SkillStrength; section: string; line: string }[]
+  years_total: number | null
+  years_automation: number | null
+  depth_cue: number
+  depth_cue_line: string | null
+}
 
 // Client-side live state, built by folding stream events (see applyEvent in App.tsx).
 export type NodeStatus = 'idle' | 'running' | 'done' | 'waiting'

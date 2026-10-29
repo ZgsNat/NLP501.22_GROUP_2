@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { CRITERIA, type Interrupt, type LogLine, type ResumeBody, type RunState } from './types'
+import { CRITERIA, type Interrupt, type SubstituteProposal, type LogLine, type ResumeBody, type RunState } from './types'
 
 const pretty = (k: string) => k.replace(/_/g, ' ')
 
@@ -88,6 +88,8 @@ export function Requirements({ run }: { run: RunState }) {
   )
 }
 
+const TITLE = { clarification: 'Clarification needed', substitutes: 'Accept related tools?', review: 'Review ranking' }
+
 export function InterruptPanel({ interrupt, criteria, onSubmit }: {
   interrupt: Interrupt
   criteria: { key: string; label: string }[]
@@ -95,10 +97,10 @@ export function InterruptPanel({ interrupt, criteria, onSubmit }: {
 }) {
   return (
     <section className="card interrupt">
-      <h2><span className="badge amber">waiting for HR</span> {interrupt.kind === 'clarification' ? 'Clarification needed' : 'Review ranking'}</h2>
-      {interrupt.kind === 'clarification'
-        ? <Clarify questions={interrupt.payload.questions} onSubmit={onSubmit} />
-        : <Review payload={interrupt.payload} criteria={criteria} onSubmit={onSubmit} />}
+      <h2><span className="badge amber">waiting for HR</span> {TITLE[interrupt.kind]}</h2>
+      {interrupt.kind === 'clarification' && <Clarify questions={interrupt.payload.questions} onSubmit={onSubmit} />}
+      {interrupt.kind === 'substitutes' && <Substitutes proposals={interrupt.payload.proposals} onSubmit={onSubmit} />}
+      {interrupt.kind === 'review' && <Review payload={interrupt.payload} criteria={criteria} onSubmit={onSubmit} />}
     </section>
   )
 }
@@ -117,12 +119,42 @@ function Clarify({ questions, onSubmit }: { questions: string[]; onSubmit: (b: R
   )
 }
 
+// L2: too few CVs show a must-have, so HR decides which related tools may stand in for it.
+function Substitutes({ proposals, onSubmit }: { proposals: SubstituteProposal[]; onSubmit: (b: ResumeBody) => void }) {
+  const [accept, setAccept] = useState<Record<string, string[]>>(() => Object.fromEntries(proposals.map((p) => [p.must_have, p.related])))
+  const flip = (m: string, tool: string) =>
+    setAccept((a) => ({ ...a, [m]: a[m].includes(tool) ? a[m].filter((t) => t !== tool) : [...a[m], tool] }))
+  return (
+    <form onSubmit={(e) => { e.preventDefault(); onSubmit({ accept }) }}>
+      {proposals.map((p) => (
+        <fieldset key={p.must_have} className="subst">
+          <legend>
+            Only {p.covered} CV{p.covered === 1 ? '' : 's'} show <b>{p.must_have}</b>. Accept these related tools as substitutes?
+          </legend>
+          <div className="chips">
+            {p.related.map((t) => (
+              <label key={t} className="check">
+                <input type="checkbox" checked={accept[p.must_have].includes(t)} onChange={() => flip(p.must_have, t)} /> {t}
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      ))}
+      <p className="muted small">Unchecking every tool rejects substitutes for that must-have.</p>
+      <button className="primary" type="submit">Continue search</button>
+    </form>
+  )
+}
+
 function Review({ payload, criteria, onSubmit }: {
   payload: Extract<Interrupt, { kind: 'review' }>['payload']
   criteria: { key: string; label: string }[]
   onSubmit: (b: ResumeBody) => void
 }) {
   const [w, setW] = useState<Record<string, number>>(() => Object.fromEntries(CRITERIA.map((c) => [c, payload.weights[c] ?? 0])))
+  const [say, setSay] = useState('')
+  const left = payload.adjustments_left
+  const shown = payload.ranking.filter((r) => (r.status ?? (r.knocked_out ? 'knocked_out' : 'ranked')) === 'ranked')
   const sum = CRITERIA.reduce((a, c) => a + w[c], 0)
   const label = (k: string) => criteria.find((c) => c.key === k)?.label ?? pretty(k)
   const adjust = () => onSubmit({
@@ -134,12 +166,15 @@ function Review({ payload, criteria, onSubmit }: {
       <div>
         <h3>Current ranking</h3>
         <ol className="mini-rank">
-          {payload.ranking.map((r) => (
-            <li key={r.cv_id} className={r.knocked_out ? 'ko' : ''}>
+          {shown.map((r) => (
+            <li key={r.cv_id}>
               <span className="mono">{r.cv_id}</span> {r.headline} <b>{Math.round(r.total * 100)}%</b>
             </li>
           ))}
         </ol>
+        {payload.ranking.length > shown.length && (
+          <p className="muted small">+ {payload.ranking.length - shown.length} more (not shortlisted, needs review or knocked out): see Results.</p>
+        )}
       </div>
       <div>
         <h3>Weights <span className="muted small">normalised to 100% on submit</span></h3>
@@ -150,10 +185,16 @@ function Review({ payload, criteria, onSubmit }: {
             <span className="mono">{sum ? Math.round((w[c] / sum) * 100) : 0}%</span>
           </div>
         ))}
+        <h3>…or say it in words</h3>
+        <textarea rows={2} value={say} placeholder="e.g. Certification matters more for this bank client; ignore domain"
+                  onChange={(e) => setSay(e.target.value)} />
         <div className="row">
           <button className="primary" onClick={() => onSubmit({ action: 'approve' })}>Approve</button>
-          <button className="ghost" disabled={sum <= 0} onClick={adjust}>Re-score with new weights</button>
+          <button className="ghost" disabled={sum <= 0 || left === 0} onClick={adjust}>Re-score with new weights</button>
+          <button className="ghost" disabled={!say.trim() || left === 0}
+                  onClick={() => onSubmit({ action: 'adjust', instruction: say.trim() })}>Re-score from my words</button>
         </div>
+        {left !== undefined && <p className="muted small">{left} re-score round(s) left; each costs 0 new assessments.</p>}
       </div>
     </div>
   )

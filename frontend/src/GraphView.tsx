@@ -6,12 +6,12 @@ const W = 130, H = 44
 const POS: Record<NodeName, [number, number, string, string]> = {
   ingest: [10, 70, 'parse JD + profile', 'slate'],
   clarify: [175, 70, 'ambiguous criteria?', 'amber'],
-  search: [340, 70, 'BM25 + dense', 'sky'],
-  expand_query: [340, 160, 'ESCO / synonyms', 'sky'],
-  rerank: [505, 70, 'cross-encoder', 'purple'],
-  assess: [670, 70, '6 LLM + 2 rule criteria', 'slate'],
-  verify_evidence: [835, 70, 'quotes in CV?', 'rose'],
-  score: [835, 250, 'Σ w·S, knock-out', 'purple'],
+  search: [340, 70, 'chunks · per requirement', 'sky'],
+  expand_query: [340, 160, 'related tools, ask HR', 'sky'],
+  rerank: [505, 70, 'CE on passages', 'purple'],
+  assess: [670, 70, '4 LLM + depth + 3 rules', 'slate'],
+  verify_evidence: [835, 70, 'grounded + supported?', 'rose'],
+  score: [835, 250, 'Σ w·S, tier, reasons', 'purple'],
   arbitrate: [670, 250, 'near-tie judge', 'purple'],
   report: [505, 250, 'explanations', 'emerald'],
   hr_review: [340, 250, 'human approval', 'emerald'],
@@ -26,7 +26,7 @@ const EDGES = [
 // Loop edges: path, label anchor, tone.
 const LOOPS: { key: LoopKey; id: string; name: string; d: string; x: number; y: number; tone: string }[] = [
   { key: 'clarify', id: 'L1', name: 'Ask HR', d: 'M240 70 L240 30 L75 30 L75 70', x: 157, y: 30, tone: 'amber' },
-  { key: 'expand', id: 'L2', name: 'Expand query', d: 'M440 160 L440 114', x: 505, y: 138, tone: 'sky' },
+  { key: 'expand', id: 'L2', name: 'Expand + ask HR', d: 'M440 160 L440 114', x: 505, y: 138, tone: 'sky' },
   { key: 'arbitrate', id: 'L3', name: 'Arbiter', d: 'M705 250 C705 212 765 212 765 250', x: 735, y: 200, tone: 'purple' },
   { key: 'verify', id: 'L4', name: 'Block hallucination', d: 'M900 70 L900 30 L735 30 L735 70', x: 817, y: 30, tone: 'rose' },
   { key: 'review', id: 'L5', name: 'HR re-score', d: 'M405 294 L405 345 L900 345 L900 294', x: 652, y: 345, tone: 'emerald' },

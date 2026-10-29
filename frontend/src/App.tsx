@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { api, isMock } from './api'
+import CvPool from './CvPool'
+import CvPreview from './CvPreview'
 import GraphView from './GraphView'
 import { InterruptPanel, Requirements, Timeline } from './Panels'
 import Results from './Results'
 import RunPanel from './RunPanel'
 import {
-  emptyRun, NODES,
+  emptyRun, INTERRUPT_NODE, NODES,
   type Assessment, type Config, type LoopKey, type NodeName, type ResumeBody,
   type RunRequest, type RunState, type StreamEvent,
 } from './types'
@@ -46,7 +48,7 @@ function applyEvent(s: RunState, ev: StreamEvent): RunState {
       return { ...s, values, expanded }
     }
     case 'interrupt': {
-      const node: NodeName = ev.kind === 'review' ? 'hr_review' : 'clarify'
+      const node = INTERRUPT_NODE[ev.kind]
       const ms = s.nodes[node]?.ms
       return { ...s, running: false, interrupt: { kind: ev.kind, payload: ev.payload } as RunState['interrupt'],
         nodes: { ...s.nodes, [node]: { status: 'waiting', ms } } }
@@ -63,6 +65,7 @@ export default function App() {
   const [run, setRun] = useState<RunState>(emptyRun)
   const [error, setError] = useState<string | null>(null)
   const [loadId, setLoadId] = useState('')
+  const [previewId, setPreviewId] = useState<string | null>(null) // CV shown in the parse-preview modal
   const gen = useRef(0) // ignore events from a stream that has been superseded
 
   useEffect(() => {
@@ -110,7 +113,7 @@ export default function App() {
       const finished = snap.next.length === 0 && !snap.interrupt
       const nodes: RunState['nodes'] = {}
       if (finished) for (const n of NODES) nodes[n] = { status: 'done' }
-      if (snap.interrupt) nodes[snap.interrupt.kind === 'review' ? 'hr_review' : 'clarify'] = { status: 'waiting' }
+      if (snap.interrupt) nodes[INTERRUPT_NODE[snap.interrupt.kind]] = { status: 'waiting' }
       setRun({ ...emptyRun, runId: snap.run_id, values: snap.values, interrupt: snap.interrupt, nodes, done: finished,
         usage: snap.usage?.calls ? snap.usage : null, logs: snap.logs ?? [] })
     } catch (e) {
@@ -140,6 +143,7 @@ export default function App() {
       <div className="layout">
         <aside>
           <RunPanel config={config} running={run.running} onStart={start} />
+          <CvPool onOpen={setPreviewId} />
           {run.runId && (
             <p className="muted mono">
               run {run.runId}
@@ -156,10 +160,11 @@ export default function App() {
         <main>
           <GraphView run={run} />
           {run.interrupt && <InterruptPanel interrupt={run.interrupt} criteria={config?.criteria ?? []} onSubmit={resume} />}
-          <Results run={run} config={config} />
+          <Results run={run} config={config} onOpenCv={setPreviewId} />
           <Timeline logs={run.logs} />
         </main>
       </div>
+      {previewId && <CvPreview id={previewId} onClose={() => setPreviewId(null)} />}
     </>
   )
 }

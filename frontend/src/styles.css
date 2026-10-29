@@ -123,3 +123,43 @@ cite { display: block; color: var(--muted); font-size: 11px; }
 .ev.x { border-color: var(--amber); } .ev.x b { color: var(--amber); }
 .cv { white-space: pre-wrap; background: var(--card2); border: 1px solid var(--border); border-radius: 8px; padding: 10px; font-size: 12px; max-height: 360px; overflow: auto; }
 mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 1px; }
+
+/* v2: tiers, groups, evidence states */
+.nowrap { white-space: nowrap; }
+.link { background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; font-weight: 600; text-decoration: underline dotted; }
+.group-box { margin-top: 10px; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; background: var(--card2); }
+.group-box summary { cursor: pointer; }
+.group-box .rank td { border-bottom: 1px solid var(--border); } .group-box .rank tr:last-child td { border-bottom: 0; }
+.why { color: var(--muted); }
+.facts-line { margin: 4px 0 8px; color: var(--muted); }
+.ev .q { margin-right: 6px; }
+.ev.u .q { text-decoration: line-through; }
+.ev.l { border-color: var(--amber); background: var(--card2); color: var(--muted); } .ev.l b { color: var(--amber); }
+.ev-note { margin-left: 6px; font-size: 10px; font-weight: 700; color: var(--amber); }
+.sec { display: inline-block; padding: 0 6px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em;
+  color: var(--tone, var(--slate)); background: color-mix(in srgb, var(--tone, var(--slate)) 14%, var(--card)); border: 1px solid color-mix(in srgb, var(--tone, var(--slate)) 40%, var(--card)); }
+.sec.big { font-size: 11px; padding: 1px 10px; }
+.subst { border: 1px solid var(--border); border-radius: 8px; margin: 0 0 10px; padding: 6px 10px; }
+.subst legend { font-size: 13px; padding: 0 4px; }
+label.check { display: inline-flex; align-items: center; gap: 6px; margin: 0; font-size: 13px; font-weight: 600; color: var(--text); }
+label.check input { width: auto; margin: 0; display: inline-block; }
+.pool { list-style: none; margin: 6px 0 0; padding: 0; max-height: 260px; overflow: auto; }
+.pool li { display: flex; gap: 6px; align-items: center; padding: 3px 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+.pool li .small { flex: 1; min-width: 100px; }
+summary { cursor: pointer; }
+
+/* CV parse preview */
+.modal { position: fixed; inset: 0; background: rgba(2, 6, 23, .55); z-index: 20; display: flex; justify-content: center; align-items: flex-start; padding: 24px 12px; overflow: auto; }
+.modal-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; width: min(920px, 100%); }
+.pv-headline { font-size: 15px; font-weight: 600; margin: 2px 0 0; }
+.step { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 11px; margin-right: 6px; }
+h3 .muted { text-transform: none; letter-spacing: 0; font-weight: 400; }
+.chunks { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px; }
+.chunk { border: 1px solid var(--border); border-left: 4px solid var(--tone, var(--slate)); border-radius: 8px; padding: 6px 10px;
+  background: color-mix(in srgb, var(--tone, var(--slate)) 7%, var(--card)); }
+.chunk-head { display: flex; gap: 6px; align-items: center; margin-bottom: 4px; flex-wrap: wrap; } .chunk-head .mono { font-size: 10.5px; }
+.chunk-text { font-size: 12.5px; white-space: pre-wrap; }
+.skills td { vertical-align: top; }
+dl.facts { grid-template-columns: 130px 1fr; }
+dl.facts blockquote { margin-top: 4px; }
+.rawtext { margin-top: 14px; }

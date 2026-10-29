@@ -1,5 +1,5 @@
 import { mockApi } from './mock'
-import type { Config, CV, ResumeBody, RunRequest, RunSnapshot, StreamEvent } from './types'
+import type { Config, CV, CVListItem, CVProfileView, ResumeBody, RunRequest, RunSnapshot, StreamEvent } from './types'
 
 const BASE = '/api'
 
@@ -30,12 +30,28 @@ async function* postStream(path: string, body: unknown): AsyncGenerator<StreamEv
   }
 }
 
+// Multipart upload; surfaces the backend's `{detail}` message on 400.
+async function postFile<T>(path: string, file: File): Promise<T> {
+  const body = new FormData()
+  body.append('file', file)
+  const r = await fetch(BASE + path, { method: 'POST', body })
+  if (!r.ok) {
+    const t = await r.text()
+    let detail = t.slice(0, 300)
+    try { detail = JSON.parse(t).detail ?? detail } catch { /* not JSON */ }
+    throw new Error(typeof detail === 'string' ? detail : JSON.stringify(detail))
+  }
+  return r.json()
+}
+
 export interface Api {
   config(): Promise<Config>
   start(req: RunRequest): AsyncIterable<StreamEvent>
   resume(runId: string, body: ResumeBody): AsyncIterable<StreamEvent>
   getRun(runId: string): Promise<RunSnapshot>
   getCv(id: string): Promise<CV>
+  listCvs(): Promise<CVListItem[]>
+  uploadCv(file: File): Promise<CVProfileView>
 }
 
 const realApi: Api = {
@@ -44,6 +60,8 @@ const realApi: Api = {
   resume: (id, body) => postStream(`/runs/${encodeURIComponent(id)}/resume`, body),
   getRun: (id) => getJson(`/runs/${encodeURIComponent(id)}`),
   getCv: (id) => getJson(`/cvs/${encodeURIComponent(id)}`),
+  listCvs: () => getJson('/cvs'),
+  uploadCv: (file) => postFile('/cvs', file),
 }
 
 // `?mock=1` replays a canned run (see mock.ts) so the UI works without the backend.
