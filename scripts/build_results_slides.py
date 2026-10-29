@@ -38,6 +38,7 @@ GREY_BAR, ACCENT_BAR = RGBColor(0xCB, 0xD5, 0xE1), RGBColor(0x10, 0xB9, 0x81)
 CHIPS = {"section": (RED, RED_BG), "blue": (BLUE, BLUE_BG), "green": (GREEN, GREEN_BG), "amber": (AMBER, AMBER_BG),
          "violet": (VIOLET, VIOLET_BG)}
 SECTION = "07 · KẾT QUẢ THỰC NGHIỆM"
+TITLE_ONE_LINE = 66  # characters that fit on one line at 19 pt; longer titles get a smaller size
 NFR04_MAX_S = 5 * 60  # "vài phút một JD trên laptop" (NFR-04), read as p95 <= 5 minutes
 
 
@@ -80,7 +81,7 @@ def nav(page: int) -> Tuple[str, str]:
 
 def set_nav(first_new: int, plan: Sequence[Tuple[str, str]]) -> None:
     """``plan``: (short label, question leading to it) per new slide; the closing Q&A slide follows the last one."""
-    targets = list(plan[1:]) + [("Q&A", "Cảm ơn và hỏi đáp.")]
+    targets = list(plan[1:]) + [("Hỏi đáp", "Xin cảm ơn hội đồng; phần hỏi đáp.")]
     NAV.clear()
     for page, (label, question) in enumerate(targets, 1):
         NAV[page] = (question, f"Slide {first_new + page}: {label} →")
@@ -175,7 +176,8 @@ def frame(prs, title: str, chips: Sequence[Tuple[str, str]], page: int, total: i
     x = 213 * PX
     for label, kind in chips:
         x = chip(slide, x, 1.03, label, kind)
-    text(slide, 213 * PX, 1.33, 10.0, 0.5, title, size=19, bold=True, name="Title")
+    size = 19 if len(title) <= TITLE_ONE_LINE else 17 if len(title) <= TITLE_ONE_LINE + 8 else 15.5
+    text(slide, 213 * PX, 1.33, 10.0, 0.5, title, size=size, bold=True, name="Title")
 
     bar = box(slide, 213 * PX, 6.32, 1173 * PX, 0.36, fill=BLUE_BG, line=BLUE_LINE, radius=0.2, name="Next bar")
     del bar
@@ -309,25 +311,28 @@ def bar_chart(slide, x, y, w, h, categories, series: Dict[str, List[float]], col
 # ------------------------------------------------------------------ slides
 
 def slide_setup(prs, syn, pub, spans, page, total):
-    s = frame(prs, "Thiết Lập Thực Nghiệm: Dữ Liệu, Mô Hình Và Cách Kiểm Định",
-              [(SECTION, "section"), ("CHẠY THẬT · LOCAL CPU · KHÔNG GỬI PII RA NGOÀI", "green")], page, total, *nav(page))
+    s = frame(prs, "Thiết Lập Thực Nghiệm: Dữ Liệu, Mô Hình Và Phương Pháp Kiểm Định",
+              [(SECTION, "section"), ("CHẠY CỤC BỘ TRÊN CPU · DỮ LIỆU CÁ NHÂN KHÔNG RỜI MÁY", "green")], page, total,
+              *nav(page))
     kappa = list((syn.get("cohen_kappa") or {}).values())
     cards = [
-        ("Gold Set tổng hợp (test chính)", "blue",
-         [f"{syn['n_jds']} JD Automation Test × {syn['n_cvs']} CV ẩn danh",
-          f"2 annotator mô phỏng, Cohen κ = {min(kappa):.2f}–{max(kappa):.2f}" if kappa else "nhãn 0–3 theo JD",
-          "Đo trên toàn bộ ranking (judged)"]),
+        ("Gold Set tổng hợp", "blue",
+         [f"{syn['n_jds']} mô tả công việc (JD) Automation Test × {syn['n_cvs']} CV đã ẩn danh",
+          f"2 người gán nhãn mô phỏng, Cohen κ = {min(kappa):.2f}–{max(kappa):.2f}" if kappa else
+          "Nhãn mức phù hợp 0–3 theo từng JD",
+          "Đánh giá trên toàn bộ danh sách xếp hạng"]),
         ("Dữ liệu công khai", "violet",
-         [f"HF resume-job-description-fit: {pub['n_jds']} JD QA/Automation, {pub['n_cvs']} CV" if pub else
-          "HF resume-job-description-fit",
-          "Nhãn Fit/Potential/No Fit → 2/1/0, chỉ cặp đã gán",
-          f"SkillSpan test (CC-BY-4.0): {spans['n_gold_spans']} span" if spans else "SkillSpan (CC-BY-4.0)"]),
-        ("Mô hình (chạy local)", "green",
-         ["Dense: multilingual-e5-base", "Cross-encoder: bge-reranker-base", "NLI: nli-deberta-v3-base",
-          "LLM: Qwen2.5 3B / 7B qua Ollama, CPU"]),
+         [f"resume-job-description-fit (Hugging Face): {pub['n_jds']} JD kiểm thử, {pub['n_cvs']} CV" if pub else
+          "resume-job-description-fit (Hugging Face)",
+          "Nhãn Fit / Potential / No Fit quy về 2 / 1 / 0",
+          f"SkillSpan, tập test (CC-BY-4.0): {spans['n_gold_spans']} đoạn kỹ năng" if spans else
+          "SkillSpan (CC-BY-4.0)"]),
+        ("Mô hình (chạy cục bộ)", "green",
+         ["Mã hoá dense: multilingual-e5-base", "Cross-encoder: bge-reranker-base", "Suy luận NLI: nli-deberta-v3-base",
+          "LLM: Qwen2.5 3B / 7B (Ollama, CPU)"]),
         ("Kiểm định thống kê", "amber",
-         ["Paired bootstrap 95% CI theo JD", "Wilcoxon signed-rank + effect size r",
-          "Hypothesis đặt trước khi chạy (slide 26)", "Cache LLM: chạy lại cho cùng kết quả"]),
+         ["Khoảng tin cậy 95% bằng bootstrap ghép cặp theo JD", "Kiểm định Wilcoxon và cỡ hiệu ứng r",
+          "Giả thuyết được đặt trước khi chạy (slide 26)", "Lưu đệm kết quả LLM để tái lập được"]),
     ]
     cw, gap, x0, y0 = 2.33, 0.2, 213 * PX, 1.95
     for i, (title, kind, lines) in enumerate(cards):
@@ -336,18 +341,19 @@ def slide_setup(prs, syn, pub, spans, page, total):
         chip(s, x + 0.15, y0 + 0.17, f"0{i + 1}", kind)
         text(s, x + 0.15, y0 + 0.52, cw - 0.3, 0.35, title, size=11.5, bold=True)
         text(s, x + 0.15, y0 + 0.95, cw - 0.3, 1.5, [[("• " + ln, {})] for ln in lines], size=9.5, spacing=4)
-    note(s, x0, 4.7, 4.75, 1.35, "Cấu hình so sánh:",
-         "B0 BM25 · B1 dense · B2 hybrid RRF · B3 +Criteria Profile · B4 fixed pipeline (+cross-encoder, "
-         "arbiter, claim) · LLM-all (LLM xếp lại toàn top-20) · P6 full agentic · A1 bỏ verify · "
-         "A2 prompt chung · P6-noclar bỏ hỏi HR.", "blue")
-    note(s, x0 + 4.95, 4.7, 4.82, 1.35, "Lưu ý khi đọc:",
-         "n = 6 JD nên Wilcoxon không thể cho p < 0.031; mọi kết luận dựa trên CI95 bootstrap, không dựa trên "
-         "trung bình. Gold Set tổng hợp và Criteria Profile cùng do nhóm viết, nên gain của B3 có thể lạc quan "
-         "(slide dữ liệu công khai kiểm tra lại điều này).", "amber", size=9)
+    note(s, x0, 4.7, 4.75, 1.35, "Các cấu hình so sánh:",
+         "B0 BM25 · B1 dense · B2 lai ghép (RRF) · B3 thêm Criteria Profile · B4 quy trình cố định (thêm "
+         "cross-encoder, bộ phân xử, kiểm chứng) · LLM-all (LLM xếp lại toàn bộ top 20) · P6 hệ thống agentic "
+         "đầy đủ · A1 bỏ bước kiểm chứng · A2 prompt chung · P6-noclar bỏ bước hỏi lại HR.", "blue")
+    note(s, x0 + 4.95, 4.7, 4.82, 1.35, "Lưu ý khi diễn giải:",
+         f"với n = {syn['n_jds']} JD, kiểm định Wilcoxon không thể đạt p < {2 / 2 ** syn['n_jds']:.3f}, vì vậy "
+         "kết luận dựa trên khoảng tin cậy 95% thay vì giá trị trung bình. Gold Set và Criteria Profile cùng do "
+         "nhóm xây dựng nên mức cải thiện của B3 có thể bị đánh giá cao; dữ liệu công khai được dùng để kiểm "
+         "tra lại.", "amber", size=9)
 
 
 def slide_ladder(prs, syn, page, total):
-    s = frame(prs, "Ablation B0 → P6: Criteria Profile Tạo Bước Nhảy Lớn Nhất",
+    s = frame(prs, "Phân Tích Loại Bỏ Thành Phần B0 → P6: Criteria Profile Đóng Góp Lớn Nhất",
               [(SECTION, "section"), ("nDCG@10 · MRR@10 · 6 JD", "blue")], page, total, *nav(page))
     order = [c for c in ("B0", "B1", "B2", "B3", "B4", "LLM-all", "P6", "A1", "A2", "P6-noclar") if c in syn["means"]]
     nd = [mean(syn, c, "ndcg@10") for c in order]
@@ -359,13 +365,16 @@ def slide_ladder(prs, syn, page, total):
     x = 213 * PX + 6.8
     w = 1173 * PX - 6.8
     items = [
-        ("green", "Criteria Profile (B3)", f"nDCG@10 {fmt(b2)} → {fmt(b3)} so với hybrid B2: trọng số theo "
-                                           f"công ty + knock-out là nguồn gain chính. Profile và nhãn cùng do "
-                                           f"nhóm viết nên mức gain này có thể lạc quan."),
-        ("amber", "Dense zero-shot (B1)", f"{fmt(b1)} < BM25 {fmt(b0)}: CV kỹ thuật nhiều tên tool, e5 chưa "
-                                          f"fine-tune đánh mất tín hiệu từ khoá."),
-        ("blue", "Full pipeline P6", f"nDCG@10 {fmt(p6)}, MRR@10 {fmt(mean(syn, 'P6', 'mrr@10'))}: LLM chỉ "
-                                     f"chạm near-tie nên giữ chất lượng của B3/B4."),
+        ("green", "Criteria Profile (B3)", f"nDCG@10 tăng từ {fmt(b2)} (B2) lên {fmt(b3)}. Trọng số tiêu chí "
+                                           f"theo từng công ty và tiêu chí loại trừ là nguồn cải thiện chính. Do "
+                                           f"profile và nhãn cùng do nhóm xây dựng, mức tăng này có thể bị đánh "
+                                           f"giá cao."),
+        ("amber", "Dense chưa tinh chỉnh (B1)", f"nDCG@10 {fmt(b1)}, thấp hơn BM25 ({fmt(b0)}). CV kỹ thuật chứa "
+                                                f"nhiều tên công cụ; mô hình e5 chưa tinh chỉnh làm mất tín hiệu "
+                                                f"từ khoá này."),
+        ("blue", "Hệ thống đầy đủ (P6)", f"nDCG@10 {fmt(p6)}, MRR@10 {fmt(mean(syn, 'P6', 'mrr@10'))}. LLM chỉ "
+                                         f"phân xử các cặp ứng viên có điểm gần nhau nên P6 giữ được chất lượng "
+                                         f"của B3/B4."),
     ]
     y = 1.95
     for kind, head, body in items:
@@ -379,62 +388,67 @@ def _h_rows(syn) -> List[List[Any]]:
     def verdict(h):
         if h not in hyp:
             return ("chưa chạy", {"color": MUTED})
-        return ("CHẤP NHẬN", {"color": GREEN, "bold": True}) if hyp[h].get("accepted") else \
-            ("BÁC BỎ", {"color": RED, "bold": True})
+        return verdict_cell(hyp[h].get("accepted"))
 
     def det(h, key=None):
         d = (hyp.get(h) or {}).get("details") or {}
         return d.get(key) if key else d
 
-    rows = [["", "Hypothesis (đặt trước)", "Kết quả đo (a vs b, Δ, 95% CI, p)", "Kết luận"]]
+    rows = [["", "Giả thuyết (đặt trước khi chạy)", "Kết quả đo (a so với b, Δ, CI 95%, p)", "Kết luận"]]
     h1_parts = []
     for metric in ("recall@100", "mrr@10"):
         pairs = det("H1", metric)
         if isinstance(pairs, list) and pairs:
             h1_parts.append(f"{metric} " + "; ".join(f"{d['a']} vs {d['b']} {fmt(d['mean_a'])} vs {fmt(d['mean_b'])}"
                                                       for d in pairs))
-    rows.append(["H1", "Hybrid B2 không thấp hơn max(B0, B1) và cao hơn ít nhất một bên",
+    rows.append(["H1", "Truy hồi lai B2 không thấp hơn max(B0, B1) và cao hơn ít nhất một trong hai",
                  "\n".join(h1_parts) or "—", verdict("H1")])
     d = det("H2")
-    rows.append(["H2", "Criteria Profile theo công ty: τ của P6 > A2 (prompt chung)",
+    rows.append(["H2", "Criteria Profile theo công ty: τ của P6 cao hơn A2 (prompt chung)",
                  "Kendall τ " + (cmp_text(d) if d else "—"), verdict("H2")])
     d = det("H3", "ndcg@10")
     c = det("H3", "llm_calls")
-    rows.append(["H3", "Selective Arbiter: P6 không kém LLM-all (cận dưới CI95 của Δ nDCG@10 ≥ −0.02), ít LLM call hơn",
-                 ("nDCG@10 " + cmp_text(d) if d else "—") + ("\njudge calls " + cmp_text(c, 1) if c else ""),
+    rows.append(["H3", "Phân xử chọn lọc: P6 không kém LLM-all (cận dưới CI 95% của Δ nDCG@10 ≥ −0.02) và gọi "
+                       "LLM ít hơn",
+                 ("nDCG@10 " + cmp_text(d) if d else "—") + ("\nlượt gọi LLM đánh giá " + cmp_text(c, 1) if c else ""),
                  verdict("H3")])
     d = det("H4")
-    rows.append(["H4", "verify_evidence: tỷ lệ claim không căn cứ P6 < A1",
-                 "unsupported " + (cmp_text(d) if d else "—"), verdict("H4")])
+    rows.append(["H4", "Kiểm chứng bằng chứng: tỷ lệ nhận định thiếu bằng chứng của P6 thấp hơn A1",
+                 "tỷ lệ thiếu bằng chứng " + (cmp_text(d) if d else "—"), verdict("H4")])
     h5 = hyp.get("H5") or {}
     fail = h5.get("failing_jds")
-    rows.append(["H5", "Fairness: impact ratio ≥ 0.8 (luật 4/5) ở mọi JD",
+    rows.append(["H5", "Công bằng: impact ratio ≥ 0.8 (quy tắc 4/5) ở mọi JD",
                  f"impact ratio trung bình {fmt(h5.get('impact_ratio_mean'))}"
                  + (f"; JD dưới 0.8: {len(fail)}" if fail is not None else ""), verdict("H5")])
     d = det("H6")
-    rows.append(["H6", "Hỏi HR cải thiện τ trên JD mơ hồ (P6 vs P6-noclar)",
+    rows.append(["H6", "Hỏi lại HR làm tăng τ trên JD mơ hồ (P6 so với P6-noclar)",
                  "Kendall τ " + (cmp_text(d) if d else "—"), verdict("H6")])
     d, u = det("H0", "ndcg@10"), det("H0", "unsupported_rate")
-    rows.append(["H0", "P6 tốt hơn B4 ở nDCG@10 hoặc faithfulness, cost trong budget",
-                 ("nDCG@10 " + cmp_text(d) if d else "—") + ("\nunsupported " + cmp_text(u) if u else ""),
+    rows.append(["H0", "P6 tốt hơn B4 về nDCG@10 hoặc độ trung thực, chi phí trong ngân sách",
+                 ("nDCG@10 " + cmp_text(d) if d else "—") + ("\ntỷ lệ thiếu bằng chứng " + cmp_text(u) if u else ""),
                  verdict("H0")])
     return rows
 
 
+def verdict_cell(accepted: Optional[bool]) -> Tuple[str, Dict[str, Any]]:
+    return ("ỦNG HỘ", {"color": GREEN, "bold": True}) if accepted else ("KHÔNG ỦNG HỘ", {"color": RED, "bold": True})
+
+
 def slide_hypotheses(prs, syn, page, total):
-    s = frame(prs, "Kiểm Chứng H0–H6: Báo Cáo Cả Hypothesis Bị Bác Bỏ",
-              [(SECTION, "section"), ("PAIRED BOOTSTRAP 95% CI + WILCOXON", "amber")], page, total, *nav(page))
+    s = frame(prs, "Kiểm Định Giả Thuyết H0–H6: Báo Cáo Cả Giả Thuyết Không Được Ủng Hộ",
+              [(SECTION, "section"), ("BOOTSTRAP GHÉP CẶP, CI 95% · WILCOXON", "amber")], page, total, *nav(page))
     rows = _h_rows(syn)
     table(s, 213 * PX, 1.8, 1173 * PX, rows, [0.45, 3.4, 4.6, 1.2], size=8.5, row_h=0.47)
     text(s, 213 * PX, 1.8 + 0.47 * len(rows) + 0.12, 1173 * PX, 0.3,
-         f"Quy tắc quyết định: CHẤP NHẬN khi cả CI95 bootstrap nằm đúng phía (không kém hơn: cận dưới ≥ −ε), không "
-         f"xét trung bình đơn lẻ. Với n = {syn['n_jds']} JD, p Wilcoxon nhỏ nhất có thể là "
-         f"{2 / 2 ** syn['n_jds']:.3f}.", size=8.5, color=MUTED)
+         f"Quy tắc quyết định: giả thuyết được ủng hộ khi toàn bộ khoảng tin cậy 95% nằm đúng phía (với giả thuyết "
+         f"\"không kém hơn\": cận dưới ≥ −ε), không dựa vào giá trị trung bình. Với n = {syn['n_jds']} JD, giá trị p "
+         f"nhỏ nhất của kiểm định Wilcoxon là {2 / 2 ** syn['n_jds']:.3f}.", size=8.5, color=MUTED)
 
 
 def slide_prior(prs, syn, pub, ctx, page, total):
-    s = frame(prs, "Đặt Cạnh Prior Work: Cùng Hướng Ở Đâu, Khác Ở Đâu",
-              [(SECTION, "section"), ("SO HƯỚNG, KHÔNG SO TUYỆT ĐỐI", "amber")], page, total, *nav(page))
+    s = frame(prs, "Đối Chiếu Với Nghiên Cứu Liên Quan: Điểm Tương Đồng Và Khác Biệt",
+              [(SECTION, "section"), ("SO SÁNH XU HƯỚNG, KHÔNG SO SÁNH GIÁ TRỊ TUYỆT ĐỐI", "amber")], page, total,
+              *nav(page))
     b0, b1, b3 = mean(syn, "B0", "ndcg@10"), mean(syn, "B1", "ndcg@10"), mean(syn, "B3", "ndcg@10")
     b4, p6, la = mean(syn, "B4", "ndcg@10"), mean(syn, "P6", "ndcg@10"), mean(syn, "LLM-all", "ndcg@10")
     calls_p6, calls_la = mean(syn, "P6", "judge_calls"), mean(syn, "LLM-all", "judge_calls")
@@ -444,41 +458,48 @@ def slide_prior(prs, syn, pub, ctx, page, total):
     g, r = {"color": GREEN, "bold": True}, {"color": RED, "bold": True}
     h3_ok = (syn.get("hypotheses") or {}).get("H3", {}).get("accepted")
     rows = [
-        ["Công trình (slide)", "Kết quả công bố", "Nhóm 2 đo được (tương ứng)", "Nhận xét"],
-        ["ConFit v2 · Yu et al. 2025 (16)", "AliYun: BM25 40.56 > E5 raw 29.66 nDCG@10; Recruiting ngược lại",
-         (f"BM25 {fmt(b0)} > e5 zero-shot {fmt(b1)}", {}), ("Cùng hướng: giá trị BM25 phụ thuộc domain → hybrid", g)],
+        ["Công trình (slide)", "Kết quả công bố", "Kết quả tương ứng của nhóm", "Nhận xét"],
+        ["ConFit v2 · Yu et al. 2025 (16)", "AliYun: BM25 40.56 > E5 chưa tinh chỉnh 29.66 nDCG@10; tập "
+                                            "Recruiting cho kết quả ngược lại",
+         (f"BM25 {fmt(b0)} > e5 chưa tinh chỉnh {fmt(b1)}", {}),
+         ("Tương đồng: hiệu quả của BM25 phụ thuộc lĩnh vực, ủng hộ truy hồi lai", g)],
         confit_row(syn, pub, ctx, g, r),
-        ["RankGPT · Sun et al. 2023 (17)", "LLM listwise re-rank: +2.7 nDCG@10 (TREC)",
-         f"LLM-all {fmt(la)} vs B4 {fmt(b4)} (Qwen 3B)",
-         ("LLM nhỏ re-rank toàn bộ không thêm gain", r) if la <= b4 + 0.005 else
-         (f"Cùng chiều nhưng nhỏ (+{la - b4:.3f}), chưa có ý nghĩa với n = {syn['n_jds']}", {"color": AMBER, "bold": True})],
-        ["FrugalGPT · Chen et al. 2023 (17)", "Cascade giảm tới 98% chi phí, chất lượng ngang GPT-4",
-         f"P6 {fmt(calls_p6, 1)} vs LLM-all {fmt(calls_la, 1)} judge call/JD ({pct(saving, 0)} ít hơn); "
-         f"nDCG@10 {fmt(p6)} vs {fmt(la)}",
-         ("Cùng hướng: ít call, không kém LLM-all (CI95)", g) if h3_ok else
-         ("Một phần: ít call hơn rõ, nhưng CI95 chưa loại trừ mức kém hơn ε", {"color": AMBER, "bold": True})],
-        ["Gan et al. 2024; Lo et al. 2025 (18)", "Agent: F1 87.73%, nhanh 11×; không đo nDCG, không verify",
-         f"Đo bằng ranking metric + faithfulness: unsupported claim P6 {pct(un_p6)} vs A1 {pct(un_a1)}",
-         "Lấp gap đo lường mà slide 18 nêu"],
-        ["Wilson & Caliskan 2024 (18)", "Embedding retrieval ưu tiên tên White 85.1%, nữ 11.1%",
-         f"PII masking trước encode{audit_text(ctx.get('audit'))}; impact ratio trung bình {fmt(ir)}",
-         ("Đạt luật 4/5", g) if ir and ir >= 0.8 else ("Chưa đạt 4/5 ở mọi JD → cần audit thêm", r)],
+        ["RankGPT · Sun et al. 2023 (17)", "LLM xếp hạng lại theo danh sách: +2.7 nDCG@10 (TREC)",
+         f"LLM-all {fmt(la)} so với B4 {fmt(b4)} (Qwen 3B)",
+         ("LLM nhỏ xếp lại toàn bộ không cải thiện kết quả", r) if la <= b4 + 0.005 else
+         (f"Cùng chiều nhưng nhỏ (+{la - b4:.3f}), chưa có ý nghĩa thống kê với n = {syn['n_jds']}",
+          {"color": AMBER, "bold": True})],
+        ["FrugalGPT · Chen et al. 2023 (17)", "Chuỗi mô hình giảm tới 98% chi phí, chất lượng tương đương GPT-4",
+         f"P6 {fmt(calls_p6, 1)} so với LLM-all {fmt(calls_la, 1)} lượt gọi LLM đánh giá mỗi JD (ít hơn "
+         f"{pct(saving, 0)}); nDCG@10 {fmt(p6)} so với {fmt(la)}",
+         ("Tương đồng: ít lượt gọi hơn, không kém LLM-all (CI 95%)", g) if h3_ok else
+         ("Tương đồng một phần: ít lượt gọi hơn rõ rệt, nhưng CI 95% chưa loại trừ mức kém hơn ε",
+          {"color": AMBER, "bold": True})],
+        ["Gan et al. 2024; Lo et al. 2025 (18)", "Agent: F1 87.73%, nhanh hơn 11 lần; không đo nDCG, không kiểm "
+                                                 "chứng bằng chứng",
+         f"Đánh giá bằng chỉ số xếp hạng và độ trung thực: tỷ lệ nhận định thiếu bằng chứng P6 {pct(un_p6)} so "
+         f"với A1 {pct(un_a1)}",
+         "Bổ sung phương diện đánh giá còn thiếu đã nêu ở slide 18"],
+        ["Wilson & Caliskan 2024 (18)", "Truy hồi bằng embedding ưu tiên tên người da trắng 85.1%, tên nữ 11.1%",
+         f"Che thông tin định danh trước khi mã hoá{audit_text(ctx.get('audit'))}; impact ratio trung bình {fmt(ir)}",
+         ("Đạt quy tắc 4/5", g) if ir and ir >= 0.8 else ("Chưa đạt quy tắc 4/5 ở mọi JD, cần kiểm tra thêm", r)],
     ]
     tagger = ctx.get("tagger")
     if tagger:
         tf1 = tagger["test"]["tagger"]["f1_exact"]
-        rows.append(["SkillSpan · Zhang et al. 2022", f"JobBERT span F1 {SKILLSPAN_PAPER_F1 * 100:.1f} (test, 5 seed)",
-                     f"JobBERT tagger span F1 {fmt(tf1)} (1 seed)" +
+        rows.append(["SkillSpan · Zhang et al. 2022", f"JobBERT, span F1 {SKILLSPAN_PAPER_F1 * 100:.1f} (tập test, "
+                                                      "trung bình 5 seed)",
+                     f"Mô hình gán nhãn JobBERT: span F1 {fmt(tf1)} (1 seed)" +
                      (f"; từ điển {fmt(ctx['spans']['f1_exact'])}" if ctx.get("spans") else ""),
-                     ("Gần với bài báo (1 seed so với trung bình 5 seed)", g)
+                     ("Tái lập được kết quả của bài báo (1 seed so với trung bình 5 seed)", g)
                      if abs(tf1 - SKILLSPAN_PAPER_F1) <= 0.03 else
-                     (f"Lệch {tf1 - SKILLSPAN_PAPER_F1:+.3f} so với bài báo", {"color": AMBER, "bold": True})])
+                     (f"Chênh {tf1 - SKILLSPAN_PAPER_F1:+.3f} so với bài báo", {"color": AMBER, "bold": True})])
     if pub:
         pb0, pp6 = mean(pub, "B0", "ndcg@10"), mean(pub, "P6", "ndcg@10")
-        rows.append(["resume-job-description-fit (HF, công khai)", "Bộ nhãn Fit / Potential / No Fit, chưa có "
-                     "baseline ranking công bố", f"nDCG@10 BM25 {fmt(pb0)} → P6 {fmt(pp6)} trên {pub['n_jds']} JD",
-                     ("Cùng hướng ngoài dữ liệu tổng hợp", g) if pp6 >= pb0 else
-                     (f"Không lặp lại: P6 < BM25; tốt nhất là {best_config(pub)}", r)])
+        rows.append(["resume-job-description-fit (Hugging Face)", "Nhãn Fit / Potential / No Fit, chưa có kết "
+                     "quả xếp hạng cơ sở được công bố", f"nDCG@10: BM25 {fmt(pb0)}, P6 {fmt(pp6)} trên {pub['n_jds']} JD",
+                     ("Kết quả lặp lại ngoài dữ liệu tổng hợp", g) if pp6 >= pb0 else
+                     (f"Không lặp lại: P6 thấp hơn BM25; cao nhất là {best_config(pub)}", r)])
     table(s, 213 * PX, 1.8, 1173 * PX, rows, [2.2, 2.9, 3.0, 2.3], size=8.5, row_h=0.5 if len(rows) <= 8 else 0.44)
 
 
@@ -486,28 +507,28 @@ def confit_row(syn, pub, ctx, g, r) -> List[Any]:
     b0, b1, b3 = mean(syn, "B0", "ndcg@10"), mean(syn, "B1", "ndcg@10"), mean(syn, "B3", "ndcg@10")
     syn_ft = ctx.get("syn_ft")
     if not syn_ft:
-        return ["ConFit v2 (16)", "Fine-tune bi-encoder: +41.6 nDCG@10 so với BM25 (82.20)",
-                f"Không fine-tune; Criteria Profile: {fmt(b0)} → {fmt(b3)} (+{b3 - b0:.3f})",
-                "Gain đến từ tri thức tiêu chí thay vì label lớn"]
+        return ["ConFit v2 (16)", "Tinh chỉnh bi-encoder: +41.6 nDCG@10 so với BM25 (82.20)",
+                f"Không tinh chỉnh; Criteria Profile: {fmt(b0)} → {fmt(b3)} (+{b3 - b0:.3f})",
+                "Cải thiện đến từ tri thức về tiêu chí thay vì dữ liệu gán nhãn lớn"]
     b1_ft = mean(syn_ft, "B1", "ndcg@10")
     pub_ft = ctx.get("pub_ft")
     pub_txt, pub_beats = "", False
     if pub and pub_ft:
         pb0, pb1, pb1_ft = (mean(pub, "B0", "ndcg@10"), mean(pub, "B1", "ndcg@10"), mean(pub_ft, "B1", "ndcg@10"))
-        pub_txt, pub_beats = f"; công khai {fmt(pb1)} → {fmt(pb1_ft)} vs BM25 {fmt(pb0)}", pb1_ft > pb0
+        pub_txt, pub_beats = f"; dữ liệu công khai {fmt(pb1)} → {fmt(pb1_ft)} (BM25 {fmt(pb0)})", pb1_ft > pb0
     # ConFit's claim is "fine-tuned dense beats BM25", so the verdict compares B1-ft with B0, not only with B1
     if b1_ft > b0:
-        verdict = ("Cùng hướng: dense fine-tune vượt BM25", g)
+        verdict = ("Tương đồng: dense sau tinh chỉnh vượt BM25", g)
     elif pub_beats:
-        verdict = ("Một phần: vượt BM25 trên dữ liệu công khai, chưa vượt trên Gold Set", {"color": AMBER,
-                                                                                          "bold": True})
+        verdict = ("Tương đồng một phần: vượt BM25 trên dữ liệu công khai, chưa vượt trên Gold Set",
+                   {"color": AMBER, "bold": True})
     elif b1_ft > b1 + 0.005:
-        verdict = (f"Một phần: fine-tune giúp dense (+{b1_ft - b1:.3f}) nhưng chưa vượt BM25", {"color": AMBER,
-                                                                                                "bold": True})
+        verdict = (f"Tương đồng một phần: tinh chỉnh cải thiện dense (+{b1_ft - b1:.3f}) nhưng chưa vượt BM25",
+                   {"color": AMBER, "bold": True})
     else:
-        verdict = ("Không lặp lại: fine-tune trên JD khác ngành không giúp", r)
-    return ["ConFit v2 (16)", "Fine-tune bi-encoder: +41.6 nDCG@10 so với BM25 (82.20)",
-            f"e5 fine-tune (cặp không phải QA), B1 Gold Set {fmt(b1)} → {fmt(b1_ft)} vs BM25 {fmt(b0)}"
+        verdict = ("Không lặp lại: tinh chỉnh trên JD khác lĩnh vực không cải thiện", r)
+    return ["ConFit v2 (16)", "Tinh chỉnh bi-encoder: +41.6 nDCG@10 so với BM25 (82.20)",
+            f"e5 tinh chỉnh trên cặp không thuộc kiểm thử: B1 trên Gold Set {fmt(b1)} → {fmt(b1_ft)} (BM25 {fmt(b0)})"
             f"{pub_txt}; Criteria Profile {fmt(b3)}", verdict]
 
 
@@ -515,7 +536,7 @@ def audit_text(audit: Optional[List[Dict[str, Any]]]) -> str:
     if not audit:
         return ""
     worst = max(a["max_abs_delta_rank"] for a in audit)
-    return f"; đổi tên: Δrank tối đa {worst} trên {len(audit)} JD"
+    return f"; hoán đổi tên: Δ thứ hạng tối đa {worst} trên {len(audit)} JD"
 
 
 def best_config(summ, metric="ndcg@10"):
@@ -524,23 +545,23 @@ def best_config(summ, metric="ndcg@10"):
 
 
 def slide_faith(prs, syn, page, total):
-    s = frame(prs, "Faithfulness & Chi Phí: verify_evidence Cắt Claim Bịa, Arbiter Giữ Cost Thấp",
+    s = frame(prs, "Độ Trung Thực Và Chi Phí: Vai Trò Của Kiểm Chứng Và Phân Xử Chọn Lọc",
               [(SECTION, "section"), ("H0 · H3 · H4", "green")], page, total, *nav(page))
     cfgs = [c for c in ("B4", "LLM-all", "P6", "A1") if c in syn["means"]]
     bar_chart(s, 213 * PX, 1.9, 4.75, 4.25, cfgs, {"unsupported": [mean(syn, c, "unsupported_rate") for c in cfgs]},
-              [RGBColor(0xF4, 0x3F, 0x5E)], "Tỷ lệ claim không có bằng chứng", number_format="0%",
+              [RGBColor(0xF4, 0x3F, 0x5E)], "Tỷ lệ nhận định thiếu bằng chứng", number_format="0%",
               highlight=cfgs.index("P6") if "P6" in cfgs else None)
     bar_chart(s, 213 * PX + 4.9, 1.9, 4.85, 4.25, cfgs,
-              {"LLM calls/JD": [mean(syn, c, "llm_calls") for c in cfgs],
-               "judge calls/JD": [mean(syn, c, "judge_calls") for c in cfgs]},
-              [GREY_BAR, BLUE], "Lời gọi LLM mỗi JD", number_format="0.0", legend=True)
+              {"Tổng lượt gọi LLM": [mean(syn, c, "llm_calls") for c in cfgs],
+               "Lượt gọi LLM đánh giá": [mean(syn, c, "judge_calls") for c in cfgs]},
+              [GREY_BAR, BLUE], "Số lượt gọi LLM trung bình mỗi JD", number_format="0.0", legend=True)
 
 
 def slide_agent(prs, h7: Dict[str, Dict[str, Any]], page, total):
-    s = frame(prs, "Agentic AI (H7): Planner LLM Hợp Lệ Hơn Ở 7B, Nhưng Chưa Rẻ Hơn Luật",
-              [(SECTION, "section"), ("H7 · AG vs AG-rules", "violet")], page, total, *nav(page))
-    rows = [["Lượt chạy", "Cấu hình", "nDCG@10", "Claim không căn cứ", "LLM call/JD", "Bước agent",
-             "Luật phải thay LLM", "Đạt mục tiêu", "H7"]]
+    s = frame(prs, "Agentic AI (H7): Ổn Định Hơn Ở 7B Nhưng Tốn Kém Hơn Luật",
+              [(SECTION, "section"), ("H7 · AG SO VỚI AG-RULES", "violet")], page, total, *nav(page))
+    rows = [["Lượt chạy", "Cấu hình", "nDCG@10", "Thiếu bằng chứng", "Lượt gọi LLM/JD", "Số bước",
+             "Luật thay quyết định LLM", "Đạt mục tiêu", "H7"]]
     for label, summ in h7.items():
         hyp = (summ.get("hypotheses") or {}).get("H7", {})
         for cfg in ("AG-rules", "AG"):
@@ -549,35 +570,34 @@ def slide_agent(prs, h7: Dict[str, Dict[str, Any]], page, total):
             m = summ["means"][cfg]
             goal = m.get("goal_met")
             fb = m.get("planner_fallback_rate") if cfg == "AG" else None
-            verdict = (("CHẤP NHẬN", {"color": GREEN, "bold": True}) if hyp.get("accepted")
-                       else ("BÁC BỎ", {"color": RED, "bold": True})) if cfg == "AG" else ""
+            verdict = verdict_cell(hyp.get("accepted")) if cfg == "AG" else ""
             rows.append([label if cfg == "AG-rules" else "", cfg, fmt(m.get("ndcg@10")), pct(m.get("unsupported_rate")),
                          fmt(m.get("llm_calls"), 1), fmt(m.get("agent_steps"), 1), pct(fb, 0) if fb is not None
                          else "—", f"{round(goal * summ['n_jds'])}/{summ['n_jds']}" if goal is not None else "—",
                          verdict])
-    table(s, 213 * PX, 1.85, 1173 * PX, rows, [2.1, 1.0, 0.85, 1.25, 1.0, 0.9, 1.25, 1.0, 1.0], size=9,
+    table(s, 213 * PX, 1.85, 1173 * PX, rows, [1.6, 0.9, 0.8, 1.15, 1.0, 0.75, 1.3, 0.95, 1.45], size=9,
           row_h=0.36)
     y = 2.05 + 0.36 * len(rows)
-    note(s, 213 * PX, y, 4.8, min(1.5, 6.15 - y), "Điều đã kiểm chứng:",
-         "planner LLM chỉ chọn trong công cụ có guardrail; HR checkpoint, knock-out và ngân sách không bị vượt. "
-         "Với 7B, luật hiếm khi phải thay quyết định của LLM.", "green")
-    note(s, 213 * PX + 4.97, y, 4.8, min(1.5, 6.15 - y), "Điều chưa đạt:",
-         "trên dữ liệu tổng hợp, quyết định 'đúng' đã được luật mã hoá sẵn, nên AG tốn thêm LLM call mà không "
-         "tăng nDCG. Cần Gold Set thật để thấy lợi ích của tự lập kế hoạch.", "amber")
+    note(s, 213 * PX, y, 4.8, min(1.5, 6.15 - y), "Kết quả đã kiểm chứng:",
+         "bộ lập kế hoạch LLM chỉ chọn trong tập công cụ có ràng buộc an toàn; điểm xác nhận của HR, tiêu chí loại "
+         "trừ và ngân sách không bị vi phạm. Với mô hình 7B, luật hiếm khi phải thay quyết định của LLM.", "green")
+    note(s, 213 * PX + 4.97, y, 4.8, min(1.5, 6.15 - y), "Hạn chế:",
+         "trên dữ liệu tổng hợp, quyết định tối ưu đã được mã hoá sẵn trong luật, nên AG tốn thêm lượt gọi LLM mà "
+         "không tăng nDCG. Cần Gold Set thực tế để đánh giá lợi ích của việc tự lập kế hoạch.", "amber")
 
 
 SKILLSPAN_PAPER_F1 = 0.597  # Zhang et al. 2022, Table 5: JobBERT, COMBINED, TEST, mean of 5 seeds
 
 
 def _span_rows(spans, tagger) -> List[List[Any]]:
-    cols = [("Từ điển taxonomy", spans)]
+    cols = [("Từ điển kỹ năng", spans)]
     if tagger:
-        cols += [(label, tagger["test"][key]) for key, label in (("tagger", "JobBERT tagger"),
-                                                                ("hybrid", "Hai bộ hợp lại"))
+        cols += [(label, tagger["test"][key]) for key, label in (("tagger", "JobBERT gán nhãn"),
+                                                                ("hybrid", "Hợp hai phương pháp"))
                  if key in tagger["test"]]
-    rows = [["SkillSpan test"] + [c for c, _ in cols]]
-    for key, label in (("precision_exact", "Precision (chính xác)"), ("recall_exact", "Recall (chính xác)"),
-                       ("f1_exact", "F1 (chính xác)"), ("f1_overlap", "F1 (chồng lấn)")):
+    rows = [["SkillSpan (test)"] + [c for c, _ in cols]]
+    for key, label in (("precision_exact", "Precision (khớp đúng)"), ("recall_exact", "Recall (khớp đúng)"),
+                       ("f1_exact", "F1 (khớp đúng)"), ("f1_overlap", "F1 (khớp chồng lấn)")):
         best = max((r[key] for _, r in cols if not math.isnan(r[key])), default=float("nan"))
         win = len(cols) > 1
         rows.append([label] + [(fmt(r[key]), {"bold": win and r[key] == best,
@@ -587,40 +607,42 @@ def _span_rows(spans, tagger) -> List[List[Any]]:
 
 
 def slide_public(prs, pub, spans, page, total, ctx=None):
-    s = frame(prs, "Dữ Liệu Công Khai & Trích Xuất Skill: Kiểm Tra Ngoài Bộ Dữ Liệu Tự Tạo",
-              [(SECTION, "section"), ("HF resume-job-description-fit · SkillSpan", "violet")], page, total, *nav(page))
+    s = frame(prs, "Kiểm Tra Trên Dữ Liệu Công Khai Và Trích Xuất Kỹ Năng",
+              [(SECTION, "section"), ("RESUME-JOB-DESCRIPTION-FIT · SKILLSPAN", "violet")], page, total, *nav(page))
     x0 = 213 * PX
     if pub:
         order = [c for c in ("B0", "B1", "B2", "B3", "B4", "P6") if c in pub["means"]]
         bar_chart(s, x0, 1.9, 5.3, 2.95, order, {"nDCG@10": [mean(pub, c, "ndcg@10") for c in order]}, [GREY_BAR],
-                  f"Công khai: nDCG@10 ({pub['n_jds']} JD, {pub['n_cvs']} CV)", max_val=1.1,
+                  f"Dữ liệu công khai: nDCG@10 ({pub['n_jds']} JD, {pub['n_cvs']} CV)", max_val=1.1,
                   highlight=order.index("P6") if "P6" in order else None)
-        note(s, x0, 4.95, 5.3, 1.2, "Trung bình 6 JD không lặp lại:",
-             f"{best_config(pub)} tốt nhất, P6 {fmt(mean(pub, 'P6', 'ndcg@10'))} thấp hơn BM25 "
-             f"{fmt(mean(pub, 'B0', 'ndcg@10'))}." + (" Slide sau tách theo JD để tìm nguyên nhân."
-                                                      if (ctx or {}).get("errors") else ""), "amber", size=9)
+        note(s, x0, 4.95, 5.3, 1.2, f"Kết quả trung bình {pub['n_jds']} JD không lặp lại:",
+             f"{best_config(pub)} cao nhất; P6 ({fmt(mean(pub, 'P6', 'ndcg@10'))}) thấp hơn BM25 "
+             f"({fmt(mean(pub, 'B0', 'ndcg@10'))})." + (" Slide tiếp theo phân tích theo từng JD để xác định "
+                                                        "nguyên nhân." if (ctx or {}).get("errors") else ""),
+             "amber", size=9)
     tagger = (ctx or {}).get("tagger")
     if spans:
         rows = _span_rows(spans, tagger)
         table(s, x0 + 5.5, 1.9, 4.28, rows, [1.45] + [0.94] * (len(rows[0]) - 1), size=9, row_h=0.32)
         if tagger:
             t = tagger["test"]["tagger"]
-            body = (f"từ điển chỉ biết thuật ngữ Automation Test nên recall {fmt(spans['recall_exact'])}. Tagger "
-                    f"JobBERT học trên SkillSpan train ({tagger['data']['train']} câu, chọn epoch theo dev) đạt span "
-                    f"F1 {fmt(t['f1_exact'])}; bài báo SkillSpan báo cáo {SKILLSPAN_PAPER_F1:.3f} (JobBERT, 5 seed). "
-                    "Hệ thống dùng từ điển để gắn concept ID làm bằng chứng, tagger để không bỏ sót skill ngoài "
-                    "từ điển.")
+            body = (f"từ điển chỉ bao phủ thuật ngữ Automation Test nên recall chỉ đạt {fmt(spans['recall_exact'])}. "
+                    f"Mô hình gán nhãn JobBERT, huấn luyện trên tập train của SkillSpan ({tagger['data']['train']} "
+                    f"câu, chọn epoch theo tập dev), đạt span F1 {fmt(t['f1_exact'])}, tương đương mức "
+                    f"{SKILLSPAN_PAPER_F1:.3f} mà bài báo gốc công bố (trung bình 5 seed). Hệ thống dùng từ điển để "
+                    "gắn mã khái niệm làm bằng chứng và dùng mô hình gán nhãn để phát hiện kỹ năng ngoài từ điển.")
         else:
-            body = (f"bộ trích xuất là từ điển ESCO/taxonomy nên precision cao ({pct(spans['precision_exact'], 0)}) "
-                    "nhưng recall thấp: SkillSpan gán cả kỹ năng mềm và span dài ngoài taxonomy Automation Test.")
-        note(s, x0 + 5.5, 3.65, 4.28, 2.5, "Đọc kết quả:", body, "violet", size=9)
+            body = (f"bộ trích xuất dựa trên từ điển nên precision cao ({pct(spans['precision_exact'], 0)}) nhưng "
+                    "recall thấp: SkillSpan gán nhãn cả kỹ năng mềm và các đoạn dài nằm ngoài phạm vi từ điển "
+                    "Automation Test.")
+        note(s, x0 + 5.5, 3.65, 4.28, 2.5, "Diễn giải:", body, "violet", size=9)
 
 
 DUPLICATE_JACCARD = 0.8  # same threshold as cv_agent.eval.error_analysis
 
 
 def _jd_label(jd: str, dup_of: Dict[str, int]) -> str:
-    return f"…{jd[-6:]}" + (f"  (tin trùng #{dup_of[jd]})" if jd in dup_of else "")
+    return f"…{jd[-6:]}" + (f"  (trùng lặp, nhóm {dup_of[jd]})" if jd in dup_of else "")
 
 
 def slide_errors(prs, pub, ctx, page, total):
@@ -630,73 +652,78 @@ def slide_errors(prs, pub, ctx, page, total):
     n_dup = sum(len(grp) for grp in dups)
     d, g = ea["dedup"], ea["groups"]
     dup_signals = sorted({sig for grp in dups for jd in grp for sig in ea["per_jd"][jd]["qa_signal_list"]})
-    what = "Một Tin Đăng Lặp Lại" if len(dups) == 1 else f"{len(dups)} Tin Đăng Lặp Lại"
-    s = frame(prs, f"Phân Tích Lỗi: {n_dup}/{pub['n_jds']} JD Công Khai Là {what}, Chỉ {len(dup_signals)} "
-                   "Tín Hiệu QA",
-              [(SECTION, "section"), ("POST HOC · KHÔNG PHẢI HYPOTHESIS", "amber")], page, total, *nav(page))
+    what = "Một Tin Tuyển Dụng Trùng Lặp" if len(dups) == 1 else f"{len(dups)} Tin Tuyển Dụng Trùng Lặp"
+    s = frame(prs, f"Phân Tích Lỗi: {n_dup}/{pub['n_jds']} JD Công Khai Là {what}",
+              [(SECTION, "section"), ("PHÂN TÍCH HẬU KIỂM · KHÔNG PHẢI GIẢ THUYẾT", "amber")], page, total,
+              *nav(page))
     x0 = 213 * PX
     cfgs = [c for c in ("B0", "B1", "B3", "P6") if c in d]
-    rows = [["JD công khai", "Tín hiệu QA"] + cfgs + ["Claim không căn cứ P6"]]
+    rows = [["JD công khai", "Số từ khoá kiểm thử"] + cfgs + ["P6 thiếu bằng chứng"]]
     for jd, info in sorted(ea["per_jd"].items(), key=lambda kv: (kv[0] in dup_of, kv[0])):
         vals = info["ndcg@10"]
         best = max(vals.get(c, 0) for c in cfgs)
         rows.append([_jd_label(jd, dup_of), str(info["qa_signals"])] +
                     [(fmt(vals.get(c)), {"bold": vals.get(c) == best, "color": GREEN if vals.get(c) == best else INK})
                      for c in cfgs] + [pct(info["unsupported_rate"].get("P6"), 0)])
-    text(s, x0, 1.82, 5.4, 0.3, "nDCG@10 theo từng JD (mô hình gốc)", size=10, bold=True)
+    text(s, x0, 1.82, 5.4, 0.3, "nDCG@10 theo từng JD (mô hình chưa tinh chỉnh)", size=10, bold=True)
     table(s, x0, 2.12, 5.4, rows, [1.75, 0.65] + [0.55] * len(cfgs) + [0.8], size=8.5, row_h=0.31)
     y = 2.3 + 0.31 * len(rows)
     quoted = ", ".join(f"'{sig}'" for sig in dup_signals)
     note(s, x0, y, 5.4, 6.12 - y, "Nguyên nhân:",
-         f"{n_dup} JD trùng nhau (độ trùng 3-gram ≥ {DUPLICATE_JACCARD}), lọt bộ lọc QA chỉ nhờ {quoted}: đọc văn "
-         f"bản thì đây là tin tuyển lập trình viên hạ tầng, không phải Automation Test. Criteria Profile áp tiêu chí "
-         f"sai vai trò: B3 {fmt(g['distinct']['B3'])} trên JD khác nhau, {fmt(g['duplicate_postings']['B3'])} trên "
-         f"tin trùng, và tin này bị tính {n_dup} lần trong trung bình.", "amber", size=9)
-    groups = [("JD khác nhau", g["distinct"]), (f"Tin trùng ({n_dup})", g["duplicate_postings"]),
-              (f"Bỏ trùng (n = {ea['effective_n_jds']})", d)]
+         f"{n_dup} JD gần như trùng nhau (độ tương đồng Jaccard trên 3-gram ≥ {DUPLICATE_JACCARD}) và chỉ qua được "
+         f"bộ lọc nhờ các cụm {quoted}. Nội dung thực tế là tuyển lập trình viên hạ tầng, không phải Automation "
+         f"Test, nên Criteria Profile áp dụng tiêu chí không phù hợp: B3 đạt {fmt(g['distinct']['B3'])} trên các JD "
+         f"khác nhau nhưng chỉ {fmt(g['duplicate_postings']['B3'])} trên nhóm trùng lặp, và nhóm này được tính "
+         f"{n_dup} lần trong giá trị trung bình.", "amber", size=9)
+    groups = [("JD khác nhau", g["distinct"]), (f"Nhóm trùng lặp ({n_dup})", g["duplicate_postings"]),
+              (f"Sau khử trùng (n = {ea['effective_n_jds']})", d)]
     bar_chart(s, x0 + 5.6, 1.85, 4.18, 2.75, [lab for lab, _ in groups],
               {c: [m[c] for _, m in groups] for c in cfgs}, [GREY_BAR, BLUE, GREEN, VIOLET][:len(cfgs)],
               "nDCG@10 theo nhóm JD", number_format="0.00", max_val=1.1, legend=True)
     best_d, worst_d = max(cfgs, key=lambda c: d[c]), min(cfgs, key=lambda c: d[c])
-    note(s, x0 + 5.6, 4.72, 4.18, 1.4, "Đọc cẩn thận:",
-         f"khi mỗi tin trùng chỉ tính một lần, {best_d} cao nhất ({fmt(d[best_d])}), {worst_d} thấp nhất "
-         f"({fmt(d[worst_d])}). Phân tích làm sau khi thấy kết quả nên chỉ là gợi ý; tập đánh giá giữ nguyên, "
-         "bước tiếp theo là lọc JD theo tiêu đề và bỏ tin trùng trước khi chạy lại.", "blue", size=9)
+    note(s, x0 + 5.6, 4.72, 4.18, 1.4, "Lưu ý:",
+         f"khi mỗi nhóm trùng lặp chỉ tính một lần, {best_d} cao nhất ({fmt(d[best_d])}) và {worst_d} thấp nhất "
+         f"({fmt(d[worst_d])}). Phân tích được thực hiện sau khi có kết quả nên chỉ mang tính gợi ý; tập đánh giá "
+         "được giữ nguyên. Bước tiếp theo là lọc JD theo tiêu đề và khử trùng lặp trước khi chạy lại.", "blue",
+         size=9)
 
 
 def slide_conclusion(prs, syn, pub, ctx, page, total):
-    s = frame(prs, "Kết Luận Thực Nghiệm: Điều Đứng Vững, Điều Chưa Và Hướng Tiếp",
-              [(SECTION, "section"), ("THREATS TO VALIDITY", "amber")], page, total, *nav(page))
+    s = frame(prs, "Kết Luận Thực Nghiệm: Kết Quả Vững Chắc, Hạn Chế Và Hướng Phát Triển",
+              [(SECTION, "section"), ("CÁC YẾU TỐ ẢNH HƯỞNG ĐẾN TÍNH HỢP LỆ", "amber")], page, total, *nav(page))
     p6, b0 = mean(syn, "P6", "ndcg@10"), mean(syn, "B0", "ndcg@10")
-    stats = [(fmt(p6), "nDCG@10 của P6"), (f"n = {syn['n_jds']}", "JD mỗi lần chạy"),
-             ("~200", "CV thật cần gán nhãn")]
+    stats = [(fmt(p6), "nDCG@10 của P6 trên Gold Set"), (f"n = {syn['n_jds']}", "JD trong mỗi lượt đánh giá"),
+             ("~200", "CV thực tế cần gán nhãn")]
+    rejected = [h for h in ("H1", "H2", "H3", "H4", "H5", "H6") if not syn["hypotheses"].get(h, {}).get("accepted")]
     cols = [
-        ("green", "Đứng vững", [
-            f"Gold Set: nDCG@10 BM25 {fmt(b0)} → P6 {fmt(p6)} nhờ Criteria Profile",
-            "verify_evidence giảm claim không căn cứ (H4/H0)",
-            "Arbiter chọn lọc ít judge call hơn LLM-all (CI95 < 0)",
-            "Agent có guardrail: không vượt checkpoint HR",
-            *([f"Tagger JobBERT: span F1 {fmt(ctx['tagger']['test']['tagger']['f1_exact'])} trên SkillSpan "
-               f"(bài báo {SKILLSPAN_PAPER_F1})"] if (ctx.get("tagger") or {}).get("test", {}).get("tagger") else []),
-            "Đổi tên ứng viên: Δrank = 0 (PII che trước encode)" if worst_swap(ctx) == 0 else
-            "PII che trước mọi bước encode / gọi LLM"]),
-        ("amber", "Chưa đạt / cần thận trọng", [
-            (f"Công khai: P6 < BM25; {sum(map(len, ctx['errors']['near_duplicates']))}/{pub['n_jds']} JD là "
-             "tin trùng, sai vai trò" if ctx.get("errors") and ctx["errors"]["near_duplicates"] else
-             "Dữ liệu công khai: P6 không hơn BM25") if pub and mean(pub, "P6", "ndcg@10") <
-            mean(pub, "B0", "ndcg@10") else "Dense zero-shot kém BM25 trên Gold Set",
-            ", ".join(h for h in ("H1", "H2", "H3", "H4", "H5", "H6")
-                      if not syn["hypotheses"].get(h, {}).get("accepted")) + " bị bác bỏ: báo cáo như finding",
-            "LLM planner chưa thắng luật về chi phí",
+        ("green", "Kết quả vững chắc", [
+            f"Gold Set: nDCG@10 tăng từ {fmt(b0)} (BM25) lên {fmt(p6)} (P6), chủ yếu nhờ Criteria Profile",
+            "Kiểm chứng bằng chứng giảm tỷ lệ nhận định thiếu bằng chứng (H4, H0)",
+            "Phân xử chọn lọc cần ít lượt gọi LLM hơn LLM-all (CI 95% < 0)",
+            "Agent tuân thủ ràng buộc an toàn, không bỏ qua bước xác nhận của HR",
+            *([f"Mô hình gán nhãn JobBERT: span F1 {fmt(ctx['tagger']['test']['tagger']['f1_exact'])} trên "
+               f"SkillSpan (bài báo: {SKILLSPAN_PAPER_F1})"]
+              if (ctx.get("tagger") or {}).get("test", {}).get("tagger") else []),
+            "Hoán đổi tên ứng viên không làm thay đổi thứ hạng (Δ = 0)" if worst_swap(ctx) == 0 else
+            "Thông tin định danh được che trước mọi bước mã hoá và gọi LLM"]),
+        ("amber", "Hạn chế", [
+            (f"Dữ liệu công khai: P6 thấp hơn BM25 ({sum(map(len, ctx['errors']['near_duplicates']))}/"
+             f"{pub['n_jds']} JD là tin trùng lặp)"
+             if ctx.get("errors") and ctx["errors"]["near_duplicates"] else
+             "Dữ liệu công khai: P6 không vượt BM25") if pub and mean(pub, "P6", "ndcg@10") <
+            mean(pub, "B0", "ndcg@10") else "Dense chưa tinh chỉnh kém BM25 trên Gold Set",
+            (", ".join(rejected) + " không được ủng hộ") if rejected else
+            "Mọi giả thuyết H1–H6 được ủng hộ",
+            "LLM lập kế hoạch tốn kém hơn luật",
             finetune_bullet(syn, ctx),
-            "Profile và nhãn Gold Set cùng do nhóm viết: gain B3 có thể lạc quan",
-            f"n = {syn['n_jds']} JD: CI rộng, p Wilcoxon ≥ {2 / 2 ** syn['n_jds']:.3f}"]),
-        ("blue", "Hướng tiếp theo", [
-            "Gold Set thật ~200 CV, 2 QA Lead gán nhãn độc lập với người viết profile, đo Cohen κ",
-            "Fine-tune trên Gold Set thật: notebook Colab có sẵn" if ctx.get("ft") else
-            "Fine-tune bi-encoder (hướng ConFit) khi đủ label",
-            "Lọc JD theo tiêu đề, bỏ tin trùng; audit fairness trên dữ liệu thật",
-            "GPU / LLM 7B+ để giảm latency"]),
+            "Profile và nhãn cùng do nhóm xây dựng: B3 có thể được đánh giá cao",
+            f"n = {syn['n_jds']} JD: khoảng tin cậy rộng, p ≥ {2 / 2 ** syn['n_jds']:.3f}"]),
+        ("blue", "Hướng phát triển", [
+            "Xây dựng Gold Set thực tế (~200 CV), hai chuyên gia QA gán nhãn độc lập, đo Cohen κ",
+            "Tinh chỉnh trên Gold Set thực tế bằng notebook Colab đã có" if ctx.get("ft") else
+            "Tinh chỉnh bi-encoder (theo hướng ConFit) khi đủ dữ liệu gán nhãn",
+            "Lọc JD theo tiêu đề, khử trùng lặp; kiểm tra tính công bằng trên dữ liệu thực tế",
+            "Dùng GPU hoặc LLM từ 7B trở lên để giảm độ trễ"]),
     ]
     cw, x0 = 3.13, 213 * PX
     for i, (kind, head, items) in enumerate(cols):
@@ -717,15 +744,15 @@ def worst_swap(ctx) -> Optional[int]:
 def finetune_bullet(syn, ctx) -> str:
     syn_ft = ctx.get("syn_ft")
     if not syn_ft:
-        return "Dense zero-shot kém BM25, chưa fine-tune"
+        return "Dense chưa tinh chỉnh kém BM25"
     b1, b1_ft, b3 = mean(syn, "B1", "ndcg@10"), mean(syn_ft, "B1", "ndcg@10"), mean(syn, "B3", "ndcg@10")
-    tail = "vẫn sau Criteria Profile" if b1_ft < b3 else "ngang/hơn Criteria Profile"
-    return f"Fine-tune dense: B1 {fmt(b1)} → {fmt(b1_ft)}, {tail}"
+    tail = "vẫn thấp hơn B3" if b1_ft < b3 else "ngang hoặc cao hơn B3"
+    return f"Tinh chỉnh dense: B1 {fmt(b1)} → {fmt(b1_ft)}, {tail}"
 
 
 def _ft_table_rows(ft: Dict[str, Dict[str, Any]], seeds: Optional[Dict[str, Any]] = None) -> List[List[Any]]:
     """Before → after per split; with a multi-seed summary, after is the mean ± sd over seeds."""
-    rows = [["Mô hình", "Ví dụ train", "nDCG@10 dev", "nDCG@10 test"]]
+    rows = [["Mô hình", "Mẫu huấn luyện", "nDCG@10 (dev)", "nDCG@10 (test)"]]
     names = {"dense": "Dense e5-base", "rerank": "Cross-encoder bge"}
     summary = (seeds or {}).get("summary", {})
     for target, rep in ft.items():
@@ -738,7 +765,7 @@ def _ft_table_rows(ft: Dict[str, Dict[str, Any]], seeds: Optional[Dict[str, Any]
             style = {"color": GREEN if after > before else RED, "bold": True}
             spread = f" ± {m['after_sd']:.3f}" if m else ""
             cells.append((f"{fmt(before)} → {fmt(after)}{spread}", style))
-        unit = "triplet" if target == "dense" else "cặp"
+        unit = "bộ ba" if target == "dense" else "cặp"
         rows.append([names.get(target, target), f"{rep['n_train_examples']} {unit}", *cells])
     return rows
 
@@ -746,130 +773,140 @@ def _ft_table_rows(ft: Dict[str, Dict[str, Any]], seeds: Optional[Dict[str, Any]
 def _seed_reading(seeds: Dict[str, Any]) -> str:
     """Which gains stand out from the seed-to-seed spread (gain > 2 sd) and which do not."""
     names = {"dense": "dense", "rerank": "cross-encoder"}
-    weak = [f"{names.get(t, t)} {split} (+{fmt(m['gain_mean'])} ± {m['gain_sd']:.3f})"
+    weak = [f"{names.get(t, t)} trên tập {split} (+{fmt(m['gain_mean'])} ± {m['gain_sd']:.3f})"
             for t, splits in seeds["summary"].items() for split, m in splits.items()
             if not m["gain_mean"] > 2 * m["gain_sd"]]
-    return ("Mọi gain lớn hơn 2 lần độ lệch chuẩn." if not weak else
-            "Gain lớn hơn 2 lần độ lệch chuẩn, trừ " + ", ".join(weak) + ": chưa phân biệt được với nhiễu seed.")
+    return ("Mọi mức cải thiện đều lớn hơn 2 lần độ lệch chuẩn." if not weak else
+            "Mức cải thiện lớn hơn 2 lần độ lệch chuẩn, trừ " + ", ".join(weak) +
+            ": chưa phân biệt được với dao động giữa các seed.")
 
 
 def slide_finetune(prs, syn, pub, ctx, page, total):
     ft, syn_ft, pub_ft = ctx["ft"], ctx.get("syn_ft"), ctx.get("pub_ft")
     b1 = mean(syn, "B1", "ndcg@10")
     b1_ft = mean(syn_ft, "B1", "ndcg@10") if syn_ft else float("nan")
-    title = (f"Fine-tune Kiểu ConFit Trên Colab: Dense B1 {fmt(b1)} → {fmt(b1_ft)} Trên Gold Set" if syn_ft else
-             "Fine-tune Kiểu ConFit Trên Colab: Dense Encoder Và Cross-encoder")
+    title = (f"Tinh Chỉnh Theo ConFit: B1 Tăng Từ {fmt(b1)} Lên {fmt(b1_ft)} Trên Gold Set" if syn_ft
+             else "Tinh Chỉnh Theo ConFit: Bộ Mã Hoá Dense Và Cross-encoder")
     s = frame(prs, title,
               [(SECTION, "section"), ("COLAB T4 · notebooks/finetune_colab.ipynb", "violet")], page, total, *nav(page))
     x0 = 213 * PX
-    text(s, x0, 1.88, 4.6, 0.3, "Trên cặp công khai không phải QA (trước → sau fine-tune)", size=10, bold=True)
+    text(s, x0, 1.88, 4.6, 0.3, "Trên dữ liệu công khai ngoài lĩnh vực kiểm thử (trước → sau)", size=10,
+         bold=True)
     seeds = ctx.get("ft_seeds")
     table(s, x0, 2.18, 4.6, _ft_table_rows(ft, seeds), [1.3, 0.8, 1.25, 1.25], size=9, row_h=0.34)
     any_rep = next(iter(ft.values()))
     d = any_rep["data"]
-    note(s, x0, 3.4, 4.6, 1.25, "Chống rò rỉ:",
-         f"bỏ mọi JD QA (chính là JD đánh giá) và mọi CV từng gán cho chúng. Train {d['train']['jds']} JD / "
-         f"dev {d['dev']['jds']} JD chia theo JD; test {d['test']['jds']} JD lấy từ test.csv, JD chưa gặp. "
-         "Dữ liệu tải thẳng từ Hugging Face: không CV nào rời máy nhóm.", "violet", size=9)
-    note(s, x0, 4.8, 4.6, 1.35, "Cách làm:",
-         f"triplet (JD, Good Fit, No Fit) + contrastive loss (in-batch negative) cho e5; BCE nhãn 0 / 0.5 / 1 cho "
-         f"cross-encoder; {any_rep['config']['epochs']} epoch, max_len {any_rep['config']['max_len']}, " +
-         (f"{len(seeds['seeds'])} seed ({', '.join(map(str, seeds['seeds']))}) trên Colab T4, bảng là trung bình ± "
-          f"độ lệch chuẩn. {_seed_reading(seeds)} Biểu đồ dùng mô hình seed {any_rep['config']['seed']}."
+    note(s, x0, 3.4, 4.6, 1.25, "Chống rò rỉ dữ liệu:",
+         f"loại mọi JD kiểm thử (chính là các JD dùng để đánh giá) và mọi CV gắn với chúng. Train {d['train']['jds']} "
+         f"JD, dev {d['dev']['jds']} JD, chia theo JD; test gồm {d['test']['jds']} JD chưa xuất hiện khi huấn luyện. "
+         "Dữ liệu tải trực tiếp từ Hugging Face; không CV nào của nhóm rời khỏi máy.", "violet", size=9)
+    note(s, x0, 4.8, 4.6, 1.35, "Phương pháp:",
+         f"e5 học từ bộ ba (JD, CV phù hợp, CV không phù hợp) với hàm mất mát tương phản; cross-encoder học nhãn "
+         f"0 / 0.5 / 1 bằng entropy chéo nhị phân; {any_rep['config']['epochs']} epoch, độ dài tối đa "
+         f"{any_rep['config']['max_len']} token, " +
+         (f"{len(seeds['seeds'])} seed ({', '.join(map(str, seeds['seeds']))}) trên GPU Colab T4. Bảng báo cáo "
+          f"trung bình ± độ lệch chuẩn. {_seed_reading(seeds)} Biểu đồ dùng mô hình seed {any_rep['config']['seed']}."
           if seeds else
-          f"1 seed ({any_rep['config']['seed']}), chưa có độ lệch chuẩn. Notebook sinh từ cùng module, mặc định "
-          "chạy 3 seed để báo cáo trung bình ± độ lệch chuẩn."), "blue", size=9)
+          f"1 seed ({any_rep['config']['seed']}), chưa có độ lệch chuẩn."), "blue", size=9)
     cfgs = [c for c in ("B1", "B2", "B3", "P6") if syn_ft and c in syn_ft["means"]]
     if cfgs:
         bar_chart(s, x0 + 4.8, 1.88, 4.98, 2.15, cfgs,
-                  {"Mô hình gốc": [mean(syn, c, "ndcg@10") for c in cfgs],
-                   "Fine-tune": [mean(syn_ft, c, "ndcg@10") for c in cfgs]},
+                  {"Chưa tinh chỉnh": [mean(syn, c, "ndcg@10") for c in cfgs],
+                   "Đã tinh chỉnh": [mean(syn_ft, c, "ndcg@10") for c in cfgs]},
                   [GREY_BAR, VIOLET], "Gold Set tổng hợp: nDCG@10", max_val=1.1, legend=True)
     pcfgs = [c for c in ("B1", "B2", "B3", "P6") if pub and pub_ft and c in pub_ft["means"]]
     if pcfgs:
         bar_chart(s, x0 + 4.8, 4.05, 4.98, 2.1, pcfgs,
-                  {"Mô hình gốc": [mean(pub, c, "ndcg@10") for c in pcfgs],
-                   "Fine-tune": [mean(pub_ft, c, "ndcg@10") for c in pcfgs]},
-                  [GREY_BAR, VIOLET], "Công khai (JD QA): nDCG@10", max_val=1.1, legend=True)
+                  {"Chưa tinh chỉnh": [mean(pub, c, "ndcg@10") for c in pcfgs],
+                   "Đã tinh chỉnh": [mean(pub_ft, c, "ndcg@10") for c in pcfgs]},
+                  [GREY_BAR, VIOLET], "Dữ liệu công khai (JD kiểm thử): nDCG@10", max_val=1.1, legend=True)
 
 
 def slide_nfr(prs, syn, ctx, page, total):
     audit, bench = ctx.get("audit") or [], ctx.get("bench")
     worst = worst_swap(ctx)
-    swap_txt = "Đổi Tên Không Đổi Thứ Hạng" if worst == 0 else "Audit Đổi Tên Và Luật 4/5"
+    swap_txt = "Thứ Hạng Không Đổi Khi Đổi Tên" if worst == 0 else "Hoán Đổi Tên Và Quy Tắc 4/5"
     p50 = min((m["summary"]["wall_p50_s"] for m in bench["models"].values()), default=None) if bench else None
-    lat_txt = f", ~{p50 / 60:.0f} Phút/JD Trên CPU" if p50 else ""
-    s = frame(prs, f"Fairness & Latency: {swap_txt}{lat_txt}",
+    lat_txt = f", {p50 / 60:.0f} Phút Mỗi JD Trên CPU" if p50 else ""
+    s = frame(prs, f"Công Bằng Và Độ Trễ: {swap_txt}{lat_txt}",
               [(SECTION, "section"), ("NFR-04 · NFR-06 · H5", "green")], page, total, *nav(page))
     x0 = 213 * PX
     ir = (syn.get("hypotheses") or {}).get("H5", {}).get("impact_ratio_by_jd") or {}
     swap = {a["jd"]: a for a in audit}
-    rows = [["JD (Gold Set)", "Impact ratio (≥ 0.8)", "Δrank đổi tên (TB / max)"]]
+    rows = [["JD (Gold Set)", "Impact ratio (≥ 0.8)", "Δ thứ hạng khi đổi tên (TB / tối đa)"]]
     for jd in ir or swap:
         r = ir.get(jd)
         a = swap.get(jd)
         rows.append([jd, (fmt(r, 2), {"color": GREEN if r is not None and r >= 0.8 else RED, "bold": True}),
                      f"{a['mean_abs_delta_rank']:.1f} / {a['max_abs_delta_rank']}" if a else "—"])
-    text(s, x0, 1.88, 4.9, 0.3, "Fairness: luật 4/5 và audit đổi tên (B3, 200 CV/JD)", size=10, bold=True)
+    text(s, x0, 1.88, 4.9, 0.3, "Công bằng: quy tắc 4/5 và hoán đổi tên (B3, 200 CV mỗi JD)", size=10, bold=True)
     table(s, x0, 2.18, 4.9, rows, [2.1, 1.35, 1.45], size=9, row_h=0.3)
     y = 2.35 + 0.3 * len(rows)
     failing = [jd for jd, v in ir.items() if v < 0.8]
-    swap_msg = ("đổi tên nam/nữ, Việt/nước ngoài không làm đổi thứ hạng vì tên bị che trước mọi bước encode và "
-                "gọi LLM. " if worst == 0 else
-                f"đổi tên làm thứ hạng lệch tối đa {worst} bậc: cần tìm chỗ tên lọt qua bước che PII. " if audit else "")
-    ir_msg = (f"Impact ratio < 0.8 ở {len(failing)}/{len(ir)} JD: tên đã bị che nên nguồn lệch là thuộc tính khác "
-              "tương quan với nhóm (ví dụ số năm kinh nghiệm); cần audit lại trên CV thật." if failing else
-              "Impact ratio ≥ 0.8 ở mọi JD.")
-    note(s, x0, y, 4.9, min(1.45, 6.1 - y), "Đọc kết quả:", swap_msg + ir_msg, "amber" if failing else "green",
+    swap_msg = ("hoán đổi tên nam/nữ, tên Việt/tên nước ngoài không làm thay đổi thứ hạng vì tên được che trước "
+                "mọi bước mã hoá và gọi LLM. " if worst == 0 else
+                f"hoán đổi tên làm thứ hạng lệch tối đa {worst} bậc: cần xác định chỗ tên chưa được che. "
+                if audit else "")
+    ir_msg = (f"Impact ratio < 0.8 ở {len(failing)}/{len(ir)} JD. Vì tên đã được che, chênh lệch đến từ thuộc tính "
+              "khác có tương quan với nhóm (ví dụ số năm kinh nghiệm); cần kiểm tra lại trên CV thực tế." if failing
+              else "Impact ratio ≥ 0.8 ở mọi JD.")
+    note(s, x0, y, 4.9, min(1.45, 6.1 - y), "Diễn giải:", swap_msg + ir_msg, "amber" if failing else "green",
          size=9)
     if bench:
-        brow = [["Model (P6, CPU)", "p50 / JD", "p95 / JD", "LLM call", "Fallback"]]
+        brow = [["Mô hình (P6, CPU)", "p50 / JD", "p95 / JD", "Lượt gọi LLM", "Dự phòng"]]
         for model, rep in bench["models"].items():
             sm = rep["summary"]
             brow.append([model, f"{sm['wall_p50_s']:.0f}s", f"{sm['wall_p95_s']:.0f}s", fmt(sm["calls_per_jd"], 1),
                          str(sm["fallbacks"])])
-        text(s, x0 + 5.1, 1.88, 4.68, 0.3, "Latency: bench P6, tắt cache LLM, Ollama trên CPU, không GPU", size=10,
+        text(s, x0 + 5.1, 1.88, 4.68, 0.3, "Độ trễ của P6: tắt lưu đệm LLM, Ollama trên CPU, không GPU", size=10,
              bold=True)
         table(s, x0 + 5.1, 2.18, 4.68, brow, [1.4, 0.8, 0.8, 0.85, 0.8], size=9, row_h=0.32)
         fast = min(bench["models"].items(), key=lambda kv: kv[1]["summary"]["wall_p50_s"])
         y = 2.35 + 0.32 * len(brow)
         fsum = fast[1]["summary"]
         ok = fsum["wall_p95_s"] <= NFR04_MAX_S and fsum["fallbacks"] == 0
-        fb = "không lần nào fallback" if fsum["fallbacks"] == 0 else f"{fsum['fallbacks']} lần fallback"
-        note(s, x0 + 5.1, y, 4.68, 1.45, "NFR-04 đạt:" if ok else "NFR-04 chưa đạt:",
-             f"{fast[0]} xếp một JD trong ~{fsum['wall_p50_s'] / 60:.0f} phút (p50), p95 "
-             f"~{fsum['wall_p95_s'] / 60:.0f} phút trên laptop không GPU, {fb}. Arbiter chỉ xét cặp có thể đổi "
-             "top 10; prompt gọn theo dòng bằng chứng. GPU (Colab) rút ngắn cả fine-tune lẫn suy luận.",
+        fb = ("không lần nào phải dùng phương án dự phòng" if fsum["fallbacks"] == 0 else
+              f"{fsum['fallbacks']} lần dùng phương án dự phòng")
+        note(s, x0 + 5.1, y, 4.68, 1.45, "Đạt yêu cầu NFR-04:" if ok else "Chưa đạt yêu cầu NFR-04:",
+             f"{fast[0]} xếp hạng một JD trong khoảng {fsum['wall_p50_s'] / 60:.0f} phút (p50), p95 khoảng "
+             f"{fsum['wall_p95_s'] / 60:.0f} phút trên laptop không có GPU, {fb}. Bộ phân xử chỉ xét các cặp có "
+             "thể làm thay đổi top 10 và prompt chỉ chứa các dòng bằng chứng liên quan.",
              "green" if ok else "amber", size=9)
 
 
 SPEAKER_NOTES = {
-    "setup": "Giới thiệu dữ liệu, mô hình và cách kiểm định. Nhấn mạnh: mọi thứ chạy local, không gửi PII ra ngoài; "
-             "hypothesis đặt trước khi chạy; n = 6 JD nên đọc CI, đừng đọc p-value một mình.",
-    "ladder": "Bước nhảy lớn nhất là Criteria Profile (B2 → B3). Dense zero-shot kém BM25 trên CV kỹ thuật. "
-              "LLM và arbiter chỉ tinh chỉnh ở top, nên P6 giữ chất lượng của B3/B4.",
-    "hypotheses": "Quy tắc: chỉ chấp nhận khi cả CI95 nằm đúng phía; với n = 6, p Wilcoxon nhỏ nhất là 0.031. "
-                  "Đọc từng dòng: hypothesis, con số đo, CI 95%, kết luận. Hypothesis bị bác bỏ vẫn được báo cáo như "
-                  "finding, đúng kế hoạch thực nghiệm.",
-    "prior": "Không so tuyệt đối vì khác dữ liệu; so hướng. Cột cuối nói cùng hướng hay không lặp lại được.",
-    "faith": "verify_evidence là đóng góp rõ nhất: claim không căn cứ giảm mạnh so với A1. Arbiter chọn lọc gọi LLM ít "
-             "hơn LLM-all nhiều lần; nDCG thấp hơn 0.012 nhưng CI95 chưa loại trừ mức kém hơn ε = 0.02 nên H3 bị bác bỏ.",
-    "finetune": "Phần huấn luyện chạy trên Colab bằng notebook sinh từ code của repo. Dữ liệu train là cặp công khai "
-                "không phải QA để không rò rỉ sang tập đánh giá. Đọc bảng trái (dữ liệu cùng phân bố với train) "
-                "rồi biểu đồ phải (tập đánh giá của nhóm). Bảng là trung bình 3 seed: gain test của cả hai mô hình lớn "
-                "hơn nhiều lần độ lệch chuẩn, còn gain dev của dense nằm trong nhiễu seed.",
-    "agent": "Planner LLM chỉ chọn trong công cụ có guardrail. Với 7B sau khi sửa ngân sách, H7 được chấp nhận nhưng "
-             "AG vẫn tốn LLM call hơn luật.",
-    "public": "Trên dữ liệu công khai lợi thế không lặp lại ở trung bình: slide sau giải thích. SkillSpan: từ điển "
-              "precision cao nhưng recall thấp vì chỉ biết thuật ngữ Automation Test; tagger JobBERT học trên SkillSpan "
-              "train đạt span F1 gần mức bài báo (1 seed). Gộp tagger với từ điển không tăng F1: từ điển chỉ thêm ít span "
-              "đúng mà precision giảm.",
-    "errors": "Phân tích sau khi thấy kết quả, không phải hypothesis. Ba JD công khai là cùng một tin tuyển lập trình "
-              "viên Ansible, lọt bộ lọc QA nhờ hai cụm từ lỏng; profile Automation Test áp sai vai trò. Bỏ trùng thì "
-              "thứ tự thay đổi, nhưng nhóm không đổi tập đánh giá: bước tiếp theo là lọc JD tốt hơn rồi chạy lại.",
-    "nfr": "Fairness: audit đổi tên cho Δrank = 0 nhờ che PII trước encode; luật 4/5 chưa đạt ở mọi JD. Latency: "
-           "p50/p95 đo khi tắt cache, đạt mục tiêu vài phút một JD trên laptop.",
-    "conclusion": "Tóm tắt điều đứng vững, điều chưa đạt và hướng tiếp theo; mời câu hỏi.",
+    "setup": "Giới thiệu dữ liệu, mô hình và phương pháp kiểm định. Toàn bộ thực nghiệm chạy cục bộ, dữ liệu cá nhân "
+             "không rời máy. Giả thuyết được đặt trước khi chạy. Với 6 JD, kết luận dựa trên khoảng tin cậy 95%, "
+             "không dựa riêng vào giá trị p.",
+    "ladder": "Đóng góp lớn nhất đến từ Criteria Profile (B2 → B3). Dense chưa tinh chỉnh kém BM25 trên CV kỹ thuật. "
+              "LLM và bộ phân xử chỉ điều chỉnh các vị trí đầu danh sách, nên P6 giữ được chất lượng của B3/B4.",
+    "hypotheses": "Một giả thuyết được ủng hộ khi toàn bộ khoảng tin cậy 95% nằm đúng phía; với 6 JD, giá trị p "
+                  "Wilcoxon nhỏ nhất là 0.031. Trình bày lần lượt: giả thuyết, kết quả đo, khoảng tin cậy và kết "
+                  "luận. Các giả thuyết không được ủng hộ vẫn được báo cáo đầy đủ theo kế hoạch thực nghiệm.",
+    "prior": "Do khác dữ liệu, nhóm so sánh xu hướng thay vì giá trị tuyệt đối. Cột cuối cho biết kết quả tương đồng "
+             "hay không lặp lại được.",
+    "faith": "Kiểm chứng bằng chứng là đóng góp rõ rệt nhất: tỷ lệ nhận định thiếu bằng chứng giảm mạnh so với A1. "
+             "Phân xử chọn lọc cần ít lượt gọi LLM hơn nhiều so với LLM-all; nDCG@10 thấp hơn 0.012 nhưng khoảng "
+             "tin cậy chưa loại trừ mức kém hơn ε = 0.02, nên H3 không được ủng hộ.",
+    "finetune": "Phần huấn luyện chạy trên Colab bằng notebook sinh từ mã nguồn của dự án. Dữ liệu huấn luyện là các "
+                "cặp công khai ngoài lĩnh vực kiểm thử để tránh rò rỉ sang tập đánh giá. Bảng bên trái là trung "
+                "bình 3 seed: mức cải thiện trên tập test của cả hai mô hình lớn hơn nhiều lần độ lệch chuẩn; mức "
+                "cải thiện của dense trên tập dev nằm trong dao động giữa các seed. Biểu đồ bên phải là kết quả "
+                "trên tập đánh giá của nhóm.",
+    "agent": "Bộ lập kế hoạch LLM chỉ chọn trong tập công cụ có ràng buộc an toàn. Với mô hình 7B sau khi điều chỉnh "
+             "ngân sách, H7 được ủng hộ, nhưng AG vẫn cần nhiều lượt gọi LLM hơn phương án dùng luật.",
+    "public": "Trên dữ liệu công khai, lợi thế của hệ thống không lặp lại ở giá trị trung bình; slide tiếp theo "
+              "phân tích nguyên nhân. Với SkillSpan, từ điển có precision cao nhưng recall thấp vì chỉ bao phủ thuật "
+              "ngữ Automation Test; mô hình gán nhãn JobBERT đạt span F1 tương đương bài báo gốc. Kết hợp hai "
+              "phương pháp không tăng F1 vì từ điển chỉ bổ sung rất ít đoạn đúng nhưng làm giảm precision.",
+    "errors": "Đây là phân tích hậu kiểm, không phải giả thuyết đặt trước. Ba JD công khai là cùng một tin tuyển lập "
+              "trình viên Ansible, qua được bộ lọc nhờ hai cụm từ chung chung; Criteria Profile cho Automation Test "
+              "vì vậy áp dụng tiêu chí không phù hợp. Sau khi khử trùng lặp, thứ tự các cấu hình thay đổi, nhưng "
+              "nhóm giữ nguyên tập đánh giá; bước tiếp theo là cải thiện bộ lọc JD rồi chạy lại.",
+    "nfr": "Công bằng: hoán đổi tên không làm thay đổi thứ hạng nhờ che thông tin định danh trước khi mã hoá; quy tắc "
+           "4/5 chưa đạt ở mọi JD. Độ trễ: p50 và p95 đo khi tắt lưu đệm, đạt mục tiêu vài phút cho một JD trên "
+           "laptop.",
+    "conclusion": "Tóm tắt kết quả vững chắc, các hạn chế và hướng phát triển; mời hội đồng đặt câu hỏi.",
 }
 
 
@@ -881,10 +918,10 @@ def patch_existing(prs, first_new: int, n_new: int) -> None:
     box(s26, 904 * PX, 651 * PX, 483 * PX, 55 * PX, fill=GREEN_BG, line=None, radius=0.12, name="Results note")
     text(s26, 916 * PX, 657 * PX, 460 * PX, 43 * PX,
          [[("Đã có kết quả thực nghiệm của nhóm. ", {"bold": True, "color": GREEN}),
-           (f"Xem slide {first_new}–{first_new + n_new - 1}: H0–H7 được kiểm chứng trên dữ liệu thật chạy local.", {})]],
+           (f"Xem slide {first_new}–{first_new + n_new - 1}: H0–H7 được kiểm định trên dữ liệu chạy cục bộ.", {})]],
          size=8.5, anchor=MSO_ANCHOR.MIDDLE)
     box(s27, 733 * PX, 316 * PX, 149 * PX, 17 * PX, fill=WHITE, line=None, radius=None, name="Ran note")
-    text(s27, 733 * PX, 317 * PX, 146 * PX, 15 * PX, f"Đã chạy → slide {first_new + 1}", size=6.5,
+    text(s27, 733 * PX, 317 * PX, 146 * PX, 15 * PX, f"Đã thực hiện, xem slide {first_new + 1}", size=6.5,
          color=GREEN, bold=True, align=PP_ALIGN.RIGHT)
 
 
@@ -938,25 +975,25 @@ def main() -> None:
     # (key, short label, question that leads to the slide, builder)
     plan = [
         ("setup", "Thiết lập", "", lambda pg, t: slide_setup(prs, syn, pub, spans, pg, t)),
-        ("ladder", "Ablation B0 → P6", "Cầu thang cấu hình B0 → P6 cho kết quả ra sao?",
+        ("ladder", "Loại bỏ thành phần", "Mỗi thành phần từ B0 đến P6 đóng góp bao nhiêu?",
          lambda pg, t: slide_ladder(prs, syn, pg, t)),
-        ("hypotheses", "Kiểm chứng H0–H6", "Các hypothesis H0–H6 được chấp nhận hay bác bỏ?",
+        ("hypotheses", "Kiểm định H0–H6", "Các giả thuyết H0–H6 có được dữ liệu ủng hộ không?",
          lambda pg, t: slide_hypotheses(prs, syn, pg, t)),
-        ("prior", "So với prior work", "Đặt cạnh con số của các công trình trước thì sao?",
+        ("prior", "Nghiên cứu liên quan", "Kết quả này so với các nghiên cứu trước ra sao?",
          lambda pg, t: slide_prior(prs, syn, pub, ctx, pg, t)),
-        ("faith", "Faithfulness & cost", "Phần verify và chi phí LLM đóng góp gì?",
+        ("faith", "Độ trung thực, chi phí", "Bước kiểm chứng và phân xử đóng góp gì về độ trung thực và chi phí?",
          lambda pg, t: slide_faith(prs, syn, pg, t)),
-        ("finetune", "Fine-tune trên Colab", "Fine-tune dense encoder kiểu ConFit có lấp được điểm yếu của B1?",
+        ("finetune", "Tinh chỉnh mô hình", "Tinh chỉnh theo hướng ConFit có khắc phục điểm yếu của B1 không?",
          lambda pg, t: slide_finetune(prs, syn, pub, ctx, pg, t)),
-        ("agent", "Agentic H7", "Agent LLM tự lập kế hoạch có tốt hơn luật cố định?",
+        ("agent", "Agentic AI (H7)", "Agent LLM tự lập kế hoạch có tốt hơn luật cố định không?",
          lambda pg, t: slide_agent(prs, h7, pg, t)),
-        ("public", "Public data & SkillSpan", "Dữ liệu công khai và trích xuất skill cho kết quả gì?",
+        ("public", "Dữ liệu công khai", "Kết quả trên dữ liệu công khai và trích xuất kỹ năng ra sao?",
          lambda pg, t: slide_public(prs, pub, spans, pg, t, ctx)),
-        ("errors", "Phân tích lỗi", "Vì sao trên dữ liệu công khai Criteria Profile lại thua?",
+        ("errors", "Phân tích lỗi", "Vì sao Criteria Profile kém hơn trên dữ liệu công khai?",
          lambda pg, t: slide_errors(prs, pub, ctx, pg, t)),
-        ("nfr", "Fairness & latency", "Có thiên lệch theo tên không, và một JD chạy mất bao lâu?",
+        ("nfr", "Công bằng, độ trễ", "Hệ thống có thiên lệch theo tên không, và xử lý một JD mất bao lâu?",
          lambda pg, t: slide_nfr(prs, syn, ctx, pg, t)),
-        ("conclusion", "Kết luận", "Tổng kết: điều gì đứng vững, điều gì cần làm tiếp?",
+        ("conclusion", "Kết luận", "Tổng kết: kết quả nào vững chắc, hạn chế nào cần khắc phục?",
          lambda pg, t: slide_conclusion(prs, syn, pub, ctx, pg, t)),
     ]
     skip = {"finetune"} if not ft else set()
