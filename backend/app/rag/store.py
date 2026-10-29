@@ -43,52 +43,61 @@ class KnowledgeStore:
         return TextCrossEncoder(self.s.rerank_model)
 
     def index(self, collection: str, docs: list[Doc]) -> None:
-        texts = [d.text for d in docs]
+        self.index_items(collection, [(d.id, d.text, {"doc_id": d.id, "text": d.text, **d.meta}) for d in docs])
+
+    def index_items(self, collection: str, items: list[tuple[str, str, dict]]) -> None:
+        """(key, text to embed, payload) → one point each. CV chunks carry payload doc_id = cv_id + chunk_id."""
+        self.upsert_items(collection, items, recreate=True)
+
+    def upsert_items(self, collection: str, items: list[tuple[str, str, dict]], recreate: bool = False) -> None:
+        """Add or replace points; `recreate` drops the collection first (full re-index)."""
+        texts = [t for _, t, _ in items]
         dense = list(self.dense.embed(texts))
         sparse = list(self.sparse.embed(texts))
-        if self.client.collection_exists(collection):
+        if recreate and self.client.collection_exists(collection):
             self.client.delete_collection(collection)
-        self.client.create_collection(
-            collection,
-            vectors_config={"dense": models.VectorParams(size=len(dense[0]), distance=models.Distance.COSINE)},
-            sparse_vectors_config={"bm25": models.SparseVectorParams(modifier=models.Modifier.IDF)},
-        )
+        if not self.client.collection_exists(collection):
+            self.client.create_collection(
+                collection,
+                vectors_config={"dense": models.VectorParams(size=len(dense[0]), distance=models.Distance.COSINE)},
+                sparse_vectors_config={"bm25": models.SparseVectorParams(modifier=models.Modifier.IDF)},
+            )
         self.client.upsert(
             collection,
             points=[
                 models.PointStruct(
-                    id=str(uuid.uuid5(uuid.NAMESPACE_URL, d.id)),
+                    id=str(uuid.uuid5(uuid.NAMESPACE_URL, key)),
                     vector={
                         "dense": dv.tolist(),
                         "bm25": models.SparseVector(indices=sv.indices.tolist(), values=sv.values.tolist()),
                     },
-                    payload={"doc_id": d.id, "text": d.text, **d.meta},
+                    payload=payload,
                 )
-                for d, dv, sv in zip(docs, dense, sparse)
+                for (key, _, payload), dv, sv in zip(items, dense, sparse)
             ],
         )
 
-    def hybrid_search(self, collection: str, query: str, limit: int, where: models.Filter | None = None) -> list[Hit]:
-        dv = next(iter(self.dense.query_embed(query))).tolist()
+    def hybrid_search(self, collection: str, query: str, limit: int, where: models.Filter | None = None,
+                      mode: str = "hybrid") -> list[Hit]:
+        """mode: hybrid (BM25 + dense, fused by RRF) | bm25 | dense. The single modes are the B0/B1 baselines."""
+        dense = models.Prefetch(query=next(iter(self.dense.query_embed(query))).tolist(), using="dense",
+                                limit=limit * 2, filter=where)
         sv = next(iter(self.sparse.query_embed(query)))
-        res = self.client.query_points(
-            collection,
-            prefetch=[
-                models.Prefetch(query=dv, using="dense", limit=limit * 2, filter=where),
-                models.Prefetch(
-                    query=models.SparseVector(indices=sv.indices.tolist(), values=sv.values.tolist()),
-                    using="bm25",
-                    limit=limit * 2,
-                    filter=where,
-                ),
-            ],
-            query=models.FusionQuery(fusion=models.Fusion.RRF),
-            limit=limit,
-        )
+        bm25 = models.Prefetch(query=models.SparseVector(indices=sv.indices.tolist(), values=sv.values.tolist()),
+                               using="bm25", limit=limit * 2, filter=where)
+        if mode == "hybrid":
+            res = self.client.query_points(collection, prefetch=[dense, bm25],
+                                           query=models.FusionQuery(fusion=models.Fusion.RRF), limit=limit)
+        else:
+            p = dense if mode == "dense" else bm25
+            res = self.client.query_points(collection, query=p.query, using=p.using, query_filter=where, limit=limit)
         return [Hit(id=p.payload["doc_id"], score=p.score, payload=p.payload) for p in res.points]
 
     def rerank(self, query: str, texts: list[str]) -> list[float]:
         return [float(x) for x in self.reranker.rerank(query, texts)]
+
+    def rerank_pairs(self, pairs: list[tuple[str, str]]) -> list[float]:
+        return [float(x) for x in self.reranker.rerank_pairs(pairs)] if pairs else []
 
 
 @lru_cache
