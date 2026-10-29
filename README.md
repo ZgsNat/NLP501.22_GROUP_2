@@ -271,6 +271,9 @@ dữ liệu công khai ở `runs/experiments/20261028-232304`.
 * SkillSpan test: từ điển taxonomy có precision khớp chính xác 0.706, recall 0.074 (trên các span thuộc taxonomy
   recall là 0.866). Tagger JobBERT học trên SkillSpan train đạt span F1 0.592 (mục "Tagger skill" bên dưới).
 * Slide: `scripts/build_results_slides.py` tạo `Slide_Group2_NLP501-3.pptx` từ các thư mục run này. Bản gốc `-2` giữ nguyên.
+  Slide 1–27 và slide cuối lấy từ `NLP501_FinalSlide_v7.html` (bản viết lại của v6 bằng văn phong học thuật):
+  `python scripts/render_html_slides.py NLP501_FinalSlide_v7.html <thư mục ảnh> --total 39`, rồi thêm
+  `--images <thư mục ảnh>` khi chạy `build_results_slides.py`.
 
 ## Fine-tune trên Colab (thí nghiệm tuỳ chọn kiểu ConFit)
 

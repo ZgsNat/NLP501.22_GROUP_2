@@ -19,7 +19,7 @@ from pptx import Presentation
 from pptx.chart.data import CategoryChartData
 from pptx.dml.color import RGBColor
 from pptx.enum.chart import XL_CHART_TYPE, XL_LABEL_POSITION, XL_LEGEND_POSITION
-from pptx.enum.shapes import MSO_SHAPE
+from pptx.enum.shapes import MSO_SHAPE, MSO_SHAPE_TYPE
 from pptx.enum.text import MSO_ANCHOR, PP_ALIGN
 from pptx.util import Emu, Inches, Pt
 
@@ -925,6 +925,25 @@ def patch_existing(prs, first_new: int, n_new: int) -> None:
          color=GREEN, bold=True, align=PP_ALIGN.RIGHT)
 
 
+def replace_images(prs, image_dir: Path) -> None:
+    """Swap the screenshot on each original slide for ``sNN.png`` rendered from the updated HTML deck."""
+    files = sorted(image_dir.glob("s[0-9][0-9].png"))
+    if len(files) != len(prs.slides):
+        raise SystemExit(f"--images: {len(files)} sNN.png files for {len(prs.slides)} slides in the deck")
+    for slide, png in zip(prs.slides, files):
+        pics = [sh for sh in slide.shapes if sh.shape_type == MSO_SHAPE_TYPE.PICTURE]
+        if len(pics) != 1:
+            raise SystemExit(f"--images: slide {slide.slide_id} has {len(pics)} pictures, expected 1")
+        pic = pics[0]
+        x, y, w, h = pic.left, pic.top, pic.width, pic.height
+        old_rid = pic._element.blipFill.blip.rEmbed
+        pic._element.getparent().remove(pic._element)
+        slide.part.drop_rel(old_rid)
+        new = slide.shapes.add_picture(str(png), x, y, w, h)
+        new.name = pic.name
+        slide.shapes._spTree.insert(2, new._element)  # keep the picture behind any later overlay
+
+
 def move_before_last(prs, n_new: int) -> None:
     ids = prs.slides._sldIdLst
     items = list(ids)
@@ -950,6 +969,8 @@ def main() -> None:
     ap.add_argument("--bench", help="bench.json written by `cv_agent bench`")
     ap.add_argument("--errors", help="error_analysis.json written by `cv_agent error-analysis` (public run)")
     ap.add_argument("--tagger", help="model dir with tagger_metrics.json from `cv_agent train-tagger`")
+    ap.add_argument("--images", help="dir with s01.png..sNN.png rendered from the HTML deck; replaces the original "
+                                     "screenshots (their text already points to the results, so no overlay)")
     args = ap.parse_args()
 
     syn = load_summary(Path(args.synthetic))
@@ -972,6 +993,8 @@ def main() -> None:
 
     prs = Presentation(args.deck)
     n_before = len(prs.slides)
+    if args.images:
+        replace_images(prs, Path(args.images))
     # (key, short label, question that leads to the slide, builder)
     plan = [
         ("setup", "Thiết lập", "", lambda pg, t: slide_setup(prs, syn, pub, spans, pg, t)),
@@ -1005,7 +1028,8 @@ def main() -> None:
         build(i, len(plan))
         prs.slides[-1].notes_slide.notes_text_frame.text = SPEAKER_NOTES[key]
     move_before_last(prs, len(plan))
-    patch_existing(prs, n_before, len(plan))
+    if not args.images:
+        patch_existing(prs, n_before, len(plan))
     prs.save(args.out)
     print(f"wrote {args.out}: {n_before} -> {len(prs.slides)} slides")
 
