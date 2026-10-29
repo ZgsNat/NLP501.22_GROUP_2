@@ -18,6 +18,7 @@ class AgentState(TypedDict, total=False):
     jd_text: str
     company_profile: str
     models: dict[str, str]  # {"reasoning": "...", "fast": "..."} — persisted so resumes use the same brain
+    ablate: list[str]  # evaluation only: switch off parts ("clarify", "expand", "verify", "arbiter", "profile")
 
     # criteria
     requirements: dict
@@ -29,9 +30,11 @@ class AgentState(TypedDict, total=False):
     # retrieval
     query_terms: list[str]
     substitutes: Annotated[dict[str, list[str]], merge]  # must-have -> accepted related skills (after expansion)
-    hits: list[dict]  # raw hybrid-search results (internal)
+    declined: Annotated[dict[str, list[str]], merge]  # must-have -> related skills HR rejected (never re-proposed)
+    fallbacks: Annotated[dict[str, list[str]], merge]  # must-have -> substitutes accepted by L2 (not stated in the JD)
     candidates: list[dict]
     knocked_out: dict[str, str]  # cv_id -> reason (H(c) = 0)
+    screened: dict[str, str]  # cv_id -> why it was not assessed (not retrieved / not shortlisted)
 
     # judgement
     assessments: Annotated[dict[str, dict], merge]
@@ -45,4 +48,4 @@ class AgentState(TypedDict, total=False):
 
 def public_view(update: dict[str, Any]) -> dict[str, Any]:
     """What the UI gets: drop internal / bulky keys."""
-    return {k: v for k, v in update.items() if k not in {"hits", "jd_text", "models"}}
+    return {k: v for k, v in update.items() if k not in {"jd_text", "models", "ablate"}}

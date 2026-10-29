@@ -1,5 +1,7 @@
 """Structured outputs the LLM must return. Field descriptions are part of the prompt — keep them precise."""
 
+from typing import Literal
+
 from pydantic import BaseModel, Field
 
 CRITERIA = (
@@ -42,7 +44,7 @@ class CriterionScore(BaseModel):
     )
 
 
-RULE_CRITERIA = ("tools", "istqb")  # scored deterministically in scoring.py — the LLM never sees them
+RULE_CRITERIA = ("tools", "istqb", "experience_level")  # scored deterministically in scoring.py from the CV profile
 
 
 class DepthFact(BaseModel):
@@ -52,17 +54,11 @@ class DepthFact(BaseModel):
     evidence: list[str] = Field(description="1-3 short quotes copied VERBATIM from the CV proving that level")
 
 
-class YearsFact(BaseModel):
-    years: float = Field(ge=0, le=40, description="Total years of hands-on test automation experience in the CV")
-    rationale: str = Field(description="One short sentence, at most 25 words")
-    evidence: list[str] = Field(description="1-3 short quotes copied VERBATIM from the CV (dates, roles)")
-
-
 class CandidateAssessment(BaseModel):
-    """Facts where facts exist (depth, years → scored by code); calibrated judgement only where they don't."""
+    """Facts where facts exist (depth → scored by code; years are parsed from dates, not asked); calibrated
+    judgement only where they don't."""
 
     automation_depth: DepthFact
-    experience_level: YearsFact
     programming_language: CriterionScore
     test_types: CriterionScore
     cicd_infra: CriterionScore
@@ -79,3 +75,14 @@ class CandidateExplanation(BaseModel):
 class RankingReport(BaseModel):
     summary: str = Field(description="3-4 sentences for HR: overall pool quality, key trade-offs, recommended next step")
     candidates: list[CandidateExplanation]
+
+
+class WeightChange(BaseModel):
+    criterion: Literal[CRITERIA]  # closed set: the LLM can only point at criteria that exist
+    direction: Literal["more", "less", "ignore"]
+
+
+class WeightInstruction(BaseModel):
+    """HR's plain-language re-weighting ("certification matters more for this client") as typed changes."""
+
+    changes: list[WeightChange] = Field(description="One entry per criterion the instruction is about; empty if none")

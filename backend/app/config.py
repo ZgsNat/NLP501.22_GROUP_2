@@ -48,7 +48,7 @@ class Settings(BaseSettings):
     runtime_dir: Path = ROOT / ".runtime"
 
     # Agent knobs (the "harness" limits that keep loops bounded and cost predictable)
-    search_limit: int = 30
+    search_limit: int = 40  # CVs carried from retrieval into screening; the rest get "not retrieved" as reason
     min_coverage: int = 5  # candidates that must cover all must-haves before we stop expanding
     max_expansions: int = 2
     max_clarifications: int = 1
@@ -57,6 +57,11 @@ class Settings(BaseSettings):
     near_tie_delta: float = 0.05
     max_arbiter_calls: int = 3
     llm_concurrency: int = 4
+    max_reviews: int = 5  # L5: HR re-weight rounds before the ranking is final
+    ask_hr_substitutes: bool = True  # L2 proposes related tools and HR approves (False = accept silently, v1)
+    tier_strong: float = 0.75  # HR-facing tiers on the weighted total; provisional until calibrated on gold labels
+    tier_possible: float = 0.55
+    llm_cache: bool = False  # cache LLM responses in .runtime/llm_cache.sqlite (reproducible, cheap evaluation)
 
 
 @lru_cache

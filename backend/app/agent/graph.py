@@ -15,8 +15,9 @@ def after_ingest(state: AgentState) -> str:
 
 def after_search(state: AgentState) -> str:
     s = get_settings()
-    covered = len(state["candidates"]) - len(state["knocked_out"])
-    scarce = covered < s.min_coverage and state.get("loops", {}).get("expand", 0) < s.max_expansions
+    covered = sum(c["cv_id"] not in state["knocked_out"] for c in state["candidates"])
+    scarce = covered < s.min_coverage and state.get("loops", {}).get("expand", 0) < s.max_expansions \
+        and "expand" not in state.get("ablate", [])
     return "expand_query" if scarce else "rerank"  # L2
 
 

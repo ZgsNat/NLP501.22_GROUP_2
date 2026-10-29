@@ -7,8 +7,11 @@ Rules:
 - Judge only on evidence in the CV text. Never infer protected attributes.
 - Every evidence quote MUST be copied verbatim from the CV (exact words, no paraphrase). If there is no evidence, give
   a low score and an empty evidence list.
-- automation_depth and experience_level are FACTS, not scores: report the depth level the CV proves (listing tools
-  in a skills section is NOT depth) and the years of automation experience. Code turns them into scores.
+- The CV is split into passages labelled by section ([experience], [projects], [skills], [summary], ...). Depth,
+  test types and CI/infra must be proven by [experience] or [projects] passages: a tool in [skills] is a claim,
+  not evidence of work. Do not copy the [section] label into quotes.
+- Parser facts (years, which tools were used vs only listed vs hedged) are already verified; rely on them.
+- automation_depth is a FACT, not a score: report the depth level the CV proves. Code turns it into a score.
 - Score each criterion 0-100 relative to what the JD asks for, using this calibration:
   100 = clearly exceeds the JD, with concrete evidence (named systems, scale, numbers, ownership)
    75 = fully meets the JD, with concrete evidence
@@ -30,3 +33,7 @@ Start the summary with the finding about THESE candidates (who is strongest and 
 itself or the scoring method. Mention only the CV ids listed in the input."""
 
 REPORT_RETRY = """Your report mentioned CV ids that are not in the ranked list: {bad}. Only discuss: {allowed}."""
+
+REWEIGHT = """A recruiter describes in words how the ranking criteria should change. Map it to criteria and directions:
+"more" (matters more), "less" (matters less), "ignore" (should not count). Only include criteria the recruiter
+actually refers to; English, certification = istqb, years/seniority = experience_level, CI/CD = cicd_infra."""
