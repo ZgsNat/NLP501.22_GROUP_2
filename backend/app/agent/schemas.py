@@ -42,14 +42,30 @@ class CriterionScore(BaseModel):
     )
 
 
+RULE_CRITERIA = ("tools", "istqb")  # scored deterministically in scoring.py — the LLM never sees them
+
+
+class DepthFact(BaseModel):
+    level: int = Field(ge=1, le=4, description="Highest automation depth PROVEN by the CV: 1 runs/maintains existing "
+                       "scripts, 2 writes new scripts, 3 designs/builds a framework, 4 test architecture/platform for teams")
+    rationale: str = Field(description="One short sentence, at most 25 words")
+    evidence: list[str] = Field(description="1-3 short quotes copied VERBATIM from the CV proving that level")
+
+
+class YearsFact(BaseModel):
+    years: float = Field(ge=0, le=40, description="Total years of hands-on test automation experience in the CV")
+    rationale: str = Field(description="One short sentence, at most 25 words")
+    evidence: list[str] = Field(description="1-3 short quotes copied VERBATIM from the CV (dates, roles)")
+
+
 class CandidateAssessment(BaseModel):
-    tools: CriterionScore
-    automation_depth: CriterionScore
+    """Facts where facts exist (depth, years → scored by code); calibrated judgement only where they don't."""
+
+    automation_depth: DepthFact
+    experience_level: YearsFact
     programming_language: CriterionScore
     test_types: CriterionScore
     cicd_infra: CriterionScore
-    experience_level: CriterionScore
-    istqb: CriterionScore
     domain_language: CriterionScore
 
 

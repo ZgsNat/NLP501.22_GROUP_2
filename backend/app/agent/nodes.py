@@ -14,8 +14,21 @@ from langgraph.types import interrupt
 from qdrant_client import models
 
 from app.agent import prompts
-from app.agent.schemas import CRITERIA, CandidateAssessment, JDRequirements, RankingReport
-from app.agent.scoring import canonicalize, is_grounded, knockout_reason, mentions, related, weighted_total
+from app.agent.schemas import CRITERIA, RULE_CRITERIA, CandidateAssessment, JDRequirements, RankingReport
+from app.agent.scoring import (
+    canonicalize,
+    depth_score,
+    foreign_ids,
+    experience_score,
+    is_grounded,
+    istqb_score,
+    knockout_reason,
+    mentions,
+    related,
+    tiebreak_key,
+    tools_score,
+    weighted_total,
+)
 from app.agent.state import AgentState
 from app.config import get_settings
 from app.providers.decider import decide
@@ -202,21 +215,31 @@ async def _assess_one(state: AgentState, cv_id: str, sem: asyncio.Semaphore) -> 
 
 
 async def _assess_call(state: AgentState, cv_id: str, prev: dict | None, sem: asyncio.Semaphore) -> dict:
+    req, text = state["requirements"], cv_text(cv_id)
     policy = "\n\n".join(p["text"] for p in state.get("policy_context", []))
     msgs = [
         SystemMessage(prompts.ASSESS + "\n\nCompany hiring policy:\n" + policy),
-        HumanMessage(f"JD requirements:\n{json.dumps(state['requirements'], indent=1)}\n\nCV {cv_id}:\n{cv_text(cv_id)}"),
+        HumanMessage(f"JD requirements:\n{json.dumps(req, indent=1)}\n\nCV {cv_id}:\n{text}"),
     ]
     if prev:
         bad = [e["quote"] for c in prev["criteria"].values() for e in c["evidence"] if e["grounded"] is False]
         msgs.append(HumanMessage(prompts.ASSESS_RETRY.format(bad="\n".join(f"- {b}" for b in bad))))
     async with sem:
         out: CandidateAssessment = await llm(state, "reasoning").with_structured_output(CandidateAssessment).ainvoke(msgs)
+    rules = {  # rules before models: counting tools / spotting a certificate needs no LLM
+        "tools": tools_score(text, req["must_have"], req["nice_to_have"], state.get("substitutes", {})),
+        "istqb": istqb_score(text),
+    }
+    facts = out.model_dump()
+    depth, exp = facts.pop("automation_depth"), facts.pop("experience_level")
+    facts["automation_depth"] = {"score": depth_score(depth["level"], req.get("depth_level")),
+                                 "rationale": f"L{depth['level']}: {depth['rationale']}", "evidence": depth["evidence"]}
+    facts["experience_level"] = {"score": experience_score(exp["years"], req.get("min_years")),
+                                 "rationale": f"{exp['years']:g} years: {exp['rationale']}", "evidence": exp["evidence"]}
+    llm_part = {k: {**v, "evidence": [{"quote": q, "grounded": None} for q in v["evidence"]]} for k, v in facts.items()}
     return {
-        "criteria": {
-            k: {**v, "evidence": [{"quote": q, "grounded": None} for q in v["evidence"]]}
-            for k, v in out.model_dump().items()
-        },
+        "criteria": {k: (rules | llm_part)[k] for k in CRITERIA},
+        "facts": {"depth_level": depth["level"], "years": exp["years"]},
         "knocked_out": False,
         "knockout_reason": None,
         "attempts": (prev or {}).get("attempts", 0) + 1,
@@ -247,7 +270,7 @@ async def verify_evidence(state: AgentState) -> dict:
         a = state["assessments"][cv_id]
         text = cv_text(cv_id)
         bad = 0
-        for crit in a["criteria"].values():
+        for crit in (c for k, c in a["criteria"].items() if k not in RULE_CRITERIA):  # rule evidence is grounded by construction
             for e in crit["evidence"]:
                 e["grounded"] = is_grounded(e["quote"], text)
                 bad += not e["grounded"]
@@ -262,7 +285,7 @@ async def verify_evidence(state: AgentState) -> dict:
                     crit["rationale"] += " [capped: evidence not found in CV]"
         updated[cv_id] = a
     grounded_pct = 100 * (total - bad_total) / total if total else 100
-    emit("verify_evidence", f"{total - bad_total}/{total} quotes grounded ({grounded_pct:.1f}%)")
+    emit("verify_evidence", f"{total - bad_total}/{total} LLM quotes grounded ({grounded_pct:.1f}%)")
     if retry:
         emit("verify_evidence", f"Hallucinated quotes in {retry} → sending back to assess", "loop")
     return {"assessments": updated, "retry_ids": retry, "loops": {"verify": 1 if retry else 0}}
@@ -281,9 +304,13 @@ async def score(state: AgentState) -> dict:
         {"cv_id": cid, "headline": heads[cid], "knocked_out": True, "arbiter_note": reason, "total": 0.0}
         for cid, reason in state["knocked_out"].items() if cid in heads
     ]
-    rows.sort(key=lambda r: r["total"], reverse=True)
+    rerank = {c["cv_id"]: c.get("rerank_score") for c in state["candidates"]}
+    rows.sort(key=lambda r: tiebreak_key(r, state["assessments"].get(r["cv_id"]), rerank.get(r["cv_id"])), reverse=True)
     for i, r in enumerate(rows, 1):
         r["rank"] = i
+    totals = [r["total"] for r in rows if not r["knocked_out"]]
+    if ties := len(totals) - len(set(totals)):
+        emit("score", f"{ties} exact tie(s) ordered by proven depth → years → relevance (0 LLM tokens)", "warn")
     emit("score", "Weighted totals: " + ", ".join(f"{r['cv_id']}={r['total']:.2f}" for r in rows[:5]))
     return {"ranking": rows}
 
@@ -293,11 +320,14 @@ async def score(state: AgentState) -> dict:
 async def arbitrate(state: AgentState) -> dict:
     s = get_settings()
     rows = [dict(r) for r in state["ranking"]]
-    calls = 0
+    calls, judged = 0, set()
     for i in range(min(5, len(rows)) - 1):
         a, b = rows[i], rows[i + 1]
         if a["knocked_out"] or b["knocked_out"] or a["total"] - b["total"] >= s.near_tie_delta:
             continue
+        if calls >= s.max_arbiter_calls or a["cv_id"] in judged:
+            continue  # each candidate is judged at most once → no cascades of LLM overrides
+        judged |= {a["cv_id"], b["cv_id"]}
 
         def evidence(cid: str) -> str:
             crit = state["assessments"][cid]["criteria"]
@@ -334,6 +364,11 @@ async def report(state: AgentState) -> dict:
         emit("report", "No candidate passed the knock-out → deterministic report", "warn")
         return {"report": {"summary": "No candidate met the must-have requirements. Consider relaxing must-haves "
                                       "or accepting related skills.", "candidates": []}}
+    top_ids = sorted(r["cv_id"] for r in top)
+    prev = state.get("report") or {}
+    if prev.get("top_ids") == top_ids:  # L5 re-weight only reordered the same people → explanations still hold
+        emit("report", "Top-5 unchanged after re-scoring → report reused (0 LLM tokens)")
+        return {}
     facts = []
     for r in top:
         crit = state["assessments"][r["cv_id"]]["criteria"]
@@ -343,13 +378,20 @@ async def report(state: AgentState) -> dict:
                              "verified_evidence": [e["quote"] for e in v["evidence"] if e["grounded"]]}
                          for k, v in crit.items()},
         })
-    out: RankingReport = await llm(state, "reasoning").with_structured_output(RankingReport).ainvoke(
-        [SystemMessage(prompts.REPORT),
-         HumanMessage(f"JD: {json.dumps(state['requirements'])}\nWeights: {state['weights']}\n\n"
-                      f"Ranked candidates:\n{json.dumps(facts, indent=1)}")]
-    )
-    emit("report", f"Report ready for top {len(top)} candidates")
-    return {"report": out.model_dump()}
+    msgs = [SystemMessage(prompts.REPORT),
+            HumanMessage(f"JD: {json.dumps(state['requirements'])}\nWeights: {state['weights']}\n\n"
+                         f"Ranked candidates:\n{json.dumps(facts, indent=1)}")]
+    for attempt in range(2):
+        out = (await llm(state, "reasoning").with_structured_output(RankingReport).ainvoke(msgs)).model_dump()
+        if not (bad := foreign_ids(out, top_ids)):  # zero-token guard: the report may only discuss ranked people
+            emit("report", f"Report ready for top {len(top)} candidates")
+            return {"report": {**out, "top_ids": top_ids}}
+        emit("report", f"Report mentions CVs not in the ranking {bad} → regenerating", "loop")
+        msgs.append(HumanMessage(prompts.REPORT_RETRY.format(bad=bad, allowed=top_ids)))
+    emit("report", "Report still ungrounded → deterministic summary", "warn")
+    return {"report": {"summary": "Ranked by weighted criteria; see per-candidate scores and verified evidence. "
+                                  f"Top candidates: {', '.join(r['cv_id'] for r in top)}.",
+                       "candidates": [], "top_ids": top_ids}}
 
 
 # ── L5: HR review — approve, or re-weight and re-score (no new LLM assessment needed) ─────────────────

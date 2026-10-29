@@ -55,6 +55,7 @@ class Settings(BaseSettings):
     max_verify_retries: int = 2
     shortlist_size: int = 8  # how many reranked CVs get the expensive LLM assessment
     near_tie_delta: float = 0.05
+    max_arbiter_calls: int = 3
     llm_concurrency: int = 4
 
 

@@ -41,7 +41,7 @@ class RunRequest(BaseModel):
 def _config(run_id: str) -> dict:
     return {
         "configurable": {"thread_id": run_id},
-        "callbacks": observability.callbacks(),
+        "callbacks": [*observability.callbacks(), observability.usage_counter(run_id)],
         "metadata": {"langfuse_session_id": run_id},
         "run_name": "cv-agent",
     }
@@ -54,6 +54,8 @@ async def _events(graph, inp, run_id: str) -> AsyncIterator[str]:
     try:
         async for mode, chunk in graph.astream(inp, _config(run_id), stream_mode=["updates", "custom"]):
             if mode == "custom":
+                if chunk["type"] == "log":
+                    observability.append_log(run_id, chunk)
                 yield line(chunk)
                 continue
             for node, update in chunk.items():
@@ -64,10 +66,12 @@ async def _events(graph, inp, run_id: str) -> AsyncIterator[str]:
                     yield line({"type": "update", "node": node, "update": public_view(update)})
         state = await graph.aget_state(_config(run_id))
         if not state.next:
-            yield line({"type": "done", "report": state.values.get("report")})
+            yield line({"type": "done", "report": state.values.get("report"),
+                        "usage": observability.usage_counter(run_id).summary(), "logs": observability.read_logs(run_id)})
     except Exception as e:  # surface to the UI instead of a silently dropped stream
         yield line({"type": "error", "message": f"{type(e).__name__}: {e}"})
     finally:
+        observability.save_usage(run_id)
         observability.flush()
 
 
@@ -117,6 +121,10 @@ async def start_run(req: RunRequest):
 
 @app.post("/api/runs/{run_id}/resume")
 async def resume_run(run_id: str, body: dict):
+    try:
+        observability.run_dir(run_id)
+    except ValueError as e:
+        raise HTTPException(400, str(e))
     state = await app.state.graph.aget_state(_config(run_id))
     if not state.next:
         raise HTTPException(409, "Run is not waiting for input")
@@ -125,11 +133,16 @@ async def resume_run(run_id: str, body: dict):
 
 @app.get("/api/runs/{run_id}")
 async def get_run(run_id: str):
+    try:
+        observability.run_dir(run_id)
+    except ValueError as e:
+        raise HTTPException(400, str(e))
     state = await app.state.graph.aget_state(_config(run_id))
     if not state.values:
         raise HTTPException(404, "Unknown run")
     pending = next((i.value for t in state.tasks for i in t.interrupts), None)
-    return {"run_id": run_id, "values": public_view(state.values), "next": list(state.next), "interrupt": pending}
+    return {"run_id": run_id, "values": public_view(state.values), "next": list(state.next), "interrupt": pending,
+            "usage": observability.usage_counter(run_id).summary(), "logs": observability.read_logs(run_id)}
 
 
 @app.get("/api/cvs/{cv_id}")
