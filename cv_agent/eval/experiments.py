@@ -31,6 +31,11 @@ H3_EPSILON = 0.02   # should be re-chosen on the dev split
 H5_TOP = 20
 H5_MIN_IMPACT_RATIO = 0.8  # 4/5 rule, checked per JD
 H7_MAX_PLANNER_FALLBACK = 0.2  # share of LLM planner decisions the rules had to replace
+# decisions use the paired-bootstrap 95% CI, never the point estimate alone
+HYPOTHESIS_RULE = "ci95"
+MIN_PAIRED_JDS = 5  # below this a 6-JD-style bootstrap CI is not evidence (Wilcoxon cannot reach p < 0.05 either)
+H7_MAX_UNSUPPORTED_INCREASE = 0.02  # AG may not raise the unsupported-claim rate by more than this (CI upper bound)
+TEXT_COLUMNS = frozenset({"config", "jd_id", "split", "encoder", "reranker", "nli"})
 JUDGE_TASKS = ("pairwise", "listwise")
 
 
@@ -151,8 +156,26 @@ def _cmp(rows, a, b, metric, ambiguous=None) -> Dict[str, Any]:
             **paired_bootstrap(x, y), "wilcoxon": wilcoxon_signed_rank(x, y)}
 
 
+def _enough(c: Dict) -> bool:
+    return not c.get("missing") and c.get("n", 0) >= MIN_PAIRED_JDS
+
+
 def _sig_pos(c: Dict) -> bool:
-    return not c.get("missing") and c["ci_low"] > 0
+    return _enough(c) and c["ci_low"] > 0
+
+
+def _sig_neg(c: Dict) -> bool:
+    return _enough(c) and c["ci_high"] < 0
+
+
+def _non_inferior(c: Dict, eps: float) -> bool:
+    """Non-inferiority: the whole CI lies above -eps, not only the mean."""
+    return _enough(c) and c["ci_low"] >= -eps
+
+
+def _not_worse_by(c: Dict, eps: float) -> bool:
+    """For a lower-is-better metric: the CI upper bound of the increase stays within eps."""
+    return _enough(c) and c["ci_high"] <= eps
 
 
 def evaluate_hypotheses(rows: List[Dict[str, Any]]) -> Dict[str, Any]:
@@ -161,26 +184,32 @@ def evaluate_hypotheses(rows: List[Dict[str, Any]]) -> Dict[str, Any]:
     h1_ok = all(not c.get("missing") for cs in h1.values() for c in cs) and all(
         cs[0]["mean_a"] >= max(cs[0]["mean_b"], cs[1]["mean_b"]) - 1e-12 and (_sig_pos(cs[0]) or _sig_pos(cs[1]))
         for cs in h1.values())
-    h["H1"] = {"accepted": h1_ok, "details": h1}
+    h["H1"] = {"accepted": h1_ok, "rule": "B2 ≥ max(B0, B1) và CI95 của B2 − B0 hoặc B2 − B1 > 0", "details": h1}
     c2 = _cmp(rows, "P6", "A2", "kendall_tau")
-    h["H2"] = {"accepted": _sig_pos(c2), "details": c2}
+    h["H2"] = {"accepted": _sig_pos(c2), "rule": "CI95 của τ(P6) − τ(A2) > 0", "details": c2}
     c3 = _cmp(rows, "P6", "LLM-all", "ndcg@10")
     calls = _cmp(rows, "P6", "LLM-all", "judge_calls")
-    h["H3"] = {"accepted": (not c3.get("missing")) and c3["mean_diff"] >= -H3_EPSILON and calls["mean_diff"] < 0,
+    h["H3"] = {"accepted": _non_inferior(c3, H3_EPSILON) and _sig_neg(calls),
+               "rule": f"không kém hơn: cận dưới CI95 nDCG@10 ≥ −{H3_EPSILON}; CI95 judge call < 0",
                "epsilon": H3_EPSILON, "details": {"ndcg@10": c3, "llm_calls": calls,
                                                   "judge_tokens": _cmp(rows, "P6", "LLM-all", "judge_tokens")}}
     c4 = _cmp(rows, "P6", "A1", "unsupported_rate")
-    h["H4"] = {"accepted": (not c4.get("missing")) and c4["mean_diff"] < 0, "details": c4}
+    h["H4"] = {"accepted": _sig_neg(c4), "rule": "CI95 của unsupported(P6) − unsupported(A1) < 0", "details": c4}
     h["H5"] = _h5(rows)
     c6 = _cmp(rows, "P6", "P6-noclar", "kendall_tau", ambiguous=True)
-    h["H6"] = {"accepted": (not c6.get("missing")) and c6["mean_diff"] > 0, "details": c6}
+    h["H6"] = {"accepted": _sig_pos(c6), "rule": "CI95 của τ(P6) − τ(P6-noclar) > 0 trên JD mơ hồ", "details": c6}
     h["H7"] = _h7(rows)
     c0 = _cmp(rows, "P6", "B4", "ndcg@10")
     f0 = _cmp(rows, "P6", "B4", "unsupported_rate")
     over_budget = sum(r["fallback"] for r in rows if r["config"] == "P6")
-    h["H0"] = {"accepted": (not c0.get("missing")) and (c0["mean_diff"] > 0 or f0.get("mean_diff", 0) < 0)
-               and over_budget == 0, "details": {"ndcg@10": c0, "unsupported_rate": f0, "p6_fallbacks": over_budget}}
+    h["H0"] = {"accepted": (_sig_pos(c0) or _sig_neg(f0)) and over_budget == 0,
+               "rule": "CI95 nDCG@10 (P6 − B4) > 0 hoặc CI95 unsupported < 0, không vượt ngân sách",
+               "details": {"ndcg@10": c0, "unsupported_rate": f0, "p6_fallbacks": over_budget}}
     return h
+
+
+H7_RULE = (f"không kém hơn: cận dưới CI95 nDCG@10 (AG − AG-rules) ≥ −{H3_EPSILON}; cận trên CI95 unsupported "
+           f"≤ +{H7_MAX_UNSUPPORTED_INCREASE}; fallback ≤ {H7_MAX_PLANNER_FALLBACK} (đo được)")
 
 
 def _h7(rows: List[Dict]) -> Dict[str, Any]:
@@ -188,10 +217,11 @@ def _h7(rows: List[Dict]) -> Dict[str, Any]:
     budget — nDCG@10 not lower than ε, unsupported claims not higher — and the rules rarely have to step in."""
     nd, un = _cmp(rows, "AG", "AG-rules", "ndcg@10"), _cmp(rows, "AG", "AG-rules", "unsupported_rate")
     if nd.get("missing"):
-        return {"accepted": False, "details": {"missing": True}}
+        return {"accepted": False, "rule": H7_RULE, "details": {"missing": True}}
     fb = _nan_mean(_col(rows, "AG", "planner_fallback_rate"))
-    ok = nd["mean_diff"] >= -H3_EPSILON and (un.get("missing") or not un["mean_diff"] > 0)         and not fb > H7_MAX_PLANNER_FALLBACK
-    return {"accepted": bool(ok), "planner_fallback_rate": fb, "details": {
+    ok = (_non_inferior(nd, H3_EPSILON) and (un.get("missing") or _not_worse_by(un, H7_MAX_UNSUPPORTED_INCREASE))
+          and not math.isnan(fb) and fb <= H7_MAX_PLANNER_FALLBACK)
+    return {"accepted": bool(ok), "rule": H7_RULE, "planner_fallback_rate": fb, "details": {
         "ndcg@10": nd, "unsupported_rate": un, "llm_calls": _cmp(rows, "AG", "AG-rules", "llm_calls"),
         "agent_steps": _cmp(rows, "AG", "AG-rules", "agent_steps"), "goal_met": _cmp(rows, "AG", "AG-rules", "goal_met")}}
 
@@ -201,10 +231,44 @@ def _h5(rows: List[Dict]) -> Dict[str, Any]:
     per_jd = {r["jd_id"]: float(r["impact_ratio"]) for r in rows if r["config"] == "P6"}
     valid = {j: v for j, v in per_jd.items() if not math.isnan(v)}
     failing = sorted(j for j, v in valid.items() if v < H5_MIN_IMPACT_RATIO)
-    return {"accepted": bool(valid) and not failing, "impact_ratio_by_jd": per_jd, "failing_jds": failing,
+    return {"accepted": bool(valid) and not failing, "rule": f"impact ratio ≥ {H5_MIN_IMPACT_RATIO} ở mọi JD",
+            "impact_ratio_by_jd": per_jd, "failing_jds": failing,
             "impact_ratio_min": min(valid.values()) if valid else float("nan"),
             "impact_ratio_mean": _nan_mean(list(valid.values())),
             "note": "Δrank khi đổi tên: chạy `python -m cv_agent audit`"}
+
+
+def _parse_row(raw: Dict[str, str]) -> Dict[str, Any]:
+    """A results.csv row back to Python values: booleans, floats, text."""
+    row: Dict[str, Any] = {}
+    for key, value in raw.items():
+        if key in TEXT_COLUMNS:
+            row[key] = value
+            continue
+        if value in ("True", "False"):
+            row[key] = value == "True"
+            continue
+        try:
+            row[key] = float(value)
+        except (TypeError, ValueError):
+            row[key] = value
+    return row
+
+
+def rescore(run_dir: Path) -> Dict[str, Any]:
+    """Re-test the hypotheses of a finished run from its results.csv (no model is re-run) and update summary.json."""
+    with open(run_dir / "results.csv", newline="", encoding="utf-8") as fh:
+        rows = [_parse_row(r) for r in csv.DictReader(fh)]
+    path = run_dir / "summary.json"
+    original = path.read_text(encoding="utf-8")
+    backup = run_dir / "summary.pre-rescore.json"
+    if not backup.exists():  # keep the verdicts as first published, once
+        backup.write_text(original, encoding="utf-8")
+    updated = {**json.loads(original), "hypotheses": evaluate_hypotheses(rows), "hypothesis_rule": HYPOTHESIS_RULE}
+    tmp = path.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(updated, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
+    tmp.replace(path)
+    return updated
 
 
 def kappa_report(gold: Dict[str, Any]) -> Dict[str, float]:
@@ -236,6 +300,7 @@ def run_all(configs: Sequence[str], data_dir: Path, split: str = "all", out_root
                "components_loaded": {c: sorted({r[k] for r in rows if r["config"] == c for k in ("encoder", "reranker", "nli")})
                                    for c in configs},
                "cohen_kappa": kappa_report(gold), "hypotheses": evaluate_hypotheses(rows),
+               "hypothesis_rule": HYPOTHESIS_RULE,
                "means": {c: {m: _nan_mean(_col(rows, c, m)) for m in ("recall@100", "mrr@10", "ndcg@10", "kendall_tau",
                                                                       "llm_calls", "judge_calls", "tokens", "unsupported_rate",
                                                                       "evidence_precision", "impact_ratio", "latency_s", "agent_steps",

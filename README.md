@@ -29,6 +29,8 @@ ollama pull qwen2.5:7b                   # LLM local mặc định (NFR-02: PII 
 | Như trên với mô hình neural thật (FR-12/15/22) | `python -m cv_agent experiments --neural --llm ollama --model qwen2.5:3b` |
 | Fairness audit đổi tên (H5) | `python -m cv_agent audit --jd fpt_automation_test --config P6` |
 | Fine-tune dense encoder + cross-encoder (nên chạy trên Colab GPU) | [`notebooks/finetune_colab.ipynb`](notebooks/finetune_colab.ipynb) hoặc `python -m cv_agent finetune` |
+| Fine-tune 3 seed, in trung bình ± độ lệch chuẩn | `python -m cv_agent finetune --seeds 42,7,13` (seed 42 giữ thư mục mặc định, seed khác thêm `-s<seed>`) |
+| Kiểm định lại H0–H7 của một lượt đã chạy (không chạy lại mô hình) | `python -m cv_agent rescore runs/experiments/<timestamp>` |
 | Thực nghiệm với mô hình đã fine-tune | `python -m cv_agent experiments --neural --dense-model models/multilingual-e5-base-rjf-ft --rerank-model models/bge-reranker-base-rjf-ft` |
 | Demo app cho HR | `streamlit run app/streamlit_app.py` |
 | Unit test + coverage | `pytest --cov=cv_agent` |
@@ -142,14 +144,15 @@ judge, claim — đều dùng 7b, nên số liệu không so trực tiếp với
 | AG-rules | 0.839 | 0.425 | 0% | 29.0 | 10.5 | — | 6/6 |
 | AG (LLM planner) | 0.831 | 0.422 | 0% | 55.8 | 19.5 | **6%** | **3/6** |
 
-* **H7 chấp nhận** theo tiêu chí đặt trước: nDCG chênh −0.009 (CI [−0.024, 0], trong ε = 0.02), claim không căn cứ
-  như nhau, quy tắc chỉ phải thay 6% quyết định (3b: 24%). Planner 7b hiểu định dạng và công cụ tốt hơn hẳn.
+* Ban đầu H7 được ghi là chấp nhận vì nDCG chênh −0.009 nằm trong ε = 0.02. Theo quy tắc CI (mục "Quy tắc kiểm
+  định" bên dưới) thì **H7 bác bỏ**: cận dưới CI [−0.024, 0] vượt −ε. Claim không căn cứ như nhau, quy tắc chỉ phải
+  thay 6% quyết định (3b: 24%). Planner 7b hiểu định dạng và công cụ tốt hơn hẳn.
 * Nhưng planner 7b **làm thừa việc**: gần gấp đôi lời gọi LLM (+27/JD, CI [20, 32]), 5/6 JD chạm trần 20 bước nên chỉ
   3/6 kết thúc với critic đạt. Mẫu lặp lại: rank → dùng hết 6 lượt `compare` → `search` lại (dù đủ ứng viên đạt
   must-have) → rank → lại 6 lượt `compare` → hết bước. Nguyên nhân thiết kế: `search` đặt lại `compared_pairs`, nên
   ngân sách `max_compares` thực tế được nạp lại sau mỗi lần tìm. Ở bank_api_qa planner gọi `search` 4 lần liên tiếp
   với cùng bộ thuật ngữ.
-* Kết luận: với 7b, agent đáng tin về mặt *hợp lệ* nhưng chưa *tiết kiệm*; H7 đạt không có nghĩa AG tốt hơn AG-rules.
+* Kết luận: với 7b, agent đáng tin về mặt *hợp lệ* nhưng chưa *tiết kiệm*, và chưa chứng minh được không kém AG-rules.
 
 **Sau khi sửa ngân sách** (28/10/2026, 7b, `runs/experiments/20261028-211316`): `max_compares` tính trên cả lượt chạy
 (bộ đếm `compares` không bị `search` đặt lại); `search` bị chặn khi pool đã đủ ứng viên đạt must-have hoặc không còn
@@ -160,7 +163,7 @@ thuật ngữ mở rộng mới, và lần tìm lặp lại đúng bộ thuật 
 | AG-rules | 0.839 | 0.425 | 0% | 28.3 | 8.8 | — | 6/6 |
 | AG (LLM planner) | **0.840** | 0.426 | 0% | 42.5 | 13.8 | 8% | **6/6** |
 
-* H7 chấp nhận: nDCG chênh +0.001 (CI [−0.001, +0.003]), không còn JD nào chạm trần bước; so với lần trước, AG giảm
+* H7 chấp nhận, kể cả theo quy tắc CI: nDCG chênh +0.001 (CI [−0.001, +0.003]), không còn JD nào chạm trần bước; so với lần trước, AG giảm
   19.5 → 13.8 bước và 55.8 → 42.5 lời gọi LLM/JD, đạt mục tiêu 3/6 → 6/6.
 * Phần thừa còn lại: sau khi xong việc, planner 7b gần như luôn dùng hết 5 lượt `inspect_cv` (chỉ đọc, nhưng mỗi
   bước là một lời gọi planner) trước khi `finish`, nên vẫn tốn thêm ~14 lời gọi/JD so với AG-rules.
@@ -254,8 +257,10 @@ dữ liệu công khai ở `runs/experiments/20261028-232304`.
 | Gold Set tổng hợp (6 JD, 202 CV) | 0.567 | 0.412 | 0.533 | 0.827 | 0.835 | 0.845 | 0.833 | 0.833 | 0.867 | 0.845 |
 | HF resume-job-description-fit (6 JD, 82 CV) | 0.578 | **0.631** | 0.627 | 0.595 | 0.588 | — | 0.566 | — | — | — |
 
-* Hypothesis trên Gold Set: H0, H3, H4 được chấp nhận; H1, H2, H5, H6 bị bác bỏ.
-  * H3: P6 so với LLM-all chênh −0.012 nDCG@10, nằm trong ε = 0.02, với 8.0 so với 20.7 judge call/JD.
+* Hypothesis trên Gold Set (quy tắc CI): H0 và H4 được chấp nhận; H1, H2, H3, H5, H6 bị bác bỏ.
+  * H3: P6 so với LLM-all chênh −0.012 nDCG@10, với 8.0 so với 20.7 judge call/JD (CI của số call [−19.7, −5.7]).
+    Trung bình nằm trong ε = 0.02 nhưng CI [−0.045, +0.010] chưa loại trừ mức kém hơn ε, nên chưa chứng minh được
+    "không kém hơn". Bản đầu tiên của README và slide xét trung bình nên ghi nhầm là chấp nhận.
   * H4: claim không căn cứ 10.5% so với 41.2%, p = 0.03.
 * A2 (prompt chung) có nDCG@10 cao nhất (0.867), nhưng Kendall τ của nó không thấp hơn P6. Vì vậy H2 không được ủng hộ.
 * **Dữ liệu công khai không lặp lại được lợi thế.** Dense B1 tốt nhất; P6 (0.566) thấp hơn BM25.
@@ -336,6 +341,29 @@ Lý do:
 Giới hạn: số liệu trên là dữ liệu **tổng hợp** với nhãn sinh từ cùng quy tắc kỹ năng mà Criteria dùng, nên có lợi
 cho cách xếp theo Criteria. Phải chạy lại cả hai chế độ trên Gold Set thật trước khi chốt trong báo cáo (D4);
 mức hơn B3 (+0.008 nDCG) nằm trong nhiễu với 6 JD. Báo cáo cần ghi rõ B4/P6 dùng `within_criteria`.
+
+## Quy tắc kiểm định
+
+* Mọi hypothesis được quyết định theo **CI 95% paired bootstrap theo JD**, không theo trung bình đơn lẻ
+  (`summary.json` → `hypothesis_rule: ci95`, mỗi hypothesis có trường `rule`).
+  * Hơn / kém có ý nghĩa: cả CI nằm trên / dưới 0 (H0, H2, H4, H6, H1).
+  * Không kém hơn (H3, H7): cận dưới CI của Δ nDCG@10 ≥ −ε (ε = 0.02).
+  * H7 còn yêu cầu cận trên CI của mức tăng claim không căn cứ ≤ +0.02 và tỷ lệ luật phải thay planner đo được, ≤ 20%.
+  * Cần ít nhất 5 JD ghép cặp; ít hơn thì hypothesis không được chấp nhận (H6 chỉ có JD mơ hồ nên rơi vào trường hợp này).
+* Với n = 6 JD, Wilcoxon hai phía không thể cho p nhỏ hơn 2/2⁶ ≈ 0.031 (`wilcoxon.p_floor`). p = 0.03 chỉ có nghĩa là
+  cả 6 JD cùng chiều; vì vậy kết luận dựa vào CI, còn p chỉ để tham khảo.
+* `python -m cv_agent rescore <run>` tính lại hypothesis từ `results.csv` khi quy tắc thay đổi; bản đầu tiên được giữ ở `summary.pre-rescore.json`. Các lượt 27–29/10 đã
+  được tính lại: H3 (Gold Set 28/10) và H7 (7b, `20261028-072307`) đổi từ chấp nhận sang bác bỏ, các kết luận khác giữ nguyên.
+
+## Threats to validity
+
+* **Gold Set tổng hợp và Criteria Profile cùng do nhóm viết.** Bước nhảy B2 → B3 (0.533 → 0.827) có thể một phần đến từ
+  việc profile "biết" cách gán nhãn. Bằng chứng ngược chiều: trên dữ liệu công khai, B3 (0.595) thấp hơn B1 (0.631).
+  Cần Gold Set thật do người gán nhãn độc lập với người viết profile, kèm Cohen κ giữa 2 người gán.
+* **n = 6 JD mỗi lượt**: CI rộng; một JD có thể đổi kết luận.
+* **Fine-tune 1 seed**: chưa có độ lệch chuẩn. Notebook mặc định chạy 3 seed (`SEEDS`), CLI có `--seeds`.
+* **LLM nhỏ (Qwen 3B / 7B trên CPU)**: kết luận về LLM-all, arbiter và planner có thể khác với LLM lớn hơn.
+* **Impact ratio** đo trên CV tổng hợp; tên đã bị che nên lệch đến từ thuộc tính khác tương quan với nhóm.
 
 ## Lưu ý trung thực về kết quả
 

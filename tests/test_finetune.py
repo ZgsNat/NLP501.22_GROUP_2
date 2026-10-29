@@ -167,3 +167,32 @@ def test_mini_batch_must_fit_inside_the_batch():
     with pytest.raises(ValueError):
         ft.TrainConfig(target="dense", base_model="m", out_dir=Path("o"), batch_size=8, mini_batch_size=16)
     assert ft.TrainConfig(target="dense", base_model="m", out_dir=Path("o")).mini_batch_size <= 16
+
+
+def test_model_dir_name_keeps_the_default_seed_path_and_suffixes_others():
+    assert ft.model_dir_name("intfloat/multilingual-e5-base") == "multilingual-e5-base-rjf-ft"
+    assert ft.model_dir_name("BAAI/bge-reranker-base", seed=7) == "bge-reranker-base-rjf-ft-s7"
+
+
+def _report(target, seed, before, after):
+    return {"config": {"target": target, "seed": seed},
+            "before": {"test": {"ndcg@10": before}}, "after": {"test": {"ndcg@10": after}}}
+
+
+def test_seed_summary_gives_mean_and_spread_of_the_gain_across_seeds():
+    reports = [_report("dense", 42, 0.70, 0.80), _report("dense", 7, 0.70, 0.76), _report("rerank", 42, 0.6, 0.7)]
+    summary = ft.seed_summary(reports)
+    dense = summary["dense"]["test"]
+    assert dense["n_seeds"] == 2
+    assert dense["after_mean"] == pytest.approx(0.78) and dense["gain_mean"] == pytest.approx(0.08)
+    assert dense["after_sd"] == pytest.approx(0.0283, abs=1e-3)
+    assert math.isnan(summary["rerank"]["test"]["after_sd"])  # one seed: no spread
+
+
+def test_finetune_cli_trains_one_model_per_seed(monkeypatch, tmp_path):
+    from cv_agent.cli import main
+    seen = []
+    monkeypatch.setattr(ft, "run", lambda cfg, raw: seen.append((cfg.seed, cfg.out_dir.name)) or
+                        _report(cfg.target, cfg.seed, 0.5, 0.6) | {"after": {"test": {"ndcg@10": 0.6}}})
+    assert main(["finetune", "--target", "dense", "--seeds", "42,7", "--out-dir", str(tmp_path)]) == 0
+    assert seen == [(42, "multilingual-e5-base-rjf-ft"), (7, "multilingual-e5-base-rjf-ft-s7")]

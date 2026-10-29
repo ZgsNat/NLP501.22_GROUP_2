@@ -175,21 +175,49 @@ def model_overrides(args) -> dict:
 
 
 def cmd_finetune(args) -> int:
-    from cv_agent.training.finetune import DEFAULT_BASE, TrainConfig, run
+    from cv_agent.training import finetune as ft
     if args.target == "both" and args.base_model:
         print("--base-model chỉ dùng với --target dense hoặc --target rerank (hai mô hình gốc khác nhau).")
         return 2
+    try:
+        seeds = [int(s) for s in args.seeds.split(",")]
+    except ValueError:
+        print(f"--seeds phải là danh sách số nguyên, ví dụ 42,7,13 (nhận được {args.seeds!r}).")
+        return 2
+    if len(set(seeds)) != len(seeds):
+        print(f"--seeds bị trùng ({args.seeds}): mỗi seed chỉ chạy một lần, nếu không độ lệch chuẩn sẽ sai.")
+        return 2
     targets = ["dense", "rerank"] if args.target == "both" else [args.target]
+    reports = []
     for target in targets:
-        base = args.base_model or DEFAULT_BASE[target]
-        out = Path(args.out_dir) / f"{base.split('/')[-1]}-rjf-ft"
-        cfg = TrainConfig(target=target, base_model=base, out_dir=out, epochs=args.epochs,
-                          batch_size=args.batch_size, max_len=args.max_len, limit=args.limit)
-        report = run(cfg, Path(args.raw))
-        print(f"{target}: {out} | nDCG@10 trước -> sau: " + ", ".join(
-            f"{k} {report['before'][k]['ndcg@10']:.3f} -> {report['after'][k]['ndcg@10']:.3f}"
-            for k in report["after"]))
+        base = args.base_model or ft.DEFAULT_BASE[target]
+        for seed in seeds:
+            out = Path(args.out_dir) / ft.model_dir_name(base, seed)
+            cfg = ft.TrainConfig(target=target, base_model=base, out_dir=out, epochs=args.epochs,
+                                 batch_size=args.batch_size, max_len=args.max_len, seed=seed, limit=args.limit)
+            report = ft.run(cfg, Path(args.raw))
+            reports.append(report)
+            print(f"{target} seed {seed}: {out} | nDCG@10 trước -> sau: " + ", ".join(
+                f"{k} {report['before'][k]['ndcg@10']:.3f} -> {report['after'][k]['ndcg@10']:.3f}"
+                for k in report["after"]))
+    if len(seeds) > 1:
+        print(json.dumps(ft.seed_summary(reports), indent=1))
     return 0
+
+
+def cmd_rescore(args) -> int:
+    from cv_agent.eval.experiments import rescore
+    failed = 0
+    for run in args.runs:
+        try:
+            summary = rescore(Path(run))
+        except (FileNotFoundError, json.JSONDecodeError) as exc:
+            failed += 1
+            print(f"{run}: bỏ qua, không đọc được kết quả ({exc})")
+            continue
+        print(f"{run}: " + ", ".join(f"{h} {'CHẤP NHẬN' if v['accepted'] else 'BÁC BỎ'}"
+                                      for h, v in sorted(summary["hypotheses"].items())))
+    return 1 if failed else 0
 
 
 def cmd_tune(args) -> int:
@@ -276,7 +304,11 @@ def build_parser() -> argparse.ArgumentParser:
     f.add_argument("--batch-size", type=int, default=16)
     f.add_argument("--max-len", type=int, default=256, help="tokens per text; 512 is better on a GPU")
     f.add_argument("--limit", type=int, default=None, help="smoke run: cap training examples and eval JDs")
+    f.add_argument("--seeds", default="42", help="comma-separated seeds; several give mean ± sd of the gain")
     f.set_defaults(fn=cmd_finetune)
+    rs = sub.add_parser("rescore", help="re-test H0-H7 of finished runs from results.csv (no model re-run)")
+    rs.add_argument("runs", nargs="+", help="runs/experiments/<timestamp> folders")
+    rs.set_defaults(fn=cmd_rescore)
     a = sub.add_parser("audit", help="fairness name-swap audit (H5)")
     a.add_argument("--jd", default="fpt_automation_test")
     a.add_argument("--config", default="B3")

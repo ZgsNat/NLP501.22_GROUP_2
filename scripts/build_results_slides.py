@@ -341,8 +341,9 @@ def slide_setup(prs, syn, pub, spans, page, total):
          "arbiter, claim) · LLM-all (LLM xếp lại toàn top-20) · P6 full agentic · A1 bỏ verify · "
          "A2 prompt chung · P6-noclar bỏ hỏi HR.", "blue")
     note(s, x0 + 4.95, 4.7, 4.82, 1.35, "Lưu ý khi đọc:",
-         "dữ liệu chính là tổng hợp và n = 6 JD, nên CI rộng và p-value khó < 0.05 ngay cả khi chênh lệch lớn. "
-         "Con số dùng để so hướng với prior work, không phải để tuyên bố SOTA.", "amber")
+         "n = 6 JD nên Wilcoxon không thể cho p < 0.031; mọi kết luận dựa trên CI95 bootstrap, không dựa trên "
+         "trung bình. Gold Set tổng hợp và Criteria Profile cùng do nhóm viết, nên gain của B3 có thể lạc quan "
+         "(slide dữ liệu công khai kiểm tra lại điều này).", "amber", size=9)
 
 
 def slide_ladder(prs, syn, page, total):
@@ -359,7 +360,8 @@ def slide_ladder(prs, syn, page, total):
     w = 1173 * PX - 6.8
     items = [
         ("green", "Criteria Profile (B3)", f"nDCG@10 {fmt(b2)} → {fmt(b3)} so với hybrid B2: trọng số theo "
-                                           f"công ty + knock-out là nguồn gain chính."),
+                                           f"công ty + knock-out là nguồn gain chính. Profile và nhãn cùng do "
+                                           f"nhóm viết nên mức gain này có thể lạc quan."),
         ("amber", "Dense zero-shot (B1)", f"{fmt(b1)} < BM25 {fmt(b0)}: CV kỹ thuật nhiều tên tool, e5 chưa "
                                           f"fine-tune đánh mất tín hiệu từ khoá."),
         ("blue", "Full pipeline P6", f"nDCG@10 {fmt(p6)}, MRR@10 {fmt(mean(syn, 'P6', 'mrr@10'))}: LLM chỉ "
@@ -398,7 +400,7 @@ def _h_rows(syn) -> List[List[Any]]:
                  "Kendall τ " + (cmp_text(d) if d else "—"), verdict("H2")])
     d = det("H3", "ndcg@10")
     c = det("H3", "llm_calls")
-    rows.append(["H3", "Selective Arbiter: nDCG@10 của P6 không kém LLM-all quá ε = 0.02, ít LLM call hơn",
+    rows.append(["H3", "Selective Arbiter: P6 không kém LLM-all (cận dưới CI95 của Δ nDCG@10 ≥ −0.02), ít LLM call hơn",
                  ("nDCG@10 " + cmp_text(d) if d else "—") + ("\njudge calls " + cmp_text(c, 1) if c else ""),
                  verdict("H3")])
     d = det("H4")
@@ -422,7 +424,12 @@ def _h_rows(syn) -> List[List[Any]]:
 def slide_hypotheses(prs, syn, page, total):
     s = frame(prs, "Kiểm Chứng H0–H6: Báo Cáo Cả Hypothesis Bị Bác Bỏ",
               [(SECTION, "section"), ("PAIRED BOOTSTRAP 95% CI + WILCOXON", "amber")], page, total, *nav(page))
-    table(s, 213 * PX, 1.85, 1173 * PX, _h_rows(syn), [0.45, 3.4, 4.6, 1.2], size=8.5, row_h=0.5)
+    rows = _h_rows(syn)
+    table(s, 213 * PX, 1.8, 1173 * PX, rows, [0.45, 3.4, 4.6, 1.2], size=8.5, row_h=0.47)
+    text(s, 213 * PX, 1.8 + 0.47 * len(rows) + 0.12, 1173 * PX, 0.3,
+         f"Quy tắc quyết định: CHẤP NHẬN khi cả CI95 bootstrap nằm đúng phía (không kém hơn: cận dưới ≥ −ε), không "
+         f"xét trung bình đơn lẻ. Với n = {syn['n_jds']} JD, p Wilcoxon nhỏ nhất có thể là "
+         f"{2 / 2 ** syn['n_jds']:.3f}.", size=8.5, color=MUTED)
 
 
 def slide_prior(prs, syn, pub, ctx, page, total):
@@ -435,6 +442,7 @@ def slide_prior(prs, syn, pub, ctx, page, total):
     ir = (syn.get("hypotheses") or {}).get("H5", {}).get("impact_ratio_mean")
     saving = 1 - calls_p6 / calls_la if calls_la and not math.isnan(calls_la) and calls_la > 0 else float("nan")
     g, r = {"color": GREEN, "bold": True}, {"color": RED, "bold": True}
+    h3_ok = (syn.get("hypotheses") or {}).get("H3", {}).get("accepted")
     rows = [
         ["Công trình (slide)", "Kết quả công bố", "Nhóm 2 đo được (tương ứng)", "Nhận xét"],
         ["ConFit v2 · Yu et al. 2025 (16)", "AliYun: BM25 40.56 > E5 raw 29.66 nDCG@10; Recruiting ngược lại",
@@ -442,10 +450,13 @@ def slide_prior(prs, syn, pub, ctx, page, total):
         confit_row(syn, pub, ctx, g, r),
         ["RankGPT · Sun et al. 2023 (17)", "LLM listwise re-rank: +2.7 nDCG@10 (TREC)",
          f"LLM-all {fmt(la)} vs B4 {fmt(b4)} (Qwen 3B)",
-         ("LLM nhỏ re-rank toàn bộ không thêm gain", r) if la <= b4 + 0.005 else ("Cùng hướng", g)],
+         ("LLM nhỏ re-rank toàn bộ không thêm gain", r) if la <= b4 + 0.005 else
+         (f"Cùng chiều nhưng nhỏ (+{la - b4:.3f}), chưa có ý nghĩa với n = {syn['n_jds']}", {"color": AMBER, "bold": True})],
         ["FrugalGPT · Chen et al. 2023 (17)", "Cascade giảm tới 98% chi phí, chất lượng ngang GPT-4",
          f"P6 {fmt(calls_p6, 1)} vs LLM-all {fmt(calls_la, 1)} judge call/JD ({pct(saving, 0)} ít hơn); "
-         f"nDCG@10 {fmt(p6)} vs {fmt(la)}", ("Cùng hướng: chỉ gọi LLM ở near-tie", g)],
+         f"nDCG@10 {fmt(p6)} vs {fmt(la)}",
+         ("Cùng hướng: ít call, không kém LLM-all (CI95)", g) if h3_ok else
+         ("Một phần: ít call hơn rõ, nhưng CI95 chưa loại trừ mức kém hơn ε", {"color": AMBER, "bold": True})],
         ["Gan et al. 2024; Lo et al. 2025 (18)", "Agent: F1 87.73%, nhanh 11×; không đo nDCG, không verify",
          f"Đo bằng ranking metric + faithfulness: unsupported claim P6 {pct(un_p6)} vs A1 {pct(un_a1)}",
          "Lấp gap đo lường mà slide 18 nêu"],
@@ -584,7 +595,7 @@ def slide_conclusion(prs, syn, pub, ctx, page, total):
         ("green", "Đứng vững", [
             f"Gold Set: nDCG@10 BM25 {fmt(b0)} → P6 {fmt(p6)} nhờ Criteria Profile",
             "verify_evidence giảm claim không căn cứ (H4/H0)",
-            "Arbiter chọn lọc rẻ hơn LLM re-rank toàn bộ",
+            "Arbiter chọn lọc ít judge call hơn LLM-all (CI95 < 0)",
             "Agent có guardrail: không vượt checkpoint HR",
             "Đổi tên ứng viên: Δrank = 0 (PII che trước encode)" if worst_swap(ctx) == 0 else
             "PII che trước mọi bước encode / gọi LLM"]),
@@ -595,9 +606,10 @@ def slide_conclusion(prs, syn, pub, ctx, page, total):
                       if not syn["hypotheses"].get(h, {}).get("accepted")) + " bị bác bỏ: báo cáo như finding",
             "LLM planner chưa thắng luật về chi phí",
             finetune_bullet(syn, ctx),
-            "n = 6 JD → CI rộng, ít ý nghĩa thống kê"]),
+            "Profile và nhãn Gold Set cùng do nhóm viết: gain B3 có thể lạc quan",
+            f"n = {syn['n_jds']} JD: CI rộng, p Wilcoxon ≥ {2 / 2 ** syn['n_jds']:.3f}"]),
         ("blue", "Hướng tiếp theo", [
-            "Gold Set thật ~200 CV, 2 QA Lead gán nhãn",
+            "Gold Set thật ~200 CV, 2 QA Lead gán nhãn độc lập với người viết profile, đo Cohen κ",
             "Fine-tune trên Gold Set thật: notebook Colab có sẵn" if ctx.get("ft") else
             "Fine-tune bi-encoder (hướng ConFit) khi đủ label",
             "Audit fairness bằng name swap trên dữ liệu thật",
@@ -661,8 +673,9 @@ def slide_finetune(prs, syn, pub, ctx, page, total):
          "Dữ liệu tải thẳng từ Hugging Face: không CV nào rời máy nhóm.", "violet", size=9)
     note(s, x0, 4.8, 4.6, 1.35, "Cách làm:",
          f"triplet (JD, Good Fit, No Fit) + contrastive loss (in-batch negative) cho e5; BCE nhãn 0 / 0.5 / 1 cho "
-         f"cross-encoder; {any_rep['config']['epochs']} epoch, max_len {any_rep['config']['max_len']}. "
-         "Notebook sinh từ cùng module cv_agent/training, chạy lại bằng Run all.", "blue", size=9)
+         f"cross-encoder; {any_rep['config']['epochs']} epoch, max_len {any_rep['config']['max_len']}, "
+         f"1 seed ({any_rep['config']['seed']}), chưa có độ lệch chuẩn. Notebook sinh từ cùng module, mặc định "
+         "chạy 3 seed để báo cáo trung bình ± độ lệch chuẩn.", "blue", size=9)
     cfgs = [c for c in ("B1", "B2", "B3", "P6") if syn_ft and c in syn_ft["means"]]
     if cfgs:
         bar_chart(s, x0 + 4.8, 1.88, 4.98, 2.15, cfgs,
@@ -732,11 +745,12 @@ SPEAKER_NOTES = {
              "hypothesis đặt trước khi chạy; n = 6 JD nên đọc CI, đừng đọc p-value một mình.",
     "ladder": "Bước nhảy lớn nhất là Criteria Profile (B2 → B3). Dense zero-shot kém BM25 trên CV kỹ thuật. "
               "LLM và arbiter chỉ tinh chỉnh ở top, nên P6 giữ chất lượng của B3/B4.",
-    "hypotheses": "Đọc từng dòng: hypothesis, con số đo, CI 95%, kết luận. Hypothesis bị bác bỏ vẫn được báo cáo như "
+    "hypotheses": "Quy tắc: chỉ chấp nhận khi cả CI95 nằm đúng phía; với n = 6, p Wilcoxon nhỏ nhất là 0.031. "
+                  "Đọc từng dòng: hypothesis, con số đo, CI 95%, kết luận. Hypothesis bị bác bỏ vẫn được báo cáo như "
                   "finding, đúng kế hoạch thực nghiệm.",
     "prior": "Không so tuyệt đối vì khác dữ liệu; so hướng. Cột cuối nói cùng hướng hay không lặp lại được.",
     "faith": "verify_evidence là đóng góp rõ nhất: claim không căn cứ giảm mạnh so với A1. Arbiter chọn lọc gọi LLM ít "
-             "hơn LLM-all nhiều lần với nDCG gần như bằng.",
+             "hơn LLM-all nhiều lần; nDCG thấp hơn 0.012 nhưng CI95 chưa loại trừ mức kém hơn ε = 0.02 nên H3 bị bác bỏ.",
     "finetune": "Phần huấn luyện chạy trên Colab bằng notebook sinh từ code của repo. Dữ liệu train là cặp công khai "
                 "không phải QA để không rò rỉ sang tập đánh giá. Đọc bảng trái (dữ liệu cùng phân bố với train) "
                 "rồi biểu đồ phải (tập đánh giá của nhóm).",

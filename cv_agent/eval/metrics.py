@@ -88,7 +88,7 @@ def wilcoxon_signed_rank(x: Sequence[float], y: Sequence[float]) -> Dict[str, fl
     diffs = [a - b for a, b in _clean(x, y) if a - b != 0]
     n = len(diffs)
     if n == 0:
-        return {"W": 0.0, "p_value": 1.0, "n": 0, "effect_size_r": 0.0}
+        return {"W": 0.0, "p_value": 1.0, "n": 0, "effect_size_r": 0.0, "p_floor": 1.0}
     try:
         from scipy.stats import wilcoxon
         res = wilcoxon(diffs)
@@ -110,7 +110,9 @@ def wilcoxon_signed_rank(x: Sequence[float], y: Sequence[float]) -> Dict[str, fl
     z = (w_plus - mean) / sd if sd else 0.0
     if p is None:
         p = math.erfc(abs(z) / math.sqrt(2))
-    return {"W": w_plus, "p_value": p, "n": n, "effect_size_r": z / math.sqrt(n)}
+    # smallest two-sided p any n pairs can give (all differences one sign): 0.031 for n = 6
+    p_floor = min(1.0, 2 / 2 ** n)
+    return {"W": w_plus, "p_value": p, "n": n, "effect_size_r": z / math.sqrt(n), "p_floor": p_floor}
 
 
 def graded_tau(system: Sequence[str], relevance: Dict[str, int]) -> float:

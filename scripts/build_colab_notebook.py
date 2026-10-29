@@ -35,7 +35,7 @@ Notebook này chạy phần **huấn luyện** của dự án trên GPU miễn p
 2. Bỏ mọi CV từng được gán nhãn cho một JD như vậy.
 3. Chia `train.csv` thành train / dev theo JD. `test.csv` (đã lọc như trên, bỏ cả JD đã gặp) chỉ dùng để kiểm tra cuối.
 
-**Cách chạy:** chọn *Runtime → Change runtime type → T4 GPU*, rồi chọn *Runtime → Run all*. Ô cài đặt nâng cấp `sentence-transformers` / `transformers`. Nếu Colab báo cần khởi động lại, hoặc ô huấn luyện lỗi import, hãy chọn *Runtime → Restart session* rồi *Run all* lần nữa (lần hai không cài lại). Với T4, mỗi mô hình mất khoảng 10–20 phút cho 1 epoch. Ô cuối nén hai mô hình thành `rjf_finetuned_models.zip` để tải về.
+**Cách chạy:** chọn *Runtime → Change runtime type → T4 GPU*, rồi chọn *Runtime → Run all*. Ô cài đặt nâng cấp `sentence-transformers` / `transformers`. Nếu Colab báo cần khởi động lại, hoặc ô huấn luyện lỗi import, hãy chọn *Runtime → Restart session* rồi *Run all* lần nữa (lần hai không cài lại). Với T4, mỗi mô hình mất khoảng 10–20 phút cho 1 epoch; mặc định chạy 3 seed để báo cáo trung bình ± độ lệch chuẩn. Ô cuối nén hai mô hình thành `rjf_finetuned_models.zip` để tải về.
 
 > File này được sinh tự động từ `cv_agent/training/finetune.py` bằng `python scripts/build_colab_notebook.py`. Đừng sửa tay: hãy sửa module rồi sinh lại.
 """
@@ -46,6 +46,7 @@ print(subprocess.run(["nvidia-smi"], capture_output=True, text=True).stdout or "
 
 PARAMS = """# Tham số huấn luyện. LIMIT = None: chạy đủ dữ liệu; đặt LIMIT = 64 để chạy thử vài phút.
 TARGETS = ["dense", "rerank"]
+SEEDS = [42, 7, 13]    # nhiều seed -> báo cáo trung bình ± độ lệch chuẩn; [42] để chạy một lần
 EPOCHS = 1
 BATCH_SIZE = 16
 MAX_LEN = 256          # 512 tốt hơn một chút nhưng chậm gấp ~3 lần
@@ -55,31 +56,44 @@ RAW_DIR = "data/public/raw\""""
 
 TRAIN = """import logging
 from pathlib import Path
-from cv_agent.training.finetune import DEFAULT_BASE, TrainConfig, run
+from cv_agent.training.finetune import DEFAULT_BASE, TrainConfig, model_dir_name, run
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
-reports = {}
+reports = []
 for target in TARGETS:
     base = DEFAULT_BASE[target]
-    cfg = TrainConfig(target=target, base_model=base, out_dir=Path(OUT_DIR) / f"{base.split('/')[-1]}-rjf-ft",
-                      epochs=EPOCHS, batch_size=BATCH_SIZE, max_len=MAX_LEN, limit=LIMIT)
-    reports[target] = run(cfg, Path(RAW_DIR))"""
+    for seed in SEEDS:
+        cfg = TrainConfig(target=target, base_model=base, out_dir=Path(OUT_DIR) / model_dir_name(base, seed),
+                          epochs=EPOCHS, batch_size=BATCH_SIZE, max_len=MAX_LEN, seed=seed, limit=LIMIT)
+        reports.append(run(cfg, Path(RAW_DIR)))"""
 
 RESULTS = """import pandas as pd
+from cv_agent.training.finetune import seed_summary
 
 rows = []
-for target, rep in reports.items():
+for rep in reports:
     for split in rep["after"]:
-        rows.append({"mô hình": target, "tập": split, "số JD": rep["after"][split]["n_jds"],
+        rows.append({"mô hình": rep["config"]["target"], "seed": rep["config"]["seed"], "tập": split,
+                     "số JD": rep["after"][split]["n_jds"],
                      "nDCG@10 trước": round(rep["before"][split]["ndcg@10"], 3),
                      "nDCG@10 sau": round(rep["after"][split]["ndcg@10"], 3),
                      "ví dụ train": rep["n_train_examples"], "thời gian (s)": rep["wall_s"]})
-pd.DataFrame(rows)"""
+display(pd.DataFrame(rows))
+# trung bình ± độ lệch chuẩn qua các seed: gain nhỏ hơn độ lệch chuẩn thì chưa nói được là fine-tune giúp
+pd.DataFrame([{"mô hình": t, "tập": s, **{k: round(v, 3) for k, v in m.items()}}
+              for t, splits in seed_summary(reports).items() for s, m in splits.items()])"""
 
 EXPORT = """import shutil
-shutil.rmtree(Path(OUT_DIR) / "multilingual-e5-base-rjf-ft" / "checkpoints", ignore_errors=True)
-shutil.rmtree(Path(OUT_DIR) / "bge-reranker-base-rjf-ft" / "checkpoints", ignore_errors=True)
-archive = shutil.make_archive("rjf_finetuned_models", "zip", OUT_DIR)
+import re, zipfile
+for ckpt in Path(OUT_DIR).glob("*/checkpoints"):
+    shutil.rmtree(ckpt, ignore_errors=True)
+# chỉ nén mô hình seed 42 (thư mục dùng cho thực nghiệm); seed khác chỉ giữ finetune_metrics.json cho gọn
+archive = "rjf_finetuned_models.zip"
+with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as zf:
+    for f in Path(OUT_DIR).rglob("*"):
+        other_seed = re.search(r"-s\d+$", f.relative_to(OUT_DIR).parts[0])
+        if f.is_file() and (not other_seed or f.name == "finetune_metrics.json"):
+            zf.write(f, f.relative_to(OUT_DIR))
 print(archive)
 try:
     from google.colab import files
@@ -98,7 +112,7 @@ python -m cv_agent experiments --data data/public --neural --llm ollama --model 
     --dense-model models/multilingual-e5-base-rjf-ft --rerank-model models/bge-reranker-base-rjf-ft
 ```
 
-`finetune_metrics.json` trong mỗi thư mục mô hình ghi lại cấu hình, số cặp train / dev / test và nDCG@10 trước / sau.
+`finetune_metrics.json` trong mỗi thư mục mô hình ghi lại cấu hình, số cặp train / dev / test và nDCG@10 trước / sau. Seed 42 nằm ở thư mục không hậu tố; seed khác có hậu tố `-s<seed>`.
 """
 
 

@@ -20,6 +20,8 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
+import math
+import statistics
 import time
 from collections import defaultdict
 from dataclasses import asdict, dataclass
@@ -38,6 +40,7 @@ DEFAULT_BASE = {"dense": "intfloat/multilingual-e5-base", "rerank": "BAAI/bge-re
 DEV_SHARE = 0.1
 EVAL_K = 10
 RERANK_INFERENCE_LEN = 512   # same as cv_agent.ranking.reranker.CrossEncoderReranker
+DEFAULT_SEED = 42
 
 
 @dataclass(frozen=True)
@@ -51,7 +54,7 @@ class TrainConfig:
     learning_rate: float = 2e-5
     max_len: int = 256
     warmup_ratio: float = 0.1
-    seed: int = 42
+    seed: int = DEFAULT_SEED
     limit: Optional[int] = None       # cap training examples / eval JDs for a quick smoke run
 
     def __post_init__(self) -> None:
@@ -61,6 +64,30 @@ class TrainConfig:
             raise ValueError("epochs >= 1, batch_size >= 2, max_len >= 32 and 0 < learning_rate < 1 are required")
         if not 1 <= self.mini_batch_size <= self.batch_size:
             raise ValueError("1 <= mini_batch_size <= batch_size is required")
+
+
+def model_dir_name(base_model: str, seed: int = DEFAULT_SEED) -> str:
+    """Folder of a fine-tuned model; the default seed keeps the path the experiments use."""
+    name = f"{base_model.split('/')[-1]}-rjf-ft"
+    return name if seed == DEFAULT_SEED else f"{name}-s{seed}"
+
+
+def seed_summary(reports: Sequence[Dict]) -> Dict[str, Dict[str, Dict[str, float]]]:
+    """nDCG@10 after fine-tuning and its gain over the base model, as mean and sample sd across seeds."""
+    by_target: Dict[str, List[Dict]] = defaultdict(list)
+    for rep in reports:
+        by_target[rep["config"]["target"]].append(rep)
+    out: Dict[str, Dict[str, Dict[str, float]]] = {}
+    for target, reps in by_target.items():
+        out[target] = {}
+        for split in reps[0]["after"]:
+            after = [r["after"][split]["ndcg@10"] for r in reps]
+            gain = [r["after"][split]["ndcg@10"] - r["before"][split]["ndcg@10"] for r in reps]
+            out[target][split] = {"n_seeds": len(reps), "after_mean": statistics.fmean(after),
+                                  "after_sd": statistics.stdev(after) if len(after) > 1 else math.nan,
+                                  "gain_mean": statistics.fmean(gain),
+                                  "gain_sd": statistics.stdev(gain) if len(gain) > 1 else math.nan}
+    return out
 
 
 # ------------------------------------------------------------------ data (pure, unit-tested)
