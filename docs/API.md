@@ -12,7 +12,9 @@ Base URL: `http://localhost:8000/api`. All bodies are JSON. Streaming endpoints 
 | POST | `/runs` | Start a run → NDJSON event stream |
 | POST | `/runs/{run_id}/resume` | Answer an HR interrupt → NDJSON event stream |
 | GET  | `/runs/{run_id}` | Snapshot of the current graph state + pending interrupt |
-| GET  | `/cvs/{cv_id}` | `{ id, headline, text }` (anonymised CV) |
+| GET  | `/cvs` | List the CV pool: `[{ id, headline, lang, uploaded }]` |
+| POST | `/cvs` | Upload a CV (multipart) → `CVProfileView` (parse preview) |
+| GET  | `/cvs/{cv_id}` | `{ id, headline, text, profile }` (processed, redacted CV + its parse preview) |
 
 ### `GET /config`
 ```json
@@ -36,7 +38,47 @@ Base URL: `http://localhost:8000/api`. All bodies are JSON. Streaming endpoints 
 ### `POST /runs/{run_id}/resume`
 Body depends on the pending interrupt `kind`:
 - `clarification` → `{ "answers": { "<question>": "<answer>" } }`
+- `substitutes` → `{ "accept": { "<must_have>": ["<related tool>", ...] } }`. An empty list rejects substitutes for that must-have;
+  a must-have missing from `accept` is treated as rejected.
 - `review` → `{ "action": "approve" }` or `{ "action": "adjust", "weights": { "<criterion>": 0.3 } }`
+
+### `GET /cvs`
+```json
+[{ "id": "CV-014", "headline": "Senior Automation Test Engineer, 6 yrs, Selenium/Java", "lang": "en", "uploaded": false }]
+```
+`lang` is `"en" | "vi" | "mixed"`. `uploaded` is `true` for CVs added through `POST /cvs` (as opposed to the seeded corpus).
+
+### `POST /cvs`
+`multipart/form-data` with one field `file` (`.pdf`, `.docx`, `.md` or `.txt`). On success: **201** with a `CVProfileView`
+(see below), and the CV joins the pool, so it is returned by `GET /cvs` and `GET /cvs/{id}` and is searchable in later runs.
+**400** `{ "detail": "…" }` on an unsupported format or when no text can be extracted (empty / scanned file).
+
+### `GET /cvs/{cv_id}`
+```json
+{ "id": "CV-014", "headline": "…", "text": "…processed, redacted text…", "profile": { /* CVProfileView */ } }
+```
+`text` is the text after the NLP pipeline (PII replaced by placeholders such as `[EMAIL]`), i.e. what retrieval, the assessor and
+`verify_evidence` see. 404 when the id is unknown.
+
+### `CVProfileView`
+The output of the CV NLP pipeline, shown in the UI as the "Parse preview".
+```ts
+{
+  id: string; headline: string;
+  lang: "en" | "vi" | "mixed";
+  redactions: Record<string, number>;          // PII removed, by kind: { email: 1, phone: 1, birth_date: 1 }
+  sections: { kind: string; heading: string }[];   // in document order; kind e.g. summary, experience, projects, skills, education
+  chunks: { id: string; section: string; header: string; text: string }[];
+                                               // header = contextual header prepended when indexing (id | headline | section)
+  skills: { skill: string; strength: "used" | "listed" | "hedged"; section: string; line: string }[];
+                                               // used = shown in described work; listed = only in a skills list;
+                                               // hedged = "familiar with…", "learning…"; line = the CV line that proves it
+  years_total: number | null;
+  years_automation: number | null;
+  depth_cue: number;                           // automation depth cue 0–4 (0 = none), see POL-depth-scale
+  depth_cue_line: string | null;               // the CV line the cue was taken from
+}
+```
 
 ## Stream events
 
@@ -49,22 +91,36 @@ Each line is one of:
 { "type": "update", "node": "search", "update": { /* partial state, see below */ } }
 { "type": "node_end", "node": "search", "duration_ms": 412 }
 { "type": "interrupt", "kind": "clarification", "payload": { "questions": ["…"] } }
+{ "type": "interrupt", "kind": "substitutes", "payload": { "proposals": [{ "must_have": "playwright", "covered": 3, "related": ["cypress", "selenium", "webdriverio"] }] } }
 { "type": "interrupt", "kind": "review", "payload": { "ranking": [/*…*/], "weights": {/*…*/} } }
 { "type": "done", "report": { /*…*/ }, "usage": Usage }
 { "type": "error", "message": "…" }
 ```
 `level: "loop"` marks a reflection loop firing (the interesting agentic moments).
 
+### Interrupt kinds
+| kind | raised by | payload | resume body |
+|---|---|---|---|
+| `clarification` | `clarify` (L1) | `{ questions: string[] }` | `{ answers: { question: answer } }` |
+| `substitutes` | `expand_query` (L2) | `{ proposals: { must_have: string; covered: number; related: string[] }[] }` | `{ accept: { must_have: string[] } }` |
+| `review` | `hr_review` (L5) | `{ ranking: RankRow[]; weights }` | `{ action: "approve" }` or `{ action: "adjust", weights }` |
+
+`substitutes`: when coverage of a must-have is too low (`covered` CVs show it), L2 no longer widens the query silently; it
+proposes related tools (taxonomy) and HR picks which may stand in for the must-have. The client shows `expand_query` as
+"waiting for HR" while it is pending. On resume the node re-runs with the accepted tools added to `query_terms`.
+
 ## Graph nodes (fixed names) and loops
 
 ```
 ingest → clarify ─┬─(ambiguous, L1: ask HR)──→ ingest
-                  └→ search ─┬─(coverage too low, L2)→ expand_query → search
+                  └→ search ─┬─(coverage too low, L2)→ expand_query ⏸ HR picks substitutes → search
                              └→ rerank → assess → verify_evidence ─┬─(ungrounded, L4)→ assess
                                                                     └→ score → arbitrate(L3 near-ties) → report → hr_review ─┬─(adjust, L5)→ score
                                                                                                                              └─(approve)→ END
 ```
 Node names: `ingest, clarify, search, expand_query, rerank, assess, verify_evidence, score, arbitrate, report, hr_review`.
+Three nodes can pause the graph for HR (interrupt): `clarify` (`clarification`, L1), `expand_query` (`substitutes`, L2) and
+`hr_review` (`review`, L5).
 
 ## State shapes (keys that may appear in `update`)
 
@@ -83,12 +139,29 @@ query_terms: string[]
 candidates: { cv_id: string; headline: string; retrieval_score: number;
               rerank_score: number | null; matched_must_have: string[] }[]
 assessments: Record<cv_id, {
-  criteria: Record<Criterion, { score: number /*0–100*/; rationale: string;
-                                evidence: { quote: string; grounded: boolean | null }[] }>;
+  criteria: Record<Criterion, { score: number /*0–100*/; rationale: string; evidence: Evidence[] }>;
   knocked_out: boolean; knockout_reason: string | null; attempts: number;
+  facts: { depth_level: number | null; years: number | null;       // facts the scorer used
+           depth_cue: number | null; years_automation: number | null };
 }>
-ranking: { rank: number; cv_id: string; headline: string; total: number /*0–1*/;
-           knocked_out: boolean; arbiter_note: string | null }[]
+Evidence = { quote: string;
+             grounded: boolean | null;   // quote found in the CV text (null = not checked yet)
+             supported: boolean | null;  // the section it came from demonstrates the claim (null = not checked yet)
+             section: string | null }    // where the quote was found: experience, projects, skills, summary, …
+// grounded && !supported = "listed, not demonstrated" (e.g. depth evidence quoted from a skills list);
+// !grounded = hallucinated quote (L4 sends it back to assess).
+
+ranking: RankRow[]    // EVERY CV in the pool, in this order: ranked (by rank), not_shortlisted, needs_review, knocked_out
+RankRow = { rank: number; cv_id: string; headline: string; total: number /*0–1*/;
+            knocked_out: boolean; arbiter_note: string | null;
+            status: "ranked" | "needs_review" | "not_shortlisted" | "knocked_out";
+            tier: "strong" | "possible" | "weak" | null;   // only set when status = "ranked"
+            reason: string | null }                        // why the CV is not ranked; null for ranked
+// reason examples:
+//   not_shortlisted  "Rank 11 after rerank; best evidence matched: selenium, java; missing: jenkins"
+//   knocked_out      "Missing must-have: playwright"
+//   knocked_out      "Only hedged mention of appium: 'familiar with Appium (not used in production)'"
+// knocked_out (bool) stays for compatibility and is true exactly when status = "knocked_out".
 report: { summary: string;
           candidates: { cv_id: string; explanation: string; strengths: string[]; gaps: string[] }[] }
 loops: { clarify: number; expand: number; verify: number; arbitrate: number; review: number }

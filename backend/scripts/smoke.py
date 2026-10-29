@@ -40,6 +40,10 @@ async def main(jd_id: str, models: dict[str, str]) -> None:
                        for q in pending["payload"]["questions"]}
             print(f"\n👤 HR answers {len(answers)} question(s)\n")
             inp = Command(resume={"answers": answers})
+        elif pending["kind"] == "substitutes":
+            accept = {p["must_have"]: p["related"] for p in pending["payload"]["proposals"]}
+            print(f"\n👤 HR accepts substitutes {accept}\n")
+            inp = Command(resume={"accept": accept})
         else:
             print("\n👤 HR approves\n")
             inp = Command(resume={"action": "approve"})
@@ -48,8 +52,13 @@ async def main(jd_id: str, models: dict[str, str]) -> None:
     u = usage.summary()
     print(f"\nDone in {time.perf_counter() - t0:.1f}s · loops={v.get('loops')}")
     print(f"LLM: {u['calls']} calls, {u['total_tokens']} tokens · " + ", ".join(f"{k}={n['input_tokens'] + n['output_tokens']}" for k, n in u["by_node"].items()))
-    for r in v["ranking"][:8]:
-        print(f"{r['rank']:>2}. {r['cv_id']} {r['total']:.3f} {'KO' if r['knocked_out'] else ''} {r['arbiter_note'] or ''}")
+    for r in v["ranking"]:
+        if r["status"] == "ranked":
+            print(f"{r['rank']:>2}. {r['cv_id']} {r['total']:.3f} {r['tier']:<8} {r['arbiter_note'] or ''}")
+    for status in ("not_shortlisted", "needs_review", "knocked_out"):
+        rows = [r for r in v["ranking"] if r["status"] == status]
+        print(f"\n{status} ({len(rows)}):" + "".join(f"\n   {r['cv_id']}: {r['reason']}" for r in rows[:4])
+              + ("\n   …" if len(rows) > 4 else ""))
     print("\n" + v["report"]["summary"])
     if url := observability.session_url(run_id):
         print(f"\nTrace: {url}")

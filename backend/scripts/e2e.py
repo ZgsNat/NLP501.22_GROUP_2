@@ -48,7 +48,9 @@ def run(c: httpx.Client, jd: dict) -> dict:
 
     pending = stream(f"{API}/runs", {"jd_text": jd["text"], "company_profile": jd["company_profile"]})
     while pending and not res["error"]:
-        if pending["kind"] == "clarification":
+        if pending["kind"] == "substitutes":  # HR accepts every proposed related tool
+            body = {"accept": {p["must_have"]: p["related"] for p in pending["payload"]["proposals"]}}
+        elif pending["kind"] == "clarification":
             answer = HR_ANSWERS.get(jd["id"], "Use the JD as written; be strict on the named tools.")
             body = {"answers": {q: answer for q in pending["payload"]["questions"]}}
         elif jd["id"] in HR_ADJUST and not adjusted:
@@ -66,7 +68,7 @@ def run(c: httpx.Client, jd: dict) -> dict:
 
 def metrics(r: dict) -> dict:
     v = r.get("values", {})
-    ranked = [x for x in v.get("ranking", []) if not x["knocked_out"]]
+    ranked = [x for x in v.get("ranking", []) if x["status"] == "ranked"]
     totals = [x["total"] for x in ranked]
     first_verify = next((ln["message"] for ln in r["logs"] if ln["node"] == "verify_evidence"
                          and "grounded" in ln["message"]), "")
@@ -77,7 +79,8 @@ def metrics(r: dict) -> dict:
     return {
         "jd": r["jd"], "ok": not r["error"] and r.get("next") == [] and bool(v.get("report")),
         "seconds": r["seconds"], "loops": {k: n for k, n in loops.items() if n},
-        "shortlist": len(ranked), "knocked_out": len(v.get("ranking", [])) - len(ranked),
+        "shortlist": len(ranked), "knocked_out": sum(x["status"] == "knocked_out" for x in v.get("ranking", [])),
+        "every_cv_has_reason": all(x["status"] == "ranked" or x["reason"] for x in v.get("ranking", [])),
         "grounded_first_pass": round(100 * int(m[1]) / int(m[2]), 1) if m and int(m[2]) else None,
         "spread": round(statistics.pstdev(totals), 3) if len(totals) > 1 else 0.0,
         "decisive": len(set(keys)) == len(keys),
@@ -106,6 +109,7 @@ def main(only: list[str]) -> int:
         "top-5 ranking decisive (no unresolved ties)": all(r["decisive"] for r in rows),
         "token usage recorded": all(r["tokens"] for r in rows),
         "report mentions only ranked candidates": all(r["report_grounded"] for r in rows),
+        "every CV has a status and a reason": all(r["every_cv_has_reason"] for r in rows),
     }
     print("\n| JD | ok | time (s) | loops fired | shortlist / KO | grounded 1st pass | spread | top-5 | LLM calls | tokens |")
     print("|---|---|---|---|---|---|---|---|---|---|")

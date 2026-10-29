@@ -5,7 +5,7 @@ import uuid
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, UploadFile
 from fastapi.responses import StreamingResponse
 from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 from langgraph.types import Command
@@ -15,14 +15,21 @@ from app import observability
 from app.agent.graph import build_graph
 from app.agent.state import public_view
 from app.config import get_settings
+from app.providers import cache
 from app.providers.llm import PROVIDERS, default_spec, is_configured, parse_spec
-from app.rag.corpus import get_doc, load_dir, load_yaml
+from app.nlp.pipeline import process, profile
+from app.nlp.text import read_file
+from app.rag import retrieve
+from app.rag.corpus import get_doc, load_dir, load_yaml, upload_dir
+from app.rag.store import get_store
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     s = get_settings()
     s.runtime_dir.mkdir(exist_ok=True)
+    if s.llm_cache:
+        cache.enable(s.runtime_dir / "llm_cache.sqlite")
     async with AsyncSqliteSaver.from_conn_string(str(s.runtime_dir / "checkpoints.sqlite")) as saver:
         app.state.graph = build_graph(saver)
         yield
@@ -97,6 +104,7 @@ async def config():
                         "company_profile": d.meta.get("company_profile", "default"), "text": d.text}
                        for d in load_dir("jds")],
         "langfuse_url": s.langfuse_base_url if observability.tracing_enabled() else None,
+        "tiers": {"strong": s.tier_strong, "possible": s.tier_possible},
     }
 
 
@@ -145,9 +153,40 @@ async def get_run(run_id: str):
             "usage": observability.usage_counter(run_id).summary(), "logs": observability.read_logs(run_id)}
 
 
+@app.get("/api/cvs")
+async def list_cvs():
+    uploaded = {p.stem for p in upload_dir().glob("*.md")} if upload_dir().exists() else set()
+    return [{"id": d.id, "headline": d.meta.get("headline", ""), "lang": profile(d.id).lang, "uploaded": d.id in uploaded}
+            for d in load_dir("cvs")]
+
+
+@app.post("/api/cvs", status_code=201)
+async def upload_cv(file: UploadFile):
+    """PDF/DOCX/MD/TXT → NLP pipeline → indexed. Only the redacted text is stored; the raw file never touches disk."""
+    try:
+        raw = read_file(file.filename or "", await file.read())
+    except ValueError as e:
+        raise HTTPException(400, str(e))
+    n = 1 + sum(1 for d in load_dir("cvs") if d.id.startswith("UP-"))
+    cv_id = f"UP-{n:03d}"
+    p = process(cv_id, raw)
+    if len(p.text.split()) < 30:
+        raise HTTPException(400, "No readable text found (a scanned PDF needs OCR first)")
+    headline = next((ln.strip("#* ") for ln in p.text.splitlines() if ln.strip()), "")[:80]
+    p = process(cv_id, raw, headline)
+    upload_dir().mkdir(parents=True, exist_ok=True)
+    (upload_dir() / f"{cv_id}.md").write_text(f"---\nid: {cv_id}\nheadline: {json.dumps(headline)}\n---\n{p.text}\n")
+    load_dir.cache_clear()
+    store = get_store()
+    store.upsert_items(retrieve.WHOLE, [(cv_id, p.text, {"doc_id": cv_id, "text": p.text, "headline": headline})])
+    store.upsert_items(retrieve.CHUNKS, retrieve.chunk_items([p]))
+    return p.view()
+
+
 @app.get("/api/cvs/{cv_id}")
 async def get_cv(cv_id: str):
     doc = get_doc("cvs", cv_id)
     if not doc:
         raise HTTPException(404, "Unknown CV")
-    return {"id": doc.id, "headline": doc.meta.get("headline", ""), "text": doc.text}
+    p = profile(cv_id)
+    return {"id": doc.id, "headline": doc.meta.get("headline", ""), "text": p.text, "profile": p.view()}
