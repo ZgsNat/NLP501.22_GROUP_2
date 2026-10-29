@@ -1,0 +1,159 @@
+# ESCO-lite skills taxonomy for query expansion.
+# `related` = reasonable substitutes when a must-have is scarce in the CV pool.
+skills:
+  # --- Web E2E ---
+  playwright:
+    aliases: [playwright, playwright test]
+    related: [cypress, selenium, webdriverio, puppeteer]
+    group: web_e2e
+  cypress:
+    aliases: [cypress, cypress.io, cypress cloud]
+    related: [playwright, selenium, webdriverio]
+    group: web_e2e
+  selenium:
+    aliases: [selenium, selenium webdriver, selenium grid, selenium 4]
+    related: [webdriverio, playwright, cypress, katalon]
+    group: web_e2e
+  webdriverio:
+    aliases: [webdriverio, wdio]
+    related: [selenium, playwright, cypress, appium]
+    group: web_e2e
+  puppeteer:
+    aliases: [puppeteer]
+    related: [playwright, cypress, selenium]
+    group: web_e2e
+  katalon:
+    aliases: [katalon, katalon studio, katalon recorder]
+    related: [selenium, robot_framework, cypress]
+    group: web_e2e
+  robot_framework:
+    aliases: [robot framework, robotframework, seleniumlibrary]
+    related: [selenium, pytest, cucumber, katalon]
+    group: web_e2e
+  # --- Mobile ---
+  appium:
+    aliases: [appium]
+    related: [espresso, xcuitest, webdriverio, selenium]
+    group: mobile
+  espresso:
+    aliases: [espresso, android espresso]
+    related: [appium, xcuitest]
+    group: mobile
+  xcuitest:
+    aliases: [xcuitest, xctest, xcode ui testing]
+    related: [appium, espresso]
+    group: mobile
+  # --- API ---
+  postman:
+    aliases: [postman, newman, postman/newman, postman collections]
+    related: [restassured, requests, restsharp]
+    group: api
+  restassured:
+    aliases: [restassured, rest assured, rest-assured]
+    related: [postman, requests, restsharp]
+    group: api
+  requests:
+    aliases: [python requests, requests library, requests]
+    related: [restassured, postman, pytest]
+    group: api
+  restsharp:
+    aliases: [restsharp]
+    related: [restassured, postman, requests]
+    group: api
+  pact:
+    aliases: [pact, contract testing, consumer-driven contract]
+    related: [postman, restassured]
+    group: api
+  api_testing:
+    aliases: [api testing, rest api testing, api automation, rest testing]
+    related: [postman, restassured, requests]
+    group: api
+  # --- Performance ---
+  jmeter:
+    aliases: [jmeter, apache jmeter]
+    related: [k6, gatling, locust]
+    group: performance
+  k6:
+    aliases: [k6, grafana k6]
+    related: [jmeter, gatling, locust]
+    group: performance
+  gatling:
+    aliases: [gatling]
+    related: [jmeter, k6, locust]
+    group: performance
+  locust:
+    aliases: [locust]
+    related: [k6, jmeter, gatling]
+    group: performance
+  # --- Test frameworks / runners ---
+  testng:
+    aliases: [testng]
+    related: [junit, pytest, nunit]
+    group: test_framework
+  junit:
+    aliases: [junit, junit 5]
+    related: [testng, nunit, pytest]
+    group: test_framework
+  pytest:
+    aliases: [pytest, pytest-xdist]
+    related: [junit, testng, robot_framework]
+    group: test_framework
+  nunit:
+    aliases: [nunit, xunit]
+    related: [junit, testng, pytest]
+    group: test_framework
+  cucumber:
+    aliases: [cucumber, bdd, gherkin, specflow, behave]
+    related: [robot_framework, pytest, testng]
+    group: bdd
+  # --- CI/CD & infra ---
+  jenkins:
+    aliases: [jenkins]
+    related: [github_actions, gitlab_ci]
+    group: cicd
+  github_actions:
+    aliases: [github actions, gha]
+    related: [gitlab_ci, jenkins]
+    group: cicd
+  gitlab_ci:
+    aliases: [gitlab ci, gitlab ci/cd, gitlab-ci]
+    related: [github_actions, jenkins]
+    group: cicd
+  docker:
+    aliases: [docker, docker compose, containers]
+    related: [kubernetes]
+    group: infra
+  kubernetes:
+    aliases: [kubernetes, k8s, helm]
+    related: [docker]
+    group: infra
+  # --- Languages ---
+  java:
+    aliases: [java]
+    related: [csharp]
+    group: language
+  python:
+    aliases: [python]
+    related: [javascript, typescript]
+    group: language
+  typescript:
+    aliases: [typescript, ts]
+    related: [javascript]
+    group: language
+  javascript:
+    aliases: [javascript, js, node.js, nodejs]
+    related: [typescript]
+    group: language
+  csharp:
+    aliases: [c#, csharp, .net, dotnet]
+    related: [java]
+    group: language
+  # --- Certification / concepts ---
+  istqb:
+    aliases: [istqb, istqb foundation, istqb advanced, certified tester]
+    related: []
+    group: certification
+  page_object_model:
+    aliases: [page object model, pom, page object]
+    related: [cucumber]
+    group: design_pattern

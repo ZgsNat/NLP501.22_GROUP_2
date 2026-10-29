@@ -1,0 +1,25 @@
+# Score(CV, JD) = 1[H(c)] × Σ_k w(c,k) · S(c,k)
+# H(c): hard knock-out (missing a must-have tool → score 0). w(c,k): weights per company type, sum = 1.0.
+criteria:
+  tools: Tools / frameworks (must-have)
+  automation_depth: Automation depth (1–4)
+  programming_language: Programming language
+  test_types: Test types (Web / Mobile / API)
+  cicd_infra: CI/CD & test infrastructure
+  experience_level: Years of experience & seniority
+  istqb: ISTQB foundation
+  domain_language: Domain knowledge & English
+
+profiles:
+  default:
+    label: Default (balanced)
+    weights: {tools: 0.25, automation_depth: 0.20, programming_language: 0.15, test_types: 0.10, cicd_infra: 0.10, experience_level: 0.10, istqb: 0.05, domain_language: 0.05}
+  outsourcing:
+    label: Outsourcing
+    weights: {tools: 0.25, automation_depth: 0.10, programming_language: 0.10, test_types: 0.15, cicd_infra: 0.05, experience_level: 0.10, istqb: 0.05, domain_language: 0.20}
+  bank:
+    label: Bank & Fintech
+    weights: {tools: 0.20, automation_depth: 0.20, programming_language: 0.10, test_types: 0.10, cicd_infra: 0.10, experience_level: 0.10, istqb: 0.10, domain_language: 0.10}
+  startup:
+    label: Mobile startup
+    weights: {tools: 0.25, automation_depth: 0.15, programming_language: 0.15, test_types: 0.20, cicd_infra: 0.15, experience_level: 0.05, istqb: 0.00, domain_language: 0.05}
