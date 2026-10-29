@@ -20,7 +20,7 @@ const LOOP_OF: Partial<Record<NodeName, LoopKey>> = {
 function applyEvent(s: RunState, ev: StreamEvent): RunState {
   switch (ev.type) {
     case 'run_started':
-      return { ...s, runId: ev.run_id }
+      return { ...s, runId: ev.run_id, traceUrl: ev.trace_url ?? null }
     case 'node_start':
       return { ...s, interrupt: null, nodes: { ...s.nodes, [ev.node]: { status: 'running' } } }
     case 'node_end':
@@ -52,7 +52,7 @@ function applyEvent(s: RunState, ev: StreamEvent): RunState {
         nodes: { ...s.nodes, [node]: { status: 'waiting', ms } } }
     }
     case 'done':
-      return { ...s, running: false, done: true, interrupt: null, values: { ...s.values, report: ev.report } }
+      return { ...s, running: false, done: true, interrupt: null, values: { ...s.values, report: ev.report }, usage: ev.usage ?? null }
     case 'error':
       return { ...s, running: false }
   }
@@ -67,6 +67,8 @@ export default function App() {
 
   useEffect(() => {
     api.config().then(setConfig).catch((e) => setError(`Cannot load /api/config: ${e.message}`))
+    const shared = new URLSearchParams(location.search).get('run') // ?run=<id> → shareable link to a run
+    if (shared) { setLoadId(shared); load(shared) }
   }, [])
 
   async function consume(stream: AsyncIterable<StreamEvent>, myGen: number) {
@@ -99,17 +101,18 @@ export default function App() {
     consume(api.resume(run.runId, body), ++gen.current)
   }
 
-  async function load() {
-    if (!loadId.trim()) return
+  async function load(id = loadId) {
+    if (!id.trim()) return
     setError(null)
     try {
-      const snap = await api.getRun(loadId.trim())
+      const snap = await api.getRun(id.trim())
       gen.current++
       const finished = snap.next.length === 0 && !snap.interrupt
       const nodes: RunState['nodes'] = {}
       if (finished) for (const n of NODES) nodes[n] = { status: 'done' }
       if (snap.interrupt) nodes[snap.interrupt.kind === 'review' ? 'hr_review' : 'clarify'] = { status: 'waiting' }
-      setRun({ ...emptyRun, runId: snap.run_id, values: snap.values, interrupt: snap.interrupt, nodes, done: finished })
+      setRun({ ...emptyRun, runId: snap.run_id, values: snap.values, interrupt: snap.interrupt, nodes, done: finished,
+        usage: snap.usage?.calls ? snap.usage : null, logs: snap.logs ?? [] })
     } catch (e) {
       setError(`Cannot load run: ${(e as Error).message}`)
     }
@@ -137,7 +140,17 @@ export default function App() {
       <div className="layout">
         <aside>
           <RunPanel config={config} running={run.running} onStart={start} />
-          {run.runId && <p className="muted mono">run {run.runId}</p>}
+          {run.runId && (
+            <p className="muted mono">
+              run {run.runId}
+              {run.traceUrl && <> · <a href={run.traceUrl} target="_blank" rel="noreferrer">trace</a></>}
+            </p>
+          )}
+          {run.usage && (
+            <p className="muted mono" title={Object.entries(run.usage.by_node).map(([n, u]) => `${n}: ${u.calls} calls, ${u.input_tokens + u.output_tokens} tokens`).join('\n')}>
+              LLM {run.usage.calls} calls · {run.usage.total_tokens.toLocaleString()} tokens
+            </p>
+          )}
           <Requirements run={run} />
         </aside>
         <main>

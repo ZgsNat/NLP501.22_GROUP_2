@@ -245,7 +245,7 @@ export const mockApi: Api = {
   resume: (_id, body: ResumeBody) => {
     if ('answers' in body) return play(afterClarify)
     if (body.action === 'adjust') { weights = body.weights as Record<Criterion, number>; return play(afterAdjust(weights)) }
-    return play([{ type: 'done', report }])
+    return play([{ type: 'done', report, usage: { calls: 14, input_tokens: 41200, output_tokens: 9800, total_tokens: 51000, by_node: { ingest: { calls: 2, input_tokens: 1800, output_tokens: 400 }, assess: { calls: 9, input_tokens: 33000, output_tokens: 8200 }, arbitrate: { calls: 1, input_tokens: 1400, output_tokens: 100 }, report: { calls: 2, input_tokens: 5000, output_tokens: 1100 } } } }])
   },
   getRun: async (id) => ({
     run_id: id,

@@ -9,7 +9,7 @@ const POS: Record<NodeName, [number, number, string, string]> = {
   search: [340, 70, 'BM25 + dense', 'sky'],
   expand_query: [340, 160, 'ESCO / synonyms', 'sky'],
   rerank: [505, 70, 'cross-encoder', 'purple'],
-  assess: [670, 70, '8 criteria + evidence', 'slate'],
+  assess: [670, 70, '6 LLM + 2 rule criteria', 'slate'],
   verify_evidence: [835, 70, 'quotes in CV?', 'rose'],
   score: [835, 250, 'Σ w·S, knock-out', 'purple'],
   arbitrate: [670, 250, 'near-tie judge', 'purple'],

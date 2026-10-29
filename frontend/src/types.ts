@@ -88,13 +88,13 @@ export type Interrupt =
 
 export type LogLevel = 'info' | 'loop' | 'warn'
 export type StreamEvent =
-  | { type: 'run_started'; run_id: string }
+  | { type: 'run_started'; run_id: string; trace_url?: string | null }
   | { type: 'node_start'; node: NodeName }
   | { type: 'log'; node: NodeName; level: LogLevel; message: string }
   | { type: 'update'; node: NodeName; update: Partial<Values> }
   | { type: 'node_end'; node: NodeName; duration_ms: number }
   | ({ type: 'interrupt' } & Interrupt)
-  | { type: 'done'; report: Report }
+  | { type: 'done'; report: Report; usage?: Usage }
   | { type: 'error'; message: string }
 
 export interface RunSnapshot {
@@ -102,6 +102,14 @@ export interface RunSnapshot {
   values: Partial<Values>
   next: string[]
   interrupt: Interrupt | null
+  usage?: Usage
+  logs?: LogLine[]
+}
+
+// LLM calls + tokens for a run (all resumes), per graph node — see backend observability.UsageCounter
+export interface Usage {
+  calls: number; input_tokens: number; output_tokens: number; total_tokens: number
+  by_node: Record<string, { calls: number; input_tokens: number; output_tokens: number }>
 }
 
 export interface CV { id: string; headline: string; text: string }
@@ -119,8 +127,10 @@ export interface RunState {
   flash: Partial<Record<LoopKey, number>> // bumped each time a loop fires
   running: boolean
   done: boolean
+  usage: Usage | null
+  traceUrl: string | null
 }
 export const emptyRun: RunState = {
   runId: null, values: {}, nodes: {}, logs: [], interrupt: null,
-  expanded: [], flash: {}, running: false, done: false,
+  expanded: [], flash: {}, running: false, done: false, usage: null, traceUrl: null,
 }
