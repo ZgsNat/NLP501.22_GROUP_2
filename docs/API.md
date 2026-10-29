@@ -43,14 +43,14 @@ Body depends on the pending interrupt `kind`:
 Each line is one of:
 
 ```jsonc
-{ "type": "run_started", "run_id": "…" }
+{ "type": "run_started", "run_id": "…", "trace_url": "http://localhost:3000/…" | null }
 { "type": "node_start", "node": "search" }
 { "type": "log", "node": "search", "level": "info" | "loop" | "warn", "message": "…" }
 { "type": "update", "node": "search", "update": { /* partial state, see below */ } }
 { "type": "node_end", "node": "search", "duration_ms": 412 }
 { "type": "interrupt", "kind": "clarification", "payload": { "questions": ["…"] } }
 { "type": "interrupt", "kind": "review", "payload": { "ranking": [/*…*/], "weights": {/*…*/} } }
-{ "type": "done", "report": { /*…*/ } }
+{ "type": "done", "report": { /*…*/ }, "usage": Usage }
 { "type": "error", "message": "…" }
 ```
 `level: "loop"` marks a reflection loop firing (the interesting agentic moments).
@@ -97,5 +97,14 @@ loops: { clarify: number; expand: number; verify: number; arbitrate: number; rev
 ### `GET /runs/{run_id}`
 ```json
 { "run_id": "…", "values": { /* full state, same shapes */ }, "next": ["hr_review"],
-  "interrupt": { "kind": "review", "payload": { } } | null }
+  "interrupt": { "kind": "review", "payload": { } } | null, "usage": Usage,
+  "logs": [{ "type": "log", "node": "search", "level": "loop", "message": "…" }] }
+```
+Usage and the narration log persist in `.runtime/runs/<run_id>/`, so `http://localhost:5173/?run=<run_id>` restores a run
+with its full "why" even after a server restart. `run_id` must match `[A-Za-z0-9_-]{1,64}` (400 otherwise).
+
+### `Usage` (LLM cost accounting, summed over the start stream and every resume)
+```ts
+{ calls: number; input_tokens: number; output_tokens: number; total_tokens: number;
+  by_node: Record<NodeName, { calls: number; input_tokens: number; output_tokens: number }> }
 ```

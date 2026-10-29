@@ -37,11 +37,16 @@ Want cloud models? Put a key in `.env`, then type e.g. `anthropic:claude-sonnet-
 - In the review step, set `istqb` to 0.4 and re-score: **L5** with zero new LLM assessments.
 - Run the same JD with `ollama:qwen3:8b` vs a cloud model. Compare the grounded %, latency and ranking. That's the start of your experiment table.
 
-## 4. Found in tonight's real runs (open questions for you)
-- **Score saturation:** qwen3:8b gives almost everyone 0.90–1.00, so the weighted score barely separates candidates. Is that the model or the prompt? Try a cloud model on the same JD and compare. That comparison is your first experiment.
-- **Arbiter cascades:** in JD-003, CV-002 (highest score, but a Playwright/TS profile for a Selenium/Java JD) was moved from #1 to #5 by four consecutive near-tie decisions. The arbiter was arguably *right*, correcting an over-score. But should one LLM be allowed to override the scores that much? Possible fixes: cap moves per candidate, or rerank a near-tie cluster in one listwise call.
-- **Token accounting:** Langfuse has every trace (sessions = run_id), but no token usage for the Ollama generations. You need real token counts before you can claim "−78% tokens".
-- **JD-003 lesson:** the LLM read "several years" as 3 and flagged no ambiguity, so the run went ahead with **zero** must-have tools. The fix is a deterministic rule ("no must-have tools → always ask HR") that runs *before* the LLM gate.
+## 4. Issues found in real runs, and how v1 resolved them
+| Issue (night 1) | v1 resolution | Principle |
+|---|---|---|
+| **Score saturation**: qwen3:8b gave almost everyone 0.90–1.00 | `tools` and `istqb` (Foundation / Advanced / expired) are pure rules. The LLM extracts **facts** (depth L1–L4, years) and code computes those scores. Only 4/8 criteria are LLM judgement, against a calibrated rubric. Exact ties are ordered by depth → years → relevance. | Extract facts, compute scores |
+| **Arbiter cascades**: CV-002 pushed from #1 to #5 by four consecutive LLM calls | Each candidate is judged at most once; `max_arbiter_calls = 3`. Both sides get a note. | Bounded autonomy |
+| **No token accounting** | `UsageCounter` callback: calls + tokens per node, persisted per run (`.runtime/runs/<id>/usage.json`), shown in the UI and the release-gate table | Measure the cost |
+| **Zero must-have tools went unnoticed** | Rule "no must-have tools → always ask HR" runs before the LLM gate | Rules before models |
+| **Report re-generated after every HR re-weight** | Reused when the top-5 membership is unchanged (0 tokens) | Cheap before expensive |
+
+**Still open:** absolute calibration. On an easy JD (JD-003 after clarification) a strong pool still lands at 0.95–0.99. It's now ordered decisively, but whether 0.97 *means* anything can only be checked against HR gold labels. That's the evaluation phase.
 
 ## 5. What's NOT built yet (next sessions)
 - **Evaluation harness:** gold labels, nDCG@10, Kendall's τ, faithfulness, the B0→B4→P6 ladder and A1/A2 ablations. This turns slide targets into real numbers.

@@ -60,9 +60,9 @@ The 8 criteria are: tools/frameworks · automation depth (L1–L4) · programmin
 |---|---|---|---|
 | **L1** Clarify | JD has no concrete must-have tools (rule), or a fast model judges ambiguities blocking | Graph **pauses**, HR answers, criteria are re-extracted | `max_clarifications` |
 | **L2** Expand | Fewer than `min_coverage` CVs satisfy all must-haves | Accept related skills from the ESCO-lite taxonomy (Playwright → Cypress/Selenium), search again | `max_expansions` |
-| **L3** Arbiter | Two adjacent top-5 candidates within Δ < 0.05 | One LLM pairwise decision with verified evidence. Otherwise no LLM call at all | top 5 only |
+| **L3** Arbiter | Two adjacent top-5 candidates within Δ < 0.05 | One LLM pairwise decision with verified evidence. Otherwise no LLM call at all. Each candidate is judged at most once (no cascades) | `max_arbiter_calls` |
 | **L4** Verify | An evidence quote doesn't exist in the CV text | That candidate is re-assessed with feedback; after the budget, unsupported scores are capped | `max_verify_retries` |
-| **L5** Review | HR re-weights criteria | Deterministic re-score, **no new LLM assessment** | — |
+| **L5** Review | HR re-weights criteria | Deterministic re-score, **no new LLM assessment**; the report is reused if the top 5 are the same people | — |
 
 ### Design principles (harness engineering)
 1. **Bounded autonomy.** Every cycle has a limit in [`config.py`](backend/app/config.py).
@@ -71,7 +71,9 @@ The 8 criteria are: tools/frameworks · automation depth (L1–L4) · programmin
 4. **Verify, don't trust.** Grounding is checked deterministically, at zero tokens.
 5. **Rules before models.** For example, "no must-have tools → always ask HR" runs before any LLM gate.
 6. **Isolate failures.** One candidate's malformed LLM output flags that candidate for manual review and never crashes the run.
-7. **Explainability by construction.** Every node narrates its decisions (`emit()`), which drives the UI timeline, and Langfuse holds the full trace.
+7. **Extract facts, compute scores.** Small LLMs calibrate numbers badly (everyone gets 95) but extract facts well. The LLM reports depth level L1–L4 and years of experience; code turns them into scores. `tools` and `istqb` are pure rules. The LLM scores only 4 of 8 criteria.
+8. **Measure the cost.** A provider-agnostic `UsageCounter` callback records LLM calls and tokens per graph node for every run (`done` event, `GET /runs/{id}`, UI sidebar). This is what any "% tokens saved" claim must be based on.
+9. **Explainability by construction.** Every node narrates its decisions (`emit()`), which drives the UI timeline, and Langfuse holds the full trace.
 
 ---
 
@@ -97,6 +99,8 @@ cd frontend && npm install && npm run dev                # UI http://localhost:5
 ```
 - **No backend?** Open `http://localhost:5173/?mock=1` for a replay of a recorded run.
 - **Terminal only?** `cd backend && uv run python -m scripts.smoke JD-002` runs the whole graph and answers HR interrupts automatically.
+- **Release gate:** with the API running, `cd backend && uv run python -m scripts.e2e` drives all 4 JDs through the HTTP API, plays HR (clarify, one re-weight, approve) and prints the metrics table plus pass/fail.
+- **Share a run:** `http://localhost:5173/?run=<run_id>` opens a finished or paused run.
 - **Tests** (no LLM or Docker needed): `uv run pytest`.
 - **Stop & free RAM:** `docker compose --profile observability down`.
 
@@ -199,11 +203,11 @@ All CVs are **synthetic and anonymised** (no names, ages, genders or contacts). 
 
 **Metrics:** nDCG@10, Kendall's τ against HR ranking, faithfulness (% grounded quotes), p50 latency, cost/JD (tokens from Langfuse). Use a group split to avoid leakage, and a blind gold set.
 
-### Status
-- ✅ Prototype runs end to end (CLI, HTTP + UI, Langfuse) on local `qwen3:8b`, about 3 min per JD.
-- ✅ All five loops observed firing in real runs.
-- ⏳ Evaluation harness (gold labels, B0–B4/P6 ladder, ablations): next milestone.
-- ⚠️ Known issues: score saturation with the 8B model (most candidates score 0.90–1.00); arbiter can cascade within a near-tie cluster; token usage is not yet recorded for Ollama generations. Details are in [`docs/WALKTHROUGH.md`](docs/WALKTHROUGH.md).
+### Status: v1.0 ✅
+- **Release gate passed** on local `qwen3:8b`: all 4 JDs end to end through the HTTP API, all 5 loops observed, decisive rankings, tokens recorded, reports grounded. Measured results and lessons are in **[`docs/RELEASE_V1.md`](docs/RELEASE_V1.md)**.
+- Measured per JD: 2–5 min, 9–23 LLM calls, 21k–53k tokens, 89–100% of evidence quotes grounded on the first pass (100% after L4).
+- ⏳ Next: the evaluation harness (gold labels, nDCG@10 / τ, B0–B4/P6 ladder, A1/A2 ablations).
+- ⚠️ Known limitation: absolute score calibration on easy JDs (strong pools at 0.95–0.99) is unvalidated until there are gold labels.
 
 ---
 
