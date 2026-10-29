@@ -305,6 +305,22 @@ Dữ liệu sau khi lọc: train 3966 cặp / 248 JD, dev 445 cặp / 28 JD, tes
 | Dense e5-base | 956 triplet | 0.807 → 0.827 | 0.749 → 0.797 |
 | Cross-encoder bge | 3966 cặp | 0.682 → 0.809 | 0.629 → 0.707 |
 
+#### Lặp lại với 3 seed trên Colab T4 (29/10/2026)
+
+Notebook chạy cùng cấu hình với seed 42, 7, 13 (mỗi mô hình ~3–4 phút trên T4). Số đọc từ bảng của notebook, lưu ở
+`runs/finetune/20261029-colab-3seeds.json`; slide dùng file này qua `--finetune-seeds`.
+
+| Mô hình | dev: trước → sau (TB ± SD) | test: trước → sau (TB ± SD) | gain test |
+|---|---|---|---|
+| Dense e5-base | 0.807 → 0.813 ± 0.008 | 0.749 → 0.804 ± 0.002 | +0.055 ± 0.002 |
+| Cross-encoder bge | 0.682 → 0.820 ± 0.017 | 0.629 → 0.714 ± 0.010 | +0.085 ± 0.010 |
+
+* Gain trên test lớn hơn nhiều lần độ lệch chuẩn ở cả hai mô hình, và seed nào cũng tăng: fine-tune giúp thật,
+  không phải may mắn của một seed.
+* Gain dev của dense (+0.006 ± 0.008) chưa phân biệt được với nhiễu seed. Dev chỉ có 28 JD.
+* Seed 42 trên GPU cho dev 0.808 / test 0.804, khác bản CPU (0.827 / 0.797) vì phép tính GPU không tất định. Thực
+  nghiệm Gold Set / công khai bên dưới vẫn dùng mô hình seed 42 bản CPU.
+
 Chạy lại thực nghiệm với hai mô hình này: Gold Set ở `runs/experiments/20261029-105306`, dữ liệu công khai ở `runs/experiments/20261029-111458`.
 
 | nDCG@10 | B0 | B1 | B2 | B3 | B4 | P6 |
@@ -411,7 +427,8 @@ từ văn bản JD, không từ kết quả, nhưng phân tích vẫn làm **sau
 * **n = 6 JD mỗi lượt**: CI rộng; một JD có thể đổi kết luận. Trên dữ liệu công khai, 3 JD là cùng một tin nên n hiệu
   dụng chỉ là 4.
 * **Bộ lọc JD công khai dựa trên từ khoá** để lọt một tin không phải QA (xem "Phân tích lỗi").
-* **Fine-tune 1 seed**: chưa có độ lệch chuẩn. Notebook mặc định chạy 3 seed (`SEEDS`), CLI có `--seeds`.
+* **Fine-tune**: gain đã lặp lại với 3 seed trên tập test công khai, nhưng thực nghiệm Gold Set / 6 JD công khai mới
+  chạy với mô hình của một seed.
 * **LLM nhỏ (Qwen 3B / 7B trên CPU)**: kết luận về LLM-all, arbiter và planner có thể khác với LLM lớn hơn.
 * **Impact ratio** đo trên CV tổng hợp; tên đã bị che nên lệch đến từ thuộc tính khác tương quan với nhóm.
 

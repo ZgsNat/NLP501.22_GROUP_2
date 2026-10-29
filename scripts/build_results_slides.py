@@ -723,18 +723,34 @@ def finetune_bullet(syn, ctx) -> str:
     return f"Fine-tune dense: B1 {fmt(b1)} → {fmt(b1_ft)}, {tail}"
 
 
-def _ft_table_rows(ft: Dict[str, Dict[str, Any]]) -> List[List[Any]]:
+def _ft_table_rows(ft: Dict[str, Dict[str, Any]], seeds: Optional[Dict[str, Any]] = None) -> List[List[Any]]:
+    """Before → after per split; with a multi-seed summary, after is the mean ± sd over seeds."""
     rows = [["Mô hình", "Ví dụ train", "nDCG@10 dev", "nDCG@10 test"]]
     names = {"dense": "Dense e5-base", "rerank": "Cross-encoder bge"}
+    summary = (seeds or {}).get("summary", {})
     for target, rep in ft.items():
         cells = []
         for split in ("dev", "test"):
             before, after = rep["before"][split]["ndcg@10"], rep["after"][split]["ndcg@10"]
+            m = summary.get(target, {}).get(split)
+            if m:
+                before, after = m["after_mean"] - m["gain_mean"], m["after_mean"]
             style = {"color": GREEN if after > before else RED, "bold": True}
-            cells.append((f"{fmt(before)} → {fmt(after)}", style))
+            spread = f" ± {m['after_sd']:.3f}" if m else ""
+            cells.append((f"{fmt(before)} → {fmt(after)}{spread}", style))
         unit = "triplet" if target == "dense" else "cặp"
         rows.append([names.get(target, target), f"{rep['n_train_examples']} {unit}", *cells])
     return rows
+
+
+def _seed_reading(seeds: Dict[str, Any]) -> str:
+    """Which gains stand out from the seed-to-seed spread (gain > 2 sd) and which do not."""
+    names = {"dense": "dense", "rerank": "cross-encoder"}
+    weak = [f"{names.get(t, t)} {split} (+{fmt(m['gain_mean'])} ± {m['gain_sd']:.3f})"
+            for t, splits in seeds["summary"].items() for split, m in splits.items()
+            if not m["gain_mean"] > 2 * m["gain_sd"]]
+    return ("Mọi gain lớn hơn 2 lần độ lệch chuẩn." if not weak else
+            "Gain lớn hơn 2 lần độ lệch chuẩn, trừ " + ", ".join(weak) + ": chưa phân biệt được với nhiễu seed.")
 
 
 def slide_finetune(prs, syn, pub, ctx, page, total):
@@ -747,7 +763,8 @@ def slide_finetune(prs, syn, pub, ctx, page, total):
               [(SECTION, "section"), ("COLAB T4 · notebooks/finetune_colab.ipynb", "violet")], page, total, *nav(page))
     x0 = 213 * PX
     text(s, x0, 1.88, 4.6, 0.3, "Trên cặp công khai không phải QA (trước → sau fine-tune)", size=10, bold=True)
-    table(s, x0, 2.18, 4.6, _ft_table_rows(ft), [1.5, 0.8, 1.25, 1.25], size=9, row_h=0.34)
+    seeds = ctx.get("ft_seeds")
+    table(s, x0, 2.18, 4.6, _ft_table_rows(ft, seeds), [1.3, 0.8, 1.25, 1.25], size=9, row_h=0.34)
     any_rep = next(iter(ft.values()))
     d = any_rep["data"]
     note(s, x0, 3.4, 4.6, 1.25, "Chống rò rỉ:",
@@ -756,9 +773,12 @@ def slide_finetune(prs, syn, pub, ctx, page, total):
          "Dữ liệu tải thẳng từ Hugging Face: không CV nào rời máy nhóm.", "violet", size=9)
     note(s, x0, 4.8, 4.6, 1.35, "Cách làm:",
          f"triplet (JD, Good Fit, No Fit) + contrastive loss (in-batch negative) cho e5; BCE nhãn 0 / 0.5 / 1 cho "
-         f"cross-encoder; {any_rep['config']['epochs']} epoch, max_len {any_rep['config']['max_len']}, "
-         f"1 seed ({any_rep['config']['seed']}), chưa có độ lệch chuẩn. Notebook sinh từ cùng module, mặc định "
-         "chạy 3 seed để báo cáo trung bình ± độ lệch chuẩn.", "blue", size=9)
+         f"cross-encoder; {any_rep['config']['epochs']} epoch, max_len {any_rep['config']['max_len']}, " +
+         (f"{len(seeds['seeds'])} seed ({', '.join(map(str, seeds['seeds']))}) trên Colab T4, bảng là trung bình ± "
+          f"độ lệch chuẩn. {_seed_reading(seeds)} Biểu đồ dùng mô hình seed {any_rep['config']['seed']}."
+          if seeds else
+          f"1 seed ({any_rep['config']['seed']}), chưa có độ lệch chuẩn. Notebook sinh từ cùng module, mặc định "
+          "chạy 3 seed để báo cáo trung bình ± độ lệch chuẩn."), "blue", size=9)
     cfgs = [c for c in ("B1", "B2", "B3", "P6") if syn_ft and c in syn_ft["means"]]
     if cfgs:
         bar_chart(s, x0 + 4.8, 1.88, 4.98, 2.15, cfgs,
@@ -836,7 +856,8 @@ SPEAKER_NOTES = {
              "hơn LLM-all nhiều lần; nDCG thấp hơn 0.012 nhưng CI95 chưa loại trừ mức kém hơn ε = 0.02 nên H3 bị bác bỏ.",
     "finetune": "Phần huấn luyện chạy trên Colab bằng notebook sinh từ code của repo. Dữ liệu train là cặp công khai "
                 "không phải QA để không rò rỉ sang tập đánh giá. Đọc bảng trái (dữ liệu cùng phân bố với train) "
-                "rồi biểu đồ phải (tập đánh giá của nhóm).",
+                "rồi biểu đồ phải (tập đánh giá của nhóm). Bảng là trung bình 3 seed: gain test của cả hai mô hình lớn "
+                "hơn nhiều lần độ lệch chuẩn, còn gain dev của dense nằm trong nhiễu seed.",
     "agent": "Planner LLM chỉ chọn trong công cụ có guardrail. Với 7B sau khi sửa ngân sách, H7 được chấp nhận nhưng "
              "AG vẫn tốn LLM call hơn luật.",
     "public": "Trên dữ liệu công khai lợi thế không lặp lại ở trung bình: slide sau giải thích. SkillSpan: từ điển "
@@ -885,6 +906,7 @@ def main() -> None:
     ap.add_argument("--h7", action="append", default=[], help="label=run_dir, in display order")
     ap.add_argument("--spans", help="JSON printed by `cv_agent eval-spans`")
     ap.add_argument("--finetune", action="append", default=[], help="model dir with finetune_metrics.json")
+    ap.add_argument("--finetune-seeds", help="JSON with a seed_summary of several fine-tune seeds")
     ap.add_argument("--synthetic-ft", help="run dir: same ladder with the fine-tuned models")
     ap.add_argument("--public-ft", help="run dir on data/public with the fine-tuned models")
     ap.add_argument("--audit", help="JSON lines printed by `cv_agent audit`, one per JD")
@@ -901,7 +923,8 @@ def main() -> None:
     for d in args.finetune:
         rep = json.loads((Path(d) / "finetune_metrics.json").read_text(encoding="utf-8"))
         ft[rep["config"]["target"]] = rep
-    ctx = {"ft": ft, "syn_ft": load_summary(Path(args.synthetic_ft)) if args.synthetic_ft else None,
+    ctx = {"ft": ft, "ft_seeds": json.loads(Path(args.finetune_seeds).read_text(encoding="utf-8"))
+           if args.finetune_seeds else None, "syn_ft": load_summary(Path(args.synthetic_ft)) if args.synthetic_ft else None,
            "pub_ft": load_summary(Path(args.public_ft)) if args.public_ft else None,
            "audit": [json.loads(line) for line in Path(args.audit).read_text(encoding="utf-8").splitlines()
                      if line.strip()] if args.audit else None,
