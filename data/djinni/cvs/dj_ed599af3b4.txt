@@ -1,0 +1,21 @@
+Junior QA Engineer
+0 năm kinh nghiệm · English: upper
+
+I have five pet-projects:
+- successfully developed and maintained test cases;
+- designed bug repotrs;
+- skiiled in using TestRail;
+- effectively worked with Jira;
+- used Postman to ensure API testing;
+- have general comprehesion of XML and JSON data formats;
+- successfully utilized SQL
+Pet-projects:
+
+- Edorado.ua (Jira) - system testing of web application, bug reports creating
+
+- Privat24 (TestRail)  - mobile application testing, test cases designing
+
+- Skype (Jira) - usability testing, bug reports creating
+I am determined and capable Junior Quality Assurance Engineer with a strong knowledge basis in the theory of testing as well as testing processes.
+I also have practical experience with Testrail, Jira, Postman, SQL, development tools and confident in designing test cases, bug reports and creating queries.
+I am looking forward to applying my knowledge to a challenging project. I am searching for a company where I could start my career path as well as gain practical experience and professional growth.

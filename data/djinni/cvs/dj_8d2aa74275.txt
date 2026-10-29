@@ -1,0 +1,10 @@
+QA Automation Engineer
+8 năm kinh nghiệm · English: upper
+
+======================================
+AQA stuff:
+- WebUI testing via Python Selenium
+- API testing via Python Pytest
+- Allure reports(jenkins/Azure etc) + slack/teams
+:xdist, ordering, rerunfailures etc
+======================================

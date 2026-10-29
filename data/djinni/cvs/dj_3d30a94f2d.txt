@@ -1,0 +1,17 @@
+Team Lead/Senior QA Automation Engineer (C#)
+10 năm kinh nghiệm · English: upper
+
+Created effective automation process from scratch
+10 years in QA
+7 years in test automation
+
+- C#
+- Selenium Webdriver
+- NUnit, xUnit
+- Bamboo, Jenkins
+- Bitbucket
+
+Create and maintain automation frameworks
+UI and API testing 
+Automated tests integration in CI proccess
+Mentoring

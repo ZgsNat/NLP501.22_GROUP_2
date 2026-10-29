@@ -1,0 +1,7 @@
+Junior QA Engineer
+0 năm kinh nghiệm · English: basic
+
+The project of adaptive layout of a two-page site (HTML, CSS).
+Setting in Trello via API and POSTMAN (create columns on the left and right of the test board, create cards in the columns you create and adding tests: to check the status of the code; to check the time of the request; to check that the value "name" is a string).
+Database queries in DBeaver (Select employees from the "employees" table and sort them by date of employment in descending order. Choose an idi, first name, last name and date of employment. Calculate the number of employees from the table "titles" who occupy a position (title) - "Engineer". Assign the name "total engineers" to the resulting column.
+Choose the name and surnames of employees, their positions in the company. Display the first (first_name), last name (last_name) and title using the tables "employees" and "titles".)

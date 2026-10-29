@@ -1,0 +1,9 @@
+Automation QA Engineer
+4 năm kinh nghiệm · English: upper
+
+I have extensive experience in automation testing, using tools such as Selenium, Selenide, TestNG, JUnit, RestAssured, Jackson. I have worked with databases such as SQL and MongoDB, message brokers like RabbitMq, and cloud-based testing platforms like BrowserStack.
+
+My experience includes developing test automation frameworks from scratch, maintaining automation tests, developing UI, API and mobile automation tests, collaborating with development teams, and working with product owners on requirements clarification. 
+
+I am enthusiastic about growing in the automation testing field and utilizing my skills to contribute to impactful projects..
+An interesting project. Decent salary. Professional growth. Friendly staff.

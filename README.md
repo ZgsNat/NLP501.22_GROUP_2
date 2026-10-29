@@ -34,6 +34,10 @@ ollama pull qwen2.5:7b                   # LLM local mặc định (NFR-02: PII 
 | Huấn luyện tagger skill JobBERT trên SkillSpan (nên chạy trên Colab GPU) | `python -m cv_agent train-tagger` (ghi `models/jobbert-base-cased-skillspan-tagger/tagger_metrics.json`) |
 | Chấm span SkillSpan test: từ điển, tagger, hai bộ hợp lại | `python -m cv_agent eval-spans --tagger models/jobbert-base-cased-skillspan-tagger --hybrid` |
 | Phân tích lỗi theo JD của một lượt (post hoc) | `python -m cv_agent error-analysis runs/experiments/<timestamp> --data data/public` |
+| Chuẩn bị Gold Set thật từ Djinni (MIT): chọn JD và tập ứng viên | `python -m cv_agent prepare-djinni` (đặt 2 file parquet vào `data/djinni/raw/`) |
+| Chọn cặp cần gán nhãn (pooling B0–B3) và xuất bảng Excel cho 2 người | `python -m cv_agent label-pool --neural --dense-model models/multilingual-e5-base-rjf-ft --rerank-model models/bge-reranker-base-rjf-ft` |
+| Nhập nhãn, tính Cohen κ có trọng số, ghi `gold.json` | `python -m cv_agent import-labels data/djinni/labeling/labels_A.xlsx data/djinni/labeling/labels_B.xlsx` |
+| Sinh báo cáo kết quả (Word) từ các thư mục run | `python scripts/build_report.py --synthetic runs/experiments/<ts> ...` (xem đầu file) |
 | Thực nghiệm với mô hình đã fine-tune | `python -m cv_agent experiments --neural --dense-model models/multilingual-e5-base-rjf-ft --rerank-model models/bge-reranker-base-rjf-ft` |
 | Demo app cho HR | `streamlit run app/streamlit_app.py` |
 | Unit test + coverage | `pytest --cov=cv_agent` |
@@ -250,7 +254,26 @@ Chạy ngày 27/10/2026: `python -m cv_agent experiments --neural --llm ollama -
 * H5 vẫn bác bỏ khi xét từng JD: bank_api_qa 0.72, ambiguous_senior 0.62, ambiguous_junior 0.40 < 0.8.
 * Mặc định `configs/base.yaml` vẫn là hashing/lexical (chạy được không cần GPU); bật neural bằng `--neural`.
 
-### Lượt chạy đầy đủ 28/10/2026 (dùng cho slide 28–37)
+### Lượt chạy cuối 29/10/2026 (dùng cho slide 28–38 và báo cáo Word)
+
+Cùng mã nguồn hiện tại, mô hình dense và cross-encoder đã tinh chỉnh, `qwen2.5:3b`, toàn bộ 12 cấu hình: Gold Set ở
+`runs/experiments/20261029-211910`, dữ liệu công khai ở `runs/experiments/20261029-233258`. Lệnh: `runs/final/run_all.sh`.
+
+| nDCG@10 | B0 | B1 | B2 | B3 | B4 | LLM-all | P6 | A1 | A2 | P6-noclar | AG-rules | AG |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Gold Set | 0.567 | 0.480 | 0.607 | 0.820 | 0.838 | 0.848 | 0.835 | 0.835 | 0.863 | 0.847 | 0.829 | 0.829 |
+
+* Tỷ lệ nhận định thiếu bằng chứng: P6 11.5%, A1 40.8%, B4 47.2% → **H4 được ủng hộ** (CI 95% [−0.38, −0.20]).
+* **H0 không được ủng hộ** theo quy tắc đặt trước: độ trung thực của P6 tốt hơn B4 rõ rệt (CI [−0.42, −0.30]) nhưng P6
+  vượt ngân sách thời gian ở JD `bank_api_qa` (1,493 giây) và phải dùng phương án dự phòng. JD này chạy lúc máy đang
+  làm tác vụ khác; cần chạy lại trên máy rảnh trước khi kết luận về H0.
+* H7 với 3B không được ủng hộ (luật thay quyết định của LLM ở 36% số bước); với 7B sau điều chỉnh (28/10) được ủng hộ.
+* Dữ liệu công khai: B1 0.699 cao nhất, P6 0.577 so với BM25 0.578; 3/6 JD là cùng một tin (xem "Phân tích lỗi").
+* Hoán đổi tên không đổi thứ hạng ở cả 6 JD (`runs/final/audit_B3.jsonl`).
+* Báo cáo Word `Báo cáo kết quả thực nghiệm – Nhóm 2 NLP501.docx` sinh bằng `scripts/build_report.py` từ đúng các thư mục
+  này; kịch bản trình bày đã có phần slide 28–38.
+
+### Lượt chạy đầy đủ 28/10/2026 (mô hình chưa tinh chỉnh)
 
 `experiments --neural --llm ollama --model qwen2.5:3b`. Gold Set tổng hợp ở `runs/experiments/20261028-220112`,
 dữ liệu công khai ở `runs/experiments/20261028-232304`.
@@ -450,6 +473,8 @@ từ văn bản JD, không từ kết quả, nhưng phân tích vẫn làm **sau
 * Mô hình neural (`--neural`) tải từ Hugging Face lần đầu (~3 GB); đặt `HF_HOME` sang ổ còn trống nếu ổ C đầy.
 
 ## Định dạng Gold Set thật
+
+Gold Set thật đang chuẩn bị từ Djinni Recruitment Dataset (MIT, đã ẩn danh): 8 JD, 250 hồ sơ, 424 cặp cần gán nhãn. Quy trình gán nhãn, đo κ và chạy lại thực nghiệm: [`data/djinni/README.md`](data/djinni/README.md).
 
 ```
 data/<gold_set>/cvs/*.pdf|docx|txt

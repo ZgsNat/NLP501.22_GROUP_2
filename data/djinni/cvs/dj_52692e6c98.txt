@@ -1,0 +1,13 @@
+Automation QA Engineer, Senior manual QA Engineer
+11 năm kinh nghiệm · English: upper
+
+I have been working in software testing for more ten years, and more three years in test automation. I have experience in software testing, which includes testing web applications, desktop applications and mobile systems. Apart from that, I have experience in Understanding of QA Life Cycle, SDLC and Bug Life Cycle. I also have expert knowledge of software testing theory and QA. I have a perfect understanding of the goals and objectives of the testing process and phases of testing. I am also experienced in creating and writing test documentations (Test Plan, Checklist, Test Cases, Bug Report). In addition, I am familiar with Agile software development methodologies. Certified as Scrum Master.
+17 years of solid and proven experience in application software testing. Good experience with web-,
+desktop-, and mobile applications and automated testing tools, able to work fluently with all test
+documentation. Proven experience of creating automation frameworks from zero and maintaining
+existing ones. Leadership experience of leading junior QA’s and managing testing teams during product
+development. Certified Professional Scrum Master’s degree, strong practice in teams.
+
+Java Core, Java8, TAF architecture, CI/CD, Frontend/Backend testing, QA process, design
+patterns, BDD, JUnit, Maven, Scrum Master
+I'm looking for a challenging and interesting project.

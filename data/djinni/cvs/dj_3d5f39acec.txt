@@ -1,0 +1,12 @@
+QA engineer
+11 năm kinh nghiệm · English: intermediate
+
+Experience on different domain areas.
+5+ experience in banking projects
+ISTQB certified tester  (foundation certificate)
+* Preparing and maintaining testing documentation.
+* Experience in different types of testing: functional, regression/acceptance, integration testing, automation etc.
+* Technologies: SOAP, REST, SQL, Selenium WebDriver, client-server architecture.
+* Automation frameworks: WebDriver + Java, Junit
+* Business Analysis Fundamentals.
+* Soft skills: communication with customers/product owners, process integration and improvements

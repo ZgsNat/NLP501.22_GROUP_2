@@ -1,0 +1,22 @@
+Manual QA Engineer
+0 năm kinh nghiệm · English: intermediate
+
+I'm a responsible and friendly person. I like learning something new and I can apart to any
+change easily. My professional interests are reading articles and watching web sources related
+to testing and the QA Engineer profession, and ongoing training in English.
+Right now, I'm open to new opportunities and hope to join the team which will be the right
+match for me, where I could implement my potential and contribute to great results!
+
+  Skills
+Strong understanding of software development life cycle and bug life cycle.
+Knowledge of software testing processes and methodologies.
+Hands-on experience in testing (testing mobile and web applications).
+Creating test documentation (bug report, test case, checklist).
+Proficient in Test Design Techniques (Equivalence class, Boundary value, Decision table).
+Experience in different types of testing.
+Acquainted with HTTP, Chrome DevTools, HTML/CSS, and Browser Logs.
+Competent knowledge of Agile (Scrum, Kanban).
+   Working with:
+Jira (level: elementary)
+SQL Server Management Studio (level: elementary)
+Postman (level: beginner)

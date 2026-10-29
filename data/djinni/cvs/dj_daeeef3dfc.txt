@@ -1,0 +1,14 @@
+Automation QA Engineer (Java)
+2 năm kinh nghiệm · English: intermediate
+
+A professional with more than 2 years of AQA experience in education and Gambling projects. Technologies that was used: jdi, selenide web driver. RestAssured, TestNG, Allure, ReportPortal. Gitlab CI/CD, Jenkins, Sentry. Db: OrmLite, spring data.
+- creating and updating automated tests
+- running and analyzing automated tests
+- reviewing code, creating and improving rules for creating automated tests
+- pre-plannings, plannings 
+- manual testing for request
+- creating API tests
+- CRUD operations in DBs
+- works with development team, QA engineers, BA, PM.
+- I have experience with performance testing
+Would like to work on WEB products. I wouldn't work on desktop and mobile applications.

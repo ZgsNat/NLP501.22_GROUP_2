@@ -1,0 +1,8 @@
+QA Automation Engineer
+2 năm kinh nghiệm · English: upper
+
+Since May, 2021 QA Automation Engineer in EPAM Systems (Kiev, Ukraine). In April, 2022 I passed the assessment for Middle QA Automation Engineer level successfully.
+- API testing (BDD) 
+- Automated testing using: Cucumber, Rest Assured, basic knowledge of Selenium Web Driver (Java).
+- Performance testing using: Scala, Gatling.
+- Experience with cloud platform AWS, Dynamo and Aurora databases.

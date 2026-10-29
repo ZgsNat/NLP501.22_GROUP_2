@@ -1,0 +1,18 @@
+Manual QA Engineer
+1 năm kinh nghiệm · English: upper
+
+Yandex.Practicum October 2022 – February 2023
+QA Engineer Online
+• Conducting requirements analysis (search for "gray" areas, contradictions in requirements, decomposition of
+requirements, drawing up block diagrams and mindmaps).
+• Designing test documentation (checklists, test cases).
+• Conducting functional and non-functional testing of web applications.
+• Conducting regression and smoke testing.
+• API testing with Postman/Charls.
+MoveOn October 2022 – current
+Manual QA Engineer Almaty, Kazakhstan
+• Manual functional and non-functional testing of web and mobile applications.
+• File bugs in Jira, replay, check for fixes, close defects.
+• API testing with Postman/Charls/DevTools.
+• Development, modification and execution of software test plans (checklists, test cases, block diagrams, mindmaps).
+• Working in agile team with every day stand-up for discussing cases and tasks.

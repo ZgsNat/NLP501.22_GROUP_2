@@ -1,0 +1,38 @@
+Manual QA Engineer
+5 năm kinh nghiệm · English: intermediate
+
+Name of employer: Ciklum
+Dates of employment: June 2018 - current
+Job title: Middle manual QA software engineer 
+Project description and Responsibilities: 
+-> ERP system (web app) - system for selling elite wines
+-> in-house developed system (web app) dedicated to the construction business
+Responsibilities:
+- test new functionality (functional testing)
+- test design and execution, review and update test cases
+- confirmation testing, reporting new bugs
+- performing smoke, regression testing, localization/ UI design reviewing/ API Regression testing/ Integration 
+testing
+- participation of all scrum ceremonies - daily meets, internal demos, retrospectives, grooming and planning meets
+(planing pocker)
+
+Name of employer: BeKey.inc, Kharkiv (Ukraine) 
+Dates of employment: Aug 2017 - May 2018
+Job title: Junior manual QA software engineer 
+Project description and Responsibilities:
+-> CRM system (web app) for holding company that allows offices to communicate with each other, create diverse documentation (orders from the clients, applications, contracts), make profit calculations, office reports etc. 
+-> Web sites (with mobile versions) that are integrated with the CRM system. The main purpose of these 
+projects is to represent the brand of certification companies, their services and promotional offers on the 
+Internet to potential customers. 
+-> Web site and Mobile app for booking medical appointments, with the payment system. 
+-> Web site (with mobile versions) that allows registered users take part of the lottery and win prizes. Project
+has the payment system. 
+-> Web site (with mobile versions) for publishing recipes by many companies. Project allows users to save 
+their time when buying food for cooking. 
+Responsibilities: 
+ - Manual QA testing, test cases and check lists creation/support; 
+- functional, cross-browser and compatibility, GUI, usability testing; 
+- work with database MySQL(select); 
+- regression testing in the end of sprints before projects release;
+- creating bug reports and statistic reports; 
+- taking part of retrospective and planning meetings.

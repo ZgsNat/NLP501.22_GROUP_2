@@ -1,0 +1,10 @@
+Middle .NET Developer
+3 năm kinh nghiệm · English: intermediate
+
+I developed enterprise insurance apps
+Client Portal-Asp Net Core, Blazor Wasm
+CRM-Asp Net Cor, Blazor Wasm
+Policy Management System Asp Net MVC,
+Libra Invoice Management System-Asp Net MVC,
+Claim Management System -Web Forms,
+Mortgage Contract System -Web Forms,

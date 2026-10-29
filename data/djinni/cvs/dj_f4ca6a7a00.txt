@@ -1,0 +1,11 @@
+QA Engineer / QA Automation Engineer
+3 năm kinh nghiệm · English: intermediate
+
+- More than 3 years experience of testing the web and mobile applications. Developing, maintaining and executing.
+- Knowledge of software testing and software development processes and methodologies.
+- Experience in testing the web, desktop, and mobile (IOS, Android) applications manual and automation.
+- Experience work with CI(Bamboo / Jenkins), automation tests environments configuration on CI.
+- Automation Testing with Appium(Android / iOS).- Experience in test reporting and development of documentation.
+- Analyzing and creating requirements and design specifications.
+- Good knowledge of Linux, Mac OS.
+- Stable and successful company. Interesting Project

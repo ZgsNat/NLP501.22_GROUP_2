@@ -1,0 +1,35 @@
+Automation QA Engineer
+3 năm kinh nghiệm · English: upper
+
+Work experience:
+Project 1
+Responsibilities:
+  - Automation testing
+  - Code review
+  - Manual testing of Web application and mobile applications
+  - Reporting found issues
+  - Communication with the dev team
+  - Creating and supporting tests suites
+  - Participation in daily standups and planning meetings
+  - Test documentation creation
+  - Work with Continuous Integration
+  - Smoke/sanity/regression testing of web and mobile apps
+Platform: Web
+Technologies: JavaScript, TypeScript, Cypress
+Instruments: Jira, Git, TestRail
+
+Project 2
+Responsibilities:
+  - Automation testing of web/mobile application
+  - Code review
+  - Manual testing of Web/mobile applications
+  - Reporting found issues
+  - Communication with the dev team
+  - Creating and supporting tests suites
+  - Participation in daily standups
+  - Test documentation creation
+  - Configuring test reporting system
+Platform: Web, Mobile
+Technologies: JavaScript, WDIO, Python, Robot, Allure
+Instruments: Jira, Git, BrowserStack
+I'm looking for interesting project, friendly team to work with & professional growth

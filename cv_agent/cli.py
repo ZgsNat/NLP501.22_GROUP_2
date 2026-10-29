@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import logging
 import sys
@@ -239,6 +240,74 @@ def cmd_error_analysis(args) -> int:
     return 0
 
 
+def cmd_prepare_djinni(args) -> int:
+    """Pick JDs and a shared candidate pool from the Djinni dataset for human labelling."""
+    from cv_agent.data.djinni import build
+    meta = build(Path(args.raw), Path(args.out), args.n_jds, args.n_auto, args.n_manual, args.n_other, args.seed)
+    print(f"{args.out}: {meta['n_jds']} JD, {meta['n_cvs']} CV ({meta['license']})")
+    return 0
+
+
+def cmd_label_pool(args) -> int:
+    """Pool the top CVs of several configurations and write one labelling workbook per annotator."""
+    from cv_agent.eval.annotation import pool, write_sheet
+    from cv_agent.eval.experiments import specs_for, system_rankings
+    from cv_agent.ingest.pipeline import ingest_dir
+
+    data, out = Path(args.data), Path(args.out)
+    specs = specs_for(data)
+    cvs = ingest_dir(data / "cvs")
+    overrides = deep_merge(NEURAL_OVERRIDES if args.neural else {}, model_overrides(args))
+    rankings = system_rankings(args.configs.split(","), specs, cvs, out / "runs", overrides or None)
+    universe = [c.cv_id for c in cvs]
+    pooled = {jd: pool(by_cfg, universe, args.depth, args.random, args.seed) for jd, by_cfg in rankings.items()}
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "pool.json").write_text(json.dumps({"configs": args.configs.split(","), "depth": args.depth,
+                                               "n_random": args.random, "seed": args.seed, "pool": pooled},
+                                              ensure_ascii=False, indent=1), encoding="utf-8")
+    items = [(jd, cv) for jd, cvs_ in pooled.items() for cv in cvs_]
+    jds = {s["id"]: (s["title"], s["text"]) for s in specs}
+    texts = {p.stem: p.read_text(encoding="utf-8") for p in (data / "cvs").glob("*.txt")}
+    for name in args.annotators.split(","):
+        write_sheet(out / f"labels_{name}.xlsx", name, items, jds, texts, args.seed)
+    print(f"{len(items)} cặp JD–CV ({len(pooled)} JD) -> {out}/labels_<người gán>.xlsx")
+    return 0
+
+
+def cmd_import_labels(args) -> int:
+    """Agreement (weighted κ) of two labelling workbooks and the merged gold.json."""
+    from cv_agent.eval.annotation import agreement_report, merge, read_sheet
+    from cv_agent.eval.experiments import specs_for
+
+    data = Path(args.data)
+    (a, miss_a), (b, miss_b) = read_sheet(Path(args.sheet_a)), read_sheet(Path(args.sheet_b))
+    if miss_a or miss_b:
+        print(f"Còn ô trống hoặc sai giá trị: A {len(miss_a)}, B {len(miss_b)} (vd. {(miss_a or miss_b)[:3]})")
+        return 2
+    adjudicated = None
+    if args.adjudicated:
+        adjudicated, miss_c = read_sheet(Path(args.adjudicated))
+        if miss_c:
+            print(f"Bảng thống nhất còn {len(miss_c)} ô trống")
+            return 2
+    report = agreement_report(a, b)
+    (data / "agreement.json").write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"κ có trọng số = {report['overall']['weighted_kappa']:.3f}, đồng ý tuyệt đối "
+          f"{report['overall']['exact_agreement']:.1%} trên {report['overall']['n']} cặp")
+    gold, conflicts = merge(a, b, {s["id"]: s.get("split", "test") for s in specs_for(data)}, adjudicated)
+    if conflicts:
+        path = data / "conflicts.csv"
+        with open(path, "w", newline="", encoding="utf-8") as fh:
+            w = csv.writer(fh)
+            w.writerow(["jd_id", "cv_id", "A", "B"])
+            w.writerows(conflicts)
+        print(f"{len(conflicts)} cặp lệch ≥ 2 mức cần thống nhất: {path} (rồi chạy lại với --adjudicated)")
+        return 3
+    (data / "gold.json").write_text(json.dumps(gold, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"gold.json: {len(gold)} JD, {sum(len(g['relevance']) for g in gold.values())} cặp có nhãn")
+    return 0
+
+
 def cmd_rescore(args) -> int:
     from cv_agent.eval.experiments import rescore
     failed = 0
@@ -356,6 +425,33 @@ def build_parser() -> argparse.ArgumentParser:
     ea.add_argument("run", help="runs/experiments/<timestamp> folder")
     ea.add_argument("--data", default=str(ROOT / "data" / "public"), help="data folder of that run (for JD texts)")
     ea.set_defaults(fn=cmd_error_analysis)
+    dj = sub.add_parser("prepare-djinni", help="pick JDs + candidate pool from the Djinni dataset for labelling")
+    dj.add_argument("--raw", default=str(ROOT / "data" / "djinni" / "raw"))
+    dj.add_argument("--out", default=str(ROOT / "data" / "djinni"))
+    dj.add_argument("--n-jds", type=int, default=8)
+    dj.add_argument("--n-auto", type=int, default=150, help="QA Automation profiles")
+    dj.add_argument("--n-manual", type=int, default=70, help="QA (mostly manual) profiles")
+    dj.add_argument("--n-other", type=int, default=30, help="developer profiles (hard negatives)")
+    dj.add_argument("--seed", type=int, default=42)
+    dj.set_defaults(fn=cmd_prepare_djinni)
+    lp = sub.add_parser("label-pool", help="pool the top CVs of several configs and write labelling workbooks")
+    lp.add_argument("--data", default=str(ROOT / "data" / "djinni"))
+    lp.add_argument("--out", default=str(ROOT / "data" / "djinni" / "labeling"))
+    lp.add_argument("--configs", default="B0,B1,B2,B3", help="configurations without LLM calls")
+    lp.add_argument("--depth", type=int, default=20)
+    lp.add_argument("--random", type=int, default=10, help="extra random CVs per JD")
+    lp.add_argument("--annotators", default="A,B")
+    lp.add_argument("--seed", type=int, default=42)
+    lp.add_argument("--neural", action="store_true")
+    lp.add_argument("--dense-model", default=None)
+    lp.add_argument("--rerank-model", default=None)
+    lp.set_defaults(fn=cmd_label_pool)
+    il = sub.add_parser("import-labels", help="weighted κ of two labelling workbooks and the merged gold.json")
+    il.add_argument("sheet_a")
+    il.add_argument("sheet_b")
+    il.add_argument("--data", default=str(ROOT / "data" / "djinni"))
+    il.add_argument("--adjudicated", default=None, help="workbook with the agreed grade for far disagreements")
+    il.set_defaults(fn=cmd_import_labels)
     rs = sub.add_parser("rescore", help="re-test H0-H7 of finished runs from results.csv (no model re-run)")
     rs.add_argument("runs", nargs="+", help="runs/experiments/<timestamp> folders")
     rs.set_defaults(fn=cmd_rescore)

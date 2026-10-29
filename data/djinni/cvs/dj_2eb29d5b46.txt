@@ -1,0 +1,39 @@
+Junior QA Engineer
+2 năm kinh nghiệm · English: fluent
+
+1. QA Automation (JavaScript/Cypress) - QALight - 
+Aug 2023 - Present
+
+2. MasterClass Software Testing with Jira & Agile-Be a QA Lead - Aug 2023
+
+3. Manual Testing - Dublin Coding School -  dublincoding.ie - March 2023 - May 2023
+
+4. QA Manual - Hillel IT School - ithillel.ua - Aug 2022 - Dec 2022 
+
+5. Certificate of Proficiency in English (C2) - Cambridge University Press and Assessment English - Issued Nov 2022 
+
+6. HSK Level 2 of the Chinese Language Proficiency (A2+) - Confucius Institute Headquarters - Issued Dec 2019
+QA tester (freelance) - 6 mos
+Test IO - Crowdtesting company 
+
+- Exploratory testing
+- Bug reproduction
+- Finding and reporting content, visual and functional bugs in web and mobile applications
+- Working with test documentation: user stories, test cases
+
+Tools & Tech: Bug Tracking, Manual Testing, Mobile Testing, Test Cases, Functional Testing, Usability Testing 
+
+Junior QA Manual Tester (contract) - 1 yr 5 mos
+Streambet - Gambling/ Betting/ Online Casino 
+
+- Functional and Non-functional testing
+- Bug reporting using Jira
+- Attending scrum meetings: sprint planning, daily stand up, sprint review, retrospective, refinement
+- Working as a part of the team of 7: 1 Test Lead, 2 Manual Testers, 3 Automation Testers, 1 QA Analyst
+- Creating and executing test cases in BDD format using TestRail
+- Working with requirements and creating user stories
+- Analyzing defects and their priorities
+- Working with relational DB 
+- API testing using Postman
+
+Tools & Tech: PostgreSQL, Postico, Jira, Postman, TestRail, Monosnap, Chrome Dev Tools, Agile, Scrum

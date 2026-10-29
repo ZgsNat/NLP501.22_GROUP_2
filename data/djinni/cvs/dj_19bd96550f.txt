@@ -1,0 +1,10 @@
+Test Automation Engineer
+5 năm kinh nghiệm · English: intermediate
+
+iOS automation with native tools (Swift + XCTest)
+Android automation with native tools (Kotlin + Espresso + Junit)
+Android/iOS apps automation (Java + TestNG + Selenium + Appium)
+GraphqQL/REST API automation (Java + TestNG + REST Assured)
+Web automation (Java + TestNG + Selenide)
+CI tools
+Experience in creation of test automation process from scratch

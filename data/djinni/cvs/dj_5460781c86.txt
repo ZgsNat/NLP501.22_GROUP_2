@@ -1,0 +1,19 @@
+Python Developer
+0 năm kinh nghiệm · English: intermediate
+
+Python developer with engineering background and strong analytical skills. Completed "Python Developer CyberBionic Systematics"(member of program "IT Generation") and "Computer Science for Web Programming by HarvardX" certification programs. Certification training provided hands-on experience with web development using Python, Django, HTML, CSS, JavaScript, SQLite, and Git.
+
+Always trying to move forward by learning new technologies and improving my skills. I am currently taking the "Introduction to Linux" course, improving my Front-End skills, and taking personal English lessons.
+
+I`m eager to apply what I know and learn what I don’t to help move company forward.
+I would like to highlight a few of my educational projects:
+1. E-shop on Django
+This is a fairly simple web application that implements all the necessary functionality for the successful conduct of a small business.
+Technologies: Python, Django, HTML, CSS, JavaScript, SQLite, Git
+2. Telegram bot on aiogram framework
+This asynchronous entertainment telegram bot is a weather and currency information provider. It can display the weather in the user's current location or any specified city, official exchange rates of the Ukrainian hryvnia, and cryptocurrency rates relative to the US dollar.
+Technologies: Python, aiogram, Git
+3. Recycling (in progress)
+A web application in which a recycling program is implemented (search for the nearest collection point, a motivation program with the calculation of bonuses for each user). The project is under active development and will use the following technologies: Python, Flask, HTML, CSS, JavaScript, SQLite, SQLAlchemy, and Git.
+
+The first two projects are already in my portfolio with open access.

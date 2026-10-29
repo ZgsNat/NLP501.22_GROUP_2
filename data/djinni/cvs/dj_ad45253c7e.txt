@@ -1,0 +1,11 @@
+Team Lead/Senior QA
+6 năm kinh nghiệm · English: fluent
+
+Tested wide types of different products. The complex projects were released. 
+Worked for Big Logos.
+Manual and JS Automation testing 
+Protractor, Webdriver.io, Cypress, Got.js, Postman, Newman 
+ISTQB certified
+Azure, AWS, GCP
+Github, Gitlab, Bitbucket, CI/CD
+Experienced in Software Development

@@ -1,0 +1,12 @@
+Senior Automation Engineer / Lead
+11 năm kinh nghiệm · English: upper
+
+Skiils in automation with wide range of languages and tools, ability to be a mentor and leader
+- Experienced test engineer in manual and automated testing (difference stacks: Javascript + Cypress/ WebdriverIO/ Protractor, Java+Selenium, Geb+Groovy+Spock, C#+NUnit, Python)
+- In the recent years I have been working with Cypress+Javascipt stack as a automation framework developer.
+- Effective leader for the automation teams: edication for beginners, managing teams of junior/middle/senior specialists, set up goals, automation strategy development, defining automation milestones
+- Set up effective automatoin at the project using varios automation tools based on customer needs.
+Author of learning course Automation in JavaScript+Cypress.
+- Supportive and creative Mentor. Creation of personal development plan.
+I would like to be a part of a small or big project, work as an automation engineer with JS tools (Cypress, WebdriverIO, Playwright). 
+I would like to work in a product team

@@ -1,0 +1,25 @@
+Automation QA Engineer
+4 năm kinh nghiệm · English: upper
+
+Manual QA Engineer 2+ years
+Automation QA Engineer 2+ years
+
+Automation QA Engineer:
+- Writing clear and maintainable test-scripts using JavaScript with Protractor and Jasmine.
+- Setting up the framework for automation testing from scratch.
+- Writing UI and API tests.
+- Experience with Jenkins, GIT, SVN.
+- Experience with AWS. 
+- Experience with docker, ansible, ant.
+- Сonfident user of linux command line
+- Setting up automation reports Allure with logs, screenshots and video.
+- Automation test planning, creation auto backlog.
+
+Manual QA Engineer:
+- Experience in manual Black Box and Grey Box testings.
+- Knowledge of QA techniques and methodologies.
+- Experience in different types of testing.
+- Experience in witting technical documentation.
+- Experience in writing test cases, checklists and bug reports.
+- Understanding the role of the QA in the Software Development Life Cycle.
+- Using most popular Bug Tracking Systems - JIRA.

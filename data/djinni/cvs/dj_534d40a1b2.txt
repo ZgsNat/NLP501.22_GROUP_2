@@ -1,0 +1,20 @@
+QA Manual/QA Automation Engineer
+5 năm kinh nghiệm · English: upper
+
+More than five years of experience in manual testing,  and more than one year of experience in automation testing.
+
+Experience in working on big enterprise projects with complex business logic; e-commerce project; 
+
+Skills:   
+Automation testing (Java, TestNG, Selenium, Jenkins, Cucumber)
+Manual testing, Black-box techniques
+Test Case Specification, Check lists
+Defect reporting and tracking
+Requirements analysis
+Working with test documentation
+Mobile testing, GUI testing
+Reading and analyzing logs 
+
+Tools:
+SQLDeveloper, IntelliJ IDEA, VMware, Browserstack, WinSCP
+friendly environment, java automation

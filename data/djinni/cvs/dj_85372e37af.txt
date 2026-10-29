@@ -1,0 +1,15 @@
+C# Developer
+4 năm kinh nghiệm · English: intermediate
+
+**Software Development Team Lead.**
+
+- VoIP products, softphone, chat bot: Development and stabilization, bug fixes;
+- Participation in sprints planning;
+- Assistance with onboarding for new team members;
+- Analysis of software on customers platforms for potential causes of bugs;
+- Optimization and stabilization of software;
+- Development of new functionality;
+- Code review;
+- Design and implementation of new software;
+- Interaction with customers, business analysts, and internal customers to identify new software requirements;
+- Establishing processes within the team.

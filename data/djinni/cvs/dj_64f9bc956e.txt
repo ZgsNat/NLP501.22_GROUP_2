@@ -1,0 +1,22 @@
+Junior QA Engineer
+0.5 năm kinh nghiệm · English: basic
+
+Analysis of business requirements for the software testing process. Experience in the formation of test documentation and ideas for improving the quality of software, test cases.
+1. GoIT website.
+Role: QA Engineer
+Specification work. Writing test cases. Search for bugs. Writing bug reports
+Technologies: TestRail, Jira
+
+2. App "Privat24"
+Role: QA Engineer
+Functional testing application. Writing test cases, use cases.
+Technologies: QAse, TestRail
+
+3.Website finance.ua
+Role: QA Engineer
+Сreating checklist for testing function, website analysis.
+
+4. App Postman
+Role: QA Engineer
+Implemented API for assistance with the main methods of client-server architecture. Working with site backend
+I am a QA Engineer looking for a full-time position in a company that s aimed at making both everyday life and business easier, more productive and user-friendly. I am a fast learner, responsible and ready to difficult tasks.

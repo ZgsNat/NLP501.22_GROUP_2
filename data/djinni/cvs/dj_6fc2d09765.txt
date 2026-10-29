@@ -1,0 +1,20 @@
+Manual QA Engineer
+0 năm kinh nghiệm · English: upper
+
+Work experience as a customer service representative
+at LULU Software.
+My responsibilities included the following:
+- resolution of customer complaints and inquiries by phone, email or social media;
+- assistance in placing orders, returns or exchanges;
+- technical support for customers online via e-mail, calls and chats;
+- daily logging of all received calls and emails and prioritization of issues.
+
+Also taking QA Manual courses at the A-level school, where I received the following knowledge:
+- Theoretical knowledge of software and web testing; 
+- Knowledge and experience in bug life cycle;
+- Experience in writing of test documentation (test plan, test cases, bug reports, check-lists);
+- Understanding of test design techniques;
+- Understanding of SDLC;
+- Knowledge of development methodologies (Agile); 
+- Experience in working with MySQL database;
+- Familiar with bug tracking systems (Jira).

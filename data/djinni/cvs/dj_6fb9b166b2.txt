@@ -1,0 +1,4 @@
+Junior Front-end Developer
+0.5 năm kinh nghiệm · English: intermediate
+
+Developed components for the freelancer hub. Stack: CSS, JS, React, Redux. In addition, I have experience with Node, js, Express, Familiar with TS, Jest, Bootstrap. There is a desire to develop into a full stack with the assimilation of modern technologies. Also interested in Angular, Vue.

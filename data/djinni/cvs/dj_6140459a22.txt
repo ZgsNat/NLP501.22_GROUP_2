@@ -1,0 +1,55 @@
+Software Test Automation Engineer
+4 năm kinh nghiệm · English: upper
+
+Jul 2020 – now 
+GoMedia – The world’s leading onboard infotainment provider 
+Project responsibilities: 
+* TAF developing from scratch with building brand new architecture;
+* Manual checking of implemented functionality;
+* New test cases implementing;
+* Running tests on real devices (Android and iOS);
+* Running tests on desktop browsers (Chrome, Firefox and Safari);
+* Reports analyzing;
+* Simultaneous tests executing.
+
+Dec 2019 – Jun 2020 
+Hummingbird Technologies Project 
+Project responsibilities: 
+* TAF developed from scratch;
+* Manual check of implemented functionality;
+* New test cases implementation;
+* Worked with images;
+* Reporting;
+* Reports analyzing;
+* Github actions configuring;
+* Bugs reporting.
+
+Nov 2018 – Aug 2019 
+Data transformers testing + REST API. 
+Project responsibilities: 
+* Manual checking of implemented functionality (if needed);
+* Writing automation integration (sometimes unit) tests to cover new functionality;
+* Tests data preparation for automated tests; 
+* Writing bash scripts to start needed module from Java to test; 
+* Running regression tests and re-testing;
+* Asking on question: “Is this implemented functionality ready for demo?”;
+* Creating bugs that was detected during test process;
+* TAF developing from scratch;
+* Work with DB;
+* Pull requests reviewing; 
+
+Aug 2018 – Oct 2018 
+Data transformers testing + REST API. 
+Project responsibilities: 
+* Developed tests to automate all possible test scenarios for API Services;
+* Worked with XMLs; 
+* Worked with Apache Kafka.
+
+Jul 2018 – Aug 2018 
+Automated testing of a platfrom for an online collaboration 
+Project responsibilities: 
+* Improve stability and verify accordance to existing test cases;
+* Creating new tests from not automated test cases; 
+* TAF developing.
+- Projects only on Java or JS;
+- Presence of automation team (will be a plus)

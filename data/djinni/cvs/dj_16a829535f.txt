@@ -1,0 +1,28 @@
+QA Automation Engineer
+11 năm kinh nghiệm · English: upper
+
+Experience in leading QA team to reach best quality in product and comfort atmosphere in team
+• Software QA Lead with hands-on experience in testing, with subtle sense of testing. Good grasp of test methodologies
+• Developed/maintained test plans, test cases, gray box testing, defect tracking and
+reporting, automation test suites, procedures documentation
+• Experience in development of testing framework with Ruby
+• Experience with continuous integration tool
+• Excellent problem solving skills
+• Solid understanding of Internet technologies, experience in building and managing a
+switched network
+• Ruby in Rails testing on Upwork - TOP20
+
+
+TECHNICAL SKILLS:
+• Platforms: macOS, Unix OS
+• Mobile Platforms: Android OS, iOS
+• Programming: Ruby, Ruby on Rails, Python
+• Test Automation: Cucumber, Capybara, RSpec, Locust, Calabash-iOS, Calabash-
+Android, Selenium WebDriver
+• IDE: Ruby Mine, PyCharm
+• Virtual machines: Cloud9, VMware Fusion, Parallels Desktop for Mac, Virtual Box
+• Control version: GIT
+• Virtualization: Docker
+• Bug tracking systems: Jira, Redmine, Bitbucket, Trello
+• Automation testing reports: Allure, Cucumber reports
+• CI: Jenkins, CircleCI, Selenium Grid

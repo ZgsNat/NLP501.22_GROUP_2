@@ -1,0 +1,17 @@
+Middle Front-end Developer
+3 năm kinh nghiệm · English: upper
+
+Marketing Operating System JAN 2020 - Present time
+Customer US Customer
+A platform for marketing orchestration, data collection, omnichannel
+campaign activation, and optimization.
+With respect to the requirements and objectives to be achieved, React.js
+was considered as the most appropriate front-end JavaScript library for
+this project development. However, forms in React are rather verbose;
+that is why we additionally used Formik, which is a simple and easy to
+use form library. Working on data tables, we applied React Table that
+enabled us to create a powerful datagrid experience, having total
+control over markups and styles.
+Data exchange between front-end and back-end was provided with REST
+API, while Redux + ReduxSaga were used for data storage.
+no jQuery

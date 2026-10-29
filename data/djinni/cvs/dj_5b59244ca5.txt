@@ -1,0 +1,30 @@
+QA Engineer
+2 năm kinh nghiệm · English: intermediate
+
+Сertificates:
+Finished the ISTQB foundation level course and received the ISTQB certificate;
+Black Box techniques course completed;
+Softengi Training Center - Software Testing course;
+QA Advanced ITEA, october 2017;
+QA Based ITEA, august 2017.
+PROJECTS UNDER NDA: 
+Parental control: 
+- Testing of web and mobile applications 
+- Performed UI/ functional/ smoke/ sanity/ regression testing 
+- Tasks estimation 
+- Testing of web and mobile applications 
+- Working with requirements 
+- Report and verify bugs 
+- Writing test cases and check-lists 
+- Performed UI testing, functional/ smoke/ sanity/ smoke and regression testing 
+- Creating daily updates to Product Owner (PO) 
+
+Insurance Web service: 
+- Testing of web application 
+- Working with business requirements 
+- Writing test cases 
+- Report and verify bugs 
+- Performed UI/ functional testing 
+- Rest API testing with a Postman 
+- Working with PostgreSQL
+Certified ISTQB QA Engineer with 1,5 years of practical experience in manual testing of web and mobile applications and manual testing of web services. If you have interesting project with web and mobile applications or you are looking for a team player for remote work (part time) - leave a message.

@@ -1,0 +1,11 @@
+System administrator, DevOps Engineer
+11 năm kinh nghiệm · English: pre
+
+Windows system adminstrator 15+ DevOps 1+
+Now I work for a manufacturing company as the main system administrator, responsible for the entire computer network, including remote offices and servers. I deployed several projects for different organizations for building local networks, setting up servers, configuring the VMWare ESXi hypervisor, migrating servers to the Hetzner cloud, combining remote offices into one network.
+Did the following tasks:
+- Design and construction of a local network from scratch for 200 workstations and a server room, monitoring the installation.
+- Full configuration of servers HP Proliant G6 and Gen8, setting up Raid arrays, setting up the VMWare ESXi hypervisor.
+- Deployment of Microsoft Actieve Directory, DNS, DHCP, RDP server, SQL server for DataBases servers. Internet Gate.
+- Transfer of infrastructure to Hetzner Cloud -RDP server, AD, Mikrotik Router OS.
+- Combining remote offices into one network using Mikrotik Router OS, VPN L2TP.

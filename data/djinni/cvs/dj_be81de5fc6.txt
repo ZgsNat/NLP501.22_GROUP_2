@@ -1,0 +1,31 @@
+Automation QA Engineer
+4 năm kinh nghiệm · English: pre
+
+Managing QA process on a project
+Creating from scratch automation testing in two projects.
+Maintaining and supporting CI for testing (GitLab, Jenkins)
+My responsibilities are related to creation, implementation and maintenance of test automation frameworks for E2E web testing, UI testing and API testing
+
+Test Automation Experience:
+- Java / Selenide / TestNG / Gradle / Allure - 5 years
+- PHP / Codeception - 2 years
+
+Technical skills:
+• Everyday Tools: Jira, Trello, Confluence
+• Test Management: Zephyr, Allure TestOps
+• API Testing Skills: PostMan, Swagger
+• CI/CD: GitLab, Jenkins 
+• Performance Testing Skills: JMeter, Gatling, Yandex.Tank
+• Automated Tests: JAVA, Selenium WebDriver, Selenide, Rest Assured, TestNG/JUnit, Gradle, Allure Reporter, Allure TestOps
+• IDE & Repositories: Intellij Idea, PhpStorm, Gitlab
+• Databases & Tools: MySQL, PostgreSQL
+• Client-side Technologies: HTML / CSS
+• Other tools: Chrome DevTools
+• Virtualization: VirtualBox, Docker
+• Environments: Linux, Windows, MacOS
+• Experience in work with: Kibana, Grafana, Zabbix
+Interesting project with an up-to-date stack of technologies
+
+Not interested in working
+- on gambling
+- betting projects

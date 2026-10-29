@@ -1,0 +1,4 @@
+AQA
+6 năm kinh nghiệm · English: fluent
+
+DOROKI Merchant Application Development: Served as a key QA tester on the implementation of a DOROKI Merchant solution with the objective of providing a holistic end to end view of merchant transactions. A two track approach has been adopted for this implementation: a Merchant part and Consumer part.

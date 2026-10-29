@@ -1,0 +1,23 @@
+QAA Engineer
+2.5 năm kinh nghiệm · English: upper
+
+ISTQB® Certified Tester Foundation Level.
+ISTQB® Certified Tester Advanced Level - Test Analyst.
+- Experience in the design and implementation of automation tests using Java (Selenium WebDriver).
+ - Experience in the design and implementation of mobile automation tests using Appium.
+ - Experience in working with Git.
+ - Working with databases (MySQL).
+ - Strong knowledge of QA methodology and tools.
+ - Experience of different types of testing.
+ - Experience in web application testing with an understanding of HTTP technology and HTML, CSS.
+ - Experience in mobile apps testing.
+ - Experience in API testing using (Postman).
+ - Experience in writing technical documentation (checklist, test cases).
+ - Experience in working with Jira, TestRail, Chrome/Firefox/IE Dev Tools.
+ - Good communication skills, and ability to work independently as well as a team member (promote relationships built on trust, respect, and honesty in the workplace).
+ - Analytic mind.
+ - Display flexibility in adapting to changing conditions.
+ - Excel in analyzing and adjusting work procedures for maximum efficiency.
+ - Flexible about exploring new paths, procedures, and approaches.
+ - Punctual and efficient with time management (able to demonstrate a systematic approach to carrying out assignments).
+ - Public speaking experience (QA meetup, QA course on GeekHub).

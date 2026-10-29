@@ -1,0 +1,43 @@
+.NET Developer
+3 năm kinh nghiệm · English: fluent
+
+2019 – 2020
+•	C# Web API Developer
+Responsibilities: support, design and implementation of new features.
+Stack: ASP.NET Core, WebAPI, MS SQL.
+
+2020 – 2021
+•	C# Big Data/Automation Developer for Business Intelligence
+A platform for generating Excel auto reports for business analytics. The main idea is to provide a platform for reporting team, where they can generate a report with aggregated games key value indicators.
+	Responsibilities: support, design and implementation of new features. 
+	Stack: .NET Framework, WinForms, MySQL.
+
+2021– 2021
+•	Middle .NET Software Engineer
+A data access cluster for the customer’s internal systems and end-users. The main idea is to create data access platform for the corporate infrastructure.
+Responsibilities: 
+1.	Code: support, design and implementation of new features.
+2.	Architecture: design.
+3.	AWS: configuring lambdas, CI/CD using IAC, configuring CDN, performance testing, pricing analysis.
+	Stack: C# 9, .NET 5, PostgreSQL, AWS, IAC. 
+
+2021– 2022
+•	.NET Software Engineer
+A large-scale healthcare enterprise system. The main idea is to create the system, which would connect patients, caregivers, insurance companies or any organization, taking part in homecare services.
+Responsibilities: 
+1.	Code: support, design and implementation of new features and security updates, refactoring.
+2.	Architecture: design, refactoring.
+3.	AWS: performing security updates, using Cloud Tools.
+	Stack: C# 4–9, VB.NET, .NET 4–6, MS SQL, TeamCity, Octopus, AWS. 
+
+2022– 2023
+•	Senior .NET Software Engineer
+Projects: 
+-	A large-scale fintech enterprise system (Stock Exchange). Creating flexible OAuth based authentication and authorization gateway for system-wide access
+-	Creating Lambda based data migration system for internal data
+-	Ethereum-based crypto wallet with marketplace integration (the only back-end developer on the project)
+Responsibilities: 
+1.	Code: support, design and implementation of new features.
+2.	Architecture: design.
+3.	AWS: configuring lambdas, CI/CD using IAC, configuring CDN, performance testing, pricing analysis.
+	Stack: C# 9, .NET 6, PostgreSQL, AWS Lambda, AWS EC2, Terraform, Redis, Twilio, MySql, AWS SQS, AWS SES, DynamoDB.

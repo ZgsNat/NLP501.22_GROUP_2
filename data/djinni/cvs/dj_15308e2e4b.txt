@@ -1,0 +1,47 @@
+Automation QA Engineer (Java)
+2.5 năm kinh nghiệm · English: upper
+
+Took a part in covering products` functionality with automation tests (UI, API, integration), maintaining and refactoring the existed tests on 2 projects using Java, C# and corresponding tools.
+Have experience in demo presentation to stakeholders, creating tests` & features` documentation.
+Experience:
+Commercial experience in a big international outsource company since 2021.
+
+Skills & Technologies:
+- Java
+- C#
+- Selenium WebDriver
+- Postman
+- TestNG, JUnit, NUnit
+- IntelliJ Idea, Visual Studio
+- Gradle, Maven
+- Git
+- Jira
+- Kubernetes, Zookeeper, Kafka, 
+- Linux
+- Grafana
+- TestRail
+- Testing of Web and Desktop apps
+- Manual testing for complex features
+- Creation and maintenance of test  documentation
+- Holding demos
+- English: Upper-Intermediate
+
+Responsibilities:
+-  Developed and maintained a part of features in test automation framework
+-  Developed and maintained automation UI and API tests using Java & C#
+-  Requirements analysis
+ - Analyzing regression results and maintaining regression
+ - Test cases development
+-  Bug reporting
+ - Creating and maintaining test artifacts in Jira
+ - Cooperation with teams of developers and managers, when verifying new features and resolving issues
+ - Creating and maintaining test and feature documentation on confluence
+ - Demo representing of new features for stakeholders
+ - Have worked using scrum methodology with partly USA team
+
+Languages:
+English - upper-intermediate 
+Ukrainian - native
+Motivated to have experience in project with automation testing in java, where I would have an opportunity to use and improve my skills.
+
+Not interested in work with those companies which have businesses or customers in russia and belarus!

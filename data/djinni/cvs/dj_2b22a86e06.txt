@@ -1,0 +1,30 @@
+Senior QA Engineer
+9 năm kinh nghiệm · English: fluent
+
+Hi, nice to meet you,  
+My achievements within 9+ years of my great IT path: 
+•	highly skilled in testing E-commerce, web, mobile, and desktop applications
+•	have hands-on experience in leading ALL stages of QA efforts within the development, establishing QA processes from scratch, managing release activities, and presenting products to the Client
+•	can work independently, in a team, or leading a team
+•	will help your business to create a high-quality product that makes Clients happy
+
+My skills:
+•	Jira, Azure DevOps, TestRail, TestLink, Redmine, TestFlight, App Center, Figma
+•	SalesForce CC, Postman, Swagger, Jmeter, Selenium, Microsoft SQL Server, pgAdmin, Gitlab
+•	HTML, CSS, SQL, Oracle, MySQL
+•	Java Basics
+•	and many more
+
+This experience I'm happy to bring to your project:
+•	Requirements and scope analysis, the definition of entry/exit criteria
+•	Estimation, prioritization, planning, and coordinating of testing activities
+•	Creation of test documentation (test strategy, test plan, test cases, checklists, bug reports, etc).
+•	Gathering QA metrics, creating reports
+•	Execution of different testing types (Smoke, GUI, Functionality, Installation, Compatibility, Usability, Confirmation, Reliability, Regression, Internationalization, Localization, and other black-box types)
+•	Test results analysis, troubleshooting of issues, and documenting the defects
+•	Identifying scope for automation testing - can closely work with automation engineers
+•	Have an understanding of Automation testing (UI, API) using Java and possess practical experience in Automation Testing under supervision
+•	Experience in leading small (3-4 persons) QA teams
+•	Support in onboarding of newcomers
+•	Coordination of knowledge transfer of the product
+•	German language Advanced level

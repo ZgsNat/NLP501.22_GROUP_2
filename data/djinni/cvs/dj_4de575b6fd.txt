@@ -1,0 +1,30 @@
+QA Engineer
+0 năm kinh nghiệm · English: intermediate
+
+I gained experience in communicating with clients and creating projects based on their needs. I worked in marketing department and got experience with 2D and 3D graphic projects, creating banners and filling websites with content. Later I worked as a CGI artist, where I got experience working for overseas clients with larger projects and individual pipelines and deadlines for every step of project.
+I am very motivated to start my career in QA. I want to gain a career in the most promising industry where I can realize my potential as much as possible. I wish to become a part of your team. I want to become a QA engineer (manual) and later I want to be a QA engineer (general) so now I learn Python for it. I am ready to develop skills and work for results. 
+
+Summary of qualifications:
+	Creative approach to work.
+	Attention to details.
+	Ability to work in team.
+	Schedule Management.
+	Experience of working with a lot of data.
+	Ability to studying and quickly adapt to change.
+	Understanding of customer orientation.
+
+Skills Profile:     
+	Understanding of testing theory, testing types, testing artifact, and SDLC processes;
+	Understanding of test design techniques;
+	Basic knowledge in SQL;
+	Experience in writing testing documentation: test cases, checklists, bug reports;
+	Experience in working with test case management software TestRail;
+	Basic experience in: CSS,HTML;
+	Network protocols: TCP,IP,UDP,HTTP,DHCP.
+	Experience in working with Windows, Mac OS, Linux (Ubuntu).
+
+Tools:
+	Trello, Clockify, Asana, Jira, MS Office
+	Adobe Photoshop and other graphic tools (Adobe Illustrator, 3Ds max, Archicad, Maya).
+
+Goals: Start a career in the most promising industry where I can realize my potential as much as possible.

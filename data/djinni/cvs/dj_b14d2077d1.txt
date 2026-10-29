@@ -1,0 +1,20 @@
+Front End Developer
+6 năm kinh nghiệm · English: upper
+
+Company: CEX.IO LTD.
+Duration: 09.2019 to 04.2021
+Role: Front End Developer
+Project Name: Multi-functional platform for trading cryptocurrencies.
+Responsibilities: Full implementation of the site. API Requests. Replenishment and withdrawal of money. Connecting a terminal for trading. Output user statistics. Connect analytics. etc.
+
+Company: LLC United Travel Ticket
+Duration: 10.2018 to 08.2019
+Role: Full Stack Developer
+Project Name: Multimodal transport search engine and sale platform
+Responsibilities: Implemented backoffice on React for accounting. Setting up the server side on Nodejs.Made a full implementation of the test environment (back and front) for the purchase of train tickets.From authorization to downloading a ticket (pdf).Drew air routes on google map. Worked with sending letters to mail. etc.
+
+Company:  Freelancing
+Duration: 01.2018  to  07.2018
+Role: Front End Developer
+Project Name: law banking
+Responsibilities: Created landing pages, structured the js trees (the list for admin and for working with internal documents), used bootstrap-tree-view, fetch with json, processing data at the input and output, http request (get, post), work with back-end developers.

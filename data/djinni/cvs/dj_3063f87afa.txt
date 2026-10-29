@@ -1,0 +1,4 @@
+Python/Django Developer
+0 năm kinh nghiệm · English: fluent
+
+I have used django to build a full stack web application and I have also used django rest framework to build api.i am very proficient in frontend development tools like html,css(and its frameworks), javascript (react.js) as I was part of a frontend team that  built a price comparison web application. I was also the lead developer in that project as I was involved in both the frontend and backend processes.

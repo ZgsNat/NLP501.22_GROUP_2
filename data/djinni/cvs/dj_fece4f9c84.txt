@@ -1,0 +1,20 @@
+Automation QA Engineer
+6 năm kinh nghiệm · English: intermediate
+
+- Collaborated with cross-functional teams to identify and resolve critical defects in an AdTech project, leading to a smooth release and high customer acceptance of the product
+
+- Successfully led a team of QA Engineers in the development and execution of comprehensive test plans for a FinTech software solution, which resulted in a 50% reduction in post-release defects and an overall improvement in customer satisfaction
+
+- Spearheaded the implementation of an automated testing framework for a large-scale Big Data project, resulting in a significant reduction in testing time
+
+- Designed and implemented a suite of performance tests for a Health care product, which improved the product's response time by 40% and significantly reduced customer complaints
+As an experienced QA Automation Engineer, I have a proven track record of success in a variety of industries including Big data, Healthcare, FinTech, and AdTech. 
+
+Over the past six years, I have developed a diverse skillset that includes leading documentation, manual testsing, and implemenation of UI, API, backend, and performance automated tests. This makes me a self-sufficient engineer capable of setting and solving business goals. 
+
+In addition, I have experience managing a small team of engineers, demonstrating strong leadership and communication skills. I am committed to delivering results that meet or exceed customer expectations and am excited to work with you collaboratively to create innovative solutions that leverage the strengths of both.
+I am looking for a role where I can apply my skills and experience as a QA Automation Engineer to effectively contribute to the development of high-quality software products. 
+
+I am seeking a collaborative and innovative environment where I can work with a team of skilled professionals to solve complex problems. 
+
+Finally, I am excited to work for a company that recognizes and rewards hard work and provides opportunities for career advancement.

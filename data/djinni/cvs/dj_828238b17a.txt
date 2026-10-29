@@ -1,0 +1,15 @@
+Senior QA Automation
+8 năm kinh nghiệm · English: fluent
+
+• Build and support of UI automation testing frameworks including from scratch by using JS/TS
+• Build from scratch and support of Performance automation by using JMeter
+ Build and support of API  testing frameworks including from scratch by using Postman
+• Build from scratch and support mobile automation testing framework by using Appium
+• Automation testing integration into CI/CD processes via TeamCity/Jenkins
+• Testing artifacts management and maintains via Jira, TestRail, TestLink
+8 years of experience as QA Engineer 2 manual 6 automation, experienced on web and API, proficient in developing automation tests, test plans  based on business requirements.
+
+Excellent soft skills,  able to work as single QA, or as a part of an existing team
+Professional growth
+stability
+New technologies

@@ -1,0 +1,43 @@
+QA Engineer
+4 năm kinh nghiệm · English: upper
+
+Quality Assurance Engineer at Epam Systems
+07/2021 to 07/2023
+Web-based and desktop app.
+Product for brokers and traders who need to keep an eye on Market changes and new deliveries.
+Responsibilities:
+Built robust QA processes to ensure efficient and effective software testing.
+Wrote comprehensive test documentation, including Test Plans, Test Strategies to provide clear testing guidelines
+and strategies.
+Conducted analysis of project requirements to enable the identification of defects and potential issues at an early
+stage.
+Prepared detailed test reports and gathered valuable metrics.
+Developed detailed Test Cases based on project requirements and specifications.
+Executed Functional, Non-functional, Regression, Integration, Compatibility, Database, and End-to-End testing.
+Debugged issues and performed root cause analysis.
+Facilitated effective release management to ensure smooth and successful releases.
+
+Quality Assurance Engineer at GlobalLogic
+06/2020 to 07/2021
+Desktop and mobile, web-based application. Comprehensive video calling and conferencing platform that enables users to
+connect and collaborate remotely.
+Responsibilities:
+Conducted Mobile (IOS, Android), Functional, Compatibility, and Static testing, ensuring the delivery of high quality and reliable applications.
+Collaborated in team grooming, planning, and demo sessions.
+Created and executed comprehensive test cases and checklists, systematically validating software functionality
+and ensuring adherence to specifications.
+Reported and tracked bugs and errors, fostering effective communication with development teams and supporting
+the prompt resolution of issues for enhanced product quality.
+Managed User Acceptance Testing responsibilities, designed and executed test cases from an end-user
+perspective.
+
+Quality Assurance Engineer at SoftServe
+05/2018 to 06/2020
+Web-based application
+A platform for managing the certification process (applying, testing, approval, and certificate generation) that has several integrations with external systems.
+Responsibilities:
+Planned and estimated testing tasks, ensuring efficient allocation of resources and timely completion of testing
+phases.
+Conducted thorough requirements analysis to gain a comprehensive understanding of project objectives and align testing efforts accordingly.
+Demonstrated expertise in test design, proficiently crafting and maintaining test cases to ensure comprehensive test coverage.
+Conducted testing activities.

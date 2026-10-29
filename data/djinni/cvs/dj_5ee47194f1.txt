@@ -1,0 +1,5 @@
+Front-end developer/Reactjs
+0.5 năm kinh nghiệm · English: pre
+
+My currently work isin the helpdesk field. I have been learning programming for more than 1 year. I have a front-end certificate. my english level pre-indermediate. skills- Javascript, Typescript, Reactjs, Redux, SCSS, Ajax and necessary others
+I haven’t work experience. But i have some little project in my GitHub.  i have used MaterialUI, Tailwind, Redux Toolkit, Context API, Fetch API, Axios, Nodejs-Express(some server side operation) etc.

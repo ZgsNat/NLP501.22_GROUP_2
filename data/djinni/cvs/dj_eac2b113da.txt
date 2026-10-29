@@ -1,0 +1,15 @@
+Senior QA Automation Engineer
+8 năm kinh nghiệm · English: upper
+
+AQA engineer with lead experience
+~5 successful remote years with positive feedback 
+
+Activities Experience: 
+Scrum Master
+Team Lead
+Automation tests writing (webdriverIO, codeception, seleniumbase, frisby.js, self-written for REST)  
+Integration with CI
+Writing tools
+
+Deep dive in domain
+Clear goals, python, remote, Scrum

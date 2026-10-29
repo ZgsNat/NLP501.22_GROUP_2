@@ -1,0 +1,11 @@
+Test Automation Senior/Lead Engineer
+6 năm kinh nghiệm · English: upper
+
+Looking for a Senior/Lead Test Automation Engineer position;
+More than 6 years of experience in Test Automation;
+Strong theoretical and practical knowledge of software testing and test automation development with strong communication and leadership abilities;
+Experienced in Test Automation Solution development from scratch and extending of existing one for API/UI in C# (Integration, Component, E2E);
+Taking care of a correct test pyramid implementation without redundant testing in release cycle;
+Leading of QA processes on a project related to automation test development, automation solution and quality gates set up;
+Conducted audit for projects to create strategy for product quality improvement;
+Conducting code reviews and taking care of code quality and maintainability.

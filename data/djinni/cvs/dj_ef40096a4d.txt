@@ -1,0 +1,12 @@
+QA Engineer
+0 năm kinh nghiệm · English: upper
+
+I am studing at Dnipro National University at the 4th course, specialty: "Software Engineering". I took a "Practical Testing" course from "SoftServe" in 2022. I have a CEFR B2 (Upper-Intermediate) English certificate from Cambridge University.
+I had an internship as manual QA at "SoftServe" (Sep 2022 - Nov 2022). My obligations were: 
+1. Working with requirements (clarify them if it's needed)
+2. Creating test cases (Jira) and executing them
+3. Creating bug reports (Jira, GitHub)
+4. REST API testing (Postman)
+5. Working with databases (MS SQL, PostgreSql, MySQL)
+6. Looking after bugs' lifecycles
+I want to develop in the IT field as manual QA Engineer and become a Senior. I would also like to study the automation of testing.

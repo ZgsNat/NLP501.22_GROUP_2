@@ -1,0 +1,25 @@
+Automation QA Engineer / QA Lead
+5 năm kinh nghiệm · English: upper
+
+- creating test automation framework from scratch
+- 100% test automation coverage on current project (together with the team)
+- managing QA team and set up processes
+- mentoring QA from manual to automation
+As a QA Automation:
+- Creating Test documentation (Test Plan, Test Strategy, Method of work, Test Cases, Bug Report, Sign Off etc)
+- Automation testing (using Selenium Web driver, Rest Assured)
+- Creating test framework from scratch (using Java, Cucumber, Maven, Jenkins, Allure, Docker)
+- Estimating tasks (using Delphi, 3 point, work breakdown structure and functional point technics)
+- Communication with foreign customer (Demo, Test report presentation)
+
+As a QA Lead:
+- Review and distribution of tasks between QA team members;
+- Managing and executing QA process through SDLC; 
+- Build communication among teams;
+- Definition and selection of stack technologies for testing;
+- Coaching and mentoring;
+- Monitor customer satisfaction;
+- Risks management.
+adequate management
+good technical base
+comfortable workplace or the ability to work from home

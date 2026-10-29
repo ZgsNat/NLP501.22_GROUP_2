@@ -1,0 +1,15 @@
+Manual QA Engineer
+2.5 năm kinh nghiệm · English: upper
+
+course "Quality Assurance" Source IT;
+English courses;
+SQL courses.
+-knowledge in indifferent kinds of manual testing methodologies: functional, regression, acceptance, black-box testing, grey box testing, UI testing, cross-browser and cross platform testing;
+-practical experience in testing requirements and sites;
+-course SQL ;
+-knowledge and practice  in test documentation (creating, test plans, test cases, test suits, checklists, bug reports;
+-Intermediate writen and spoken  level of English; 
+-knowledge of testing methods and technologies, understanding of formal software development processes;
+-course "Quality Assurance" in Source IT  (04.2020)
+- Java Selenium
+I would like to get more experience, knowledge and practice.

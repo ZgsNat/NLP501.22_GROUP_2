@@ -1,0 +1,60 @@
+QA Automation Engineer (Cypress)
+7 năm kinh nghiệm · English: upper
+
+Summary: 
+•	5+ years of experience in software testing
+•	1+ year of experience in Automation QA 
+•	Knowledge of different testing types and methods 
+•	Knowledge of test design technics 
+•	Experience in developing test documentation (TestRail, TestCaseLab, Confluence) 
+•	Knowledge of test artefacts (test plans, test suites, checklists, coverage matrix, bug reports etc) 
+•	Test environment setup and maintenance 
+•	Deep understanding of defect lifecycle 
+•	Good understanding of Agile principles, participation in Scrum and Kanban projects 
+•	Knowledge of Bug Tracking System (Atlassian JIRA, YouTrack, Redmine) 
+•	Knowledge of Database Management Systems (Microsoft SQL Server, MySQL) 
+•	Experience with git (Bitbucket)
+•	JavaScript/TypeScript practical knowledge
+•	Experience in automation testing
+•	Experience with REST API testing (using Postman, Swagger, SoapUI) 
+•	Experience with CI/CD practices and tools (Codefresh, Gitlab, Jenkins) 
+•	Experience with Docker 
+•	Experience with browser Dev Tools, virtualization tools, VPNs, process monitors 
+•	Experience in log/events/statistics analysis 
+•	Experience with product releases and updates 
+•	Experience in newcomers recruiting and mentoring 
+
+Employment history:
+
+03.2020 – Present time 
+Position: Automation QA Engineer
+Responsibilities: 
+•	Automation testing of API (Postman, Newman);
+•	Automation testing of UI (Cypress, JavaScript);
+•	Design and improve automated tests;
+•	Web services / API testing (Postman/SoapUI); 
+•	Manual testing of Web application; 
+•	Requirements analysis; 
+•	Writing test documentation; 
+•	Communication with QAs, SEs, DevOps, UI/UX experts, analytics, product managers; 
+•	Work with docker; 
+•	Logging & tracking defects; 
+•	Participation in project related meetings; 
+•	Releases and updates process.
+
+06.2016 – 03.2020 
+Position: QA Engineer 
+Responsibilities: 
+•	Manual testing of Web application; 
+•	Web services / API testing (Postman/SoapUI); 
+•	Requirements analysis; 
+•	Writing test documentation; 
+•	Communication with QAs, SEs, DevOps, UI/UX experts, analytics, product managers; 
+•	Work with docker; 
+•	Logging & tracking defects; 
+•	Participation in project related meetings; 
+•	Crash tracker analysis; 
+•	Statistics analysis; 
+•	Releases and updates process;  	
+•	Recruiting and Mentoring.
+Professional growth, gaining rich experience, good team.

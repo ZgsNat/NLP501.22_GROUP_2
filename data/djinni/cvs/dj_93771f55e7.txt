@@ -1,0 +1,11 @@
+Middle Automation Engineer
+4 năm kinh nghiệm · English: intermediate
+
+Hello Djinni Clients and Recruiters 
+
+Few words about myself.
+I have at least 4 years of experience in Software development as Automation QA 
+During my career I as involved in medical project ( Java, TestNg, RestAssured ), Video transfrering application ( Rest API and Selenium Web testing ) and a Maps Navigation project ( Java, Cucumber, RestAssured , Selenium) 
+
+My main responcibilities where creating automation test and adding new functionality to the framework in order to increase product quality and remove regression burden from manual QA's. 
+Intermediate-Strong English level, prefer Java vacations

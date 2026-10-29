@@ -1,0 +1,8 @@
+QA Automation Engineer
+5 năm kinh nghiệm · English: upper
+
+I have 5 years of experience in Java, JavaScript, TypeScript and Python programming languages, designing and developing automated scripts on Selenium, Cypress, Protractor, Playwright and Robot Framework.
+
+My experience spans a wide range of applications, including web, mobile native, and hybrid, and I have front-end, back-end, database, and API testing skills, as well as usability, end-to-end scripting, and regression skills.
+
+My technical skills include deep knowledge of various testing tools such as Chrome DevTools, Browser Stack, Charles Proxy, Git, Appium, Selenium and others.

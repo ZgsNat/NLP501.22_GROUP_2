@@ -1,0 +1,8 @@
+QA Automation Engineer
+3 năm kinh nghiệm · English: upper
+
+writing and performing functional automated tests on Selenium WebDriver
+ writing and performing functional automated tests on RobotFramework
+ writing and performing API automated tests
+ performing and maintaining integration testing of a services
+ writing test cases, test suite, bug reports and test plans

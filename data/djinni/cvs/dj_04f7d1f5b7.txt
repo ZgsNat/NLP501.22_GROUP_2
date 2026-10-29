@@ -1,0 +1,20 @@
+AQA Engineer
+10 năm kinh nghiệm · English: upper
+
+Working with:
+ - Project for building and managing marketing plans, and budgets.
+ - Voice assistant/chatbot, managed by different Google services
+ - Hardware testing for the smart home. Testing all the parts of smart-home: from hardware to the BE. Testing hardware devices for home security usages. Testing web application for the control and manage home security.
+- Wireless solution for managing personal media library, which consists of the hardware device
+(wireless storage), WebUI, desktop apps (Windows, Mac OS) and mobile apps (Android, IOS).
+10 years of working experience in Software testing;
+ 5 years of working experience in Java Automation
+ OOP principles
+ Experience in REST API testing;
+ Experience in manual testing desktop, mobile, and Web Apps;
+ Experience working with Postman/Charles Proxy;
+ Have experience with creating pipelines for deploying (Azure, Gitlab);
+ Upper-Intermediate English level;
+1. Professional growth 
+2. Good team 
+3. Opportunity to improve both knowledge and salaries

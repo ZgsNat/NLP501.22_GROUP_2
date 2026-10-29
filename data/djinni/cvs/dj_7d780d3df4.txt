@@ -1,0 +1,27 @@
+Senior Manual QA Engineer with automation skills
+5 năm kinh nghiệm · English: pre
+
+Diploma of Kharkiv National University of Radio Electronics
+Cource of software testing
+Project ETAdirect – system mobile workforce
+management
+Project RebelMouse
+Sanity testing, Regression testing, System
+testing, Integration testing, Crossbrowser
+testing, Compatibility testing, WEB testing,
+Structural testing, Security testing ,Usability
+testing, Localization testing, Documentation
+testing
+ Mobile testing via devices
+ Test Design: Writing Check Lists, Test Plans,
+Test Cases, Test Reports, Test Plans
+ SOAP modules testing
+ Strong SQL knowledge, database analysis, SQL
+queries
+ Selenium IDE, Selenium WebDriver
+automation tests writing
+ Automate test scripts development with
+Cucumber and Capybara
+ USE cases testing
+ Logs analysis
+Good management. Intresting project. Cooperative team.

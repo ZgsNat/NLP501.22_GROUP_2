@@ -1,0 +1,21 @@
+Lead Performance Analyst
+11 năm kinh nghiệm · English: fluent
+
+• Analyzed new market's customer volume, built and executed load tests based on marketing estimates, proving the product's readiness for launch and its ability to handle projected load.
+• Proposed and implemented a strategy, resulted in 30% reduction in AWS costs, focused on optimizing expenses related to load generation machines and the pre-production environment.
+• Conducted an external audit for a customer-centric performance testing team, new test strategy was recommended and subsequently deployed. As a result we observed about 20% increase in team productivity; transparency, and overall customer satisfaction levels were also increased.
+• Effectively mentored and provided leadership to a team of two performance QA engineers.
+• Planned and executed high load tests on the customer's production environment. Substantial financial penalties for the employer were averted.
+My professional activities are all about coordinating, planning, and executing various load and performance tests to evaluate how the enterprise wide applications/systems behave under various levels of projected user load, address bottlenecks, and push the development team towards meeting and/or exceeding customers' SLA requirements. I ensure the performance issues are addressed on time, performance problems are solved, and environments are scaled appropriately as the user volumes increase.
+
+• 18 years of production experience, 15 in performance testing (client/server side)
+• Experienced in: defining non-functional requirements, creating strategy for performance testing, building load model, preparing environment, scripting and executing tests, review results and investigate bottlenecks.
+• Have expertise in performance testing of web applications, mobile apps, API's and desktop applications
+• Leading a team up to 3 engineers, workload planning, mentoring and coaching teammates
+
+Showed proven ability to
+• Establish load testing process from scratch, ensuring transparency and integrity
+• Plan and execute performance related activities
+• Work independently and as a part of a team
+• Provide performance audit for external teams
+• Mentor performance analysts

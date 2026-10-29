@@ -1,0 +1,19 @@
+Junior QA Engineer
+0.5 năm kinh nghiệm · English: upper
+
+Completed courses: 
+•QA school
+•QATestLab
+QA SCHOOL
+•theoretical basic aspects of IT and QA area
+•practical skills
+•SDLC understanding  
+•working on a real Pharmacy project (Scrum, Jira)
+•Test Cases and Checklists creation and execution
+•regression, re-testing 
+•SRS analysis 
+•Bug reporting
+•SQL, API knowledge
+
+QATestLab
+The training includes theoretical knowledge of software testing, practical experience with defects, test cases, checklists, as well as skills in working with tester tools such as error tracking system "Mantis Bug Tracker" and test management system "TestLink".

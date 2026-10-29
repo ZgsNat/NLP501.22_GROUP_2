@@ -1,0 +1,10 @@
+Software engineer in test
+1.5 năm kinh nghiệm · English: intermediate
+
+In my previous roles as a software QA tester, I have completed various projects and tasks that have involved testing software applications and ensuring that they meet the required quality standards. One project I worked on involved testing a web-based application that was designed to manage inventory and sales data. I was responsible for creating test plans, executing test cases, and reporting any bugs or issues that I encountered.
+
+In terms of the technologies that I have used, I am familiar with various testing tools such as Selenium, JIRA, and Trello. I have also worked with  Python to create automated test scripts and perform data analysis.
+
+My current role in the team is to collaborate with developers, product managers, and other testers to ensure that our software products are of high quality and meet customer needs. I am responsible for reviewing requirements, designing test cases, executing tests, and reporting any issues found during testing.
+
+While I have gained a lot of experience in my role as a software QA tester, there are still areas that I want to improve. For example, I want to further develop my skills in automation testing and learn more about cloud-based testing. I also want to improve my communication and collaboration skills so that I can work more effectively with cross-functional teams.

@@ -1,0 +1,57 @@
+Junior QA Engineer
+1 năm kinh nghiệm · English: upper
+
+Education:
+IT School GoIT (Kyiv) 
+2022 
+QA Engineer
+
+IT School QA START UP (Kyiv) 
+2020
+QA Base
+
+For the last 10 years I have been working in the tourism sector. Work in the largest tour operator companies allowed me to get a wonderful experience in building business communications with partners, experience in organizing international travel, organizing and conducting educational seminars.
+Now I really enjoy learning about the QA field, so I would really like to work and develop in this position in the future.
+Project  Experience (Freelance):
+
+Web Mobile App (E-commerce)
+Responsibilities:
+- Smoke testing
+- Functional testing , Non-functional testing,
+- Web Mobile App (E-commerce)
+
+Mobile App (Data personalization)
+- Regression,  Sanity testing
+- Bug reports
+- Static testing
+
+E-commerce project (clothing and accessories
+market)
+- Integration Testing (Black Box)
+- Bug reports
+- Collecting Charles Proxy logs
+
+Mobile App (Flight ticket search)
+Responsibilities:
+- Dynamic testing, Usability Testing
+- Bug reports
+- Collecting mobile device logs with Android Studio
+- Testing by test cases, Writing a review
+
+E-commerce  project (PC components, consumer electronics, smart home and gaming products)
+- End-to-End  testing
+- Collecting computer browser console logs
+- Test documentation ( Сhecklist,  Bug reports, Review)
+
+E-commerce project (Famous brand, pets care)
+- Exploratory testing
+- Bug reports
+
+Senior specialist in the development of a tourist product 
+Сoral Travel Ukraine | 2021 - 2022
+- development, control and implementation of tourist destinations
+- writing articles, creating presentations
+- work with partners, hotels, airlines
+- staff training
+- information tours
+I am currently working as a freelancer, but my goal is to find a permanent job and develop and improve my skills as a QA. For this, I have a great desire and want to find a job in a great company with a friendly team and interesting projects. I am open to all offers.

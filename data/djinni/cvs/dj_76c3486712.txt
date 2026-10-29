@@ -1,0 +1,7 @@
+Frontend Developer (React/Angular)
+4 năm kinh nghiệm · English: intermediate
+
+3.5 years of commercial experience in front-end development using React and Angular frameworks(typeScript), also in back-end (.Net Core).
+Experience in supporting existed products and creating new ones from scratch
+Configured Web pack to execute linters, magnifiers, pre/post-processors, tests, etc.
+Used Jest/karma for Unit testing.

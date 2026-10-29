@@ -1,0 +1,30 @@
+Manual QA Engineer
+5 năm kinh nghiệm · English: upper
+
+Environment: JS, Cypress, Java, Selenium, TestNG, Jira, Confluence, Bitbucket, Katalon, Postman, Agile/Scrum, GitHub, MySQL, Ubuntu.
+
+
+I have an Upper-intermediate level of English, I've experience of  conducting clarification sessions with foreign customers. 
+
+Skills
+XPath, CSS, Java Script, Cypress, Java, Python, JUnit, TestNG, Selenium, Selenide, TestContainers, RabbitMQ, Quality Assurance , Automated Testing, Scrum, Kanban, Basic SQL, Rest Assured, Cucumber, Jira, Jenkins, Git, GitLab, manual testing, functional testing, Web testing, regression testing, bug reporting, SQL, Postman, Agile, test design, QA, test cases
+Skilled Manual QA Engineer with 5 years experience in manual testing and 2 years in test automation
+
+
+I’m able to tackle complex problems quickly and efficiently. I have a comprehensive understanding of the full lifecycle for software development projects. I also have experience in learning and applying new technologies as appropriate.
+
+Responsibilities:
+
+− Skilled in manual software testing (Quality assurance practices and methodologies.)
+− Practical experience in work with requirements
+− Creating and reviewing documentation: test cases, requirements, checklists creation and update, backlog doc review, affected auto scripts marking for update
+- Creating test plans including test strategy, effort estimation, resource planning and task allocation.
+- logging defects, verifying defect fixes 
+− Manual testing REST services using Postman, Newman
+− Manual and Automation testing web application (UI/API) using such technology stack: Java, Selenide/Selenium WebDriver, Maven/Gradle, JUnit/TestNG, RestAssured, Allure, JS, Cypress
+− Experience work with designers, developers and QA team in Agile (Scrum) project
+- Producing status reports for release under test
+-Testing or coordinating the deployment of product/hotfixes to production environment
+− Acting as a contact point between Manual QA engineers / Automation QA engineers and Developers
+- Knowledge of Agile Methodology and participated in Sprint planning
+− Taking a role of unofficial lead at one of the projects: LOE estimation, sprint planning, task assignment, regression scope definition depending on affecting changes in sprint/in other related projects

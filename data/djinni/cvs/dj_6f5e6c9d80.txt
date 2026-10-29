@@ -1,0 +1,74 @@
+Automation QA Lead / SDET
+11 năm kinh nghiệm · English: upper
+
+- Build 4 automation solutions for big projects in different domains from scratch. 
+- Establish CI process in Azure and AWS cloud. 
+- Not just build solutions but pass throw a live cycle (establish, grow, support). 
+- Build solutions for performance and mobile testing. 
+- Help teammates get to the next level (as tech and management specialist).
+Lead Test Automation Engineer
+N-iX
+Feb 2020 - Present (3 years 4 months)
+• Lead QA team with 10 people that distributed to 4 teams (Ukraine, Brazil, India).
+• Setup test automation environments from scratch (Jenkins pipelines with Kubernetes plugin, Seleniod
++ GGR, Mbtest and etc.)
+• Write test automation framework from scratch on Java + Spring.
+• Setup performance testing with Gatling.
+• Setup testing process.
+• Help to setup CI.
+• Build a strong QA team with full automation.
+ 
+Technologies:
+Back-end: Java, Kafka MQ, REST Front-end: Android, iOS, Web Database: postgreDB.
+Automation testing: Java, maven, Allure, Jenkins, Spring, REST, Appium, Docker, TestNg, jackson,
+Selenoid
+
+Technical Lead Test Automation Engineer
+Ciklum
+Jun 2019 - Feb 2020 (9 months)
+-Developing from scratch test automation framework for integration testing with Java, Spring, REST,
+Cognito authentication, json, postgreDB, SSH, Appium, Docker and Allure reporting.This framework
+allows to create end-to-end test that starting on mobile and end on beckend DB.
+-Designed and developed framework for Mobile Tesing (real mobile device with Appium.) -Write
+pipelines for Jenkins job that running under kubernetes.
+-Developing service testing by API calls with RestTemplate and Apache Http Client.
+ 
+Technologies:
+Back-end: Java, Amazon MQ, REST Front-end: Android, iOS, Web Database: postgreDB, dinamoDB
+Ivan Ognitskyi - page 1
+Automation testing: Java, maven, Allure, Jenkins, Spring, Amazon SDK, Hibernate, REST, Appium,
+Docker, Java mail, jsch, testNg, jackson, Cognito
+ 
+Tools:
+Test Management tool: testRaill
+IDE: Eclips, IDEA, Oracle SQL Developer. Project Management System: JIRA Continuous Integration:
+Jenkins
+Version Control System: Bitbucket
+Methodology: Srum.
+
+Senior Test Automation Engineer
+EPAM Systems
+Dec 2017 - Jun 2019 (1 year 7 months)
+ 
+Project: Execution system for Repo agreements (Fixed income domain) and report generation for
+regulator.
+
+-Designing and developing from scratch framework for micro-services integration testing with Java,
+solace MQ messaging, Kerberos authentication, json, MS SQL and Oracle DB, SSH, Allure reporting.
+
+Test Automation Engineer
+EPAM Systems
+Aug 2014 - Dec 2017 (3 years 5 months)
+Project: Execution system for Repo agreements (Fixed income domain) and report generation for
+regulator.
+
+Test Engineer
+EPAM Systems
+Aug 2013 - Aug 2014 (1 year 1 month)
+Job Position: Manual Test Engineer 
+ 
+Project: Finance reporting system
+
+SQA
+Symantec
+Sep 2012 - Aug 2013 (1 year)

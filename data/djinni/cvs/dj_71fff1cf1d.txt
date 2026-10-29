@@ -1,0 +1,14 @@
+QA Engineer
+1.5 năm kinh nghiệm · English: intermediate
+
+FInished Manual QA in ActPro, DataArt IT School with honour.
+Experience in testing web sites(e.g. ossystem.com.ua)
+Experience in creating a test plan, test cases and bug reports
+Strong knowledge of the basic principles and methods of testing
+Knowledge of all stages in software development life cycle and bug life cycle.
+Understanding the principles and goals of QA and had basic knowledge OOD
+Work with:
+API test tools: Postman, Fiddler
+Bug tracking system : Jira,RedMine
+Basic knowledge of Java, Python, HTML, CSS
+Automatic testing: Selenide

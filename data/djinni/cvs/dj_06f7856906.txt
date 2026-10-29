@@ -1,0 +1,31 @@
+Automation QA Engineer
+8 năm kinh nghiệm · English: pre
+
+Experience in project management of ERP system for Canadian customer
+8+ years of experience in software testing industry 
+6+ years of experience in automation testing
+Good knowledge of software development methodologies, software testing techniques, testing types
+Experience in designing and writing documentation - test plan, test case, check list and test report
+Functional, regression, smoke, acceptance testing of web (mostly) and mobile applications 
+Experience in creating test automation frameworks from scratch  
+Experience in load and security testing  
+Experience in project management of ERP system for Canadian customer
+
+Technical summary: 
+Automation testing tool: Selenium Webdriver, Postman, Jmeter, Acunetix 
+Programming language: Java, PHP, Go, XPath, HTML, CSS
+Build tool - Maven/Gradle
+Testing framework - Cypress, JUnit/TestNG + Selenide 
+API - REST API (Postman, REST Assured, Codeception), gRPC
+Design Pattern - Page Object, Page Element
+CI - Jenkins, Gitlab, Google cloud
+Test report - Allure, TestNG
+Database: MS SQL Server, PostgreSQL
+Methodologies: Waterfall, Agile (Scrum, Kanban)
+Bug-tracking system: JIRA, TFS, Trello
+Software/System: PC (macOS, Windows, Linux), Mobile (Android/iOS)
+- flexible working hours
+- opportunities for growth 
+- adequate management
+- interesting project
+- opportunity to work remotely

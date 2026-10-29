@@ -1,0 +1,36 @@
+Senior Test Automation Engineer
+10 năm kinh nghiệm · English: upper
+
+Currently my main responsibility includes development and improvement of test frameworks, test implementation, stabilization, code review, report analysis. Problems investigation and communication with development team. Managing a documentation and demo about new approaches and solutions. Providing improvements for regression flow and CI/CD setup
+
+Key skills:
+- Implemented Java based frameworks for UI and API testing
+- Provided solutions using Selenium, RestAssured, TestNg, Allure
+- Provided solutions for CI/CD process
+- Handled functional and regression testing
+- Supported team members
+
+Contribution:
+- Migration from Hybris to custom engine
+We managed to rewrite data layer keeping test coverage and stability on the same level
+- API endpoints comparison tests 
+Provided solution to compare responses using new data provider
+- Migration from jQuery to React
+Provided a temporary solution which allows to handle both applications at the same time which allowed to keep going with regression for partially migrated modules
+- Multi module framework setup
+Refactored framework to use multi module architecture to handle similar projects using a common core package
+- Regression in CI/CD flow
+Migrated to pipeline scripts, support environment deployment and parallel run via Jenkins
+- Team support
+Conducted sprint planning, review, knowledge transfer, mentoring
+
+From technical perspective I am able to provide technical solutions depends on project needs and organize regression process in efficient way with CI/CD approach. From management perspective I efficiently communicate with a team to gather all requirements to suggest the best approach for automation test process organization.
+I would prefer:
+- AWS
+- Docker
+- work with JS/TypeScript family in a future
+
+I would avoid:
+- manual testing
+- overtimes
+- unstable working schedule

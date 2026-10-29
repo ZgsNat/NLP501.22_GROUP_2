@@ -1,0 +1,18 @@
+Frontend Developer
+1 năm kinh nghiệm · English: intermediate
+
+I'm a goal-oriented, creative, and self-motivated developer with commercial experience in web development. In my work, I utilize JS frameworks such as React and Angular.
+Skilled in debugging, optimizing, and refactoring code. I am a team player, comfortable collaborating with others, also can work autonomously. Looking for new challenges and opportunities.
+
+Main tech stack:
+- React, Redux
+- Angular, RxJS, NgRx
+
+I worked at an innovative company, which specializes in developing and implementing advanced solutions in information security and business process automation. Their cutting-edge technologies and expert knowledge empower clients to enhance operational efficiency and ensure robust data protection.
+
+Responsibilities:
+ - Successfully collaborated with backend developers to seamlessly integrate complex backend logic into the frontend, enhancing the overall functionality and user experience of the system.
+ - Expertly troubleshooted and resolved front-end issues, ensuring the system's smooth operation and minimizing disruptions for end-users.
+ - Demonstrated exceptional adaptability by quickly adjusting to evolving project requirements and effectively handling a diverse range of tasks, contributing to project success.
+ - Writing clean, organized, and efficient code with the following coding standards and best practices, that make code more readable and flexible.
+ - Engaged in refactoring and optimizing existing code, significantly improving system efficiency.

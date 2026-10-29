@@ -1,0 +1,22 @@
+Junior QA
+0.5 năm kinh nghiệm · English: upper
+
+I’m high motivated, ready to study and flexible to changes. I have nice experience at team work and managing of team processes.
+SoftServe IT Academy
+“Quality Assurance Engineer: manual and automation
+May 2022 – October 2022
+Basic knowledge of Software testing theory:
+SDLC, STLC, Models of SDLC (Waterfall, Agile, Scrum, Kanban);
+Testing principles, approaches, types and levels;
+Test design techniques;
+Test documentation;
+Web-testing, Mobile testing, API.
+Course project: testing prom.ua
+Practice in preparation of test documentation: Test plan, Check List, Test Cases, Bug Reports, Test Results. Web and mobile testing. Prom.ua API testing. Practice in task estimation.
+
+QC Mentorship Program
+February 2022 – April 2022
+General understanding of Software Testing Theory:
+SDLC, STLC, Models of SDLC (Watelfall, Agail, Scrum, Kanban), Software requirements, Principles and Types of testing, Test documentation. Familiar with HTML, SQL, API. Practice at preparation of Clarification letters, User stories, Test cases, Check lists on the base of Instagram. Acquainted with  Jira, Zephyr.
+I’m interested in a position of a trainee QA/QC Engineer.
+I realized that this field is interesting and exciting for me and now I’m looking for good practice skills.

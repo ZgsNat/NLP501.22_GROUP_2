@@ -1,0 +1,16 @@
+Senior QA Automation Engineer
+7 năm kinh nghiệm · English: upper
+
+Engineer with about 7 years’ of commercial experience. Worked in automotive and web industries. Have experience in mentoring new engineers, planning sprint activities for QA team, agile processes, writing automation framework from scratch.
+
+Expertise: 
+- developing QA framework (from scratch or existing one)
+- improving/maintaining QA environment (bash scripting, CI adjustments etc.)
+- writing UI tests.
+- writing API test.
+- mentoring new engineers
+- feature and requirements analysis
+- manual testing
+
+Python -> 3 years.
+JS -> 4 years.

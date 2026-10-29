@@ -1,0 +1,24 @@
+Manual QA Engineer
+1.5 năm kinh nghiệm · English: intermediate
+
+Description: one of the world’s most popular online gaming entertainment and solutions providers.
+Role: QA Engineer
+Tools: 
+Android Studio, iTools, cmd, Snagit, Camtasia, Reflector, TestRail, Jira, Github.
+Personal Accomplishment:
+•	Regression testing.
+•	Ad-hoc testing.
+•	Localization testing.
+•	Smoke testing.
+•	Working with bug tracking system, documenting of found defects, verifying defects after fix is applied, test results reporting.
+
+Description: A global site services business includes over 180 clinical research facilities, providing data-driven site selection and activation expertise across the US and Mexico, South America, Europe, Asia, and South Africa.
+Role: QA Engineer
+Tools: 
+Jira, Test Rail, Snagit, RDP, SQL, VPN.
+Personal Accomplishment:
+•	Test case generation and management.
+•	Test plan execution (regression, smoke, exploratory feature, localization testing).
+•	Management of testing environments.
+•	Working with JIRA bug tracking system, documenting of found defects, verifying defects after fix is applied, test results reporting.
+The main goal is to find a job, where I can apply my skills and knowledge in projects and develop myself as a software tester. I want to start improving my API test skills and automation testing with Selenium using Java.

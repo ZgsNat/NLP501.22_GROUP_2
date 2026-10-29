@@ -1,0 +1,15 @@
+QA Automation Engineer
+1 năm kinh nghiệm · English: upper
+
+During that last period, I've developed my testing framework from scratch based on Page Object Model (POM) and I have worked with Java and Maven as a build management tool and Selenium with JUnit testing framework implementing Data Driven Testing by using Cucumber and Gherkin language.
+I'm using GitHub for version control, and I also Jira for bug tracking and project management tool and collaboration with other team members.
+Refreshed my knowledge in SQL queries to start using JDBC for database testing.
+During the late phase of the project, I have worked on API testing and used Postman for manual testing and then REST Assured library for its automation.
+I'm using Jenkins to schedule my Smoke and Regression tests.
+In our team we are using Agile Methodology and Scrum for meetings planning.
+The last project application we are responsible for is mainly developed to store all required information about the customer and share it with the company headquarter. It also generates details of the status of all stored, ordered and shipped products.
+As an SDET my main responsibility is automating the backend functionality namely API to service database part of application.	
+My role in the project includes running regression, smoke and functionality testing.
+We use AWS with Jenkins server and GitHub with Selenium Grid for remote and parallel testing on EC2 machines which were configured by DevOps.
+Beside that I continue to improve my IT skills and recently passed JavaScript and Cypress bootcamp and now taking online classes for Linux Administration and DevOps and keeping up and running my custom-built network laboratory which contains some file servers for home and educational purposes.
+Automation of tests for databases, API. A friendly team with a free exchange of experience, ready to accept a new member to help and support.

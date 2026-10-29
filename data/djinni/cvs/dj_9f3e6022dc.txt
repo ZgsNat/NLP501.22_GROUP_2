@@ -1,0 +1,4 @@
+Lead QA Automation Engineer (Python)
+7 năm kinh nghiệm · English: upper
+
+Out of 7 years total as Python Automation Engineer, 5+ years experience as Python AQA Team Lead, also have 4+ years experience in People/Resource Manager role. Have experience working with API automation, Android and iOS, Web and Windows Desktop. Started my current project from scratch and made a lot of different improvement over the time, setup CI/CD process for multiple project streams, at the moment I'm fully responsible for delivering automation framework bundled as a python package.

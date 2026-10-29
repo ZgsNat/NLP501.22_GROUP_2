@@ -1,0 +1,10 @@
+Manual QA Engineer
+1.5 năm kinh nghiệm · English: intermediate
+
+Good experience in web and mobile testing.
+Theory of software development and testing (types of testing, bug life cycle).
+Gathering of Requirements.
+Basic knowledge of HTML, CSS, and SQL.
+Understanding of Agile and SCRUM planning methodologies.
+Jira, manual testing, regression testing, Web testing, functional testing, Postman, Scrum, Quality Assurance, bug reporting, Agile, SQL, API testing, test design, Prototype, Mentoring QA Jun-s, Writing bug reports, test artifacts, Figma, Migration testing, crossplatform-testing, тестування API, Desktop application testing, • Working in tracking system: Jira, ʀᴇǫᴜɪʀᴇᴍᴇɴᴛs, SDLC methodologies, Burp Suite, requirements testing, checklists, Good knowledge of SDLC, User Story, Mobile App &amp; Web Testing, Test Documentations, Data Base Testing, Regression testing, English, Confluence, QA, mobile testing, Chrome Dev Tools, HTML, TestRail, smoke testing, Git, REST API, CSS, Android, JSON, Windows
+Attentive to details, motivated, and highly skilled QA Engineer

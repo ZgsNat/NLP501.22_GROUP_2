@@ -1,0 +1,5 @@
+Java Developer
+2 năm kinh nghiệm · English: pre
+
+In the past two years, I've gained experience in web development using different technologies. I focused on building Spring MVC applications with a strong emphasis on security and data management. One project I worked on involved creating a Java server for a platform that offered courses. I designed and implemented the server-side logic using Spring MVC, ensured secure access with Spring Security, and managed data using Spring Data JPA and MySQL. I also integrated WebSocket for real-time communication and used tools like SendGrid and Firebase for notifications. Additionally, I have experience with Swagger and Postman for API documentation and testing, as well as Ubuntu server administration.
+Blockchain/Crypto

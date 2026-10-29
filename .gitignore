@@ -12,3 +12,5 @@ runs/
 models/
 data/public/
 data/memory/
+data/djinni/raw/
+data/djinni/labeling/runs/

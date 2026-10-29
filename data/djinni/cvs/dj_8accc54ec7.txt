@@ -1,0 +1,13 @@
+Junior QA Automation Engineer or Manual QA shift to Automation
+8 năm kinh nghiệm · English: pre
+
+8+ years of experience in manual testing of desctop apps using Agile methodology (Scrum, Kanban), less than 1 year of experience in web and mobile testing.
+Technical skills:
+Databases: SQL Server (2000-2014), SQL Azure, SQL Server on Amazon RDS, Oracle 8i - 12c , MySQL 3.23-5.x, MariaDB 5.5-10.0
+SQL Server tools: MSSMS 2008R2-2014, Profiler for MSSMS. 
+Bug tracking system: Redmine, StarTeam
+Version Control System: TFS, SVN, Git, Mercurial
+Testing tools: Test Link, Pict, TestComplete(1 year exper.), FitNesse(2 years exper.)
+Mentoring junior guys; User Support; SourceIT QA automation (basic knowledge, 3 month сource): experience in working with IntelliJ IDEA, Selenium WebDriver, TestNG, Java Core, Maven, HTML, CSS
+ISTQB (17-CTFL-110550-03)
+Junior QA Automation(Java + Selenium WebDriver) or Manual QA shift to Automation

@@ -1,0 +1,8 @@
+Automation QA Engineer(part-time)
+3 năm kinh nghiệm · English: upper
+
+1.5 years as AQ Auto and 1.5 years as QA Manual  
+
+CI/CD - Github Actions, Management and build - Apache Maven, Program language - Java, Frameworks - Selenium/TestNG/JUnit, (reporter) Allure Framework, Loggers - Log4j, REST Assured API. 
+
+Testing of mobile (Android + iOS) apps  Specific tools for Mobile UI testing: Android studio, Xcode, Test documentation: Test Plans, Test Suites, Test Cases, Check Lists, Release Reports. Implementation of different types and levels of testing like functional, UI, Ad-hoc, regression, etc. Regression, Integration testing - Requirements analyzing. - Manual testing of web applications and mobile applications. - Technical and logical tasks. Testing according to user’s cases.

@@ -1,0 +1,9 @@
+Junior QA Engineer
+0.5 năm kinh nghiệm · English: intermediate
+
+SoftServe IT Academy. QUALITY  ASSURANCE  AND  AUTOMATED  TESTING  OF  MODERN  SOFTWARE  SYSTEMS course (2021) 
+   1.Fundamental test processes theory, practical experience of manual testing 
+   2.Practical experience of SQL
+   3.Programming language (Java)
+
+ “Rozetka” creating test documentation (check list, test cases, bug reports), API testing, performance testing, creating automation tests

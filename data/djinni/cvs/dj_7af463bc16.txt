@@ -1,0 +1,19 @@
+Manual QA Engineer
+3 năm kinh nghiệm · English: intermediate
+
+3 years of experience in QA
+- Understanding of software development process and methodologies
+- Knowledge of testing methodology
+- Experience in Agile development processes
+- Knowledge of MySQL, HTML, CSS, JS, API testing (Postman)
+- OS: Windows, MacOS
+- Management tools: Jira, Trello, Redmine, Mantis
+- Test Case Management Tools: TestRail, Testlink
+- Creation test documentation: test plan, check lists, test cases
+- Planning the testing process
+- Reviewing, analyzing and testing of requirements
+- Functional testing, sanity testing, smoke testing, regression testing, cross browsing
+testing, cross-platform testing, mobile app testing
+- Registration of bugs in the bug tracking system
+- Giving on-line webinars of testing
+More experience, friendly team and ability to learn automated testing

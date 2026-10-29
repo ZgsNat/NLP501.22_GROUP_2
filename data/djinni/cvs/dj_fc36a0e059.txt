@@ -1,0 +1,7 @@
+QA Automation Engineer
+0 năm kinh nghiệm · English: upper
+
+Well, I've tried a bit of this and that... my most recent pet project is on Python/Selenium, I just keep it running and it automatically visits the websites every day to claim items for the game I play, to take screenshots from the site I monitor... and one time I even taught it to play Wordle every day. 
+So because I've been playing with Python/Selenium recently, I'm setting the position as QA Automation Engineer, but honestly, anything goes — I also know some html/css/js, tried some mobile development in Android Studio, a bit of datasatanism in Python, and also I've made a small Telegram bot in Python... so frankly, as long as there's a senior to help me out in case I get stuck, I can learn anything. And my desire is kind of not to be left behind and go along with popular modern technologies, whatever's in demand today. 
+So yeah. So far my jobs had little to do with IT, but a friend of mine advised me to try djinni, and hopefully it's going to prove useful.
+Job experience... well, it's not really relevant directly, I've worked as a Hosting Support in 2018-2020, and learned a lot of cool things about how internet works, domains, hosting with cPanel (the popular hosting panel), and how to fix various related issues. And during 2022-now I'm something like a sales representative... not really related to IT.

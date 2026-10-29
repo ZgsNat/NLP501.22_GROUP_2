@@ -1,0 +1,4 @@
+Junior .NET Developer
+0 năm kinh nghiệm · English: upper
+
+I participated in the Best:Hackathon where I used MAUI Blazor and wrote the backend for the test task using a local SQLite database. Additionally, I partially wrote the backend in the main stage using MS SQL and Entity Framework Core. I also developed a website for a learning task using React.js, Node.js and MongoDB, although my knowledge in that area is fairly basic.

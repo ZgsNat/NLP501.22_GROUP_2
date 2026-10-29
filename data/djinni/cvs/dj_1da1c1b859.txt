@@ -1,0 +1,22 @@
+QA Automation Engineer
+8 năm kinh nghiệm · English: upper
+
+Professional skills:
+Building QA from scratch;
+Implementing automation for web apps from scratch;
+CI setup for automation;
+Direct QA support for customer issues investigation;
+Creating all kinds of QA documentation and manuals;
+
+Web UI, REST API, Automation Java (Selenium, Selenide, TestNG, Gradle);
+
+Environment support and CI:
+Kubernates, Docker, GitLab CI, Jenkins, Moon
+
+Worked with:
+CI: Jenkins, TeamCity; BTS: Jira; VCS: Git; Tools: Postman, Charles;
+
+Had experience with building all QA processes from scratch for already released projects without documentation but with customer claims.
+Interested in Senior AQA all General QA positions with possibility to Lead positions grow.
+Prefer the direct client contract, can be okay with outstaff  model.
+I will not intrested in outsource propositions.

@@ -1,0 +1,6 @@
+Senior QA Automation Engineer
+9 năm kinh nghiệm · English: fluent
+
+ISTQB Foundation Level. Training on Testing with Python, JS, and Networking.
+Various types of automation and manual QA activities for UI, backend, and mobile applications. Testing of a client-server app with Python/Pytest/Selene/Playwright/Allure, mobile testing with JS/Detox, and Appium/Python. Automated testing of a web app with JS/Protractor/Jasmine, backend/API testing with Python. Knowledge of Linux, Git, GitLab, GH Actions, Jenkins, BDD, and SauceLabs. REST API testing using Postman, and Chrome Dev Tools. Experience in the creation of automation test frameworks. Preparing and maintaining testing documentation. Have a QA leading experience.
+Interesting technical project with a modern technology stack (Python / JS). Team of motivated, inspired, self-organized, and open-minded people. Manual testing is acceptable, but with priority given to automation (60+ / 40- would be great). Business trips are much appreciated. Open to working with new (not yet experienced) technologies and tools, and the creation of frameworks from scratch.

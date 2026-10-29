@@ -1,0 +1,50 @@
+QA Lead
+9 năm kinh nghiệm · English: upper
+
+o	Manage QA team  
+o	Create automation scripts for different systems by the Selenium Web Driver(C#)
+Company:        Luxoft  
+Position:   	Senior Automation QA Engineer /QA Lead
+Responsibilities:    	
+
+o	Define test strategy to ensure overall quality of the delivered products and measure/guarantee the test coverage of the project 
+o	Manage QA team  
+o	Product Requirement Document creation  
+o	Create user story and assign tasks to QA Engineer in Backlog  
+o	Creation of the Test plan according to backlog 
+o	Creation of regression plan testing 
+o	Report test results 
+o	Create BDD scripts
+o	Create steps definitions for automation tests
+o	Maintenance existing automaton framework and create new features(C#)
+o	Execute automation test cases 
+
+Company:        IT Integrator  
+Position:   	Senior Consultant(QA Automation)
+Responsibilities:    	
+o	Manage and develop project plan, organize confirmation and approval, keep deadlines, inform about project plan direct employees
+o	Product Requirement Document creation  
+o	Providing technical support to CRM key users, preparing User Guides  
+o	Setting technical tasks and develop it at MS Dynamics CRM  
+o	Microsoft Dynamics CRM customization of business solutions   
+o	Customize the default reports and add user reports for specific needs   
+o	Writing specifications for MS Dynamics CRM solutions   
+o	Writing documentation for MS Dynamics CRM solutions and functionalities   
+o	Testing functionalities
+o	Security roles and security groups creation
+o	Select and use Xpath of the page elements
+o	Create automation scripts for CRM system by the Selenium Web Driver(C#)
+
+Company:  	E-consulting  
+Position:          Software engineer  
+Responsibilities:  	
+o	Develop and manage project plan execution:   
+o	Define process and keep it up to date. Take responsible for execution results.  
+o	Analyze functional requirements and specify them to an appropriate level of detail suitable for use by the project team.  
+o	Collection of requirements and creation of a demo version / product of the software product  
+o	Create automation scripts for CRM system by Selenium Web Driver(C#)
+o	Provide development of project execution and manage execution  
+o	Contracting and transaction support as an account manager;  
+o	Interaction with consultants and CRM developers;  
+o	Have gotten experience in supporting Microsoft Dynamics CRM and  implementing
+An interesting project with the possibility of career growth and personal development

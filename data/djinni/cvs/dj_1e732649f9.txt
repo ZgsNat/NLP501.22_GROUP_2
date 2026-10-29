@@ -1,0 +1,30 @@
+QA Automation Junior
+2 năm kinh nghiệm · English: upper
+
+Education
+Kharkiv Machine Building College
+Junior Specialist degree in specialty « Heat Treatment of Metals» 2004 – 2009.
+National Technical University «Kharkiv Polytechnic Institute»
+Specialist degree in specialty «Material Science and Heat Treatment of Metals» 2009 – 2014.
+Computer Academy STEP
+2 semesters in specialty “Software development”
+Courses “Skill up” 
+Course  “Basic knowledge of HTML+CSS and SQL”
+Telesens Academy 
+Course “Quality Assurance Core”
+Course “Junior QA”
+American English Center
+Finished 6 levels from 6.
+Interests
+Reading of historical, science-fiction and esoteric books, playing the drums,  watching English language  movies, speaking with interesting people.
+Personal profile
+- Self team development;
+- the desire for
+Windows,Ubuntu,MacOS
+Basic:   C#,  HTML + CSS, JS;
+Basic: MSSQL, MySQL
+Jira, Azure Microsoft
+
+Middle: Java, Maven, Postman, Jmeter
+QA Manual - 2.5 years
+QA Automation  - 2 years

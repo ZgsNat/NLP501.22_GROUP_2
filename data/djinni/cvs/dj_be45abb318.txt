@@ -1,0 +1,10 @@
+Lead/Senior Software Developer in Test
+7 năm kinh nghiệm · English: fluent
+
+Setup CI/CD from scratch and setup auto test process.
+I have setup from scratch AutoTest frameworks in difference type of projects. The main stack of technology is Microsoft(DevOps Azure, C#, TFS).
+Leading AutoTest solutions creation.
+Setup and configure build/release agents on Windows Server
+Setup build pipelines in TFS/Azure DevOps for .net core/angular applications and Azure Functions
+Setup release pipelines in TFS/Azure DevOps
+Setup Keycloak and KrakenD in Azure.

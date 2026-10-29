@@ -1,0 +1,7 @@
+Automation QA
+0 năm kinh nghiệm · English: nan
+
+Developed automated testing framework covering full data flow through the system - from loading to database to distributing via web service.
+Almost 4 years of experience in software testing - from simple manual testing to development of complex automated solutions (both back-end abd front-end, Java; financial field).
+Skills: Java, SQL, XML, JSON, Selenium, UNIX, Scrum, Jira, Bugzilla, JMeter, various test documentation
+Would prefer a company with possibilities for professional growth, friendly, close-knit team and interesting projects that require non-routine solutions.

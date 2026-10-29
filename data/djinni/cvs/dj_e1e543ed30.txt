@@ -1,0 +1,8 @@
+Manual QA Engineer
+2 năm kinh nghiệm · English: fluent
+
+•	Work well on each stage of testing life cycle: test strategy definition; requirements analysis; test design and execution; bug reporting and racking; leading Demo; preparing Test Result Report 
+•	Scrum methodology: 2 week sprints, PBR, planning, daily meeting, demo, retrospective
+•	Perform different types and levels of testing: acceptance testing, smoke, and regression testing; exploratory testing, simple security testing using Postman, Cross-browser testing , functional and GUI
+Skills: HTML/CSS (basic), SQL (basic), Java and OOP (basic), basic knowledge of Automation testing, Business Analysis 
+Tools: TestRail, Jira, Jira Test Management, Jenkins, WebSphereMQ, WinSCP, HeidiSQL DB Client, Oracle SQL Developer, IntelliJ IDEA

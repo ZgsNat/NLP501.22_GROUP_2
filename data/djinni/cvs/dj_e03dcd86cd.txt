@@ -1,0 +1,13 @@
+Senior QA/Automation QA(Java)
+7 năm kinh nghiệm · English: intermediate
+
+Conference speaker(SQADays,QA Fest)
+-automating testing for UI/API (Java)
+-develop test frameworks from scratch
+-configuration automation projects on CI(Jenkins, CircleCI)
+-manual testing( UI+Backend+logic)
+-project test management(leading and mentoring)
+-implement BDD-approach
+-mobile testing Android/iOS
+-performance testing with Jmeter/own utility(Java)
+Prefer to work with product teams

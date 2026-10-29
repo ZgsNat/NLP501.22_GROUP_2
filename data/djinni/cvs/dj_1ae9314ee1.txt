@@ -1,0 +1,13 @@
+QA Automation Engineer
+8 năm kinh nghiệm · English: upper
+
+- Led automation efforts of a project providing customers with enterprise solutions for the restaurant industry
+- Defined Quality Metrics (automation coverage, velocity, risk areas, ROI, etc) and implemented measurements to determine test automation effectiveness, provided QA metrics to the stakeholders, increasing automation visibility and investments. Optimized metrics gathering by developing a tool, which was executed on a regular basis, building a dashboard
+- Architected automation frameworks for complex systems (Microservices and Monolithic) for functional and non-functional automation verifications (Web UI/API, Mobile), that work with multiple devices and platforms
+- Built in-house physical device farm (Android, iOS, Windows Desktop) with a server for remote management and monitoring for the project-specific needs, allowing the integration of mobile autotests into CI/CD process, providing fast feedback, and saving the company ~$11k per year
+- Implemented re-usable application-specific python libraries(deployed to Nexus PyPi), reducing framework development/support costs and time for all automation framework across the project
+- Implemented Reporting System to track execution results from all components in a microservices system (50 deployment units), with auto-detect flaky tests feature, which allowed to make autotests robust and stable, decreasing execution analysis and feedback time on 70% in avg
+- Developed a tool for UI Performance testing(Load, Endurance) of Electron and Cordova apps, integrated into CI/CD pipeline, providing real time results into ElasticSearch and reducing manual effort by ~90%
+- Set-up CI/CD process for multiple projects, contributing to all Quality Gates (Unit, Component, Integration) by integrating autotests into pipelines and implementing test execution on every change in software, decreasing release cycle
+- Managed automation infrastructure in Cloud by wrapping tools into Docker and deploying into AWS (ECS, EC2) using CloudFormation and Ansible which improved availability and scalability of automation tools as well as saved time and costs on infrastructure support
+- Set-up a structured and comprehensive automated arrangement of test data input close to 'real'/'live', considering security nuances increasing confidence in automation results

@@ -1,0 +1,10 @@
+Senior .NET Developer
+8 năm kinh nghiệm · English: upper
+
+Everyone I worked with were satisfied with my contribution and skills.
+Backend development in international AdTech startup. There I've got experience of transcoding audio/video with FFmpeg, knowledge of MySQL, rewriting existing legacy code without breaking existing logic, got used to weekly releases and working with English speaking team.
+ Backend development in UA AdTech startup. Design and implementation of IoT system and backoffice API. ASP.NET 6, EF Core, PostgreSQL, PostGIS, MQTTNet, EMQX, AWS S3, SQS, ElastiCache.
+ Internal tools and services for BI department in a team of 2 developers.  ASP.NET Core 3.1, React.js, EF Core.
+ Different web sites and services for brokers; CRM system from scratch in a small team as a full stack developer. ASP.NET Core 1.1, jQuery/pure JS, Dapper with stored procedures, MSSQL Server. Implemented websocket service, different reports and statistics modules, mailing and call services, etc.
+ Experience in Windows Store app development, mentoring Junior developers.
+Prefer a back-end position using .NET 6+

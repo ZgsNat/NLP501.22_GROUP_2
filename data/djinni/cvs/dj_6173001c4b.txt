@@ -1,0 +1,16 @@
+Senior QA Automation Engineer
+8 năm kinh nghiệm · English: upper
+
+- built testing framework and implemented functional API tests for a bunch of services;
+- Migrated all tests from one testing framework to another for one service;
+- Improved tests to be executed faster for one service;
+- Extended already existing testing framework;
+...
+more in resume.
+API testing, Docker, Kubernetes, Selenium Webdriver, Java, Junit, TestNg, Software quality assurance, Automation tools, System verification, Attention to details, JIRA, MS TFS, Test case and script creation, functional, system, acceptance, regression, ad-hoc, and exploratory testing, Test case design/creation, Test case execution/running, Bugs tracking, Bugs verification, Work with Jira, MS TFS.
+- professional growth;
+- nontrivial interesting project and complicated tasks;
+- do not propose manual testing;
+- training and new knowledge;
+- flexible schedule;
+- friendly team & comfortable working conditions and office

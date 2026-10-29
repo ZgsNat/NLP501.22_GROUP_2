@@ -1,0 +1,66 @@
+QA Lead/QA Manager or part-time job as a QA Engineer
+11 năm kinh nghiệm · English: upper
+
+Past jobs:
+- more than 400 issues* were found and fixed on a couple of sub-projects within 5 months of active development (* - by issues it is meant to include both defects and feature improvements);
+- Implemented API tests as an e2e flow from the Backend perspective (100 % of coverage for most of the important endpoints). Tools: Postman, Newman, GitLab;
+- improved performance testing by suggesting new changes on how tests should be build and used. Tools: JMeter
+
+------------------------------------------------------------
+
+- Implementation of the Dashboard for continuous monitoring of failed builds/releases and test automation executions. Tools: Azure DevOps. 
+- improved automated process of discovering content issues on the websites (~32 different localization s). Tools: code in C#, API testing, RestSharp library.
+QA Engineering Manager
+Feb 2022 - Present
+Kyiv City, Ukraine
+
+Stack: TypeScript, Cypress, BDD, Postman, Docker, Docker-Compose • Jenkins • CI/CD pipelines • GitHub
+----------------------------------------------------------
+
+Senior Test Automation Engineer
+Itera
+May 2021 - Present
+Kyiv City, Ukraine
+
+Stack: TypeScript, Cypress, Postman, Azure DevOps, DBs: MS SQL, Oracle, SQL Anywhere.
+----------------------------------------------------------
+
+Senior QA Automation Engineer
+Omilia - Conversational Intelligence
+Jul 2020 - May 2021
+Kyiv City, Ukraine
+
+Stack: Cypress, Postman, Gitlab CI, Git, Linux. JMeter and e2e performance company's developed tool, Cloud: Amazon Web Services/Azure.
+----------------------------------------------------------
+
+QA Tech Lead
+Ciklum
+Dec 2018 - Feb 2020
+Kyiv, Ukraine
+
+Stack: MS DevOps Azure (requirements, defects, manual and auto tests, release pipelines, dashboards); Automated API and Smoke web tests: C#, MS Visual Studio; Automated performance tests: Apache JMeter; Agile development: mixed Scrum/Kanban, user stories, bi-weekly sprints; Analyzing logs: Rapid7, NService bus; CMS: Sitecore 8; API testing: Postman, Swagger
+----------------------------------------------------------
+
+Senior Test Engineer
+Ciklum
+Dec 2014 - Dec 2018
+Kyiv, Ukraine
+
+Stack: C#, Seleno (Selenium), BDDfy, NUnit; CRM, AX, Sitecore; Apache JMeter; TeamCity, Octopus;
+----------------------------------------------------------
+
+Verification & Validation Engineer
+Miratech
+Oct 2012 - Dec 2014
+Kyiv, Ukraine
+
+Stack: Unix, SQL, PL/SQL, JIRA, SVN.
+----------------------------------------------------------
+
+Test Engineer
+2010 - 2012
+Kyiv, Ukraine
+
+Stack: SQL, PL/SQL, Mercury QC
+What's not interesting: gambling / lottery / casino / gamedev
+Out of priority: 100 % test automation / C#

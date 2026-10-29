@@ -1,0 +1,11 @@
+Junior Front-end Developer
+0 năm kinh nghiệm · English: intermediate
+
+UA DNA -  Volunteer project with the informational support of the Ministry of Culture of Ukraine to introduce people to Ukrainian culture. It features artists, places, brands, companies, musicians, illustrators, etc.
+Stack: React, TypeScript, SCSS modules, GraphQL, Apollo Client.
+
+Time Tracker - This is a time-tracker web application. For full-time employees, records are created automatically by the button click with a duration of 8 hours, and for part-time employees, a timer is started. It is also possible to submit requests for vacation and sick leave, which is confirmed by the relevant person. Workers with certain privileges have an open access to the list of users with search, sorting, pagination and export to XLSX / PDF.
+Stack: React, Redux, RxJs, TypeScript, HTML/CSS/SCSS, GraphQL, ASP.Net, Dapper, MS SQL.
+
+To Do List - independently performed project during the Sana Commerce Software Development Courses. A web application that allows you to edit, delete and create tasks with a specific name, description, category selection and deadline (all optional). You can also create your own categories.
+Stack: React, Redux, TypeScript, HTML/CSS/SCSS, GraphQL, ASP.Net MVC, Dapper, MS SQL.

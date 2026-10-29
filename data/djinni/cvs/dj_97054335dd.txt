@@ -1,0 +1,17 @@
+QA Automation Engineer
+4 năm kinh nghiệm · English: upper
+
+Maintain and improve Selenium UI autotests for worldwide leading logistic company;
+Build Appium framework from scratch for mobile e2e testing with time trend Allure reports.
+Build Rest API automation framework from scratch using Rets Assured and Cucumber.
+Automation Testing: Java Selenium, Selenide, Rest Assured, TestNG, Junit, Logger, Lombok, Allure, XPath, Sauce Labs, Appium, Git, Gerrit.
+API Testing: Postman, Swagger, XML/JSON, Web Services.
+Database: mySQL.
+Continuous Integration: Jenkins.
+Tracking Tools: Jira, Confluence, Mantis, Trello.
+Test Development Tools: Testrail, Excel, Google docs. 
+Other: Data Driven Testing, PageObject, Bitbucket, Chropath.
+Manual 3 years;
+Automation: 4 years
+Friendly team, professional growth. English working environment. 
+Zero or minimum manual testing. I enjoy learning and implementing new technologies that help to improve software development.

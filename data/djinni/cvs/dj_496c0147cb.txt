@@ -1,0 +1,9 @@
+QA Automation Engineer
+4 năm kinh nghiệm · English: fluent
+
+3 years of professional experience in Software Quality Assurance / Software Automation Testing.
+Developing, maintaining and executing both automated and manual test plans and test cases, performing all types of testing
+Experience in Automated Testing, writing test frameworks from scratch
+Knowledges of HTML, CSS, JS, Java core, Junit, C#, NUnit, White, Microsoft UI Automation, CodedUI
+Tools: Selenide, Selenium Webdriver, SQL, Git, SVN, Maven, Jenkins, JIRA,
+OS: Linux, Mac OS X, Windows

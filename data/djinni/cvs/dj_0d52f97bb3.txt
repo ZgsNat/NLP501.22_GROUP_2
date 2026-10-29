@@ -1,0 +1,7 @@
+QA Automation Engineer
+0.5 năm kinh nghiệm · English: intermediate
+
+Experience in creating test framework "from scratch" using Java, Selenium, PageObject. Installation and supporting Jenkins+Selenium Grid for tests running.
+0.5 year experience in Automation testing.
+
+Programming: Java 8; - Test automation: Selenium WebDriver, TestNG, JUnit, Grid, Serenity, Cucumber; - Build tool: Maven; - Patterns: PageObject; - Selectors: XPath, CSS; - DB: MySQL, Derby; - CI: Jenkins; - Version control: Git; - Bug tracking: Jira.

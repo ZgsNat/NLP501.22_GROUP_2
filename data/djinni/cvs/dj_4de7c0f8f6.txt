@@ -1,0 +1,27 @@
+Java QA Automation Engineer
+4 năm kinh nghiệm · English: intermediate
+
+ISTQB Fundamental Level certification.
+Creation automation test cases (Selenide, BDD approach(Cucumber)) for web UI and API(Rest Assured).
+
+Covering Regression & Negative Testing with automation scenarios
+
+Experience with Mobile automation (Android(Appium))
+Involved in an estimation session
+
+Participation in testing from the beginning of development
+
+Defect/Bug Tracking, Investigation, Retesting.
+
+Testing web-application and mobile version of  banking and e-commerce application
+-Development new functionality coverage
+
+-Work with documentation and execution of automated tests across all stages of the product development lifecycle following best practices and methods;
+
+-Maintain automated test environments for the assigned projects;
+
+-Estimate project test efforts.
+
+-Work collaboratively with the product manager, development, QA, and technical publication teams during all stages of the software development life cycle.
+
+-Full automation involvement

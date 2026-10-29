@@ -1,0 +1,11 @@
+Senior Software Engineer in Test
+9 năm kinh nghiệm · English: upper
+
+Set up mobile automation environment from the scratch. 
+Increased test execution pace, and overall the product quality by using automation.
+Decrease costs of used resources by moving service from kubernetes cluster to serverless technologies and making it multitenant
+I've been working as QA for 8 years already. Last two years have been working as a backend developer (Developing a web service that helps to test the product)
+During this time I have been testing Front-end, Backend, Desktop, mobile apps, performing web and mobile automation.
+Technologies:
+Linux, Windows, MacOS, Manual Testing (QA), Python, JavaScript, Selenium WebDriver, Appium, Pytest, Pydantic, Test Documentation, HTML, CSS, SQL, Jenkins, Bamboo, Google Cloud, GitHub actions, Docker, Golang, Terraform, Terragrunt,
+I would like to move forward in automation testing and software engineering, also can take a lead position and set up testing process.

@@ -1,0 +1,13 @@
+AQA Engineer, Java
+3 năm kinh nghiệm · English: upper
+
+Implement new quality control policies and procedures, improving the production process
+Manage team of 5 people as a Team Lead
+Develop and implement testing plans and test cases. Both analysis and reports on the results
+Developed a Test Automation Framework From Scratch
+5 years of experience as QA Engineer
+3 years of experience as AQA Engineer
+
+-Was participating in the design and development a framework for automation testing
+-Developed automation project from scratch using selenide softAssert testNG extent Report
+-Strong expirience with Java, TestNG, Maven, Locust, AWS, Jenkins, Selenium, Selenide, Rest Assured, Alure, Extent Report, Docker, Kubernets+ArgoCD

@@ -1,0 +1,15 @@
+QA Engineer
+5 năm kinh nghiệm · English: upper
+
+•I'm the only  QA on the project
+•Create/update  Test  Plans
+•Experience of different approaches in the estimation processes 
+•Prepare Test Cases and/or Scenarios using common Test Design techniques, following Test Design guidelines in accordance with defined Test Design approach and requirements
+•Test coverage of requirements, user stories, acceptance criteria during peer review of designed Test Cases and Test Scripts
+•Configure Test Tools and extensions based on the selected Test Types and Test Approaches
+•Prepare Test Cases and/or Scenarios using common Test Design techniques, following Test Design guidelines in accordance with defined Test Design approach and requirements
+•Verify that defects, issues, and other items are resolved and appropriate test documentation is updated accordingly
+•Perform analysis of defects, impact analysis related to regression testing and system changes in scope of defects fixing
+•Understanding Software Development Life Cycle (SDLC) on all levels
+Manual testing, functional testing, Quality Assurance, mobile testing, regression testing, Android, iOS, Windows,, MacOS Web testing, bug reporting, different BugTrackingSystems, VMware, Function Testing, cross platform testing, Jira, Agile, Scrum, Postman,Swagger UI/UX testing, Confluence, Linux basic, Bitbucket, Basic SQL, Basic Python, PyCharm, Advanced Logs Viewer, Fiddler, GitHub, Visual Studio, DevTools etc.
+no game sector

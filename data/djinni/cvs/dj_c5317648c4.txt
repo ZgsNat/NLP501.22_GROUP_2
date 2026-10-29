@@ -1,0 +1,6 @@
+Senior Automation QA Engineer
+6 năm kinh nghiệm · English: upper
+
+I have experience in setting up TAF from scratch and maintaining CI/CD pipelines. Have experience as a Team lead in AQA team.
+I have a sufficient experience in Test Automation with Java-based automation frameworks. Current responsibilities: Creating and setting up Test Automation Framework from scratch. Performing test automation for UI and API parts.
+ Task estimation and assignment for team members. Setting up Jenkins pipelines for scheduled/manual test runs. Onboarding newcomers and creating onboarding documentation

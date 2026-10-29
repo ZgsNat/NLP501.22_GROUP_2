@@ -1,0 +1,24 @@
+Senior QA Engineer/Team Lead
+7 năm kinh nghiệm · English: upper
+
+QA Stream Lead in the Training Academy.
+Managing a team of 7+ QA/DEV Engineers on the project.
+The lead of AQA team - 3+ Engineers.
+AWS Certified Cloud Practitioner.
+- Managing scrum team of 7+ DEV/QA Engineers;
+- Writing API/UI tests (JS, TS, Protractor, Webdriver.io, Mocha, Chai, Allure);
+- Maintenance and support of automation tests;
+- Working with MongoDB, Postman, AWS, Kibana, Sentry;
+- Requirements analysis;
+- Issues investigation;
+- Security testing (XSS, Broken Authentication, Broken Access Control, issues from the OWASP Top 10);
+- Working with the development and PM teams to continuously improve application functionality;
+- Creating/maintaining documentation;
+- Design test cases/scenarios/mind maps/acceptance criteria;
+- Defining test data;
+- Cooperating with other departments (DevOps, Design, PM, Agile team);
+- Mentoring colleagues in manual and automation testing;
+- Taking part in the onboarding process for new team members;
+- Conducting interviews and knowledge evaluation on demand for the company's projects;
+- Work with trainees (mentoring, lectures, tech interviews, support, coaching).
+Professional growth.

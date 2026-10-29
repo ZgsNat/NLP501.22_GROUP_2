@@ -1,0 +1,9 @@
+Junior DevOps engineer
+0 năm kinh nghiệm · English: upper
+
+- "Cloud&DevOps Fundamentals program" certificate from EPAM University program.
+- Graduated Igor Sikorsky Kyiv Polytechnic Institute with master's degree, educational program: Computer Systems and Networks.
+- 1 year of experience in technical support.
+- Pet project to automate a web app. Used tools: Jenkins, Ansible, Terraform, Docker, Git, Maven. Used cloud: AWS.
+- Have a solid understanding of networking from university. Configured different services in VirtualBox (mail, FTP, NFS, DHCP, DNS, SSH severs, etc.).
+I'm expecting to get an experience in a real project, ready to learn new tools that are used in the project.

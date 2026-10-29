@@ -1,0 +1,10 @@
+Junior QA Engineer
+1 năm kinh nghiệm · English: intermediate
+
+Experienced in manual and automation testing: 
+- writing test cases and feature files (BDD),
+- automating test scenarios using Cypress and Cucumber,
+- bug tracking,
+- using POM and best practices,
+- working with Jenkins (CI/CD) and Cypress Cloud,
+Also learning Playwright.

@@ -1,0 +1,12 @@
+Junior QA Engineer
+2 năm kinh nghiệm · English: upper
+
+Sweetsoft LLC (Kharkiv) May 2021 - May 2023
+Manual functional/non-functional testing, writing and maintaining QA documentation (test plan, test cases & check-lists), API testing, load testing, stress testing, regression testing, basic automatic testing.
+
+SkillUp - Online software testing courses (March 2021 - April 2021)
+Duties: writing test cases, manual testing, creating bug reports; writing SQL queries, creating HTML pages, working with Postman and JIRA.
+
+Other experience: Automotive service engineer
+Feb 2019 – May 2020
+Duties: service and repair of automobiles.

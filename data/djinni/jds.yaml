@@ -1,0 +1,194 @@
+- id: dj_jd_0b373e855d
+  title: Middle QA Automation Engineer, Payment Processing Solutions
+  company_type: default
+  profile: Mặc định
+  split: test
+  company: DataArt
+  exp_years: 3y
+  stack: csharp
+  text: "Middle QA Automation Engineer, Payment Processing Solutions\n\nOur project is directly related to one of the company's\
+    \ activities in terms of payments, namely their Payment gateway. At this stage, DataArt’s team is engaged in both the\
+    \ development of new functionality and the improvement/revision of the existing functionality.\r\n\r\nTechnology stack:\
+    \ .Net Core, JS React (TypeScript), Specflow, Selenium, Veracode, SonarQube, Docker, PostgreSQL.\r\n\r\nMust have\r\n\r\
+    \n3+ years of experience in the automated testing of web projects, API (REST)\r\nExperience in manual testing\r\nGood\
+    \ knowledge and experience of automation in C#\r\nUnderstanding of the main development patterns used in automated testing\r\
+    \nExperience with version control systems (Git)\r\nExperience in using continuous integration systems\r\nFluent English\
+    \ (written and spoken)\r\n\r\nWould be a plus\r\n\r\nExperience in projects related to payment systems"
+- id: dj_jd_5ead23acd4
+  title: Trainee Automation QA Engineer (Java)
+  company_type: default
+  profile: Mặc định
+  split: test
+  company: Akvelon, Inc.
+  exp_years: no_exp
+  stack: java
+  text: "Trainee Automation QA Engineer (Java)\n\n**What we are looking for:**\r\n\r\n•Knowledge of testing methodologies\
+    \ and processes\r\n•Base knowledge of Java programming language\r\n•At least pre-intermediate level of English \r\n\r\n\
+    **Will be a plus:**\r\n\r\n•Any experience with automated testing frameworks \r\n•Any сommercial experience\r\n•QA Manual\
+    \ background \r\n•Familiarity with writing test-cases and check-lists\r\n\r\n**We offer** \r\n• To attend challenging\
+    \ projects from world-known companies\r\n• Opportunity for self-realization, career and professional growth\r\n• Official\
+    \ employment with competitive compensation\r\n• Opportunity to go on international business trips\r\n• Paid vacation,\
+    \ sick-leave\r\n• Flexible working schedule\r\n• Official Ukrainian holidays are days off\r\n• Corporate events\r\n• English\
+    \ classes & speaking clubs\r\n• Library with contemporary professional literature\r\n• Friendly team\r\n• Comfortable\
+    \ working environment\r\n• Cozy work places\r\n• Business center A class\r\n• Convenient location, 5 minutes from subway\
+    \ station\r\n\r\n**Responsibility:**\r\n\r\n•Work closely with the mentor\r\n•Develop automated tests\r\n•Design, write\
+    \ and manually execute test-cases and check-lists\r\n\r\n**About the project:**\r\n\r\nAkvelon Ukraine on behalf of Tideworks\
+    \ Technology invites professionals to join the Kharkiv development team. Tideworks Technology develops advanced, intuitive,\
+    \ and high-quality products that drive efficiency, productivity, and manage logistics at marine, off-dock, and rail container\
+    \ and break-bulk terminals around the globe.\r\n\r\nTools and Technologies:\r\nJava 11 SE, Spring Boot, Hibernate,TestNG,\
+    \ RxJava, PostgreSQL, ActiveMQ, Jenkins, Kafka, Docker."
+- id: dj_jd_6e1339ed62
+  title: Automation QA Engineer
+  company_type: default
+  profile: Mặc định
+  split: test
+  company: Zoolatech
+  exp_years: 3y
+  stack: javascript
+  text: "Automation QA Engineer\n\n**Project Description**\r\n\r\nOur client Knock Rentals, an award-winning sales and marketing\
+    \ SaaS platform for residential property management companies. Knock’s suite of products help companies streamline and\
+    \ optimize their front-office operations, it includes CRM, Analytics, Tour support and other functionality.\r\nZoolatech\
+    \ started collaboration with the company a year ago and is growing further. Now we are searching for the Automation QA\
+    \ engineer who will join QA team and would be helping to automate the work of Data & Analytics engineering team. The person\
+    \ should be able to integrate into the engineering & product team to bring the most value to the team. \r\n\r\n**Responsibilities**\r\
+    \n\r\nThe main responsibility would be crafting automated tests and maintaining the QA infrastructure, improving the efficiency\
+    \ of automated testing\r\n\r\nIncrease confidence that our releases work as expected and do not have regressions\r\n\r\
+    \nBuild and maintain test automation scripts, write test cases and perform manual testing\r\n\r\nImprove the capabilities\
+    \ of the test infrastructure, review automated runs and take appropriate actions\r\n\r\nMaintain the QA test infrastructure\
+    \ and monitor jobs in Jenkins\r\n\r\nCommunicate any issues/failures in the infrastructure/automated runs\r\n\r\nWork\
+    \ over multiple applications which are hosted in different platforms (web/mobile)\r\n\r\n**Skills Required**\r\n\r\n1+\
+    \ YOE in both automated UI and API testing and 3+ YEO in manual testing \r\n\r\nAny automation experience with technologies\
+    \ like Selenium/Cypress/Javascript/Cucumber\r\n\r\nEagerness to learn and automate functionalities as much as possible\r\
+    \n\r\nExperience in developing test cases for features/applications where prior documentation is not elaborate\r\n\r\n\
+    Ability to collaborate with product and engineering teams\r\n\r\nGood level of English speaking/writing is must\r\n\r\n\
+    Excellent documentation skills\r\n\r\nProactive and decisiveness\r\n\r\nProgramming skills in Python \r\n\r\nJenkins experience\r\
+    \n\r\n**Nice to Have**\r\n\r\nExperience with testing applications with technical language/platforms such as JS/Angular/\
+    \ React/iOS\r\n\r\nData engineering background"
+- id: dj_jd_85e7c1f8dd
+  title: Junior Automation QA engineer
+  company_type: default
+  profile: Mặc định
+  split: test
+  company: GlobalLogic
+  exp_years: 1y
+  stack: python
+  text: "Junior Automation QA engineer\n\nDescription\r\n\r\nNSG team works on 2 generations of Harmonic Cable products: actively\
+    \ developing the industry’s first software-based CCAP solution (“Cable OS”) and supporting market-leading edgeQAMs (“NSG\
+    \ 900-40G”, “NSG PRO”). These solutions allow to cable operator companies to deliver the IP-based data, video, and voice\
+    \ services to millions of customers. Focus is given to CableOS which will allow to get rid of the existing HW equipment\
+    \ and to migrate to the cloud, saving customers the enormous expenses for the support of HW network equipment. GlobalLogic\
+    \ team is involved in development, manual and automated testing, as well as in solution integration at customers’ head\
+    \ end.\r\n\r\nhttps://www.harmonicinc.com/solutions/cable/\r\n\r\nhttps://www.globallogic.com/ua/harmonic-and-globallogic/\r\
+    \n\r\nRequirements\r\n- 1+ years of relevant commercial experience in Test Automation;\r\n- Basic knowledge of Python;\r\
+    \n- Basic knowledge with UNIX/Linux OS;\r\n- Intermediate and above English (read/write/speak) for communication with\
+    \ the remote teams and subject matter experts;\r\n- Good communication skills;\r\n- B. Sc. in computer science or Electricity\
+    \ Engineering or equivalent.\r\n\r\nPreferences\r\n- Experience in design/development in Object-Oriented methodologies;\r\
+    \n- Experience with PyTest library;\r\n- Basic knowledge in networking (L2/L3);\r\n- Knowledge of Databases/SQL.\r\n\r\
+    \nResponsibilities\r\n- Implement automation tests accordingly to defined requirements and design;\r\n- Develop in the\
+    \ existing automation infrastructure based on Python for the complex embedded system;\r\n- Cooperate with scrum teams:\
+    \ SW, HW and manual QA.\r\n\r\nWe Offer\r\n\r\nExciting Projects: Come take your place at the forefront of digital transformation!\
+    \ With clients across all industries and sectors, we offer an opportunity to work on market-defining products using the\
+    \ latest technologies.\r\n\r\nCollaborative Environment: Expand your skills by collaborating with a diverse team of highly\
+    \ talented people in an open, laidback environment — or even abroad in one of our global centers or client facilities!\r\
+    \n\r\nWork-Life Balance: GlobalLogic prioritizes work-life balance, which is why we offer flexible work schedules.\r\n\
+    \r\nProfessional Development: Our dedicated Learning & Development team regularly organizes certification and technical\
+    \ / soft skill trainings to help you realize your professional goals.\r\n\r\nExcellent Benefits: We provide our consultants\
+    \ with competitive compensation and benefits\r\n\r\nFun Perks: We want you to love where you work, which is why we host\
+    \ sports classes, cultural, social and teambuilding activities such as sports competitions and end-of-year corporate parties.\
+    \ Our vibrant offices also include dedicated GL Zones and rooftop decks where you can drink coffee or tea with your colleagues\
+    \ over a game of table football or darts!\r\n\r\nAbout GlobalLogic\r\n\r\nGlobalLogic is a full-lifecycle product development\
+    \ services leader that combines chip-to-cloud software engineering expertise and vertical industry experience to help\
+    \ our customers design, build, and deliver their next-generation products and digital experiences. We expertly integrate\
+    \ design, complex engineering, and agile delivery capabilities to deliver superior business outcomes for global brands\
+    \ in telecom, automotive, healthcare, technology, media and entertainment, manufacturing, and semiconductor industries.\r\
+    \n\r\nHeadquartered in Silicon Valley, GlobalLogic employs over 11,000 designers and engineers across the globe. Analysts\
+    \ like NASSCOM and Zinnov have recognized us for being a top company in our field, and we are consistently nominated as\
+    \ a preferred employer by both global HR consultative firms and local job boards. By creating a work environment that\
+    \ is exciting and flexible, and by fostering growth through ongoing learning and development programs, we empower our\
+    \ employees to achieve both their professional and personal goals.\r\n\r\nAt GlobalLogic, we make amazing products — and\
+    \ careers."
+- id: dj_jd_ef1d547a0b
+  title: Middle QA Engineer with automation skills (C#)
+  company_type: default
+  profile: Mặc định
+  split: test
+  company: Levi9
+  exp_years: 2y
+  stack: csharp
+  text: "Middle QA Engineer with automation skills (C#)\n\n**Requirements:**\r\n2+ years in software testing, preferably back-end\
+    \ testing.\r\nExperience in test automation using C#\r\nExperience with SOAP/REST services test automation.\r\nDeep understanding\
+    \ of HTTP protocol and client-server architecture.\r\nExperience with SQL, MS SQL Management Studio.\r\nExperience with\
+    \ Soapui / Docker / JMeter\r\nKnowledge of test types and approaches.\r\nIntermediate English level.\r\nSelf-motivation,\
+    \ excellent communication and interpersonal skills.\r\n\r\n**As a plus:**\r\n● Work with (GIT, Azure Dev Ops).\r\n● Experience\
+    \ with Scrum or other Agile methodologies.\r\n\r\n**Current team setup:**\r\n1 dedicated UA teams working together with\
+    \ client using the Scrum approach\r\n4 .Net Developers, 2 QA, 1 Delivery Manager\r\nStakeholders and Product Owners are\
+    \ on the client’s side\r\n\r\n**Other:**\r\nAgile environment (Nexus framework)\r\nDaily communication in English\r\n\
+    3 teams in 3 countries\r\n\r\n**About the project:**\r\nA company that serves the terminals around the world and decided\
+    \ to develop own tool that will manage new created terminal. The tool that manages the containers from when it is taken\
+    \ from the vessel through all steps inside the terminal to when a container is got by truck from the port"
+- id: dj_jd_ae34bfa9d9
+  title: Manual QA Engineer
+  company_type: default
+  profile: Mặc định
+  split: test
+  company: Don't Panic Recruitment
+  exp_years: 1y
+  stack: java
+  text: "Manual QA Engineer\n\nHello! We, Don't Panic Recruiting Agency, are looking for Automation QA Engineer for our client,\
+    \ Papaya Global. Kyiv, office.\r\n\r\nPapaya Global is reinventing global payroll, payments, and workforce management.\
+    \ Our automated platform helps companies hire, onboard, manage, and pay people in more than 100 countries. The cloud-based\
+    \ solution is easy to use and scale, ensures full compliance and provides industry-leading BI and analytics.\r\n\r\n**Must\
+    \ have:**\r\n· 1+ years of manual QA experience;\r\n· XML, Xpath, DOM model understanding;\r\n· Understanding of Java\
+    \ or any other programming language (Java is preferable);\r\n· Experience with Selenium;\r\n· Solid understanding of QA\
+    \ processes, approaches, methodologies and software development lifecycle.\r\n· English level - Intermediate of higher\
+    \ (speaking/reading/writing);\r\n\r\n**Should have:**\r\nKnowledge of HTTP, REST;\r\nExperience with TestRail or similar\
+    \ test case management system;\r\n\r\n**Nice to have:**\r\nExperience with JUnit/TestNG;\r\nExperience with Git;\r\nExperience\
+    \ with CI tools (Jenkins/CircleCI);\r\nExperience with AWS cloud infrastructure;\r\nExperience with Maven/Gradle;\r\n\
+    Experience with Postman/SoapUI or similar tools;\r\nExperience with RestAssured or similar frameworks;\r\nExperience with\
+    \ Load/Performance testing;\r\nExperience with JSystem;\r\nExperience with Docker;\r\n\r\n**Responsibilities:**\r\nCreate\
+    \ and execute manual test cases (~50%)\r\nCreate new automated test cases (Selenium + JSystem, ~50%)."
+- id: dj_jd_cda40acb53
+  title: Middle QA Automation
+  company_type: default
+  profile: Mặc định
+  split: test
+  company: Redpoint Positioning Corporation
+  exp_years: 1y
+  stack: javascript
+  text: "Middle QA Automation\n\n***Required Technology Knowledge and Experience:***\r\n●\tOOP, Java, TestNG /JUnit\r\n●\t\
+    UI automation: Selenium Web Driver, XPath\r\n●\tMaven, Git\r\n●\tAPI manual and automated testing (Postman)\r\n●\tLinux\
+    \ basic commands\r\n●\tData-Driven testing\r\n●\tSQL\r\n\r\n***Basic knowledge of following would be a plus:***\r\n●\t\
+    JavaScript and Chai.js or Mocha would be a plus\r\n●\tREST Assured\r\n●\tCI/CD Jenkins/Gitlab CI  basic knowledge\r\n\
+    ●\tWebSocket, ZMQ\r\n●\tPython\r\n\r\n***Testing knowledge and experience:***\r\n●\tSDLS, Defect Life Cycle\r\n●\tTesting\
+    \ types and levels, Test Methodologies\r\n●\tTest Design Techniques, Test Documentation\r\n\r\n***General requirements:***\r\
+    \n●\t2+ year experience of work on commercial projects as QA Automation Engineer\r\n●\tGood spoken and written English\
+    \ communication skills\r\n●\tBeing opened to learning and applying new technologies\r\n●\tAbility to work without or with\
+    \ minimal supervision\r\n●\tGood interpersonal and communication skills, ability to work individually as well as in a\
+    \ team\r\n\r\n***Responsibilities:***\r\n●\tAnalyze requirements, create test scenarios using proper test design techniques;\r\
+    \n●\tSelect, prioritize scenarios for automation;\r\n●\tCreate and maintain autotests within existing framework (automate\
+    \ UI, integration, API tests)\r\n●\tCreate auxiliary test drivers and stubs and tools to supports performance testing\r\
+    \n●\tWrite supporting documentation\r\n●\tMonitor and report on test coverage, test progress and test results\r\n●\tPreparing\
+    \ test data and environment, execute autotests, analyze results\r\n●\tTroubleshoot, analyze and report defects into defect\
+    \ tracking system\r\n●\tVerify fixes\r\n\r\nProject Methodologies\r\n●\tTypeScript, JavaScript, SQL.\r\n●\tServer stack:\
+    \ Node.js,  mocha, mysql, WebSocket, zeromq.\r\n●\tClient stack: React, WebSocket.\r\n\r\n***We offer:***\r\n— Smart environment\
+    \ — interesting projects from renowned clients;\r\n— Competitive salary according to the qualifications ;\r\n— Comfortable\
+    \ work conditions (including two monitors on each work place);\r\n— Highly qualified team;\r\n— Study and practice of\
+    \ English: free courses and communication with colleagues from different countries;\r\n— Professional growth;\r\n— Paid\
+    \ vacation and sick leaves;\r\n— Flexible schedule;\r\n— Paid parking, training, conferences and business trips."
+- id: dj_jd_26b849e026
+  title: QA Test Automation Engineer
+  company_type: default
+  profile: Mặc định
+  split: test
+  company: Softblues
+  exp_years: 3y
+  stack: python
+  text: "QA Test Automation Engineer\n\n**About the client**\r\nOur client is looking for a QA Test Automation Engineer to\
+    \ join their expanding teams.\r\n\r\n**Responsibilities:**\r\n\r\n● Execute, design and develop automated tests in Python\
+    \ with Behave.\r\n● Improve and maintain test automation framework.\r\n● Perform code review.\r\n● Identify, record and\
+    \ report defects.\r\n● Collaborate with other team members such as Test Lead, Developers and others.\r\n\r\n**Requirements:**\r\
+    \n\r\n● Python (min 3+ years of experience).\r\n● API - RestAPI.\r\n● Selenium - 3+ (years of selenium experience).\r\n\
+    ● Behave (BDD framework).\r\n● GraphQL (Nice to have).\r\n● AWS environment (nice to have).\r\n● Jira/Confluence - Atlassian\
+    \ environment.\r\n● Git (GitHub), CI/CD.\r\n\r\n**Nice to have:**\r\n\r\n● ISTQB CTFL.\r\n● Understanding Agile methodologies\
+    \ (e.g. SCRUM, Kanban).\r\n● Twice a week evening meetings due to the clients base in the US (17:00-17:45).\r\n● English\
+    \ B2+."

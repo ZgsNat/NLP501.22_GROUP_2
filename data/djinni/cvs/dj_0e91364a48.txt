@@ -1,0 +1,18 @@
+Manual / Automation QA Engineer
+11 năm kinh nghiệm · English: fluent
+
+Manual testing of desktop and web-based application (Functional testing, User interface testing, Performance testing, Regression testing, Documentation testing, Test Design),
+Knowledge of QA documentation (test cases, checklists, test plans, bug reports)
+Understanding of Agile methodology
+Create, run and maintain automated Test Scripts using Selenium Webdriver and Specflow, and document test results
+
+Automation Tools: TestComplete, Wapt, SilkTest, VS CodedUI, VS WebTest/Loadtest, Selenium WebDriver,
+SpecFlow
+Databases: MSSQL, Oracle
+Web:
+HTML, XML, REST, JSON
+Programming Languages: 
+C#, XML, Xpath, CSS.
+Languages:
+Ukrainian, Russian (native), English (fluent)
+Friendly team, Interesting project

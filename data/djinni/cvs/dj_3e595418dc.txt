@@ -1,0 +1,19 @@
+Automation QA Engineer
+0.5 năm kinh nghiệm · English: intermediate
+
+Creation of test-documentations and improve automation framework
+Overall 2 years of experience in testing (commercial)
+	good analytical and troubleshooting skills
+	experience in creating and maintaining test documentation (bug reports, test cases)
+	ability to work independently (though collaboratively) and a willingness to learn
+	flexibility in conditions of changing priorities
+	Good level of knowledge of Software testing theory
+	Software development methodologies: Waterfall, Scrum 
+	Technologies: HTML, CSS, XML, SQL(CURD)
+	Programming: OOP, Java(Core), Selenium(basic), Bash (basic)
+	OS: Windows, Linux 
+	Bugs tracking Systems: Jira, Redmine
+	VCS: SVN, GIT. CI: Jenkins
+	Tools: Soap UI, putty, devtools
+	Quick-learning, self-motivated team player, laconic, attentive to details
+Work with Jenkins, proactive in Java

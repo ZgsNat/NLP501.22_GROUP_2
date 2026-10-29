@@ -1,0 +1,24 @@
+AQA engineer
+2 năm kinh nghiệm · English: upper
+
+Forte Group - Fundamentals of Manual Testing
+DEPS - MikroTik (Route OS) Administration
+QATestLab - Software Testing Basics
+Automation skills
+- Monitor and analyze test results to identify defects (product or auto)
+- Test framework support, adding new functionality
+- Automate new and support existing test cases for different platforms (Increasing automation coverage)
+- Participate in code review to ensure that the code meets the highest quality standards
+- Triage automation test failures
+- Participate in the test case review process
+
+Manual skills
+- Testing of the video and audio content, firmware, and other services available via digital media players 
+- Manual testing of the firmware on TVs and set-top boxes
+- Triage product bugs, grooming backlog
+- Grooming backlog and triage bags 
+- Test case creation/updating/execution, creating detailed bug reports, creating and updating test documentation
+- Configuration of environment
+
+The current project includes testing the video and audio content, firmware, and other services available via digital media players. Manual and automation testing of the firmware on TVs and set-top boxes.
+I am interested in new challenges and opportunities to use my  skills and experience

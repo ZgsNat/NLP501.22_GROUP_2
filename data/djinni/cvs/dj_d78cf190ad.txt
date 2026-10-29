@@ -1,0 +1,15 @@
+Automation QA Engineer
+6 năm kinh nghiệm · English: fluent
+
+7 years experience in software testing;
+5 years in automated testing;
+
+Implementing and maintaining test automation framework on C# + NSelene + NUnit using Azure DevOps;
+MySQL/MSSQL database;
+Using REST API services as part of automation process;
+Participation in planning and estimating QA activities;
+Communication with customers as part of Quality Assurance process;
+Jira,Teams, Confluence, Trello, Slack etc;
+Git/TFS with team collaboration;
+Working in Agile/Scrum development process;
+English - advanced;

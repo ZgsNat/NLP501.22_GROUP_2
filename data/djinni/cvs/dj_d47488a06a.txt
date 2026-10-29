@@ -1,0 +1,14 @@
+Junior QA Automation python
+1 năm kinh nghiệm · English: intermediate
+
+Wrote automated tests in scope of rest framework
+Creation/maintain of jenkins test jobs
+
+Major experience as manual QA (>5 years)
+ISTQB foundation certificate
+Test cases, test plans, defects logging.Testing setups creation.
+Automation:Python 2, shell script,CI- jenkins,Git
+Test mgmt: TestRail, Jira
+Test theory: ISTQB Foundation, > 5 years manual QA
+OS: Ubuntu, Centos
+QA Automation python.Linux

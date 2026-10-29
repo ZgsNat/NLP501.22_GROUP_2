@@ -1,0 +1,17 @@
+QA Engineer
+0.5 năm kinh nghiệm · English: intermediate
+
+I was mainly engaged in testing the UI part of the web and mobile versions of the application.  Namely, I was engaged in creating end-to-end tests. Also had experience with API testing, deploying tests on Github actions pipelines. I had experience in creating test cases, test suites and checklists, and writing bug reports. Configured various testing environments and reporters.
+Work Experience:
+06.08.2018 – 05.06.2019
+Miltonia Pharma, system administrator.
+
+02.2020 – 03.2020
+Nadavi.net, content-manager.
+
+27.07.2020 – 13.09.2021
+NovaPay, specialist-operator.
+
+06.06.2022 – present
+Luxe Quality, QA Automation
+I expect to find a long-term job as a QA engineer where I can realize myself, improve my skills and learn new technologies. Find like-minded people with whom it will be possible to exchange the experience gained and who will become my team and friends

@@ -1,0 +1,22 @@
+QA Team Lead / Automation QA Engineer
+5 năm kinh nghiệm · English: upper
+
+- created automation framework for android app from a scratch
+- as a QA Team Lead, was involved in testing of integration with a new bank on a short deadline
+Current position - QA Team lead in Fintech project. I have experience testing Mobile, WEB, Back-end(REST services)
+Technical summary
+•	5+ years of testing experience
+•	Back-end / Rest API testing
+•	Mobile testing
+•	Postman, Swagger, Charles, Runscope
+•	Splunk
+•	Java, Gradle, Android UI Automator 2.0
+•	GIT
+•	HTML, CSS, JSON
+•	MS SQL 
+•	Bash scripting, Linux
+•	Android Studio, Android SDK, xCode
+•	QA Testing & Methodologies 
+•	Jira, Confluence, Jenkins, Teamcity, Testlink, Testrails
+
+Currently looking for a QA Team Lead or Senior QA position preferably with automation.

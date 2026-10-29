@@ -1,0 +1,31 @@
+Junior QA Engineer
+1 năm kinh nghiệm · English: intermediate
+
+From November 2020 - January 2021 worked on a Healthcare project as a Vue.js Developer.
+The goal of the project was to create a responsive web application for mobile that provides relevant clinical information to doctors, as well as questions that auditors need to be answered. The mobile application will display information and allow the doctor to choose the appropriate answer.  In my responsibilities was :
+- Requirements analysis and clarification;
+- Create layouts;
+- Writing unit tests;
+- Refactoring of existing code
+- Work with Version Control
+Tools & Technologies: JavaScript, Vue.js, TDD and Unit Testing, Java, PostgreSQL 
+
+From January 2021 - May 2021 worked on a Healthcare project as a Vue.js Developer. The goal of the project was to add new functionality to existing client web applications. Gradual migration of existing functionality and their updating in accordance with the requirements of customers and end-users. In my responsibilities was :
+- Requirements analysis and clarification;
+- Create layouts;
+- Writing unit tests;
+- Refactoring of existing code
+- Work with Version Control
+Tools & Technologies: JavaScript, Vue.js, Unit Testing
+
+From May 2021 till now I'm working on the same project as QA Engineer.  My responsibilities are:
+- Requirements analysis and clarification;
+- Migration of existing E2E tests from Selenium to Cypress
+- Adding new E2E tests according to newly added functionality
+- Support of tests
+- Writing Bug reports
+- Refactoring and reviewing PR of other team members 
+- Work with version control
+- Writing documentation
+Tools & Technologies: JavaScript, Cypress, Git
+I look forward to working on interesting projects and good team collaboration, and growth opportunities

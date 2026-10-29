@@ -1,0 +1,34 @@
+QA Engineer
+8 năm kinh nghiệm · English: upper
+
+Projects: - Infotainment system of German automotive concern
+                                                      - Infotainment system of US automotive concern
+
+                                 - Testing of equipment (Head units) and software of automotive companies
+                                 - Maintaining Hardware and test benches 
+                                 - Automotive test automation framework
+                                 - Maintain the tests documentation and reports in the test management system,                                                      
+                                - Analysis of the requirements
+                                - Perform QA activities including report results and quality metrics, risk analyze
+                                - Support developers in feature implementation and bug fixing processes
+                                - Participate in the analysis and troubleshooting of the complex        
+                                  software/hardware issues
+                                - Business trips to the Customer’s factories
+
+Projects: - Testing hardware and software for an American direct  broadcast dsfdfsdd satellite service provider
+               - Testing hardware and software for the voice-controlled intelligent   personal assistant service
+              
+
+-	Test execution (Acceptance, regression, ad hoc, functional, smoke, GUI etc.)
+-	Creation and update of test documentation
+-	Test data preparation, installation of builds
+-	Test results reporting, reporting issues
+-	Equipment recovering
+
+Projects: - Testing of mobile apps and games
+               - Web testing (Desktop, Mobile)     
+
+- Test execution (Functional, regression, smoke, integration, GUI etc.)
+- Test documentation development and update
+- Software specifications analysis and requirements analysis
+- Test data preparation, communication with development, analytics, technical writing teams, bugs description, test results reporting

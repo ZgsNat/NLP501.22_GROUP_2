@@ -1,0 +1,5 @@
+QA Engineer
+0.5 năm kinh nghiệm · English: intermediate
+
+Experience in testing Web based and Client/Server applications. Proficient in test plan development, test case creation, test execution and bug tracking. Experienced in different types of testing (including performance). Working in Agile development process.
+Bug Tracking Systems: Redmine, Jira. Test tools: Selenium IDE, Apache jMeter, Fiddler, Monkey Talk, WebCruiser, Xcode Leaks, Eclipse. OS: Windows, Linux, Macintosh.

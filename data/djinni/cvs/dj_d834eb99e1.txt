@@ -1,0 +1,8 @@
+QA Automation Engineer
+1 năm kinh nghiệm · English: fluent
+
+In 2021 I started studying QA as a new occupation.
+Hereinafter I’ve got a feeling that automation brings significant benefits,  so Python became my next passion. Not to become one-hand player and in order to develop my skills I've learned JS and WDIO & Cypress frameworks.
+1. marketplace - Manual testing, Jira, TestRail
+2. Medical CRM - AQA, Cypress, API, SQL
+3. Telecommunication company - AQA, Robotframework, API

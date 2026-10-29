@@ -1,0 +1,17 @@
+Test Manager
+9 năm kinh nghiệm · English: upper
+
+Automated REST API with Specflow + RestSharp and development an automation framework using Protractor
+Automated Back-end by using node js and mobile
+In practice for writing automated tests used Js
+Working with CRM-system, B2B , bank application, BI
+Working with technology Kendo, Angular 2, agGrid, Spring batch , React js
+Good knowledge fo testing REST API
+Bug reporting(Jira+zephyr + Structure), ALM, TestRail, Confluence
+Worked with MS SQL, Oracle PLSQL, Mongo DB
+Worked with, XPath, TeamCity, Jenkins
+Experience in test automation with Selenium WebDriver and use open source framework (Protractor, Jasmine, Specflow,  RestSharp, Cucumber js, Serenity)
+Experience in test mobile automation with Appium and Webdriver IO
+Prepare test documentation: Test Plan, Test Report, Tes result, Test evaluation
+Mentor QA
+improve automation and managment skills

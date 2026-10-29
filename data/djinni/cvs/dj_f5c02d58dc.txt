@@ -1,0 +1,38 @@
+QA Engineer (Python)
+5 năm kinh nghiệm · English: upper
+
+• Working with more than 10 developers as a standalone QA in the Agile/Scrum framework.
+• Improved the efficiency and reliability of the automated testing process. Covered applications by automated test cases from 0 to 90% with maintaining a 90+% pass rate.
+• Successfully identified and reported critical defects during the early stages of the development cycle, leading to a significant improvement in the overall quality of the software application.
+• Implemented a continuous integration and delivery process for the automated testing framework, resulting in faster and more reliable test executions. Provided automatically generated reports using Allure. Plotting performance metrics for different services.
+• Worked in close cooperation with the development team to streamline the testing process, reducing the overall time to market for the software application.
+Highly skilled General QA Engineer with over 5 years of experience in the software development industry.
+
+Proficient in developing and implementing automated testing frameworks using Python, Selenium, and other testing tools. 
+Experienced with API, UI, Performance, and Load
+testing. Experienced in working with Agile/Scrum framework.
+
+1. General QA (Manual/Automation) at The Product Engine (EY)
+May 2020 — May 2023
+Responsibilities:
+• General web application testing started from requirement analysis to release approval.
+ • Test documentation creation and support.
+• Bug creation, support, and verification, sometimes fixing bugs on the BE side.
+• Managing test environments with CI/CD.
+• Communicating with clients and product owners with requirement clarification, performing features DEMO.
+
+Technologies:
+
+• UI automated testing using the pytest and selenium web driver, creating custom parsers for some web elements such as tables, modal windows, etc. Creating different test sets such as smoke, sanity, e2e, and regression scenarios which could be independently executed to test some specific features.
+• API automated testing using the custom framework. Creating custom parsers, generating logs, working with different file formats. Creating smoke, regression, integration, e2e, and other more specific scenarios.
+• Performance testing using the locust framework. Creating requirement-based scenarios for load and performance testing. Coding locust scripts for stress testing used to test some specific features or prod issues.
+
+2. Junior QA at The Product Engine (LindenLab)
+February 2018 — May 2020
+Responsibilities:
+• Manual desktop/web/mobile applications testing.
+• UI automation testing (Selenium).
+• Performing smoke, regression, ad-hoc testing, multi-browser, and multi-platform testing.
+• Sustaining test cases, test plans, and other documentation.
+• Working with a huge application with a lot of functionality and thousands of bugs.
+Ideally, I want to work with a web application or API and BE testing. Can be lead of QA manual/automation team of 2-5 engineers.

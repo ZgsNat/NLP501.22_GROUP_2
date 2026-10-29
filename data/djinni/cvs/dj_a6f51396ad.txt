@@ -1,0 +1,22 @@
+QA Enqineer Junior
+0.5 năm kinh nghiệm · English: pre
+
+­ Knowledge in the theory of
+testing
+(testing types and testdesign
+technics)
+­ Understanding of SDLC, STLC
+­ lssue reporting
+­ Knowledge of Agile
+methodologyScrum, Kanban
+­ Understanding of HTML, CSS,
+DevTools
+­ SQL
+­ Basic knowledge of Python
++Selenium
+­ Basic knowledge of API testing
+(Postman)
+­ Jira, Confluence,Appium,Git
+­ Microsoft Office programs
+­ НТТР protocol
+­ OS and browsers knowledge

@@ -1,0 +1,22 @@
+Manual QA Engineer
+4 năm kinh nghiệm · English: upper
+
+QA ENGINEER, FREELANCE
+antivirus application 
+05/2019 - Present.
+Responsibilities:
++ Frontend testing and partial backend testing
++ Writing automated tests
++ Writing and maintaining test documentation: test cases, checklists,
+defects reporting
+
+QA ENGINEER, GENOMET
+2017 - 2018
+Project description: website specialized for checking and finding
+cancer treatment options
+Responsibilities:
++ Testing of Web (GUI, links, forms, buttons, navigation), Black-box,
+Grey-box, White Box. Manual, Specification, ad-hoc, Functional,
+localization, compatibilty. management of test cases, test suites,
+traceability table, test reports, defects;
+would like move from manual testing to automated testing

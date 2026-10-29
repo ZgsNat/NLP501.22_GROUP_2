@@ -1,0 +1,21 @@
+QA Automation Engineer, Java Developer
+2 năm kinh nghiệm · English: intermediate
+
+Passed successfully two app redesign and one migration during one year.
+Increased performance test run
+Extended test suit
+Significant increase test coverage
+March 2020-September 2020 - Java developer (configuration and support team) 
+ - Configure app for customers by specific tools
+ - Testing implemented configuration
+From 2021 -  position QA engineer in mobile testing (hybrid app: client for cmms system).
+ - Developing QA framework with stack of Java 17, Appium, Selenium, Spring and E2E test cases.
+ - Writing new test cases, extends existing
+ - Refactoring code, Review pull requests
+ - General testing: test cases, test runs, regression
+ - Mobile and Web testing
+
+Pet-project:
+Web application (http) on Java (Spring boot) 
+Client  - Telegram API
+Develop in coding and CI/CD processes

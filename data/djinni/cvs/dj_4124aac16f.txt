@@ -1,0 +1,16 @@
+QA Automation Engineer
+3 năm kinh nghiệm · English: fluent
+
+Implemented automated tests using Cucumber and RestAssured, reducing testing time by 40% and increasing test coverage by 25%.
+
+Conducted thorough test planning and developed test scenarios, test cases, and test data, resulting in 95%coverage of all API endpoints.
+
+Test Strategy: Proficient in implementing the Page Object Model (POM) to create reusable elements for web application testing. Knowledgeable in writing SQL queries and testing Web Service APIs using RestAPI(Postman)
+
+Wrote test cases for positive, negative, and END-TO-END test scenarios to ensure maximum test coverage for all test scenarios, resulting in a more robust application and reduction in customer-reported defects.
+
+Automation Framework Development: Developed an Automation Framework using Selenium WebDriver, Java, TestNG, and Cucumber for UI testing of applications, as well as RestAPI testing.
+
+Smoke and Integration Testing: Conducted smoke testing and integration testing to validate basic functionality and ensure smooth interactions between different system components.
+
+Agile Project Lifecycle: Participated in the full lifecycle of Agile projects and applied best Quality Assurance practices.

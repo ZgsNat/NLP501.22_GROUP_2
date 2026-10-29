@@ -1,0 +1,14 @@
+Automation QA Engineer
+9 năm kinh nghiệm · English: upper
+
+Leading of automation team.
+Build new at that time BDD framework, 
+Saved over 20% of the testing budget by automation Regression tests and perfect collaboration between each other.
+Won 2 gratitude certificates and given a bonus for outstanding performance.
+AQA for:
+- Customer Relationship Management (CRM), which tracks sales of a product (drugs, equipment, etc.) and cooperation with different healthcare providers and healthcare organizations. Salesforce.com is used as a platform for CRM and the team is developing additional custom functionality. In addition to that, the team is developing an IOS application for the users to use in the fields.
+- Internal applications for bank employees.
+- Internal application for telecommunication company’s employees, the main purpose of that is to help manage new and completed work orders, analyze data, billing and customer service. Every work order contains customer information, work description, employees, and company contractors’ information.
+ - Internal application for health insurance company employees. The purpose is to collect all info from customers and check eligibility, where to refer current customers, any discounts or extra charges.
+- Application for B2B/B2C e-commerce. The purpose to help dealers with easy access and manage their own accounts, receive new updates about upcoming products, buying, making payments, tracking, return options.
+New challenges and opportunity

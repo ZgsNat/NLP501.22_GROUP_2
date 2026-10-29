@@ -1,0 +1,17 @@
+Senior/Lead Automation QA JavaScript
+8 năm kinh nghiệm · English: fluent
+
+Successfully built and led AQA processes across 5 teams, resulting in a significant improvement in the quality and reliability of software products.
+
+Played a key role in the development cycle of several apps, from requirement design to production release, ensuring that all testing requirements were met and that high-quality products were delivered on time.
+
+Implemented several automation frameworks, including a load testing tool using Gatling, resulting in a significant reduction in manual testing efforts and improved test coverage.
+
+Led the development of a Proof of Concept (POC) framework on Playwright and organized the technology migration across the company, resulting in a more efficient and effective testing approach and improved overall quality of software products.
+
+Mentored and coached team members, fostering a culture of continuous learning and growth and resulting in improved team performance and productivity.
+
+Collaborated with cross-functional teams to identify and address testing gaps and issues, resulting in improved software quality and a more robust testing approach.
+Skilled AQA engineer with ample experince in Automation coverage of eComerce react website using Playwright with microservice GraphQl back-end on Java. Have experiance in Javascript, Java, as well as performance testing on Scala. As well as leading the automation process on account.
+Developed and maintained automation infrastructure on GitlabCI
+As a Lead Automation QA, I would expect to work in a dynamic and fast-paced environment, collaborating with teams to develop and implement high-quality software products. I would expect to be responsible for overseeing the development and execution of automated tests, ensuring that they are integrated into the software development process and run efficiently and effectively. Additionally, I would expect to be involved in defining testing requirements, creating and maintaining test plans, and analyzing test results to identify defects and areas for improvement. As a leader, I would expect to mentor and coach other team members, fostering a culture of continuous learning and growth. I would also expect to stay up-to-date with the latest testing frameworks and tools, continuously improving my skills and knowledge to ensure that our testing approach is current and effective. Above all, I would expect to work in a collaborative and supportive environment, where the contributions of all team members are valued and respected.

@@ -1,0 +1,15 @@
+Python Automation QA Engineer
+2 năm kinh nghiệm · English: upper
+
+Experienced Quality Assurance Engineer with a demonstrated history of working in the information technology and services industry. Skilled in Agile Methodologies, JMeter, Software Development Life Cycle (SDLC), Postman API, and Software Development. 
+- Competent knowledge and experience working with Waterfall / Agile (Scrum, Kanban);
+- Good knowledge in designing, creating, and updating all types of test documentation such as test plans, test suites, test cases, checklists;
+- Proficient in test design techniques;
+- Requirements(SRS) analysis;
+- Experience in testing WEB, desktop, and mobile applications;
+- Programming and scripting languages: SQL, JS, CSS, HTML, JSON, XML;
+- Database: MS SQL Server; Mongo DB
+- Tracking system: Jira;
+- Tools that help me to save logs, screens, or video (Snagit, Screencast, Lightshot, etc.);
+- Working with Jmeter (ThreadGroups, Recorder, Listeners);
+- Working with Postman (API calls)

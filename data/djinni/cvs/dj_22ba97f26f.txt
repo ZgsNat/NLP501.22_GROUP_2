@@ -1,0 +1,18 @@
+Automation QA Engineer
+1 năm kinh nghiệm · English: upper
+
+Winner of few competitive events in software QA area (Dev Challenge, Test UA Startups)
+2,5 years experience in manual testing of mobile and web applications. Practical experience with test automation using Java.
+
+Automation stack: Java, Selenium, Appium
+Testing tools: Chrome DevTools, Postman
+VM: VirtualBox, avd, iOS simulator
+DB: basic SQL knowledge
+BT/TM: Jira, Redmine, TestRail
+CI: Jenkins, TeamCity
+VCS: Git
+Other: Android Studio, Xcode
+What I'm looking for:
+- AQA position
+- Java stack in automation. No desire in changing language right now
+- More skillful AQAs to work with and learn from

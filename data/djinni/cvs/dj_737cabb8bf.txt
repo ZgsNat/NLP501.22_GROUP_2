@@ -1,0 +1,38 @@
+QA Automation Engineer (Java)
+3 năm kinh nghiệm · English: pre
+
+Foxtrot.ua – July 2019– present time
+About:
+   Online retail store of household appliances and electronics.
+
+Responsibilities:
+• Build and maintain automated testing frameworks for API, UI testing
+• Review, analyze and assess project requirements and specifications
+• Develop, execute, refactor and optimize automation tests
+• Log and evaluate results and document deviations from the expected results
+• Integrate automated testing into CI process (Jenkins)	
+• Setup of test environment
+• Prepare test data
+• Prepare reports with testing results
+• Create test documentation
+• Manual testing
+• Ability to write SQL queries
+• Close collaboration with other team members
+
+Technologies stack:
+  Java 8, Selenide, Selenoid, Cucumber, TestNG, Log4j, Allure, GitLab, Lombok, Jenkins, Jira, Jmeter, Postman, REST Assured.
+
+National Lottery Operator M.S.L. – June 2018 – July 2019
+About:
+    Lottery POS-terminal. Web application for the sale of lottery products, running under the Linux system.
+
+Responsibilities:
+• participation in full cycle of product development and quality
+• functional, regression, integration, smoke, critical path, GUI and usability testing
+• system log errors analysis
+• creation and executing test suites, test cases, check lists
+• requirements analysis
+• generating ideas for product and solution
+
+Technologies stack:
+Jmeter, Postman, Jenkins, SoapUI, Jira, Confluence, TestRail, SQL DBs (Oracle, MySQL).

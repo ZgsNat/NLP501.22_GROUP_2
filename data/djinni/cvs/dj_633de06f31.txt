@@ -1,0 +1,18 @@
+Senior QA Engineer
+5 năm kinh nghiệm · English: upper
+
+- As a QA lead took part in the creation of an effective QA team.
+- Expertise in creating QA processes from scratch.
+- Maintaining tasks from development\product owners teams and support team tasks.
+- As QA Lead and as Senior QA, successfully maintained QA process and successfully has been released one of the biggest fintech projects in Ukraine
+- Built and implemented automatization process from scratch
+Last few years working in the fintech domain
+Responsibilities:
+- Automation testing on Java (predominantly API)
+- Distribution of tasks within the team;
+- Analysis and solving problems of merchants;
+- Conducting tech interviews for QA candidates
+- Testing WEB applications;
+- Testing a service via API;
+Fintech domain and product company are preferable.
+Interested in Senior QA and QA Team lead or Middle AQA positions.

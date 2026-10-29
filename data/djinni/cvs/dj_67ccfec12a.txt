@@ -1,0 +1,8 @@
+Test Automation Engineer
+3 năm kinh nghiệm · English: upper
+
+4 years total expirience as a Test Automation Engineer 
+Worked on:
+- web aplication testing using Python, Java (Selenium WebDriver, Robot Framework, Cucumber). 
+- mobile aplication testing (Appium). 
+I worked with creating new and maintaining existing automation test cases, test designs, maintaining and expanding automation framework, executing tests, creating and analyzing reports, creating issues and defect reporting.

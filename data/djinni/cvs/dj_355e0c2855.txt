@@ -1,0 +1,6 @@
+Automation QA Engineer
+6 năm kinh nghiệm · English: fluent
+
+Have experience creating framework from scratch, including reports, parallelization, flexible env switching  and CI/CD. 
+Experience with leading, mentoring and optimization existing framework.
+I am a Senior Automation Enginier in Java with over 6 years of experience. I am focused on backend automation and automation of microservices. For the last 5 years I have been working with international teams.

@@ -1,0 +1,20 @@
+Automation QA Engineer
+4 năm kinh nghiệm · English: intermediate
+
+3+ years of experience in QA. Test automation: Selenium + JUnit/PHPUnit; Performance: Gatling, SOASTA. Good understanding of test methodologies (functionality, security, performance, etc.) and test design principles, familiarity with object oriented programming, web technologies, software languages such as HTML, CSS, SQL, XML, Java, Scala, PHP. Good written and spoken communication.
+TECHNICAL SKILLS:
+•	System: Linux, Windows 2000/XP/Vista/7;
+•	Test Process Tools: Selenium+JUnit/PHPUnit,  Apache JMeter, TestComplete, 
+•	Bug tracking system: Jira;
+•	Languages: HTML, XML, CSS, C#, Java, PHP, SQL;
+•	Experience with: DBMS Oracle, Sybae ASE, MySQL, Mongo;
+•	Experience with: Gatling, SOASTA
+•	Strong analytical skills;
+Performance QA Automation Engineer
+GlobalLogic
+- performance tests development (Gatling, Scala)
+- performance tests development (SOASTA)
+- performance tests design for RESTful API
+- analyzing performance tests results, making reports, searching performance degradation etc
+- work with CI (Jenkins), YUM, MongoDB
+Graduate of Information system and technology faculty  seeking a position in  development. Offer hands-on experience in software testing, development program information systems for automation of information exchange.

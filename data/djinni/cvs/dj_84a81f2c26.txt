@@ -1,0 +1,8 @@
+Senior Automation Engineer
+11 năm kinh nghiệm · English: upper
+
+ISTQB® Certified Tester, Foundation Level
+Last 8 years, I have worked on US/UK-based startups and tech companies as Senior Automation Engineer. My key responsibilities were:
+developing and implementing automated test frameworks, utils, and scripts; 
+used various stacks of technologies and PLs (PHP, Java, Python, Golang, Bash scripting, Docker, Terraform); developed GitHub Actions & reusable workflows.
+I have experience with REST API, CI/CD, Cloud GCP, Test Documentation, Test Management, Functional | Non-Func | Performance testing.

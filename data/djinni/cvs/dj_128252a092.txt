@@ -1,0 +1,35 @@
+Senior Automation QA | SDET
+10 năm kinh nghiệm · English: upper
+
+Able to switch to any tech stack and build any automation from scratch
+- typescript/javascript - 5yrs
+- c# - 4yrs
+- java/scala/kotlin/clojure - 1yr
+- python - 1yr
+
+- playwright, selenium, appium, cypress, playwright, webdriverio, protractor, robotium, windows ui automation, scraping
+- bbd/cucumber/specflow
+- rest-assured, rest-sharp, postman, supertest, any other tool
+- jenkins, circleci, trawisci, github actions, appveyor, gitlab
+- jmeter, BlazeMeter, gatling, k6
+
+other 
+- FE: react, svelte
+- BE: aspnet, express
+- Postgres, mongo, mssql
+- Docker, AWS, Azure, K8
+
+ISTQB
+Contract/full-time for US/CA/UK company.
+Prefer outstaff in UA.
+
+interested:
+typescript/javascript/dotnet
+web, ui, mobile, api
+building automation/ci from scratch
+
+less/not interested:
+java, python
+pure backend testing
+sql, etl testing
+manual testing

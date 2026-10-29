@@ -1,0 +1,14 @@
+Automation QA Engineer | SDET
+3 năm kinh nghiệm · English: upper
+
+Junior/Middle Automation QA Engineer
+Main activity: API-testing
+Stack: Groovy, Gradle, Spock, Swagger, Postman, Bitbucket, Jira,
+DataDog, MQTT.fx, Keycloak, ADB, QFIL, scrncpy.
+The project is dedicated to device management and the execution of operations on them.
+
+Trainee Software Test Automation Engineer
+Main activity: UI-testing
+Stack: Java 8, Maven, Junit5, Gerrit, Selenium WebDriver, Allure,
+Gitlab, Jira.
+The project was developed for the company's internal needs.

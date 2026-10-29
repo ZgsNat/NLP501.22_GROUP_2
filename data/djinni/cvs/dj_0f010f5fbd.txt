@@ -1,0 +1,10 @@
+QA Engineer
+0.5 năm kinh nghiệm · English: intermediate
+
+Successful discovering bugs any severity and priority.
+Identified and reported a critical bug, WEB and APP.
+Discovered and reported a UI/UX issue that made it difficult for users to navigate the application.
+Test.io (02.2023-...)
+Test Planning: planning test strategies, creating test cases, and test scenarios based on the requirements and design documents.
+Test Execution:  execute the test cases and record the test results
+Bug Reporting: identify and report defects and issues discovered during testing.

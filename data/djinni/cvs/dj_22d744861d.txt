@@ -1,0 +1,9 @@
+Automation QA Python\JS
+4 năm kinh nghiệm · English: intermediate
+
+- Writing and support autotests - coverage 85%+
+- Suggested and successfully implemented many of enhancements for existing tests
+- Automated the most gruesome manual tests in the regression pack
+- Integrated new visualization techniques to display test results
+- Writing and support autotests for AI, backend, frontend, DB
+Ability to use all my knowledge, awesome team, more interested in back-end automation, flexible working hours.

@@ -1,0 +1,14 @@
+Software Test Engineer
+2 năm kinh nghiệm · English: intermediate
+
+- Qualified in both Manual Testing and Automated Testing skill.
+- Involved in all Scrum Ceremonies: Planning, Stand-up, Demo, Retrospective Meeting.
+- Experienced in all phases of Software Development Life Cycle (SDLC) and Software Testing Life Cycle(STLC) and Defect Life Cycle.
+- Good knowledge of Core Java and OOP concepts of Java by using IntelliJ IDEA.
+- Perfect knowledge in Automation by using Java and Maven Repository with Selenium Web Driver, Cucumber as a structure supporting DDT (Data-Driven Testing), and TestNG, JUnit, Gherkin Language.
+- Experience in creating POM (Page Object Model) to organize the web elements.
+- Excellent at Git-GitHub for collaboration with team members as a version control system.
+- Used Postman for API manual testing, REST Assured Library for API automation testing, and JDBC Library for Database automation testing.
+- Good at using Jenkins for Continuous Integration and Continuous Delivery(CI/CD) and Parallel Testing.
+- Good knowledge of SQL queries to execute Database Testing using MySQL.
+- Extensive knowledge in creating Test Plans, Test Cases, Test Scenarios, and Test Executions in Jira X-Ray, uploading Test Reports, and sharing them with team members by using Jira.

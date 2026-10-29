@@ -1,0 +1,5 @@
+QA Automation Engineer
+3 năm kinh nghiệm · English: upper
+
+Diverse background in software development and automation engineering, experienced in various industries including fintech, crypto, banking, e-commerce, gambling, and medicine. Worked as a Freelance Frontend Developer for 1 year and 2 months, Freelance Automation QA for 9 months, Technical Automation Engineer for 3 years, and currently Lead Automation QA at ETTER Solutions. Experienced with web development languages and frameworks, version control, test planning and execution, automated testing tools, and team coordination.
+Currently working with Cypress + BDD(Gherkin), JavaScript/TypeScript, Postman and K6.

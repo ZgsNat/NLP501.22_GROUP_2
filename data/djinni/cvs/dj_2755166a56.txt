@@ -1,0 +1,4 @@
+Java Developer
+5 năm kinh nghiệm · English: fluent
+
+I have experience using java for 7 years and developing software professionally for 5 years, I have worked on Education platforms, Finance applications and e-commerce applications, I have acted in the capacity of a Team lead in a team of 5 developers, developing architecture for the platforms e.g microservices and also database architectures, designed system to function under high load,  enable easy system discovery leading to high availability of services and also ensuring security. I have deployed software on AWS with ECS and also kubernetes using docker containers, worked with different databases both SQL  like postgres, mysql and NoSql like mongodb, redis. I am certain my skills will come in handy in your organization, looking forward to working with you.

@@ -1,0 +1,43 @@
+QA Automation Engineer
+3 năm kinh nghiệm · English: intermediate
+
+QA software automation engineer with 3+ years of experience in quality assurance with automation and manual testing for web-based, desktop, cloud-based, client/server, and mobile applications.
+• Has a good understanding of QC processes, requirements, methodology, testing types/approaches, etc.
+• Creating test documentation (test cases, test plans).
+• A very positive, responsible, hard-working, and flexible person with excellent communication and
+organization skills.
+QA software automation engineer with 3+ years of experience in quality assurance with automation and manual testing for web-based, desktop, cloud-based, client/server, and mobile applications.
+Has a good understanding of QC processes, requirements, methodology, testing types/approaches, etc. 
+Creating test documentation  (test cases, test plans). 
+A very positive, responsible, hard-working, and flexible person with excellent communication and organization skills.
+
+
+Skills & Tools
+
+JavaScript, Cypress, Mocha, Chai, Supertest, API, Postman, MySQL, Git, HTML/CSS, Selenium, Technical Documentation, CI/CD, Jira, Confluence, Fiddler.
+
+
+ Experience
+
+May 2021 - now, CRM Project 
+
+Automation QA Engineer
+
+Created the company's comprehensive database of the commentated test defects and procedures to enable accurate replication and ensure compliance with standards.
+Accelerated average QA testing turn-around time by 20% allowing the company to accept more testing projects without increasing staff.
+Improved the floor of adding new requirements to a backlog.
+Reviewed hundreds of user interfaces for functionality and adherence to design guidelines.
+Developed and maintained test documentation, test plans, and test cases
+
+
+July 2019 - February 2022, Online store kivi.zp.ua
+
+Manual/Automation tester
+
+Tested adaptability, looked for display errors, and checked the availability of navigation and all visible controls for the user.
+Created and maintained documentation covering the operation of the online store.
+
+
+2000 - 2020, Trading 
+
+20 years of experience in sales. Progressed from sales representative to regional manager and    owner of a production and trading company.

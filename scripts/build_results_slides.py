@@ -310,7 +310,14 @@ def bar_chart(slide, x, y, w, h, categories, series: Dict[str, List[float]], col
 
 # ------------------------------------------------------------------ slides
 
+def fine_tuned(summ: Optional[Dict[str, Any]]) -> bool:
+    """The run used the fine-tuned dense encoder / cross-encoder (folders ending in ``-ft``)."""
+    loaded = (summ or {}).get("components_loaded") or {}
+    return any("-ft" in name for names in loaded.values() for name in names)
+
+
 def slide_setup(prs, syn, pub, spans, page, total):
+    ft_tag = " (đã tinh chỉnh)" if fine_tuned(syn) else ""
     s = frame(prs, "Thiết Lập Thực Nghiệm: Dữ Liệu, Mô Hình Và Phương Pháp Kiểm Định",
               [(SECTION, "section"), ("CHẠY CỤC BỘ TRÊN CPU · DỮ LIỆU CÁ NHÂN KHÔNG RỜI MÁY", "green")], page, total,
               *nav(page))
@@ -328,7 +335,8 @@ def slide_setup(prs, syn, pub, spans, page, total):
           f"SkillSpan, tập test (CC-BY-4.0): {spans['n_gold_spans']} đoạn kỹ năng" if spans else
           "SkillSpan (CC-BY-4.0)"]),
         ("Mô hình (chạy cục bộ)", "green",
-         ["Mã hoá dense: multilingual-e5-base", "Cross-encoder: bge-reranker-base", "Suy luận NLI: nli-deberta-v3-base",
+         [f"Mã hoá dense: multilingual-e5-base{ft_tag}", f"Cross-encoder: bge-reranker-base{ft_tag}",
+          "Suy luận NLI: nli-deberta-v3-base",
           "LLM: Qwen2.5 3B / 7B (Ollama, CPU)"]),
         ("Kiểm định thống kê", "amber",
          ["Khoảng tin cậy 95% bằng bootstrap ghép cặp theo JD", "Kiểm định Wilcoxon và cỡ hiệu ứng r",
@@ -369,9 +377,10 @@ def slide_ladder(prs, syn, page, total):
                                            f"theo từng công ty và tiêu chí loại trừ là nguồn cải thiện chính. Do "
                                            f"profile và nhãn cùng do nhóm xây dựng, mức tăng này có thể bị đánh "
                                            f"giá cao."),
-        ("amber", "Dense chưa tinh chỉnh (B1)", f"nDCG@10 {fmt(b1)}, thấp hơn BM25 ({fmt(b0)}). CV kỹ thuật chứa "
-                                                f"nhiều tên công cụ; mô hình e5 chưa tinh chỉnh làm mất tín hiệu "
-                                                f"từ khoá này."),
+        ("amber", f"Dense {'đã' if fine_tuned(syn) else 'chưa'} tinh chỉnh (B1)",
+         f"nDCG@10 {fmt(b1)}, {'thấp' if b1 < b0 else 'cao'} hơn BM25 ({fmt(b0)}). CV kỹ thuật chứa nhiều tên công "
+         f"cụ; embedding dense làm mờ tín hiệu từ khoá này" +
+         (", kể cả sau khi tinh chỉnh trên dữ liệu ngoài lĩnh vực." if fine_tuned(syn) else ".")),
         ("blue", "Hệ thống đầy đủ (P6)", f"nDCG@10 {fmt(p6)}, MRR@10 {fmt(mean(syn, 'P6', 'mrr@10'))}. LLM chỉ "
                                          f"phân xử các cặp ứng viên có điểm gần nhau nên P6 giữ được chất lượng "
                                          f"của B3/B4."),
@@ -425,7 +434,9 @@ def _h_rows(syn) -> List[List[Any]]:
                  "Kendall τ " + (cmp_text(d) if d else "—"), verdict("H6")])
     d, u = det("H0", "ndcg@10"), det("H0", "unsupported_rate")
     rows.append(["H0", "P6 tốt hơn B4 về nDCG@10 hoặc độ trung thực, chi phí trong ngân sách",
-                 ("nDCG@10 " + cmp_text(d) if d else "—") + ("\ntỷ lệ thiếu bằng chứng " + cmp_text(u) if u else ""),
+                 ("nDCG@10 " + cmp_text(d) if d else "—") + ("\ntỷ lệ thiếu bằng chứng " + cmp_text(u) if u else "")
+                 + (f"\nP6 vượt ngân sách thời gian ở {det('H0', 'p6_fallbacks')} JD (dùng phương án dự phòng)"
+                    if det("H0", "p6_fallbacks") else ""),
                  verdict("H0")])
     return rows
 
@@ -461,9 +472,9 @@ def slide_prior(prs, syn, pub, ctx, page, total):
         ["Công trình (slide)", "Kết quả công bố", "Kết quả tương ứng của nhóm", "Nhận xét"],
         ["ConFit v2 · Yu et al. 2025 (16)", "AliYun: BM25 40.56 > E5 chưa tinh chỉnh 29.66 nDCG@10; tập "
                                             "Recruiting cho kết quả ngược lại",
-         (f"BM25 {fmt(b0)} > e5 chưa tinh chỉnh {fmt(b1)}", {}),
+         (f"BM25 {fmt(b0)} > e5 chưa tinh chỉnh {fmt(mean(ctx['syn_base'], 'B1', 'ndcg@10'))}", {}),
          ("Tương đồng: hiệu quả của BM25 phụ thuộc lĩnh vực, ủng hộ truy hồi lai", g)],
-        confit_row(syn, pub, ctx, g, r),
+        confit_row(ctx["syn_base"], ctx["pub_base"], ctx, g, r),
         ["RankGPT · Sun et al. 2023 (17)", "LLM xếp hạng lại theo danh sách: +2.7 nDCG@10 (TREC)",
          f"LLM-all {fmt(la)} so với B4 {fmt(b4)} (Qwen 3B)",
          ("LLM nhỏ xếp lại toàn bộ không cải thiện kết quả", r) if la <= b4 + 0.005 else
@@ -665,7 +676,8 @@ def slide_errors(prs, pub, ctx, page, total):
         rows.append([_jd_label(jd, dup_of), str(info["qa_signals"])] +
                     [(fmt(vals.get(c)), {"bold": vals.get(c) == best, "color": GREEN if vals.get(c) == best else INK})
                      for c in cfgs] + [pct(info["unsupported_rate"].get("P6"), 0)])
-    text(s, x0, 1.82, 5.4, 0.3, "nDCG@10 theo từng JD (mô hình chưa tinh chỉnh)", size=10, bold=True)
+    text(s, x0, 1.82, 5.4, 0.3, f"nDCG@10 theo từng JD (mô hình {'đã' if fine_tuned(pub) else 'chưa'} tinh chỉnh)",
+         size=10, bold=True)
     table(s, x0, 2.12, 5.4, rows, [1.75, 0.65] + [0.55] * len(cfgs) + [0.8], size=8.5, row_h=0.31)
     y = 2.3 + 0.31 * len(rows)
     quoted = ", ".join(f"'{sig}'" for sig in dup_signals)
@@ -698,7 +710,8 @@ def slide_conclusion(prs, syn, pub, ctx, page, total):
     cols = [
         ("green", "Kết quả vững chắc", [
             f"Gold Set: nDCG@10 tăng từ {fmt(b0)} (BM25) lên {fmt(p6)} (P6), chủ yếu nhờ Criteria Profile",
-            "Kiểm chứng bằng chứng giảm tỷ lệ nhận định thiếu bằng chứng (H4, H0)",
+            "Kiểm chứng bằng chứng giảm tỷ lệ nhận định thiếu bằng chứng (H4"
+            + (", H0)" if syn["hypotheses"].get("H0", {}).get("accepted") else ")"),
             "Phân xử chọn lọc cần ít lượt gọi LLM hơn LLM-all (CI 95% < 0)",
             "Agent tuân thủ ràng buộc an toàn, không bỏ qua bước xác nhận của HR",
             *([f"Mô hình gán nhãn JobBERT: span F1 {fmt(ctx['tagger']['test']['tagger']['f1_exact'])} trên "
@@ -715,7 +728,7 @@ def slide_conclusion(prs, syn, pub, ctx, page, total):
             (", ".join(rejected) + " không được ủng hộ") if rejected else
             "Mọi giả thuyết H1–H6 được ủng hộ",
             "LLM lập kế hoạch tốn kém hơn luật",
-            finetune_bullet(syn, ctx),
+            finetune_bullet(ctx["syn_base"], ctx),
             "Profile và nhãn cùng do nhóm xây dựng: B3 có thể được đánh giá cao",
             f"n = {syn['n_jds']} JD: khoảng tin cậy rộng, p ≥ {2 / 2 ** syn['n_jds']:.3f}"]),
         ("blue", "Hướng phát triển", [
@@ -886,7 +899,7 @@ SPEAKER_NOTES = {
     "prior": "Do khác dữ liệu, nhóm so sánh xu hướng thay vì giá trị tuyệt đối. Cột cuối cho biết kết quả tương đồng "
              "hay không lặp lại được.",
     "faith": "Kiểm chứng bằng chứng là đóng góp rõ rệt nhất: tỷ lệ nhận định thiếu bằng chứng giảm mạnh so với A1. "
-             "Phân xử chọn lọc cần ít lượt gọi LLM hơn nhiều so với LLM-all; nDCG@10 thấp hơn 0.012 nhưng khoảng "
+             "Phân xử chọn lọc cần ít lượt gọi LLM hơn nhiều so với LLM-all; nDCG@10 thấp hơn một chút nhưng khoảng "
              "tin cậy chưa loại trừ mức kém hơn ε = 0.02, nên H3 không được ủng hộ.",
     "finetune": "Phần huấn luyện chạy trên Colab bằng notebook sinh từ mã nguồn của dự án. Dữ liệu huấn luyện là các "
                 "cặp công khai ngoài lĩnh vực kiểm thử để tránh rò rỉ sang tập đánh giá. Bảng bên trái là trung "
@@ -965,6 +978,9 @@ def main() -> None:
     ap.add_argument("--finetune-seeds", help="JSON with a seed_summary of several fine-tune seeds")
     ap.add_argument("--synthetic-ft", help="run dir: same ladder with the fine-tuned models")
     ap.add_argument("--public-ft", help="run dir on data/public with the fine-tuned models")
+    ap.add_argument("--synthetic-base", help="run dir with the base models when --synthetic already uses the "
+                                             "fine-tuned ones: the fine-tune slide compares base -> --synthetic")
+    ap.add_argument("--public-base", help="public run with the base models (pairs with --synthetic-base)")
     ap.add_argument("--audit", help="JSON lines printed by `cv_agent audit`, one per JD")
     ap.add_argument("--bench", help="bench.json written by `cv_agent bench`")
     ap.add_argument("--errors", help="error_analysis.json written by `cv_agent error-analysis` (public run)")
@@ -981,9 +997,14 @@ def main() -> None:
     for d in args.finetune:
         rep = json.loads((Path(d) / "finetune_metrics.json").read_text(encoding="utf-8"))
         ft[rep["config"]["target"]] = rep
+    syn_base = load_summary(Path(args.synthetic_base)) if args.synthetic_base else None
+    pub_base = load_summary(Path(args.public_base)) if args.public_base else None
     ctx = {"ft": ft, "ft_seeds": json.loads(Path(args.finetune_seeds).read_text(encoding="utf-8"))
-           if args.finetune_seeds else None, "syn_ft": load_summary(Path(args.synthetic_ft)) if args.synthetic_ft else None,
-           "pub_ft": load_summary(Path(args.public_ft)) if args.public_ft else None,
+           if args.finetune_seeds else None,
+           # with --synthetic-base the main run is the fine-tuned one and the base run is the "before"
+           "syn_ft": syn if syn_base else load_summary(Path(args.synthetic_ft)) if args.synthetic_ft else None,
+           "pub_ft": pub if pub_base else load_summary(Path(args.public_ft)) if args.public_ft else None,
+           "syn_base": syn_base or syn, "pub_base": pub_base or pub,
            "audit": [json.loads(line) for line in Path(args.audit).read_text(encoding="utf-8").splitlines()
                      if line.strip()] if args.audit else None,
            "bench": json.loads(Path(args.bench).read_text(encoding="utf-8")) if args.bench else None,
@@ -1007,7 +1028,7 @@ def main() -> None:
         ("faith", "Độ trung thực, chi phí", "Bước kiểm chứng và phân xử đóng góp gì về độ trung thực và chi phí?",
          lambda pg, t: slide_faith(prs, syn, pg, t)),
         ("finetune", "Tinh chỉnh mô hình", "Tinh chỉnh theo hướng ConFit có khắc phục điểm yếu của B1 không?",
-         lambda pg, t: slide_finetune(prs, syn, pub, ctx, pg, t)),
+         lambda pg, t: slide_finetune(prs, ctx["syn_base"], ctx["pub_base"], ctx, pg, t)),
         ("agent", "Agentic AI (H7)", "Agent LLM tự lập kế hoạch có tốt hơn luật cố định không?",
          lambda pg, t: slide_agent(prs, h7, pg, t)),
         ("public", "Dữ liệu công khai", "Kết quả trên dữ liệu công khai và trích xuất kỹ năng ra sao?",

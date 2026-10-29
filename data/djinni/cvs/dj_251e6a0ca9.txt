@@ -1,0 +1,59 @@
+QA Automation Engineer
+5 năm kinh nghiệm · English: upper
+
+- Improve quality of product on different layers
+- Setup automation test framework from scratch
+- Good team player
+5 years of experience in Manual & Automation QA 
+	Deep knowledge in QA/QC processes 
+	Knowledge in OOP, BDD
+	Good command of English and well-developed communication skills 
+
+    Work with:
+  - Landing pages 
+  - Mobile applications
+  - Web & Desktop applications
+  - Trading systems Forex
+  - CRM 
+  - REST web services
+  - Databases 
+  
+
+Testing:
+
+Manual Testing/Automated Testing 
+Writing Checklists, Test Cases, Test Suites, 
+Bug Reporting 
+Black/Grey/White Box Testing,  
+Functional/GUI/Performance/Stress/Load/ 
+Compatibility/Localization/Regression 
+Testing  
+Test Design Techniques 
+
+RDBMS:
+Oracle, MS SQL, PostgreSQL, MongoDB
+
+Technologies: 
+HTML, CSS, HTTP, JSON, AJAX, XML, BDD 
+
+Methodologies:
+Scrum, Waterfall 
+
+EXPERIENCE	Languages: 
+JS, SQL, NodeJS
+
+Tools: 
+Protractor, Appium, TestCafe, WebdriverIO, Jasmine, Mocha, Chai, Docker, GoCD, Selenium IDE, Selenium WebDriver,  
+Firebug, Chrome DevTools,  
+JIRA, Fiddler, Postman, SoapUI, 
+Siege, RabbitMQ 
+
+OS:
+Windows, Linux, Mac OS X, iOS 
+
+
+Version Control Tools: 
+Git, SVN
+- Want to find automation project on JS
+- Interesting project and challenging tasks
+- Professional team

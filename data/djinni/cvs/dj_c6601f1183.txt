@@ -1,0 +1,41 @@
+Automation QA Engineer/SDET (Python)
+11 năm kinh nghiệm · English: upper
+
+- Full QA Automation development and support on different projects
+- Experience setting up test automation process from scratch
+- Participated in the development of skills assessment matrix on the company level as a QA expert
+- Worked in teams as a single QA on project
+- Interviewing and mentoring new team members
+- Changed technologies fastly, highly-adaptive
+Travel Project, Senior Python AQA Engineer
+• Maintaining and improving test automation frameworks
+• Creating automation scripts for API and UI functionality
+• Creating and improving Jenkins files
+• Root cause investigation of problems and failures
+• Mentoring new team members
+
+Healthcare Project, Senior AQA Engineer
+• Establishing QA processes
+• Maintaining and improving test automation framework based on Python including pytest, pandas and numpy etc.
+• Setting up the automation process and creating test scripts for RESTful API and UI
+• Reviewing functional requirements and determining data requirements for executing use cases, from creating functional manual cases to automating the cases for regression
+• Communicating and coordinating testing activities and scopes with Engineering team
+• Reviewing code created by team members
+
+Automotive Project, Regular Tester
+• Performed functional, regression, GUI, usability testing
+• Designing and maintaining test cases/test suites
+• Handling the defects through out the bug life cycle from detection until resolved using Jira
+• Writing test scripts by Squish GUI testing tool 
+• Test Planning and estimation of QA activities
+• Reviewing code created by team members
+• Interviewing and mentoring new team members
+
+SMS/MMS Server Project, Python AQA Engineer 
+• Creating automation tests with UnitTest and Nose frameworks
+• Smoke, regression and acceptance testing
+• Bug reporting and verification
+• Participation in all Scrum procedures (daily standup, retrospective, planning)
+• Reviewing code created by team members
+• Interviewing and mentoring new team members
+Currently, I see myself as a part of a QA Automation team where I contribute to product quality by applying my expertise, learning from others, and implementing best QA practices to achieve customer goals.

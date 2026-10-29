@@ -1,0 +1,30 @@
+QA Automation Engineer (JS/TS)
+3 năm kinh nghiệm · English: upper
+
+• Setting up test automation frameworks from scratch
+• Involving on multiple projects at one time
+• Leading several projects as a sole QA
+2+ years in manual testing 
+3+ year in automation testing
+
+• Knowledge of test objectives, principles, process, levels, types and techniques
+• Test automation with JS/TS, Cypress (for UI), SuperTest (for API), Mocha, Chai
+• API testing tools (Postman, Swagger, cURL for REST and SoapUI for SOAP)
+• SQL querying (MSSQL Server, MySQL, PostgreSQL) and NoSQL (MongoDB)
+• Bash (Unix shell) for managing systems, files, software and grepping logs
+• CI experience with Azure (creating pipelines), Jenkins and TeamCity (deploying)
+• Checking logs with Azure, GCP, Kibana, Grafana, Jaeger for root cause analysis
+• VCS Git and GitHub, GitLab, Bitbucket
+• Task tracking and test management systems (Jira, Trello, Azure, TestRail)
+• Agile (Scrum, Kanban)
+• ISTQB Certified
+**YES:**
++ Web projects
++ Ability to use and grow up using JS/TS
++ UI and API testing
+
+
+**NO:**
+- Mobile projects
+- Automation in Java
+- Automation in C#

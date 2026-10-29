@@ -1,0 +1,18 @@
+Senior/Tech Lead Java
+6 năm kinh nghiệm · English: upper
+
+Was responsible for implementing a new microservice from scratch and merging multiple services into one, participated in architectural decisions, code reviews, and team-leading activities. Lead communication within a team and with a customer to ensure correct understanding of a domain and its problems. Improved service performance to meet the desired resource consumption within a Kubernetes cluster and a microservice operation time. Improved microservices to work within multi-pod architecture. Worked with Azure and Terraform to manage pods and other resources in the cloud.
+Besides my role in software development, I onboarded and mentored new team members. Participated in release planning and took the responsibility for team leading and architectural decisions. Was involved in automation testing and DevOps activities.
+Passionate Software Engineer with 6 years of experience with Java and Spring. Worked in E-commerce and Fintech domains. Have solid experience developing projects from scratch and maintaining existing ones, writing API for web and mobile applications, and integrating services with 3rd party systems.
+- Experience in software design, development, testing, and implementation of client-server applications;
+- Deep understanding and hands-on experience with the microservices architecture;
+- Experienced in architecture design with development planning, gathering requirements, and estimating tasks;
+- Experienced with Agile methodologies (Scrum, Kanban);
+- Have experience with mentoring/onboarding and interviewing candidates;
+- Have good problem-solving and analytical skills.
+
+Technical skills:
+ - Java 8 / 15, Spring (Core, Boot, Security, Data, MVC), JPA, Hibernate, SOLID, GoF patterns, REST, Apache Tomcat, JUnit, Mockito, Kubernetes, Docker, RAML, OpenApi, TDD/DDD, Hexagonal Architecture, Microservices Architecture, Kafka, Azure (AKS, pipelines, Active Directory), AWS.
+ - MySQL, Oracle.
+ - Maven, Jenkins, Git, IntelliJ IDEA, Jira.
+ - Scrum, Kanban.

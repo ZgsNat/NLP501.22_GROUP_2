@@ -1,0 +1,7 @@
+Automation QA Engineer
+2.5 năm kinh nghiệm · English: intermediate
+
+Experienced technical specialist with a strong background in General QA activities who is looking for a General QA engineer position in web. Well familiar with web technologies, have experience in manual/automation testing of web applications at different levels, and with popular testing tools. I always try to do my best and contribute to high-quality product development.
+NOT Java
+NOT Selenium
+Cypress/Playwright/JS/TS only

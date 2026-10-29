@@ -1,0 +1,9 @@
+QA Engineer
+5 năm kinh nghiệm · English: intermediate
+
+1. Solo quality assurance of 2 successful projects (from start to Live)
+2. Creating test automation environment
+3. Implementation of automated testing into project and getting solid profit from it
+4. Experience with all known types of testing
+Selenium, Java, Serenity, SQL, HTML, Automated testing, SoapUI, ReadyAPI, SOAP, REST, JMeter, OWASP ZAP, PL/SQL, Oracle
+I want to get Middle automation/Senior manual position

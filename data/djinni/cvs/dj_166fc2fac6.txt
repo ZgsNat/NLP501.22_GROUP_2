@@ -1,0 +1,28 @@
+Frontend eng (Angular) / QA Engineer
+6 năm kinh nghiệm · English: intermediate
+
+- Develop end-to-end automation test suites using  Cypress, RestAssured.
+- Developing Test Automation Frameworks for both Functional and Non-Functional Testing
+- Preapred and deployed sorry-cypress for reporting purposes in private cloud
+- As frontend eng I'm envolved in project rlated to visibility of shipments.
+6+ years of technical experience in software quality assurance area
+- Experienced in test automation using various test tools, frameworks, CI/CD
+- Experience of using Kubernetes to prepare a test env;
+- Experienced in programming languages (Java, JS)
+- Experienced in project build tools (Maven)
+- Experienced in Cypress, Jasmine
+- Experience in Functional automated testing techniques on Web based, Client/Server
+- Experienced in version control systems (Git/GitLab)
+
+04.2021 - present, Frontend eng (Angular) -  DB Schenker, Poland, Warsaw
+I'm involved in project related to visibility of shipments. In my daily work I use Angular.
+
+05.2020 - present, Automation eng -  DB Schenker, Poland, Warsaw
+As Automation eng. I've created E2E test framework for acceptance tests. I used Cypress. To report test results I've used sorry-cypress which was deployed in private cloud. E2E tests were run on GitLab CI pipeline. For API tests I used RestAssured.
+
+11.2019 – 04.2020, Software Test Engineer – Allegro.pl sp. z o.o. Poland, Warsaw
+I'm involved in project called “Badges”. The system consist of frontend and backend. Frontend allows to create retail campaigns (sales, discounts, promotions etc.) and their description, set discounts for campaigns, set priority, create badges, colours of badges, set text of badges. Backend allows to store these campaigns and processing them. I'm using Java/Groovy + Junit/Spock + RestAssured + WireMock + Docker
+
+12.2016 – 10.2019, SQA Engineer – Samsung Electronics Poland, Warsaw
+As a QA Eng. I have been involved in Samsung Pay projects. My main goals were integration between SPay and Russia’s national payment system 'Mir', integration between SPay and IDEMIA, integration between SPay and Gemalto. I used SoapUI, Java + Junit + RestAssured + WireMock for Integration testing. 3 tier support for end users, logs analyzing. I developed a test framework for regression test. Mentoring and coaching (2 team members).
+Looking for remote and part-time. I am interested in working as Frontend eng (Angular) or/and Test Automation Engineer and contribute all my experience and professionalism to this position.

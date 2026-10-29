@@ -1,0 +1,5 @@
+Junior QA Engineer
+0 năm kinh nghiệm · English: intermediate
+
+I have finished a course for QA where I got some experience in web and mobile testing. I have a strong understanding of the theoretical aspects of software quality assurance.
+This course taught me practical skills with different types of testing and various languages like SQL, HTML, and CSS. I understand HTTP request methods and how client-server architecture works. I have experience with REST API testing using Postman, bug-tracking systems Jira and skills in writing test documentation.

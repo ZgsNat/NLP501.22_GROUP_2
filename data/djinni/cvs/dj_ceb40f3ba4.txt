@@ -1,0 +1,31 @@
+Sr QA Automation Engineer (Selenium WebDriver, Cucumber with java, Devops Jenkins)
+11 năm kinh nghiệm · English: upper
+
+Understand the requirements and formulate the test specifications including test plan and test scenarios based on requirements.
+	I have setup selenium cucumber BDD web driver testNG framewok based in LeanFT on projects struture.
+	I have setup API web serices using selenium web driver testNG framewok based on projects struture and BEAT.
+	I have setup DevOPs Jenkins in my local system and main server for continuous exectution on every buid
+	Developed automation test scripts to meet the business requirements of the different modules
+	Execution of automated test scripts using selenium web driver with cucumber protractor and documented bugs with evidence and reported them with detailed information to the development team.
+	Investigated bugs and interfaced with developers to resolve technical issues
+	Keep track of the new requirements / change in requirements of the Project.
+	Perform black box testing including smoke, regression, integration testing and functional testing using selenium cucumber with web driver.
+	Performed manual and automated test procedures for functional testing of Web services using VERIFIX TOOL.
+	Involved in create test scripts using Selenium cucumber web drievr for Regression testing
+	Verifying the application for browser compatibility on different browsers.
+	I have setup and execution DevOps-Jenkins for using continue integrassion (CI) and continue testing (CT) both client server side and local server distribute test results to team members  
+	Participated in weekly status meetings and co-ordinated with developers and peers to resolve/close defects
+	Automated termainal emulatar financial application
+Hi,
+
+Please find the Testing profile with 14 + years experience in Manual and Automation.
+
+Selenium Web Driver Automation : 9 Years Experience
+
+DevOps: Jenkins(CI,CD,CT) : 5.8 Years Experience 
+
+Profile Summary
+
+• 14 Years of experience in Software testing in Manual and Automation testing.
+• Expertise in Selenium and LeanFT automation tools (More than 9 years of exp).
+• I have experience in frameworks setups like: Project Frame work setup, DevOps

@@ -1,0 +1,22 @@
+Senior Automation QA Engineer
+4 năm kinh nghiệm · English: intermediate
+
+I have broad experience in test automation about 1,5 year. Deep knowledge of software development life cycle and variety of software testing methodologies.
+Practical experience in API Automation, UI Automation, Mobile Automation, E2E Automation, Performance testing.
+
+Experience with:
+
+Automation testing from scratch;
+Automated testing of microservices via Cucumber, Java, Junit, Rest Assured, Maven;
+Automated testing of UI via Selenium, Selenide, Java, TestNG;
+Integration of automation framework with Circle CI and X-ray (Jira);
+Performance testing of microservices using Gatling;
+Analyzing user stories and requirements;
+Analyzing test conditions;
+Writing test cases;
+Creating automation test plan and automation test strategy;
+Performing functional testing;
+Analyzing customer issues;
+Reporting bugs and incidents;
+Communicating with customers and development team;
+Writing test summary reports.

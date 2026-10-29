@@ -1,0 +1,4 @@
+Senior QA Engineer
+11 năm kinh nghiệm · English: fluent
+
+Throughout my career, I have developed a deep understanding of automation testing frameworks and tools, including Selenium, Playwright, Postman, TestComplete etc. I have also worked extensively with programming languages such as Java, Python, and JS/TS, allowing me to create efficient and effective test scripts. My experience includes testing a wide range of software applications, from mobile apps to enterprise-level systems.

@@ -1,0 +1,12 @@
+QA engineer
+2 năm kinh nghiệm · English: intermediate
+
+As a skilled Middle SDET specialist in automated testing, the focus is on bringing a strong foundation in ensuring the highest product quality. With expertise in testing principles and methodologies, this professional excels at creating effective automated tests and testing tools.
+
+Proficient in programming languages such as Java and experienced with popular testing frameworks and tools like Selenium, Appium, JUnit, and TestNG. I have adaptability and the ability to learn new technologies keep them up-to-date with industry trends, delivering efficient and reliable test solutions.
+
+Throughout my career, I have achieved notable results by developing test automation tools that streamline testing processes, enhancing efficiency and team productivity. Actively collaborating with development teams, I ensure products meet customer requirements and maintain exceptional quality standards.
+
+With a strong grasp of Agile methodology and extensive experience working within multidisciplinary teams, effective communication with developers, project managers, and fellow testers is a natural strength. I utilize collaboration tools like JIRA to facilitate efficient project management and documentation.
+
+Dedicated to the continuous enhancement of skills and expertise, as a Middle SDET specialist I am eager to contribute knowledge and collaborate with teams for successful projects that exceed customer expectations. I enthusiastically welcome opportunities to connect and explore potential partnerships where my skills can deliver exceptional testing solutions.

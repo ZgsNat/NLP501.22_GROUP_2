@@ -1,0 +1,27 @@
+Manual QA Engineer
+1 năm kinh nghiệm · English: upper
+
+Understanding the Software Development Life Cycle, Bug Life Cycle, Main Testing Principles;
+Worked with Unity, GIT, SQL, Jira have basic knowledge in UNIX systems, HTML, CSS, FreeBSD;
+Knowledge of Testing Types, Testing Levels, Testing Strategy;
+Knowledge of development methodologies;
+Experience in writing test documentation, working with Bug Tracking Systems (JIRA).
+Experience in testing:
+Currently work at company, where I am growing in such directions: VR/AR; PC/Mobile Games (Unity); Simulations; Web.
+
+I've gained all my experience working with 5 different live projects on the current job. 
+
+My responsibilities:
+- check quality of client requirements, how clear they are defined;
+- conducting test processes and analyzing the results;
+- report defects, define the severity and priority;
+- creating product documentation;
+- investigate product quality in order to make improvements to achieve better customer satisfaction; 
+- ad hoc, functional, regression, positive and negative, UI, localization overall cross-device testing;
+- work with Unity (checking logs and configs in order to localize the issue).
+
+Start of my career: 
+Graduated QA courses “QA Light”, practiced on live projects.
+Gained first QA experience allowed me to check unexpected behavior in WordPress CMS with IT-team when I worked on Espreso TV and Politeka as a reporter;
+During my work as a journalist, I started to pay attention to UX/functional details of CMS and Front-end part. Started to investigate how it works and how things could be improved.
+Getting the position of Manual QA Engineer in the software development company where I can improve my skills, knowledge, experience, and become a reliable team member. Opportunity for professional and career growth is important.

@@ -1,0 +1,36 @@
+Senior QA Engineer
+7 năm kinh nghiệm · English: upper
+
+- ISTQB Advanced Level, Test Analyst
+ - ISTQB Certified Tester, Foundation Level
+ - 2+ years of QA Lead experience in coordination of QA teams
+ - 6+ years of experience in manual testing 
+ - 2+ years experience with Back End testing (API) 
+ - 6+ months of experience in automation testing (Java language)
+ - Experienced in developing and maintaining testing documentation
+ - Have experience in Functional Testing, GUI Testing, Compatibility Testing, Accessibility Testing, Regression Testing, API testing via Postman 
+ - Good communications skills and ability to quickly integrate with a new team 
+
+Responsibilities at the current job position (eCommerce, Lead Software Quality Engineer): 
+ - Take participation in the testing processes 
+ - Keep up-to-date Testing documentation and processes on the project 
+ - Test reporting to the customer, statistics collecting for process improvements 
+ - Making a decision about regression scope, smoke testing scope and procedure 
+ - E2E testing process set-up: test cases preparation continuously; E2E testing planning 
+ - UAT approach design and confirmation; UAT support 
+ - Keep up-to-date the QA documentation on the Confluence for the quick review of the testing processes 
+ - Planning the testing for the release 
+ - Estimating testing effort associated with the user stories 
+ - Collaborate with developers and business stakeholders to clarify requirements 
+ - Reporting defects and working with the team to resolve them 
+ - Resource planning and task estimation, managing workload for test teams, managing testing schedules 
+ - Interview candidates, provide onboarding process for newcomers 
+ - Driving Defect Triage, SIT and UAT sessions for the business 
+ - Creating and presenting Test Automation approach to the customer
+
+Team Composition:
+Dev Team: 40+ 
+DevOps: 4 BA: 3 
+QA Team: 1 Test Manager, 1 QA Team Lead, 6 manual QA Engineers
+Currently looking for a position in a company where my qualifications and skills can be useful. 
+I would love to have the opportunities to get more involved into working on a diverse range of projects where I can collaborate with passionate professionals and learn new approaches and technologies.

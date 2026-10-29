@@ -1,0 +1,7 @@
+Automation QA Engineer
+1.5 năm kinh nghiệm · English: intermediate
+
+Expand test automation test coverage on 40%, support several test environments, improve tests stability
+project Erecruit: Enterprise software for staffing companies (erecruit.соm/software) 
+Actively took part in development of C#-based automated testing solution that incorporated both UI and API testing capabilities.
+Was responsible for its complete maintenance once its original creator left the company. Extended testing coverage from short smoke to full-scale regression suite. Configured and maintained parallelized execution schedule in CI environment using Teamcity + Selenoid. Analyzed automated test results and provided feedback to the rest of the development team. Occasionally performed manual testing.

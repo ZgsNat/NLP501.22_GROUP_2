@@ -1,0 +1,16 @@
+QA Automation Engineer
+3 năm kinh nghiệm · English: pre
+
+WORK EXPERIENCE
+
+Middle QA Automation Engineer 	November 2020 to present
+Website Verification Service
+Building UI multi-module testing framework
+Web automation using Java, Maven;
+Creating test documentation: bug reports, test plan, checklists, test cases, road maps;
+
+QA Automation Engineer	July 2019 to September 2021
+Food Delivery Service
+Web automation using Java, Selenium, TestNG;
+Creating test documentation: bug reports, test cases, checklists;
+Manual Postman.

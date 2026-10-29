@@ -1,0 +1,14 @@
+Junior QA Engineer
+0 năm kinh nghiệm · English: pre
+
+I know how to work with testing documentation such as test-plan, test strategies, test cases, bug reports, and other kinds of documentation. 
+I have experience in Jira, Postman, and TestRail.
+GOIT Testing Java tasks - I tested the product according to the written test cases and made bug reports of all the errors found
+
+Testing of the banking program Privat24 - Conducted system testing of a banking program. Describe 5 options for using such a program for testing
+
+White box techniques test design - Сreated a pseudo-code according to the specified conditions
+
+Analyzed the HTTP request of the site Makeup
+Analyzed the methods and statuses of dev tools requests on the site Makeup
+Work in a team of professionals to improve theoretical knowledge and skills. In the future, I am going to become an expert in test automation.

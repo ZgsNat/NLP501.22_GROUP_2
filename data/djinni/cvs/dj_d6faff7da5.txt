@@ -1,0 +1,11 @@
+junior java developer
+0.5 năm kinh nghiệm · English: pre
+
+Created terrain grid using GL shader language (opengl) for video game
+~3 years experience as a Java developer on pet projects (part-time):
+OpenGl graphic projects
+
+~3 years experience as a Java auto-test developer:
+Writing UI, integration and unit tests in Java and Groovy
+I'd prefer project of any size with well established processes.
+I'd prefer not to write tests in javascript.

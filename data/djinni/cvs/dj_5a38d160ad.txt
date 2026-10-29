@@ -1,0 +1,36 @@
+Automation QA Engineer
+3 năm kinh nghiệm · English: intermediate
+
+I became more familiar with the Java programming language and TA processes. 
+I improved my level of English. 
+I also got basic knowledge about testing in JS and testing aws based applications.
+I gained experience in Agile approach in software development.
+EPAM Systems - Software Test Automation Engineer
+(2021г.– present)
+
+Tasks performed:
+•          Created test cases manually and automated them
+•          Requirements analysis
+•          Analysis and documenting defects using JIRA bug tracking system
+•          Participation in planning and reviewing of sprints
+
+Environment: Serenity BDD, Screenplay design pattern, Selenium, REST Assured, Java8, JUnit4, Gradle, Git, Bitbucket, Jira, Jenkins, Postman, SQL
+
+‘WESTRON’ LLC, Kharkov – Engineer;
+(1995 –1996г.)
+‘WESTRON’ LLC, Kharkov – Senior Engineer;
+(1996 –1999г.)
+‘WESTRON’ LLC, Kharkov – Head of HMI Design group.
+(1999г.– 2021г.)
+
+Tasks performed:
+
+•          Developed GUI requirements using MS office
+•          Developed GUI software using Ovation Graphics builder and language
+•          Developed GUI software using MS Visio
+•          Developed verification/validation documentations using MS office
+•          Performed manual testing GUI software
+•          Developed GUI user manual
+
+Environment: MySQL, MSAccess , Version control - CVS, Bug tracking system - JTrac, MS Visio, Ovation Graphics builder, Ovation Graphics language , XML, SQL
+I an going to apply for Middle AQA positions, with ratio of automation work about 70%

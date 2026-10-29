@@ -1,0 +1,6 @@
+QA Lead, Senior Automation Engineer
+6 năm kinh nghiệm · English: fluent
+
+I have experience with the following tools\frameworks:
+Selenium, Java, Groovy, Spock, Geb, Maven, Git, REST Assured
+, AutoIt, Jenkins, Thucydides, Chrome Plugins, Jira API, NodeJs, Express, Mocha, Docker, MySQL, MongoDB, Sonar

@@ -1,0 +1,19 @@
+QA Automation Engineer
+2 năm kinh nghiệm · English: intermediate
+
+Key tester for a year.
+Graduated from KPI in 2018.
+I am a key tester on the project: 
+backend testing via JAVA & REST Assured; 
+BDD/Cucumber; 
+Allure to collect test results; 
+working with documentation;
+creating test plans, test cases, wiki documentation;
+working with JIRA; 
+have minimum performance testing knowledge.
+
+New scope - UI testing.
+To improve - framework writing.
+NAY: 
+1. local testing with docker
+2. JavaScript automation (I am okay with using some JS scripts)

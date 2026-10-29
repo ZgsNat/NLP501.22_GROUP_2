@@ -1,0 +1,14 @@
+Automation QA Engineer
+1 năm kinh nghiệm · English: pre
+
+My skills:
+Worked within projects with Agile, models. 
+Understanding of software development life cycle.
+Experience in creating Test documentation.
+
+Programing skills:
+JavaScript 
+Java 
+Protractor, Frisby.js, Selenium WebDriver
+Jasmine, Karma
+SCC,  Xpath

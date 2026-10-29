@@ -1,0 +1,11 @@
+Automation QA
+4 năm kinh nghiệm · English: fluent
+
+Built testing frameworks for "middleware + front-end + DB" Java/NodeJS solutions (code-driven, data-driven, behavior-driven testing frameworks).
+Fast and robust automation test development (usually coverage is about 1000 test cases in a year along with maintenance of already existed ones).
+Langs: Java, JavaScript/NodeJS, bash
+Testing frameworks: JUnit, TestNG, JBehave, Cucumber, Webdriver (Java and JS), JMeter, Riatest
+Experienced with Linux, Web-Services, Jenkins, DBs.
+Join a team that are in love with the project.
+Get quantity and quality challenges for QA Automation.
+Create something really brilliant.

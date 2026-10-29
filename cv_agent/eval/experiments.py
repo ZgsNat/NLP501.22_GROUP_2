@@ -143,6 +143,24 @@ def run_config(name: str, specs: List[Dict], cvs: List[CV], gold: Dict, meta: Di
     return rows
 
 
+def system_rankings(configs: Sequence[str], specs: List[Dict], cvs: List[CV], run_dir: Path,
+                    overrides: Optional[Dict] = None) -> Dict[str, Dict[str, List[str]]]:
+    """jd_id → config → ranked CV ids, without labels (used to pool CVs for human labelling)."""
+    out: Dict[str, Dict[str, List[str]]] = {s["id"]: {} for s in specs}
+    profiles = list_profiles()
+    for name in configs:
+        cfg = load_config(name, overrides=overrides)
+        shared = None
+        for spec in specs:
+            rt = build_runtime(cfg, run_dir / name / spec["id"], shared=shared)
+            shared = shared or rt
+            profile = None if cfg["criteria"]["profile"] == "Uniform" else profiles.get(spec.get("profile", ""))
+            res = run_pipeline(rt, jd_from_spec(spec), cvs, profile)
+            out[spec["id"]][name] = [c.cv_id for c in res["ranking"]]
+            log.info("pooling %s %s: %d ranked", name, spec["id"], len(res["ranking"]))
+    return out
+
+
 def _col(rows: List[Dict], cfg: str, metric: str, ambiguous: Optional[bool] = None) -> List[float]:
     sel = [r for r in rows if r["config"] == cfg and (ambiguous is None or bool(r["ambiguous"]) == ambiguous)]
     return [float(r[metric]) for r in sorted(sel, key=lambda r: r["jd_id"])]

@@ -1,0 +1,10 @@
+QA Automation Engineer
+3 năm kinh nghiệm · English: intermediate
+
+Deep knowledge of testing methodology
+- Experience in writing test documentation
+- Experience with bug tracking systems (Jira)
+- Basic knowledge of SQL
+- Experience in fintech: FX, equities, trading, algo trading
+- Experience with CI/CD systems
+- Experience writing automated tests for applications in Unix/Linux environments

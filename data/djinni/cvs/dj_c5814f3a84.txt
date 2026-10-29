@@ -1,0 +1,13 @@
+QA Automation Engineer
+7 năm kinh nghiệm · English: upper
+
+Experienced in backend, frontend and mobile UI automation as well as in Manual testing and test design.
+Got excellent working experience with two big American customer companies in a both way, remotely and within the team on site.
+Implemented UI framework based on mocking data for Android App using Espresso, UiAutomator and MockHttp. In the same time automated backend part and app's communication level (SMS/PUSH services) using BDD and corresponding instruments: Cucumber BDD, Spring Framework.
+Have a good technical background and familiar with computer technologies more then 15 years.
+And familiar with many other tools and libraries: Maven, Gradle, Dagger2, JUnit, Selenium, Awaitility, AssertJ
+Bug tracking: Jira
+Test management: TestRail, TestLink, Zephyr
+SVC: GitHub
+Automation testing tasks. Interesting project. Growth opportunities
+Less bureaucracy. Smart management. Good labour conditions.

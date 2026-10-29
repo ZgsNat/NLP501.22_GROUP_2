@@ -1,0 +1,14 @@
+Automation QA Engineer
+5 năm kinh nghiệm · English: upper
+
+Developed test coverage and test infrastructure from scratch.
+Created several tools for parsing and comparing data from HTML, JSON, PDF, XLS, MySQL etc
+Refactored legacy tests and helper methods with reduced complexity and increased readability and reusability.
+Added lots of IDs for Angular elements
+Creating/maintaining UI/API Web automation tests
+Analysing and maintaining test runs
+Writing documentation for tests and scripts
+XCUITest automation for iOS
+
+Python, Pytest, Selenium, Requests, Swift
+Jira, Git, Jenkins, Allure, Selenoid, Postman, TestRail API

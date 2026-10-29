@@ -1,0 +1,33 @@
+DevOps engineer
+3 năm kinh nghiệm · English: upper
+
+Certifications:
+Linux Professional Institute LPIC-1
+HashiCorp Certified: Terraform Associate (002)
+Epam Systems, remote— Systems(DevOps) Engineer,
+epam.com
+May 2022 - Present
+Work with Agile Team.
+Managing and maintaining cloud infrastructure on AWS using Terraform and Terragrunt to ensure efficient and secure operations.
+Deploying and managing containerized applications using Docker and
+Kubernetes, ensuring that applications are scalable, reliable, and highly available.
+Managing Continuous Integration/Continuous Deployment (CI/CD)
+pipelines using tools like Github Actions, Jenkins, and Azure Pipelines,
+ensuring that applications are deployed and tested automatically.
+Implementing GitOps methodologies to manage and version
+infrastructure as code, ensuring that changes are auditable and easily traceable.
+Using tools like Jira and Confluence to track project progress and ensure that project timelines are met and documentation is updated.
+
+Crystalbet LTD, Tbilisi, Georgia— IT Specialist, crystalbet.com
+September 2019 - May 2022
+Installation, setup, configuration, and support of computer networking.
+Installation and support of operating systems, and software.
+Working with Active Directory/Domain Controller.
+
+Fresco LTD, Tbilisi, Georgia—System and Network Administrator
+fresco.ge, February 2018 - September 2019
+Installing, configuring, and supporting network equipment including routers, and switches. Server Monitoring and troubleshooting.
+
+Silknet JSC, Tbilisi, Georgia— Troubleshooter, silknet.com
+August 2016 - February 2018
+Providing technical support and diagnosing internet, television, and telephone. Inspecting drivers on subscriber devices, configuration settings, pinging, and checking connectivity between devices.

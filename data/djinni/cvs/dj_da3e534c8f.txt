@@ -1,0 +1,38 @@
+Senior QA Engineer
+2.5 năm kinh nghiệm · English: fluent
+
+Projects:
+A) Online - shop (Junior QA)
+My responsibilities were to control the quality of new features(client-server application) and creating the artifacts such as test plans, annotations and automated smoke cases
+Learnt to use Chrome devtools and Selenium (Python)
+During that job I learnt how to write useful test plans, understandable bug reports and also went deep into the End to End autotesting with Selenium
+B) Medical project for visitors and doctors (Middle QA)
+I was expected to build the QA process from the very beginning
+My responsibilities:
+1) functional testing (frontend applications)
+2) integration testing with general backend, prediction systems
+3) converting business requirements to technical tasks
+4) project management tasks such as communication with client, team leadership, tasks prioritization
+Learnt to use Postman for backend testing
+During that job I learnt how to organize the QA process that will benefit for the place with no testing before and also how to manage the team, validate tasks for development
+C) Payments - the platform that allows user to deposit or withdraw on the trading platform (Middle QA)
+I was expected to share the testing process with another QA Engineers
+My responsibilities:
+1) functional testing (frontend, backend, native iOS, native Android)
+2) developing the testing strategy for regression (as creating test documentation)
+3) sharing experience, tutoring
+4) developing the test project for the billing backend (Python, pytest)
+Learnt to use Charles, Android Studio, Xcode, Data Grip for db
+Now) Global payroll system (Senior/Lead QA)
+1) functional testing (frontend, backend, native iOS, native Android, database migrations)
+2) developing the testing strategy for regression (as creating test documentation)
+3) Hiring (Middle/Senior QA)
+4) developing the autotest project for API and frontend from the beginning
+5) supporting the QA process from accepting tasks for developing to validating them
+I feel that my career way is to become the QA leader
+My wish is to improve the quality of every step which will be: high quality tasks for development, well thought out process for each task, artifacts after testing, useful autotests, written documentation for regression, high competencies of QA team (I am ready to share my experience and improve my own skills)
+Also I would like to go deeper into the autotesting and to know:
+how to develop beneficial structure of autotests (architecture, patterns, improving performance in real project) since I never had Auto QA colleagues
+so my job should provide a place for the improving and support with a little time for creation
+
+I would never ever do the job what would require just testing and writing documentation without any permission to improve the process of quality

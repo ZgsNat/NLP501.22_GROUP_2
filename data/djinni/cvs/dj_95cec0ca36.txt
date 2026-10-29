@@ -1,0 +1,19 @@
+Junior QA Engineer
+0.5 năm kinh nghiệm · English: intermediate
+
+During the training in the "Cursor education" the following hands-on skills were acquired:
+Requirements analysis
+Creating test cases
+Execution of test cases
+Creating bug reports
+Writing a test plan 
+* All this happened according to the type of real project
+Worked with the following tools:
+TestLink
+Microsoft Excel 
+Chrome DevTools
+I have knowledge about:
+Jira
+Postman
+Mantis
+Jmeter

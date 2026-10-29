@@ -1,0 +1,14 @@
+Senior QA Engineer
+11 năm kinh nghiệm · English: intermediate
+
+Assuring a good quality of various features in such projects as Clinical Ink Engage, Micro Focus Operations Bridge, RingCentral for Desktop, Micro Focus QTP, UFT, UFT Pro (LeanFT) and others.    
+Prevented critical defects to appear in release.
+I have 18 years of experience as a manual QA engineer in various projects:
+ - web, mobile, desktop
+ - domains - functional testing, health care, financial, communication, IT
+I was mainly doing manual testing in these projects but also had initial experience in automated testing.
+Some of the technologies and tools used:
+Quality Assurance (QA), QTP, UFT, LeanFT,  QA process, XML, Automated Testing (beginner), QA planning, C#(beginner), Java(beginner), JavaScript(beginner), SQL(basic knowledge), Visual Studio, Eclipse, IntelliJ IDEA.
+Interesting project.
+Professional growth.
+It would be a plus if a project has opportunities to grow in automated testing area with possible option to mix manual and automated testing in the future.

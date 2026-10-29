@@ -1,0 +1,13 @@
+Senior QA automation
+10 năm kinh nghiệm · English: upper
+
+Successfully started QA processes from scratch on 2 projects
+Main programming language - Python
+Also have experience with Java
+Automation test tools: Pytest, TestNG, Selenium 2.0
+Software tools: Git, Gitlab, Jenkins 2.0, JJB, Maven
+
+Mainly backend automation - Rest API, CLI, Databases. Also UI Automation with Selenium 2.0.
+Have experience of starting Automation and general QA processes from scratch.
+Last 4 years working on Big Data projects with Spark+Postgres+Jenkins+Python(or Java).
+Have experience in Performance testing of Web Projects and DB-based projects as well

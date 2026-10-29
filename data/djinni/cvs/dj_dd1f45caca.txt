@@ -1,0 +1,19 @@
+Java Test Automation Engineer
+2.5 năm kinh nghiệm · English: intermediate
+
+Additional courses:
+Quality Assurance and Automated Testing Of Modern Software Systems — SoftServe ITA, Lviv, Ukraine, 03/2020-06/2020 
+Automation Quality Assurance School — CoreValue, Lviv, Ukraine, 11/2019-12/2019
+2,6+ years of experience as a Java Web UI Test Automation Engineer.
+Proficient in the creation and maintenance of automated test scripts.
+Responsibilities	
+•	Writing and executing manual and automated test cases;
+•	Automation testing UI;
+•	API testing (Postman);
+•	Perform regression testing;
+•	Communication with the development team;
+•	Clarify requirements with stakeholders.
+•	Execute CI build scripts and adjust automated build configuration.
+•	Take part in code review as a reviewer.
+•	Test run analyzing;
+•	Bug reporting.

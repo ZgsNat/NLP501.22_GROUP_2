@@ -1,0 +1,7 @@
+Java Developer
+2.5 năm kinh nghiệm · English: intermediate
+
+Approval framework migration and improvement, activation region wizard, migration some tables from dynamodb to mongo, page related location implementation, active filters for some pages.
+I have a 2,5 years experience in famous international company as a key developer on clouds related project. The most experienced in AWS technologies, java, dagger, DynamoDb, MongoDb. Major responsibilities are to implement new features for managing resources in different CP - AWS, AZURE, GOGLE, and fixing bugs related to project. 
+Interested in project with cloud technology, spring.
+Big project is more preferable, new technologies, cloud, docker.

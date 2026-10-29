@@ -1,0 +1,16 @@
+QA Automation Engineer (java, javaScript)
+1 năm kinh nghiệm · English: intermediate
+
+The one of. Production of food additives. Developed a module with AWP for the integration of production equipment. Data exchange through stored procedures MSSQL. Created design documentation. Main difficulties in a complex business process, large-scale documentation and close interaction with the manufacturer's equipment development department.
+Experience in QA automation (java, javaScript) 1+ year: API and Web testing. Frameworks:  restAssured, Cypress, Selenium, TestNG, Spring (development). CI: Jenkins, GitLab. Building tools: maven, gradle. Messaging:  kafka. Containers in docker. Kibana logs. Test design, estimate, metrics.
+Before that, have worked as a developer and an QA with 1C (OOP) language (PC, Mobile) for 12 years: 
+- architect;
+- automation of business process;
+- integration various software with 1C (REST API, COM, SQL, WEB, HTTP, JSON, XML, XDTO, XSD);
+- mobile development; 
+- high and low-level documentation. 
+Responsible, have great emotional intelligence, ability to build healthy relationships. Have been learning as a psychotherapist (gestalt method) for more than 2 years.
+Communication with team and customers, 
+adopt their best practice, 
+finding new tools and frameworks 
+to be included in the product. Fast growth. Opportunity to participate in creation of a helpful or an innovative product with like-minded team.

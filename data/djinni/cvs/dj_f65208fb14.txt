@@ -1,0 +1,49 @@
+Senior QA Automation Engineer (Python)
+5 năm kinh nghiệm · English: upper
+
+DECEMBER 2020  - PRESENT
+Aliexpress 
+Senior QA Automation Engineer
+Moscow, Russia
+
+Worked within teams to launch Aliexpress into 5 new supermarkets: Fourlapy, Lenta, Vkusvill, VseApetki, Metro.
+Tested new API features for search, categories, stores, services, etc using testing design patterns such as Regression and Functional testing. 
+Identified test cases to automate and develop API automation test scripts using Pytest and Python.
+Created a homepage for supermarkets, and used A/B testing to see how it brought more income to the company.
+
+APRIL 2020 - DECEMBER 2020
+Ozon.ru 
+QA Automation Engineer
+Moscow, Russia 
+Testing new API features such as search, ranging, and indexing.
+Identified test cases to automate and develop API automation test scripts using Pytest and Python.
+
+DECMBER 2019 - APRIL 2020
+OneTwoTrip 
+Senior QA Automation Engineer
+Moscow, Russia
+Testing new features for bus vertical.
+Identified test cases to automate and develop API automation test scripts using Ruby.
+SEPTEMBER 2019 - DECEMBER 2019
+Ruforum 
+Team lead QA
+Moscow, Russia 
+Lead team of 3 people.
+Identified test cases to automate and develop automation test scripts using JavaScript.
+
+JUNE 2018  - SEPTEMBER 2019
+Ozon.ru 
+QA Automation Engineer
+Moscow, Russia 
+Created a new website in Go and Node JS.
+Developed new infrastructure for web testing.
+Scheduled pipeline and Grafana for tests after merge.
+Launched new projects: search, tiles, filters, favorites as well as new system for placement blocks in website.
+Added functionality to add advertising blocks for manager input as well as tiles on websites.
+
+JUNE 2017 - JUNE 2018
+DriverPack 
+ QA Engineer
+Moscow, Russia 
+Customer development for new features.
+DriverPack Cloud project which helped people install drivers and software online.

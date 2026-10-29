@@ -1,0 +1,30 @@
+QA Automation Engineer/ General QA Engineer
+6 năm kinh nghiệm · English: upper
+
+- I have expirience in writing automation tests on Js/Ts for CRM systems and systems for automatisation marketing processes and also for post system - was setting testing projects from zero
+- I integrate Grafana + Fitran + GBQ graphics for monitoring statistics on prod after releases
+- I am a good in API/backend testing
+- I have expirience in security testing - I good user of BurpSuite, Nmap, Linux etc
+- I have expirience in improving as QA Lead testing process on project (on my actual job create regression testing from zero)
+I have 6+ years as General QA Engineer:
+- complex testing of web applications: functional, GUI, usability, API, сross-browser, cross-platform testing, responsive, localization, regression, smoke, re-testing;
+- testing of CORE API system(REST, SOAP XML, RPS JSON);
+- testing of Core CRM system;
+-creating and maintenance test documentation: test cases, checklists, RTM etc;
+- creating bug reports for discovered defects with their further verification;
+- communication with BA and devs about new features and requirements, API design;
+- developing automation test on JS + Jest + Allure;
+- developing automation tests on Cypress;
+- read and analyze automation tests reports on Allure;
+- monitoring and analyze log system(Graylog/Kibana);
+- interview for newcomers;
+- mentor/onboard for newcomers;
+- test management; 
+- integrate Grafana and GBQ data - developing graphics for monitoring after release;
+- add and monitor Grafana alerts;
+- monitor Sentry errors message;
+- delegate of release and regression testing;
+- work with Fivetran and communicate with support about new connectors;
+- test analytics (GA4/GA3, FB, TikTok, Bloomreach, Reddit, Northbeam and etc);
+- test backend DB features with Postgres;
+I do not want to deal with projects related to the tourist business

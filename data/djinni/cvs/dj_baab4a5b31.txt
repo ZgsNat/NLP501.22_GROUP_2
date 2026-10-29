@@ -1,0 +1,29 @@
+Middle front-end developer
+2 năm kinh nghiệm · English: upper
+
+Hello World!
+I am a hardworking and detail-oriented Frontend Developer with 2+ year of experience in development and 4+ years of previous experience in project management and digital.
+Currently, I am working with two clients, Suzuki and the educational game for children Pica Typen, in a Dutch company as a JavaScript developer.
+My stack is: 
+- HTML && CSS && SCSS
+- JavaScript
+- React
+- TypeScript
+- Next.js
+- Apollo GraphQL
+- PixiJS
+- Storybook
+- Cypress
+- Node.js
+- Git
+- GitLab CD/CI
+
+As a developer I:
+- have a creating and supporting role in projects for clients
+- create either front-end, back-end or test automation code in JavaScript
+- work in teams to create products based on technical specifications and deliver
+those in a timely manner.
+
+Just a few more words about my previous experience. I've been working in digital direction for more than 4 years, and during this time I have discovered that the digital world is my passion. I am amazedat how digital technology is changing our lifestyle and quality of life every day. That is why I believe I could successfully combine my experience in management and digital with development.
+At the moment I am looking for a job because I want to return to Ukraine and develop Ukrainian products!
+Thank you for your time and consideration. I’m looking forward to discussing this opportunity with you!

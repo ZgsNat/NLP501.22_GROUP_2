@@ -1,0 +1,48 @@
+Automation QA Engineer
+5 năm kinh nghiệm · English: upper
+
+I am a mentor in the local QA community where I also speak on various technical topics as a speaker.
+Technical Skills
+Automation frameworks (in order from most relevant to least relevant): 
+* Playwright (TypeScript)
+* Cypress.io (JavaScript/TypeScript)
+* Protractor + Allure report (TypeScript)
+* Selenium WebDriver/Selenide (Java)
+Coding:
+* Automation patterns (PageObject, PageElements)
+* Programming patterns
+* OOP
+Web: HTML, CSS, CSS/XPath selectors
+Network: API, client-server architecture (REST, GraphQL), XML, JSON
+Databases: MySQL, MongoDB 
+Tools:
+ WEB: Browser DevTools, Browser’s extensions
+ API: Postman (+Newman), JMeter, Fiddler, Charles
+ Monitoring: ADB, Kibana, Grafana, Google Console
+ Virtualization: VirtualBox, VMWare Player, Docker
+CI/CD: GitLab CI, Azure Repos
+DBMS: MySQL Workbench, MongoDB Compass
+IDE: WebStorm, VSCode
+Git: AzureDevops, GitLab, GitHub, Bitbucket
+Test-cases management: AzureDevops, Zephyr Scale, TestRail, TestLink, HipTest, Qase.io, TargetProcess
+Bug-tracking/management system: AzureDevops, Jira, Mantis, Bugzilla, TargetProcess, Trello, Confluence
+Testing Methods:
+* Functional, Usability (UI/UX), API testing (monolith and microservices), Compliance (HIPAA, GDPR)
+* Manual and automated regression testing
+Performance testing (JMeter, k6)
+Security testing (entry-level)
+EOSIO blockchain testing (entry-level)
+Software Development Methodology/Methods:
+* Scrum (+Less)
+* Kanban
+* Waterfall
+Operating System: Ubuntu, macOS, Windows, Android, iOS
+ISTQB certified tester (foundation level)
+
+Management
+* Management of the QA department of up to 13 people.
+* Setting up QA processes.
+
+Publicity
+* Speaker in the local QA community.
+* Performing QA workshops and meetings.

@@ -1,0 +1,29 @@
+Senior QA Engineer
+11 năm kinh nghiệm · English: upper
+
+More than 13 years of commercial experience in IT as a QA and QA Team Lead.
+
+During this time I have participated in more than 9 projects (web / desktop and mobile applications, embedded & hardware oriented) based on different kinds of domains, various complexity and team composition.
+Currently I am involved in a hardware-related project which develops a .Net application that directly operates hardware devices.
+At the previous project I took a QA Lead position. Our team was developing a mobile application for both Android and iOS platforms that allows customers to make purchases, track their orders, schedule car service reservations and many more.
+
+I was responsible for all corresponding activities related to the lead role, including working with a testing team, planning, monitoring and control. Driving meetings, creating and maintaining testing documentation, performing prioritization and tasks distribution, providing test estimates and reports, requirements gathering and negotiation with a client. Providing KT sessions, onboarding and adaptation for newcomers. Communication with a client on a daily basis.
+
+Besides that, I was involved in all release activities and scrum ceremonies. I was taking part in people's evaluations, interviews, and audits.
+
+- I have practical experience in manual testing, including functional, UI, API, mobile etc.
+- Strong theoretical knowledge and practical experience in development methodologies,
+testing processes, SDLC
+- Test documentation creation and analysis (test strategy, test plan, test cases,
+requirements etc.)
+- Hands-on experience in web/mobile e-commerce applications
+- Practical experience in scrum mastering
+- Prioritisation and control, delegating, feedback (performance) reviews
+- Communication and presentation skills
+- KT sessions conducting, providing coaching and mentoring for the team
+- Motivating and engagement
+- Experienced working in a distributed team
+- Conflicts resolving
+- Leading skills
+- Business trips (on side cooperation)
+- Responsible, customer-oriented, self-organized and results-driven. Quick learner

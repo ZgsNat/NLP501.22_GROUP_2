@@ -1,0 +1,19 @@
+Automation QA Engineer
+2 năm kinh nghiệm · English: upper
+
+- improving the quality of the automation scripts for testing of the audio equipment on my current project
+- I'm proud of the products which release I involved
+Software engineer with 9+ years of experience in professional software testing and 2 years in automation testing 
+Strong knowledge of software testing theory, techniques, and processes.
+Experienced working in SCRUM and Waterfall environments
+Experience in writing test suites, test cases, and bug reports;
+Advanced proficiency in English
+Team player, a quick learner with the ability to share new knowledge with colleagues
+
+2021 - till now - QA automation engineer at GlobalLogic company (Python, Robot Framework)
+2018 - 2021 QA automation engineer at GlobalLogic company (Ruby)
+2010 - 2018 QA Engineer at GlobalLogic company
+2006 - 2010 Acoustic Engineer
+
+My current responsibility is in creating test scenarios, developing and running test scripts on Python, using Robot Framework
+- Opportunity to grow in my experience, skills, and rewards - Flexible work schedule

@@ -1,0 +1,32 @@
+Junior QA Engineer
+0 năm kinh nghiệm · English: upper
+
+I have knowledge of UI, Usability testing, Smoke and Sanity testing, Regression, Functional, Localization testing, Integration testing, Ad-hoc, Exploratory testing, Cross-browser testing, Mobile testing, testing of desktop and web applications.
+Basic knowledge in HTML, CSS, experience in testing with Chrome DevTools.
+Experience in testing Databases using PL\SQL, MySQL and PostgreSQL.
+Functional testing of jobs with data integration tool IBM InfoSphere DataStage.
+Basic experience in Git environment (GitLab) and Jenkins.
+Understanding of client-server architecture.
+Practical experience in the REST API tests using Postman, 
+Experience in writing QA documentation (Test plans, Test suites, Test-cases, Check-lists, Bug-reports).
+Good knowledge and practical experience in bug tracking systems (JIRA).
+Analysis of tasks and testing requirements for them.
+Strong knowledge of QA theory.
+Java tasks
+-Participating in Sprint Estimating the Tasks Creating Test-Cases -Regression testing
+-Creating Test cases according to requirements in TestRail
+-Creating Bug-Reports
+-Sending feedback about product improvement
+
+Privat 24
+-System testing
+-Creating Use Cases
+-Creating Test Cases
+-Mobile testing
+-Sending feedback about product improvement
+
+List Boxer
+Estimating the Tasks
+Testing documentation
+Sending feedback about product improvement
+I am a Junior QA Engineer with a holistic knowledge of how to work with test documentation such as test plan, test strategy, test cases, bug reports, and other types of documentation.  As a person, I am attentive, responsible, quick learner and I don't trust people, so I double-check. I have been successfully trained and due to this, I am good at core technical skills, organizational ethics, and discipline. I am looking for a company where I could add value and produce a quality return. Where I could join a strong team. I am looking for a company that offers good growth potential and opportunities.

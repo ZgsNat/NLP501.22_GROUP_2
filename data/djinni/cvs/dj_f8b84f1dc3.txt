@@ -1,0 +1,32 @@
+QA Engineer
+5 năm kinh nghiệm · English: upper
+
+StarApps
+QA junior engineer
+Worked in projects:
+Koka88 bookmaker for the asian market
+CoderZ online courses for children to learn programming
+Eat n repeat - program for food delivery like Glovo Elephantstock - marketplace for canvases
+Responsibilities:
+- API testing
+- Designing and execution of the test cases
+- Regression testing
+- Analysis and understanding of the product and the processes.
+Freelance (upwork)
+QA Engineer
+Worked in projects:
+Aparley - social media platform for private content from celebrities
+Aparty - IOS app to find someone How I’d like to go some events with you or sell tickets
+Ohanalink - project that helps pregnant women or with small children to find some help( buy food, help to clean home) Eat n repeat - program for food delivery like Glovo
+Bank of Ireland - online banking
+Veriskope - company which cooperates with adobe to rewrite flash applications to the web or desktop
+Scrimmage - betting platforms which helps users to find best odds and get statistic of betting
+BOX - marketplace which sells GAS and electricity
+Responsibilities:
+- API testing
+- Performing functionality testing.
+- Analysis and understanding of the application and the processes.
+- Executing end-to-end workflow of checkout process.
+- Communication with the development team and generating suggestions for improving the tool
+- Regression testing
+- DB testing

@@ -1,0 +1,9 @@
+QA Automation Engineer(Java)
+3 năm kinh nghiệm · English: upper
+
+Manual QA - 0.5 years, Java Automation QA – 2.5 years.
+Writing automation UI and API tests. Support and maintenance of the existing automation framework.	 
+ - Tools and frameworks: SeleniumWebDriver, TestNG, Maven, AssertJ, XPath, Allure, RestAssured, Postman, Git, Bitbucket, Jira, MySQL;
+- CI/CD: Jenkins;
+- Work experience in Agile/Scrum teams.
+- Programming language – Java;

@@ -1,0 +1,40 @@
+Manual QA Engineer
+4 năm kinh nghiệm · English: intermediate
+
+TRAININGS:
+
+Name of Institution: Uzhhorod IT School 
+27.10.2018 – 29.12.2018 (2 months)
+Short contents of courses:
+I’ve recently completed the courses at the Uzhhorod IT School and improved my knowledge of the Software testing.
+
+Name of Institution: Prometheus
+12.03.2018 – 27.10.2018 (7 months)
+I’m actively developing my skills in the QA testing by reading professional literature on testing of web and mobile applications. Also I was learning the Python language courses on the Prometheus website and the Software testing on the other resources.
+
+Name of Institution: QA TestLab
+15.01.2018 – 12.03.2018 (2 months)
+I completed the "Fundamentals of Software Testing" courses.
+Highly motivated, adaptable and analytical Quality Assurance Engineer who enjoys taking on new challenges and improving my skills. Well organized with attention to details. Excellent interpersonal and cognitive skills and a proven ability to generate innovative ideas and solutions to problems. Enjoys working as a team member as well as independently.
+
+I have 1+ years of experience in testing mobile applications and websites in all browsers.
+
+If you like to increase the quality of your product please send me a message. 
+
+TECHNICAL QUALIFICATIONS:
+
+-  Proficiency in: testing web-based applications and mobile applications.
+-  Good knowledge and experience with: manual testing, blackbox testing, functional, UI testing, cross-browser testing, ad-hoc testing, mobile testing, GitHub system, creation detailed, comprehensive and well-structured test plan, test case, bug report, checklist, review and analysis of functional requirement documentation and specification.
+-  Good knowledge of: software development life cycle and methods, Jira system, software testing life cycle, theoretical knowledge base in software testing.
+- Programming languages: basic knowledge of Java, Python.
+- Web: HTML, CSS.
+- RDBMS: MySQL(basic level).
+- Operating Systems: Windows 2000/2003/XP/7,8,10; Linux; MacOS.
+- QA Automation tools: Selenium WEB Driver, IntelliJ IDEA.
+- Bug tracking systems: Mantis, Redmine.
+
+• Company name: SKIFAPP
+Work period: 09.07.2018 - 06.09.2018
+
+Tools and Services: Slack, GitHub, XMind, BitBucket.
+To work on the part-time basis on interesting projects, to get good experience and join a fast-growing company. Constantly improve my skills, accept new challenges and to develop myself.

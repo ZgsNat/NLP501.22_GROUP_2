@@ -1,0 +1,16 @@
+Automation QA Engineer
+5 năm kinh nghiệm · English: intermediate
+
+8+ years of practical experience as QA engineer;
+5+ years of practical experience in UI automation testing;
+2+ year of practical experience in API automation testing;
+Practical knowledge of software testing methodologies;
+Proficient in writing test cases, performing test steps and recording testing results;
+Familiar with test design techniques;
+Have experience in performance and security testing;
+
+C#, XML, JSON, SQL;
+Postman, Jenkins, Team City, jMeter;
+Selenium Webdriver, PageObject, MSTest/NUnit.
+Work in professional team.
+New goals and new knowledge.

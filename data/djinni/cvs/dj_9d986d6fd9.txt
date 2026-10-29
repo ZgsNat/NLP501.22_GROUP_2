@@ -1,0 +1,12 @@
+Automation QA Engineer
+0 năm kinh nghiệm · English: intermediate
+
+I have practical experience with:
+- Java (testNG) 
+- Python (pyTest, Selenium)
+- Page Object pattern
+- Functional testing
+- Regression testing
+- Understanding of software development life cycles and bug life cycle.
+
+I also have experience working on a real project in a team under the guidance of a mentor. I have experience with version control systems, code review tools and bug tracking tools.
