@@ -49,20 +49,24 @@ The 8 criteria are: tools/frameworks · automation depth (L1–L4) · programmin
 | Layer | Tech | Where |
 |---|---|---|
 | Agent orchestration | **LangGraph** StateGraph: 11 nodes, 5 bounded loops, interrupts, SQLite checkpoints | [`backend/app/agent/`](backend/app/agent) |
+| CV language processing | **Deterministic NLP pipeline**: PDF/DOCX parsing, Unicode normalisation, PII and protected-attribute redaction, EN/VN section and date parsing, structural chunking with contextual headers, gazetteer skill NER with NegEx-style hedge scoping, clause-initial depth cues | [`backend/app/nlp/`](backend/app/nlp), explained in [`docs/NLP_PIPELINE.md`](docs/NLP_PIPELINE.md) |
+| Evaluation | B0 → P6 ladder, chunking ablation, A1–A3 against 600 graded (JD, CV) labels; nDCG, Kendall's τ, bootstrap CIs | [`backend/app/eval/`](backend/app/eval), [`docs/EVAL.md`](docs/EVAL.md) → [`docs/EVAL_RESULTS.md`](docs/EVAL_RESULTS.md) |
 | LLM brain | **Provider factory**: OpenAI, Anthropic, Google Gemini, Ollama (local), any OpenAI-compatible gateway | [`backend/app/providers/llm.py`](backend/app/providers/llm.py) |
-| Retrieval | **Qdrant** hybrid search: BM25 sparse + `bge-small-en-v1.5` dense, fused with RRF, then a `ms-marco-MiniLM` cross-encoder. All open-source HF models via fastembed/ONNX | [`backend/app/rag/`](backend/app/rag) |
+| Retrieval | **Qdrant** hybrid search over **CV chunks**, one query per requirement (BM25 sparse + `bge-small-en-v1.5` dense, RRF), max-pooled per CV, then a `ms-marco-MiniLM` cross-encoder on (requirement, evidence passage) pairs. All open-source HF models via fastembed/ONNX | [`backend/app/rag/`](backend/app/rag) |
 | API | **FastAPI**, NDJSON streaming of node events | [`backend/app/main.py`](backend/app/main.py), contract in [`docs/API.md`](docs/API.md) |
 | Observability | **Langfuse v4** (self-hosted); one session per run, one trace per resume | [`backend/app/observability.py`](backend/app/observability.py) |
 | UI | **Vite + React + TypeScript**: live graph, timeline, HR panels, evidence viewer, radar chart | [`frontend/`](frontend) |
+
+> 🗺️ **Interactive architecture map:** open [`docs/architecture.html`](docs/architecture.html) in a browser. Every component has an ID (e.g. `N6` = assess node, `H1` = loop budgets); click any box to see its file, state reads/writes and knobs.
 
 ### The five loops (the "agentic" part)
 | Loop | Trigger | What happens | Limit |
 |---|---|---|---|
 | **L1** Clarify | JD has no concrete must-have tools (rule), or a fast model judges ambiguities blocking | Graph **pauses**, HR answers, criteria are re-extracted | `max_clarifications` |
-| **L2** Expand | Fewer than `min_coverage` CVs satisfy all must-haves | Accept related skills from the ESCO-lite taxonomy (Playwright → Cypress/Selenium), search again | `max_expansions` |
+| **L2** Expand | Fewer than `min_coverage` CVs satisfy all must-haves | Propose related skills from the ESCO-lite taxonomy (Playwright → Cypress/Selenium); the graph **pauses for HR to accept or decline**; declined tools are never proposed again | `max_expansions` |
 | **L3** Arbiter | Two adjacent top-5 candidates within Δ < 0.05 | One LLM pairwise decision with verified evidence. Otherwise no LLM call at all. Each candidate is judged at most once (no cascades) | `max_arbiter_calls` |
-| **L4** Verify | An evidence quote doesn't exist in the CV text | That candidate is re-assessed with feedback; after the budget, unsupported scores are capped | `max_verify_retries` |
-| **L5** Review | HR re-weights criteria | Deterministic re-score, **no new LLM assessment**; the report is reused if the top 5 are the same people | — |
+| **L4** Verify | An evidence quote doesn't exist in the CV (ungrounded) | That candidate is re-assessed with feedback; after the budget, ungrounded criteria are capped at 20. Quotes that exist but come from the wrong section or name the wrong thing (*listed, not demonstrated*) cap the criterion at 50 | `max_verify_retries` |
+| **L5** Review | HR re-weights criteria with sliders **or in plain words** ("certification matters more") | Deterministic re-score, **no new LLM assessment**; the report is reused if the top 5 are the same people | `max_reviews` |
 
 ### Design principles (harness engineering)
 1. **Bounded autonomy.** Every cycle has a limit in [`config.py`](backend/app/config.py).
@@ -71,9 +75,10 @@ The 8 criteria are: tools/frameworks · automation depth (L1–L4) · programmin
 4. **Verify, don't trust.** Grounding is checked deterministically, at zero tokens.
 5. **Rules before models.** For example, "no must-have tools → always ask HR" runs before any LLM gate.
 6. **Isolate failures.** One candidate's malformed LLM output flags that candidate for manual review and never crashes the run.
-7. **Extract facts, compute scores.** Small LLMs calibrate numbers badly (everyone gets 95) but extract facts well. The LLM reports depth level L1–L4 and years of experience; code turns them into scores. `tools` and `istqb` are pure rules. The LLM scores only 4 of 8 criteria.
-8. **Measure the cost.** A provider-agnostic `UsageCounter` callback records LLM calls and tokens per graph node for every run (`done` event, `GET /runs/{id}`, UI sidebar). This is what any "% tokens saved" claim must be based on.
-9. **Explainability by construction.** Every node narrates its decisions (`emit()`), which drives the UI timeline, and Langfuse holds the full trace.
+7. **Extract facts, compute scores.** Small LLMs calibrate numbers badly (everyone gets 95) but extract facts well. Years come from **parsed role dates**; tools are credited by **evidence strength** (used in a role > listed > hedged); `istqb` is a rule. The LLM reports the depth level L1–L4 (code turns it into a score) and scores only 4 of 8 criteria.
+8. **Structure before semantics.** A CV is parsed into sections and entries before anything else, so the system knows a skills-list claim from demonstrated work, and every CV, ranked or not, carries a status and a reason.
+9. **Measure the cost.** A provider-agnostic `UsageCounter` callback records LLM calls and tokens per graph node for every run (`done` event, `GET /runs/{id}`, UI sidebar). This is what any "% tokens saved" claim must be based on.
+10. **Explainability by construction.** Every node narrates its decisions (`emit()`), which drives the UI timeline, and Langfuse holds the full trace.
 
 ---
 
@@ -99,7 +104,7 @@ cd frontend && npm install && npm run dev                # UI http://localhost:5
 ```
 - **No backend?** Open `http://localhost:5173/?mock=1` for a replay of a recorded run.
 - **Terminal only?** `cd backend && uv run python -m scripts.smoke JD-002` runs the whole graph and answers HR interrupts automatically.
-- **Release gate:** with the API running, `cd backend && uv run python -m scripts.e2e` drives all 4 JDs through the HTTP API, plays HR (clarify, one re-weight, approve) and prints the metrics table plus pass/fail.
+- **Release gate:** with the API running, `cd backend && uv run python -m scripts.e2e` drives all 12 JDs through the HTTP API, plays HR (clarify, one re-weight, approve) and prints the metrics table plus pass/fail.
 - **Share a run:** `http://localhost:5173/?run=<run_id>` opens a finished or paused run.
 - **Tests** (no LLM or Docker needed): `uv run pytest`.
 - **Stop & free RAM:** `docker compose --profile observability down`.
@@ -156,60 +161,84 @@ backend/
   app/
     agent/        graph.py (read first) · nodes.py · state.py · scoring.py (pure, tested) · schemas.py · prompts.py
     providers/    llm.py (interface + registry + factory) · decider.py (typed System-One decisions)
-    rag/          corpus.py · store.py (Qdrant hybrid + rerank) · ingest.py
+    nlp/          text.py · redact.py · segment.py · chunking.py · extract.py · taxonomy.py · pipeline.py (CVProfile)
+    rag/          corpus.py · store.py (Qdrant hybrid + rerank) · retrieve.py (requirement-wise) · ingest.py
+    eval/         metrics.py (nDCG, τ-b, κ, bootstrap) · run.py (systems ladder + report)
     main.py       FastAPI + NDJSON streaming + HR resume
     config.py     all settings & loop limits
-  scripts/smoke.py   end-to-end CLI run
-  tests/             pytest (scoring, routers, providers)
+  scripts/smoke.py   end-to-end CLI run · scripts/e2e.py release gate over HTTP
+  tests/             pytest (NLP pipeline, scoring, metrics, API upload, routers, providers)
 data/
-  cvs/ (30 synthetic anonymised CVs) · jds/ (4 JDs) · policies/ (5 hiring policies for RAG)
+  cvs/ (50 synthetic anonymised CVs, 6 Vietnamese/mixed) · jds/ (12 JDs, 1 in Vietnamese) · policies/ (5 hiring policies)
+  eval/ (silver relevance labels from 2 independent annotators, 600 pairs)
   criteria_profiles.yaml · skills_taxonomy.yaml (ESCO-lite, 37 skills)
 frontend/          Vite + React + TS
-docs/              API.md (contract) · WALKTHROUGH.md (guided code reading) · claude-settings.proposed.json
+docs/              architecture.html (component map) · NLP_PIPELINE.md · EVAL.md · EVAL_RESULTS.md (generated)
+                   API.md (contract) · WALKTHROUGH.md · RELEASE_V1.md · RELEASE_V2.md
 docker-compose.yml Qdrant + optional Langfuse stack
 CLAUDE.md          context for Claude Code
 .claude/agents/    agent-engineer (Opus) · fullstack-dev (Sonnet) · git-steward (Haiku)
 ```
 
 ### Sample data
-All CVs are **synthetic and anonymised** (no names, ages, genders or contacts). They include deliberate edge cases:
+All 50 CVs are **synthetic and anonymised** (no names, ages, genders or contacts). They include deliberate edge cases:
 - keyword-stuffed manual testers;
 - a near-tie pair of Playwright seniors;
 - only 3 Playwright CVs (which triggers L2);
 - mobile-only and performance-only specialists;
-- one CV of impressive but evidence-free claims.
+- a CV of impressive but evidence-free claims.
+
+CV-031–050 (v2) stress the NLP pipeline:
+- 6 Vietnamese or mixed-language CVs;
+- 6 long CVs over 900 words, with overlapping roles and a career gap;
+- hedging traps ("currently learning", "not used in production");
+- title inflation ("Automation Architect" with L1 bullets);
+- strong CVs written in plain language.
 
 | JD | Profile | Exercises |
 |---|---|---|
 | JD-001 | Bank | Selenium + Java, ISTQB; the standard path |
 | JD-002 | Startup | Playwright + TypeScript; **L2 expansion**, L3 near-ties |
 | JD-003 | Outsourcing | Deliberately vague; **L1 HR clarification** |
-| JD-004 | Default | Performance & API (JMeter/k6) |
+| JD-004 | Default | Performance & API (JMeter or k6) |
+| JD-005–009 | Mixed | Playwright, mobile Appium, junior Cypress, API RestAssured, Robot Framework |
+| JD-010 | Bank | **Written in Vietnamese** |
+| JD-011 | Default | Test Automation Architect (L4), "Java, TypeScript or Python" |
+| JD-012 | Default | Performance (k6 or JMeter) |
+
+`data/eval/` holds the relevance labels: 600 (JD, CV) pairs graded 0–3 by two independent annotators ([`docs/EVAL.md`](docs/EVAL.md)).
 
 ---
 
-## 6. Experiments (plan)
+## 6. Experiments and status
 
-| Config | Description |
-|---|---|
-| B0 | BM25 only |
-| B1 | Dense only |
-| B2 | Hybrid (BM25 + dense, RRF) |
-| B3 | B2 + criteria profile scoring |
-| B4 | Fixed linear pipeline (same retriever, cross-encoder, criteria, no loops) |
-| **P6** | Full agentic StateGraph |
-| A1 | P6 − `verify_evidence` (faithfulness ablation) |
-| A2 | P6 − company profile (generic prompt) |
+Protocol: [`docs/EVAL.md`](docs/EVAL.md). Generated numbers: [`docs/EVAL_RESULTS.md`](docs/EVAL_RESULTS.md). 12 JDs × 50 CVs, silver labels (two independent annotators, κ = 0.919), local `qwen3:8b`, mean over JDs with 95% bootstrap CI.
 
-**Metrics:** nDCG@10, Kendall's τ against HR ranking, faithfulness (% grounded quotes), p50 latency, cost/JD (tokens from Langfuse). Use a group split to avoid leakage, and a blind gold set.
+| System | What it is | nDCG@10 | τ vs gold | traps@10 |
+|---|---|---|---|---|
+| B0 | BM25, whole CV | 0.794 | 0.27 | 6 |
+| B1 | Dense, whole CV | 0.741 | 0.31 | 14 |
+| B2 | Hybrid (BM25 + dense, RRF): the v1 retriever | 0.824 | 0.36 | 9 |
+| R structural + CE | Requirement-wise retrieval over structural chunks + cross-encoder | 0.842 | 0.45 | 1 |
+| B3 rules ⊕ CE | + hedge-aware knock-out and rule criteria from parsed facts, fused with CE (no LLM) | **0.871** [0.831, 0.913] | 0.54 | 0 |
+| B4 | Fixed pipeline: the agent with every loop off | 0.842 | 0.54 | 0 |
+| **P6** | Full agent | 0.838 [0.796, 0.884] | 0.54 | 0 |
+| A1 / A2 / A3 | P6 − verify / − company profile / − arbiter | 0.849 / 0.842 / 0.838 | 0.54 | 0 |
 
-### Status: v1.0 ✅
-- **Release gate passed** on local `qwen3:8b`: all 4 JDs end to end through the HTTP API, all 5 loops observed, decisive rankings, tokens recorded, reports grounded. Measured results and lessons are in **[`docs/RELEASE_V1.md`](docs/RELEASE_V1.md)**.
-- Measured per JD: 2–5 min, 9–23 LLM calls, 21k–53k tokens, 89–100% of evidence quotes grounded on the first pass (100% after L4).
-- ⏳ Next: the evaluation harness (gold labels, nDCG@10 / τ, B0–B4/P6 ladder, A1/A2 ablations).
-- ⚠️ Known limitation: absolute score calibration on easy JDs (strong pools at 0.95–0.99) is unvalidated until there are gold labels.
+**What the numbers say:**
+- The deterministic NLP and retrieval stack does the ranking.
+  - The cross-encoder is the largest retrieval gain (+0.065).
+  - The chunking strategy alone makes no measurable difference.
+  - Parsed structure takes traps from 9 to 0 and τ from 0.36 to 0.54.
+- With a local 8B model, the LLM layer does **not** improve the order (P6 − B3⊕ = −0.033). What it adds is explanations and verified evidence:
+  - grounded quotes: 96.1% → 99.2% with the verify loop;
+  - supported quotes: 89.9%.
+- The next experiment is the same ladder with a frontier model, a one-line `.env` change.
+- Full findings, including the negative results: [EVAL.md §7](docs/EVAL.md#7-findings-v2-2026-10-30).
 
----
+### Status: v2.0
+- NLP pipeline, requirement-wise retrieval, evaluation harness, CV upload (PDF/DOCX/MD) and plain-language HR re-weighting. See **[`docs/RELEASE_V2.md`](docs/RELEASE_V2.md)**. v1: [`docs/RELEASE_V1.md`](docs/RELEASE_V1.md).
+- ⚠️ The labels are silver (LLM annotators). Before the final report, 2 people should adjudicate the 94 disagreements and blind-grade 120 pairs (EVAL.md §2).
 
 ## 7. Contributing
 - Python uses **uv** (never pip); the frontend uses **npm**. Docker Desktop.
