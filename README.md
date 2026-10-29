@@ -244,7 +244,7 @@ Chạy ngày 27/10/2026: `python -m cv_agent experiments --neural --llm ollama -
 * H5 vẫn bác bỏ khi xét từng JD: bank_api_qa 0.72, ambiguous_senior 0.62, ambiguous_junior 0.40 < 0.8.
 * Mặc định `configs/base.yaml` vẫn là hashing/lexical (chạy được không cần GPU); bật neural bằng `--neural`.
 
-### Lượt chạy đầy đủ 28/10/2026 (dùng cho slide 28–35)
+### Lượt chạy đầy đủ 28/10/2026 (dùng cho slide 28–37)
 
 `experiments --neural --llm ollama --model qwen2.5:3b`. Gold Set tổng hợp ở `runs/experiments/20261028-220112`,
 dữ liệu công khai ở `runs/experiments/20261028-232304`.
@@ -276,7 +276,7 @@ không cần repo hay dữ liệu trên máy. Test `tests/test_finetune.py` báo
 
 | Mô hình | Gốc | Huấn luyện |
 |---|---|---|
-| Dense (B1, B2, retrieval của P6) | `intfloat/multilingual-e5-base` | Triplet (JD, Good Fit, No Fit) với MultipleNegativesRankingLoss, in-batch negative không trùng |
+| Dense (B1, B2, retrieval của P6) | `intfloat/multilingual-e5-base` | Triplet (JD, Good Fit, No Fit) với CachedMultipleNegativesRankingLoss: 16 in-batch negative không trùng, forward theo mini-batch 4 cho đỡ tốn bộ nhớ |
 | Cross-encoder (B4, P6) | `BAAI/bge-reranker-base` | BCE, nhãn No Fit / Potential / Good = 0 / 0.5 / 1 |
 
 **Dữ liệu và chống rò rỉ.** Nguồn là `cnamuangtoun/resume-job-description-fit`, tải thẳng từ Hugging Face (NFR-02).
@@ -287,6 +287,33 @@ không cần repo hay dữ liệu trên máy. Test `tests/test_finetune.py` báo
 - Gold Set tổng hợp không bao giờ được dùng để huấn luyện.
 
 Mỗi thư mục mô hình có `finetune_metrics.json`, ghi cấu hình, số cặp và nDCG@10 trước / sau trên dev / test.
+
+### Kết quả fine-tune 29/10/2026 (1 epoch, max_len 256, batch 16)
+
+Dữ liệu sau khi lọc: train 3966 cặp / 248 JD, dev 445 cặp / 28 JD, test 1149 cặp / 69 JD.
+
+| Mô hình | Ví dụ train | nDCG@10 dev (trước → sau) | nDCG@10 test (trước → sau) |
+|---|---|---|---|
+| Dense e5-base | 956 triplet | 0.807 → 0.827 | 0.749 → 0.797 |
+| Cross-encoder bge | 3966 cặp | 0.682 → 0.809 | 0.629 → 0.707 |
+
+Chạy lại thực nghiệm với hai mô hình này: Gold Set ở `runs/experiments/20261029-105306`, dữ liệu công khai ở `runs/experiments/20261029-111458`.
+
+| nDCG@10 | B0 | B1 | B2 | B3 | B4 | P6 |
+|---|---|---|---|---|---|---|
+| Gold Set: mô hình gốc | 0.567 | 0.412 | 0.533 | 0.827 | 0.835 | 0.833 |
+| Gold Set: fine-tune | 0.567 | 0.480 | 0.607 | 0.820 | 0.838 | 0.835 |
+| Công khai: mô hình gốc | 0.578 | 0.631 | 0.627 | 0.595 | 0.588 | 0.566 |
+| Công khai: fine-tune | 0.578 | **0.699** | 0.675 | 0.595 | 0.588 | 0.577 |
+
+* Fine-tune giúp rõ nhất ở dense:
+  * Gold Set: B1 tăng +0.068, B2 tăng +0.074.
+  * Dữ liệu công khai: B1 tăng +0.068 và vượt BM25. Điều này cùng hướng với ConFit.
+* Trên Gold Set, dense fine-tune vẫn thua BM25 và Criteria Profile.
+* B3 / B4 / P6 gần như không đổi, vì thứ hạng ở các cấu hình này do Criteria Profile quyết định.
+* Trên dữ liệu công khai, B4 không đổi. Cross-encoder tốt lên trên test của nó, nhưng trên 6 JD QA vẫn chưa đổi được top 10 của B4.
+* Chỉ có 6 JD, nên đây là quan sát chứ không phải kết luận thống kê.
+* Ở hai lượt này chỉ chạy B0–B4 và P6, nên các hypothesis cần A1 / A2 / LLM-all hiện "BÁC BỎ" vì thiếu cấu hình. Kiểm định hypothesis lấy từ lượt 28/10.
 
 
 ## Thay đổi so với FR-15

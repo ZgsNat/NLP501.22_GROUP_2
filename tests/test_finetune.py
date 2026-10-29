@@ -161,3 +161,9 @@ def test_model_flags_switch_on_the_neural_component_they_replace():
 def test_finetune_both_targets_refuses_a_single_base_model(capsys):
     from cv_agent.cli import main
     assert main(["finetune", "--target", "both", "--base-model", "x/y"]) == 2
+
+
+def test_mini_batch_must_fit_inside_the_batch():
+    with pytest.raises(ValueError):
+        ft.TrainConfig(target="dense", base_model="m", out_dir=Path("o"), batch_size=8, mini_batch_size=16)
+    assert ft.TrainConfig(target="dense", base_model="m", out_dir=Path("o")).mini_batch_size <= 16

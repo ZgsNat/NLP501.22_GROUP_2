@@ -439,7 +439,7 @@ def slide_prior(prs, syn, pub, ctx, page, total):
         ["Công trình (slide)", "Kết quả công bố", "Nhóm 2 đo được (tương ứng)", "Nhận xét"],
         ["ConFit v2 · Yu et al. 2025 (16)", "AliYun: BM25 40.56 > E5 raw 29.66 nDCG@10; Recruiting ngược lại",
          (f"BM25 {fmt(b0)} > e5 zero-shot {fmt(b1)}", {}), ("Cùng hướng: giá trị BM25 phụ thuộc domain → hybrid", g)],
-        confit_row(syn, ctx, g, r),
+        confit_row(syn, pub, ctx, g, r),
         ["RankGPT · Sun et al. 2023 (17)", "LLM listwise re-rank: +2.7 nDCG@10 (TREC)",
          f"LLM-all {fmt(la)} vs B4 {fmt(b4)} (Qwen 3B)",
          ("LLM nhỏ re-rank toàn bộ không thêm gain", r) if la <= b4 + 0.005 else ("Cùng hướng", g)],
@@ -462,7 +462,7 @@ def slide_prior(prs, syn, pub, ctx, page, total):
     table(s, 213 * PX, 1.8, 1173 * PX, rows, [2.2, 2.9, 3.0, 2.3], size=8.5, row_h=0.5)
 
 
-def confit_row(syn, ctx, g, r) -> List[Any]:
+def confit_row(syn, pub, ctx, g, r) -> List[Any]:
     b0, b1, b3 = mean(syn, "B0", "ndcg@10"), mean(syn, "B1", "ndcg@10"), mean(syn, "B3", "ndcg@10")
     syn_ft = ctx.get("syn_ft")
     if not syn_ft:
@@ -470,17 +470,25 @@ def confit_row(syn, ctx, g, r) -> List[Any]:
                 f"Không fine-tune; Criteria Profile: {fmt(b0)} → {fmt(b3)} (+{b3 - b0:.3f})",
                 "Gain đến từ tri thức tiêu chí thay vì label lớn"]
     b1_ft = mean(syn_ft, "B1", "ndcg@10")
+    pub_ft = ctx.get("pub_ft")
+    pub_txt, pub_beats = "", False
+    if pub and pub_ft:
+        pb0, pb1, pb1_ft = (mean(pub, "B0", "ndcg@10"), mean(pub, "B1", "ndcg@10"), mean(pub_ft, "B1", "ndcg@10"))
+        pub_txt, pub_beats = f"; công khai {fmt(pb1)} → {fmt(pb1_ft)} vs BM25 {fmt(pb0)}", pb1_ft > pb0
     # ConFit's claim is "fine-tuned dense beats BM25", so the verdict compares B1-ft with B0, not only with B1
     if b1_ft > b0:
         verdict = ("Cùng hướng: dense fine-tune vượt BM25", g)
+    elif pub_beats:
+        verdict = ("Một phần: vượt BM25 trên dữ liệu công khai, chưa vượt trên Gold Set", {"color": AMBER,
+                                                                                          "bold": True})
     elif b1_ft > b1 + 0.005:
         verdict = (f"Một phần: fine-tune giúp dense (+{b1_ft - b1:.3f}) nhưng chưa vượt BM25", {"color": AMBER,
                                                                                                 "bold": True})
     else:
         verdict = ("Không lặp lại: fine-tune trên JD khác ngành không giúp", r)
     return ["ConFit v2 (16)", "Fine-tune bi-encoder: +41.6 nDCG@10 so với BM25 (82.20)",
-            f"e5 fine-tune trên cặp công khai không phải QA: B1 {fmt(b1)} → {fmt(b1_ft)} vs BM25 {fmt(b0)}; "
-            f"Criteria Profile {fmt(b3)}", verdict]
+            f"e5 fine-tune (cặp không phải QA), B1 Gold Set {fmt(b1)} → {fmt(b1_ft)} vs BM25 {fmt(b0)}"
+            f"{pub_txt}; Criteria Profile {fmt(b3)}", verdict]
 
 
 def audit_text(audit: Optional[List[Dict[str, Any]]]) -> str:
@@ -652,7 +660,7 @@ def slide_finetune(prs, syn, pub, ctx, page, total):
          f"dev {d['dev']['jds']} JD chia theo JD; test {d['test']['jds']} JD lấy từ test.csv, JD chưa gặp. "
          "Dữ liệu tải thẳng từ Hugging Face: không CV nào rời máy nhóm.", "violet", size=9)
     note(s, x0, 4.8, 4.6, 1.35, "Cách làm:",
-         f"triplet (JD, Good Fit, No Fit) + MultipleNegativesRankingLoss cho e5; BCE nhãn 0 / 0.5 / 1 cho "
+         f"triplet (JD, Good Fit, No Fit) + contrastive loss (in-batch negative) cho e5; BCE nhãn 0 / 0.5 / 1 cho "
          f"cross-encoder; {any_rep['config']['epochs']} epoch, max_len {any_rep['config']['max_len']}. "
          "Notebook sinh từ cùng module cv_agent/training, chạy lại bằng Run all.", "blue", size=9)
     cfgs = [c for c in ("B1", "B2", "B3", "P6") if syn_ft and c in syn_ft["means"]]

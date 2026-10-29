@@ -8,7 +8,7 @@ machine (NFR-02). Leakage rules, because the same dataset is our real-data test 
 * the remaining ``train.csv`` pairs are split by job description into train / dev; ``test.csv`` (also filtered)
   is a held-out check that is never used for early stopping or model selection.
 
-Dense encoder: MultipleNegativesRankingLoss on (JD, Good Fit resume, No Fit resume of the same JD) triplets,
+Dense encoder: (Cached)MultipleNegativesRankingLoss on (JD, Good Fit resume, No Fit resume of the same JD) triplets,
 in-batch negatives without duplicates — the contrastive recipe of ConFit, without its data augmentation.
 Cross-encoder: binary cross-entropy on (JD, resume) with labels No Fit / Potential / Good = 0 / 0.5 / 1.
 
@@ -46,7 +46,8 @@ class TrainConfig:
     base_model: str
     out_dir: Path
     epochs: int = 1
-    batch_size: int = 16
+    batch_size: int = 16              # in-batch negatives per step (ConFit-style contrastive loss)
+    mini_batch_size: int = 4          # forward chunk of the cached loss: same gradients, far less memory
     learning_rate: float = 2e-5
     max_len: int = 256
     warmup_ratio: float = 0.1
@@ -58,6 +59,8 @@ class TrainConfig:
             raise ValueError(f"target must be one of {TARGETS}, got {self.target!r}")
         if self.epochs < 1 or self.batch_size < 2 or self.max_len < 32 or not 0 < self.learning_rate < 1:
             raise ValueError("epochs >= 1, batch_size >= 2, max_len >= 32 and 0 < learning_rate < 1 are required")
+        if not 1 <= self.mini_batch_size <= self.batch_size:
+            raise ValueError("1 <= mini_batch_size <= batch_size is required")
 
 
 # ------------------------------------------------------------------ data (pure, unit-tested)
@@ -193,7 +196,8 @@ def train_dense(cfg: TrainConfig, train_rows: Sequence[Row], eval_sets: Dict[str
                               "negative": with_prefix([t[2] for t in trips], "passage", cfg.base_model)})
     args = _training_args(SentenceTransformerTrainingArguments, cfg, batch_sampler=BatchSamplers.NO_DUPLICATES)
     SentenceTransformerTrainer(model=model, args=args, train_dataset=data,
-                               loss=losses.MultipleNegativesRankingLoss(model)).train()
+                               loss=losses.CachedMultipleNegativesRankingLoss(
+                                   model, mini_batch_size=cfg.mini_batch_size)).train()
     model.max_seq_length = inference_len
     model.save(str(cfg.out_dir))
     after = {name: ndcg_by_jd(_dense_scorer(model, cfg.base_model), rows) for name, rows in eval_sets.items()}

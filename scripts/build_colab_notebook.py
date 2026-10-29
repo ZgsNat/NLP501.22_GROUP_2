@@ -25,7 +25,7 @@ Notebook này chạy phần **huấn luyện** của dự án trên GPU miễn p
 
 | Mô hình | Gốc | Cách huấn luyện | Dùng trong |
 |---|---|---|---|
-| Dense encoder | `intfloat/multilingual-e5-base` | Contrastive (MultipleNegativesRankingLoss), triplet (JD, Good Fit, No Fit), in-batch negative, hướng ConFit | B1, B2 và retrieval của P6 |
+| Dense encoder | `intfloat/multilingual-e5-base` | Contrastive (CachedMultipleNegativesRankingLoss), triplet (JD, Good Fit, No Fit), in-batch negative, hướng ConFit | B1, B2 và retrieval của P6 |
 | Cross-encoder | `BAAI/bge-reranker-base` | Binary cross-entropy, nhãn No Fit / Potential / Good = 0 / 0.5 / 1 | B4, P6 (rerank) |
 
 **Dữ liệu:** `cnamuangtoun/resume-job-description-fit` được tải thẳng từ Hugging Face. Không có CV nào trên máy nhóm được gửi lên (NFR-02).
