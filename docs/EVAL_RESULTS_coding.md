@@ -23,6 +23,8 @@ R@20 = share of relevant CVs (gold ≥ 2) in the top 20; MRR = 1 / rank of the f
 | B3 core4 ⊕ CE [rules] | 6 | 0.777 [0.619, 0.876] | 0.829 [0.653, 0.943] | 0.900 [0.700, 1.000] | 0.299 [0.269, 0.336] | 1.000 [1.000, 1.000] | 0.437 [0.336, 0.532] | 0 |
 | B3 +criteria (rules) | 6 | 0.717 [0.558, 0.862] | 0.780 [0.609, 0.932] | 0.900 [0.700, 1.000] | 0.325 [0.267, 0.385] | 1.000 [1.000, 1.000] | 0.421 [0.354, 0.477] | 0 |
 | B3 rules ⊕ CE | 6 | 0.723 [0.574, 0.867] | 0.763 [0.605, 0.911] | 0.833 [0.633, 1.000] | 0.300 [0.258, 0.341] | 1.000 [1.000, 1.000] | 0.418 [0.348, 0.478] | 0 |
+| B4 | 6 | 0.816 [0.714, 0.882] | 0.867 [0.753, 0.962] | 0.967 [0.900, 1.000] | 0.342 [0.290, 0.400] | 1.000 [1.000, 1.000] | 0.455 [0.417, 0.503] | 0 |
+| P6 | 6 | 0.802 [0.677, 0.875] | 0.846 [0.699, 0.962] | 0.967 [0.900, 1.000] | 0.361 [0.293, 0.442] | 0.917 [0.750, 1.000] | 0.457 [0.420, 0.503] | 0 |
 | R structural | 6 | 0.210 [0.108, 0.342] | 0.139 [0.038, 0.268] | 0.300 [0.100, 0.533] | 0.178 [0.115, 0.274] | 0.428 [0.218, 0.688] | 0.217 [0.133, 0.308] | 0 |
 | R structural (section-weighted) | 6 | 0.230 [0.143, 0.343] | 0.146 [0.042, 0.275] | 0.300 [0.100, 0.533] | 0.202 [0.137, 0.291] | 0.373 [0.170, 0.649] | 0.239 [0.150, 0.331] | 0 |
 | R structural (section-weighted) + CE | 6 | 0.628 [0.474, 0.758] | 0.633 [0.446, 0.785] | 0.800 [0.600, 0.967] | 0.288 [0.225, 0.354] | 0.889 [0.667, 1.000] | 0.355 [0.224, 0.445] | 0 |
@@ -31,11 +33,13 @@ R@20 = share of relevant CVs (gold ≥ 2) in the top 20; MRR = 1 / rank of the f
 | R whole + CE | 6 | 0.620 [0.466, 0.763] | 0.593 [0.385, 0.775] | 0.800 [0.533, 1.000] | 0.301 [0.244, 0.363] | 0.867 [0.600, 1.000] | 0.388 [0.277, 0.470] | 0 |
 | R window | 6 | 0.231 [0.138, 0.312] | 0.212 [0.068, 0.367] | 0.300 [0.100, 0.500] | 0.173 [0.122, 0.231] | 0.433 [0.217, 0.667] | 0.239 [0.169, 0.312] | 0 |
 | R window + CE | 6 | 0.620 [0.466, 0.763] | 0.593 [0.385, 0.775] | 0.800 [0.533, 1.000] | 0.301 [0.244, 0.363] | 0.867 [0.600, 1.000] | 0.388 [0.277, 0.470] | 0 |
+| Đán core (coding branch) | 6 | 0.858 [0.799, 0.911] | 0.893 [0.831, 0.946] | 1.000 [1.000, 1.000] | 0.399 [0.321, 0.480] | 1.000 [1.000, 1.000] | 0.505 [0.437, 0.575] | 0 |
 
 Paired comparisons (same JDs): one-sided bootstrap p for “first > second” on nDCG@10.
 
 | First | Second | ΔnDCG@10 | p | Δτ |
 |---|---|---|---|---|
+| P6 | B3 rules ⊕ CE | +0.079 | 0.039 | +0.039 |
 | B3 rules ⊕ CE | R structural + CE | +0.096 | 0.086 | +0.060 |
 | R structural (section-weighted) | R structural | +0.020 | 0.046 | +0.022 |
 | R structural (section-weighted) + CE | R whole + CE | +0.008 | 0.418 | -0.032 |
@@ -44,12 +48,28 @@ Paired comparisons (same JDs): one-sided bootstrap p for “first > second” on
 | R structural | R whole | -0.021 | 0.627 | -0.022 |
 | R structural + CE | B2 hybrid | +0.155 | 0.003 | +0.055 |
 | B3 +criteria (rules) | R structural + CE | +0.089 | 0.113 | +0.062 |
+| P6 | B4 | -0.014 | 0.843 | +0.002 |
+| P6 | B3 +criteria (rules) | +0.085 | 0.022 | +0.037 |
 | B3 core4 ⊕ CE [rules] | B3 rules ⊕ CE | +0.053 | 0.051 | +0.019 |
 | B3 core4 ⊕ CE [hybrid] | B3 rules ⊕ CE | +0.040 | 0.068 | +0.017 |
 | B3 8-axis ⊕ CE [llm] | B3 rules ⊕ CE | +0.071 | 0.001 | +0.010 |
 | B3 8-axis ⊕ CE [rules] | B3 rules ⊕ CE | +0.066 | 0.058 | +0.032 |
 | B3 8-axis ⊕ CE [hybrid] | B3 rules ⊕ CE | +0.069 | 0.036 | +0.031 |
 | B3 8-axis [hybrid] | B3 +criteria (rules) | +0.121 | 0.010 | +0.041 |
+
+Agent systems: cost and faithfulness (sum or mean over JDs).
+
+| System | mean s/JD | LLM calls | tokens | evidence quotes | grounded | supported | strong tier: gold ≥ 2 | weak tier: gold < 2 |
+|---|---|---|---|---|---|---|---|---|
+| B4 | 31 | 57 | 371,390 | 260 | 100.0% | 92.3% | 24/25 | 0/0 |
+| P6 | 45 | 175 | 1,347,968 | 219 | 100.0% | 90.9% | 17/17 | 0/0 |
+
+AI-output scorecard (Q-ids from docs/AI_OUTPUT_CRITERIA.md; first → final = before → after the graph's own controls acted).
+
+| System | runs | Q2 grounded quotes | Q3 supported | Q4 rationales contradicting the CV | Q5 protected words | Q6 report candidates with unsupported claims | Q7 arbiter verdicts stable under swap | Q1 invalid outputs | Q8 gate fallbacks | latency p50 / p95 s | distinct paths |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| B4 | 6 | 100.0% → 100.0% | 92.3% | 0.9% → 0.9% | 0 found, 0 kept | 3.4% → 3.4% | — | 0 | 0 | 27 / 50 | 1 of 6 |
+| P6 | 6 | 100.0% → 100.0% | 91.0% | 1.1% → 0.0% | 0 found, 0 kept | 12.0% → 0.0% | 100.0% | 0 | 0 | 34 / 107 | 5 of 6 |
 
 Per JD nDCG@10:
 
@@ -70,6 +90,8 @@ Per JD nDCG@10:
 | B3 core4 ⊕ CE [rules] | 0.92 | 0.40 | 0.80 | 0.85 | 0.81 | 0.88 |
 | B3 +criteria (rules) | 0.92 | 0.37 | 0.59 | 0.76 | 0.72 | 0.94 |
 | B3 rules ⊕ CE | 0.92 | 0.40 | 0.58 | 0.76 | 0.75 | 0.94 |
+| B4 | 0.92 | 0.58 | 0.84 | 0.84 | 0.84 | 0.88 |
+| P6 | 0.89 | 0.50 | 0.88 | 0.84 | 0.84 | 0.87 |
 | R structural | 0.30 | 0.07 | 0.11 | 0.20 | 0.48 | 0.10 |
 | R structural (section-weighted) | 0.30 | 0.11 | 0.16 | 0.18 | 0.48 | 0.15 |
 | R structural (section-weighted) + CE | 0.67 | 0.57 | 0.28 | 0.62 | 0.81 | 0.82 |
@@ -78,3 +100,4 @@ Per JD nDCG@10:
 | R whole + CE | 0.65 | 0.42 | 0.33 | 0.68 | 0.86 | 0.78 |
 | R window | 0.27 | 0.19 | 0.03 | 0.20 | 0.32 | 0.38 |
 | R window + CE | 0.65 | 0.42 | 0.33 | 0.68 | 0.86 | 0.78 |
+| Đán core (coding branch) | 0.91 | 0.77 | 0.82 | 0.91 | 0.77 | 0.96 |

@@ -79,11 +79,11 @@ def controls() -> str:
                  f"<line x1='{X(min(first, final)):.1f}' x2='{X(max(first, final)):.1f}' y1='{y:.1f}' y2='{y:.1f}' stroke='{GREY}' stroke-width='2'/>",
                  f"<circle cx='{X(first):.1f}' cy='{y:.1f}' r='5' fill='{SURFACE}' stroke='{GREY}' stroke-width='2'/>",
                  f"<circle cx='{X(final):.1f}' cy='{y:.1f}' r='5' fill='{BLUE}' stroke='{SURFACE}' stroke-width='2'/>",
-                 f"<text x='{X(max(first, final)) + 10:.1f}' y='{y + 4:.1f}' font-size='12' fill='{INK}'>{first:.1f}% → {final:.1f}%</text>"]
+                 f"<text x='{X(max(first, final)) + 10:.1f}' y='{y + 4:.1f}' font-size='12' fill='{INK}'>{first:.1f}% → {final:.1f}%"
+                 + (" (no retry: unchanged)" if abs(first - final) < 0.05 else "") + "</text>"]
     h = top + rh * len(rows) + 48
     return _svg(760, h, body, "What the agent's controls change: share of LLM outputs failing a check",
-                "Hollow = first attempt, filled = after the graph's controls (retry, then label or drop). All benchmark JDs. "
-                "Q6 failures left after the retry are dropped: none reach HR.")
+                "Hollow = first attempt · filled = after the controls (retry, then label or drop) · all benchmark JDs")
 
 
 if __name__ == "__main__":
