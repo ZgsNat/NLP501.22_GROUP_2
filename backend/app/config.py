@@ -1,5 +1,6 @@
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -54,8 +55,16 @@ class Settings(BaseSettings):
     max_clarifications: int = 1
     max_verify_retries: int = 2
     shortlist_size: int = 8  # how many reranked CVs get the expensive LLM assessment
+    # JD → requirements: llm = LLM extraction canonicalized, plus the parser's depth floor, languages and domains;
+    # rules = deterministic parser only (0 tokens); hybrid = parser first, LLM fills gaps. llm won on both benchmarks
+    # (docs/EVAL.md §8: rules −0.006 / −0.005, hybrid −0.009 / −0.019 nDCG@10 vs llm with 8 rule criteria).
+    jd_parser: Literal["llm", "rules", "hybrid"] = "llm"
     near_tie_delta: float = 0.05
-    max_arbiter_calls: int = 3
+    max_arbiter_calls: int = 6  # LLM calls; each near-tie pair is judged in both orders (2 calls), so 3 pairs
+    # v3: the LLM explains and arbitrates; the 8 rule criteria set Score. True = v2 (LLM scores 5 of 8 criteria).
+    llm_in_score: bool = False
+    # Order of the shortlist: "fused" = mean of normalised cross-encoder and rule score (B3 ⊕), "total" = Σ w·S only
+    rank_by: Literal["fused", "total"] = "fused"
     llm_concurrency: int = 4
     max_reviews: int = 5  # L5: HR re-weight rounds before the ranking is final
     ask_hr_substitutes: bool = True  # L2 proposes related tools and HR approves (False = accept silently, v1)

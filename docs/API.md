@@ -40,7 +40,11 @@ Body depends on the pending interrupt `kind`:
 - `clarification` → `{ "answers": { "<question>": "<answer>" } }`
 - `substitutes` → `{ "accept": { "<must_have>": ["<related tool>", ...] } }`. An empty list rejects substitutes for that must-have;
   a must-have missing from `accept` is treated as rejected.
-- `review` → `{ "action": "approve" }` or `{ "action": "adjust", "weights": { "<criterion>": 0.3 } }`
+- `review` → one of:
+  - `{ "action": "approve" }`
+  - `{ "action": "adjust", "weights": { "<criterion>": 0.3 } }` and/or `"instruction": "certification matters more"`
+  - `{ "action": "decide", "decisions": [{ "cv_id": "CV-018", "action": "approve" | "reject" | "override", "reason": "…", "new_rank": 1 }] }`
+    (v3). Decisions without a reason are ignored. Each one is appended to `.runtime/hr_audit.jsonl`. The weights that best explain the decisions (pairwise logistic regression on criterion scores, shrunk towards the current weights) re-score the pool. This costs one re-score round.
 
 ### `GET /cvs`
 ```json
@@ -103,7 +107,7 @@ Each line is one of:
 |---|---|---|---|
 | `clarification` | `clarify` (L1) | `{ questions: string[] }` | `{ answers: { question: answer } }` |
 | `substitutes` | `expand_query` (L2) | `{ proposals: { must_have: string; covered: number; related: string[] }[] }` | `{ accept: { must_have: string[] } }` |
-| `review` | `hr_review` (L5) | `{ ranking: RankRow[]; weights }` | `{ action: "approve" }` or `{ action: "adjust", weights }` |
+| `review` | `hr_review` (L5) | `{ ranking: RankRow[]; weights; adjustments_left }` | `{ action: "approve" }`, `{ action: "adjust", weights?, instruction? }` or `{ action: "decide", decisions }` |
 
 `substitutes`: when coverage of a must-have is too low (`covered` CVs show it), L2 no longer widens the query silently; it
 proposes related tools (taxonomy) and HR picks which may stand in for the must-have. The client shows `expand_query` as
@@ -139,7 +143,10 @@ query_terms: string[]
 candidates: { cv_id: string; headline: string; retrieval_score: number;
               rerank_score: number | null; matched_must_have: string[] }[]
 assessments: Record<cv_id, {
-  criteria: Record<Criterion, { score: number /*0–100*/; rationale: string; evidence: Evidence[] }>;
+  criteria: Record<Criterion, { score: number /*0–100*/; rationale: string; evidence: Evidence[] }>;  // v3: all 8 by rule
+  llm_review: Partial<Record<Criterion, { score: number; rationale: string; evidence: Evidence[] }>>;
+      // v3: the LLM's judgement of depth, language, test types, CI/infra, domain. Verified by verify_evidence and shown,
+      // but it does not set the score unless LLM_IN_SCORE=true (the v2 behaviour).
   knocked_out: boolean; knockout_reason: string | null; attempts: number;
   facts: { depth_level: number | null; years: number | null;       // facts the scorer used
            depth_cue: number | null; years_automation: number | null };
@@ -156,7 +163,14 @@ RankRow = { rank: number; cv_id: string; headline: string; total: number /*0–1
             knocked_out: boolean; arbiter_note: string | null;
             status: "ranked" | "needs_review" | "not_shortlisted" | "knocked_out";
             tier: "strong" | "possible" | "weak" | null;   // only set when status = "ranked"
-            reason: string | null }                        // why the CV is not ranked; null for ranked
+            reason: string | null;                         // why the CV is not ranked; null for ranked
+            card: Card | null;                             // v3: deterministic explanation (ranked + knocked_out rows)
+            flags: string[] }                              // v3: short_text, garbled_text, few_skills, no_experience_section,
+                                                           //     no_dated_roles, duplicate_of:<cv_id>
+Card = { decomposition?: { criterion; weight; score /*0–100*/; contribution /*weight·score/100; sums to total*/ }[];
+         versus_next?: { vs: cv_id; advantages: { criterion; delta }[]; disadvantages: { criterion; delta }[] } | null;
+         what_if?: { if_used: string[]; must_have: boolean; passes_knockout: boolean; total: number; delta: number }[] }
+// what_if on a knocked-out row = one scenario with every missing must-have used in a role.
 // reason examples:
 //   not_shortlisted  "Rank 11 after rerank; best evidence matched: selenium, java; missing: jenkins"
 //   knocked_out      "Missing must-have: playwright"

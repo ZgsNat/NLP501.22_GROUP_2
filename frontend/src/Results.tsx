@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react'
 import { api } from './api'
 import { SecTag } from './CvPreview'
-import { CRITERIA, type Assessment, type Config, type RankRow, type RankStatus, type RunState, type Values } from './types'
+import { CRITERIA, type Assessment, type Card, type Config, type Evidence, type RankRow, type RankStatus, type RunState, type Values } from './types'
 
 const pct = (x: number) => `${Math.round(x * 100)}%`
 const TIER_BADGE = { strong: 'green', possible: 'sky', weak: 'amber' } as const
@@ -37,7 +37,7 @@ export default function Results({ run, config, onOpenCv }: { run: RunState; conf
             <tr key={r.cv_id} className={r.cv_id === sel ? 'sel' : ''} onClick={() => toggle(r.cv_id)}>
               <td>{r.rank}</td>
               <td className="nowrap">{cvLink(r.cv_id)}</td>
-              <td>{r.headline}</td>
+              <td>{r.headline} <Flags f={r.flags} /></td>
               <td className="nowrap">
                 <b className="mono">{pct(r.total)}</b>{' '}
                 {r.tier && <span className={`badge ${TIER_BADGE[r.tier]}`}>{r.tier}</span>}
@@ -59,7 +59,7 @@ export default function Results({ run, config, onOpenCv }: { run: RunState; conf
                 {rows.map((r) => (
                   <tr key={r.cv_id} className={r.cv_id === sel ? 'sel' : ''} onClick={() => toggle(r.cv_id)}>
                     <td className="nowrap">{cvLink(r.cv_id)}</td>
-                    <td>{r.headline}</td>
+                    <td>{r.headline} <Flags f={r.flags} /></td>
                     <td className="small why">{r.reason ?? '-'}</td>
                   </tr>
                 ))}
@@ -70,16 +70,17 @@ export default function Results({ run, config, onOpenCv }: { run: RunState; conf
       })}
       <p className="muted small">Click a row for candidate detail, or a CV id for its parse preview.</p>
       {sel && (
-        <Detail key={sel} id={sel} a={assessments?.[sel]} weights={weights} labels={labels} reason={selRow?.reason ?? null}
+        <Detail key={sel} id={sel} a={assessments?.[sel]} weights={weights} labels={labels} reason={selRow?.reason ?? null} card={selRow?.card}
           onOpenCv={onOpenCv} explanation={entry?.explanation} strengths={entry?.strengths} gaps={entry?.gaps} />
       )}
     </section>
   )
 }
 
-function Detail({ id, a, weights, labels, reason, onOpenCv, explanation, strengths, gaps }: {
+function Detail({ id, a, weights, labels, reason, card, onOpenCv, explanation, strengths, gaps }: {
   id: string
   reason: string | null
+  card?: Card | null
   onOpenCv: (id: string) => void
   a: Assessment | undefined
   weights: Values['weights'] | undefined
@@ -95,7 +96,8 @@ function Detail({ id, a, weights, labels, reason, onOpenCv, explanation, strengt
     setCv('loading')
     try { setCv(await api.getCv(id)) } catch (e) { setCv((e as Error).message) }
   }
-  const quotes = a ? CRITERIA.flatMap((c) => a.criteria[c].evidence.filter((e) => e.grounded).map((e) => e.quote)) : []
+  const review = a?.llm_review ?? {}
+  const quotes = a ? [...CRITERIA.map((c) => a.criteria[c]), ...Object.values(review)].flatMap((s) => s ? s.evidence.filter((e) => e.grounded).map((e) => e.quote) : []) : []
 
   return (
     <div className="detail">
@@ -104,6 +106,7 @@ function Detail({ id, a, weights, labels, reason, onOpenCv, explanation, strengt
       {!a?.knocked_out && reason && <p className="muted small">{reason}</p>}
       {a?.facts && <Facts f={a.facts} />}
       {explanation && <p>{explanation}</p>}
+      {card && <CardView card={card} label={label} />}
       <div className="two">
         {strengths && strengths.length > 0 && <div><h4>Strengths</h4><ul className="good">{strengths.map((s) => <li key={s}>{s}</li>)}</ul></div>}
         {gaps && gaps.length > 0 && <div><h4>Gaps</h4><ul className="bad">{gaps.map((s) => <li key={s}>{s}</li>)}</ul></div>}
@@ -122,18 +125,13 @@ function Detail({ id, a, weights, labels, reason, onOpenCv, explanation, strengt
                     <span className="mono">{Math.round(s.score)}</span>
                   </div>
                   <p className="small">{s.rationale}</p>
-                  {s.evidence.map((e, i) => {
-                    // grounded + unsupported: the quote exists but only as a listed claim (e.g. a skills list)
-                    const kind = e.grounded === false ? 'u' : e.grounded === true && e.supported === false ? 'l' : e.grounded === true ? 'g' : 'x'
-                    const hint = { u: 'ungrounded: quote not found in the CV', l: 'listed, not demonstrated: found in the CV but not backed by described work', g: 'grounded in CV', x: 'unchecked' }[kind]
-                    return (
-                      <blockquote key={i} className={`ev ${kind}`}>
-                        <b title={hint}>{{ u: '✗', l: '≈', g: '✓', x: '?' }[kind]}</b>
-                        <span className="q">{e.quote}</span> <SecTag section={e.section} />
-                        {kind === 'l' && <span className="ev-note">listed, not demonstrated</span>}
-                      </blockquote>
-                    )
-                  })}
+                  {s.evidence.map((e, i) => <Quote key={i} e={e} />)}
+                  {review[c] && (
+                    <div className="review-llm">
+                      <p className="small"><b>LLM review</b> (explains, does not score): {review[c]!.rationale}</p>
+                      {review[c]!.evidence.map((e, i) => <Quote key={i} e={e} />)}
+                    </div>
+                  )}
                 </div>
               )
             })}
@@ -148,6 +146,61 @@ function Detail({ id, a, weights, labels, reason, onOpenCv, explanation, strengt
       {cv === 'loading' && <p className="muted">Loading…</p>}
       {typeof cv === 'string' && cv !== 'loading' && <p className="err">{cv}</p>}
       {cv && typeof cv === 'object' && <pre className="cv">{highlight(cv.text, quotes)}</pre>}
+    </div>
+  )
+}
+
+function Quote({ e }: { e: Evidence }) {
+  // grounded + unsupported: the quote exists but only as a listed claim (e.g. a skills list)
+  const kind = e.grounded === false ? 'u' : e.grounded === true && e.supported === false ? 'l' : e.grounded === true ? 'g' : 'x'
+  const hint = { u: 'ungrounded: quote not found in the CV', l: 'listed, not demonstrated: found in the CV but not backed by described work', g: 'grounded in CV', x: 'unchecked' }[kind]
+  return (
+    <blockquote className={`ev ${kind}`}>
+      <b title={hint}>{{ u: '✗', l: '≈', g: '✓', x: '?' }[kind]}</b>
+      <span className="q">{e.quote}</span> <SecTag section={e.section} />
+      {kind === 'l' && <span className="ev-note">listed, not demonstrated</span>}
+    </blockquote>
+  )
+}
+
+function Flags({ f }: { f?: string[] }) {
+  if (!f?.length) return null
+  return <span className="badge amber" title="Data-quality flags: check the parse before trusting the score">⚠ {f.join(', ').replace(/_/g, ' ')}</span>
+}
+
+// Deterministic explanation of the rule score: where the points come from, why above the next one, what would change it.
+function CardView({ card, label }: { card: Card; label: (k: string) => string }) {
+  const name = (k: string) => label(k).split(' (')[0]
+  return (
+    <div className="card-x">
+      {card.decomposition && (
+        <table className="decomp">
+          <thead><tr><th>Criterion</th><th>weight</th><th>score</th><th>points</th></tr></thead>
+          <tbody>
+            {card.decomposition.map((d) => (
+              <tr key={d.criterion}><td>{name(d.criterion)}</td><td className="mono">{pct(d.weight)}</td>
+                <td className="mono">{d.score}</td><td className="mono">{(d.contribution * 100).toFixed(1)}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+      {card.versus_next && (
+        <p className="small"><b>Above {card.versus_next.vs} because of</b>{' '}
+          {card.versus_next.advantages.map((x) => `${name(x.criterion)} (+${(x.delta * 100).toFixed(1)})`).join(', ') || 'the cross-encoder relevance'}
+          {card.versus_next.disadvantages.length > 0 && <> · <b>behind on</b> {card.versus_next.disadvantages.map((x) => `${name(x.criterion)} (${(x.delta * 100).toFixed(1)})`).join(', ')}</>}
+        </p>
+      )}
+      {card.what_if && card.what_if.length > 0 && (
+        <ul className="small what-if">
+          {card.what_if.map((w) => (
+            <li key={w.if_used.join()}>
+              If the CV showed <b>{w.if_used.join(' + ')}</b> in a role:{' '}
+              {w.passes_knockout ? <>score <b>{pct(w.total)}</b> ({w.delta >= 0 ? '+' : ''}{(w.delta * 100).toFixed(1)} pts)</> : 'still knocked out'}
+              {w.must_have && w.passes_knockout && ' and it would pass the knock-out'}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }

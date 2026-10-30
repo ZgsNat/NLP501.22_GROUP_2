@@ -34,6 +34,7 @@ export type ResumeBody =
   | { answers: Record<string, string> }
   | { action: 'approve' }
   | { action: 'adjust'; weights?: Record<string, number>; instruction?: string }
+  | { action: 'decide'; decisions: Decision[] } // HR decisions (with reasons) calibrate the weights
   | { accept: Record<string, string[]> } // substitutes: must-have → accepted related tools ([] = reject)
 
 export interface Requirements {
@@ -51,8 +52,10 @@ export interface Requirements {
 // (grounded but unsupported = "listed, not demonstrated", e.g. depth evidence quoted from a skills list).
 export interface Evidence { quote: string; grounded: boolean | null; supported: boolean | null; section: string | null }
 export interface CriterionScore { score: number; rationale: string; evidence: Evidence[] }
+export interface Decision { cv_id: string; action: 'approve' | 'reject' | 'override'; reason: string; new_rank?: number }
 export interface Assessment {
-  criteria: Record<Criterion, CriterionScore>
+  criteria: Record<Criterion, CriterionScore> // v3: all 8 by rule from the parsed CV (they set the score)
+  llm_review?: Partial<Record<Criterion, CriterionScore>> // the LLM's judgement, quotes verified (explains, does not score)
   knocked_out: boolean
   knockout_reason: string | null
   attempts: number
@@ -69,6 +72,13 @@ export interface RankRow {
   status: RankStatus
   tier: Tier | null // only set for status "ranked"
   reason: string | null
+  card?: Card | null // deterministic explanation: ranked rows get all parts, knocked-out rows only what_if
+  flags?: string[] // data quality: short_text, garbled_text, few_skills, no_dated_roles, duplicate_of:<id>, …
+}
+export interface Card {
+  decomposition?: { criterion: Criterion; weight: number; score: number; contribution: number }[]
+  versus_next?: { vs: string; advantages: { criterion: Criterion; delta: number }[]; disadvantages: { criterion: Criterion; delta: number }[] } | null
+  what_if?: { if_used: string[]; must_have: boolean; passes_knockout: boolean; total: number; delta: number }[]
 }
 export type RankStatus = 'ranked' | 'needs_review' | 'not_shortlisted' | 'knocked_out'
 export type Tier = 'strong' | 'possible' | 'weak'

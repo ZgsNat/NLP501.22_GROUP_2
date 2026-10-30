@@ -9,14 +9,13 @@ from functools import lru_cache, wraps
 
 from langchain_core.language_models import BaseChatModel
 from langchain_core.messages import HumanMessage, SystemMessage
-from langgraph.config import get_stream_writer
+from langgraph.config import get_config, get_stream_writer
 from langgraph.types import interrupt
 from qdrant_client import models
 
 from app.agent import prompts
 from app.agent.schemas import (
     CRITERIA,
-    RULE_CRITERIA,
     CandidateAssessment,
     JDRequirements,
     RankingReport,
@@ -24,23 +23,27 @@ from app.agent.schemas import (
 )
 from app.agent.scoring import (
     apply_instruction,
+    calibrate_weights,
     canonicalize,
     check_evidence,
-    fallback_uses,
+    contrastive,
+    counterfactuals,
+    decomposition,
     depth_score,
-    experience_rule,
+    fallback_uses,
     foreign_ids,
-    istqb_score,
     knockout_reason,
+    preferences,
     related,
+    rule_criteria,
     rule_total,
     tiebreak_key,
-    tools_score,
     weighted_total,
 )
 from app.agent.state import AgentState
 from app.config import get_settings
-from app.nlp.extract import jd_depth
+from app.nlp.jd import parse as parse_jd
+from app.nlp import quality
 from app.nlp.pipeline import profile
 from app.providers.decider import decide
 from app.providers.llm import create_llm, default_spec
@@ -89,8 +92,19 @@ def off(state: AgentState, part: str) -> bool:
     return part in state.get("ablate", [])
 
 
-async def extract_requirements(model: BaseChatModel, jd: str) -> tuple[JDRequirements, dict[str, list[str]], list[str]]:
-    """JD → requirements on taxonomy keys, accepted substitutes, and the raw must-have phrases the LLM wrote."""
+async def extract_requirements(model: BaseChatModel, jd: str, mode: str | None = None
+                               ) -> tuple[JDRequirements, dict[str, list[str]], list[str]]:
+    """JD → requirements on taxonomy keys, JD-stated alternatives, and the raw must-have phrases.
+    mode (Settings.jd_parser): rules = the deterministic parser (app.nlp.jd) only, no LLM; llm = the v2 LLM extraction,
+    canonicalized; hybrid = the parser wins, the LLM adds title and ambiguities and fills fields the parser left empty."""
+    mode = mode or get_settings().jd_parser
+    parsed = parse_jd(jd)
+    if mode == "rules":
+        req = JDRequirements(title=parsed["title"], must_have=parsed["must_have"], nice_to_have=parsed["nice_to_have"],
+                             min_years=parsed["min_years"], depth_level=parsed["depth_level"],
+                             languages=parsed["languages"], test_types=parsed["test_types"], ambiguities=[],
+                             foreign_languages=parsed["foreign_languages"], domains=parsed["domains"])
+        return req, parsed["substitutes"], parsed["must_have"]
     req: JDRequirements = await model.with_structured_output(JDRequirements).ainvoke(
         [SystemMessage(prompts.INGEST), HumanMessage(jd)]
     )
@@ -102,7 +116,14 @@ async def extract_requirements(model: BaseChatModel, jd: str) -> tuple[JDRequire
     req.must_have, req.nice_to_have = hard, nice
     # The JD's own duties, read with the CV depth lexicon, set a floor: "Design the shared framework" is at least L3
     # whatever the LLM wrote (an 8B model often answers L1 for any "Automation Test Engineer").
-    req.depth_level = max(req.depth_level or 0, jd_depth(jd)[0]) or None
+    req.depth_level = max(req.depth_level or 0, parsed["depth_level"] or 0) or None
+    req.foreign_languages, req.domains = parsed["foreign_languages"], parsed["domains"]
+    if mode == "hybrid" and parsed["must_have"]:  # a structured JD: the parser is literal and reproducible
+        req.must_have, subs = parsed["must_have"], parsed["substitutes"]
+        req.nice_to_have = parsed["nice_to_have"] or req.nice_to_have
+        req.min_years = parsed["min_years"] or req.min_years
+        req.languages = parsed["languages"] or req.languages
+        req.test_types = parsed["test_types"] or req.test_types
     return req, subs, raw
 
 
@@ -285,12 +306,10 @@ async def _assess_call(state: AgentState, cv_id: str, prev: dict | None, sem: as
         msgs.append(HumanMessage(prompts.ASSESS_RETRY.format(bad="\n".join(f"- {b}" for b in bad))))
     async with sem:
         out: CandidateAssessment = await llm(state, "reasoning").with_structured_output(CandidateAssessment).ainvoke(msgs)
-    rules = {  # rules before models: counting tools, certificates and dated years needs no LLM
-        "tools": tools_score(p, req["must_have"], req["nice_to_have"], state.get("substitutes", {}),
-                             state.get("fallbacks", {})),
-        "istqb": istqb_score(p.text),
-        "experience_level": experience_rule(p, req.get("min_years")),
-    }
+    # Rules before models: all 8 criteria come from the parsed CV at zero tokens. The LLM's judgement is kept as a
+    # verified review that explains the candidate; it sets scores only when Settings.llm_in_score (the v2 design,
+    # which ranked 0.033 nDCG@10 below its own deterministic input, docs/EVAL.md §7).
+    rules = rule_criteria(p, req, state.get("substitutes", {}), state.get("fallbacks", {}))
     facts = out.model_dump()
     depth = facts.pop("automation_depth")
     facts["automation_depth"] = {"score": depth_score(depth["level"], req.get("depth_level")),
@@ -300,8 +319,10 @@ async def _assess_call(state: AgentState, cv_id: str, prev: dict | None, sem: as
                        f"L{p.depth_cue} — verify_evidence will check where the proof comes from", "warn")
     llm_part = {k: {**v, "evidence": [{"quote": q, "grounded": None, "supported": None, "section": None}
                                       for q in v["evidence"]]} for k, v in facts.items()}
+    in_score = get_settings().llm_in_score
     return {
-        "criteria": {k: (rules | llm_part)[k] for k in CRITERIA},
+        "criteria": {k: (llm_part if in_score and k in llm_part else rules)[k] for k in CRITERIA},
+        "llm_review": llm_part,
         "facts": {"depth_level": depth["level"], "depth_cue": p.depth_cue, "years": p.years_automation or 0.0,
                   "years_total": p.years_total},
         "knocked_out": False,
@@ -317,7 +338,8 @@ async def assess(state: AgentState) -> dict:
     results = dict(zip(ids, await asyncio.gather(*(_assess_one(state, i, sem) for i in ids))))
     ok = {k: v for k, v in results.items() if v}
     failed = {k: NEEDS_REVIEW for k, v in results.items() if not v}
-    emit("assess", f"LLM judged {len(ok)} CV(s): depth fact + 4 criteria with evidence quotes; 3 criteria by rule"
+    emit("assess", f"LLM reviewed {len(ok)} CV(s): depth fact + 4 criteria with evidence quotes; scores: "
+                   + ("LLM for those 5, rules for 3" if get_settings().llm_in_score else "all 8 by rule")
                    + (f"; {len(failed)} flagged for manual review" if failed else ""))
     out = {"assessments": ok, "retry_ids": list(ok)}
     if failed:
@@ -334,7 +356,7 @@ async def verify_evidence(state: AgentState) -> dict:
     for cv_id in state["retry_ids"]:
         a, p = state["assessments"][cv_id], profile(cv_id)
         bad = 0
-        for name, crit in ((k, c) for k, c in a["criteria"].items() if k not in RULE_CRITERIA):
+        for name, crit in a["llm_review"].items():
             crit["evidence"] = [check_evidence(name, e["quote"], p) for e in crit["evidence"]]
             bad += sum(not e["grounded"] for e in crit["evidence"])
             unsupported += sum(e["grounded"] and not e["supported"] for e in crit["evidence"])
@@ -343,7 +365,7 @@ async def verify_evidence(state: AgentState) -> dict:
         if act and bad and a["attempts"] <= s.max_verify_retries:
             retry.append(cv_id)
         elif act:
-            for name, crit in ((k, c) for k, c in a["criteria"].items() if k not in RULE_CRITERIA):
+            for crit in a["llm_review"].values():  # shared with criteria when llm_in_score
                 if crit["evidence"] and not any(e["grounded"] for e in crit["evidence"]):
                     crit["score"] = min(crit["score"], 20)  # out of retries: claims without evidence lose credit
                     crit["rationale"] += " [capped: evidence not found in CV]"
@@ -371,7 +393,8 @@ async def score(state: AgentState) -> dict:
     head = lambda cid: cands[cid]["headline"] if cid in cands else get_doc("cvs", cid).meta.get("headline", "")  # noqa: E731
     row = lambda cid, status, total=0.0, reason=None: {  # noqa: E731
         "cv_id": cid, "headline": head(cid), "status": status, "knocked_out": status == "knocked_out",
-        "total": total, "tier": tier(total) if status == "ranked" else None, "reason": reason, "arbiter_note": None}
+        "total": total, "tier": tier(total) if status == "ranked" else None, "reason": reason, "arbiter_note": None,
+        "card": None, "flags": []}
     ranked = [row(cid, "ranked", weighted_total(a, state["weights"], False))
               for cid, a in state["assessments"].items() if cid in cands]
     rerank = {c["cv_id"]: c.get("rerank_score") for c in state["candidates"]}
@@ -379,8 +402,11 @@ async def score(state: AgentState) -> dict:
     for r in ranked:
         if via := fallback_uses(profile(r["cv_id"]), req["must_have"], subs, state.get("fallbacks", {})):
             r["reason"] = f"Ranked after direct matches: meets must-haves only via substitutes ({', '.join(via)})"
+    fused = {c["cv_id"]: i for i, c in enumerate(state["candidates"])}  # rerank node left them in fused order
+    by_total = get_settings().rank_by == "total"
     ranked.sort(key=lambda r: (r["reason"] is None,
-                               tiebreak_key(r, state["assessments"].get(r["cv_id"]), rerank.get(r["cv_id"]))), reverse=True)
+                               tiebreak_key(r, state["assessments"].get(r["cv_id"]), rerank.get(r["cv_id"])) if by_total
+                               else (-fused.get(r["cv_id"], len(fused)),)), reverse=True)
     # The tail is ordered too (HR browses it, τ measures it): what the LLM never assessed is ordered by the
     # zero-token rule score. Order of groups: reranked → not retrieved → needs review → knocked out.
     w = state["weights"]
@@ -390,20 +416,41 @@ async def score(state: AgentState) -> dict:
                      key=lambda r: pre(r["cv_id"]), reverse=True)
     rest = [row(cid, "not_shortlisted", reason=r) for cid, r in state.get("screened", {}).items()
             if cid not in state["assessments"] and cid not in state["knocked_out"]]
-    fused = {c["cv_id"]: i for i, c in enumerate(state["candidates"])}  # rerank node left them in shortlist order
     reranked = sorted((r for r in rest if rerank.get(r["cv_id"]) is not None), key=lambda r: fused[r["cv_id"]])
     unretrieved = sorted((r for r in rest if rerank.get(r["cv_id"]) is None), key=lambda r: pre(r["cv_id"]), reverse=True)
     screened = reranked + unretrieved
     rows = ranked + screened + review + knocked
     for i, r in enumerate(rows, 1):
         r["rank"] = i
+    fb = state.get("fallbacks", {})
+    for r in ranked:  # explanation cards: they explain the rule score, so the decomposition always adds up
+        r["card"] = {"decomposition": decomposition(state["assessments"][r["cv_id"]]["criteria"], w),
+                     "what_if": counterfactuals(profile(r["cv_id"]), req, subs, w, fb)}
+    for r in knocked:  # how close was it: the score with every missing must-have present
+        r["card"] = {"what_if": counterfactuals(profile(r["cv_id"]), req, subs, w, fb, limit=1)}
+    _versus_next(rows, state)
+    dup = quality.duplicates([profile(r["cv_id"]) for r in rows])
+    for r in rows:
+        r["flags"] = quality.flags(profile(r["cv_id"])) + ([f"duplicate_of:{dup[r['cv_id']]}"] if r["cv_id"] in dup else [])
+    if flagged := [r["cv_id"] for r in rows if r["flags"]]:
+        emit("score", f"Data-quality flags on {flagged} (short, garbled, undated or duplicate CVs): check before trusting "
+                      "their score", "warn")
     totals = [r["total"] for r in ranked]
     if ties := len(totals) - len(set(totals)):
-        emit("score", f"{ties} exact tie(s) ordered by proven depth → years → relevance (0 LLM tokens)", "warn")
+        emit("score", f"{ties} exact tie(s) ordered by " + ("proven depth → years → relevance" if by_total else
+                      "passage relevance fused with the rule score") + " (0 LLM tokens)", "warn")
     emit("score", "Weighted totals: " + ", ".join(f"{r['cv_id']}={r['total']:.2f} ({r['tier']})" for r in ranked[:5])
                   + f" · every CV has a status: {len(ranked)} ranked, {len(screened)} not shortlisted, "
                     f"{len(review)} for review, {len(knocked)} knocked out")
     return {"ranking": rows}
+
+
+def _versus_next(rows: list[dict], state: AgentState) -> None:
+    """Card L4: why each ranked candidate sits above the next ranked one (recomputed after arbiter swaps)."""
+    ranked = [r for r in rows if r["status"] == "ranked"]
+    crit = lambda cid: state["assessments"][cid]["criteria"]  # noqa: E731
+    for a, b in zip(ranked, ranked[1:] + [None]):
+        a["card"]["versus_next"] = contrastive(crit(a["cv_id"]), crit(b["cv_id"]), state["weights"], b["cv_id"]) if b else None
 
 
 # ── L3: selective arbiter — only spend LLM on near-ties ───────────────────────────────────────────────
@@ -418,32 +465,42 @@ async def arbitrate(state: AgentState) -> dict:
         a, b = rows[i], rows[i + 1]
         if a["status"] != "ranked" or b["status"] != "ranked" or a["total"] - b["total"] >= s.near_tie_delta:
             continue
-        if calls >= s.max_arbiter_calls or a["cv_id"] in judged:
+        if calls + 2 > s.max_arbiter_calls or a["cv_id"] in judged:
             continue  # each candidate is judged at most once → no cascades of LLM overrides
         judged |= {a["cv_id"], b["cv_id"]}
 
         def evidence(cid: str) -> str:
-            crit = state["assessments"][cid]["criteria"]
-            return "\n".join(f"{k} {v['score']}: " + "; ".join(e["quote"] for e in v["evidence"] if e["grounded"])
-                             for k, v in crit.items())
+            x = state["assessments"][cid]
+            rules = [f"{k} {v['score']}: " + "; ".join(e["quote"] for e in v["evidence"]) for k, v in x["criteria"].items()]
+            review = [f"{k} (review): {v['rationale']} " + "; ".join(e["quote"] for e in v["evidence"] if e["grounded"])
+                      for k, v in x.get("llm_review", {}).items()]
+            return "\n".join(rules + review)
 
-        d = await decide(
-            llm(state, "reasoning"),
-            prompts.ARBITER,
-            [a["cv_id"], b["cv_id"]],
-            f"JD: {json.dumps(state['requirements'])}\n\n{a['cv_id']}:\n{evidence(a['cv_id'])}\n\n"
-            f"{b['cv_id']}:\n{evidence(b['cv_id'])}",
-        )
-        calls += 1
-        winner = d.choice
-        note = f"Near-tie (Δ={a['total'] - b['total']:.3f}) resolved by arbiter: {winner} — {d.reason}"
-        if winner == b["cv_id"]:
-            rows[i], rows[i + 1] = b, a
-        rows[i]["arbiter_note"] = note
-        rows[i + 1]["arbiter_note"] = f"Placed below {winner} by arbiter (Δ={a['total'] - b['total']:.3f})"
+        # Each pair is judged in both orders (ported from the `coding` branch's arbiter): an LLM that picks whoever is
+        # shown first is position-biased, so only a verdict that survives the swap may change the rule order.
+        verdicts = []
+        for first, second in ((a, b), (b, a)):
+            verdicts.append(await decide(
+                llm(state, "reasoning"), prompts.ARBITER, [first["cv_id"], second["cv_id"]],
+                f"JD: {json.dumps(state['requirements'])}\n\n{first['cv_id']}:\n{evidence(first['cv_id'])}"
+                f"\n\n{second['cv_id']}:\n{evidence(second['cv_id'])}"))
+        calls += 2
+        delta = a["total"] - b["total"]
+        if verdicts[0].choice == verdicts[1].choice:
+            winner = verdicts[0].choice
+            note = f"Near-tie (Δ={delta:.3f}) resolved by arbiter in both orders: {winner} — {verdicts[0].reason}"
+            if winner == b["cv_id"]:
+                rows[i], rows[i + 1] = b, a
+            rows[i]["arbiter_note"] = note
+            rows[i + 1]["arbiter_note"] = f"Placed below {winner} by arbiter, consistent in both orders (Δ={delta:.3f})"
+        else:
+            note = (f"Near-tie {a['cv_id']} / {b['cv_id']} (Δ={delta:.3f}): the arbiter picked whoever came first "
+                    "(position bias) → rule order kept")
+            a["arbiter_note"] = b["arbiter_note"] = note
         emit("arbitrate", note, "loop")
     for i, r in enumerate(rows, 1):
         r["rank"] = i
+    _versus_next(rows, state)
     if not calls:
         emit("arbitrate", "No near-ties in the top 5 → arbiter skipped (0 LLM calls)")
     return {"ranking": rows, "loops": {"arbitrate": calls}}
@@ -464,12 +521,15 @@ async def report(state: AgentState) -> dict:
         return {}
     facts = []
     for r in top:
-        crit = state["assessments"][r["cv_id"]]["criteria"]
+        a = state["assessments"][r["cv_id"]]
         facts.append({
             "cv_id": r["cv_id"], "rank": r["rank"], "total": r["total"], "arbiter_note": r["arbiter_note"],
             "criteria": {k: {"score": v["score"], "rationale": v["rationale"],
                              "verified_evidence": [e["quote"] for e in v["evidence"] if e["grounded"]]}
-                         for k, v in crit.items()},
+                         for k, v in a["criteria"].items()},
+            "review": {k: {"rationale": v["rationale"], "verified_evidence": [e["quote"] for e in v["evidence"] if e["grounded"]]}
+                       for k, v in a.get("llm_review", {}).items()},
+            "what_if": (r.get("card") or {}).get("what_if"),
         })
     msgs = [SystemMessage(prompts.REPORT),
             HumanMessage(f"JD: {json.dumps(state['requirements'])}\nWeights: {state['weights']}\n\n"
@@ -488,11 +548,34 @@ async def report(state: AgentState) -> dict:
 
 
 # ── L5: HR review — approve, or re-weight and re-score (no new LLM assessment needed) ─────────────────
+def _decide(state: AgentState, decisions: list[dict]) -> dict:
+    """HR approves / rejects / overrides candidates, each with a reason (ported from the `coding` branch,
+    hitl/audit.py). Every decision is appended to an audit log; the weights that best explain them (pairwise
+    logistic regression on criterion scores, shrunk to the current profile) re-score the pool."""
+    ok = [d for d in decisions if d.get("action") in ("approve", "reject", "override") and (d.get("reason") or "").strip()]
+    run_id = (get_config().get("configurable") or {}).get("thread_id", "")
+    path = get_settings().runtime_dir / "hr_audit.jsonl"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a") as fh:
+        for d in ok:
+            fh.write(json.dumps({"run_id": run_id, "ts": time.time(), **d}) + "\n")
+    scores = {cid: {k: c["score"] / 100 for k, c in a["criteria"].items()} for cid, a in state["assessments"].items()}
+    pairs = preferences(ok, [r["cv_id"] for r in state["ranking"]])
+    w = calibrate_weights(pairs, scores, state["weights"])
+    moved = {k: round(w[k] - state["weights"][k], 3) for k in w if abs(w[k] - state["weights"][k]) >= 0.01}
+    emit("hr_review", f"HR recorded {len(ok)} decision(s) → {len(pairs)} preference pair(s) → weights moved "
+                      f"{moved or 'not at all'} (audit: .runtime/hr_audit.jsonl)", "loop")
+    return {"hr_action": "adjust", "weights": w, "loops": {"review": 1}}
+
+
+
 @traced("hr_review")
 async def hr_review(state: AgentState) -> dict:
     left = get_settings().max_reviews - state.get("loops", {}).get("review", 0)
     answer = interrupt({"kind": "review", "payload": {"ranking": state["ranking"], "weights": state["weights"],
                                                        "adjustments_left": left}})
+    if answer.get("action") == "decide" and left > 0:
+        return _decide(state, answer.get("decisions", []))
     if answer.get("action") != "adjust" or left <= 0:
         emit("hr_review", "HR approved the ranking" if answer.get("action") != "adjust"
              else f"Re-weight budget used up ({get_settings().max_reviews}) → ranking is final", "info")

@@ -163,3 +163,13 @@ h3 .muted { text-transform: none; letter-spacing: 0; font-weight: 400; }
 dl.facts { grid-template-columns: 130px 1fr; }
 dl.facts blockquote { margin-top: 4px; }
 .rawtext { margin-top: 14px; }
+
+/* v3: explanation cards, quality flags, LLM review, HR decisions */
+.card-x { border: 1px solid var(--line, #e5e7eb); border-radius: 8px; padding: 8px 10px; margin: 8px 0; }
+.decomp { border-collapse: collapse; font-size: 12px; margin-bottom: 6px; }
+.decomp th, .decomp td { padding: 2px 10px 2px 0; text-align: left; }
+.what-if { margin: 4px 0 0 16px; }
+.review-llm { border-left: 2px solid var(--line, #e5e7eb); padding-left: 8px; margin: 4px 0 8px; opacity: .9; }
+.chip { font-size: 11px; padding: 0 6px; margin-left: 2px; border-radius: 10px; border: 1px solid var(--line, #d1d5db); background: none; cursor: pointer; }
+.chip.on { background: var(--accent, #2563eb); color: #fff; border-color: transparent; }
+input.reason { font-size: 11px; margin-left: 4px; width: 14em; }

@@ -153,6 +153,10 @@ function Review({ payload, criteria, onSubmit }: {
 }) {
   const [w, setW] = useState<Record<string, number>>(() => Object.fromEntries(CRITERIA.map((c) => [c, payload.weights[c] ?? 0])))
   const [say, setSay] = useState('')
+  const [dec, setDec] = useState<Record<string, { action: 'approve' | 'reject'; reason: string }>>({})
+  const decisions = Object.entries(dec).filter(([, d]) => d.reason.trim()).map(([cv_id, d]) => ({ cv_id, ...d }))
+  const mark = (id: string, action: 'approve' | 'reject') =>
+    setDec((d) => (d[id]?.action === action ? (({ [id]: _, ...rest }) => rest)(d) : { ...d, [id]: { action, reason: d[id]?.reason ?? '' } }))
   const left = payload.adjustments_left
   const shown = payload.ranking.filter((r) => (r.status ?? (r.knocked_out ? 'knocked_out' : 'ranked')) === 'ranked')
   const sum = CRITERIA.reduce((a, c) => a + w[c], 0)
@@ -168,10 +172,22 @@ function Review({ payload, criteria, onSubmit }: {
         <ol className="mini-rank">
           {shown.map((r) => (
             <li key={r.cv_id}>
-              <span className="mono">{r.cv_id}</span> {r.headline} <b>{Math.round(r.total * 100)}%</b>
+              <span className="mono">{r.cv_id}</span> {r.headline} <b>{Math.round(r.total * 100)}%</b>{' '}
+              <button className={`chip ${dec[r.cv_id]?.action === 'approve' ? 'on' : ''}`} onClick={() => mark(r.cv_id, 'approve')}>✓</button>
+              <button className={`chip ${dec[r.cv_id]?.action === 'reject' ? 'on' : ''}`} onClick={() => mark(r.cv_id, 'reject')}>✗</button>
+              {dec[r.cv_id] && (
+                <input className="reason" placeholder="reason (required)" value={dec[r.cv_id].reason}
+                       onChange={(e) => setDec({ ...dec, [r.cv_id]: { ...dec[r.cv_id], reason: e.target.value } })} />
+              )}
             </li>
           ))}
         </ol>
+        <button className="ghost" disabled={!decisions.length || left === 0}
+                onClick={() => onSubmit({ action: 'decide', decisions })}>
+          Learn weights from my {decisions.length || ''} decision{decisions.length === 1 ? '' : 's'}
+        </button>
+        <p className="muted small">Approve or reject candidates with a reason: the weights that best explain your choices
+          re-score the pool, and every decision goes to the audit log.</p>
         {payload.ranking.length > shown.length && (
           <p className="muted small">+ {payload.ranking.length - shown.length} more (not shortlisted, needs review or knocked out): see Results.</p>
         )}
