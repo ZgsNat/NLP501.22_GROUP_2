@@ -133,6 +133,25 @@ td.rw { color: var(--human); font: 700 12px var(--mono); text-align: center; }
 .sys { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 10px; }
 .sys .tag { font-size: 12px; padding: 3px 8px; }
 .sys .tag.p6 { border-color: var(--crit); color: var(--crit); }
+/* v3 merged pipeline slide */
+.lane { display: grid; grid-template-columns: 150px 1fr; gap: 12px; align-items: stretch; margin-bottom: 8px; }
+.lane > .lbl { border-radius: 10px; padding: 10px; background: var(--panel); border: 1px solid var(--line); font-weight: 600; font-size: 13px; }
+.lane > .lbl small { display: block; font-weight: 400; color: var(--muted); }
+.steps { display: flex; flex-wrap: wrap; gap: 6px; align-items: stretch; }
+.st { position: relative; background: var(--panel2); border: 1px solid var(--line); border-left: 4px solid var(--pc, var(--line));
+  border-radius: 9px; padding: 7px 9px 16px; font-size: 12.5px; min-width: 190px; max-width: 360px; flex: 1 1 190px; }
+.st .chip { max-width: 100%; white-space: normal; }
+.st.llm { box-shadow: inset 0 0 0 1px var(--llm); }
+.st.llm::after { content: 'LLM'; position: absolute; bottom: 3px; right: 7px; font: 700 9px var(--mono); color: var(--llm); }
+.st.hr::after { content: 'HR'; position: absolute; bottom: 3px; right: 7px; font: 700 9px var(--mono); color: var(--human); }
+.st b { display: block; font-size: 12.5px; margin: 2px 0; }
+.st .s { color: var(--muted); font-size: 11.5px; }
+.st.ours { --pc: var(--graph); } .st.coding { --pc: var(--human); } .st.new { --pc: var(--eval); }
+.to2 { align-self: center; color: var(--muted); font-size: 14px; }
+.prov { font: 600 10.5px var(--mono); padding: 1px 6px; border-radius: 5px; border: 1px solid var(--line); }
+.prov.ours { color: var(--graph); } .prov.coding { color: var(--human); } .prov.new { color: var(--eval); }
+td.up { color: var(--crit); font: 600 12px var(--mono); } td.dn { color: var(--harness); font: 600 12px var(--mono); }
+@media (max-width: 800px) { .lane { grid-template-columns: 1fr; } }
 @media (max-width: 1000px) { .evalgrid { grid-template-columns: 1fr; } .evalgrid .arr { transform: rotate(90deg); } }
 
 /* sequence */
@@ -234,6 +253,76 @@ aside#insp.open { transform: none; }
     <div><span data-id="K1"></span><span data-id="I1"></span><span data-id="I2"></span><span data-id="I3"></span><span data-id="I4"></span></div></div>
 </section>
 
+<!-- 2b ────────────────────────────────────────────────────────────── -->
+<section class="slide" data-title="Merged pipeline (v3)">
+  <div class="kicker">branch feature/merged-pipeline · ours (v2) + origin/coding (Đán)</div>
+  <h2>The merged pipeline: rules score, the LLM explains, HR decides</h2>
+  <p class="lead">One pipeline, not two systems side by side. The graph, NLP layer, retrieval, HR loop, API and UI are ours. The ranking core takes Đán's ideas: every criterion scored by rule, the LLM out of the score, an arbiter judged in both orders, explanation cards, HR decisions that learn weights.
+    Each ported part had to pass a rule written before measuring, on both benchmarks (<span data-id="E6"></span>, EVAL.md §8). Click any ID for its file and knobs.</p>
+  <div class="legend" style="margin:-6px 0 12px">
+    <span><i style="--c:var(--graph)"></i>ours (v2)</span><span><i style="--c:var(--human)"></i>ported from <code>coding</code></span>
+    <span><i style="--c:var(--eval)"></i>new in the merge</span><span><i style="--c:var(--llm)"></i>calls an LLM</span><span><i style="--c:var(--human)"></i>HR in the loop</span>
+  </div>
+
+  <div class="lane"><div class="lbl">① JD → requirements<small>N1 ingest · L1</small></div><div class="steps">
+    <div class="st ours llm"><span data-id="T1"></span><b>LLM extraction</b><span class="s">title, must / nice, years, depth, ambiguities</span></div>
+    <div class="to2">→</div>
+    <div class="st ours"><span data-id="H2"></span><b>canonicalize</b><span class="s">taxonomy keys; and-clauses; "or" / hoặc = one-of groups; "or similar" / tương tự = soft</span></div>
+    <div class="to2">+</div>
+    <div class="st coding"><span data-id="X9"></span><b>JD parser</b><span class="s">sections + cue words (EN/VN), benefits dropped → depth floor, languages, domains. As the sole source it lost on both benchmarks, so <code>JD_PARSER=llm</code></span></div>
+    <div class="to2">→</div>
+    <div class="st ours hr"><span data-id="L1"></span><b>no must-have → ask HR</b><span class="s">rule first; fast LLM gate only for listed ambiguities</span></div>
+  </div></div>
+
+  <div class="lane"><div class="lbl">② CV → profile<small>X1–X10 · 0 tokens</small></div><div class="steps">
+    <div class="st ours"><span data-id="X1"></span><span data-id="X2"></span><span data-id="X4"></span><b>read · normalise · redact</b><span class="s">PDF/DOCX, NFC, PII and protected attributes removed first</span></div>
+    <div class="to2">→</div>
+    <div class="st ours"><span data-id="X5"></span><span data-id="X6"></span><b>sections · dates · structural chunks</b><span class="s">roles merged, gaps excluded, contextual headers</span></div>
+    <div class="to2">→</div>
+    <div class="st ours"><span data-id="X7"></span><span data-id="X8"></span><b>skills (used / listed / hedged) · years · depth cue</b><span class="s">NegEx hedges; clause-initial verbs</span></div>
+    <div class="to2">+</div>
+    <div class="st coding"><span data-id="X10"></span><b>quality flags</b><span class="s">short, garbled, undated, near-duplicate: shown, never removed</span></div>
+  </div></div>
+
+  <div class="lane"><div class="lbl">③ Find &amp; screen<small>N3 · N4 · N5 · L2</small></div><div class="steps">
+    <div class="st ours"><span data-id="D9"></span><b>requirement-wise hybrid search</b><span class="s">one query per requirement over cv_chunks, BM25 + dense, max-pooled per CV</span></div>
+    <div class="to2">→</div>
+    <div class="st ours"><span data-id="H14"></span><b>hedge-aware knock-out</b><span class="s">whole pool; a hedged-only must-have does not pass</span></div>
+    <div class="to2">→</div>
+    <div class="st ours hr"><span data-id="L2"></span><b>scarce must-have → HR approves substitutes</b><span class="s">fallbacks rank after direct matches</span></div>
+    <div class="to2">→</div>
+    <div class="st new"><span data-id="N5"></span><b>shortlist = CE ⊕ 8-criteria rule score</b><span class="s">cross-encoder on (requirement, passage) pairs, fused with <span data-id="C0"></span></span></div>
+  </div></div>
+
+  <div class="lane"><div class="lbl">④ Score &amp; explain<small>N6 · N7 · N8 · N9 · N10</small></div><div class="steps">
+    <div class="st coding"><span data-id="C1"></span>…<span data-id="C8"></span><b>8 criteria by rule</b><span class="s">rule_criteria over the CVProfile: Σ w·S is deterministic and every S quotes its CV line</span></div>
+    <div class="to2">∥</div>
+    <div class="st new llm"><span data-id="H20"></span><b>LLM review</b><span class="s">depth fact + 4 criteria with quotes: explains, does not score</span></div>
+    <div class="to2">→</div>
+    <div class="st ours"><span data-id="L4"></span><span data-id="H15"></span><b>verify quotes</b><span class="s">grounded + supported; retry on hallucination</span></div>
+    <div class="to2">→</div>
+    <div class="st coding"><span data-id="H21"></span><b>card</b><span class="s">points per criterion (add up), why above #k+1, what-if; status + reason for every CV</span></div>
+    <div class="to2">→</div>
+    <div class="st coding llm"><span data-id="H19"></span><b>arbiter in both orders</b><span class="s">near-ties only; a verdict that flips with order keeps the rule order</span></div>
+    <div class="to2">→</div>
+    <div class="st ours llm"><span data-id="N10"></span><b>report</b><span class="s">verified evidence only; foreign-id guard</span></div>
+  </div></div>
+
+  <div class="lane"><div class="lbl">⑤ HR decides<small>N11 · L5 · U3</small></div><div class="steps">
+    <div class="st ours hr"><b>approve</b><span class="s">ranking final</span></div>
+    <div class="st ours hr"><b>re-weight</b><span class="s">sliders, or plain words → closed WeightInstruction (fast LLM)</span></div>
+    <div class="st coding hr"><span data-id="L5"></span><b>approve / reject with a reason</b><span class="s">audit log + pairwise logistic regression → weights that explain HR's choices</span></div>
+    <div class="to2">→</div>
+    <div class="st ours"><span data-id="N8"></span><b>re-score at 0 tokens</b><span class="s">no new assessment; report reused if the top 5 are the same people</span></div>
+  </div></div>
+
+  <div class="grid g3" style="margin-top:12px">
+    <div class="card"><h3>Where the LLM is used</h3><p class="small">Requirements (T1), the clarification gate, the review that explains each shortlisted CV, near-tie arbitration (2 calls per pair), the report, and HR's plain-words re-weighting. <b>Never</b> for a score, a knock-out or the order outside near-ties.</p></div>
+    <div class="card"><h3>What stays deterministic</h3><p class="small">Parsing, redaction, chunking, hedges, years, depth cue, retrieval, cross-encoder, knock-out, all 8 criteria, the fused order, the card, quality flags and the HR weight calibration. All unit-tested (101 tests), 0 tokens.</p></div>
+    <div class="card"><h3>Switches</h3><p class="small mono">JD_PARSER = llm | rules | hybrid<br>LLM_IN_SCORE = false (true = v2)<br>RANK_BY = fused | total<br>MAX_ARBITER_CALLS = 6 (3 pairs × 2 orders)</p><p class="small">All in <span data-id="K1"></span>; the eval ladder runs each setting.</p></div>
+  </div>
+</section>
+
 <!-- 3 ─────────────────────────────────────────────────────────────── -->
 <section class="slide" data-title="Agent graph">
   <div class="kicker">backend/app/agent/graph.py</div>
@@ -280,13 +369,13 @@ aside#insp.open { transform: none; }
   <div class="kicker">backend/app/agent/scoring.py · schemas.py</div>
   <h2>Scoring anatomy: who decides each number</h2>
   <div class="formula">Score(CV, JD) = 1[H(c)] × Σₖ w(c,k) · S(c,k) / 100</div>
-  <p class="lead">Only 4 of 8 criteria are LLM judgement. Three are rules computed from the parsed CV (tools, ISTQB, experience from dates, <span data-id="X8"></span>); one is a fact the LLM extracts and code scores (depth: "extract facts, compute scores").
-    The weights come from <span data-id="D7"></span> per company type, or from HR at <span data-id="N11"></span>.</p>
+  <p class="lead">Since v3 all 8 criteria are rules over the parsed CV (<span data-id="X8"></span>), so the score is reproducible and every number quotes its CV line. The LLM's judgement of 5 of them is kept as a verified review that explains the candidate (<span data-id="H20"></span>).
+    The weights come from <span data-id="D7"></span> per company type, or from HR at <span data-id="N11"></span> (sliders, words, or decisions that calibrate them).</p>
   <div class="grid g4" id="critCards"></div>
   <div class="grid g3" style="margin-top:14px">
     <div class="card"><h3>Knock-out H(c)</h3><p>Missing (or only hedged, <span data-id="H14"></span>) a must-have and none of its accepted substitutes → total 0. Computed in <span data-id="N3"></span>, never by an LLM.</p><p><span data-id="C0"></span><span data-id="S12"></span><span data-id="S10"></span></p></div>
-    <div class="card"><h3>Ties and near-ties</h3><p>Exact ties: <span data-id="H9"></span> orders by depth → years → relevance (0 tokens).<br>Near-ties (Δ &lt; 0.05): <span data-id="N9"></span> asks the LLM once per candidate.</p></div>
-    <div class="card"><h3>Evidence</h3><p>LLM criteria must quote the CV verbatim. <span data-id="H5"></span> checks every quote exists; <span data-id="H15"></span> also checks it supports the criterion. Ungrounded ones trigger <span data-id="L4"></span>; after the budget the score is capped at 20 (not found) or 50 (listed, not demonstrated).</p></div>
+    <div class="card"><h3>Ties and near-ties</h3><p>Exact ties: <span data-id="H9"></span> orders by depth → years → relevance (0 tokens).<br>Near-ties (Δ &lt; 0.05): <span data-id="N9"></span> asks the LLM in both orders (<span data-id="H19"></span>); the order changes only if both verdicts agree.</p></div>
+    <div class="card"><h3>Evidence</h3><p>The LLM review must quote the CV verbatim. <span data-id="H5"></span> checks every quote exists; <span data-id="H15"></span> also checks it supports the criterion. Ungrounded ones trigger <span data-id="L4"></span>; after the budget the score is capped at 20 (not found) or 50 (listed, not demonstrated).</p></div>
   </div>
 </section>
 
@@ -436,7 +525,8 @@ aside#insp.open { transform: none; }
       <p class="small" style="margin:0">chunking ablation (<span data-id="X6"></span>, <span data-id="D9"></span>)</p>
       <div class="sys"><span class="tag">R whole</span><span class="tag">R window</span><span class="tag">R structural</span><span class="tag">each + cross-encoder</span><span class="tag">section-weighted (negative)</span></div>
       <p class="small" style="margin:0"><span data-id="E4"></span> the real graph, scripted HR, switched by <span data-id="S19"></span></p>
-      <div class="sys"><span class="tag">B4 = P6 − clarify − expand − verify − arbiter</span><span class="tag p6">P6 full agent</span><span class="tag">A1 = P6 − verify_evidence</span><span class="tag">A2 = P6 − company profile</span></div>
+      <div class="sys"><span class="tag">B4 = P6 − clarify − expand − verify − arbiter</span><span class="tag p6">P6 full agent</span><span class="tag">A1 = P6 − verify_evidence</span><span class="tag">A2 = P6 − company profile</span><span class="tag">A3 = P6 − arbiter</span></div>
+      <p class="small" style="margin:0">v3: every retrieval-level system runs on two benchmarks (<span data-id="E6"></span>): ours and the coding branch's synthetic set</p>
       <p class="small">LLM answers are cached (<span data-id="H17"></span>) so ablations share calls and results can be reproduced.</p></div>
     <div class="arr">→</div>
     <div class="card"><h3>Metrics → report</h3>
@@ -445,7 +535,41 @@ aside#insp.open { transform: none; }
       <p>↓</p><p><span data-id="E5"></span></p>
       <p class="small mono">docs/EVAL_RESULTS.md</p></div>
   </div>
-  <p class="small" style="margin-top:10px">Run: <code>cd backend && uv run python -m app.eval.run retrieval | agent --systems B4,P6,A1,A2 | report</code>. Agent runs are resumable per JD.</p>
+  <p class="small" style="margin-top:10px">Run: <code>cd backend && uv run python -m app.eval.run retrieval | agent | report [--bench coding]</code>. Agent runs are resumable per JD.</p>
+</section>
+
+<!-- 12b ───────────────────────────────────────────────────────────── -->
+<section class="slide" data-title="Merge decisions">
+  <div class="kicker">docs/EVAL.md §8 · docs/EVAL_RESULTS.md · docs/EVAL_RESULTS_coding.md</div>
+  <h2>Merge decisions: what was ported, what was measured, what was kept</h2>
+  <p class="lead">Two benchmarks (<span data-id="E6"></span>): <b>ours</b>, 50 handwritten CVs × 12 JDs with silver labels (our dev set), and <b>coding</b>, Đán's 200 template CVs × 6 JDs (never used to tune our code; its gold follows rules like his scorer).
+    Rule, written before running: a component becomes the default only if its nDCG@10 is not lower than the v2 baseline (<code>B3 rules ⊕ CE</code>) by more than 0.01 on either benchmark, and higher on at least one.</p>
+  <div class="grid g2">
+    <div class="card"><h3>Ranking core: Δ nDCG@10 vs v2 baseline</h3><div class="tablewrap"><table>
+      <tr><th>Candidate</th><th>origin</th><th>ours</th><th>coding</th><th>verdict</th></tr>
+      <tr><td><b>8 rule criteria ⊕ CE, LLM requirements</b></td><td><span class="prov coding">coding</span> + <span class="prov ours">ours</span></td><td class="up">+0.013</td><td class="up">+0.025</td><td><b>adopted</b></td></tr>
+      <tr><td>8 rule criteria ⊕ CE, hybrid parser</td><td><span class="prov new">merge</span></td><td class="up">+0.004</td><td class="up">+0.006</td><td>passes, below the winner</td></tr>
+      <tr><td>4 rule criteria ⊕ CE, hybrid parser</td><td><span class="prov new">merge</span></td><td>−0.000</td><td>+0.001</td><td>negligible</td></tr>
+      <tr><td>8 rule criteria ⊕ CE, rules-only JD parser</td><td><span class="prov coding">coding</span></td><td class="dn">−0.006</td><td class="dn">−0.005</td><td>rejected</td></tr>
+      <tr><td>4 rule criteria ⊕ CE, rules-only JD parser</td><td><span class="prov coding">coding</span></td><td class="dn">−0.010</td><td class="dn">−0.028</td><td>rejected</td></tr>
+      <tr><td>8 rule criteria, no cross-encoder</td><td><span class="prov coding">coding</span></td><td class="dn">−0.012</td><td class="up">+0.033</td><td>rejected (CE helps on real-style CVs, hurts on templates)</td></tr>
+    </table></div>
+    <p class="small">Adopted system: <b>0.884</b> nDCG@10 on ours (v2: 0.871), <b>0.835</b> on coding (v2: 0.810; Đán's own ranker: 0.858 on his data).</p></div>
+    <div class="card"><h3>Agent-level ports (judged by the agent ladder)</h3><div class="tablewrap"><table>
+      <tr><th>Port</th><th>origin</th><th>why</th></tr>
+      <tr><td><span data-id="H20"></span></td><td><span class="prov coding">coding</span></td><td>v2: P6 ranked 0.033 below its own deterministic input. Both teams found that a small LLM should not set scores.</td></tr>
+      <tr><td><span data-id="H19"></span></td><td><span class="prov coding">coding</span></td><td>First smoke run: qwen3:8b picked whoever came first on both near-ties. The rule order was kept.</td></tr>
+      <tr><td><span data-id="H21"></span></td><td><span class="prov coding">coding</span></td><td>HR asks "why A over B?" and "how close was the rejected one?". Zero tokens; always adds up.</td></tr>
+      <tr><td><span data-id="L5"></span> decisions → weights</td><td><span class="prov coding">coding</span></td><td>HR teaches the profile with approve / reject and a reason; every decision is audited.</td></tr>
+      <tr><td><span data-id="X10"></span></td><td><span class="prov coding">coding</span></td><td>A bad parse should be visible, not silently scored.</td></tr>
+    </table></div>
+    <p class="small">P6 v3 vs v2 on the agent ladder: see docs/EVAL_RESULTS.md (P6, B4, A1–A3).</p></div>
+  </div>
+  <div class="grid g3" style="margin-top:12px">
+    <div class="card"><h3>Before the merge: cross-evaluation</h3><p class="small">Each ranker won on its own data: on ours, ours 0.871 vs his 0.810; on his, his 0.858 vs ours 0.821. A home advantage on both sides is why the rule needs <b>both</b> benchmarks.</p></div>
+    <div class="card"><h3>What we gave back</h3><p class="small">The ranking core he lacked: section-aware extraction, NegEx hedges and used / listed strength (traps@10 = 0), years from parsed dates, requirement-wise retrieval with the cross-encoder fused rather than used as a filter.</p></div>
+    <div class="card"><h3>Still open</h3><p class="small">Silver labels on ours, synthetic gold on coding: human adjudication is still needed. Next run: a frontier model for the review and report (the 8B report is the weakest output). "X with A, B or C" parsing.</p></div>
+  </div>
 </section>
 
 <!-- 13 ────────────────────────────────────────────────────────────── -->
