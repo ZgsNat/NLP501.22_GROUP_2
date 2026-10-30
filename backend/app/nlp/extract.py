@@ -15,7 +15,7 @@ from dataclasses import dataclass
 
 from app.nlp.chunking import Chunk
 from app.nlp.segment import Entry, merged_months
-from app.nlp.taxonomy import alias_regex, skills
+from app.nlp.taxonomy import alias_regex, automation_evidence, skills
 
 CREDIT = {"used": 1.0, "listed": 0.7, "hedged": 0.2}
 
@@ -114,7 +114,8 @@ def years(text: str, ents: list[Entry], chunks: list[Chunk], mentions: dict[str,
     if dated:
         at = {c.id: c.start for c in chunks}
         used_in = lambda e: any(  # noqa: E731
-            m.strength == "used" and e.start <= at[m.chunk_id] < e.end for ms in mentions.values() for m in ms)
+            m.strength == "used" and automation_evidence(m.skill) and e.start <= at[m.chunk_id] < e.end
+            for ms in mentions.values() for m in ms)
         auto = [e for e in dated if used_in(e) or AUTOMATION.search(text[e.start:e.end].lower())]
         total = merged_months([(e.start_month, e.end_month) for e in dated]) / 12
         automation = merged_months([(e.start_month, e.end_month) for e in auto]) / 12
@@ -128,7 +129,7 @@ def years(text: str, ents: list[Entry], chunks: list[Chunk], mentions: dict[str,
 
 
 def _names_tool(clause: str) -> bool:
-    return any(alias_regex(k).search(clause) for k in skills())
+    return any(alias_regex(k).search(clause) for k in skills() if automation_evidence(k))
 
 
 def depth_cue(chunks: list[Chunk]) -> tuple[int, str | None]:

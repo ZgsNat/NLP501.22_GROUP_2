@@ -217,3 +217,26 @@ def test_quality_flags_and_duplicates():
     assert not {"few_skills", "no_dated_roles", "no_experience_section"} & set(quality.flags(a))
     garbled = process("CV-G", "Aut%%ati#n T#@t Engi%#er\nEXPERIENCE\nW#ote S%lenium t~sts f#r a b@nk.")
     assert "garbled_text" in quality.flags(garbled) and "garbled_text" not in quality.flags(a)
+
+
+def test_gazetteer_vetoes_noun_phrases_and_test_management_is_not_automation():
+    from app.nlp.taxonomy import mentions
+
+    assert mentions("API tests with pytest and requests", "requests") and mentions("Python (requests)", "requests")
+    for prose in ("Reviewed pull requests weekly", "Applied change requests to modules", "make requests to the API"):
+        assert not mentions(prose, "requests")
+    assert mentions("Automated regression with QTP and HP QC", "uft") and mentions("Logged defects in HPQC", "hp_alm")
+    manual = process("CV-M", "## Experience\n### QA — Bank (2019–2023)\n- Reported and tracked defects in Jira.")
+    assert "jira" in manual.skills and manual.depth_cue == 0 and manual.years_automation == 0.0
+
+
+def test_consented_intake_keeps_only_redacted_text(tmp_path, monkeypatch):
+    from app.eval import realtext
+
+    (tmp_path / "raw").mkdir()
+    (tmp_path / "raw" / "cv1.txt").write_text("Trần Thị Mai\nEmail: mai@corp.vn\n## Experience\n### QA (2020–2023)\n- Wrote Selenium tests.")
+    monkeypatch.setattr(realtext, "CONSENTED", tmp_path)
+    report = realtext.intake()
+    out = (tmp_path / "redacted" / "cv1.txt").read_text()
+    assert "Mai" not in out and "mai@corp.vn" not in out and "Selenium" in out
+    assert "cv1: masked" in report

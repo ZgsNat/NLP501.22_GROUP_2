@@ -33,11 +33,19 @@ def group(skill: str) -> str:
     return _entry(skill).get("group", "")
 
 
+def automation_evidence(skill: str) -> bool:
+    """Does using this skill show automation work? Defect trackers and test management (Jira, HP ALM) are tools every
+    manual tester uses, so naming them must not raise a CV's automation depth or years."""
+    return group(skill) != "test_management"
+
+
 @lru_cache(maxsize=512)
 def alias_regex(skill: str) -> re.Pattern:
-    """Longest alias first, alphanumeric boundaries (so 'java' never matches inside 'javascript')."""
+    """Longest alias first, alphanumeric boundaries (so 'java' never matches inside 'javascript'). `not_after` words
+    in the taxonomy veto a match ("change requests" is not the requests library)."""
     alts = sorted(aliases(skill), key=len, reverse=True)
-    return re.compile(r"(?<![a-z0-9])(?:" + "|".join(map(re.escape, alts)) + r")(?![a-z0-9])")
+    veto = "".join(f"(?<!{re.escape(w)} )" for w in _entry(skill).get("not_after", []))
+    return re.compile(r"(?<![a-z0-9])" + veto + "(?:" + "|".join(map(re.escape, alts)) + r")(?![a-z0-9])")
 
 
 def mentions(text: str, skill: str) -> bool:

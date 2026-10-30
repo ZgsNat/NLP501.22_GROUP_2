@@ -54,6 +54,9 @@ skills:
     group: api
   requests:
     aliases: [python requests, requests library, requests]
+    # real CVs: "change requests", "customer requests", "make requests to the API" are not the library
+    not_after: [change, customer, service, feature, pull, merge, user, client, support, access, make, making, handle,
+                handled, handling, incoming, business, http, api, rest, web, get, post, put, delete]
     related: [restassured, postman, pytest]
     group: api
   restsharp:
@@ -161,6 +164,27 @@ skills:
     aliases: [istqb, istqb foundation, istqb advanced, certified tester]
     related: []
     group: certification
+  # --- Seen in real enterprise QA CVs (docs/REALTEXT_RESULTS.md) ---
+  uft:
+    aliases: [uft, qtp, hp uft, micro focus uft, unified functional testing, quicktest professional]
+    related: [selenium, katalon]
+    group: web_e2e
+  sikuli:
+    aliases: [sikuli, sikulix]
+    related: [autoit]
+    group: desktop
+  autoit:
+    aliases: [autoit]
+    related: [sikuli]
+    group: desktop
+  hp_alm:
+    aliases: [hp alm, hpqc, hp qc, hp quality center, quality center, alm]
+    related: [jira]
+    group: test_management
+  jira:
+    aliases: [jira]
+    related: [hp_alm]
+    group: test_management
   page_object_model:
     aliases: [page object model, pom, page object]
     related: [cucumber]
