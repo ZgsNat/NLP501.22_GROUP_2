@@ -54,7 +54,7 @@ def fetch(ref: str = "origin/coding") -> None:
     git = lambda *a: subprocess.run(["git", *a], cwd=ROOT, check=True, capture_output=True).stdout  # noqa: E731
     files = git("ls-tree", "-r", "--name-only", ref, "data/synthetic", "data/jds/jds.yaml").decode().split("\n")
     for f in filter(None, files):
-        if f.endswith((".txt", "gold.json", "jds.yaml")):
+        if f.endswith((".txt", "gold.json", "latent.json", "jds.yaml")):
             out = CODING_DIR / ("cvs/" + Path(f).name if f.endswith(".txt") else Path(f).name)
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_bytes(git("show", f"{ref}:{f}"))

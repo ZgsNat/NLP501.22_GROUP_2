@@ -119,6 +119,10 @@ skills:
     aliases: [gitlab ci, gitlab ci/cd, gitlab-ci]
     related: [github_actions, jenkins]
     group: cicd
+  azure_devops:
+    aliases: [azure devops, azure pipelines, ado pipelines]
+    related: [github_actions, gitlab_ci, jenkins]
+    group: cicd
   docker:
     aliases: [docker, docker compose, containers]
     related: [kubernetes]
@@ -146,6 +150,10 @@ skills:
     group: language
   csharp:
     aliases: [c#, csharp, .net, dotnet]
+    related: [java]
+    group: language
+  kotlin:
+    aliases: [kotlin]
     related: [java]
     group: language
   # --- Certification / concepts ---

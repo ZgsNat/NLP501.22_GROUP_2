@@ -6,6 +6,8 @@ matched in English and Vietnamese because real Vietnamese CVs put "Ngày sinh / 
 
 import re
 
+from app.nlp.segment import heading_kind
+
 # "Label: value" lines whose whole line is removed. Order matters only for the kind reported.
 LABELLED = {
     "name": r"full name|name|họ và tên|họ tên|tên",
@@ -32,6 +34,25 @@ INLINE = {
 }
 
 
+# A gender value on a short "label: value" line, even when OCR noise broke the label ("%%nd~r: Female").
+GENDER_VALUE = re.compile(r"^[^\n:：]{0,20}[:：]\s*(?:male|female|nam|nữ)\s*$", re.I | re.M)
+# Words that make a header line a job title or a heading, not a person's name.
+NOT_A_NAME = re.compile(
+    r"\b(?:qa|qc|tester|test|testing|engineer|automation|developer|senior|junior|lead|manager|sdet|intern|cv|resume|"
+    r"curriculum|vitae|profile|summary|experience|skills|kỹ sư|kiểm thử|chuyên viên|lập trình|hồ sơ)\b", re.I)
+
+
+def header_name(text: str) -> str | None:
+    """The candidate's name when it heads the CV unlabelled (the most common layout): one of the first 3 non-empty
+    lines with 2-5 capitalised tokens, no digits, no contact punctuation and no job or heading words."""
+    for line in [ln.strip().lstrip("#").strip().strip("*").strip() for ln in text.split("\n") if ln.strip()][:3]:
+        tokens = line.split()
+        if (2 <= len(tokens) <= 5 and all(t[0].isupper() for t in tokens) and not re.search(r"[\d:|@/,()]", line)
+                and not NOT_A_NAME.search(line) and heading_kind(line) is None):
+            return line
+    return None
+
+
 def _kind(label: str) -> str:
     return next(k for k, v in LABELLED.items() if re.fullmatch(v, label.strip(), re.I))
 
@@ -46,6 +67,12 @@ def redact(text: str) -> tuple[str, dict[str, int]]:
         return f"[REDACTED:{kind}]"
 
     text = LABEL_LINE.sub(labelled, text)
+    if name := header_name(text):
+        text, k = re.subn(re.escape(name), "[REDACTED:name]", text, flags=re.I)
+        counts["name"] = counts.get("name", 0) + k
+    text, k = GENDER_VALUE.subn("[REDACTED:gender]", text)
+    if k:
+        counts["gender"] = counts.get("gender", 0) + k
     for kind, rx in INLINE.items():
         def inline(m: re.Match, kind: str = kind) -> str:
             digits = re.sub(r"\D", "", m[0])

@@ -51,6 +51,15 @@ def test_redact_contacts_and_protected_attributes_but_not_dates():
     assert "2019/05–2021/08" in text and "3,200-case" in text
 
 
+def test_redact_unlabelled_header_name_and_garbled_gender_but_not_titles():
+    raw = "Phạm Minh Tuấn\nAutomation Test Engineer\nEmail: t@example.com\n%%nd~r: Female\n\nSUMMARY\nPhạm Minh Tuấn tests apps."
+    text, counts = redact(raw)
+    assert "Tuấn" not in text and "Female" not in text and counts["name"] == 2 and counts["gender"] == 1
+    assert "Automation Test Engineer" in text and "SUMMARY" in text
+    for keep in ("# Senior QA\n\nWORK EXPERIENCE\n- Built tests", "WORK EXPERIENCE\nSenior Automation Engineer — Bank"):
+        assert redact(keep)[0] == keep
+
+
 @pytest.mark.parametrize("line, kind", [
     ("## Experience", "experience"), ("WORK EXPERIENCE", "experience"), ("Employment History:", "experience"),
     ("Kinh nghiệm làm việc", "experience"), ("Summary / Tóm tắt", "summary"), ("**Key Projects**", "projects"),
@@ -77,6 +86,15 @@ def test_open_ended_ranges_end_today():
     today = date(2026, 1, 15)
     assert segment.date_range("03/2021 - nay", today) == (2021 * 12 + 2, 2026 * 12 + 1)
     assert segment.date_range("Since 2022", today) == (2022 * 12, 2026 * 12 + 1)
+
+
+def test_double_spaced_cv_parses_like_single_spaced():
+    single = "## Experience\nPrincipal QA Engineer, Shop\nJan 2020 – Dec 2023\n- Built a Playwright framework.\n" \
+             "QA Engineer, Bank\n2016 – 2019\n- Wrote Selenium tests."
+    double = single.replace("\n", "\n\n")
+    a, b = process("CV-1", single), process("CV-2", double)
+    assert [e.title for e in a.entries] == [e.title for e in b.entries] == ["Principal QA Engineer, Shop", "QA Engineer, Bank"]
+    assert a.years_automation == b.years_automation
 
 
 def test_merged_months_does_not_double_count_overlaps():
@@ -197,3 +215,5 @@ def test_quality_flags_and_duplicates():
     b = process("CV-B", CV + "\nHobbies: chess.", "Senior QA")
     assert quality.duplicates([a, b]) == {"CV-B": "CV-A"}
     assert not {"few_skills", "no_dated_roles", "no_experience_section"} & set(quality.flags(a))
+    garbled = process("CV-G", "Aut%%ati#n T#@t Engi%#er\nEXPERIENCE\nW#ote S%lenium t~sts f#r a b@nk.")
+    assert "garbled_text" in quality.flags(garbled) and "garbled_text" not in quality.flags(a)

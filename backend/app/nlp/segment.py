@@ -142,13 +142,15 @@ def entries(text: str, secs: list[Section], today: date | None = None) -> list[E
             rng = date_range(s, today)
             if s.startswith("###") or s.startswith("**") or rng:
                 j = i
+                # the previous non-empty line: double-spaced CVs put a blank line between title and dates
+                k = next((x for x in range(i - 1, -1, -1) if lines[x].strip()), None)
                 # "Senior QA — Bank\nJan 2020 – Present": the dates line belongs to the title above it
-                if rng and len(RANGE.sub("", s).strip(" |,()–-")) < 4 and i and lines[i - 1].strip() \
-                        and not lines[i - 1].strip().startswith("- ") and (not anchors or anchors[-1][0] != i - 1):
-                    j = i - 1
+                if rng and len(RANGE.sub("", s).strip(" |,()–-")) < 4 and k is not None \
+                        and not lines[k].strip().startswith("- ") and (not anchors or anchors[-1][0] != k):
+                    j = k
                 if anchors and anchors[-1][0] == j:
                     continue
-                if anchors and anchors[-1][0] == j - 1 and rng and not anchors[-1][1]:
+                if anchors and anchors[-1][0] == k and rng and not anchors[-1][1]:
                     anchors[-1] = (anchors[-1][0], rng)  # title line then date line
                     continue
                 anchors.append((j, rng))
@@ -157,7 +159,8 @@ def entries(text: str, secs: list[Section], today: date | None = None) -> list[E
             continue
         for n, (i, rng) in enumerate(anchors):
             if rng is None:  # dates may sit on the next non-empty line(s)
-                rng = next((r for r in (date_range(x, today) for x in lines[i + 1:i + 3]) if r), None)
+                rng = next((r for r in (date_range(x, today) for x in [ln for ln in lines[i + 1:i + 6] if ln.strip()][:2])
+                            if r), None)
             end = offsets[anchors[n + 1][0]] if n + 1 < len(anchors) else sec.end
             title = lines[i].strip().lstrip("#*").strip().rstrip("*").strip()
             out.append(Entry(sec.kind, title, offsets[i], end, *(rng or (None, None))))

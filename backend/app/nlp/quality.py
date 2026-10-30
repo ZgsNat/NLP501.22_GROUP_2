@@ -6,12 +6,23 @@ import re
 from app.nlp.pipeline import CVProfile
 
 
+# Symbols inside words ("Aut%%ati#n"): OCR / encoding noise. Letter ratio alone misses it (the noise is sparse).
+NOISY = re.compile(r"\w[%~#@^*]+\w|[%~#@^]{2,}")
+
+
+def noisy_rate(text: str) -> float:
+    toks = [t for t in text.split() if "[REDACTED" not in t]
+    return sum(bool(NOISY.search(t)) for t in toks) / max(len(toks), 1)
+
+
 def flags(p: CVProfile) -> list[str]:
+    """Thresholds measured on the coding set (docs/EXTRACTION_RESULTS.md): garbled CVs have ≥ 55% noisy tokens, clean
+    ones ≤ 3%; template CVs have a median of 68 words, so "short" means almost no content, not "concise"."""
     words = len(p.text.split())
     out = []
-    if words < 120:
+    if words < 50:
         out.append("short_text")
-    if sum(ch.isalpha() for ch in p.text) / max(len(p.text), 1) < 0.45:
+    if sum(ch.isalpha() for ch in p.text) / max(len(p.text), 1) < 0.45 or noisy_rate(p.text) > 0.15:
         out.append("garbled_text")
     if len(p.skills) < 3:
         out.append("few_skills")

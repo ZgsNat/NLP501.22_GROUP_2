@@ -32,6 +32,8 @@ cd backend && uv run python -m app.rag.ingest            # (re)index data/ into 
 cd backend && uv run python -m scripts.smoke JD-002      # end-to-end in terminal, auto-answers HR
 uv run pytest                                            # tests (no LLM, no Docker needed)
 cd backend && uv run python -m app.eval.run retrieval    # B0–B3 + chunking ablation (minutes); `agent` = LLM systems; `report`
+cd backend && uv run python -m app.eval.extraction       # RQ1: CV/JD extraction F1 + redaction leaks vs the coding branch's generator truth
+cd backend && uv run python -m app.eval.robustness       # Q11: counterfactual fairness (name/gender/age/marital twins) + format robustness
 uv run uvicorn app.main:app --app-dir backend --reload   # API :8000
 cd frontend && npm run dev                               # UI :5173
 ```
@@ -39,6 +41,7 @@ cd frontend && npm run dev                               # UI :5173
 ## Rules
 - Package manager is **uv** (Python) and **npm** (frontend). Docker Desktop, not Colima.
 - LLM output never drives deterministic logic raw: canonicalize at the boundary (see `scoring.canonicalize`).
+- Every LLM output has a criterion, a check and an action on failure (`docs/AI_OUTPUT_CRITERIA.md`, Q1–Q13; checks in `agent/checks.py`). A new LLM output needs a Q row too.
 - Every loop has a limit in `config.Settings`. New loops need one too.
 - Code that runs before `interrupt()` re-runs on resume, so keep it cheap and idempotent.
 - No PII, protected attributes or real CVs in `data/`. Secrets live only in `.env` (gitignored).
