@@ -1,6 +1,9 @@
 import pytest
 
+from app.agent.schemas import CRITERIA
 from app.agent.scoring import (
+    rule_criteria,
+    rule_total,
     apply_instruction,
     canonicalize,
     check_evidence,
@@ -127,7 +130,6 @@ def test_apply_instruction_renormalises():
 
 
 def test_rule_total_prefers_demonstrated_work_over_claims():
-    from app.agent.scoring import rule_total
 
     req = {"must_have": ["selenium"], "nice_to_have": [], "min_years": 3, "depth_level": 3}
     w = {"tools": 0.4, "automation_depth": 0.3, "experience_level": 0.2, "istqb": 0.1, "domain_language": 0.5}
@@ -144,3 +146,53 @@ def test_fallback_uses_separates_jd_alternatives_from_l2_fallbacks():
     assert fallback_uses(p, ["robot_framework", "jenkins"], subs, {"robot_framework": ["selenium"]}) == \
         ["selenium for robot_framework"]
     assert fallback_uses(p, ["jenkins"], subs, {}) == []
+
+
+def test_rule_criteria_score_all_eight_from_the_profile():
+    p = cv("## Experience\n### SDET — Bank (2019–2024)\n- Designed a Playwright + TypeScript framework for payment APIs\n"
+           "- Ran suites in GitLab CI on Docker runners\n## Skills\nJava, Postman\nEnglish (IELTS 7.0)")
+    req = {"must_have": ["playwright", "java"], "nice_to_have": ["docker"], "languages": [], "test_types": ["api"],
+           "min_years": 3, "depth_level": 3, "foreign_languages": ["english"], "domains": ["banking"]}
+    subs = {"java": ["typescript", "python"], "playwright": []}
+    r = rule_criteria(p, req, subs)
+    assert set(r) == set(CRITERIA) and all(v["rationale"].endswith("[rule-based]") for v in r.values())
+    assert r["programming_language"]["score"] == 100  # TypeScript used: one of the JD's languages is enough
+    assert r["automation_depth"]["score"] == 75  # L3 from "Designed … framework"
+    assert r["domain_language"]["score"] == 100  # English named, banking in an experience entry
+    assert 0 < rule_total(p, req, subs, {k: 1 / 8 for k in CRITERIA}) <= 1
+
+
+def test_cicd_counts_a_one_of_group_once_and_transfers_between_ci_servers():
+    p = cv("## Experience\n### QA — Co (2020–2023)\n- Ran the regression suite in Jenkins on every merge")
+    req = {"must_have": ["gitlab_ci"], "nice_to_have": [], "languages": [], "test_types": []}
+    one_of = rule_criteria(p, req, {"gitlab_ci": ["github_actions", "jenkins"]})["cicd_infra"]
+    assert one_of["score"] == 100  # Jenkins satisfies "GitLab CI, GitHub Actions or Jenkins" in full
+    other_ci = rule_criteria(p, req, {})["cicd_infra"]
+    assert other_ci["score"] == 60  # only GitLab CI asked: another CI server transfers 60%
+
+
+def test_test_types_average_over_what_the_jd_needs():
+    p = cv("## Experience\n### QA — Co (2020–2023)\n- Wrote API tests with RestAssured")
+    req = {"must_have": [], "nice_to_have": [], "languages": [], "test_types": ["api", "mobile"]}
+    assert rule_criteria(p, req, {})["test_types"]["score"] == 50  # api proven, mobile missing
+
+
+def test_card_decomposition_adds_up_and_what_if_explains_a_knock_out():
+    from app.agent.scoring import counterfactuals, decomposition
+    p = cv("## Experience\n### QA — Co (2019–2024)\n- Designed a Cypress framework in TypeScript\n- Ran it in GitHub Actions")
+    req = {"must_have": ["cypress", "java"], "nice_to_have": ["docker"], "languages": [], "test_types": []}
+    w = {k: 1 / 8 for k in CRITERIA}
+    crit = rule_criteria(p, req, {})
+    assert abs(sum(d["contribution"] for d in decomposition(crit, w)) - rule_total(p, req, {}, w)) < 1e-3
+    (what_if,) = counterfactuals(p, req, {}, w)  # knocked out for java → one scenario with every missing must-have
+    assert what_if["if_used"] == ["java"] and what_if["passes_knockout"] and what_if["total"] > 0
+
+
+def test_hr_preferences_calibrate_weights_towards_what_hr_chose():
+    from app.agent.scoring import calibrate_weights, preferences
+    pairs = preferences([{"cv_id": "A", "action": "approve"}, {"cv_id": "B", "action": "reject"}], ["B", "A"])
+    assert pairs == [("A", "B")]
+    scores = {"A": {"istqb": 1.0, "tools": 0.5}, "B": {"istqb": 0.0, "tools": 0.9}}
+    w = calibrate_weights(pairs, scores, {"istqb": 0.5, "tools": 0.5})
+    assert w["istqb"] > 0.5 > w["tools"] and abs(sum(w.values()) - 1) < 1e-3
+    assert preferences([{"cv_id": "C", "action": "override", "new_rank": 1}], ["A", "B", "C"]) == [("C", "A"), ("C", "B")]

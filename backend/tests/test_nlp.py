@@ -164,3 +164,36 @@ def test_read_docx():
     assert text == "WORK EXPERIENCE\n- Built a Playwright framework"
     with pytest.raises(ValueError):
         read_file("cv.png", b"")
+
+
+def test_jd_parser_reads_sections_cues_and_one_of_groups():
+    from app.nlp.jd import parse
+    jd = ("# QA Automation Engineer\n## About the role\nA retail bank building mobile banking apps.\n"
+          "## Responsibilities\n- Build API test suites with RestAssured and run them in CI.\n"
+          "## Requirements\nMust have:\n- 3+ years in test automation.\n- Selenium WebDriver.\n- Java, Python or TypeScript.\n"
+          "- CI experience (Jenkins or GitLab CI).\nNice to have:\n- Docker and Kubernetes.\n- ISTQB is a plus.\n"
+          "## Benefits\n- Health insurance and a MacBook.")
+    r = parse(jd)
+    assert r["must_have"] == ["selenium", "java", "jenkins"]
+    assert r["substitutes"] == {"java": ["python", "typescript"], "jenkins": ["gitlab_ci"]}
+    assert {"docker", "kubernetes", "istqb", "restassured"} <= set(r["nice_to_have"])
+    assert r["min_years"] == 3 and r["depth_level"] == 2 and r["test_types"] == ["api"]
+    assert r["domains"] == ["banking"]  # "health insurance" sits under Benefits and is ignored
+
+
+def test_jd_parser_vietnamese():
+    from app.nlp.jd import parse
+    r = parse("## Yêu cầu\n- Tối thiểu 2 năm kinh nghiệm kiểm thử tự động\n- Thành thạo Selenium và Java\n"
+              "- Kiểm thử API (RestAssured hoặc Postman)\nƯu tiên:\n- Biết Docker, tiếng Anh tốt")
+    assert r["must_have"] == ["selenium", "java", "restassured"] and r["substitutes"] == {"restassured": ["postman"]}
+    assert r["nice_to_have"] == ["docker"] and r["min_years"] == 2 and r["foreign_languages"] == ["english"]
+
+
+def test_quality_flags_and_duplicates():
+    from app.nlp import quality
+    short = process("CV-S", "Tester. Selenium.")
+    assert {"short_text", "few_skills", "no_dated_roles"} <= set(quality.flags(short))
+    a = process("CV-A", CV, "Senior QA")
+    b = process("CV-B", CV + "\nHobbies: chess.", "Senior QA")
+    assert quality.duplicates([a, b]) == {"CV-B": "CV-A"}
+    assert not {"few_skills", "no_dated_roles", "no_experience_section"} & set(quality.flags(a))

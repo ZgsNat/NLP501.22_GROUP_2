@@ -6,43 +6,13 @@ import re
 from difflib import SequenceMatcher
 
 from app.nlp.extract import CREDIT
+from app.nlp.jd import DOMAINS, FOREIGN, canonicalize
 from app.nlp.pipeline import CVProfile
 from app.nlp.segment import ENTRY_SECTIONS
 from app.nlp.taxonomy import aliases, group, mentions, related, skills
+from app.nlp.taxonomy import key as tkey
 
-__all__ = ["aliases", "mentions", "related"]  # re-exported: the taxonomy moved to app.nlp.taxonomy
-
-
-AND = re.compile(r"\s+(?:and|và)\s+|;\s*")
-OR = re.compile(r"\s(?:or|hoặc)\s|/")
-SOFT = re.compile(r"\b(?:or similar|or equivalent|e\.g\.|such as|a plus)\b|tương tự|tương đương")
-
-
-def canonicalize(phrases: list[str]) -> tuple[list[str], list[str], dict[str, list[str]]]:
-    """Map free-text requirement phrases onto taxonomy keys → (hard, soft, substitutes). Each and-clause is read on
-    its own, in English and Vietnamese, so one phrase can hold several "one of" groups.
-
-    "playwright and typescript"                          → hard [playwright, typescript]
-    "selenium or cypress"                                → hard [selenium], substitutes {selenium: [cypress]}
-    "github actions or similar" / "jenkins … tương tự"   → soft [github_actions]  (never a knock-out)
-    "(java, typescript or python) and ci (gitlab ci or jenkins)" → hard [java, gitlab_ci], two substitute groups
-    """
-    keys = list(skills())
-    hard, soft, subs = [], [], {}
-    for clause in (c for phrase in phrases for c in AND.split(phrase.lower())):
-        found = [k for k in keys if mentions(clause, k)]
-        found.sort(key=lambda k: min(clause.find(a) for a in aliases(k) if a in clause))
-        if not found:
-            continue
-        if SOFT.search(clause):
-            soft += found
-        elif OR.search(clause):
-            hard.append(found[0])
-            subs[found[0]] = [*subs.get(found[0], []), *found[1:]]
-        else:
-            hard += found
-    dedup = lambda xs: list(dict.fromkeys(xs))  # noqa: E731
-    return dedup(hard), [s for s in dedup(soft) if s not in hard], {m: dedup(v) for m, v in subs.items()}
+__all__ = ["aliases", "canonicalize", "mentions", "related"]  # re-exported from app.nlp (moved in v2/v3)
 
 
 def _usable(p: CVProfile, skill: str):
@@ -127,16 +97,192 @@ def experience_rule(p: CVProfile, min_years: int | None) -> dict:
                       p.years_source[:3], "experience")
 
 
+CORE4 = ("tools", "istqb", "experience_level", "automation_depth")  # the v2 rule pre-score (B3)
+TEST_TYPE_GROUPS = {"web": "web_e2e", "ui": "web_e2e", "e2e": "web_e2e", "mobile": "mobile", "api": "api",
+                    "contract": "api", "performance": "performance", "load": "performance"}
+
+
+def _best_in(p: CVProfile, keys) -> tuple[float, str | None]:
+    """Best evidence credit (used 1.0 / listed 0.7 / hedged 0.2) among `keys`, and that mention's line."""
+    ms = [m for k in keys if (m := p.best(k))]
+    m = max(ms, key=lambda m: CREDIT[m.strength], default=None)
+    return (CREDIT[m.strength], m.line) if m else (0.0, None)
+
+
+def _group_keys(groups: set[str]) -> list[str]:
+    return [k for k in skills() if group(k) in groups]
+
+
+def _units(req: dict, subs: dict[str, list[str]], groups: set[str]) -> list[list[str]]:
+    """Requirements touching `groups`, one unit per requirement: a must-have with its JD alternatives is ONE unit
+    ("GitLab CI, GitHub Actions or Jenkins"), each nice-to-have is its own unit."""
+    units = [[tkey(m), *(tkey(s) for s in subs.get(m, []))] for m in req["must_have"]]
+    units += [[tkey(n)] for n in (*req["nice_to_have"], *req.get("languages", []))]
+    seen, out = set(), []
+    for u in units:
+        u = [k for k in dict.fromkeys(u) if group(k) in groups]
+        if u and not seen.issuperset(u):
+            seen.update(u)
+            out.append(u)
+    return out
+
+
+def depth_rule(p: CVProfile, required: int | None) -> dict:
+    level = max(p.depth_cue, 1)
+    return _criterion(depth_score(level, required), f"L{level} from the candidate's own action verbs"
+                      + (f" (JD asks L{required})" if required else ""),
+                      [p.depth_cue_line] if p.depth_cue_line else [], "experience")
+
+
+def language_rule(p: CVProfile, req: dict, subs: dict[str, list[str]]) -> dict:
+    """Any one of the JD's programming languages is enough ("Java, TypeScript or Python")."""
+    wanted = [k for u in _units(req, subs, {"language"}) for k in u]
+    credit, line = _best_in(p, wanted or _group_keys({"language"}))
+    return _criterion(round(100 * credit), (f"best of {wanted}" if wanted else "no language named by the JD; best "
+                                            "language shown") + f": credit {credit:g}", [line] if line else [])
+
+
+def test_types_rule(p: CVProfile, req: dict, subs: dict[str, list[str]]) -> dict:
+    """Mean over the test types the JD needs (from its stated types and the groups of its tools)."""
+    types = {TEST_TYPE_GROUPS[t] for t in (x.lower() for x in req.get("test_types", [])) if t in TEST_TYPE_GROUPS}
+    types |= {group(u[0]) for u in _units(req, subs, set(TEST_TYPE_GROUPS.values()))}
+    if not types:
+        credit, line = _best_in(p, _group_keys(set(TEST_TYPE_GROUPS.values())))
+        return _criterion(round(100 * credit), "no test type named by the JD; best shown", [line] if line else [])
+    per = {t: _best_in(p, _group_keys({t})) for t in sorted(types)}
+    return _criterion(round(100 * sum(c for c, _ in per.values()) / len(per)),
+                      "; ".join(f"{t} {c:g}" for t, (c, _) in per.items()), [ln for _, ln in per.values() if ln])
+
+
+def cicd_rule(p: CVProfile, req: dict, subs: dict[str, list[str]]) -> dict:
+    """Each CI/infra tool the JD names; another CI server transfers 60% (Jenkins → GitLab CI is a short step)."""
+    units = _units(req, subs, {"cicd", "infra"})
+    ci_any, ci_line = _best_in(p, _group_keys({"cicd"}))
+    if not units:
+        infra, infra_line = _best_in(p, _group_keys({"infra"}))
+        return _criterion(round(100 * (0.8 * ci_any + 0.2 * infra)), "no CI/infra named by the JD; best shown",
+                          [x for x in (ci_line, infra_line) if x])
+    per = {}
+    for u in units:
+        c, line = _best_in(p, u)
+        if group(u[0]) == "cicd" and 0.6 * ci_any > c:
+            c, line = 0.6 * ci_any, ci_line
+        per[" or ".join(u)] = (c, line)
+    return _criterion(round(100 * sum(c for c, _ in per.values()) / len(per)),
+                      "; ".join(f"{k} {c:g}" for k, (c, _) in per.items()), [ln for _, ln in per.values() if ln])
+
+
+def domain_language_rule(p: CVProfile, req: dict) -> dict:
+    """Foreign languages and business domains the JD names (parsed from the JD text, see app.nlp.jd)."""
+    low, parts, quotes = p.text.lower(), [], []
+    for lang in req.get("foreign_languages", []):
+        hit = re.search(FOREIGN[lang], low)
+        parts.append((lang, 1.0 if hit else 0.0))
+        quotes += [ln.strip() for ln in p.text.splitlines() if hit and re.search(FOREIGN[lang], ln.lower())][:1]
+    for dom in req.get("domains", []):
+        work = [c for c in p.chunks if c.section in ENTRY_SECTIONS and re.search(DOMAINS[dom], c.text.lower())]
+        parts.append((dom, 1.0 if work else 0.5 if re.search(DOMAINS[dom], low) else 0.0))
+        quotes += [ln.strip() for c in work[:1] for ln in c.text.splitlines() if re.search(DOMAINS[dom], ln.lower())][:1]
+    if not parts:
+        return _criterion(50, "JD names no foreign language or domain: neutral", [])
+    return _criterion(round(100 * sum(c for _, c in parts) / len(parts)),
+                      "; ".join(f"{k} {c:g}" for k, c in parts), quotes)
+
+
+def rule_criteria(p: CVProfile, req: dict, subs: dict[str, list[str]],
+                  fallbacks: dict[str, list[str]] | None = None) -> dict[str, dict]:
+    """All 8 criteria from the parsed CV, zero tokens: Score = 1[H(c)] × Σ w·S is fully deterministic and every S has
+    the CV line it came from. The LLM explains and arbitrates; it does not set these numbers."""
+    return {"tools": tools_score(p, req["must_have"], req["nice_to_have"], subs, fallbacks),
+            "automation_depth": depth_rule(p, req.get("depth_level")),
+            "programming_language": language_rule(p, req, subs),
+            "test_types": test_types_rule(p, req, subs),
+            "cicd_infra": cicd_rule(p, req, subs),
+            "experience_level": experience_rule(p, req.get("min_years")),
+            "istqb": istqb_score(p.text),
+            "domain_language": domain_language_rule(p, req)}
+
+
 def rule_total(p: CVProfile, req: dict, subs: dict[str, list[str]], weights: dict[str, float],
-               fallbacks: dict[str, list[str]] | None = None) -> float:
-    """Zero-token pre-score from the parsed CV: tools, ISTQB, years and the verb depth cue, weighted like the final
-    score (renormalised over these four). Orders what the LLM never sees and helps choose who it sees (B3)."""
-    crit = {"tools": tools_score(p, req["must_have"], req["nice_to_have"], subs, fallbacks)["score"],
-            "istqb": istqb_score(p.text)["score"],
-            "experience_level": experience_rule(p, req.get("min_years"))["score"],
-            "automation_depth": depth_score(max(p.depth_cue, 1), req.get("depth_level"))}
+               fallbacks: dict[str, list[str]] | None = None, criteria: tuple[str, ...] | None = None) -> float:
+    """Zero-token score from the parsed CV, weighted like the final score and renormalised over `criteria` (all 8 by
+    default; CORE4 is the v2 pre-score). Orders the pool and chooses who the LLM explains."""
+    crit = {k: v["score"] for k, v in rule_criteria(p, req, subs, fallbacks).items() if not criteria or k in criteria}
     total_w = sum(weights.get(k, 0.0) for k in crit) or 1.0
     return round(sum(weights.get(k, 0.0) * v for k, v in crit.items()) / total_w / 100, 4)
+
+
+# ── Explanation cards (ported from the `coding` branch, report/explain.py: L2 decomposition, L4 contrastive,
+# L5 counterfactual). Deterministic and zero tokens: they explain the rule score, so they always add up.
+def decomposition(criteria: dict[str, dict], weights: dict[str, float]) -> list[dict]:
+    """Per criterion: weight × S = contribution. The contributions sum to the weighted total."""
+    return [{"criterion": k, "weight": round(w, 4), "score": criteria[k]["score"],
+             "contribution": round(w * criteria[k]["score"] / 100, 4)} for k, w in weights.items() if k in criteria]
+
+
+def contrastive(mine: dict[str, dict], theirs: dict[str, dict], weights: dict[str, float], other_id: str) -> dict:
+    """Why this candidate sits above the next one: the criteria with the largest weighted differences."""
+    d = sorted(((k, w * (mine[k]["score"] - theirs[k]["score"]) / 100) for k, w in weights.items()
+                if k in mine and k in theirs), key=lambda t: -t[1])
+    return {"vs": other_id, "advantages": [{"criterion": k, "delta": round(x, 4)} for k, x in d if x > 1e-4][:3],
+            "disadvantages": [{"criterion": k, "delta": round(x, 4)} for k, x in d[::-1] if x < -1e-4][:2]}
+
+
+def counterfactuals(p: CVProfile, req: dict, subs: dict[str, list[str]], weights: dict[str, float],
+                    fallbacks: dict[str, list[str]] | None = None, limit: int = 3) -> list[dict]:
+    """"If the CV showed X in a role": for each required tool it lacks (must-haves first), the knock-out and score
+    it would get. Tells HR what to probe in interview and how close a knocked-out candidate was."""
+    from dataclasses import replace as dc_replace
+
+    from app.nlp.extract import Mention
+
+    lacks = lambda k: not (_usable(p, k) or any(_usable(p, s) for s in subs.get(k, [])))  # noqa: E731
+    missing = [m for m in req["must_have"] if lacks(m)]
+    base = 0.0 if missing else rule_total(p, req, subs, weights, fallbacks)
+    # knocked out → one scenario with every missing must-have; otherwise one per missing tool, must-haves first
+    scenarios = [missing] if missing else [[n] for n in req["nice_to_have"] if lacks(n)]
+    out = []
+    for keys in scenarios[:limit]:
+        q = dc_replace(p, skills={**p.skills, **{tkey(k): [Mention(tkey(k), "", "experience", "used", "")] for k in keys}})
+        ko = knockout_reason(q, req["must_have"], subs) is not None
+        total = 0.0 if ko else rule_total(q, req, subs, weights, fallbacks)
+        out.append({"if_used": keys, "must_have": bool(missing), "passes_knockout": not ko, "total": round(total, 4),
+                    "delta": round(total - base, 4)})
+    return out
+
+
+# ── HR decisions → weights (ported from the `coding` branch, hitl/audit.py, FR-29/30) ─────────────────
+def preferences(decisions: list[dict], ranking: list[str]) -> list[tuple[str, str]]:
+    """(preferred, other) pairs: every approved CV over every rejected one; an override above the CVs it passes."""
+    approved = [d["cv_id"] for d in decisions if d["action"] == "approve"]
+    rejected = [d["cv_id"] for d in decisions if d["action"] == "reject"]
+    pairs = [(a, r) for a in approved for r in rejected]
+    order = list(ranking)
+    for d in decisions:
+        if d["action"] == "override" and d["cv_id"] in order and d.get("new_rank"):
+            old, new = order.index(d["cv_id"]), min(d["new_rank"] - 1, len(order) - 1)
+            pairs += [(d["cv_id"], o) for o in order[new:old]] + [(o, d["cv_id"]) for o in order[old + 1:new + 1]]
+    return pairs
+
+
+def calibrate_weights(pairs: list[tuple[str, str]], scores: dict[str, dict[str, float]], prior: dict[str, float],
+                      l2: float = 1.0, lr: float = 0.5, epochs: int = 500) -> dict[str, float]:
+    """Pairwise logistic regression on ΔS (criterion scores 0–1), shrunk towards the current weights: the weights
+    that best explain HR's choices without drifting far from the company profile. Σw = 1, w ≥ 0."""
+    import numpy as np
+
+    keys = list(prior)
+    x = np.array([[scores[a].get(k, 0) - scores[b].get(k, 0) for k in keys] for a, b in pairs
+                  if a in scores and b in scores], dtype=float)
+    w0 = np.array([prior[k] for k in keys], dtype=float)
+    if not len(x):
+        return dict(prior)
+    w = w0.copy()
+    for _ in range(epochs):
+        pr = 1 / (1 + np.exp(-(x @ w)))
+        w -= lr * (-(x.T @ (1 - pr)) / len(x) + l2 * (w - w0))
+    w = np.clip(w, 0, None)
+    return {k: round(float(v / (w.sum() or 1)), 4) for k, v in zip(keys, w)}
 
 
 def istqb_score(text: str) -> dict:

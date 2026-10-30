@@ -3,6 +3,7 @@
 from typing import Literal
 
 from pydantic import BaseModel, Field
+from pydantic.json_schema import SkipJsonSchema
 
 CRITERIA = (
     "tools",
@@ -34,6 +35,9 @@ class JDRequirements(BaseModel):
         description="Concrete questions for HR about requirements too vague to rank fairly (e.g. 'How many years is "
         "several?'). Empty list if the JD is specific enough. Never ask about anything already answered by HR."
     )
+    # Parsed from the JD text by app.nlp.jd, never asked of the LLM (kept out of the JSON schema it sees).
+    foreign_languages: SkipJsonSchema[list[str]] = []
+    domains: SkipJsonSchema[list[str]] = []
 
 
 class CriterionScore(BaseModel):
