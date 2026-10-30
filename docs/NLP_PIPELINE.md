@@ -17,7 +17,7 @@ raw file ─► X1 read_file ─► X2 normalize ─► X4 redact ─► X3 dete
   (one query per requirement)    N6 rule scores (tools, years)        + verified parser facts           grounded AND supported
 ```
 
-Every stage is deterministic, costs zero tokens and is unit-tested (`backend/tests/test_nlp.py`, 46 cases in English and Vietnamese). Code: `backend/app/nlp/`. IDs refer to the architecture map, `docs/architecture.html`.
+Every stage is deterministic, costs zero tokens and is unit-tested (`backend/tests/test_nlp.py`, 51 cases in English and Vietnamese). Code: `backend/app/nlp/`. IDs refer to the architecture map, `docs/architecture.html`.
 
 ## Stages
 
@@ -25,7 +25,7 @@ Every stage is deterministic, costs zero tokens and is unit-tested (`backend/tes
 |---|---|---|---|
 | X1 | `read_file` | PDF text layer (pypdf); DOCX paragraphs and tables (python-docx); MD and TXT | HR has PDFs and Word files, not markdown. Scanned PDFs are rejected with an "OCR needed" error rather than ranked as empty. |
 | X2 | `normalize` | Unicode NFC; strip zero-width characters and soft hyphens; expand ligatures; normalise bullets (`• ● ▪ + –` → `- `); de-hyphenate PDF line breaks; re-join hard-wrapped lines | PDFs and Word store Vietnamese diacritics *decomposed* (e + ◌̂ + ◌́). Without NFC, "kiểm thử" from a PDF and from a web form are different strings, so BM25, regexes and quote grounding fail silently. |
-| X4 | `redact` | Remove "label: value" lines (EN and VN: name, birth date, age, gender, marital status, nationality, religion, health, address, photo); inline email, URL and phone patterns. Phones must start with `+cc` or a trunk `0`, so year ranges like `2019.05-2021` are never removed. | The fairness policy forbids protected attributes. *Asking* an LLM to ignore them is a hope; deleting them before indexing and prompting is a guarantee. Uploads persist only the redacted text. |
+| X4 | `redact` | Remove "label: value" lines (EN and VN: name, birth date, age, gender, marital status, nationality, religion, health, address, photo); inline email, URL and phone patterns. Phones must start with `+cc` or a trunk `0`, so year ranges like `2019.05-2021` are never removed. v3.1: also the **unlabelled name heading the CV** (one of the first 3 lines with 2–5 capitalised tokens, no digits or contact punctuation, not a section heading or job title; masked wherever it recurs) and a **gender value under a garbled label** ("%%nd~r: Female"). | The fairness policy forbids protected attributes. *Asking* an LLM to ignore them is a hope; deleting them before indexing and prompting is a guarantee. Uploads persist only the redacted text. |
 | X3 | `detect_language` | Share of words with Vietnamese-only letters or Vietnamese function words: `vi` ≥ 35%, `mixed` ≥ 6% | Routing and reporting. The corpus has 44 en, 5 vi and 1 mixed CV. |
 | X5 | `sections`, `entries`, `date_range`, `merged_months` | A heading lexicon (≈90 EN and VN aliases, including bilingual headings like "Summary / Tóm tắt") accepted only on heading-like lines: markdown `#`, ALL CAPS, trailing colon, bold or short. Role and project entries are anchored on `###`, bold or dated lines. A date line attaches to the title line above it. The date grammar covers `Jan 2020 – Present`, `03/2021 - nay`, `2019/05–2021/08`, `Tháng 6/2019 – Tháng 2/2021`, `2018 to 2020` and `Since 2022`. Intervals are merged, and entries marked as a career break are excluded. | Years of experience are **computed from parsed dates**, not estimated by the LLM. A freelance job held alongside a full-time one is not double-counted. A career gap is neither counted nor penalised. All 50 CVs had parseable dated roles, giving 151 entries. |
 | X6 | `chunking.structural` (also `window` and `whole` for the ablation) | One chunk per role or project entry and one per other section, split at line boundaries above 150 words. Each chunk carries a **contextual header** ("Senior QA \| experience: Automation Engineer — Bank (2018–2021)"). The header is embedded with the chunk but kept out of its text, so offsets stay exact. | See the next section. |
@@ -92,6 +92,31 @@ It still lost the pre-registered comparison (EVAL.md §8) on both benchmarks. Wi
 
 Flags never remove a CV. They appear on its row in the ranking.
 
+v3.1 thresholds, measured on the coding set (`docs/EXTRACTION_RESULTS.md`): *garbled* = more than 15% noisy tokens
+(symbols inside words, "Aut%%ati#n"); garbled CVs score ≥ 55%, clean ones ≤ 3%. The letter-ratio test alone caught
+none of the 7 garbled CVs. *Short* = under 50 words: at 120 every template CV (median 68 words) was flagged, so the
+flag carried no information. Now 7/7 garbled CVs and 17/193 clean CVs are flagged, the latter all for having no dated
+roles. A garbled CV that is knocked out is handed to the investigator (N12), which reads it with fuzzy, verified tools.
+
+## Measured against external gold (v3.1)
+
+`python -m app.eval.extraction` scores the pipeline against the generator truth of Đán's 200 CVs, which our code was
+never developed on. Results are in `docs/EXTRACTION_RESULTS.md`:
+- tool F1 0.978 overall, 0.994 on clean CVs, 0.192 on garbled ones;
+- years MAE 0.79;
+- depth 89% exact;
+- 0% leak for every PII field.
+
+`python -m app.eval.robustness` builds counterfactual twins of every CV. On both benchmarks, name, gender, age and
+marital-status twins give identical masked input and 0 score changes (`docs/ROBUSTNESS_RESULTS.md`).
+
+The first run of these evaluations found three bugs, now fixed and tested:
+- **the bare-name leak** (100% of named CVs);
+- **the garbled-text flag** that never fired;
+- **double-spaced CVs losing role titles.** A blank line between "Principal QA Engineer, Shop" and its dates made
+  the date line the title, which inflated automation years from 8.0 to 14.8 (`segment.entries` now looks back to the
+  previous non-empty line).
+
 ## Faithfulness: grounded vs supported (N7, H15)
 
 v1 counted a quote as faithful if it **existed** in the CV (difflib ≥ 0.85). v2 adds a second level:
@@ -107,4 +132,4 @@ An ungrounded quote sends the assessment back to the LLM (L4). A grounded but un
 - **"Present"** resolves to today's date, so synthetic CVs written in 2025 gain about a year.
 - **No OCR.** Scanned PDFs are rejected rather than guessed.
 - **"X with A, B or C".** `canonicalize` makes A, B and C alternatives to X. The right reading here is X plus one of A, B or C. Grouping alternatives by taxonomy category would fix this phrasing, but it would make JD-008's "RestAssured with Java, **or** Postman/Newman" stricter than the JD means. Both phrasings are common, so a fix needs a test for each.
-- **Name lines without a label** (a bare name as the first line) are not removed. Uploads should use the template, or a NER-based name redactor is needed.
+- **Names elsewhere.** A bare name heading the CV is masked (v3.1); a name only inside prose (a signature line at the end, "Contact Nguyen …") is not. A NER-based name redactor would close that gap. Heavily garbled names survive in garbled form; those CVs are flagged.
