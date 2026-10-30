@@ -212,33 +212,61 @@ CV-031–050 (v2) stress the NLP pipeline:
 
 ## 6. Experiments and status
 
-Protocol: [`docs/EVAL.md`](docs/EVAL.md). Generated numbers: [`docs/EVAL_RESULTS.md`](docs/EVAL_RESULTS.md). 12 JDs × 50 CVs, silver labels (two independent annotators, κ = 0.919), local `qwen3:8b`, mean over JDs with 95% bootstrap CI.
+**Read first: [`docs/FINAL_REPORT.md`](docs/FINAL_REPORT.md)** (the final report) and
+[`final_presentation_group_2.html`](final_presentation_group_2.html) (the deck).
 
-| System | What it is | nDCG@10 | τ vs gold | traps@10 |
-|---|---|---|---|---|
-| B0 | BM25, whole CV | 0.794 | 0.27 | 6 |
-| B1 | Dense, whole CV | 0.741 | 0.31 | 14 |
-| B2 | Hybrid (BM25 + dense, RRF): the v1 retriever | 0.824 | 0.36 | 9 |
-| R structural + CE | Requirement-wise retrieval over structural chunks + cross-encoder | 0.842 | 0.45 | 1 |
-| B3 rules ⊕ CE | + hedge-aware knock-out and rule criteria from parsed facts, fused with CE (no LLM) | **0.871** [0.831, 0.913] | 0.54 | 0 |
-| B4 | Fixed pipeline: the agent with every loop off | 0.842 | 0.54 | 0 |
-| **P6** | Full agent | 0.838 [0.796, 0.884] | 0.54 | 0 |
-| A1 / A2 / A3 | P6 − verify / − company profile / − arbiter | 0.849 / 0.842 / 0.838 | 0.54 | 0 |
+**Protocol and generated numbers:**
+- protocol: [`docs/EVAL.md`](docs/EVAL.md);
+- generated numbers: [`docs/EVAL_RESULTS.md`](docs/EVAL_RESULTS.md) (ours) and
+  [`docs/EVAL_RESULTS_coding.md`](docs/EVAL_RESULTS_coding.md) (Đán's held-out set).
+
+**Run conditions:**
+- LLM: Claude Sonnet 5.5 for reasoning and Haiku 5.5 for gates, served through the Claude Code CLI;
+- `PYTHONHASHSEED=0`;
+- mean over JDs with 95% bootstrap CIs.
+
+| System | What it is | nDCG@10 ours | nDCG@10 coding |
+|---|---|---|---|
+| B0 | BM25, whole CV | 0.794 | 0.542 |
+| B1 | Dense, whole CV | 0.741 | 0.333 |
+| B2 | Hybrid (BM25 + dense, RRF) | 0.824 | 0.473 |
+| R structural + CE | Requirement-wise retrieval over structural chunks + cross-encoder | 0.829 | 0.628 |
+| **B3 v3** | + 8 rule criteria from the parsed CV, hybrid JD parser, fused with CE (no LLM judgement) | **0.881** | **0.792** |
+| B4 | Fixed pipeline: the agent with every loop off | 0.881 | — |
+| **P6** | Full agent (6 loops, investigator, verify, arbiter, HR interrupts) | **0.883** | — |
+| A1 / A2 / A3 / A4 | P6 − verify / − company profile / − arbiter / − investigator | 0.883 / 0.878 / 0.880 / 0.883 | — |
 
 **What the numbers say:**
-- The deterministic NLP and retrieval stack does the ranking.
-  - The cross-encoder is the largest retrieval gain (+0.065).
-  - The chunking strategy alone makes no measurable difference.
-  - Parsed structure takes traps from 9 to 0 and τ from 0.36 to 0.54.
-- With a local 8B model, the LLM layer does **not** improve the order (P6 − B3⊕ = −0.033). What it adds is explanations and verified evidence:
-  - grounded quotes: 96.1% → 99.2% with the verify loop;
-  - supported quotes: 89.9%.
-- The next experiment is the same ladder with a frontier model, a one-line `.env` change.
-- Full findings, including the negative results: [EVAL.md §7](docs/EVAL.md#7-findings-v2-2026-10-30).
+- **Facts beat text.** Rule scoring over the parsed CV adds +0.052 / +0.164 nDCG@10 over the same retrieval.
+- **The agent adds control, not ranking points.** P6 vs B4 is +0.002 (n.s.), but P6:
+  - takes 5 distinct paths for 12 JDs (B4: 1);
+  - cuts contradicted LLM claims from 3.0% to 1.1%;
+  - keeps 100% of quotes grounded;
+  - catches position bias in 10% of arbiter verdicts.
+- **A stronger model needed more control.** With Claude, the LLM-only JD parser lost 0.039. The hybrid parser is
+  stable across models and is the default.
+- **The pipeline ignores protected attributes:** 0 of 1,800 counterfactual pairs changed score.
 
-### Status: v2.0
-- NLP pipeline, requirement-wise retrieval, evaluation harness, CV upload (PDF/DOCX/MD) and plain-language HR re-weighting. See **[`docs/RELEASE_V2.md`](docs/RELEASE_V2.md)**. v1: [`docs/RELEASE_V1.md`](docs/RELEASE_V1.md).
-- ⚠️ The labels are silver (LLM annotators). Before the final report, 2 people should adjudicate the 94 disagreements and blind-grade 120 pairs (EVAL.md §2).
+The other results each have their own generated file:
+- AI-output criteria: [`docs/AI_OUTPUT_CRITERIA.md`](docs/AI_OUTPUT_CRITERIA.md)
+- extraction and redaction: [`docs/EXTRACTION_RESULTS.md`](docs/EXTRACTION_RESULTS.md)
+- fairness: [`docs/ROBUSTNESS_RESULTS.md`](docs/ROBUSTNESS_RESULTS.md)
+- real text: [`docs/REALTEXT_RESULTS.md`](docs/REALTEXT_RESULTS.md)
+- decision scenarios: [`docs/SCENARIO_RESULTS.md`](docs/SCENARIO_RESULTS.md)
+- errors: [`docs/ERROR_ANALYSIS.md`](docs/ERROR_ANALYSIS.md)
+
+### Status: v3.1 (merged pipeline)
+- v3 merged Đán's `coding` branch.
+- v3.1 adds:
+  - the AI-output criteria and their checks;
+  - the investigator agent loop (L6);
+  - evaluation against external gold, real text and counterfactual twins;
+  - the fixes those found.
+- Earlier releases: [`docs/RELEASE_V2.md`](docs/RELEASE_V2.md), [`docs/RELEASE_V1.md`](docs/RELEASE_V1.md).
+- ⚠️ **Labels are still silver.** Two teammates should grade the blind 120-pair sample in
+  [`docs/labeling/`](docs/labeling/README.md) (about 2 h each).
+- ⚠️ **Consented real CVs are wanted.** Teammates should collect them using
+  [`docs/labeling/CONSENT.md`](docs/labeling/CONSENT.md).
 
 ## 7. Contributing
 - Python uses **uv** (never pip); the frontend uses **npm**. Docker Desktop.
