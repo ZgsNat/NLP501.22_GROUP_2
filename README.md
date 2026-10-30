@@ -212,40 +212,36 @@ CV-031–050 (v2) stress the NLP pipeline:
 
 ## 6. Experiments and status
 
-**Read first: [`docs/FINAL_REPORT.md`](docs/FINAL_REPORT.md)** (the final report) and
-[`final_presentation_group_2.html`](final_presentation_group_2.html) (the deck).
+**Read first:**
+- [`docs/FINAL_REPORT.md`](docs/FINAL_REPORT.md): the final report;
+- [`final_presentation_group_2.html`](final_presentation_group_2.html): the deck;
+- [`docs/BENCHMARK.md`](docs/BENCHMARK.md): **NLP501-bench v1**, the team's one frozen benchmark. It holds 18 JDs from
+  both datasets, 10 of them locked for test, with every input pinned by checksum.
 
-**Protocol and generated numbers:**
-- protocol: [`docs/EVAL.md`](docs/EVAL.md);
-- generated numbers: [`docs/EVAL_RESULTS.md`](docs/EVAL_RESULTS.md) (ours) and
-  [`docs/EVAL_RESULTS_coding.md`](docs/EVAL_RESULTS_coding.md) (Đán's held-out set).
+**Official numbers:** `cd backend && uv run python -m app.eval.benchmark report` →
+[`docs/BENCHMARK_RESULTS.md`](docs/BENCHMARK_RESULTS.md).
 
-**Run conditions:**
-- LLM: Claude Sonnet 5.5 for reasoning and Haiku 5.5 for gates, served through the Claude Code CLI;
-- `PYTHONHASHSEED=0`;
-- mean over JDs with 95% bootstrap CIs.
-
-| System | What it is | nDCG@10 ours | nDCG@10 coding |
+| Test split, nDCG@10 | 10 JDs | ours (6) | coding (4) |
 |---|---|---|---|
-| B0 | BM25, whole CV | 0.794 | 0.542 |
-| B1 | Dense, whole CV | 0.741 | 0.333 |
-| B2 | Hybrid (BM25 + dense, RRF) | 0.824 | 0.473 |
-| R structural + CE | Requirement-wise retrieval over structural chunks + cross-encoder | 0.829 | 0.628 |
-| **B3 v3** | + 8 rule criteria from the parsed CV, hybrid JD parser, fused with CE (no LLM judgement) | **0.881** | **0.792** |
-| B4 | Fixed pipeline: the agent with every loop off | 0.881 | — |
-| **P6** | Full agent (6 loops, investigator, verify, arbiter, HR interrupts) | **0.883** | — |
-| A1 / A2 / A3 / A4 | P6 − verify / − company profile / − arbiter / − investigator | 0.883 / 0.878 / 0.880 / 0.883 | — |
+| B0 BM25 | 0.695 | 0.800 | 0.536 |
+| Structural chunks + cross-encoder | 0.726 | 0.830 | 0.570 |
+| Đán's core (`coding` branch, unchanged) | 0.810 | 0.773 | **0.866** |
+| Our v2 (4 rule criteria ⊕ CE) | 0.751 | 0.806 | 0.669 |
+| Merged v3.1, deterministic (B3) | 0.837 | 0.890 | 0.758 |
+| Merged v3.1, fixed pipeline (B4) | **0.848** | 0.890 | 0.784 |
+| **Merged v3.1, full agent (P6)** | 0.847 | **0.897** | 0.772 |
 
 **What the numbers say:**
-- **Facts beat text.** Rule scoring over the parsed CV adds +0.052 / +0.164 nDCG@10 over the same retrieval.
-- **The agent adds control, not ranking points.** P6 vs B4 is +0.002 (n.s.), but P6:
-  - takes 5 distinct paths for 12 JDs (B4: 1);
-  - cuts contradicted LLM claims from 3.0% to 1.1%;
-  - keeps 100% of quotes grounded;
-  - catches position bias in 10% of arbiter verdicts.
-- **A stronger model needed more control.** With Claude, the LLM-only JD parser lost 0.039. The hybrid parser is
-  stable across models and is the default.
-- **The pipeline ignores protected attributes:** 0 of 1,800 counterfactual pairs changed score.
+- **The merge is the best version measured:** +0.086 over our v2 (p = 0.004) and +0.037 over Đán's core (p = 0.22,
+  not yet significant).
+- **Rules score, so the agent and its fixed twin rank alike.** The agent's value is control:
+  - 8 distinct paths over 18 JDs against 1;
+  - contradicted LLM claims cut from 2.1% to 0.6%;
+  - 100% grounded quotes;
+  - an arbiter limited to true near-ties.
+- **The benchmark exposed two faults, both fixed on dev and re-reported on test:**
+  - a recall funnel sized for 50 CVs (the agent on the coding set went from 0.60 to 0.77);
+  - an arbiter acting beyond its mandate.
 
 The other results each have their own generated file:
 - AI-output criteria: [`docs/AI_OUTPUT_CRITERIA.md`](docs/AI_OUTPUT_CRITERIA.md)

@@ -180,16 +180,16 @@ tr.hi td { background: var(--acc-soft); font-weight: 600; }
   <div class="kicker">Point 1 · Agentic</div>
   <h2>Rules where facts exist, the LLM where judgement is needed, humans where the decision is theirs</h2>
   <table>
-    <tr><th>Loop</th><th>Decision</th><th>Decided by</th><th class="n">fired (12 JDs)</th></tr>
-    <tr><td>L1 clarify</td><td>pause and ask HR, or proceed</td><td>rules first, then a typed LLM gate</td><td class="n">1 (the vague JD)</td></tr>
-    <tr><td>L2 expand</td><td>widen search; which substitutes count</td><td>rule proposes, <b>HR approves</b></td><td class="n">1</td></tr>
-    <tr class="hi"><td>L6 investigate</td><td>which tool next on an unreadable CV</td><td><b>LLM chooses</b>, code verifies</td><td class="n">2</td></tr>
+    <tr><th>Loop</th><th>Decision</th><th>Decided by</th><th class="n">fired (of 18 JDs)</th></tr>
+    <tr><td>L1 clarify</td><td>pause and ask HR, or proceed</td><td>rules first, then a typed LLM gate</td><td class="n">3 (the vague ones)</td></tr>
+    <tr><td>L2 expand</td><td>widen search; which substitutes count</td><td>rule proposes, <b>HR approves</b></td><td class="n">3</td></tr>
+    <tr class="hi"><td>L6 investigate</td><td>which tool next on an unreadable CV</td><td><b>LLM chooses</b>, code verifies</td><td class="n">8 (36 CVs)</td></tr>
     <tr><td>L4 verify</td><td>retry a review whose claims fail checks</td><td>code (Q2–Q5)</td><td class="n">9</td></tr>
-    <tr><td>L3 arbiter</td><td>swap a near-tie</td><td>LLM, in both orders</td><td class="n">12</td></tr>
+    <tr><td>L3 arbiter</td><td>swap a near-tie</td><td>LLM, both orders, |Δ| &lt; 0.05 only</td><td class="n">13</td></tr>
     <tr><td>L5 HR review</td><td>approve, re-weight, decide</td><td><b>HR</b>; weights learned from decisions</td><td class="n">—</td></tr>
   </table>
   <div class="stats" style="margin-top:16px">
-    <div class="stat"><div class="big">5</div><div class="lab">distinct paths through the graph for 12 JDs (full agent)</div></div>
+    <div class="stat"><div class="big">8</div><div class="lab">distinct paths through the graph over 18 JDs (full agent)</div></div>
     <div class="stat w"><div class="big">1</div><div class="lab">path for the fixed pipeline with the same tools</div></div>
     <div class="stat"><div class="big">12</div><div class="lab">nodes, 6 bounded loops, 3 human interrupts</div></div>
     <div class="stat"><div class="big">0</div><div class="lab">scores set by the LLM (since v3)</div></div>
@@ -256,12 +256,12 @@ tr.hi td { background: var(--acc-soft); font-weight: 600; }
 
 <section class="slide">
   <div class="kicker">Point 3 · Measured</div>
-  <h2>The scorecard of the full agent on 12 JDs</h2>
+  <h2>The scorecard of the full agent on the 18 benchmark JDs</h2>
   <div class="stats">
     <div class="stat g"><div class="big">100%</div><div class="lab">of 909 evidence quotes grounded in the CV (Q2)</div></div>
-    <div class="stat g"><div class="big">3.0→1.1%</div><div class="lab">rationales contradicting the CV, before → after the verify loop (Q4); 3.2% without it</div></div>
-    <div class="stat g"><div class="big">0</div><div class="lab">unsupported report claims shown to HR: 5% caught and dropped (Q6)</div></div>
-    <div class="stat"><div class="big">90%</div><div class="lab">arbiter verdicts stable when the order is swapped: 10% position bias caught (Q7)</div></div>
+    <div class="stat g"><div class="big">2.1→0.6%</div><div class="lab">rationales contradicting the CV, before → after the verify loop (Q4); 2.9% without it</div></div>
+    <div class="stat g"><div class="big">0</div><div class="lab">unsupported report claims shown to HR: 5.9% caught, 1.2% left after a retry and dropped (Q6)</div></div>
+    <div class="stat"><div class="big">100%</div><div class="lab">arbiter verdicts stable when the order is swapped, once it judged only true near-ties (Q7)</div></div>
   </div>
   <div class="cols">
     <div>
@@ -275,7 +275,7 @@ tr.hi td { background: var(--acc-soft); font-weight: 600; }
         <li>Ask-HR gate: <b>18 / 18</b> correct on planted JDs; on Claude, asked once in 12, on the one JD that needs it</li>
         <li>Investigator: <b>0</b> false recoveries in 42 cases</li>
         <li>0 invalid outputs, 0 gate fallbacks</li>
-        <li>Cost: 16.6 calls and ~80 s per JD</li>
+        <li>Cost: 1.6× the LLM calls of the fixed pipeline</li>
       </ul>
     </div>
   </div>
@@ -307,30 +307,44 @@ tr.hi td { background: var(--acc-soft); font-weight: 600; }
 </section>
 
 <section class="slide">
-  <div class="kicker">Results · RQ1, RQ3</div>
-  <h2>The ranking ladder on two benchmarks</h2>
-  <table>
-    <tr><th>System</th><th class="n">ours nDCG@10</th><th class="n">P@5</th><th class="n">R@20</th><th class="n">coding nDCG@10</th><th class="n">P@5</th></tr>
-    <tr><td>B0 BM25</td><td class="n">0.794</td><td class="n">0.767</td><td class="n">0.853</td><td class="n">0.542</td><td class="n">0.700</td></tr>
-    <tr><td>B1 dense</td><td class="n">0.741</td><td class="n">0.633</td><td class="n">0.777</td><td class="n">0.333</td><td class="n">0.533</td></tr>
-    <tr><td>B2 hybrid (BM25 + dense)</td><td class="n">0.824</td><td class="n">0.733</td><td class="n">0.877</td><td class="n">0.473</td><td class="n">0.600</td></tr>
-    <tr><td>Structural chunks + cross-encoder</td><td class="n">0.829</td><td class="n">0.767</td><td class="n">0.860</td><td class="n">0.628</td><td class="n">0.800</td></tr>
-    <tr><td>v2: 4 rule criteria ⊕ CE</td><td class="n">0.801</td><td class="n">0.733</td><td class="n">0.795</td><td class="n">0.723</td><td class="n">0.833</td></tr>
-    <tr class="hi"><td>v3: 8 rule criteria ⊕ CE, hybrid parser</td><td class="n">0.881</td><td class="n">0.883</td><td class="n">0.892</td><td class="n">0.792</td><td class="n">0.967</td></tr>
-  </table>
-  <p class="small mut" style="margin-top:12px">Dense alone is weakest (every CV is "about testing"); keyword search beats it, as Resume2Vec found for testing roles. Top-5 precision 0.88 / 0.97; one irrelevant CV in 60 top-5 slots.</p>
+  <div class="kicker">Results · the team's frozen benchmark</div>
+  <h2>NLP501-bench v1: which version of the project is best?</h2>
+  <div class="cols w">
+    <div>
+      <table>
+        <tr><th>Test split, nDCG@10</th><th class="n">10 JDs</th><th class="n">ours (6)</th><th class="n">Đán's (4)</th></tr>
+        <tr><td>B0 BM25</td><td class="n">0.695</td><td class="n">0.800</td><td class="n">0.536</td></tr>
+        <tr><td>Structural chunks + CE</td><td class="n">0.726</td><td class="n">0.830</td><td class="n">0.570</td></tr>
+        <tr><td>Đán's core (coding branch)</td><td class="n">0.810</td><td class="n">0.773</td><td class="n"><b>0.866</b></td></tr>
+        <tr><td>Our v2</td><td class="n">0.751</td><td class="n">0.806</td><td class="n">0.669</td></tr>
+        <tr><td>Merged v3.1, deterministic</td><td class="n">0.837</td><td class="n">0.890</td><td class="n">0.758</td></tr>
+        <tr class="hi"><td>Merged v3.1, fixed pipeline (B4)</td><td class="n">0.848</td><td class="n">0.890</td><td class="n">0.784</td></tr>
+        <tr class="hi"><td>Merged v3.1, full agent (P6)</td><td class="n">0.847</td><td class="n">0.897</td><td class="n">0.772</td></tr>
+      </table>
+      <p class="small mut" style="margin-top:8px">18 JDs from both datasets, 10 locked for test · 268 inputs pinned by SHA-256 · tuning on dev only</p>
+    </div>
+    <div>
+      <ul>
+        <li><b>The merge is the best version measured</b>: +0.086 over our v2 (p = 0.004), +0.037 over Đán's core (p = 0.22, not yet significant).</li>
+        <li><b>Each original still wins at home</b>; only the merge is strong on both.</li>
+        <li>Facts beat text: +0.11 over the best retrieval-only system.</li>
+      </ul>
+      <div class="callout" style="margin-top:12px">One benchmark, agreed by the whole team, ends "each system wins on its own data".</div>
+    </div>
+  </div>
   <div class="num">11</div>
 </section>
 
 <section class="slide">
   <div class="kicker">Results · RQ4</div>
   <h2>The agent doesn't add ranking points; it makes the system trustworthy</h2>
+  <p class="small mut" style="margin-top:-8px">Test split: P6 0.847 vs B4 0.848 (p = 0.47). Ablations below on our 12 JDs.</p>
   <div class="cols w">
     <div>
       <table>
         <tr><th>System</th><th class="n">nDCG@10</th><th class="n">Δ vs P6</th><th class="n">paths</th><th class="n">contradicted claims</th></tr>
-        <tr class="hi"><td>P6 full agent</td><td class="n">0.883</td><td class="n">—</td><td class="n">5</td><td class="n">1.1%</td></tr>
-        <tr><td>B4 fixed pipeline</td><td class="n">0.881</td><td class="n">−0.002</td><td class="n">1</td><td class="n">3.2%</td></tr>
+        <tr class="hi"><td>P6 full agent</td><td class="n">0.882</td><td class="n">—</td><td class="n">5</td><td class="n">0.9%</td></tr>
+        <tr><td>B4 fixed pipeline</td><td class="n">0.879</td><td class="n">−0.003</td><td class="n">1</td><td class="n">4.0%</td></tr>
         <tr><td>A1 − verify</td><td class="n">0.883</td><td class="n">0.000</td><td class="n">3</td><td class="n">2.8%</td></tr>
         <tr><td>A2 − company profile</td><td class="n">0.878</td><td class="n">−0.004</td><td class="n">5</td><td class="n">1.3%</td></tr>
         <tr><td>A3 − arbiter</td><td class="n">0.880</td><td class="n">−0.003</td><td class="n">5</td><td class="n">0.9%</td></tr>
@@ -342,10 +356,10 @@ tr.hi td { background: var(--acc-soft); font-weight: 600; }
       <ul>
         <li>Rules set the score, so ranking is equal by design.</li>
         <li><b>Verify</b> is what removes contradicted claims.</li>
-        <li><b>The arbiter</b> catches position bias in 10% of verdicts.</li>
+        <li><b>The arbiter</b> checks both orders and now judges only true near-ties.</li>
         <li><b>The investigator</b> costs nothing on clean CVs and is the only part that can rescue a good CV from bad text.</li>
         <li><b>Asking HR</b> on the vague JD made the ranking follow HR's answer; offline labels cannot reward that.</li>
-        <li>Price of control: 1.8× the LLM calls.</li>
+        <li>Price of control: 1.6× the LLM calls.</li>
       </ul>
     </div>
   </div>
@@ -353,15 +367,36 @@ tr.hi td { background: var(--acc-soft); font-weight: 600; }
 </section>
 
 <section class="slide">
+  <div class="kicker">What the benchmark exposed</div>
+  <h2>A second dataset found two faults our own data never could</h2>
+  <div class="cols">
+    <div class="stat w">
+      <h3>1 · A recall funnel sized for 50 CVs</h3>
+      <p class="small">Search carried the top 40 retrieval hits into screening: 80% of our pool, <b>20%</b> of Đán's 200. Good CVs never reached scoring.</p>
+      <p class="small"><b>Fix:</b> rules are free, so the top 40 by rule score enter too. Decided on dev (+0.023 / −0.003).</p>
+      <div class="big" style="margin-top:8px">0.60 → 0.77</div><div class="lab small">full agent on Đán's test JDs (fixed pipeline 0.61 → 0.78; bank_api_qa 0.43 → 0.84)</div>
+    </div>
+    <div class="stat w">
+      <h3>2 · An arbiter beyond its mandate</h3>
+      <p class="small">A real trace: "Near-tie (Δ = −0.150) resolved by arbiter". With fused ordering, a negative gap passed the tie check, and the LLM lifted a 0.77 candidate over a 0.92 one.</p>
+      <p class="small"><b>Fix:</b> |Δ| &lt; 0.05, with a regression test.</p>
+      <div class="big" style="margin-top:8px">90% → 100%</div><div class="lab small">arbiter verdicts stable under an order swap</div>
+    </div>
+  </div>
+  <p class="foot">Both found by reading results and traces, not by unit tests (123 pass). Disclosed in the report: test was re-reported after fixes decided on dev.</p>
+  <div class="num">13</div>
+</section>
+
+<section class="slide">
   <div class="kicker">Errors and limits</div>
   <h2>Where it fails, and what we can't claim yet</h2>
   <div class="cols">
     <div>
-      <h3>30 misses, 1 false alarm (12 JDs)</h3>
+      <h3>Test split: 10 avoidable misses, 2 false alarms (10 JDs)</h3>
       <ul class="small">
-        <li><b>13</b> on the vague JD: no concrete must-have, so only asking HR can fix it</li>
-        <li><b>9</b> strict knock-outs: a good CV missing one stated must-have; L2 lets HR accept substitutes</li>
-        <li>the rest: weighting, mostly domain (a non-bank CV for a bank)</li>
+        <li><b>All 6 errors on Đán's set</b> are on one vague JD (ambiguous_senior)</li>
+        <li><b>3 of 5 on ours</b> are strict knock-outs: a good CV missing one stated must-have; L2 lets HR accept substitutes</li>
+        <li>Đán's core on the same JDs: 14 misses, 1 false alarm</li>
         <li>the one false alarm: a must-have only listed, never used</li>
       </ul>
     </div>
@@ -375,7 +410,7 @@ tr.hi td { background: var(--acc-soft); font-weight: 600; }
       </ul>
     </div>
   </div>
-  <div class="num">13</div>
+  <div class="num">14</div>
 </section>
 
 <section class="slide">
@@ -386,8 +421,8 @@ tr.hi td { background: var(--acc-soft); font-weight: 600; }
     <div class="stat"><h3>2 · Data work is measurable work</h3><p class="small">Measuring against external gold found 7 bugs, including a 100% name leak, that 100+ unit tests missed. Mask by deleting; structure CVs into facts.</p></div>
     <div class="stat g"><h3>3 · Control scales with capability</h3><p class="small">Write the criteria, check them in code, give every failure an action. The stronger model needed the control layer most.</p></div>
   </div>
-  <p class="foot">Repo: feature/merged-pipeline · report: docs/FINAL_REPORT.md · criteria: docs/AI_OUTPUT_CRITERIA.md · architecture: docs/architecture.html · 120 tests</p>
-  <div class="num">14</div>
+  <p class="foot">Repo: feature/merged-pipeline · report: docs/FINAL_REPORT.md · benchmark: docs/BENCHMARK.md · criteria: docs/AI_OUTPUT_CRITERIA.md · 123 tests</p>
+  <div class="num">15</div>
 </section>
 
 </div>
