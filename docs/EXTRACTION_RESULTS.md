@@ -36,8 +36,8 @@ Gazetteer gaps (generator tools our taxonomy has no key for, with CV counts): no
 
 | Parser | must tools P / R / F1 | all tools P / R / F1 | languages P / R / F1 | min years | depth | ISTQB | Japanese |
 |---|---|---|---|---|---|---|---|
-| llm | 0.714 / 0.667 / 0.690 | 0.696 / 0.727 / 0.711 | 1.000 / 0.455 / 0.625 | 3/6 | 2/6 | 6/6 | 6/6 |
-| rules | 0.769 / 0.667 / 0.714 | 0.696 / 0.727 / 0.711 | 1.000 / 0.727 / 0.842 | 3/6 | 2/6 | 6/6 | 6/6 |
-| hybrid | 0.769 / 0.667 / 0.714 | 0.696 / 0.727 / 0.711 | 1.000 / 0.727 / 0.842 | 3/6 | 2/6 | 6/6 | 6/6 |
+| llm | 0.833 / 0.667 / 0.741 | 0.762 / 0.727 / 0.744 | 1.000 / 0.818 / 0.900 | 3/6 | 3/6 | 6/6 | 6/6 |
+| rules | 0.769 / 0.667 / 0.714 | 0.667 / 0.727 / 0.696 | 1.000 / 0.818 / 0.900 | 3/6 | 2/6 | 6/6 | 6/6 |
+| hybrid | 0.769 / 0.667 / 0.714 | 0.667 / 0.727 / 0.696 | 1.000 / 0.818 / 0.900 | 3/6 | 3/6 | 6/6 | 6/6 |
 
 `gold_spec` is the coding branch's own reading of each JD (for example it files "Java or Python" under nice-to-have where the JD lists it under Requirements), so JD numbers measure agreement with that reading, not absolute correctness.

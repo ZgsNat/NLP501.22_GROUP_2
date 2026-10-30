@@ -13,7 +13,7 @@ import json
 import re
 
 from app.agent.scoring import knockout_reason, rule_total
-from app.config import ROOT
+from app.config import ROOT, get_settings
 from app.eval.bench import load
 from app.nlp.pipeline import process
 from app.nlp.redact import header_name
@@ -80,7 +80,7 @@ def run(bench: str) -> dict:
             res[v]["identical"] += masked(p.text) == masked(base[cid].text)
     jds = 0
     for jd in b.jds:
-        path = REQ / bench / "llm" / f"{jd.id}.json"
+        path = REQ / bench / get_settings().jd_parser / f"{jd.id}.json"
         if not path.exists():
             continue
         jds += 1

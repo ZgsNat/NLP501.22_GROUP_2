@@ -56,9 +56,11 @@ class Settings(BaseSettings):
     max_verify_retries: int = 2
     shortlist_size: int = 8  # how many reranked CVs get the expensive LLM assessment
     # JD → requirements: llm = LLM extraction canonicalized, plus the parser's depth floor, languages and domains;
-    # rules = deterministic parser only (0 tokens); hybrid = parser first, LLM fills gaps. llm won on both benchmarks
-    # (docs/EVAL.md §8: rules −0.006 / −0.005, hybrid −0.009 / −0.019 nDCG@10 vs llm with 8 rule criteria).
-    jd_parser: Literal["llm", "rules", "hybrid"] = "llm"
+    # rules = deterministic parser only (0 tokens); hybrid = parser first, LLM fills gaps. The best mode depends on the
+    # model: with qwen3:8b llm won (0.884 / 0.824 nDCG@10); with Claude Sonnet llm fell to 0.842 / 0.795 because the
+    # stronger model turns alternatives and preferences into hard must-haves, while hybrid held at 0.881 / 0.792.
+    # Hybrid is stable across models, so it is the default (docs/EVAL.md §8 rule; docs/FINAL_REPORT.md §5.2).
+    jd_parser: Literal["llm", "rules", "hybrid"] = "hybrid"
     near_tie_delta: float = 0.05
     max_arbiter_calls: int = 6  # LLM calls; each near-tie pair is judged in both orders (2 calls), so 3 pairs
     # v3: the LLM explains and arbitrates; the 8 rule criteria set Score. True = v2 (LLM scores 5 of 8 criteria).
