@@ -72,6 +72,31 @@ where:
 | RQ4 What does agentic orchestration add over a fixed pipeline with the same tools? | §3, §5.2, §6 |
 | RQ5 Do results and errors differ by JD type and ambiguity? | §5.1, §8 |
 
+### 1.1 Related work, and what our measurements say about it
+
+Vũ's literature review (31 papers, in the midterm deck) shaped the design. Each strand below states what we took and
+what our results add.
+
+- **Dense matching of CVs and jobs.** ConFit v2 (Yu et al., 2025) trains contrastive bi-encoders for resume–job
+  matching. On test-automation CVs, dense retrieval alone was our weakest system on both datasets (all-JD nDCG@10
+  0.741 / 0.333). That confirms Resume2Vec (2025), which found that keyword ATS beats embeddings for software testing,
+  where exact tool names decide relevance. Hence the mandatory hybrid retrieval and the cross-encoder.
+- **LLM rerankers.** RankGPT (2023) and later listwise LLM rerankers rank with the model itself. We kept the LLM out of
+  the score: the v2 measurement showed it cost 0.033 nDCG@10, and §7 (H2) shows that "LLM only where needed" is
+  already what a well-built fixed pipeline does.
+- **Skill normalisation.** Clavié & Soulié (2023) use LLMs as zero-shot ESCO skill matchers. We use a curated
+  gazetteer with canonicalisation at the boundary, and found that the stronger the LLM, the more it over-reads JD
+  requirements (§4). The deterministic parser had to stay in charge.
+- **Bias in LM screening.** Wilson & Caliskan (2024) measured name-based selection gaps in LM resume retrieval (85.1%
+  vs 11.1%), and NYC Local Law 144 requires bias audits of automated hiring tools. Our response is deletion before
+  indexing, audited by counterfactual twins: 0 of 1,800 pairs moved.
+- **Agent patterns.** These map onto loops in our graph:
+  - ReAct (Yao et al., ICLR 2023), reasoning interleaved with tool calls, is the investigator's loop (§3.1).
+  - Reflexion (Shinn et al., NeurIPS 2023), self-critique and retry, is L4, except that the critique comes from
+    code, not from the model.
+  - AutoGen (Wu et al., 2023) coordinates several agents. We chose one graph with bounded loops, because every
+    decision point stays testable and measurable.
+
 ## 2. Data, processing and the benchmark
 
 ### 2.1 Data
@@ -385,6 +410,27 @@ propose(api_testing, quote)      → accepted: api_testing
 On another garbled CV (syn_043), the model proposed Python from a line that does not contain it. Code answered
 `rejected: the quote does not name python (best match 0.50)`, and the knock-out stood. **The model chooses where to
 look; code decides what becomes a fact.** Across 42 planted cases that rule produced 0 false recoveries.
+
+### 6.3 What HR sees: an explanation card that adds up
+
+Every ranked CV gets a card computed from the same rules that score it, so the explanation can never disagree with
+the rank. This one is from JD-010, a Vietnamese bank JD on the test split ("Kỹ sư kiểm thử tự động (Selenium + Java) –
+Ngân hàng"; must-haves Selenium, Java, RestAssured or Postman). The top candidate, CV-033:
+
+| Criterion | weight | score | contribution | evidence (quoted from the CV) |
+|---|---|---|---|---|
+| tools | 0.20 | 92 | 0.184 | must-haves 3/3, nice-to-haves 5/6 · "Xây dựng và duy trì framework Selenium + Java + TestNG …" |
+| automation depth | 0.20 | 75 | 0.150 | L3 from the candidate's own verbs (the JD asks L3) |
+| experience | 0.10 | 100 | 0.100 | 8.8 years in automation roles (10.8 total), from dated roles |
+| test types | 0.10 | 100 | 0.100 | api + web · "Wrote around 200 RestAssured tests for loan and account APIs …" |
+| CI/CD and infra | 0.10 | 90 | 0.090 | GitLab CI, Docker; Jenkins only listed (0.7) |
+| ISTQB · language · domain | 0.10 each | 100 | 0.300 | "ISTQB Advanced Test Analyst" · Java · English and banking |
+| **total** | | | **0.924** | |
+
+**Versus the next candidate (CV-001):** ahead on domain and language (+0.050) and CI/CD (+0.003), behind on nothing.
+
+**For a knocked-out candidate (CV-040):** "Missing must-have: Selenium". **What if** Selenium were used? It would pass
+the knock-out and score 0.855. HR sees exactly how close a rejected candidate was.
 
 ## 7. Hypotheses vs results
 
