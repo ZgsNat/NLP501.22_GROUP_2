@@ -22,6 +22,23 @@ def precision(ranked_ids: Sequence[str], grades: dict[str, float], k: int, thres
     return sum(grades.get(c, 0.0) >= threshold for c in ranked_ids[:k]) / k
 
 
+def recall(ranked_ids: Sequence[str], grades: dict[str, float], k: int, threshold: float = 2.0) -> float:
+    """Share of the relevant CVs (grade ≥ threshold) that make the top k: did the right people reach the shortlist?"""
+    rel = {c for c, g in grades.items() if g >= threshold}
+    return len(rel & set(ranked_ids[:k])) / len(rel) if rel else 0.0
+
+
+def mrr(ranked_ids: Sequence[str], grades: dict[str, float], threshold: float = 2.0) -> float:
+    """1 / rank of the first relevant CV: how far HR reads before the first good candidate."""
+    return next((1 / i for i, c in enumerate(ranked_ids, 1) if grades.get(c, 0.0) >= threshold), 0.0)
+
+
+def percentile(values: Sequence[float], q: float) -> float:
+    """Nearest-rank percentile (q in 0..100), for latency p50 / p95."""
+    xs = sorted(values)
+    return xs[max(0, math.ceil(q / 100 * len(xs)) - 1)] if xs else 0.0
+
+
 def kendall_tau_b(x: Sequence[float], y: Sequence[float]) -> float:
     """τ-b between two score lists (ties allowed in both)."""
     conc = disc = tx = ty = 0

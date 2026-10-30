@@ -142,9 +142,10 @@ async def run_agent(jd, ablate: list[str]) -> dict:
     usage = observability.UsageCounter()
     cfg = {"configurable": {"thread_id": f"eval-{jd.id}-{time.time()}"}, "callbacks": [usage]}
     inp = {"jd_text": jd.text, "company_profile": jd.meta.get("company_profile", "default"), "ablate": ablate}
-    first_verify, t0 = None, time.perf_counter()
+    first_verify, t0, events = None, time.perf_counter(), []
     while True:
         async for mode, chunk in graph.astream(inp, cfg, stream_mode=["custom"]):
+            events.append(chunk)
             if chunk.get("node") == "verify_evidence" and "grounded" in chunk.get("message", "") and not first_verify:
                 first_verify = chunk["message"]
         state = await graph.aget_state(cfg)
@@ -165,7 +166,21 @@ async def run_agent(jd, ablate: list[str]) -> dict:
             "calls": u["calls"], "tokens": u["total_tokens"], "loops": {k: n for k, n in v.get("loops", {}).items() if n},
             "first_verify": first_verify, "evidence": len(ev),
             "grounded": sum(bool(e["grounded"]) for e in ev), "supported": sum(bool(e["supported"]) for e in ev),
-            "tiers": {r["cv_id"]: r["tier"] for r in v["ranking"] if r.get("tier")}}
+            "tiers": {r["cv_id"]: r["tier"] for r in v["ranking"] if r.get("tier")}, "quality": quality(events)}
+
+
+def quality(events: list[dict]) -> dict:
+    """Q-metrics of one run from the structured metrics the nodes emit (docs/AI_OUTPUT_CRITERIA.md), plus the path
+    the graph took: the sequence of nodes, which differs per JD when the agent's decisions differ."""
+    m = lambda node: [e["metrics"] for e in events if e.get("node") == node and e.get("metrics")]  # noqa: E731
+    msgs = [e.get("message", "") for e in events if e.get("type") == "log"]
+    path = [e["node"] for e in events if e.get("type") == "node_start"]
+    verify, rep, arb = m("verify_evidence"), m("report"), m("arbitrate")
+    return {"path": path, "verify_first": verify[0] if verify else None, "verify_final": verify[-1] if verify else None,
+            "report_first": rep[0] if rep else None, "report_final": rep[-1] if rep else None,
+            "arbiter_pairs": len(arb), "arbiter_agree": sum(x["agree"] for x in arb),
+            "invalid_outputs": sum("LLM output invalid" in x for x in msgs),
+            "gate_fallbacks": sum("fallback to default" in x for x in msgs)}
 
 
 def results_dir(bench: str = "ours") -> Path:
@@ -185,6 +200,8 @@ def score_system(per_jd: dict, g: dict, traps: frozenset[str] = OUR_TRAPS) -> di
     m = {"ndcg@10": [metrics.ndcg(order(j), g[j], 10) for j in jds],
          "ndcg@5": [metrics.ndcg(order(j), g[j], 5) for j in jds],
          "p@5": [metrics.precision(order(j), g[j], 5) for j in jds],
+         "r@20": [metrics.recall(order(j), g[j], 20) for j in jds],
+         "mrr": [metrics.mrr(order(j), g[j]) for j in jds],
          "tau": [metrics.tau_vs_gold(order(j), g[j]) for j in jds],
          "traps@10": [sum(c in traps and g[j].get(c, 0) < 2 for c in order(j)[:10]) for j in jds]}
     return {"jds": jds, **m}
@@ -213,7 +230,9 @@ def report(bench: str = "ours") -> str:
     lines += [f"Mean over JDs with a 95% bootstrap CI over JDs. τ = Kendall's τ-b between the system order and gold "
               f"grades over all {len(b.cvs)} CVs. traps@10 = keyword-stuffed / hedged / title-inflated CVs (gold < 2) "
               "in the top 10, summed over JDs.", "",
-              "| System | JDs | nDCG@10 | nDCG@5 | P@5 | τ vs gold | traps@10 |", "|---|---|---|---|---|---|---|"]
+              "R@20 = share of relevant CVs (gold ≥ 2) in the top 20; MRR = 1 / rank of the first relevant CV.", "",
+              "| System | JDs | nDCG@10 | nDCG@5 | P@5 | R@20 | MRR | τ vs gold | traps@10 |",
+              "|---|---|---|---|---|---|---|---|---|"]
     rows = dict(results)
     if bench == "ours":
         rows = {"Annotator A order vs gold (ceiling-ish)": {j: sorted(a[j], key=lambda c: (-a[j][c], c)) for j in a},
@@ -222,7 +241,8 @@ def report(bench: str = "ours") -> str:
     for name, per_jd in rows.items():
         sc = scored[name] = score_system(per_jd, g, b.traps)
         ci = lambda k: "{:.3f} [{:.3f}, {:.3f}]".format(*metrics.bootstrap_ci(sc[k]))  # noqa: E731
-        lines.append(f"| {name} | {len(sc['jds'])} | {ci('ndcg@10')} | {ci('ndcg@5')} | {ci('p@5')} | {ci('tau')} "
+        lines.append(f"| {name} | {len(sc['jds'])} | {ci('ndcg@10')} | {ci('ndcg@5')} | {ci('p@5')} | {ci('r@20')} "
+                     f"| {ci('mrr')} | {ci('tau')} "
                      f"| {sum(sc['traps@10'])} |")
     pairs = [("P6", "B3 rules ⊕ CE"), ("B3 rules ⊕ CE", "R structural + CE"), ("R structural (section-weighted)", "R structural"), ("R structural (section-weighted) + CE", "R whole + CE"),
              ("R structural + CE", "R whole + CE"), ("R structural + CE", "R window + CE"),
@@ -258,6 +278,7 @@ def report(bench: str = "ours") -> str:
                          f"{sum(x['tokens'] for x in v):,} | {ev} | {sum(x['grounded'] for x in v) / ev:.1%} | "
                          f"{sum(x['supported'] for x in v) / ev:.1%} | {hit('strong', lambda x: x >= 2)} "
                          f"| {hit('weak', lambda x: x < 2)} |")
+    lines += scorecard(agent)
     if bench == "ours":
         todo = {j: {c: {"a": a[j][c], "b": bb[j][c]} for c in a[j] if a[j][c] != bb[j][c]} for j in a}
         (OUT / "to_adjudicate.yaml").write_text(yaml.safe_dump(todo, sort_keys=True))
@@ -268,6 +289,34 @@ def report(bench: str = "ours") -> str:
         by = dict(zip(sc["jds"], sc["ndcg@10"]))
         lines.append(f"| {name} | " + " | ".join(f"{by[j]:.2f}" if j in by else "—" for j in sorted(g)) + " |")
     return "\n".join(lines) + "\n"
+
+
+def scorecard(agent: dict[str, dict]) -> list[str]:
+    """AI-output scorecard (docs/AI_OUTPUT_CRITERIA.md): each Q-criterion with its measured value per agent system.
+    first → final = before and after the graph's own controls acted (retry, drop, flag)."""
+    rows = {k: [x["quality"] for x in v.values() if x.get("quality")] for k, v in agent.items()}
+    rows = {k: v for k, v in rows.items() if v}
+    if not rows:
+        return []
+    pct = lambda a, b: f"{a / b:.1%}" if b else "—"  # noqa: E731
+    tot = lambda qs, part, key: sum((q[part] or {}).get(key, 0) for q in qs)  # noqa: E731
+    out = ["", "AI-output scorecard (Q-ids from docs/AI_OUTPUT_CRITERIA.md; first → final = before → after the "
+               "graph's own controls acted).", "",
+           "| System | runs | Q2 grounded quotes | Q3 supported | Q4 rationales contradicting the CV | Q5 protected words "
+           "| Q6 report candidates with unsupported claims | Q7 arbiter verdicts stable under swap | Q1 invalid outputs "
+           "| Q8 gate fallbacks | latency p50 / p95 s | distinct paths |", "|---|" + "---|" * 11]
+    for name, qs in rows.items():
+        secs = [x["seconds"] for x in agent[name].values() if x.get("quality")]
+        q2 = " → ".join(pct(tot(qs, p, "grounded"), tot(qs, p, "evidence")) for p in ("verify_first", "verify_final"))
+        q4 = " → ".join(pct(tot(qs, p, "claims_bad"), tot(qs, p, "claims")) for p in ("verify_first", "verify_final"))
+        q6 = " → ".join(pct(tot(qs, p, "claims_bad"), tot(qs, p, "claims")) for p in ("report_first", "report_final"))
+        out.append(f"| {name} | {len(qs)} | {q2} | {pct(tot(qs, 'verify_final', 'supported'), tot(qs, 'verify_final', 'evidence'))} "
+                   f"| {q4} | {sum(tot([q], 'verify_first', 'protected') for q in qs)} found, 0 kept | {q6} "
+                   f"| {pct(sum(q['arbiter_agree'] for q in qs), sum(q['arbiter_pairs'] for q in qs))} "
+                   f"| {sum(q['invalid_outputs'] for q in qs)} | {sum(q['gate_fallbacks'] for q in qs)} "
+                   f"| {metrics.percentile(secs, 50):.0f} / {metrics.percentile(secs, 95):.0f} "
+                   f"| {len({tuple(q['path']) for q in qs})} of {len(qs)} |")
+    return out
 
 
 async def run_agents(systems: list[str], jds: list) -> None:

@@ -20,9 +20,9 @@ Rules:
     0 = no evidence
   Most candidates in a pool land between 40 and 75. Reserve 90+ for exceptional, specific evidence."""
 
-ASSESS_RETRY = """Your previous answer contained quotes that do NOT appear in the CV:
+ASSESS_RETRY = """Your previous answer failed these checks against the CV:
 {bad}
-Answer again. Only copy exact sentences/phrases from the CV text."""
+Answer again. Only copy exact sentences/phrases from the CV text, and only claim tools and years the CV shows."""
 
 ARBITER = """Two candidates are near-tied on the weighted score. Using ONLY their verified evidence and the JD
 requirements, decide who is the stronger fit for this specific JD."""
@@ -33,6 +33,11 @@ Start the summary with the finding about THESE candidates (who is strongest and 
 itself or the scoring method. Mention only the CV ids listed in the input."""
 
 REPORT_RETRY = """Your report mentioned CV ids that are not in the ranked list: {bad}. Only discuss: {allowed}."""
+
+REPORT_CLAIMS_RETRY = """These statements in your report are not supported by the candidates' CVs:
+{bad}
+Rewrite the report. Credit a candidate only with tools and years in their verified evidence, and never mention
+gender, age, family status, religion, nationality or other personal attributes."""
 
 REWEIGHT = """A recruiter describes in words how the ranking criteria should change. Map it to criteria and directions:
 "more" (matters more), "less" (matters less), "ignore" (should not count). Only include criteria the recruiter

@@ -40,3 +40,12 @@ def test_bootstrap_and_paired_test():
     assert lo <= mean <= hi and mean == pytest.approx(0.65)
     assert paired_bootstrap_p([0.9, 0.8, 0.85], [0.5, 0.4, 0.45]) == 0.0
     assert paired_bootstrap_p([0.5, 0.4, 0.45], [0.9, 0.8, 0.85]) == 1.0
+
+
+def test_recall_mrr_and_percentile():
+    from app.eval.metrics import mrr, percentile, recall
+
+    g = {"a": 3, "b": 0, "c": 2, "d": 1}
+    assert recall(["b", "a", "d", "c"], g, 2) == 0.5 and recall(["b", "a", "d", "c"], g, 4) == 1.0
+    assert mrr(["b", "d", "c", "a"], g) == 1 / 3 and mrr(["b", "d"], g) == 0.0
+    assert percentile([5, 1, 3, 2, 4], 50) == 3 and percentile([5, 1, 3, 2, 4], 95) == 5

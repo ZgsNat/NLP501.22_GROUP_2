@@ -13,7 +13,7 @@ from langgraph.config import get_config, get_stream_writer
 from langgraph.types import interrupt
 from qdrant_client import models
 
-from app.agent import prompts
+from app.agent import checks, prompts
 from app.agent.schemas import (
     CRITERIA,
     CandidateAssessment,
@@ -56,8 +56,9 @@ NEEDS_REVIEW = "Assessment failed (invalid LLM output) — needs manual review"
 Node = Callable[[AgentState], Awaitable[dict]]
 
 
-def emit(node: str, message: str, level: str = "info") -> None:
-    get_stream_writer()({"type": "log", "node": node, "level": level, "message": message})
+def emit(node: str, message: str, level: str = "info", **metrics) -> None:
+    """Narrate a decision. `metrics` (optional) carry the numbers behind it for the eval scorecard (Q-ids)."""
+    get_stream_writer()({"type": "log", "node": node, "level": level, "message": message, **({"metrics": metrics} if metrics else {})})
 
 
 def traced(name: str):
@@ -301,8 +302,10 @@ async def _assess_call(state: AgentState, cv_id: str, prev: dict | None, sem: as
         HumanMessage(f"JD requirements:\n{json.dumps(req, indent=1)}\n\n{p.facts_for_llm()}\n\n"
                      f"CV {cv_id} (each passage is labelled with the section the parser found it in):\n{p.for_llm()}"),
     ]
-    if prev:
-        bad = [e["quote"] for c in prev["criteria"].values() for e in c["evidence"] if e["grounded"] is False]
+    if prev:  # tell the model exactly what failed: since v3 its quotes live in llm_review, not in the rule criteria
+        review = prev.get("llm_review", {})
+        bad = [f'quote not in the CV: "{e["quote"]}"' for c in review.values() for e in c["evidence"] if e["grounded"] is False]
+        bad += [f"{k}: {i}" for k, issues in prev.get("checks", {}).items() for i in issues]
         msgs.append(HumanMessage(prompts.ASSESS_RETRY.format(bad="\n".join(f"- {b}" for b in bad))))
     async with sem:
         out: CandidateAssessment = await llm(state, "reasoning").with_structured_output(CandidateAssessment).ainvoke(msgs)
@@ -352,7 +355,7 @@ async def assess(state: AgentState) -> dict:
 async def verify_evidence(state: AgentState) -> dict:
     s = get_settings()
     act = not off(state, "verify")  # ablation A1: still measure, but never retry or cap
-    updated, retry, total, bad_total, unsupported = {}, [], 0, 0, 0
+    updated, retry, total, bad_total, unsupported, claims, claims_bad, prot = {}, [], 0, 0, 0, 0, 0, 0
     for cv_id in state["retry_ids"]:
         a, p = state["assessments"][cv_id], profile(cv_id)
         bad = 0
@@ -361,10 +364,16 @@ async def verify_evidence(state: AgentState) -> dict:
             bad += sum(not e["grounded"] for e in crit["evidence"])
             unsupported += sum(e["grounded"] and not e["supported"] for e in crit["evidence"])
             total += len(crit["evidence"])
+            prot += len(checks.protected(crit["rationale"]))
+            crit["rationale"] = checks.strip_protected(crit["rationale"])  # Q5: removed at once, never retried
+        a["checks"] = checks.review_issues(a["llm_review"], p)  # Q4: claims that contradict the parsed CV
+        claims, claims_bad = claims + len(a["llm_review"]), claims_bad + len(a["checks"])
         bad_total += bad
-        if act and bad and a["attempts"] <= s.max_verify_retries:
+        if act and (bad or a["checks"]) and a["attempts"] <= s.max_verify_retries:
             retry.append(cv_id)
         elif act:
+            for k, issues in a["checks"].items():  # out of retries: keep the text, label what is not supported
+                a["llm_review"][k]["rationale"] += f" [unverified: {'; '.join(issues)}]"
             for crit in a["llm_review"].values():  # shared with criteria when llm_in_score
                 if crit["evidence"] and not any(e["grounded"] for e in crit["evidence"]):
                     crit["score"] = min(crit["score"], 20)  # out of retries: claims without evidence lose credit
@@ -375,9 +384,12 @@ async def verify_evidence(state: AgentState) -> dict:
         updated[cv_id] = a
     grounded = total - bad_total
     emit("verify_evidence", f"{grounded}/{total} LLM quotes grounded ({100 * grounded / total if total else 100:.1f}%), "
-                            f"{grounded - unsupported}/{total} also support their criterion (right section, right entity)")
+                            f"{grounded - unsupported}/{total} also support their criterion (right section, right entity); "
+                            f"{claims_bad}/{claims} rationales contradict the parsed CV; {prot} protected-attribute word(s) removed",
+         evidence=total, grounded=grounded, supported=grounded - unsupported, claims=claims, claims_bad=claims_bad,
+         protected=prot)
     if retry:
-        emit("verify_evidence", f"Hallucinated quotes in {retry} → sending back to assess", "loop")
+        emit("verify_evidence", f"Hallucinated quotes or contradicted claims in {retry} → sending back to assess", "loop")
     return {"assessments": updated, "retry_ids": retry, "loops": {"verify": 1 if retry else 0}}
 
 
@@ -494,10 +506,10 @@ async def arbitrate(state: AgentState) -> dict:
             rows[i]["arbiter_note"] = note
             rows[i + 1]["arbiter_note"] = f"Placed below {winner} by arbiter, consistent in both orders (Δ={delta:.3f})"
         else:
-            note = (f"Near-tie {a['cv_id']} / {b['cv_id']} (Δ={delta:.3f}): the arbiter picked whoever came first "
-                    "(position bias) → rule order kept")
+            note = (f"Near-tie {a['cv_id']} / {b['cv_id']} (Δ={delta:.3f}): the verdict flipped when the order was "
+                    "swapped (position bias) → rule order kept")
             a["arbiter_note"] = b["arbiter_note"] = note
-        emit("arbitrate", note, "loop")
+        emit("arbitrate", note, "loop", agree=verdicts[0].choice == verdicts[1].choice)
     for i, r in enumerate(rows, 1):
         r["rank"] = i
     _versus_next(rows, state)
@@ -534,13 +546,27 @@ async def report(state: AgentState) -> dict:
     msgs = [SystemMessage(prompts.REPORT),
             HumanMessage(f"JD: {json.dumps(state['requirements'])}\nWeights: {state['weights']}\n\n"
                          f"Ranked candidates:\n{json.dumps(facts, indent=1)}")]
+    profiles = {i: profile(i) for i in top_ids}
     for attempt in range(2):
         out = (await llm(state, "reasoning").with_structured_output(RankingReport).ainvoke(msgs)).model_dump()
-        if not (bad := foreign_ids(out, top_ids)):  # zero-token guard: the report may only discuss ranked people
-            emit("report", f"Report ready for top {len(top)} candidates")
-            return {"report": {**out, "top_ids": top_ids}}
-        emit("report", f"Report mentions CVs not in the ranking {bad} → regenerating", "loop")
-        msgs.append(HumanMessage(prompts.REPORT_RETRY.format(bad=bad, allowed=top_ids)))
+        if bad := foreign_ids(out, top_ids):  # zero-token guard: the report may only discuss ranked people
+            emit("report", f"Report mentions CVs not in the ranking {bad} → regenerating", "loop")
+            msgs.append(HumanMessage(prompts.REPORT_RETRY.format(bad=bad, allowed=top_ids)))
+            continue
+        issues = checks.report_issues(out, profiles)  # Q6: every claim must be backed by that candidate's CV
+        if not issues:
+            emit("report", f"Report ready for top {len(top)} candidates; every claim checked against the CVs",
+                 claims=len(out["candidates"]), claims_bad=0)
+            return {"report": {**out, "top_ids": top_ids, "checks": {}}}
+        if attempt == 0:
+            emit("report", f"Report claims not supported by the CVs {issues} → regenerating", "loop",
+                 claims=len(out["candidates"]), claims_bad=len(issues))
+            msgs.append(HumanMessage(prompts.REPORT_CLAIMS_RETRY.format(
+                bad="\n".join(f"- {k}: {i}" for k, v in issues.items() for i in v))))
+            continue
+        emit("report", f"Unsupported claims remain {issues} → dropped those sentences, kept the rest", "warn",
+             claims=len(out["candidates"]), claims_bad=len(issues))
+        return {"report": {**checks.sanitize_report(out, profiles), "top_ids": top_ids, "checks": issues}}
     emit("report", "Report still ungrounded → deterministic summary", "warn")
     return {"report": {"summary": "Ranked by weighted criteria; see per-candidate scores and verified evidence. "
                                   f"Top candidates: {', '.join(r['cv_id'] for r in top)}.",
