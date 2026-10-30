@@ -467,4 +467,5 @@ uv run python -m app.eval.benchmark verify       # the frozen benchmark is intac
 uv run python -m app.eval.figures                # figures in docs/figures/
 uv run python -m app.eval.extraction && uv run python -m app.eval.robustness && uv run python -m app.eval.scenarios
 uv run python -m app.eval.errors P6 "Đán core (coding branch)" --bench test
+uv run --with markdown python scripts/report_html.py ../docs/FINAL_REPORT.md /tmp/report.html   # then print to PDF
 ```
