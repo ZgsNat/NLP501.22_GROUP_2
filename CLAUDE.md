@@ -32,6 +32,7 @@ cd backend && uv run python -m app.rag.ingest            # (re)index data/ into 
 cd backend && uv run python -m scripts.smoke JD-002      # end-to-end in terminal, auto-answers HR
 uv run pytest                                            # tests (no LLM, no Docker needed)
 cd backend && uv run python -m app.eval.run retrieval    # B0–B3 + chunking ablation (minutes); `agent` = LLM systems; `report`
+# eval numbers in docs/ are produced with PYTHONHASHSEED=0 (set ordering breaks retrieval ties) and LLM_PROVIDER=claude_code
 cd backend && uv run python -m app.eval.extraction       # RQ1: CV/JD extraction F1 + redaction leaks vs the coding branch's generator truth
 cd backend && uv run python -m app.eval.robustness       # Q11: counterfactual fairness (name/gender/age/marital twins) + format robustness
 uv run uvicorn app.main:app --app-dir backend --reload   # API :8000

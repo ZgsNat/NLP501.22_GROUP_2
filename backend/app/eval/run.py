@@ -335,7 +335,12 @@ async def run_agents(systems: list[str], jds: list, model: str | None = None) ->
         for jd in jds:
             if jd.id in per_jd:
                 continue  # resumable: a crash or Ctrl-C keeps finished JDs
-            per_jd[jd.id] = await run_agent(jd, AGENT_SYSTEMS[system], model)
+            result = await run_agent(jd, AGENT_SYSTEMS[system], model)
+            from app.providers import claude_code
+            if claude_code.QUOTA_HIT:  # the run degraded silently (CVs → needs review): never save it
+                raise SystemExit(f"Subscription limit reached during {name} {jd.id}: not saved. Rerun the same "
+                                 "command after the limit resets; finished JDs are kept.")
+            per_jd[jd.id] = result
             save(name, per_jd)
             r = per_jd[jd.id]
             print(f"{name} {jd.id}: {r['seconds']}s {r['tokens']} tok, top5 {r['ranking'][:5]}", flush=True)

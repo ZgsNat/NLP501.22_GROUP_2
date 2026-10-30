@@ -7,6 +7,7 @@ Structured output uses the CLI's --json-schema; the schema is a bound kwarg, so 
 import asyncio
 import json
 import os
+import re
 import subprocess
 from pathlib import Path
 from typing import Any
@@ -16,6 +17,14 @@ from langchain_core.messages import AIMessage, BaseMessage, SystemMessage
 from langchain_core.outputs import ChatGeneration, ChatResult
 from langchain_core.runnables import RunnableLambda
 from pydantic import BaseModel
+
+TRANSIENT = re.compile(r"rate.?limit|overloaded|429|529|timed? ?out", re.I)  # retry with backoff
+QUOTA = re.compile(r"usage limit|limit reached|resets? at|out of (?:extra )?usage|credit balance", re.I)  # stop
+QUOTA_HIT = False  # set once the subscription quota is exhausted; app.eval.run stops instead of saving bad runs
+
+
+class QuotaExceeded(RuntimeError):
+    pass
 
 
 class ChatClaudeCode(BaseChatModel):
@@ -51,10 +60,18 @@ class ChatClaudeCode(BaseChatModel):
         return {k: v for k, v in os.environ.items() if k != "ANTHROPIC_API_KEY"}  # always the subscription login
 
     @staticmethod
-    def _result(stdout: str, json_schema: dict | None) -> ChatResult:
-        d = json.loads(stdout)
+    def _result(stdout: str, json_schema: dict | None, stderr: str = "") -> ChatResult:
+        global QUOTA_HIT
+        try:
+            d = json.loads(stdout)
+        except json.JSONDecodeError:
+            d = {"is_error": True, "result": (stderr or stdout).strip()[:300] or "no output"}
         if d.get("is_error") or (json_schema and d.get("structured_output") is None):
-            raise RuntimeError(f"claude -p failed: {d.get('result') or d.get('subtype')}")
+            why = str(d.get("result") or d.get("subtype"))
+            if QUOTA.search(why):
+                QUOTA_HIT = True
+                raise QuotaExceeded(f"subscription limit reached: {why}")
+            raise RuntimeError(f"claude -p failed: {why}")
         u = d.get("usage", {})
         n_in = u.get("input_tokens", 0) + u.get("cache_creation_input_tokens", 0) + u.get("cache_read_input_tokens", 0)
         msg = AIMessage(json.dumps(d["structured_output"]) if json_schema else d["result"],
@@ -67,16 +84,25 @@ class ChatClaudeCode(BaseChatModel):
         argv, prompt = self._call(messages, json_schema)
         out = subprocess.run(argv, input=prompt, capture_output=True, text=True, cwd=self.workdir, env=self._env(),
                              timeout=self.timeout)
-        return self._result(out.stdout, json_schema)
+        return self._result(out.stdout, json_schema, out.stderr)
 
     async def _agenerate(self, messages, stop=None, run_manager=None, json_schema: dict | None = None,
                          **_: Any) -> ChatResult:
         argv, prompt = self._call(messages, json_schema)
-        proc = await asyncio.create_subprocess_exec(*argv, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                                                    stderr=subprocess.PIPE, cwd=self.workdir, env=self._env())
-        try:
-            out, _err = await asyncio.wait_for(proc.communicate(prompt.encode()), self.timeout)
-        except TimeoutError:
-            proc.kill()
-            raise
-        return self._result(out.decode(), json_schema)
+        for attempt in range(3):  # transient rate limits and overloads: back off 20 s, then 40 s
+            proc = await asyncio.create_subprocess_exec(*argv, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                                                        stderr=subprocess.PIPE, cwd=self.workdir, env=self._env())
+            try:
+                out, err = await asyncio.wait_for(proc.communicate(prompt.encode()), self.timeout)
+            except TimeoutError:
+                proc.kill()
+                raise
+            try:
+                return self._result(out.decode(), json_schema, err.decode())
+            except QuotaExceeded:
+                raise
+            except RuntimeError as e:
+                if attempt == 2 or not TRANSIENT.search(str(e)):
+                    raise
+                await asyncio.sleep(20 * (attempt + 1))
+        raise AssertionError("unreachable")

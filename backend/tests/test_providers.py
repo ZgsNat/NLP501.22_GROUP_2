@@ -72,3 +72,18 @@ def test_claude_code_cli_returns_structured_output(monkeypatch, tmp_path):
     assert argv[argv.index("--system-prompt") + 1] == "Be precise." and seen["input"] == "Selenium?"
     assert json.loads(argv[argv.index("--json-schema") + 1])["required"] == ["choice", "confidence"]
     assert "ANTHROPIC_API_KEY" not in seen["env"]  # the subscription login, never an API key by accident
+
+
+def test_claude_code_quota_errors_stop_the_run(monkeypatch):
+    import json
+
+    import pytest
+
+    from app.providers import claude_code
+
+    monkeypatch.setattr(claude_code, "QUOTA_HIT", False)
+    with pytest.raises(claude_code.QuotaExceeded):
+        claude_code.ChatClaudeCode._result(json.dumps({"is_error": True, "result": "Claude usage limit reached; resets at 11pm"}), None)
+    assert claude_code.QUOTA_HIT
+    with pytest.raises(RuntimeError, match="overloaded"):
+        claude_code.ChatClaudeCode._result("", None, "API Error 529 overloaded")
