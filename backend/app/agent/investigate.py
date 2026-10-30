@@ -55,14 +55,19 @@ def similarity(term: str, line: str) -> tuple[float, int, int]:
 
 
 def near_misses(p: CVProfile, terms: list[str]) -> dict[str, str]:
-    """term → a CV line that almost, but not exactly, spells one of its aliases."""
+    """term → a CV line that almost, but not exactly, spells one of its aliases. Only distinctive one-word aliases
+    (5+ characters) count: "ts" or "api testing" resemble ordinary words ("is", "in testing") by chance, and on our
+    clean CVs that started 30+ needless investigations; a real typo is of a name like "Selenuim" or "Apium"."""
     out = {}
     for t in terms:
+        names = [a for a in aliases(t) if " " not in a and len(a) >= 5]
+        if not names:
+            continue
         for line in p.text.split("\n"):
             low = line.lower()
             if any(re.search(rf"(?<![a-z0-9]){re.escape(a)}(?![a-z0-9])", low) for a in aliases(t)):
                 continue
-            if max(similarity(a, line)[0] for a in aliases(t)) >= NEAR:
+            if max(similarity(a, line)[0] for a in names) >= NEAR:
                 out[t] = line.strip()
                 break
     return out

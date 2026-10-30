@@ -77,3 +77,8 @@ def test_match_bar_is_length_aware_and_search_splits_alternatives():
     p = process("CV-P", "EXPERIENCE\nShop (2020 - 2023)\n- Wrote Pl#yw%i~ht tests in J%va.")
     assert inv.verify(p, "playwright", "- Wrote Pl#yw%i~ht tests in J%va.", {"playwright"})[0]  # 0.70: long name, noisy
     assert "Pl#yw%i~ht" in inv.search(p, "cypress|playwright")
+
+
+def test_near_miss_ignores_short_and_multiword_aliases():
+    clean = process("CV-K", "QA engineer with 6 years in testing.\n## Experience\n### QA (2020–2023)\n- Wrote Cypress tests.")
+    assert inv.triggers(clean, ["api_testing", "typescript"], {}) is None  # "in testing", "is" are not typos
