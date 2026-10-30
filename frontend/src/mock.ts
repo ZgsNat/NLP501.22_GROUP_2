@@ -266,7 +266,7 @@ const node = (n: NodeName, ms: number, ...body: StreamEvent[]): StreamEvent[] =>
   [{ type: 'node_start', node: n }, ...body, { type: 'node_end', node: n, duration_ms: ms }]
 const log = (n: NodeName, level: 'info' | 'loop' | 'warn', message: string): StreamEvent => ({ type: 'log', node: n, level, message })
 const upd = (n: NodeName, update: Partial<Values>): StreamEvent => ({ type: 'update', node: n, update })
-const loops = (clarify: number, expand: number, verify: number, arbitrate: number, review: number) => ({ clarify, expand, verify, arbitrate, review })
+const loops = (clarify: number, expand: number, verify: number, arbitrate: number, review: number, investigate = 0) => ({ clarify, expand, verify, arbitrate, review, investigate })
 
 function scoring(w: Record<Criterion, number>, lp: Values['loops']): StreamEvent[] {
   const rk = ranking(w)
@@ -299,6 +299,7 @@ const afterClarify: Step[] = [
   ...node('clarify', 700, log('clarify', 'info', 'No ambiguity left')),
   ...node('search', 430, log('search', 'info', 'BM25 + dense retrieval'), upd('search', { query_terms: terms, candidates: cand(2, false) }),
     log('search', 'warn', 'Coverage too low: 2 candidates match all must-haves (< 4)')),
+  ...node('investigate', 15, log('investigate', 'info', 'No knock-out looks like a parsing failure (no garbled text, no misspelt must-have) → investigator not needed (0 LLM calls)')),
   // L2 now asks HR before widening the query: the node starts, then waits on the substitutes interrupt.
   { type: 'node_start', node: 'expand_query' },
   log('expand_query', 'warn', 'Only 2 CVs show selenium: asking HR which related tools may substitute'),

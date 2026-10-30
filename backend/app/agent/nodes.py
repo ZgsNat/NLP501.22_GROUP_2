@@ -14,6 +14,7 @@ from langgraph.types import interrupt
 from qdrant_client import models
 
 from app.agent import checks, prompts
+from app.agent import investigate as inv
 from app.agent.schemas import (
     CRITERIA,
     CandidateAssessment,
@@ -88,6 +89,11 @@ def llm(state: AgentState, role: str) -> BaseChatModel:
     return _llm(state.get("models", {}).get(role) or default_spec(role))
 
 
+def prof(state: AgentState, cv_id: str):
+    """The parsed CV plus any facts the investigator verified (N12): what every rule below reads."""
+    return inv.with_facts(profile(cv_id), state.get("recovered", {}).get(cv_id, []))
+
+
 def off(state: AgentState, part: str) -> bool:
     """Ablation switch (evaluation only): is this part of the agent turned off for this run?"""
     return part in state.get("ablate", [])
@@ -148,21 +154,9 @@ async def ingest(state: AgentState) -> dict:
 
     needs = False
     if state.get("loops", {}).get("clarify", 0) < s.max_clarifications and not off(state, "clarify"):
-        if not req.must_have:
-            # Rule before model: with zero must-have tools there is no knock-out and no fair ranking — always ask.
-            req.ambiguities = ["Which tools/frameworks are must-have for this role?", *req.ambiguities][:4]
-            needs = True
-            emit("ingest", "Rule: no concrete must-have tools → ask HR (no LLM needed)", "loop")
-        elif req.ambiguities:
-            # System-One gate: is it worth interrupting a human?
-            d = await decide(
-                llm(state, "fast"),
-                "Do these open questions block a fair ranking enough to pause and ask HR?",
-                ["proceed", "ask_hr"],
-                f"JD:\n{jd}\n\nOpen questions:\n" + "\n".join(req.ambiguities),
-            )
-            needs = d.choice == "ask_hr"
-            emit("ingest", f"Ambiguity gate → {d.choice} (p={d.confidence:.2f}): {d.reason}", "loop" if needs else "info")
+        needs, why = await ask_hr_gate(llm(state, "fast"), jd, req)
+        if why:
+            emit("ingest", why, "loop" if needs else "info")
 
     return {
         "requirements": req.model_dump(),
@@ -198,10 +192,10 @@ async def search(state: AgentState) -> dict:
                 for i, h in enumerate(hits, 1) if h not in order}
     screened |= {cid: "Not retrieved: no passage matched any requirement" for cid in pool if cid not in found}
 
-    knocked = {cid: r for cid in pool if (r := knockout_reason(profile(cid), req["must_have"], subs))}  # whole pool: cheap
+    knocked = {cid: r for cid in pool if (r := knockout_reason(prof(state, cid), req["must_have"], subs))}  # whole pool: cheap
     candidates = []
     for h in order:
-        p = profile(h.cv_id)
+        p = prof(state, h.cv_id)
         candidates.append({
             "cv_id": h.cv_id, "headline": p.headline, "lang": p.lang,
             "retrieval_score": round(h.score, 4), "rerank_score": None,
@@ -215,6 +209,82 @@ async def search(state: AgentState) -> dict:
                    f"{len(candidates)} retrieved, {covered} of them cover all must-haves; knock-out screened the whole "
                    f"pool: {len(knocked)} out" + (f" ({hedged} only had hedged mentions)" if hedged else ""))
     return {"candidates": candidates, "knocked_out": knocked, "screened": screened}
+
+
+async def ask_hr_gate(model: BaseChatModel, jd: str, req: JDRequirements) -> tuple[bool, str | None]:
+    """L1 decision: pause for HR or proceed? (mutates req.ambiguities when the rule fires). → (ask, narration)."""
+    if not req.must_have:
+        # Rule before model: with zero must-have tools there is no knock-out and no fair ranking — always ask.
+        req.ambiguities = ["Which tools/frameworks are must-have for this role?", *req.ambiguities][:4]
+        return True, "Rule: no concrete must-have tools → ask HR (no LLM needed)"
+    if not req.ambiguities:
+        return False, None
+    # System-One gate: is it worth interrupting a human?
+    d = await decide(model, "Do these open questions block a fair ranking enough to pause and ask HR?",
+                     ["proceed", "ask_hr"], f"JD:\n{jd}\n\nOpen questions:\n" + "\n".join(req.ambiguities))
+    return d.choice == "ask_hr", f"Ambiguity gate → {d.choice} (p={d.confidence:.2f}): {d.reason}"
+
+
+# ── L6: investigate — a tool-using agent for knock-outs the parser itself may have caused ──────────────
+@traced("investigate")
+async def investigate(state: AgentState) -> dict:
+    s = get_settings()
+    if off(state, "investigate"):
+        return {}
+    req, subs, done = state["requirements"], state.get("substitutes", {}), state.get("investigated", {})
+    todo = []
+    for cid, reason in state["knocked_out"].items():
+        if cid in done or reason == NEEDS_REVIEW:
+            continue
+        p = prof(state, cid)
+        missing = [m for m in req["must_have"] if knockout_reason(p, [m], subs)]
+        if missing and (why := inv.triggers(p, missing, subs)):
+            todo.append((len(missing), cid, missing, why))
+    todo = [t[1:] for t in sorted(todo)[: s.max_investigations]]  # closest to passing first
+    if not todo:
+        emit("investigate", "No knock-out looks like a parsing failure (no garbled text, no misspelt must-have) → "
+                            "investigator not needed (0 LLM calls)", investigated=0, recovered=0, calls=0, invalid=0)
+        return {}
+    for cid, missing, why in todo:
+        emit("investigate", f"{cid}: knocked out for {missing}, but {why} → investigating "
+                            f"(≤ {s.max_investigation_steps} tool calls)", "loop")
+    sem = asyncio.Semaphore(s.llm_concurrency)
+
+    async def one(cid: str, missing: list[str], why: str) -> dict:
+        async with sem:
+            return await inv.investigate_cv(llm(state, "reasoning"), prof(state, cid), req.get("title", ""), missing,
+                                            subs, why, s.max_investigation_steps)
+
+    results = await asyncio.gather(*(one(*t) for t in todo))
+    knocked, screened, cands = dict(state["knocked_out"]), dict(state.get("screened", {})), list(state["candidates"])
+    recovered, outcome = {}, {}
+    for (cid, missing, why), res in zip(todo, results):
+        for t in res["trace"]:
+            emit("investigate", f"{cid} · {t['tool']}({t['arg'][:40]}) — {t['thought']}"
+                                + (f" → {t['observation'].splitlines()[0][:120]}" if t["observation"] else ""))
+        recovered[cid] = res["facts"]
+        p = inv.with_facts(profile(cid), state.get("recovered", {}).get(cid, []) + res["facts"])
+        found = [f["skill"] for f in res["facts"]]
+        if (r := knockout_reason(p, req["must_have"], subs)) is None:
+            knocked.pop(cid, None)
+            screened.pop(cid, None)
+            if cid not in {c["cv_id"] for c in cands}:
+                cands.append({"cv_id": cid, "headline": p.headline, "lang": p.lang, "retrieval_score": 0.0,
+                              "rerank_score": None, "evidence": {},
+                              "matched_must_have": [m for m in req["must_have"] if (b := p.best(m)) and b.strength != "hedged"]})
+            outcome[cid] = f"recovered {found} from the CV text (verified quotes) → back in the pool"
+        else:
+            knocked[cid] = f"{r} (investigated{': found ' + str(found) if found else ''}; knock-out confirmed)"
+            outcome[cid] = "knock-out confirmed" + (f"; found {found}" if found else "")
+        emit("investigate", f"{cid}: {outcome[cid]}" + (" [invalid model output: stopped]" if res["invalid"] else ""),
+             "loop" if found else "info")
+    n_rec = sum("recovered" in o for o in outcome.values())
+    emit("investigate", f"Investigated {len(todo)} knock-out(s) in {sum(r['calls'] for r in results)} LLM calls: "
+                        f"{n_rec} back in the pool, {len(todo) - n_rec} confirmed",
+         investigated=len(todo), recovered=n_rec, calls=sum(r["calls"] for r in results),
+         invalid=sum(r["invalid"] for r in results), facts=sum(len(r["facts"]) for r in results))
+    return {"recovered": recovered, "investigated": outcome, "knocked_out": knocked, "screened": screened,
+            "candidates": cands, "loops": {"investigate": len(todo)}}
 
 
 # ── L2: query expansion via the taxonomy — HR approves substitutes (zero tokens) ─────────────────────
@@ -257,8 +327,8 @@ async def rerank(state: AgentState) -> dict:
     eligible = [dict(c) for c in state["candidates"] if c["cv_id"] not in state["knocked_out"]]
     hits = [retrieve.CVHit(c["cv_id"], c["retrieval_score"], {k: tuple(v) for k, v in c["evidence"].items()})
             for c in eligible]
-    scores = retrieve.rerank_cvs(get_store(), qs, hits, {c["cv_id"]: profile(c["cv_id"]) for c in eligible})
-    rules = {c["cv_id"]: rule_total(profile(c["cv_id"]), req, state.get("substitutes", {}), state["weights"],
+    scores = retrieve.rerank_cvs(get_store(), qs, hits, {c["cv_id"]: prof(state, c["cv_id"]) for c in eligible})
+    rules = {c["cv_id"]: rule_total(prof(state, c["cv_id"]), req, state.get("substitutes", {}), state["weights"],
                                     state.get("fallbacks", {}))
              for c in eligible}
     for c in eligible:
@@ -295,7 +365,7 @@ async def _assess_one(state: AgentState, cv_id: str, sem: asyncio.Semaphore) -> 
 
 
 async def _assess_call(state: AgentState, cv_id: str, prev: dict | None, sem: asyncio.Semaphore) -> dict:
-    req, p = state["requirements"], profile(cv_id)
+    req, p = state["requirements"], prof(state, cv_id)
     policy = "\n\n".join(x["text"] for x in state.get("policy_context", []))
     msgs = [
         SystemMessage(prompts.ASSESS + "\n\nCompany hiring policy:\n" + policy),
@@ -357,7 +427,7 @@ async def verify_evidence(state: AgentState) -> dict:
     act = not off(state, "verify")  # ablation A1: still measure, but never retry or cap
     updated, retry, total, bad_total, unsupported, claims, claims_bad, prot = {}, [], 0, 0, 0, 0, 0, 0
     for cv_id in state["retry_ids"]:
-        a, p = state["assessments"][cv_id], profile(cv_id)
+        a, p = state["assessments"][cv_id], prof(state, cv_id)
         bad = 0
         for name, crit in a["llm_review"].items():
             crit["evidence"] = [check_evidence(name, e["quote"], p) for e in crit["evidence"]]
@@ -412,7 +482,7 @@ async def score(state: AgentState) -> dict:
     rerank = {c["cv_id"]: c.get("rerank_score") for c in state["candidates"]}
     req, subs = state["requirements"], state.get("substitutes", {})
     for r in ranked:
-        if via := fallback_uses(profile(r["cv_id"]), req["must_have"], subs, state.get("fallbacks", {})):
+        if via := fallback_uses(prof(state, r["cv_id"]), req["must_have"], subs, state.get("fallbacks", {})):
             r["reason"] = f"Ranked after direct matches: meets must-haves only via substitutes ({', '.join(via)})"
     fused = {c["cv_id"]: i for i, c in enumerate(state["candidates"])}  # rerank node left them in fused order
     by_total = get_settings().rank_by == "total"
@@ -422,7 +492,7 @@ async def score(state: AgentState) -> dict:
     # The tail is ordered too (HR browses it, τ measures it): what the LLM never assessed is ordered by the
     # zero-token rule score. Order of groups: reranked → not retrieved → needs review → knocked out.
     w = state["weights"]
-    pre = lambda cid: rule_total(profile(cid), req, subs, w, state.get("fallbacks", {}))  # noqa: E731
+    pre = lambda cid: rule_total(prof(state, cid), req, subs, w, state.get("fallbacks", {}))  # noqa: E731
     review = [row(cid, "needs_review", reason=r) for cid, r in state["knocked_out"].items() if r == NEEDS_REVIEW]
     knocked = sorted((row(cid, "knocked_out", reason=r) for cid, r in state["knocked_out"].items() if r != NEEDS_REVIEW),
                      key=lambda r: pre(r["cv_id"]), reverse=True)
@@ -437,13 +507,13 @@ async def score(state: AgentState) -> dict:
     fb = state.get("fallbacks", {})
     for r in ranked:  # explanation cards: they explain the rule score, so the decomposition always adds up
         r["card"] = {"decomposition": decomposition(state["assessments"][r["cv_id"]]["criteria"], w),
-                     "what_if": counterfactuals(profile(r["cv_id"]), req, subs, w, fb)}
+                     "what_if": counterfactuals(prof(state, r["cv_id"]), req, subs, w, fb)}
     for r in knocked:  # how close was it: the score with every missing must-have present
-        r["card"] = {"what_if": counterfactuals(profile(r["cv_id"]), req, subs, w, fb, limit=1)}
+        r["card"] = {"what_if": counterfactuals(prof(state, r["cv_id"]), req, subs, w, fb, limit=1)}
     _versus_next(rows, state)
-    dup = quality.duplicates([profile(r["cv_id"]) for r in rows])
+    dup = quality.duplicates([prof(state, r["cv_id"]) for r in rows])
     for r in rows:
-        r["flags"] = quality.flags(profile(r["cv_id"])) + ([f"duplicate_of:{dup[r['cv_id']]}"] if r["cv_id"] in dup else [])
+        r["flags"] = quality.flags(prof(state, r["cv_id"])) + ([f"duplicate_of:{dup[r['cv_id']]}"] if r["cv_id"] in dup else [])
     if flagged := [r["cv_id"] for r in rows if r["flags"]]:
         emit("score", f"Data-quality flags on {flagged} (short, garbled, undated or duplicate CVs): check before trusting "
                       "their score", "warn")
@@ -546,7 +616,7 @@ async def report(state: AgentState) -> dict:
     msgs = [SystemMessage(prompts.REPORT),
             HumanMessage(f"JD: {json.dumps(state['requirements'])}\nWeights: {state['weights']}\n\n"
                          f"Ranked candidates:\n{json.dumps(facts, indent=1)}")]
-    profiles = {i: profile(i) for i in top_ids}
+    profiles = {i: prof(state, i) for i in top_ids}
     for attempt in range(2):
         out = (await llm(state, "reasoning").with_structured_output(RankingReport).ainvoke(msgs)).model_dump()
         if bad := foreign_ids(out, top_ids):  # zero-token guard: the report may only discuss ranked people

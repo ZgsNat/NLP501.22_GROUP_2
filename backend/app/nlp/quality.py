@@ -7,7 +7,7 @@ from app.nlp.pipeline import CVProfile
 
 
 # Symbols inside words ("Aut%%ati#n"): OCR / encoding noise. Letter ratio alone misses it (the noise is sparse).
-NOISY = re.compile(r"\w[%~#@^*]+\w|[%~#@^]{2,}")
+NOISY = re.compile(r"\w[%~#@^*]+\w|[%~@^]{2,}")  # "##" alone is a markdown heading, not noise
 
 
 def noisy_rate(text: str) -> float:

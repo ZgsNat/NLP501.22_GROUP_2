@@ -66,6 +66,8 @@ class Settings(BaseSettings):
     # Order of the shortlist: "fused" = mean of normalised cross-encoder and rule score (B3 ⊕), "total" = Σ w·S only
     rank_by: Literal["fused", "total"] = "fused"
     llm_concurrency: int = 4
+    max_investigations: int = 4  # L6: knocked-out CVs the investigator may examine per search round
+    max_investigation_steps: int = 6  # L6: tool calls per investigated CV
     max_reviews: int = 5  # L5: HR re-weight rounds before the ranking is final
     ask_hr_substitutes: bool = True  # L2 proposes related tools and HR approves (False = accept silently, v1)
     tier_strong: float = 0.75  # HR-facing tiers on the weighted total; provisional until calibrated on gold labels

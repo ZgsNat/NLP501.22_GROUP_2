@@ -7,12 +7,12 @@ export const CRITERIA = [
 export type Criterion = (typeof CRITERIA)[number]
 
 export const NODES = [
-  'ingest', 'clarify', 'search', 'expand_query', 'rerank', 'assess',
+  'ingest', 'clarify', 'search', 'investigate', 'expand_query', 'rerank', 'assess',
   'verify_evidence', 'score', 'arbitrate', 'report', 'hr_review',
 ] as const
 export type NodeName = (typeof NODES)[number]
 
-export type LoopKey = 'clarify' | 'expand' | 'verify' | 'arbitrate' | 'review'
+export type LoopKey = 'clarify' | 'expand' | 'investigate' | 'verify' | 'arbitrate' | 'review'
 export type Loops = Record<LoopKey, number>
 
 export interface Config {

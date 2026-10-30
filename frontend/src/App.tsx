@@ -14,7 +14,7 @@ import {
 
 // Which loop edge a `level: "loop"` log belongs to, by emitting node.
 const LOOP_OF: Partial<Record<NodeName, LoopKey>> = {
-  ingest: 'clarify', clarify: 'clarify', search: 'expand', expand_query: 'expand', assess: 'verify',
+  ingest: 'clarify', clarify: 'clarify', search: 'expand', expand_query: 'expand', investigate: 'investigate', assess: 'verify',
   verify_evidence: 'verify', arbitrate: 'arbitrate', score: 'review', hr_review: 'review',
 }
 

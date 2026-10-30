@@ -3,7 +3,7 @@ from app.agent.graph import after_ingest, after_review, after_search, after_veri
 
 def test_graph_compiles_with_all_nodes():
     g = build_graph().get_graph()
-    assert {"ingest", "clarify", "search", "expand_query", "rerank", "assess", "verify_evidence",
+    assert {"ingest", "clarify", "search", "investigate", "expand_query", "rerank", "assess", "verify_evidence",
             "score", "arbitrate", "report", "hr_review"} <= set(g.nodes)
 
 

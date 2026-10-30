@@ -31,14 +31,15 @@ def after_review(state: AgentState) -> str:
 
 def build_graph(checkpointer: BaseCheckpointSaver | None = None):
     g = StateGraph(AgentState)
-    for name in ("ingest", "clarify", "search", "expand_query", "rerank", "assess", "verify_evidence",
+    for name in ("ingest", "clarify", "search", "investigate", "expand_query", "rerank", "assess", "verify_evidence",
                  "score", "arbitrate", "report", "hr_review"):
         g.add_node(name, getattr(nodes, name))
 
     g.add_edge(START, "ingest")
     g.add_conditional_edges("ingest", after_ingest, ["clarify", "search"])
     g.add_edge("clarify", "ingest")
-    g.add_conditional_edges("search", after_search, ["expand_query", "rerank"])
+    g.add_edge("search", "investigate")  # L6: tool-using agent, only when a knock-out looks like a parse failure
+    g.add_conditional_edges("investigate", after_search, ["expand_query", "rerank"])
     g.add_edge("expand_query", "search")
     g.add_edge("rerank", "assess")
     g.add_edge("assess", "verify_evidence")

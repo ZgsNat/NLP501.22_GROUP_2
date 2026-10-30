@@ -42,3 +42,14 @@ gender, age, family status, religion, nationality or other personal attributes."
 REWEIGHT = """A recruiter describes in words how the ranking criteria should change. Map it to criteria and directions:
 "more" (matters more), "less" (matters less), "ignore" (should not count). Only include criteria the recruiter
 actually refers to; English, certification = istqb, years/seniority = experience_level, CI/CD = cicd_infra."""
+
+INVESTIGATE = """You investigate ONE anonymised CV that the rule-based parser could not read reliably (OCR noise, typos,
+odd layout), so it was knocked out for missing must-have skills. Decide, with evidence, whether the CV actually shows
+them. Each turn, choose exactly one tool:
+- read_section(<section>): read one section of the CV
+- search(<term>): find CV lines that approximately contain a term; robust to typos and noise like "S%lenium"
+- propose(<skill key>, quote): claim the CV shows a skill. Code checks that the quote is copied from the CV, that it
+  really names the skill, and that it is not hedged ("familiar with", "learning"). You see the verdict.
+- finish(<conclusion>): stop.
+Rules: propose only skills from the list you are given, quote the CV exactly as shown (noise characters included),
+never guess a skill that no line shows, and finish as soon as each skill is either proven or clearly absent."""

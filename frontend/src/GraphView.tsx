@@ -8,6 +8,7 @@ const POS: Record<NodeName, [number, number, string, string]> = {
   clarify: [175, 70, 'ambiguous criteria?', 'amber'],
   search: [340, 70, 'chunks · per requirement', 'sky'],
   expand_query: [340, 160, 'related tools, ask HR', 'sky'],
+  investigate: [505, 160, 'tool-using agent', 'amber'],
   rerank: [505, 70, 'CE on passages', 'purple'],
   assess: [670, 70, '4 LLM + depth + 3 rules', 'slate'],
   verify_evidence: [835, 70, 'grounded + supported?', 'rose'],
@@ -20,13 +21,14 @@ const POS: Record<NodeName, [number, number, string, string]> = {
 const EDGES = [
   'M140 92 L175 92', 'M305 92 L340 92', 'M470 92 L505 92', 'M635 92 L670 92', 'M800 92 L835 92',
   'M900 114 L900 250', 'M835 272 L800 272', 'M670 272 L635 272', 'M505 272 L470 272',
-  'M340 272 L254 272', 'M375 114 L375 160',
+  'M340 272 L254 272', 'M375 114 L375 160', 'M470 108 L505 168', 'M570 160 L570 114',
 ]
 
 // Loop edges: path, label anchor, tone.
 const LOOPS: { key: LoopKey; id: string; name: string; d: string; x: number; y: number; tone: string }[] = [
   { key: 'clarify', id: 'L1', name: 'Ask HR', d: 'M240 70 L240 30 L75 30 L75 70', x: 157, y: 30, tone: 'amber' },
   { key: 'expand', id: 'L2', name: 'Expand + ask HR', d: 'M440 160 L440 114', x: 505, y: 138, tone: 'sky' },
+  { key: 'investigate', id: 'L6', name: 'Investigate knock-outs', d: 'M635 172 C675 172 675 198 635 198', x: 700, y: 186, tone: 'amber' },
   { key: 'arbitrate', id: 'L3', name: 'Arbiter', d: 'M705 250 C705 212 765 212 765 250', x: 735, y: 200, tone: 'purple' },
   { key: 'verify', id: 'L4', name: 'Block hallucination', d: 'M900 70 L900 30 L735 30 L735 70', x: 817, y: 30, tone: 'rose' },
   { key: 'review', id: 'L5', name: 'HR re-score', d: 'M405 294 L405 345 L900 345 L900 294', x: 652, y: 345, tone: 'emerald' },

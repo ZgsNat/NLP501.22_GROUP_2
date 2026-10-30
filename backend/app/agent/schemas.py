@@ -90,3 +90,12 @@ class WeightInstruction(BaseModel):
     """HR's plain-language re-weighting ("certification matters more for this client") as typed changes."""
 
     changes: list[WeightChange] = Field(description="One entry per criterion the instruction is about; empty if none")
+
+
+class InvestigatorAction(BaseModel):
+    """One step of the investigator (N12, L6): the model picks a tool; code runs it and returns an observation."""
+    thought: str = Field(description="One short sentence: what you expect to learn from this action")
+    tool: Literal["read_section", "search", "propose", "finish"]
+    arg: str = Field(description="read_section: a section name; search: a term (typos and noise are fine); "
+                     "propose: the skill key; finish: one sentence with your conclusion")
+    quote: str = Field("", description="propose only: the CV line that proves the skill, copied exactly as shown")

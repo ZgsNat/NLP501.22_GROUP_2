@@ -40,8 +40,8 @@ OUT = get_settings().runtime_dir / "eval"
 LABELS = ROOT / "data" / "eval"
 HR_ANSWERS = {"JD-003": "Must-have: Selenium with Java. At least 3 years. English is required for client calls."}
 TRAPS = sorted(OUR_TRAPS)  # keyword stuffing, hedges, title inflation
-AGENT_SYSTEMS = {"B4": ["clarify", "expand", "verify", "arbiter"], "P6": [], "A1": ["verify"], "A2": ["profile"],
-                 "A3": ["arbiter"]}
+AGENT_SYSTEMS = {"B4": ["clarify", "expand", "verify", "arbiter", "investigate"], "P6": [], "A1": ["verify"],
+                 "A2": ["profile"], "A3": ["arbiter"], "A4": ["investigate"]}
 
 
 # ── labels ────────────────────────────────────────────────────────────────────────────────────────────
@@ -175,10 +175,11 @@ def quality(events: list[dict]) -> dict:
     m = lambda node: [e["metrics"] for e in events if e.get("node") == node and e.get("metrics")]  # noqa: E731
     msgs = [e.get("message", "") for e in events if e.get("type") == "log"]
     path = [e["node"] for e in events if e.get("type") == "node_start"]
-    verify, rep, arb = m("verify_evidence"), m("report"), m("arbitrate")
+    verify, rep, arb, inv = m("verify_evidence"), m("report"), m("arbitrate"), m("investigate")
     return {"path": path, "verify_first": verify[0] if verify else None, "verify_final": verify[-1] if verify else None,
             "report_first": rep[0] if rep else None, "report_final": rep[-1] if rep else None,
             "arbiter_pairs": len(arb), "arbiter_agree": sum(x["agree"] for x in arb),
+            "investigate": {k: sum(x.get(k, 0) for x in inv) for k in ("investigated", "recovered", "calls", "invalid", "facts")},
             "invalid_outputs": sum("LLM output invalid" in x for x in msgs),
             "gate_fallbacks": sum("fallback to default" in x for x in msgs)}
 
