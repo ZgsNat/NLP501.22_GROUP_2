@@ -5,18 +5,18 @@ Master's NLP final project (FSB). Topic: **an agentic AI system that matches and
 `slide_present_literature_review_group_2.html` (Vietnamese) is the literature-review deck. **Its numbers (86.8 nDCG@10, −78% tokens, 97.6% grounded, τ=0.81) are targets/hypotheses, not measured results.** Never cite them as results. Producing real measurements is the goal of this repo.
 
 ## Core concepts
-- Scoring: `Score(CV,JD) = 1[H(c)] × Σ_k w(c,k)·S(c,k)`. H = hard knock-out on must-have tools; w = per-company-type weights over 8 criteria (`data/criteria_profiles.yaml`); S = 0–100 per criterion.
+- Scoring: `Score(CV,JD) = 1[H(c)] × Σ_k w(c,k)·S(c,k)`. H = hard knock-out on must-have tools; w = per-company-type weights over 8 criteria (`data/criteria_profiles.yaml`); S = 0–100 per criterion. Since v3 all 8 S come from rules over the parsed CV (`scoring.rule_criteria`); the LLM explains (`llm_review`) and arbitrates near-ties in both orders, it does not set S (`LLM_IN_SCORE`).
 - Automation depth L1–L4 (run → write → framework → test architecture). See `data/policies/POL-depth-scale.md`.
 - Hybrid retrieval is mandatory: BM25 catches exact tool names (Resume2Vec: testing is the one domain where keyword ATS beats dense), dense catches meaning, then a cross-encoder reranks.
 - Experiment ladder: B0 BM25 → B1 dense → B2 hybrid → B3 +criteria → B4 fixed linear pipeline → **P6 full agent**. Ablations: A1 = P6 − verify_evidence, A2 = P6 − company profile, A3 = P6 − arbiter. Metrics: nDCG@10, Kendall's τ vs HR, faithfulness (% grounded quotes), latency, $/JD.
 
 ## Architecture
 - `backend/app/agent/graph.py`: LangGraph StateGraph. **Read it first.** 11 nodes, 5 bounded loops: L1 HR clarification (interrupt), L2 query expansion (taxonomy; HR approves substitutes via interrupt), L3 selective arbiter (LLM only on near-ties), L4 verify_evidence (quotes must be grounded and supported), L5 HR review/re-weight (interrupt). Every CV ends with a status + reason.
-- `backend/app/agent/nodes.py`: one job per node; narrate decisions with `emit()`. `scoring.py`: pure, deterministic and tested.
+- `backend/app/agent/nodes.py`: one job per node; narrate decisions with `emit()`. `scoring.py`: pure, deterministic and tested (rule criteria, explanation cards, HR weight calibration).
 - `backend/app/providers/llm.py`: `LLMProvider` interface + `@register` registry + factory. Switch the whole agent with `LLM_PROVIDER` in `.env` (openai, anthropic, google, ollama, gateway); `LLM_REASONING`/`LLM_FAST` pin a role to a full `"<provider>:<model>"`. Roles: `reasoning` (judgement) and `fast` (typed gate decisions via `providers/decider.py`).
-- `backend/app/nlp/`: the CV pipeline (normalize → redact → sections/dates → structural chunks → skill mentions with NegEx-style hedges, years, depth cue → `CVProfile`). Everything downstream reads `pipeline.profile(cv_id)`, never raw text. See `docs/NLP_PIPELINE.md`.
+- `backend/app/nlp/`: the CV pipeline (normalize → redact → sections/dates → structural chunks → skill mentions with NegEx-style hedges, years, depth cue → `CVProfile`). Everything downstream reads `pipeline.profile(cv_id)`, never raw text. `jd.py` parses JDs without an LLM (`JD_PARSER`), `quality.py` flags bad parses and duplicates. See `docs/NLP_PIPELINE.md`.
 - `backend/app/rag/`: Qdrant hybrid store (fastembed: bge-small dense + BM25 sparse + MiniLM cross-encoder); `retrieve.py` = one query per requirement over chunks, max-pooled per CV. `data/` holds the synthetic, anonymised corpus; `data/eval/` the silver labels.
-- `backend/app/eval/`: the B0 → P6 ladder, chunking ablation and A1/A2 against labels; `docs/EVAL.md` (protocol) → `docs/EVAL_RESULTS.md` (generated, never hand-edit).
+- `backend/app/eval/`: the B0 → P6 ladder, chunking ablation and A1–A3 against labels, on two benchmarks (`bench.py`: `ours`, and the `coding` branch's synthetic set via `--bench coding`); `docs/EVAL.md` (protocol, §8 = v3 decision rule) → `docs/EVAL_RESULTS*.md` (generated, never hand-edit).
 - `backend/app/main.py`: FastAPI; runs stream as NDJSON; contract in `docs/API.md`. Checkpoints in `.runtime/checkpoints.sqlite`.
 - `frontend/`: Vite + React + TS live view of the graph (`?mock=1` works without the backend).
 - Langfuse (self-hosted) traces every run; one session per run_id.

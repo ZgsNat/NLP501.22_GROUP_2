@@ -65,6 +65,33 @@ The LLM reads the JD into `JDRequirements`, then deterministic code fixes what a
 Measured effect on the deterministic systems (paired over 12 JDs): requirement-wise retrieval + CE improves (+0.021 nDCG@10, p = 0.003); B3 ⊕ CE is flat (−0.005, τ +0.012). That flat result is the net of JD-011 (+0.12, the bug) and JD-001 (−0.12).
 - **JD-001:** our depth policy lists "CI quality gates that block releases" as L4, so "Define and enforce quality gates" makes the job L4, and L3 framework builders that the annotators graded 3 drop. We kept the a-priori rule (the highest level among duty bullets) rather than tune it to the labels. "Dominant level instead of max" is a hypothesis for new JDs.
 
+### v3: a deterministic JD parser (X9), measured against the LLM
+
+`app/nlp/jd.py` ports the line logic of the `coding` branch's parser (Đán):
+- section headers and cue words (EN + VN) mark each line must / nice / other;
+- benefits are dropped;
+- each must line goes through `canonicalize`.
+
+On our 12 JDs it reproduces the LLM's must-haves and "one of" groups exactly, at zero tokens. It is also more literal: JD-003's "several years" stays unknown, where the LLM invented 3.
+
+It still lost the pre-registered comparison (EVAL.md §8) on both benchmarks. With the 8 rule criteria and the cross-encoder, `rules` scored −0.006 (ours) and −0.005 (coding) nDCG@10 against `llm`. So `JD_PARSER=llm` stays the default. The parser supplies only:
+- the depth floor;
+- foreign languages;
+- domains.
+
+`rules` is the option for running with no LLM at all.
+
+## Data-quality flags (X10)
+
+`app/nlp/quality.py`, ported from the `coding` branch, flags CVs whose score deserves a second look:
+- short or garbled text;
+- fewer than 3 skills;
+- no experience section;
+- no dated roles;
+- near-duplicates (Jaccard over 5-word shingles ≥ 0.85).
+
+Flags never remove a CV. They appear on its row in the ranking.
+
 ## Faithfulness: grounded vs supported (N7, H15)
 
 v1 counted a quote as faithful if it **existed** in the CV (difflib ≥ 0.85). v2 adds a second level:
@@ -79,4 +106,5 @@ An ungrounded quote sends the assessment back to the LLM (L4). A grounded but un
 - **Vietnamese BM25.** `Qdrant/bm25` tokenises on whitespace with English stemming. Tool names are English in VN CVs, so must-have matching works, but Vietnamese prose gets no word segmentation. A VN word segmenter or a multilingual dense model is the next step.
 - **"Present"** resolves to today's date, so synthetic CVs written in 2025 gain about a year.
 - **No OCR.** Scanned PDFs are rejected rather than guessed.
+- **"X with A, B or C".** `canonicalize` makes A, B and C alternatives to X. The right reading here is X plus one of A, B or C. Grouping alternatives by taxonomy category would fix this phrasing, but it would make JD-008's "RestAssured with Java, **or** Postman/Newman" stricter than the JD means. Both phrasings are common, so a fix needs a test for each.
 - **Name lines without a label** (a bare name as the first line) are not removed. Uploads should use the template, or a NER-based name redactor is needed.
