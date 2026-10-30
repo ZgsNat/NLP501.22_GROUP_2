@@ -150,7 +150,7 @@ async def main(spec: str | None, only: str | None, per_kind: int | None = None) 
     t0 = time.perf_counter()
     g = await gate(reasoning, fast) if only != "investigator" else []
     iv = await investigator(reasoning, per_kind) if only != "gate" else []
-    out = OUT.with_name(f"SCENARIO_RESULTS_{spec.split(':', 1)[1]}.md") if spec else OUT
+    out = OUT.with_name(f"SCENARIO_RESULTS_{spec.split(':', 1)[1].replace(':', '-')}.md") if spec else OUT
     out.write_text(render(spec or default_spec("reasoning"), g, iv, time.perf_counter() - t0))
     print(out.read_text())
 
