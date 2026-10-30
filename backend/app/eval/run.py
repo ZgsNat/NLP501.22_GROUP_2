@@ -4,6 +4,7 @@
     cd backend && uv run python -m app.eval.run retrieval --dense intfloat/multilingual-e5-large
     cd backend && uv run python -m app.eval.run agent --systems B4,P6,A1,A2   # LLM systems (slow; LLM cache on)
     cd backend && uv run python -m app.eval.run report               # → docs/EVAL_RESULTS.md
+    cd backend && uv run python -m app.eval.bench fetch && uv run python -m app.eval.run retrieval --bench coding
 
 Ladder (CLAUDE.md): B0 BM25 → B1 dense → B2 hybrid → B3 +criteria (rules, no LLM judgement) → B4 fixed LLM pipeline
 → P6 full agent. Ablations: A1 = P6 − verify_evidence, A2 = P6 − company profile. Chunking: whole / window /
@@ -23,10 +24,11 @@ from langgraph.types import Command
 from app import observability
 from app.agent import nodes
 from app.agent.graph import build_graph
-from app.agent.schemas import RULE_CRITERIA
-from app.agent.scoring import knockout_reason, rule_total
+from app.agent.scoring import CORE4, knockout_reason, rule_total
 from app.config import ROOT, Settings, get_settings
 from app.eval import metrics
+from app.eval.bench import OUR_TRAPS, Bench
+from app.eval.bench import load as load_bench
 from app.nlp.pipeline import process
 from app.providers import cache
 from app.providers.llm import create_llm, default_spec
@@ -37,7 +39,7 @@ from app.rag.store import KnowledgeStore
 OUT = get_settings().runtime_dir / "eval"
 LABELS = ROOT / "data" / "eval"
 HR_ANSWERS = {"JD-003": "Must-have: Selenium with Java. At least 3 years. English is required for client calls."}
-TRAPS = ["CV-004", "CV-005", "CV-006", "CV-034", "CV-043", "CV-044", "CV-045", "CV-046"]  # stuffing, hedges, titles
+TRAPS = sorted(OUR_TRAPS)  # keyword stuffing, hedges, title inflation
 AGENT_SYSTEMS = {"B4": ["clarify", "expand", "verify", "arbiter"], "P6": [], "A1": ["verify"], "A2": ["profile"],
                  "A3": ["arbiter"]}
 
@@ -53,12 +55,13 @@ def gold() -> dict[str, dict[str, float]]:
 
 
 # ── shared inputs ─────────────────────────────────────────────────────────────────────────────────────
-async def requirements(jd) -> dict:
-    """JD → requirements with the agent's own extraction (cached on disk: the same input for every system)."""
-    path = OUT / "requirements" / f"{jd.id}.json"
+async def requirements(jd, mode: str = "llm", bench: str = "ours") -> dict:
+    """JD → requirements with the agent's own extraction (Settings.jd_parser modes), cached on disk so every system
+    sees the same input. The LLM answers come from the LLM cache, so recomputing is free once warm."""
+    path = OUT / "requirements" / bench / mode / f"{jd.id}.json"
     if path.exists():
         return json.loads(path.read_text())
-    req, subs, _ = await nodes.extract_requirements(create_llm(default_spec("reasoning")), jd.text)
+    req, subs, _ = await nodes.extract_requirements(create_llm(default_spec("reasoning")), jd.text, mode)
     out = {"req": req.model_dump(), "subs": subs,
            "terms": list(dict.fromkeys(req.must_have + req.nice_to_have + req.languages))}
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -71,47 +74,65 @@ def full_order(ranked: list[str], pool: list[str]) -> list[str]:
 
 
 # ── retrieval-level systems (no LLM judgement) ────────────────────────────────────────────────────────
-def retrieval_systems(dense_model: str) -> dict[str, dict[str, list[str]]]:
+def b3_systems(store: KnowledgeStore, pool: list[str], prof: dict, r: dict, w: dict) -> dict[str, list[str]]:
+    """B3 family on one JD: hedge-aware knock-out + rule criteria (CORE4 = v2, or all 8), alone or fused with the
+    cross-encoder over the same requirement-wise retrieval the agent uses. No LLM judgement."""
+    req, subs = r["req"], r["subs"]
+    qs = retrieve.queries(req, r["terms"], subs)
+    hits = retrieve.rank_cvs(store, "chunks_structural", qs, limit=max(200, 2 * len(pool)))
+    ce = retrieve.rerank_cvs(store, qs, [h for h in hits if h.cv_id in prof], prof)
+    ko = {c for c in pool if knockout_reason(prof[c], req["must_have"], subs)}
+    out = {}
+    for crit_name, crit in (("core4", CORE4), ("8-axis", None)):
+        rule = {c: rule_total(prof[c], req, subs, w, criteria=crit) for c in pool}
+        out[crit_name] = sorted(pool, key=lambda c: (c not in ko, rule[c], ce.get(c, -99)), reverse=True)
+        # ⊕: what the agent's rerank node orders by — eligible CVs by the mean of min-max normalised CE and rule
+        # scores, then knocked-out ones by rule score
+        ok = [c for c in ce if c not in ko]
+        norm = lambda xs: {k: (v - min(xs.values())) / ((max(xs.values()) - min(xs.values())) or 1) for k, v in xs.items()}  # noqa: E731
+        ce_n, ru_n = (norm({c: ce[c] for c in ok}), norm({c: rule[c] for c in ok})) if ok else ({}, {})
+        fused = sorted(ok, key=lambda c: ce_n[c] + ru_n[c], reverse=True)
+        out[f"{crit_name} ⊕ CE"] = fused + sorted((c for c in pool if c not in ok), key=lambda c: (c not in ko, rule[c]),
+                                                  reverse=True)
+    return out
+
+
+def retrieval_systems(dense_model: str, b: Bench) -> dict[str, dict[str, list[str]]]:
     s = Settings(qdrant_url=":memory:", embed_dense_model=dense_model)
     store = KnowledgeStore(s)
-    cvs = list(load_dir("cvs"))
-    pool = [d.id for d in cvs]
-    profiles = {st: {d.id: process(d.id, d.text, d.meta.get("headline", ""), st) for d in cvs}
+    pool = [d.id for d in b.cvs]
+    profiles = {st: {d.id: process(d.id, d.text, d.meta.get("headline", ""), st) for d in b.cvs}
                 for st in ("structural", "window", "whole")}
-    store.index(retrieve.WHOLE, cvs)
+    store.index(retrieve.WHOLE, b.cvs)
     for st, ps in profiles.items():
         store.index_items(f"chunks_{st}", retrieve.chunk_items(list(ps.values())))
     weights_of = load_yaml("criteria_profiles.yaml")["profiles"]
 
     out: dict[str, dict[str, list[str]]] = {}
-    for jd in load_dir("jds"):
-        r = asyncio.run(requirements(jd))
+    for jd in b.jds:
+        r = asyncio.run(requirements(jd, "llm", b.name))
         req, subs = r["req"], r["subs"]
         add = lambda name, ids: out.setdefault(name, {}).__setitem__(jd.id, full_order(ids, pool))  # noqa: E731
         for mode, name in (("bm25", "B0 BM25"), ("dense", "B1 dense"), ("hybrid", "B2 hybrid")):
             add(name, [h.id for h in store.hybrid_search(retrieve.WHOLE, jd.text, limit=len(pool), mode=mode)])
         qs = retrieve.queries(req, r["terms"], subs)
         for st, weighted in (("whole", False), ("window", False), ("structural", False), ("structural", True)):
-            hits = retrieve.rank_cvs(store, f"chunks_{st}", qs, section_weighted=weighted)
+            hits = retrieve.rank_cvs(store, f"chunks_{st}", qs, limit=max(200, 2 * len(pool)), section_weighted=weighted)
             name = f"R {st}" + (" (section-weighted)" if weighted else "")
             add(name, [h.cv_id for h in hits])
             ce = retrieve.rerank_cvs(store, qs, hits, profiles[st])
             add(f"{name} + CE", sorted(ce, key=ce.get, reverse=True))
-        # B3: same retrieval as the agent, then knock-out + rule criteria only (depth from the verb cue, no LLM)
-        prof = profiles["structural"]
-        hits = retrieve.rank_cvs(store, "chunks_structural", qs)
-        ce = retrieve.rerank_cvs(store, qs, hits, prof)
         w = weights_of[jd.meta.get("company_profile", "default")]["weights"]
-        ko = {c for c in pool if knockout_reason(prof[c], req["must_have"], subs)}
-        rule = {c: rule_total(prof[c], req, subs, w) for c in pool}
-        add("B3 +criteria (rules)", sorted(pool, key=lambda c: (c not in ko, rule[c], ce.get(c, -99)), reverse=True))
-        # B3 ⊕: exactly what the agent's rerank node feeds the LLM — eligible CVs by the mean of min-max normalised
-        # cross-encoder and rule scores, then knocked-out by rule score. P6 − this = what the LLM judgement adds.
-        ok = [c for c in ce if c not in ko]
-        norm = lambda xs: {k: (v - min(xs.values())) / ((max(xs.values()) - min(xs.values())) or 1) for k, v in xs.items()}  # noqa: E731
-        ce_n, ru_n = norm({c: ce[c] for c in ok}), norm({c: rule[c] for c in ok})
-        fused = sorted(ok, key=lambda c: ce_n[c] + ru_n[c], reverse=True)
-        add("B3 rules ⊕ CE", fused + sorted(ko, key=rule.get, reverse=True))
+        # B3 family per JD-requirements mode. "B3 +criteria (rules)" / "B3 rules ⊕ CE" keep their v2 names (llm, core4).
+        for mode in ("llm", "rules", "hybrid"):
+            rm = r if mode == "llm" else asyncio.run(requirements(jd, mode, b.name))
+            for variant, ids in b3_systems(store, pool, profiles["structural"], rm, w).items():
+                if (mode, variant) == ("llm", "core4"):
+                    add("B3 +criteria (rules)", ids)
+                elif (mode, variant) == ("llm", "core4 ⊕ CE"):
+                    add("B3 rules ⊕ CE", ids)
+                else:
+                    add(f"B3 {variant} [{mode}]", ids)
     return out
 
 
@@ -138,8 +159,7 @@ async def run_agent(jd, ablate: list[str]) -> dict:
         else:
             inp = Command(resume={"action": "approve"})
     v = state.values
-    ev = [e for a in v.get("assessments", {}).values() for k, c in a["criteria"].items() if k not in RULE_CRITERIA
-          for e in c["evidence"]]
+    ev = [e for a in v.get("assessments", {}).values() for c in a.get("llm_review", {}).values() for e in c["evidence"]]
     u = usage.summary()
     return {"ranking": [r["cv_id"] for r in v["ranking"]], "seconds": round(time.perf_counter() - t0, 1),
             "calls": u["calls"], "tokens": u["total_tokens"], "loops": {k: n for k, n in v.get("loops", {}).items() if n},
@@ -148,52 +168,70 @@ async def run_agent(jd, ablate: list[str]) -> dict:
             "tiers": {r["cv_id"]: r["tier"] for r in v["ranking"] if r.get("tier")}}
 
 
-def save(name: str, per_jd: dict) -> None:
-    (OUT / "results").mkdir(parents=True, exist_ok=True)
-    (OUT / "results" / f"{name.replace(' ', '_').replace('+', 'plus')}.json").write_text(
+def results_dir(bench: str = "ours") -> Path:
+    return OUT / ("results" if bench == "ours" else f"results_{bench}")
+
+
+def save(name: str, per_jd: dict, bench: str = "ours") -> None:
+    results_dir(bench).mkdir(parents=True, exist_ok=True)
+    (results_dir(bench) / f"{name.replace(' ', '_').replace('+', 'plus')}.json").write_text(
         json.dumps({"system": name, "jds": per_jd}, indent=1))
 
 
 # ── report ────────────────────────────────────────────────────────────────────────────────────────────
-def score_system(per_jd: dict, g: dict) -> dict:
+def score_system(per_jd: dict, g: dict, traps: frozenset[str] = OUR_TRAPS) -> dict:
     jds = sorted(per_jd)
     order = lambda jd: per_jd[jd] if isinstance(per_jd[jd], list) else per_jd[jd]["ranking"]  # noqa: E731
     m = {"ndcg@10": [metrics.ndcg(order(j), g[j], 10) for j in jds],
          "ndcg@5": [metrics.ndcg(order(j), g[j], 5) for j in jds],
          "p@5": [metrics.precision(order(j), g[j], 5) for j in jds],
          "tau": [metrics.tau_vs_gold(order(j), g[j]) for j in jds],
-         "traps@10": [sum(c in TRAPS and g[j][c] < 2 for c in order(j)[:10]) for j in jds]}
+         "traps@10": [sum(c in traps and g[j].get(c, 0) < 2 for c in order(j)[:10]) for j in jds]}
     return {"jds": jds, **m}
 
 
-def report() -> str:
-    g, ann = gold(), annotators()
+def report(bench: str = "ours") -> str:
+    b = load_bench(bench)
+    g = b.gold
     results = {json.loads(p.read_text())["system"]: json.loads(p.read_text())["jds"]
-               for p in sorted((OUT / "results").glob("*.json"))}
-    a, b = ann["a"], ann["b"]
-    flat_a = [a[j][c] for j in a for c in a[j]]
-    flat_b = [b[j][c] for j in a for c in a[j]]
-    lines = ["# Evaluation results (generated by `python -m app.eval.run report`; do not edit by hand)", "",
-             f"Silver labels: 2 independent LLM annotators (Claude Opus, Claude Sonnet), {len(flat_a)} (JD, CV) pairs, "
-             f"graded 0–3. Agreement: exact {sum(x == y for x, y in zip(flat_a, flat_b)) / len(flat_a):.1%}, "
-             f"quadratic-weighted κ = {metrics.weighted_kappa(flat_a, flat_b):.3f}. Gold = mean of the two. "
-             "These are **silver** labels until human annotators check them (docs/EVAL.md).", "",
-             "Mean over JDs with a 95% bootstrap CI over JDs. τ = Kendall's τ-b between the system order and gold "
-             "grades over all 50 CVs. traps@10 = keyword-stuffed / hedged / title-inflated CVs (gold < 2) in the top 10, "
-             "summed over JDs.", "",
-             "| System | JDs | nDCG@10 | nDCG@5 | P@5 | τ vs gold | traps@10 |", "|---|---|---|---|---|---|---|"]
-    ceiling = {j: sorted(a[j], key=lambda c: (-a[j][c], c)) for j in a}
-    rows = {"Annotator A order vs gold (ceiling-ish)": ceiling, **results}
+               for p in sorted(results_dir(bench).glob("*.json"))}
+    lines = ["# Evaluation results (generated by `python -m app.eval.run report`; do not edit by hand)", ""]
+    if bench == "ours":
+        ann = annotators()
+        a, bb = ann["a"], ann["b"]
+        flat_a = [a[j][c] for j in a for c in a[j]]
+        flat_b = [bb[j][c] for j in a for c in a[j]]
+        lines += [f"Silver labels: 2 independent LLM annotators (Claude Opus, Claude Sonnet), {len(flat_a)} (JD, CV) "
+                  f"pairs, graded 0–3. Agreement: exact {sum(x == y for x, y in zip(flat_a, flat_b)) / len(flat_a):.1%}, "
+                  f"quadratic-weighted κ = {metrics.weighted_kappa(flat_a, flat_b):.3f}. Gold = mean of the two. "
+                  "These are **silver** labels until human annotators check them (docs/EVAL.md). The second "
+                  "benchmark is in [EVAL_RESULTS_coding.md](EVAL_RESULTS_coding.md).", ""]
+    else:
+        lines += [f"Benchmark `{bench}`: the `coding` branch's synthetic set ({len(b.cvs)} template CVs, {len(b.jds)} "
+                  "JDs, gold from its own annotation rubric; see app/eval/bench.py). Our pipeline was not developed "
+                  "on it. Its gold follows rules similar to its own scoring, which favours that style of ranker.", ""]
+    lines += [f"Mean over JDs with a 95% bootstrap CI over JDs. τ = Kendall's τ-b between the system order and gold "
+              f"grades over all {len(b.cvs)} CVs. traps@10 = keyword-stuffed / hedged / title-inflated CVs (gold < 2) "
+              "in the top 10, summed over JDs.", "",
+              "| System | JDs | nDCG@10 | nDCG@5 | P@5 | τ vs gold | traps@10 |", "|---|---|---|---|---|---|---|"]
+    rows = dict(results)
+    if bench == "ours":
+        rows = {"Annotator A order vs gold (ceiling-ish)": {j: sorted(a[j], key=lambda c: (-a[j][c], c)) for j in a},
+                **results}
     scored = {}
     for name, per_jd in rows.items():
-        sc = scored[name] = score_system(per_jd, g)
+        sc = scored[name] = score_system(per_jd, g, b.traps)
         ci = lambda k: "{:.3f} [{:.3f}, {:.3f}]".format(*metrics.bootstrap_ci(sc[k]))  # noqa: E731
         lines.append(f"| {name} | {len(sc['jds'])} | {ci('ndcg@10')} | {ci('ndcg@5')} | {ci('p@5')} | {ci('tau')} "
                      f"| {sum(sc['traps@10'])} |")
     pairs = [("P6", "B3 rules ⊕ CE"), ("B3 rules ⊕ CE", "R structural + CE"), ("R structural (section-weighted)", "R structural"), ("R structural (section-weighted) + CE", "R whole + CE"),
              ("R structural + CE", "R whole + CE"), ("R structural + CE", "R window + CE"),
              ("R structural", "R whole"), ("R structural + CE", "B2 hybrid"), ("B3 +criteria (rules)", "R structural + CE"),
-             ("P6", "B4"), ("P6", "B3 +criteria (rules)"), ("P6", "A1"), ("P6", "A2"), ("P6", "A3")]
+             ("P6", "B4"), ("P6", "B3 +criteria (rules)"), ("P6", "A1"), ("P6", "A2"), ("P6", "A3"),
+             # v3 merge (docs/EVAL.md §8): each against the v2 deterministic baseline
+             ("B3 core4 ⊕ CE [rules]", "B3 rules ⊕ CE"), ("B3 core4 ⊕ CE [hybrid]", "B3 rules ⊕ CE"),
+             ("B3 8-axis ⊕ CE [llm]", "B3 rules ⊕ CE"), ("B3 8-axis ⊕ CE [rules]", "B3 rules ⊕ CE"),
+             ("B3 8-axis ⊕ CE [hybrid]", "B3 rules ⊕ CE"), ("B3 8-axis [hybrid]", "B3 +criteria (rules)")]
     lines += ["", "Paired comparisons (same JDs): one-sided bootstrap p for “first > second” on nDCG@10.", "",
               "| First | Second | ΔnDCG@10 | p | Δτ |", "|---|---|---|---|---|"]
     for x, y in pairs:
@@ -220,10 +258,11 @@ def report() -> str:
                          f"{sum(x['tokens'] for x in v):,} | {ev} | {sum(x['grounded'] for x in v) / ev:.1%} | "
                          f"{sum(x['supported'] for x in v) / ev:.1%} | {hit('strong', lambda x: x >= 2)} "
                          f"| {hit('weak', lambda x: x < 2)} |")
-    todo = {j: {c: {"a": a[j][c], "b": b[j][c]} for c in a[j] if a[j][c] != b[j][c]} for j in a}
-    (OUT / "to_adjudicate.yaml").write_text(yaml.safe_dump(todo, sort_keys=True))
-    lines += ["", f"Annotator disagreements to adjudicate by humans: {sum(map(len, todo.values()))} pairs "
-                  "(.runtime/eval/to_adjudicate.yaml): " + ", ".join(f"{j} {len(v)}" for j, v in sorted(todo.items()))]
+    if bench == "ours":
+        todo = {j: {c: {"a": a[j][c], "b": bb[j][c]} for c in a[j] if a[j][c] != bb[j][c]} for j in a}
+        (OUT / "to_adjudicate.yaml").write_text(yaml.safe_dump(todo, sort_keys=True))
+        lines += ["", f"Annotator disagreements to adjudicate by humans: {sum(map(len, todo.values()))} pairs "
+                      "(.runtime/eval/to_adjudicate.yaml): " + ", ".join(f"{j} {len(v)}" for j, v in sorted(todo.items()))]
     lines += ["", "Per JD nDCG@10:", "", "| System | " + " | ".join(sorted(g)) + " |", "|---|" + "---|" * len(g)]
     for name, sc in scored.items():
         by = dict(zip(sc["jds"], sc["ndcg@10"]))
@@ -251,18 +290,19 @@ def main() -> None:
     ap.add_argument("--dense", default=get_settings().embed_dense_model)
     ap.add_argument("--systems", default="P6,B4,A1,A2,A3")
     ap.add_argument("--jds", default="")
+    ap.add_argument("--bench", default="ours", choices=["ours", "coding"])
     a = ap.parse_args()
     cache.enable(get_settings().runtime_dir / "llm_cache.sqlite")
     if a.what == "retrieval":
         suffix = "" if a.dense == get_settings().embed_dense_model else f" [{a.dense.split('/')[-1]}]"
-        for name, per_jd in retrieval_systems(a.dense).items():
-            save(name + suffix, per_jd)
+        for name, per_jd in retrieval_systems(a.dense, load_bench(a.bench)).items():
+            save(name + suffix, per_jd, a.bench)
             print(f"saved {name + suffix}")
     elif a.what == "agent":
         asyncio.run(run_agents(a.systems.split(","), [d for d in load_dir("jds") if not a.jds or d.id in a.jds.split(",")]))
     else:
-        text = report()
-        Path(ROOT / "docs" / "EVAL_RESULTS.md").write_text(text)
+        text = report(a.bench)
+        Path(ROOT / "docs" / ("EVAL_RESULTS.md" if a.bench == "ours" else f"EVAL_RESULTS_{a.bench}.md")).write_text(text)
         print(text)
 
 

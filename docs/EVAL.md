@@ -108,3 +108,32 @@ All numbers are from [EVAL_RESULTS.md](EVAL_RESULTS.md): 12 JDs, silver labels, 
 10. **Negative result kept:** down-weighting skills and summary passages cut traps at retrieval but cost 0.040 nDCG@10 (p = 0.977 for "better"). It stays off.
 11. **Cost (cold cache):** P6 takes 199 s/JD on an M5 Pro, about 13 LLM calls and 37k tokens per JD. Other systems' seconds are lower partly because they reuse P6's cached responses, so compare their calls and tokens, not their time.
 12. **Tier calibration:** 63 of 75 "strong" candidates (84%) have gold ≥ 2. Almost every shortlisted candidate is "strong", so the tiers add little beyond the rank.
+
+## 8. v3 merge with the `coding` branch: decision rule (written before running)
+
+v3 ports components from the `coding` branch (Đán) into this pipeline. Two benchmarks are used:
+- **`ours`:** this file. Our code was developed on it, so it plays the role of a dev set.
+- **`coding`:** his synthetic set, 200 CVs × 6 JDs (`app/eval/bench.py`). Our code was never tuned on it, so it is the closer thing to a held-out test. Its gold comes from rules similar to his scoring, which favours that style of ranker.
+
+The baseline is the v2 deterministic ranker, `B3 rules ⊕ CE`: LLM requirements and 4 rule criteria, fused with the cross-encoder.
+
+**Rule.** A ported component becomes the default only if both conditions hold:
+1. Its mean nDCG@10 is **not lower than the baseline by more than 0.01 on either benchmark**.
+2. It is **higher on at least one** benchmark.
+
+Ties go to the simpler or zero-token option. With 6–12 JDs, CIs will overlap, so the rule uses point estimates and the report shows the CIs and paired p-values.
+
+**Candidates:**
+
+| Component | Origin | System name |
+|---|---|---|
+| Deterministic JD parser (`jd_parser = rules`) | `coding` `criteria/jd_parser.py` | `B3 core4 ⊕ CE [rules]` |
+| Parser first, LLM fills gaps (`hybrid`) | merge | `B3 core4 ⊕ CE [hybrid]` |
+| All 8 criteria by rule from the CVProfile | `coding` `ranking/scoring.py` (8 axes) on our hedge-aware profile | `B3 8-axis ⊕ CE [llm \| rules \| hybrid]` |
+
+**Agent-level changes**, measured with the agent ladder on `ours` (the only benchmark with an indexed corpus for the graph):
+- the LLM explains but does not set scores;
+- the arbiter judges each pair in both orders;
+- explanation cards.
+
+Expected effect: P6 moves to B3⊕ level, the 0.033 gap in §7.6.
