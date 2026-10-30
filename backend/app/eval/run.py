@@ -137,11 +137,13 @@ def retrieval_systems(dense_model: str, b: Bench) -> dict[str, dict[str, list[st
 
 
 # ── agent systems (in-process graph, scripted HR) ─────────────────────────────────────────────────────
-async def run_agent(jd, ablate: list[str]) -> dict:
+async def run_agent(jd, ablate: list[str], model: str | None = None) -> dict:
     graph = build_graph(InMemorySaver())
     usage = observability.UsageCounter()
     cfg = {"configurable": {"thread_id": f"eval-{jd.id}-{time.time()}"}, "callbacks": [usage]}
     inp = {"jd_text": jd.text, "company_profile": jd.meta.get("company_profile", "default"), "ablate": ablate}
+    if model:  # one "<provider>:<model>" for both roles, persisted in state so resumes use the same brain
+        inp["models"] = {"reasoning": model, "fast": model}
     first_verify, t0, events = None, time.perf_counter(), []
     while True:
         async for mode, chunk in graph.astream(inp, cfg, stream_mode=["custom"]):
@@ -188,10 +190,13 @@ def results_dir(bench: str = "ours") -> Path:
     return OUT / ("results" if bench == "ours" else f"results_{bench}")
 
 
+def result_path(name: str, bench: str = "ours") -> Path:
+    return results_dir(bench) / f"{name.replace(' ', '_').replace('+', 'plus').replace(':', '-')}.json"
+
+
 def save(name: str, per_jd: dict, bench: str = "ours") -> None:
     results_dir(bench).mkdir(parents=True, exist_ok=True)
-    (results_dir(bench) / f"{name.replace(' ', '_').replace('+', 'plus')}.json").write_text(
-        json.dumps({"system": name, "jds": per_jd}, indent=1))
+    result_path(name, bench).write_text(json.dumps({"system": name, "jds": per_jd}, indent=1))
 
 
 # ── report ────────────────────────────────────────────────────────────────────────────────────────────
@@ -264,7 +269,7 @@ def report(bench: str = "ours") -> str:
             dt = sum(scored[x]["tau"][i] - scored[y]["tau"][jy[scored[x]["jds"][i]]] for i in common) / len(common)
             lines.append(f"| {x} | {y} | {sum(xs) / len(xs) - sum(ys) / len(ys):+.3f} | "
                          f"{metrics.paired_bootstrap_p(xs, ys):.3f} | {dt:+.3f} |")
-    agent = {k: v for k, v in results.items() if k in AGENT_SYSTEMS}
+    agent = {k: v for k, v in results.items() if k.split(" [")[0] in AGENT_SYSTEMS}
     if agent:
         lines += ["", "Agent systems: cost and faithfulness (sum or mean over JDs).", "",
                   "| System | mean s/JD | LLM calls | tokens | evidence quotes | grounded | supported "
@@ -320,15 +325,17 @@ def scorecard(agent: dict[str, dict]) -> list[str]:
     return out
 
 
-async def run_agents(systems: list[str], jds: list) -> None:
-    """One event loop for the whole run: cached LLM clients hold connections bound to the loop that created them."""
-    for name in systems:
-        path = OUT / "results" / f"{name}.json"
+async def run_agents(systems: list[str], jds: list, model: str | None = None) -> None:
+    """One event loop for the whole run: cached LLM clients hold connections bound to the loop that created them.
+    With `model`, results are saved as "<system> [<model>]" next to the default-model runs."""
+    for system in systems:
+        name = f"{system} [{model.split(':', 1)[1]}]" if model else system
+        path = result_path(name)
         per_jd = json.loads(path.read_text())["jds"] if path.exists() else {}
         for jd in jds:
             if jd.id in per_jd:
                 continue  # resumable: a crash or Ctrl-C keeps finished JDs
-            per_jd[jd.id] = await run_agent(jd, AGENT_SYSTEMS[name])
+            per_jd[jd.id] = await run_agent(jd, AGENT_SYSTEMS[system], model)
             save(name, per_jd)
             r = per_jd[jd.id]
             print(f"{name} {jd.id}: {r['seconds']}s {r['tokens']} tok, top5 {r['ranking'][:5]}", flush=True)
@@ -338,9 +345,10 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("what", choices=["retrieval", "agent", "report"])
     ap.add_argument("--dense", default=get_settings().embed_dense_model)
-    ap.add_argument("--systems", default="P6,B4,A1,A2,A3")
+    ap.add_argument("--systems", default="P6,B4,A1,A2,A3,A4")
     ap.add_argument("--jds", default="")
     ap.add_argument("--bench", default="ours", choices=["ours", "coding"])
+    ap.add_argument("--model", help='agent only: "<provider>:<model>" for both roles, e.g. claude_code:claude-sonnet-5-5')
     a = ap.parse_args()
     cache.enable(get_settings().runtime_dir / "llm_cache.sqlite")
     if a.what == "retrieval":
@@ -349,7 +357,8 @@ def main() -> None:
             save(name + suffix, per_jd, a.bench)
             print(f"saved {name + suffix}")
     elif a.what == "agent":
-        asyncio.run(run_agents(a.systems.split(","), [d for d in load_dir("jds") if not a.jds or d.id in a.jds.split(",")]))
+        asyncio.run(run_agents(a.systems.split(","), [d for d in load_dir("jds") if not a.jds or d.id in a.jds.split(",")],
+                               a.model))
     else:
         text = report(a.bench)
         Path(ROOT / "docs" / ("EVAL_RESULTS.md" if a.bench == "ours" else f"EVAL_RESULTS_{a.bench}.md")).write_text(text)

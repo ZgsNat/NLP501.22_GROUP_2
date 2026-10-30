@@ -36,3 +36,23 @@ def test_requirement_wise_queries_expand_aliases_and_weight_must_haves():
     assert set(labels) == {"role", "must:selenium", "nice", "test_types"}
     assert "selenium webdriver" in labels["must:selenium"].text and "playwright" in labels["must:selenium"].text
     assert labels["must:selenium"].weight == 2 * labels["nice"].weight
+
+
+def test_l1_rules_ask_hr_without_the_model():
+    import asyncio
+
+    from app.agent.nodes import ask_hr_gate, seniority_conflict
+    from app.agent.schemas import JDRequirements
+
+    class NoModel:
+        def with_structured_output(self, schema):
+            raise AssertionError("a rule must decide before any model is called")
+
+    def req(title, years, must=("selenium",)):
+        return JDRequirements(title=title, must_have=list(must), nice_to_have=[], min_years=years, depth_level=None,
+                              languages=[], test_types=[], ambiguities=[])
+
+    assert asyncio.run(ask_hr_gate(NoModel(), "", req("Junior Automation Tester", 4)))[0]
+    assert asyncio.run(ask_hr_gate(NoModel(), "", req("Senior QA", None, must=())))[0]
+    assert asyncio.run(ask_hr_gate(NoModel(), "", req("QA Engineer", 3))) == (False, None)
+    assert seniority_conflict("Senior QA Lead", 1) and not seniority_conflict("Senior QA", 5)

@@ -3,6 +3,7 @@ through `emit()` so the UI (and Langfuse) can show *why* the agent did what it d
 
 import asyncio
 import json
+import re
 import time
 from collections.abc import Awaitable, Callable
 from functools import lru_cache, wraps
@@ -211,12 +212,28 @@ async def search(state: AgentState) -> dict:
     return {"candidates": candidates, "knocked_out": knocked, "screened": screened}
 
 
+JUNIOR = re.compile(r"\b(?:junior|fresher|intern|entry[- ]level|graduate|thực tập|mới tốt nghiệp)\b", re.I)
+SENIOR = re.compile(r"\b(?:senior|lead|principal|staff|architect|head|trưởng nhóm)\b", re.I)
+
+
+def seniority_conflict(title: str, min_years: int | None) -> str | None:
+    """A JD that contradicts itself ("Junior" but 4+ years) cannot be ranked fairly without asking which one holds."""
+    if min_years is not None and min_years >= 3 and JUNIOR.search(title or ""):
+        return f"The title says junior but the JD asks for {min_years}+ years: which one applies?"
+    if min_years is not None and min_years <= 1 and SENIOR.search(title or ""):
+        return f"The title says senior but the JD asks for only {min_years} year(s): which one applies?"
+    return None
+
+
 async def ask_hr_gate(model: BaseChatModel, jd: str, req: JDRequirements) -> tuple[bool, str | None]:
     """L1 decision: pause for HR or proceed? (mutates req.ambiguities when the rule fires). → (ask, narration)."""
     if not req.must_have:
         # Rule before model: with zero must-have tools there is no knock-out and no fair ranking — always ask.
         req.ambiguities = ["Which tools/frameworks are must-have for this role?", *req.ambiguities][:4]
         return True, "Rule: no concrete must-have tools → ask HR (no LLM needed)"
+    if conflict := seniority_conflict(req.title, req.min_years):
+        req.ambiguities = [conflict, *req.ambiguities][:4]
+        return True, f"Rule: {conflict} → ask HR (no LLM needed)"
     if not req.ambiguities:
         return False, None
     # System-One gate: is it worth interrupting a human?

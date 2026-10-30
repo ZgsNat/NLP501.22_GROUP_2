@@ -70,3 +70,10 @@ def test_budget_repeats_and_invalid_output_are_bounded():
     assert looping.calls == 4 and len(out["trace"]) == 4 and "already did" in out["trace"][1]["observation"]
     broken = run(Script([ValueError("bad json")]), NOISY, ["selenium"])
     assert broken["invalid"] and broken["facts"] == []  # Q1: unusable output → the knock-out stands
+
+
+def test_match_bar_is_length_aware_and_search_splits_alternatives():
+    assert inv.match_bar("jest") == 0.75 and inv.match_bar("playwright") == 0.65
+    p = process("CV-P", "EXPERIENCE\nShop (2020 - 2023)\n- Wrote Pl#yw%i~ht tests in J%va.")
+    assert inv.verify(p, "playwright", "- Wrote Pl#yw%i~ht tests in J%va.", {"playwright"})[0]  # 0.70: long name, noisy
+    assert "Pl#yw%i~ht" in inv.search(p, "cypress|playwright")

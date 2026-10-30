@@ -59,7 +59,7 @@ def investigator_cases() -> list[dict]:
             missing = [m for m in must if knockout_reason(p, [m], subs)]
             if not missing:
                 continue
-            has = {k for t in x["tools"] + x["langs"] + x["cicd"] if (k := to_key(t))}
+            has = {k for t in x["tools"] + x["langs"] + x["cicd"] + x["test_types"] if (k := to_key(t))}  # "api testing"
             truth = {t for m in missing for t in [m, *subs.get(m, [])] if t in has}
             out = any(not ({m, *subs.get(m, [])} & has) for m in missing)  # a must-have the CV truly lacks
             cases.append({"id": f"{cid}×{jd['id']}", "p": p, "missing": missing, "subs": subs, "truth": truth,

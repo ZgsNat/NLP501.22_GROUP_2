@@ -30,7 +30,12 @@ from app.nlp.taxonomy import key as tkey
 
 TOKEN = re.compile(r"[^\s/,;()]+")  # "Postman/Newman" is two tools
 NEAR = 0.8  # a token this similar to an alias, but not equal, is a near-miss spelling (typo or OCR noise)
-MATCH = 0.75  # a proposed quote must contain the skill at least this similar
+
+
+def match_bar(alias: str) -> float:
+    """How similar a quote must be to an alias to count as naming it. Short names collide by chance ("jest" / "test"
+    = 0.75), long ones rarely do, and OCR noise costs a long name more characters."""
+    return 0.75 if len(alias) < 8 else 0.65
 
 
 def _clean(s: str) -> str:
@@ -96,8 +101,11 @@ def read_section(p: CVProfile, kind: str) -> str:
 
 
 def search(p: CVProfile, term: str, limit: int = 5) -> str:
-    scored = sorted(((similarity(term, ln)[0], ln.strip()) for ln in p.text.split("\n") if ln.strip()), reverse=True)
-    hits = [f"[{r:.2f}] {ln}" for r, ln in scored[:limit] if r >= 0.6]
+    """Lines most similar to the term; "java|python" or "java, python" searches each (models write both)."""
+    terms = [t.strip() for t in re.split(r"[|,/]| or ", term) if t.strip()] or [term]
+    scored = sorted({(max(similarity(t, ln)[0] for t in terms), ln.strip()) for ln in p.text.split("\n") if ln.strip()},
+                    reverse=True)
+    hits = [f"[{r:.2f}] {ln}" for r, ln in scored[:limit] if r >= min(match_bar(t) for t in terms) - 0.1]
     return "\n".join(hits) or f"No line resembles '{term}'."
 
 
@@ -111,8 +119,8 @@ def verify(p: CVProfile, skill: str, quote: str, allowed: set[str]) -> tuple[dic
     grounded, section = locate(quote, p)
     if not grounded:
         return None, "rejected: the quote is not in the CV (copy the line exactly as shown)"
-    r, a, b = max(similarity(al, quote) for al in aliases(k))
-    if r < MATCH:
+    (r, a, b), al = max((similarity(al, quote), al) for al in aliases(k))
+    if r < match_bar(al):
         return None, f"rejected: the quote does not name {k} (best match {r:.2f})"
     if extract.is_hedged(quote.lower(), a, b):
         return None, f"rejected: {k} is only hedged here (familiar with / learning), which does not count"
