@@ -194,6 +194,13 @@ async def search(state: AgentState) -> dict:
     screened |= {cid: "Not retrieved: no passage matched any requirement" for cid in pool if cid not in found}
 
     knocked = {cid: r for cid in pool if (r := knockout_reason(prof(state, cid), req["must_have"], subs))}  # whole pool: cheap
+    added = []
+    if s.rule_recall:  # rules are free, so they screen the whole pool too: retrieval misses facts, rules don't
+        rule = {cid: rule_total(prof(state, cid), req, subs, state["weights"], state.get("fallbacks", {}))
+                for cid in pool if cid not in knocked}
+        have, by_id = {h.cv_id for h in order}, {h.cv_id: h for h in hits}
+        added = [cid for cid in sorted(rule, key=lambda c: (-rule[c], c))[: s.search_limit] if cid not in have]
+        order += [by_id.get(cid) or retrieve.CVHit(cid, 0.0, {}) for cid in added]
     candidates = []
     for h in order:
         p = prof(state, h.cv_id)
@@ -203,11 +210,12 @@ async def search(state: AgentState) -> dict:
             "matched_must_have": [m for m in req["must_have"] if (b := p.best(m)) and b.strength != "hedged"],
             "evidence": {label: list(v) for label, v in h.best.items()},  # query → [chunk_id, score]
         })
-    screened = {cid: r for cid, r in screened.items() if cid not in knocked}
+    screened = {cid: r for cid, r in screened.items() if cid not in knocked and cid not in added}
     hedged = sum("hedged" in r for r in knocked.values())
     covered = sum(c["cv_id"] not in knocked for c in candidates)
     emit("search", f"{len(qs)} requirement queries over {len(pool)} CVs (structural chunks, BM25+dense) → "
-                   f"{len(candidates)} retrieved, {covered} of them cover all must-haves; knock-out screened the whole "
+                   f"{len(candidates)} candidates ({len(added)} added by rule score that retrieval missed), "
+                   f"{covered} of them cover all must-haves; knock-out screened the whole "
                    f"pool: {len(knocked)} out" + (f" ({hedged} only had hedged mentions)" if hedged else ""))
     return {"candidates": candidates, "knocked_out": knocked, "screened": screened}
 

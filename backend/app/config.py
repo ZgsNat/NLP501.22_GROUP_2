@@ -50,6 +50,9 @@ class Settings(BaseSettings):
 
     # Agent knobs (the "harness" limits that keep loops bounded and cost predictable)
     search_limit: int = 40  # CVs carried from retrieval into screening; the rest get "not retrieved" as reason
+    # Second recall channel: the top `search_limit` CVs by rule score (zero tokens) also enter screening. Retrieval
+    # alone carried only 20% of a 200-CV pool and lost CVs that belong in the top 10 (docs/BENCHMARK_RESULTS.md).
+    rule_recall: bool = True
     min_coverage: int = 5  # candidates that must cover all must-haves before we stop expanding
     max_expansions: int = 2
     max_clarifications: int = 1
