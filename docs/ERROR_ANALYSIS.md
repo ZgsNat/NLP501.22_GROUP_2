@@ -46,3 +46,48 @@ Misses = relevant CVs (gold ≥ 2) that belong in the top 10 but rank below it; 
 | JD-011 | CV-048 | miss | 3 | 40 | knocked out: Missing must-have: gitlab_ci |
 | JD-011 | CV-047 | miss | 2 | 41 | knocked out: Missing must-have: gitlab_ci |
 
+## P6 on `ours`
+
+31 misses, 1 false alarms over 12 JDs.
+
+| Error | cause | count |
+|---|---|---|
+| miss | low rule scores | 22 |
+| miss | knocked out | 9 |
+| false alarm | must-have only listed, never used | 1 |
+
+| JD | CV | error | gold | rank | diagnosis |
+|---|---|---|---|---|---|
+| JD-001 | CV-031 | miss | 3 | 13 | low rule scores on domain_language 50, automation_depth 60 |
+| JD-001 | CV-024 | miss | 2 | 14 | low rule scores on domain_language 0, automation_depth 60 |
+| JD-001 | CV-032 | miss | 2 | 15 | low rule scores on automation_depth 20, domain_language 50 |
+| JD-001 | CV-028 | miss | 2 | 19 | knocked out: Missing must-have: java |
+| JD-001 | CV-015 | miss | 2 | 20 | knocked out: Missing must-have: java |
+| JD-001 | CV-047 | miss | 3 | 39 | knocked out: Missing must-have: selenium |
+| JD-003 | CV-022 | miss | 3 | 11 | low rule scores on domain_language 0, tools 50 |
+| JD-003 | CV-003 | miss | 3 | 13 | low rule scores on domain_language 0, tools 50 |
+| JD-003 | CV-031 | miss | 3 | 14 | low rule scores on domain_language 0, tools 50 |
+| JD-003 | CV-002 | miss | 3 | 15 | low rule scores on domain_language 0, tools 50 |
+| JD-003 | CV-032 | miss | 3 | 16 | low rule scores on domain_language 0, tools 50 |
+| JD-003 | CV-015 | miss | 3 | 20 | low rule scores on tools 50, automation_depth 75 |
+| JD-003 | CV-014 | miss | 3 | 21 | low rule scores on tools 50, automation_depth 75 |
+| JD-003 | CV-036 | miss | 3 | 23 | low rule scores on tools 50, automation_depth 50 |
+| JD-003 | CV-021 | miss | 3 | 27 | low rule scores on domain_language 0, tools 50 |
+| JD-003 | CV-012 | miss | 3 | 28 | low rule scores on istqb 0, domain_language 0 |
+| JD-003 | CV-023 | miss | 3 | 30 | low rule scores on istqb 0, domain_language 0 |
+| JD-003 | CV-020 | miss | 3 | 31 | low rule scores on istqb 0, domain_language 0 |
+| JD-003 | CV-037 | miss | 3 | 37 | low rule scores on domain_language 0, tools 50 |
+| JD-003 | CV-047 | miss | 3 | 40 | low rule scores on test_types 0, istqb 0 |
+| JD-006 | CV-023 | miss | 3 | 30 | knocked out: Missing must-have: java |
+| JD-008 | CV-031 | miss | 2 | 11 | low rule scores on automation_depth 75, istqb 75 |
+| JD-008 | CV-047 | miss | 2 | 45 | knocked out: Missing must-have: jenkins |
+| JD-009 | CV-038 | false alarm | 0 | 4 | must-have only listed, never used: ['python'] |
+| JD-010 | CV-027 | miss | 2 | 14 | low rule scores on automation_depth 35, experience_level 40 |
+| JD-010 | CV-024 | miss | 2 | 15 | low rule scores on domain_language 0, automation_depth 75 |
+| JD-010 | CV-015 | miss | 2 | 19 | knocked out: Missing must-have: java |
+| JD-010 | CV-047 | miss | 3 | 39 | knocked out: Missing must-have: selenium |
+| JD-011 | CV-030 | miss | 2 | 22 | low rule scores on domain_language 50, automation_depth 60 |
+| JD-011 | CV-001 | miss | 2 | 23 | low rule scores on domain_language 50, automation_depth 60 |
+| JD-011 | CV-048 | miss | 3 | 40 | knocked out: Missing must-have: gitlab_ci |
+| JD-011 | CV-047 | miss | 2 | 41 | knocked out: Missing must-have: gitlab_ci |
+
