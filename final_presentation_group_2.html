@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic CV–JD Ranking</title>
+<style>
+:root {
+  --bg: #eceae4; --paper: #fbfaf7; --ink: #1c1b18; --mut: #6b6860; --line: #dedbd2;
+  --acc: #2d4fb8; --acc-soft: #e6ecfa; --good: #1f7a4d; --good-soft: #e3f2ea; --warn: #a3520f; --warn-soft: #fbeee0;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.deck { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 24px 16px 80px; }
+.slide { width: min(1120px, 100%); aspect-ratio: 16 / 9; background: var(--paper); border: 1px solid var(--line);
+  border-radius: 10px; padding: 44px 56px; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+.slide .num { position: absolute; right: 22px; bottom: 14px; font-size: 12px; color: var(--mut); }
+.kicker { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--acc); font-weight: 600; margin-bottom: 6px; }
+h1 { font-size: 40px; line-height: 1.12; margin: 0 0 14px; letter-spacing: -.01em; }
+h2 { font-size: 28px; line-height: 1.2; margin: 0 0 16px; letter-spacing: -.01em; }
+h3 { font-size: 15px; margin: 0 0 8px; }
+p, li { font-size: 16px; }
+ul { margin: 0; padding-left: 20px; } li { margin: 4px 0; }
+.mut { color: var(--mut); } .small { font-size: 13px; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; flex: 1; min-height: 0; }
+.cols.c3 { grid-template-columns: 1fr 1fr 1fr; }
+.cols.w { grid-template-columns: 1.35fr 1fr; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; color: var(--mut); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr.hi td { background: var(--acc-soft); font-weight: 600; }
+.big { font-size: 44px; font-weight: 700; line-height: 1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.stat { background: var(--acc-soft); border-radius: 8px; padding: 14px 16px; }
+.stat.g { background: var(--good-soft); } .stat.w { background: var(--warn-soft); }
+.stat .lab { font-size: 13px; color: var(--mut); margin-top: 6px; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 6px 0 18px; }
+.callout { border-left: 4px solid var(--acc); background: var(--acc-soft); padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 16px; }
+.callout.g { border-color: var(--good); background: var(--good-soft); } .callout.w { border-color: var(--warn); background: var(--warn-soft); }
+.flow { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0 14px; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 5px 9px; font-size: 13px; }
+.flow span.k { border-color: var(--acc); color: var(--acc); font-weight: 600; }
+.tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 10px; background: var(--acc-soft); color: var(--acc); }
+.tag.g { background: var(--good-soft); color: var(--good); } .tag.w { background: var(--warn-soft); color: var(--warn); }
+.title { justify-content: center; }
+.title h1 { font-size: 52px; max-width: 900px; }
+.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; }
+.three div { border-top: 3px solid var(--acc); padding-top: 10px; }
+.foot { margin-top: auto; font-size: 13px; color: var(--mut); }
+.nav { position: fixed; right: 16px; bottom: 16px; font-size: 12px; color: var(--mut); background: var(--paper);
+  border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; }
+@media (max-width: 760px) {
+  .slide { aspect-ratio: auto; padding: 24px 18px; }
+  .cols, .cols.c3, .cols.w, .stats, .three { grid-template-columns: 1fr; }
+  h1, .title h1 { font-size: 30px; } h2 { font-size: 22px; } .big { font-size: 34px; }
+}
+@media print {
+  @page { size: 13.333in 7.5in; margin: 0; }
+  body { background: #fff; } .deck { padding: 0; gap: 0; } .nav { display: none; }
+  .slide { width: 13.333in; height: 7.5in; aspect-ratio: auto; border: 0; border-radius: 0; page-break-after: always; }
+}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<section class="slide title">
+  <div class="kicker">NLP501 · Group 2 · Final project</div>
+  <h1>Agentic CV–JD ranking for Automation Test roles, under control</h1>
+  <p class="mut">Sơn · Vũ · Đán · Hoa · Thịnh</p>
+  <div class="three">
+    <div><h3>1 · Truly agentic?</h3><p class="small mut">Where the agent decides, and what changes when it does.</p></div>
+    <div><h3>2 · Data, processed well?</h3><p class="small mut">CV → facts, masking, chunking: measured against external gold.</p></div>
+    <div><h3>3 · AI output controlled?</h3><p class="small mut">13 written criteria, each checked by code, each with an action on failure.</p></div>
+  </div>
+  <p class="foot">Every number in this deck is generated by the repo (`docs/*_RESULTS*.md`) and reproducible with one command.</p>
+  <div class="num">1</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">The problem</div>
+  <h2>Keywords can't see what matters in a tester's CV</h2>
+  <div class="cols w">
+    <div>
+      <ul>
+        <li><b>Depth:</b> runs scripts (L1) → writes them (L2) → builds a framework (L3) → designs test architecture (L4).</li>
+        <li><b>Used vs listed:</b> a tool in <i>Skills</i> is a claim; a project that used it is evidence.</li>
+        <li><b>Hedges:</b> "familiar with Selenium", "currently learning Cypress".</li>
+        <li>Keyword ATS rewards stuffing; an LLM judge is opaque, position-biased and can invent evidence.</li>
+      </ul>
+      <p style="margin-top:18px"><b>Our score</b></p>
+      <div class="callout"><code>Score(CV, JD) = 1[H(c)] × Σ<sub>k</sub> w(c,k) · S(c,k)</code><br>
+        <span class="small">H = knock-out on must-haves · w = company-type weights over 8 criteria · S = 0–100 per criterion</span></div>
+    </div>
+    <div>
+      <table>
+        <tr><th>RQ</th><th>Question</th></tr>
+        <tr><td>1</td><td>Structured extraction vs raw text?</td></tr>
+        <tr><td>2</td><td>HR-configured criteria fit the company?</td></tr>
+        <tr><td>3</td><td>Hybrid retrieval + reranking vs keyword / dense?</td></tr>
+        <tr><td>4</td><td>Agent vs fixed pipeline, same tools?</td></tr>
+        <tr><td>5</td><td>Errors by JD type and ambiguity?</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="num">2</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Point 2 · Data</div>
+  <h2>Three data sources, and no real candidate without consent</h2>
+  <table>
+    <tr><th></th><th>ours</th><th>coding (Đán)</th><th>real text</th></tr>
+    <tr><td>Size</td><td>50 CVs × 12 JDs</td><td>200 CVs × 6 JDs</td><td>217 real, anonymised CVs</td></tr>
+    <tr><td>Built by</td><td>hand-written synthetic, built to stress the pipeline</td><td>generator with known latent facts; 37% Vietnamese; OCR-garbled CVs; fake PII</td><td>datasetmaster/resumes (MIT); Faker half excluded</td></tr>
+    <tr><td>Labels</td><td>silver (2 LLM annotators, κ 0.919) → human validation</td><td>generator rubric</td><td>none: NLP checks only</td></tr>
+    <tr><td>Role</td><td>development</td><td>held-out test</td><td>external validity</td></tr>
+  </table>
+  <h3 style="margin-top:18px">Pipeline (deterministic, 0 tokens)</h3>
+  <div class="flow"><span>normalise</span><span class="k">mask PII</span><span>sections · dated roles</span><span class="k">structural chunks</span><span>skills + hedge scope</span><span>years</span><span>depth from verbs</span><span class="k">CVProfile</span></div>
+  <div class="callout g"><b>Masking is deletion, not instruction.</b> Asking an LLM to "ignore gender" is a hope; deleting it before indexing is a guarantee.</div>
+  <div class="num">3</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Point 2 · Measured</div>
+  <h2>Measuring against external gold found 7 bugs that tests had missed</h2>
+  <div class="cols">
+    <div>
+      <table>
+        <tr><th>vs the coding generator's truth</th><th class="n">result</th></tr>
+        <tr><td>Tool extraction F1 (clean CVs)</td><td class="n">0.978 (0.994)</td></tr>
+        <tr><td>Years of experience, MAE</td><td class="n">0.79 y</td></tr>
+        <tr><td>Automation depth exact</td><td class="n">89%</td></tr>
+        <tr><td>Redaction leak, every PII field</td><td class="n">0%</td></tr>
+        <tr><td>Garbled CVs flagged</td><td class="n">7 / 7</td></tr>
+        <tr><td>Real CVs parsed · prose precision</td><td class="n">217 / 217 · 90%</td></tr>
+      </table>
+    </div>
+    <div>
+      <ul class="small">
+        <li><b>Name leaked in 100%</b> of CVs headed by a bare name → <b>0%</b></li>
+        <li>Gender under an OCR-garbled label leaked</li>
+        <li>Garbled-text flag caught 0 of 7 → 7 of 7</li>
+        <li>Double spacing lost role titles: 8.0 → 14.8 automation years</li>
+        <li>"pull requests" counted as the <i>requests</i> library (incl. our own trap CV)</li>
+        <li>Jira counted as automation work for manual testers</li>
+        <li>Gazetteer gaps: Azure DevOps, Kotlin, UFT/QTP, Sikuli, AutoIT, HP ALM</li>
+      </ul>
+    </div>
+  </div>
+  <div class="num">4</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Point 2 · Chunking</div>
+  <h2>Chunking matters little once a reranker reads it; turning CVs into facts matters a lot</h2>
+  <div class="cols">
+    <div>
+      <table>
+        <tr><th>nDCG@10</th><th class="n">ours</th><th class="n">+ CE</th><th class="n">coding</th><th class="n">+ CE</th></tr>
+        <tr><td>whole CV</td><td class="n"><b>0.783</b></td><td class="n">0.818</td><td class="n"><b>0.231</b></td><td class="n">0.620</td></tr>
+        <tr><td>fixed window</td><td class="n">0.729</td><td class="n">0.819</td><td class="n"><b>0.231</b></td><td class="n">0.620</td></tr>
+        <tr class="hi"><td>structural (per role, section-labelled)</td><td class="n">0.740</td><td class="n">0.829</td><td class="n">0.210</td><td class="n">0.628</td></tr>
+      </table>
+      <p class="small mut" style="margin-top:10px">With the cross-encoder, structural is best on both sets (+0.011 / +0.008, not significant). We keep it because only it labels each passage's section: the evidence checks need that.</p>
+    </div>
+    <div>
+      <div class="stats" style="grid-template-columns:1fr 1fr">
+        <div class="stat g"><div class="big">+0.052</div><div class="lab">nDCG@10 on ours: rule scoring over the profile vs the same retrieval (p &lt; 0.001)</div></div>
+        <div class="stat g"><div class="big">+0.164</div><div class="lab">on the held-out set (p &lt; 0.001)</div></div>
+      </div>
+      <div class="callout">RQ1: <b>facts beat text.</b> The gain comes from converting the CV into a structured profile, not from how it is chunked.</div>
+    </div>
+  </div>
+  <div class="num">5</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Point 1 · Agentic</div>
+  <h2>Rules where facts exist, the LLM where judgement is needed, humans where the decision is theirs</h2>
+  <table>
+    <tr><th>Loop</th><th>Decision</th><th>Decided by</th><th class="n">fired (12 JDs)</th></tr>
+    <tr><td>L1 clarify</td><td>pause and ask HR, or proceed</td><td>rules first, then a typed LLM gate</td><td class="n">1 (the vague JD)</td></tr>
+    <tr><td>L2 expand</td><td>widen search; which substitutes count</td><td>rule proposes, <b>HR approves</b></td><td class="n">1</td></tr>
+    <tr class="hi"><td>L6 investigate</td><td>which tool next on an unreadable CV</td><td><b>LLM chooses</b>, code verifies</td><td class="n">2</td></tr>
+    <tr><td>L4 verify</td><td>retry a review whose claims fail checks</td><td>code (Q2–Q5)</td><td class="n">9</td></tr>
+    <tr><td>L3 arbiter</td><td>swap a near-tie</td><td>LLM, in both orders</td><td class="n">12</td></tr>
+    <tr><td>L5 HR review</td><td>approve, re-weight, decide</td><td><b>HR</b>; weights learned from decisions</td><td class="n">—</td></tr>
+  </table>
+  <div class="stats" style="margin-top:16px">
+    <div class="stat"><div class="big">5</div><div class="lab">distinct paths through the graph for 12 JDs (full agent)</div></div>
+    <div class="stat w"><div class="big">1</div><div class="lab">path for the fixed pipeline with the same tools</div></div>
+    <div class="stat"><div class="big">12</div><div class="lab">nodes, 6 bounded loops, 3 human interrupts</div></div>
+    <div class="stat"><div class="big">0</div><div class="lab">scores set by the LLM (since v3)</div></div>
+  </div>
+  <div class="num">6</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Point 1 · The investigator (N12)</div>
+  <h2>A tool-using loop for CVs the parser cannot read, which may not invent anything</h2>
+  <div class="cols">
+    <div>
+      <p>Clean text: tool F1 <b>0.994</b>. OCR noise ("Us#d S%lenium W#bDriver"): <b>0.192</b>, so good candidates are knocked out by the data.</p>
+      <div class="flow"><span class="k">trigger</span><span>garbled, or must-have almost spelt</span></div>
+      <div class="flow"><span class="k">LLM picks</span><span>read_section</span><span>search (fuzzy)</span><span>propose(skill, quote)</span><span>finish</span></div>
+      <div class="flow"><span class="k">code verifies</span><span>quote in CV</span><span>names the skill</span><span>not hedged</span></div>
+      <p class="small mut">≤ 4 CVs × 6 actions · repeated actions refused · stops when every missing must-have is decided · invalid output → knock-out stands</p>
+    </div>
+    <div>
+      <table>
+        <tr><th>42 planted cases</th><th class="n">result</th></tr>
+        <tr><td>misspelt tools recovered</td><td class="n">4 / 4</td></tr>
+        <tr><td>negatives kept out (lacking / only learning)</td><td class="n">13 / 13</td></tr>
+        <tr class="hi"><td><b>false recoveries</b></td><td class="n"><b>0</b></td></tr>
+        <tr><td>Sonnet 5.5 vs qwen3:8b, true facts (17 cases)</td><td class="n">9 vs 7 of 16</td></tr>
+      </table>
+      <div class="callout g" style="margin-top:14px">A stronger model recovers more; <b>neither</b> recovers anything false, because code, not the model, decides what becomes a fact.</div>
+    </div>
+  </div>
+  <div class="num">7</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Point 3 · Control</div>
+  <h2>Every LLM output has a criterion, a check in code, and an action on failure</h2>
+  <div class="cols">
+    <div>
+      <ol class="small" style="padding-left:18px">
+        <li><b>The LLM never sets the score.</b> Rules over the parsed CV do.</li>
+        <li><b>Typed in, canonical out.</b> Schemas; closed choice sets.</li>
+        <li><b>Every claim is checked against the CV by code</b>: quotes exist and prove the right thing; no tool or years the CV doesn't show; no protected attributes.</li>
+        <li><b>Every failure has a defined action</b>: retry with the exact failure, then drop or label.</li>
+        <li><b>Humans own the decision</b>: clarification, substitutes, approval, audit log.</li>
+        <li><b>The controls are measured too</b>, and no LLM judge is trusted before agreeing with humans.</li>
+      </ol>
+    </div>
+    <div>
+      <table class="small">
+        <tr><th>Q</th><th>criterion</th><th>action</th></tr>
+        <tr><td>Q2</td><td>quotes grounded</td><td>retry with failing quotes</td></tr>
+        <tr><td>Q4</td><td>claims match the parsed CV</td><td>retry, then [unverified]</td></tr>
+        <tr><td>Q5</td><td>no protected attributes</td><td>sentence removed</td></tr>
+        <tr><td>Q6</td><td>report claims supported</td><td>regenerate, then drop</td></tr>
+        <tr><td>Q7</td><td>arbiter order-stable</td><td>keep rule order</td></tr>
+        <tr><td>Q8</td><td>decisions right</td><td>safe default</td></tr>
+        <tr><td>Q11</td><td>blind to protected attributes</td><td>release blocker</td></tr>
+        <tr><td>Q13</td><td>LLM judge validated</td><td>not ground truth</td></tr>
+      </table>
+      <p class="small mut">13 criteria in docs/AI_OUTPUT_CRITERIA.md</p>
+    </div>
+  </div>
+  <div class="num">8</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Point 3 · Measured</div>
+  <h2>The scorecard of the full agent on 12 JDs</h2>
+  <div class="stats">
+    <div class="stat g"><div class="big">100%</div><div class="lab">of 909 evidence quotes grounded in the CV (Q2)</div></div>
+    <div class="stat g"><div class="big">3.0→1.1%</div><div class="lab">rationales contradicting the CV, before → after the verify loop (Q4); 3.2% without it</div></div>
+    <div class="stat g"><div class="big">0</div><div class="lab">unsupported report claims shown to HR: 5% caught and dropped (Q6)</div></div>
+    <div class="stat"><div class="big">90%</div><div class="lab">arbiter verdicts stable when the order is swapped: 10% position bias caught (Q7)</div></div>
+  </div>
+  <div class="cols">
+    <div>
+      <h3>Fairness (Q11): counterfactual twins</h3>
+      <p>Each CV re-written with only a <b>name of the other gender</b>, a <b>gender</b>, <b>age</b> or <b>marital-status</b> line changed:</p>
+      <div class="callout g"><b>0 of 1,800</b> (CV, JD) pairs changed score; masked input identical in every twin.</div>
+    </div>
+    <div>
+      <h3>Decisions (Q8)</h3>
+      <ul class="small">
+        <li>Ask-HR gate: <b>18 / 18</b> correct on planted JDs; on Claude, asked once in 12, on the one JD that needs it</li>
+        <li>Investigator: <b>0</b> false recoveries in 42 cases</li>
+        <li>0 invalid outputs, 0 gate fallbacks</li>
+        <li>Cost: 16.6 calls and ~80 s per JD</li>
+      </ul>
+    </div>
+  </div>
+  <div class="num">9</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Point 3 · The surprise</div>
+  <h2>A stronger model needed more control, not less</h2>
+  <div class="cols w">
+    <div>
+      <table>
+        <tr><th>nDCG@10 (ours / coding)</th><th class="n">JD read by qwen3:8b</th><th class="n">by Claude Sonnet</th></tr>
+        <tr><td>LLM-only JD parser</td><td class="n">0.884 / 0.824</td><td class="n" style="color:var(--warn)"><b>0.842 / 0.795</b></td></tr>
+        <tr class="hi"><td>Hybrid parser (rules first, LLM fills gaps)</td><td class="n">0.876 / 0.791</td><td class="n">0.881 / 0.792</td></tr>
+      </table>
+      <ul style="margin-top:16px">
+        <li>Sonnet reads JDs <b>more strictly</b>: "Jenkins or GitLab CI" became two hard must-haves (JD-008: 5 must-haves vs qwen's 2).</li>
+        <li>Knock-out misses rose from <b>9 to 17</b>.</li>
+        <li>The deterministic JD parser keeps the reading literal; the hybrid is stable under both models.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="callout w"><b>Lesson:</b> a better model is not a better system by default. Its extra capability showed up as extra confidence in a stricter reading, and only a control layer made the system robust to it.</div>
+      <p class="small mut" style="margin-top:14px">Hybrid became the default by the decision rule we wrote before running: not worse by &gt; 0.01 on either benchmark, better on one.</p>
+    </div>
+  </div>
+  <div class="num">10</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Results · RQ1, RQ3</div>
+  <h2>The ranking ladder on two benchmarks</h2>
+  <table>
+    <tr><th>System</th><th class="n">ours nDCG@10</th><th class="n">P@5</th><th class="n">R@20</th><th class="n">coding nDCG@10</th><th class="n">P@5</th></tr>
+    <tr><td>B0 BM25</td><td class="n">0.794</td><td class="n">0.767</td><td class="n">0.853</td><td class="n">0.542</td><td class="n">0.700</td></tr>
+    <tr><td>B1 dense</td><td class="n">0.741</td><td class="n">0.633</td><td class="n">0.777</td><td class="n">0.333</td><td class="n">0.533</td></tr>
+    <tr><td>B2 hybrid (BM25 + dense)</td><td class="n">0.824</td><td class="n">0.733</td><td class="n">0.877</td><td class="n">0.473</td><td class="n">0.600</td></tr>
+    <tr><td>Structural chunks + cross-encoder</td><td class="n">0.829</td><td class="n">0.767</td><td class="n">0.860</td><td class="n">0.628</td><td class="n">0.800</td></tr>
+    <tr><td>v2: 4 rule criteria ⊕ CE</td><td class="n">0.801</td><td class="n">0.733</td><td class="n">0.795</td><td class="n">0.723</td><td class="n">0.833</td></tr>
+    <tr class="hi"><td>v3: 8 rule criteria ⊕ CE, hybrid parser</td><td class="n">0.881</td><td class="n">0.883</td><td class="n">0.892</td><td class="n">0.792</td><td class="n">0.967</td></tr>
+  </table>
+  <p class="small mut" style="margin-top:12px">Dense alone is weakest (every CV is "about testing"); keyword search beats it, as Resume2Vec found for testing roles. Top-5 precision 0.88 / 0.97; one irrelevant CV in 60 top-5 slots.</p>
+  <div class="num">11</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Results · RQ4</div>
+  <h2>The agent doesn't add ranking points; it makes the system trustworthy</h2>
+  <div class="cols w">
+    <div>
+      <table>
+        <tr><th>System</th><th class="n">nDCG@10</th><th class="n">Δ vs P6</th><th class="n">paths</th><th class="n">contradicted claims</th></tr>
+        <tr class="hi"><td>P6 full agent</td><td class="n">0.883</td><td class="n">—</td><td class="n">5</td><td class="n">1.1%</td></tr>
+        <tr><td>B4 fixed pipeline</td><td class="n">0.881</td><td class="n">−0.002</td><td class="n">1</td><td class="n">3.2%</td></tr>
+        <tr><td>A1 − verify</td><td class="n">0.883</td><td class="n">0.000</td><td class="n">3</td><td class="n">2.8%</td></tr>
+        <tr><td>A2 − company profile</td><td class="n">0.878</td><td class="n">−0.004</td><td class="n">5</td><td class="n">1.3%</td></tr>
+        <tr><td>A3 − arbiter</td><td class="n">0.880</td><td class="n">−0.003</td><td class="n">5</td><td class="n">0.9%</td></tr>
+        <tr><td>A4 − investigator</td><td class="n">0.883</td><td class="n">0.000</td><td class="n">5</td><td class="n">0.9%</td></tr>
+      </table>
+      <p class="small mut" style="margin-top:8px">All ranking differences ≤ 0.004, none significant (12 JDs). Claude Sonnet 5.5 + Haiku 5.5.</p>
+    </div>
+    <div>
+      <ul>
+        <li>Rules set the score, so ranking is equal by design.</li>
+        <li><b>Verify</b> is what removes contradicted claims.</li>
+        <li><b>The arbiter</b> catches position bias in 10% of verdicts.</li>
+        <li><b>The investigator</b> costs nothing on clean CVs and is the only part that can rescue a good CV from bad text.</li>
+        <li><b>Asking HR</b> on the vague JD made the ranking follow HR's answer; offline labels cannot reward that.</li>
+        <li>Price of control: 1.8× the LLM calls.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="num">12</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Errors and limits</div>
+  <h2>Where it fails, and what we can't claim yet</h2>
+  <div class="cols">
+    <div>
+      <h3>30 misses, 1 false alarm (12 JDs)</h3>
+      <ul class="small">
+        <li><b>13</b> on the vague JD: no concrete must-have, so only asking HR can fix it</li>
+        <li><b>9</b> strict knock-outs: a good CV missing one stated must-have; L2 lets HR accept substitutes</li>
+        <li>the rest: weighting, mostly domain (a non-bank CV for a bank)</li>
+        <li>the one false alarm: a must-have only listed, never used</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Limitations</h3>
+      <ul class="small">
+        <li><span class="tag w">open</span> <b>Silver labels</b> from two LLMs: two teammates are grading 120 blind pairs; κ ≥ 0.8 keeps them</li>
+        <li><span class="tag w">open</span> <b>Synthetic ranking data</b>: consented real tester CVs being collected</li>
+        <li>12 + 6 JDs: differences &lt; 0.02 are not significant</li>
+        <li>Claude served through the Claude Code CLI as a stand-in for the API: behaviour carries over, latency and cost do not</li>
+      </ul>
+    </div>
+  </div>
+  <div class="num">13</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Takeaways</div>
+  <h2>What we would tell the next team building an agentic ranker</h2>
+  <div class="cols c3">
+    <div class="stat"><h3>1 · Agentic where it earns it</h3><p class="small">Let the model decide what rules cannot: when to ask, how to read noisy text, which near-tie flips. Measure it by the paths it takes and the errors it prevents, not only by nDCG.</p></div>
+    <div class="stat"><h3>2 · Data work is measurable work</h3><p class="small">Measuring against external gold found 7 bugs, including a 100% name leak, that 100+ unit tests missed. Mask by deleting; structure CVs into facts.</p></div>
+    <div class="stat g"><h3>3 · Control scales with capability</h3><p class="small">Write the criteria, check them in code, give every failure an action. The stronger model needed the control layer most.</p></div>
+  </div>
+  <p class="foot">Repo: feature/merged-pipeline · report: docs/FINAL_REPORT.md · criteria: docs/AI_OUTPUT_CRITERIA.md · architecture: docs/architecture.html · 120 tests</p>
+  <div class="num">14</div>
+</section>
+
+</div>
+<div class="nav">← → or scroll · Print to PDF: 1 slide per page</div>
+<script>
+const slides = [...document.querySelectorAll('.slide')];
+document.addEventListener('keydown', (e) => {
+  if (!['ArrowRight', 'ArrowLeft', 'PageDown', 'PageUp', ' '].includes(e.key)) return;
+  const y = window.scrollY + 40;
+  const i = slides.findIndex((s) => s.offsetTop + s.offsetHeight > y);
+  const next = e.key === 'ArrowLeft' || e.key === 'PageUp' ? Math.max(0, i - 1) : Math.min(slides.length - 1, i + 1);
+  slides[next].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  e.preventDefault();
+});
+</script>
+</body>
+</html>
