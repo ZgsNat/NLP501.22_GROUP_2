@@ -1,12 +1,13 @@
 """LLM provider layer: interface + registry + factory.
 
-Pick the active provider in .env with LLM_PROVIDER=openai|anthropic|google|ollama|gateway; each provider brings its
+Pick the active provider in .env with LLM_PROVIDER=openai|anthropic|google|ollama|gateway|claude_code; each provider brings its
 own default "reasoning" and "fast" model (also overridable in .env). Nodes only ever call `create_llm(spec)` /
 `default_spec(role)` — they never import a vendor SDK.
 
 To add a provider: subclass LLMProvider, decorate with @register. Nothing else changes.
 """
 
+import shutil
 from abc import ABC, abstractmethod
 from typing import Literal
 
@@ -126,6 +127,24 @@ class GatewayProvider(LLMProvider):
 
     def default_model(self, role: Role) -> str:
         return self.s.gateway_model if role == "reasoning" else self.s.gateway_fast_model
+
+
+@register
+class ClaudeCodeProvider(LLMProvider):
+    """Claude via the local `claude` CLI on the logged-in subscription: no key, dev only (see claude_code.py)."""
+
+    name = "claude_code"
+
+    def is_configured(self) -> bool:
+        return shutil.which("claude") is not None
+
+    def create(self, model: str) -> BaseChatModel:
+        from app.providers.claude_code import ChatClaudeCode
+
+        return ChatClaudeCode(model=model, workdir=self.s.runtime_dir / "claude_code")
+
+    def default_model(self, role: Role) -> str:
+        return self.s.anthropic_model if role == "reasoning" else self.s.anthropic_fast_model
 
 
 def get_provider(name: str, s: Settings | None = None) -> LLMProvider:

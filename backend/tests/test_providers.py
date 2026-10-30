@@ -9,10 +9,10 @@ def settings(**kw) -> Settings:
 
 
 def test_all_providers_registered():
-    assert set(PROVIDERS) == {"openai", "anthropic", "google", "ollama", "gateway"}
+    assert set(PROVIDERS) == {"openai", "anthropic", "google", "ollama", "gateway", "claude_code"}
 
 
-@pytest.mark.parametrize("provider", ["openai", "anthropic", "google", "ollama", "gateway"])
+@pytest.mark.parametrize("provider", ["openai", "anthropic", "google", "ollama", "gateway", "claude_code"])
 def test_llm_provider_switches_both_roles(provider):
     s = settings(llm_provider=provider)
     p = get_provider(provider, s)
@@ -40,3 +40,35 @@ def test_parse_spec_keeps_colons_in_model_name():
     assert parse_spec("ollama:qwen3:8b") == ("ollama", "qwen3:8b")
     with pytest.raises(ValueError):
         parse_spec("nope:model")
+
+
+def test_claude_code_cli_returns_structured_output(monkeypatch, tmp_path):
+    import json
+    import subprocess
+
+    from langchain_core.messages import HumanMessage, SystemMessage
+    from pydantic import BaseModel
+
+    from app.providers import claude_code
+
+    class Verdict(BaseModel):
+        choice: str
+        confidence: float
+
+    seen = {}
+
+    def fake_run(argv, input, **kw):
+        seen.update(argv=argv, input=input, env=kw["env"])
+        out = {"is_error": False, "structured_output": {"choice": "yes", "confidence": 0.9}, "result": "",
+               "usage": {"input_tokens": 3, "cache_creation_input_tokens": 1400, "output_tokens": 20}}
+        return subprocess.CompletedProcess(argv, 0, json.dumps(out), "")
+
+    monkeypatch.setattr(claude_code.subprocess, "run", fake_run)
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-should-not-leak")
+    llm = claude_code.ChatClaudeCode(model="claude-sonnet-5-5", workdir=tmp_path)
+    out = llm.with_structured_output(Verdict).invoke([SystemMessage("Be precise."), HumanMessage("Selenium?")])
+    assert out == Verdict(choice="yes", confidence=0.9)
+    argv = seen["argv"]
+    assert argv[argv.index("--system-prompt") + 1] == "Be precise." and seen["input"] == "Selenium?"
+    assert json.loads(argv[argv.index("--json-schema") + 1])["required"] == ["choice", "confidence"]
+    assert "ANTHROPIC_API_KEY" not in seen["env"]  # the subscription login, never an API key by accident
