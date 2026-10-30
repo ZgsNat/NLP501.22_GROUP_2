@@ -155,7 +155,7 @@ async def run_agent(jd, ablate: list[str], model: str | None = None) -> dict:
             break
         pending = state.tasks[0].interrupts[0].value
         if pending["kind"] == "clarification":
-            answer = HR_ANSWERS.get(jd.id, "Use the JD as written; be strict on the named tools.")
+            answer = jd.meta.get("hr_answer") or HR_ANSWERS.get(jd.id, "Use the JD as written; be strict on the named tools.")
             inp = Command(resume={"answers": {q: answer for q in pending["payload"]["questions"]}})
         elif pending["kind"] == "substitutes":
             inp = Command(resume={"accept": {p["must_have"]: p["related"] for p in pending["payload"]["proposals"]}})
@@ -325,12 +325,12 @@ def scorecard(agent: dict[str, dict]) -> list[str]:
     return out
 
 
-async def run_agents(systems: list[str], jds: list, model: str | None = None) -> None:
+async def run_agents(systems: list[str], jds: list, model: str | None = None, bench: str = "ours") -> None:
     """One event loop for the whole run: cached LLM clients hold connections bound to the loop that created them.
     With `model`, results are saved as "<system> [<model>]" next to the default-model runs."""
     for system in systems:
         name = f"{system} [{model.split(':', 1)[1]}]" if model else system
-        path = result_path(name)
+        path = result_path(name, bench)
         per_jd = json.loads(path.read_text())["jds"] if path.exists() else {}
         for jd in jds:
             if jd.id in per_jd:
@@ -341,7 +341,7 @@ async def run_agents(systems: list[str], jds: list, model: str | None = None) ->
                 raise SystemExit(f"Subscription limit reached during {name} {jd.id}: not saved. Rerun the same "
                                  "command after the limit resets; finished JDs are kept.")
             per_jd[jd.id] = result
-            save(name, per_jd)
+            save(name, per_jd, bench)
             r = per_jd[jd.id]
             print(f"{name} {jd.id}: {r['seconds']}s {r['tokens']} tok, top5 {r['ranking'][:5]}", flush=True)
 
@@ -362,8 +362,11 @@ def main() -> None:
             save(name + suffix, per_jd, a.bench)
             print(f"saved {name + suffix}")
     elif a.what == "agent":
+        if (a.bench == "coding") != (get_settings().data_dir != ROOT / "data"):
+            raise SystemExit("--bench coding runs on the materialized corpus: DATA_DIR=$(python -m app.eval.bench "
+                             "materialize), re-ingest, then rerun; --bench ours needs the default data/")
         asyncio.run(run_agents(a.systems.split(","), [d for d in load_dir("jds") if not a.jds or d.id in a.jds.split(",")],
-                               a.model))
+                               a.model, a.bench))
     else:
         text = report(a.bench)
         Path(ROOT / "docs" / ("EVAL_RESULTS.md" if a.bench == "ours" else f"EVAL_RESULTS_{a.bench}.md")).write_text(text)

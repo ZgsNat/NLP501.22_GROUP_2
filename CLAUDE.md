@@ -33,6 +33,7 @@ cd backend && uv run python -m scripts.smoke JD-002      # end-to-end in termina
 uv run pytest                                            # tests (no LLM, no Docker needed)
 cd backend && uv run python -m app.eval.run retrieval    # B0–B3 + chunking ablation (minutes); `agent` = LLM systems; `report`
 # eval numbers in docs/ are produced with PYTHONHASHSEED=0 (set ordering breaks retrieval ties) and LLM_PROVIDER=claude_code
+cd backend && uv run python -m app.eval.benchmark report    # THE official table: NLP501-bench v1 (docs/BENCHMARK.md); `verify` checks the frozen inputs
 cd backend && uv run python -m app.eval.extraction       # RQ1: CV/JD extraction F1 + redaction leaks vs the coding branch's generator truth
 cd backend && uv run python -m app.eval.robustness       # Q11: counterfactual fairness (name/gender/age/marital twins) + format robustness
 uv run uvicorn app.main:app --app-dir backend --reload   # API :8000
@@ -47,4 +48,4 @@ cd frontend && npm run dev                               # UI :5173
 - Code that runs before `interrupt()` re-runs on resume, so keep it cheap and idempotent.
 - No PII, protected attributes or real CVs in `data/`. Secrets live only in `.env` (gitignored).
 - Keep it lean: no speculative abstractions. Add a test for any new deterministic logic.
-- A change to retrieval, chunking, extraction, prompts or scoring is not "better" until `app.eval.run` says so; report negative results too.
+- A change to retrieval, chunking, extraction, prompts or scoring is not "better" until `app.eval.run` says so; report negative results too. Tune on the benchmark's dev JDs only; report test once (docs/BENCHMARK.md).

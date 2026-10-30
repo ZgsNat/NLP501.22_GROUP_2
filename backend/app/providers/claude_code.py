@@ -19,7 +19,8 @@ from langchain_core.runnables import RunnableLambda
 from pydantic import BaseModel
 
 TRANSIENT = re.compile(r"rate.?limit|overloaded|429|529|timed? ?out", re.I)  # retry with backoff
-QUOTA = re.compile(r"usage limit|limit reached|resets? at|out of (?:extra )?usage|credit balance", re.I)  # stop
+QUOTA = re.compile(r"usage limit|limit reached|hit your .{0,20}limit|\d+-hour limit|resets? (?:at )?\d|out of (?:extra )?usage|"
+                   r"credit balance", re.I)  # stop: "You've hit your 5-hour limit · resets 1:20am"
 QUOTA_HIT = False  # set once the subscription quota is exhausted; app.eval.run stops instead of saving bad runs
 
 

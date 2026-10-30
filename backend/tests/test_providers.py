@@ -85,5 +85,8 @@ def test_claude_code_quota_errors_stop_the_run(monkeypatch):
     with pytest.raises(claude_code.QuotaExceeded):
         claude_code.ChatClaudeCode._result(json.dumps({"is_error": True, "result": "Claude usage limit reached; resets at 11pm"}), None)
     assert claude_code.QUOTA_HIT
+    monkeypatch.setattr(claude_code, "QUOTA_HIT", False)
+    with pytest.raises(claude_code.QuotaExceeded):  # the wording actually seen on 2026-10-31
+        claude_code.ChatClaudeCode._result(json.dumps({"is_error": True, "result": "You've hit your 5-hour limit · resets 1:20am (Asia/Saigon)"}), None)
     with pytest.raises(RuntimeError, match="overloaded"):
         claude_code.ChatClaudeCode._result("", None, "API Error 529 overloaded")

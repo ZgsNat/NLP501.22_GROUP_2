@@ -49,6 +49,48 @@ def load(name: str = "ours") -> Bench:
                  frozenset())
 
 
+CORPUS_DIR = get_settings().runtime_dir / "bench" / "coding_corpus"
+# The coding branch scripts HR's clarification answers as option indices (cv_agent/criteria/clarify.py); our agent
+# takes words, so each index is written out with the same meaning.
+HR_OPTIONS = {
+    "seniority_years": ["At least 3 years of experience is required.", "At least 5 years of experience is required.",
+                        "At least 7 years of experience is required.", "Years of experience are not required."],
+    "junior_vs_years": ["Lower it to at least 1 year of experience.", "Keep the stated years.",
+                        "Drop the years requirement."],
+    "english_level": ["English for reading documents is a plus, not required.",
+                      "English for client communication is required.", "English is not needed."],
+    "tool_family": ["Must-have: one of Selenium, Playwright or Cypress (web automation).",
+                    "Must-have: one of Appium, Espresso or XCUITest (mobile).",
+                    "Must-have: Postman or Rest Assured (API).", "No specific tool is required."],
+    "tools_all_or_any": ["One of the listed tools is enough.", "All listed tools are required.",
+                         "Treat the listed tools as nice-to-have."],
+}
+
+
+def materialize() -> Path:
+    """Lay the coding benchmark out like data/ so the whole agent can run on it: DATA_DIR=<this dir>."""
+    import shutil
+
+    b = load("coding")
+    meta = {j["id"]: j for j in yaml.safe_load((CODING_DIR / "jds.yaml").read_text())}
+    for sub in ("cvs", "jds"):
+        (CORPUS_DIR / sub).mkdir(parents=True, exist_ok=True)
+    for d in b.cvs:
+        (CORPUS_DIR / "cvs" / f"{d.id}.md").write_text(f"---\nid: {d.id}\nheadline: ''\n---\n{d.text}\n", encoding="utf-8")
+    for d in b.jds:
+        answers = " ".join(HR_OPTIONS[q][i] for q, i in (meta[d.id].get("hr_answers") or {}).items() if q in HR_OPTIONS)
+        front = {"id": d.id, "title": d.meta["title"], "company_profile": d.meta["company_profile"]}
+        if answers:
+            front["hr_answer"] = answers
+        (CORPUS_DIR / "jds" / f"{d.id}.md").write_text(
+            f"---\n{yaml.safe_dump(front, allow_unicode=True)}---\n{d.text}\n", encoding="utf-8")
+    data = ROOT / "data"
+    for f in ("criteria_profiles.yaml", "skills_taxonomy.yaml"):
+        shutil.copy(data / f, CORPUS_DIR / f)
+    shutil.copytree(data / "policies", CORPUS_DIR / "policies", dirs_exist_ok=True)
+    return CORPUS_DIR
+
+
 def fetch(ref: str = "origin/coding") -> None:
     """Copy the coding branch's synthetic CVs, JDs and gold into .runtime/bench/coding (read-only on that branch)."""
     git = lambda *a: subprocess.run(["git", *a], cwd=ROOT, check=True, capture_output=True).stdout  # noqa: E731
@@ -62,4 +104,9 @@ def fetch(ref: str = "origin/coding") -> None:
 
 
 if __name__ == "__main__":
-    fetch(*sys.argv[2:3]) if sys.argv[1:2] == ["fetch"] else print(__doc__)
+    if sys.argv[1:2] == ["fetch"]:
+        fetch(*sys.argv[2:3])
+    elif sys.argv[1:2] == ["materialize"]:
+        print(f"DATA_DIR={materialize()}")
+    else:
+        print(__doc__)
