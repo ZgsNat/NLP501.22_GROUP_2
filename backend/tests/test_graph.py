@@ -56,3 +56,25 @@ def test_l1_rules_ask_hr_without_the_model():
     assert asyncio.run(ask_hr_gate(NoModel(), "", req("Senior QA", None, must=())))[0]
     assert asyncio.run(ask_hr_gate(NoModel(), "", req("QA Engineer", 3))) == (False, None)
     assert seniority_conflict("Senior QA Lead", 1) and not seniority_conflict("Senior QA", 5)
+
+
+def test_arbiter_only_judges_true_near_ties(monkeypatch):
+    import asyncio
+
+    from app.agent import nodes
+
+    asked = []
+
+    async def fake_decide(model, question, options, context):
+        asked.append(tuple(options))
+        return type("D", (), {"choice": options[0], "confidence": 1.0, "reason": "r"})()
+
+    monkeypatch.setattr(nodes, "decide", fake_decide)
+    monkeypatch.setattr(nodes, "emit", lambda *a, **k: None)
+    monkeypatch.setattr(nodes, "llm", lambda state, role: None)
+    monkeypatch.setattr(nodes, "_versus_next", lambda rows, state: None)
+    row = lambda cid, total: {"cv_id": cid, "status": "ranked", "total": total, "arbiter_note": None}  # noqa: E731
+    state = {"ranking": [row("A", 0.77), row("B", 0.92), row("C", 0.90)], "requirements": {}, "ablate": [],
+             "assessments": {c: {"criteria": {}, "llm_review": {}} for c in "ABC"}}
+    asyncio.run(nodes.arbitrate.__wrapped__(state))  # without @traced, which needs the LangGraph runtime
+    assert asked == [("B", "C"), ("C", "B")]  # A/B differ by 0.15 (inverted by fusion): not a near-tie

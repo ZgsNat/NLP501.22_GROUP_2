@@ -570,7 +570,9 @@ async def arbitrate(state: AgentState) -> dict:
         return {}
     for i in range(min(5, len(rows)) - 1):
         a, b = rows[i], rows[i + 1]
-        if a["status"] != "ranked" or b["status"] != "ranked" or a["total"] - b["total"] >= s.near_tie_delta:
+        # |Δ|: with fused ordering a neighbour can have the higher total, and a negative gap is not a tie (a trace
+        # showed the arbiter lifting a 0.77 candidate over a 0.92 one: beyond its mandate of near-ties only)
+        if a["status"] != "ranked" or b["status"] != "ranked" or abs(a["total"] - b["total"]) >= s.near_tie_delta:
             continue
         if calls + 2 > s.max_arbiter_calls or a["cv_id"] in judged:
             continue  # each candidate is judged at most once → no cascades of LLM overrides

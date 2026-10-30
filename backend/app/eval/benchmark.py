@@ -32,7 +32,10 @@ DOC = ROOT / "docs" / "BENCHMARK_RESULTS.md"
 CODING_COMMIT = "6991c3d427de7a4eb5bea95bf2c4ce32395968ef"  # origin/coding when the team agreed on v1
 DAN = "Đán core (coding branch)"
 # Head-to-head: the three versions of the project, then the merged agent and its fixed-pipeline twin.
-SYSTEMS = {DAN: "the coding branch's deterministic ranker, unchanged",
+SYSTEMS = {"B0 BM25": "keyword baseline, whole CV",
+           "B2 hybrid": "BM25 + dense (RRF), whole CV",
+           "R structural + CE": "requirement-wise retrieval over structural chunks + cross-encoder",
+           DAN: "the coding branch's deterministic ranker, unchanged",
            "B3 rules ⊕ CE": "our v2 branch: 4 rule criteria fused with the cross-encoder",
            "B3 8-axis ⊕ CE [hybrid]": "merged v3.1, deterministic: 8 rule criteria, hybrid JD parser",
            "B4": "merged v3.1, fixed pipeline: the agent with every loop off",
