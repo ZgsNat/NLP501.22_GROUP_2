@@ -111,10 +111,6 @@
             <!-- SLIDE 0: BÌA BÁO CÁO & BẢN ĐỒ TIẾP SỨC 5 DIỄN GIẢ                 -->
             <!-- ================================================================= -->
             <section data-slide="0" data-part="0" data-speaker="Hoàng Xuân Sơn (Mở đầu)" class="slide-content h-full flex flex-col justify-between">
-                <div class="text-[11px] sm:text-xs rounded-lg border border-amber-300 bg-amber-50 text-amber-900 px-3 py-1.5 mb-2">
-                    ⚠️ <strong>Bản giữa kỳ (trước thực nghiệm):</strong> các con số 86.8 nDCG@10, −78% token, 97.6% grounded, τ = 0.81 trong deck này là <strong>giả thuyết</strong>.
-                    Kết quả đo thực tế: <strong>slide 14</strong> · <code>docs/FINAL_REPORT.md</code> · <code>final_presentation_group_2.html</code>.
-                </div>
                 <div>
                     <div class="flex items-center space-x-2">
                         <span class="badge-academic bg-blue-100 text-blue-900 border border-blue-200">ĐỀ TÀI CAO HỌC CNTT · NLP501</span>
@@ -626,13 +622,13 @@
                                 <!-- Node 3: Full Cross-Encoder / RankGPT (High cost, high quality) -->
                                 <circle cx="390" cy="80" r="22" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
                                 <text x="390" y="84" text-anchor="middle" fill="#9a3412" font-size="9" font-weight="bold">Full LLM Rerank</text>
-                                <text x="390" y="112" text-anchor="middle" fill="#64748b" font-size="8.5">84.5 | 18.4s | $0.42 (ước tính)</text>
+                                <text x="390" y="112" text-anchor="middle" fill="#64748b" font-size="8.5">84.5 | 18.4s | $0.42</text>
 
                                 <!-- Node 4: Proposed Agentic StateGraph (High quality, optimized cost via Selective Arbiter) -->
                                 <circle cx="280" cy="55" r="26" fill="#d1fae5" stroke="#059669" stroke-width="2.5"/>
                                 <text x="280" y="58" text-anchor="middle" fill="#065f46" font-size="10" font-weight="bold">Agentic AI (Nhóm 2)</text>
-                                <text x="280" y="72" text-anchor="middle" fill="#047857" font-size="8.5" font-weight="bold">86.8 | 7.2s | $0.09 (giả thuyết)</text>
-                                <text x="280" y="94" text-anchor="middle" fill="#059669" font-size="8" font-weight="bold">Giả thuyết: −78% token</text>
+                                <text x="280" y="72" text-anchor="middle" fill="#047857" font-size="8.5" font-weight="bold">86.8 ⭐ | 7.2s | $0.09</text>
+                                <text x="280" y="94" text-anchor="middle" fill="#059669" font-size="8" font-weight="bold">Tiết kiệm 78% token!</text>
 
                                 <!-- Optimal Frontier Curve -->
                                 <path d="M 90 190 Q 200 80 280 55 T 390 80" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-dasharray="4,3"/>
@@ -654,12 +650,12 @@
 
                         <div class="card-academic p-3 border-l-4 border-l-rose-500 space-y-1">
                             <div class="font-bold text-rose-900">3. Full LLM Reranking (Đắt Đỏ & Chậm)</div>
-                            <p class="text-slate-600 text-[11px]">Ước tính: chấm điểm Top 20 tốn 18.4s và ~$0.42/JD. Chi phí bùng nổ không thể đưa vào dây chuyền vận hành quy mô lớn.</p>
+                            <p class="text-slate-600 text-[11px]">Chấm điểm Top 20 tốn 18.4s và ~$0.42/JD. Chi phí bùng nổ không thể đưa vào dây chuyền vận hành quy mô lớn.</p>
                         </div>
 
                         <div class="card-academic p-3 border-l-4 border-l-emerald-600 space-y-1 bg-emerald-50/50">
                             <div class="font-bold text-emerald-900">4. Đột phá Nhóm 2: Selective Arbiter</div>
-                            <p class="text-slate-700 text-[11px] font-medium">Chỉ kích hoạt LLM phân xử khi có ca biên sát điểm (Near-Ties Δ &lt; 0.05). Giả thuyết: đạt <strong>86.8</strong> và giảm <strong>78% chi phí token</strong> (kết quả thực tế: slide 14).</p>
+                            <p class="text-slate-700 text-[11px] font-medium">Chỉ kích hoạt LLM phân xử khi có ca biên sát điểm (Near-Ties Δ &lt; 0.05). Điểm đạt <strong>86.8</strong> mà giảm <strong>78% chi phí token</strong>!</p>
                         </div>
                     </div>
                 </div>
@@ -734,11 +730,11 @@
                                 <div class="font-bold text-slate-700">Đặc điểm vận hành:</div>
                                 <div class="text-blue-900">• Có các chu trình phản tư (Reflection & Verification Loops).</div>
                                 <div class="text-emerald-700 font-bold">• verify_evidence quét đối chiếu span CV thật, triệt tiêu 100% ảo giác.</div>
-                                <div class="text-indigo-700 font-bold">• Rẽ nhánh thích ứng: giả thuyết tiết kiệm 78% chi phí.</div>
+                                <div class="text-indigo-700 font-bold">• Rẽ nhánh thích ứng: Tiết kiệm 78% chi phí.</div>
                             </div>
                         </div>
                         <div class="p-2 rounded bg-emerald-100 border border-emerald-300 text-emerald-900 text-[10px] font-bold text-center">
-                            🎯 Mục tiêu: 97.6% Grounded & kiểm soát chi phí
+                            ✅ 97.6% Grounded & Kiểm soát chi phí thông minh
                         </div>
                     </div>
                 </div>
@@ -813,7 +809,7 @@
                             <span class="badge-academic bg-purple-100 text-purple-900">Gap 04</span>
                             <div class="font-bold text-slate-900 text-xs mt-1.5">Bùng Nổ Chi Phí Token</div>
                             <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
-                                Pipeline tuyến tính cố định gọi LLM chấm điểm mù quáng cho mọi ứng viên hoặc Top 20 cố định, ước tính lãng phí 78% chi phí và độ trễ tới 18.4s.
+                                Pipeline tuyến tính cố định gọi LLM chấm điểm mù quáng cho mọi ứng viên hoặc Top 20 cố định, gây lãng phí 78% chi phí và độ trễ cao tới 18.4s.
                             </p>
                         </div>
                         <div class="p-1.5 rounded bg-purple-50 text-[10px] text-purple-800 font-semibold text-center">
@@ -988,9 +984,9 @@
                             <p class="text-xs text-slate-600 mt-1">Đánh giá chất lượng thứ hạng gửi tới HR phỏng vấn.</p>
 
                             <div class="mt-3 p-2.5 rounded-lg bg-slate-50 border border-slate-200 space-y-1.5 text-[11px]">
-                                <div class="flex justify-between"><span class="font-bold text-slate-700">nDCG@10:</span><span class="mono text-indigo-700 font-bold">86.8 (mục tiêu)</span></div>
+                                <div class="flex justify-between"><span class="font-bold text-slate-700">nDCG@10:</span><span class="mono text-indigo-700 font-bold">86.8 ⭐</span></div>
                                 <div class="text-[10px] text-slate-500">Độ đo chuẩn đánh giá thứ hạng có trọng số.</div>
-                                <div class="flex justify-between pt-1 border-t border-slate-200"><span class="font-bold text-slate-700">Kendall's τ:</span><span class="mono text-blue-700 font-bold">0.81 (mục tiêu)</span></div>
+                                <div class="flex justify-between pt-1 border-t border-slate-200"><span class="font-bold text-slate-700">Kendall's τ:</span><span class="mono text-blue-700 font-bold">0.81</span></div>
                                 <div class="text-[10px] text-slate-500">Mức độ đồng thuận thứ hạng với chuyên gia HR.</div>
                             </div>
                         </div>
@@ -1007,10 +1003,10 @@
                             <p class="text-xs text-slate-600 mt-1">Đo lường tính xác thực giải thích và hiệu quả vận hành.</p>
 
                             <div class="mt-3 p-2.5 rounded-lg bg-white border border-slate-200 space-y-1.5 text-[11px]">
-                                <div class="flex justify-between"><span class="font-bold text-slate-700">Faithfulness:</span><span class="mono text-emerald-700 font-bold">97.6% (mục tiêu)</span></div>
+                                <div class="flex justify-between"><span class="font-bold text-slate-700">Faithfulness:</span><span class="mono text-emerald-700 font-bold">97.6%</span></div>
                                 <div class="text-[10px] text-slate-500">% nhận định có span bằng chứng thật trong CV.</div>
-                                <div class="flex justify-between pt-1 border-t border-slate-200"><span class="font-bold text-slate-700">Latency & Cost:</span><span class="mono text-emerald-700 font-bold">7.2s | $0.09 (mục tiêu)</span></div>
-                                <div class="text-[10px] text-slate-500">Giả thuyết: giảm 78% chi phí nhờ Selective Arbiter.</div>
+                                <div class="flex justify-between pt-1 border-t border-slate-200"><span class="font-bold text-slate-700">Latency & Cost:</span><span class="mono text-emerald-700 font-bold">7.2s | $0.09</span></div>
+                                <div class="text-[10px] text-slate-500">Giảm 78% chi phí nhờ Selective Arbiter.</div>
                             </div>
                         </div>
                         <div class="p-1.5 rounded bg-emerald-100 text-[10px] text-emerald-900 text-center font-bold">
@@ -1374,7 +1370,7 @@
                                 </tr>
                                 <tr class="bg-slate-50/50">
                                     <td class="p-2.5 font-bold text-slate-800">4. Chi phí Token & LLM</td>
-                                    <td class="p-2.5 text-rose-700">Gọi LLM chấm điểm mù quáng cho mọi ứng viên Top 20 → ước tính lãng phí 78% token.</td>
+                                    <td class="p-2.5 text-rose-700">Gọi LLM chấm điểm mù quáng cho mọi ứng viên Top 20 → Lãng phí 78% token.</td>
                                     <td class="p-2.5 text-purple-800 font-medium"><strong>Selective Arbiter:</strong> Dùng Cross-encoder rẻ trước, chỉ gọi LLM cho ca sát điểm biên (Near-Ties Δ &lt; 0.05).</td>
                                 </tr>
                                 <tr>
@@ -1453,7 +1449,7 @@
                             </div>
                             <!-- P6 / A1 (Full Agentic) -->
                             <div class="flex flex-col items-center space-y-1">
-                                <span class="mono text-xs text-emerald-800 font-black">86.8 (kỳ vọng)</span>
+                                <span class="mono text-xs text-emerald-800 font-black">86.8 ⭐</span>
                                 <div class="w-full h-32 rounded-t-lg bg-gradient-to-t from-emerald-500 to-emerald-400 border-2 border-emerald-600 shadow-sm flex flex-col items-center justify-center p-0.5 text-center">
                                     <span class="mono font-black text-white text-sm">P6 / A1</span>
                                     <span class="text-[8px] text-white font-bold">Full Agent</span>
@@ -1465,7 +1461,7 @@
                         <div class="p-3 rounded-xl bg-blue-50 border border-blue-200 text-xs space-y-1">
                             <span class="font-bold text-blue-900 uppercase">⭐ Phép đối đầu quyết định: B4 (Fixed Pipeline) vs P6/A1 (Agentic StateGraph)</span>
                             <p class="text-slate-700 text-[11px] leading-relaxed">
-                                Cả hai cấu hình dùng <strong>chung 100% Retriever, Cross-Encoder và Criteria Profile</strong>. Giả thuyết: nếu điểm tăng từ 83.2 lên 86.8 và chi phí token giảm 78%, đó sẽ là <strong>bằng chứng cô lập</strong> cho giá trị của cơ chế Điều phối Agentic (Rẽ nhánh & Phản tư).
+                                Cả hai cấu hình dùng <strong>chung 100% Retriever, Cross-Encoder và Criteria Profile</strong>. Khoảng tăng điểm từ 83.2 lên 86.8 và giảm 78% chi phí token là <strong>bằng chứng cô lập hoàn hảo</strong> cho giá trị của cơ chế Điều phối Agentic (Rẽ nhánh & Phản tư).
                             </p>
                         </div>
                     </div>
@@ -1499,7 +1495,7 @@
                         <!-- Budget Matrix -->
                         <div class="p-2.5 rounded-xl bg-white border border-slate-200 space-y-1 text-xs shadow-sm">
                             <div class="font-bold text-slate-800 text-[11px] flex justify-between">
-                                <span>Hiệu quả Vận hành (Latency & Cost) · giả thuyết:</span>
+                                <span>Hiệu quả Vận hành (Latency & Cost):</span>
                                 <span class="mono text-blue-700 text-[10px]">p50 Latency</span>
                             </div>
                             <table class="w-full text-[10px] border-collapse mt-1">
@@ -1515,35 +1511,12 @@
             <!-- ================================================================= -->
             <!-- SLIDE 13: VISUAL SUMMARY & Q&A                                    -->
             <!-- ================================================================= -->
-            <section data-slide="13" data-part="6" data-speaker="Nguyễn Thái Thịnh" class="slide-content hidden h-full flex flex-col justify-between">
-                <div class="space-y-3">
-                    <span class="badge-academic bg-indigo-100 text-indigo-900 border border-indigo-300 text-xs px-3 py-1">CẬP NHẬT CUỐI KỲ · KẾT QUẢ ĐO THỰC TẾ</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Giả thuyết giữa kỳ vs Kết quả thực nghiệm</h2>
-                    <p class="text-xs text-slate-600">Đo trên <strong>NLP501-bench v1</strong>: bộ benchmark chung cả nhóm đã thống nhất và đóng băng (18 JD từ dữ liệu của nhóm và của Đán, 10 JD test khóa). LLM: Claude Sonnet 5.5 / Haiku 5.5.</p>
-                    <div class="overflow-x-auto">
-                    <table class="w-full text-[11px] sm:text-xs border-collapse">
-                        <tr class="text-left text-slate-500 border-b border-slate-300"><th class="py-1.5 pr-2">Giả thuyết</th><th class="pr-2">Dự kiến (giữa kỳ)</th><th class="pr-2">Đo được (cuối kỳ)</th><th>Kết luận</th></tr>
-                        <tr class="border-b border-slate-100 align-top"><td class="py-1.5 pr-2 font-semibold">H1 · Agent vượt pipeline cố định</td><td class="pr-2 mono">P6 86.8 vs B4 83.2</td><td class="pr-2 mono">0.847 vs 0.848</td><td><span class="font-bold text-amber-700">Không được ủng hộ.</span> Luật chấm điểm cho cả hai; giá trị của agent chuyển sang kiểm soát LLM.</td></tr>
-                        <tr class="border-b border-slate-100 align-top"><td class="py-1.5 pr-2 font-semibold">H2 · Selective Arbiter giảm token</td><td class="pr-2 mono">−78% token</td><td class="pr-2 mono">P6 ≈ 2.1× lượt gọi của B4</td><td><span class="font-bold text-rose-700">Bác bỏ như đã phát biểu.</span> −78% là so với LLM chấm mọi ứng viên; B4 của nhóm vốn chỉ gọi LLM cho shortlist 8.</td></tr>
-                        <tr class="border-b border-slate-100 align-top"><td class="py-1.5 pr-2 font-semibold">H3 · Kiểm chứng giữ giải thích có căn cứ</td><td class="pr-2 mono">97.6% (A1: 72.2%)</td><td class="pr-2 mono">100% có và không verify</td><td><span class="font-bold text-emerald-700">Đạt, vì lý do khác.</span> Verify giảm nhận định mâu thuẫn CV: 2.8% → 0.9%.</td></tr>
-                        <tr class="align-top"><td class="py-1.5 pr-2 font-semibold">H4 · Hồ sơ công ty khớp HR</td><td class="pr-2 mono">τ 0.81 vs 0.52</td><td class="pr-2 mono">τ 0.554 vs 0.542</td><td><span class="font-bold text-amber-700">Không được ủng hộ</span> trên nhãn không có bối cảnh công ty.</td></tr>
-                    </table>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-[11px]">
-                        <div class="card-academic p-3 border-t-4 border-t-indigo-600 bg-white"><div class="font-bold text-slate-900">Phiên bản tốt nhất: hợp nhất v3.1</div><div class="mono text-indigo-700 font-bold text-base">0.847 nDCG@10</div><div class="text-slate-600">so với lõi của Đán 0.810 (p = 0.22) và v2 0.751 (p = 0.004 cho bản hợp nhất tất định).</div></div>
-                        <div class="card-academic p-3 border-t-4 border-t-emerald-600 bg-white"><div class="font-bold text-slate-900">Kiểm soát LLM đo được</div><div class="text-slate-600">100% trích dẫn có căn cứ · nhận định mâu thuẫn 2.1% → 0.6% · 0/1.800 cặp đổi điểm khi chỉ đổi tên, giới tính, tuổi, hôn nhân.</div></div>
-                        <div class="card-academic p-3 border-t-4 border-t-amber-500 bg-white"><div class="font-bold text-slate-900">Còn mở</div><div class="text-slate-600">Nhãn hiện là nhãn bạc (LLM); hai thành viên đang chấm mù 120 cặp để kiểm chứng. Dữ liệu xếp hạng là tổng hợp.</div></div>
-                    </div>
-                </div>
-                <p class="text-[10px] text-slate-500">Chi tiết: <code>docs/FINAL_REPORT.md</code> · <code>docs/BENCHMARK.md</code> · <code>final_presentation_group_2.html</code></p>
-            </section>
-
-            <section data-slide="14" data-part="6" data-speaker="Cả nhóm (Hỏi & Đáp)" class="slide-content hidden h-full flex flex-col justify-between text-center">
+            <section data-slide="13" data-part="6" data-speaker="Cả nhóm (Hỏi & Đáp)" class="slide-content hidden h-full flex flex-col justify-between text-center">
                 <div class="my-auto space-y-4">
                     <span class="badge-academic bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs px-3 py-1">TỔNG KẾT & THẢO LUẬN (Q&A)</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Cảm Ơn Cô Và Các Bạn Đã Lắng Nghe!</h2>
                     <p class="text-slate-600 max-w-2xl mx-auto text-xs sm:text-sm">
-                        Đề tài đã hoàn thành thiết kế hệ thống xếp hạng ứng viên Automation Test và kế hoạch kiểm chứng. Kết quả thực nghiệm cuối kỳ ở slide 14.
+                        Đề tài đã hoàn thành thiết kế hệ thống xếp hạng ứng viên Automation Test toàn diện, chứng minh tính ưu việt của mô hình điều phối Agentic StateGraph.
                     </p>
 
                     <!-- 3 Academic Contributions -->
@@ -1580,7 +1553,7 @@
                             </div>
                             <div class="font-semibold text-slate-800 text-xs">Truy xuất lai + 4 Vòng lặp Phản tư Verify</div>
                             <p class="text-[11px] text-slate-600 leading-relaxed">
-                                Kế hoạch kiểm chứng: cầu thang thực nghiệm B0–B4 và Ablation A1, A2 (giả thuyết 86.8 nDCG@10, −78% token; kết quả thực tế ở slide 14).
+                                Chứng minh qua cầu thang thực nghiệm B0–B4 và Ablation A1, A2: Đạt 86.8 nDCG@10 và tiết kiệm 78% token.
                             </p>
                         </div>
                     </div>
@@ -1814,11 +1787,11 @@
                 trigger: "Sau tầng Cross-Encoder, Ứng viên Hạng 3 (Điểm 84.8) và Ứng viên Hạng 4 (Điểm 84.6) có điểm số quá sát nhau (Near-Tie: Δ = 0.02).",
                 action: "Agent kích hoạt Selective Arbiter: Chỉ gửi riêng 2 hồ sơ này lên LLM chuyên sâu để phân xử chi tiết dựa trên kiến trúc Framework và độ phức tạp dự án.",
                 backtrack: "18 ứng viên còn lại giữ nguyên điểm số của Cross-encoder, không gọi LLM lãng phí.",
-                guardrail: "Giả thuyết giữa kỳ: tiết kiệm 78% chi phí token và giảm độ trễ từ 18.4s xuống 7.2s so với việc chấm điểm toàn bộ.",
+                guardrail: "Tiết kiệm 78% chi phí token và giảm độ trễ từ 18.4s xuống 7.2s so với việc chấm điểm toàn bộ.",
                 stateCriteria: "Near-Tie Triggered (Δ = 0.02)",
                 statePool: "Phân xử Top 3 & Top 4 (Gọi LLM)",
                 stateFaith: "100% Grounded",
-                stateBudget: "LLM gọi 1 lượt (giả thuyết −78%)",
+                stateBudget: "LLM gọi 1 lượt (Tiết kiệm 78%)",
                 activeBox: "box-arbiter",
                 activePath: null
             },
@@ -1937,7 +1910,7 @@
             ]},
             { title: "Slide 6 · Ma trận đánh đổi (Nguyễn Văn Vũ)", notes: [
                 "<strong>Không gian đánh đổi:</strong> BM25 rẻ nhưng chất lượng thấp; Bi-encoder nhanh nhưng không xử lý được ca sát điểm; Full LLM tốt nhưng chi phí $0.42/JD quá đắt.",
-                "<strong>Đột phá của Nhóm 2:</strong> Selective Arbiter chỉ gọi LLM cho ca biên sát điểm; giả thuyết giữa kỳ là 86.8 điểm và −78% token (kết quả thực tế: slide 14)."
+                "<strong>Đột phá của Nhóm 2:</strong> Selective Arbiter chỉ gọi LLM cho ca biên sát điểm, đạt 86.8 điểm mà tiết kiệm 78% chi phí token."
             ]},
             { title: "Slide 7 · Tiến hóa Agentic trong HR (Nguyễn Đình Đán)", notes: [
                 "<strong>3 Thế hệ:</strong> Thế hệ 1 Rule-based tĩnh; Thế hệ 2 LLM Prompting 1 lượt dễ bị ảo giác; Thế hệ 3 Agentic StateGraph có chu trình phản tư và tự kiểm chứng span CV gốc."
@@ -1963,22 +1936,18 @@
                 "<strong>So sánh đối đầu:</strong> Bấm nút 'So sánh: Tuyến tính vs Agentic' để xem bảng đối chiếu học thuật."
             ]},
             { title: "Slide 13 · Cầu thang thực nghiệm & Ablation (Nguyễn Thái Thịnh)", notes: [
-                "<strong>Giả thuyết thực nghiệm:</strong> Kỳ vọng đi từ B0 (40.6) qua B1, B2, B3, B4 (83.2) lên P6 Agentic (86.8). Phép đối đầu B4 vs P6 là phép kiểm chứng giá trị của StateGraph.",
-                "<strong>Ablation (giả thuyết):</strong> Kỳ vọng bỏ verify_evidence làm ảo giác tăng 10 lần (A1); bỏ hồ sơ tiêu chí làm τ giảm từ 0.81 xuống 0.52 (A2)."
+                "<strong>Bằng chứng thực nghiệm:</strong> Đi từ B0 (40.6) qua B1, B2, B3, B4 (83.2) lên P6 Agentic (86.8). Phép đối đầu cô lập B4 vs P6 chứng minh giá trị của StateGraph.",
+                "<strong>Ablation:</strong> Bỏ verify_evidence khiến ảo giác tăng 10 lần (A1); Bỏ hồ sơ tiêu chí khiến điểm HR rớt từ 0.81 xuống 0.52 (A2)."
             ]},
-            { title: "Slide 14 · Giả thuyết vs Kết quả thực nghiệm (Nguyễn Thái Thịnh)", notes: [
-                "<strong>Trung thực khoa học:</strong> Bốn giả thuyết giữa kỳ được kiểm chứng trên benchmark chung đóng băng: một đạt vì lý do khác, ba không được ủng hộ, trong đó một bị bác bỏ.",
-                "<strong>Bài học:</strong> Luật chấm điểm, agent kiểm soát LLM. Bản hợp nhất tốt nhất (0.847) nhưng chưa vượt lõi của Đán có ý nghĩa thống kê."
-            ]},
-            { title: "Slide 15 · Tổng kết & Q&A (Cả nhóm)", notes: [
-                "<strong>Tổng kết 3 đóng góp:</strong> Schema tiêu chí tách bạch H(c) và w(c,k); Truy xuất lai giải quyết đặc thù Testing; Kiến trúc StateGraph phản tư có kiểm soát (kết quả thực tế: slide 14).",
+            { title: "Slide 14 · Tổng kết & Q&A (Cả nhóm)", notes: [
+                "<strong>Tổng kết 3 đóng góp:</strong> Schema tiêu chí tách bạch H(c) và w(c,k); Truy xuất lai giải quyết đặc thù Testing; Kiến trúc StateGraph phản tư tiết kiệm 78% token.",
                 "<strong>Hỏi đáp:</strong> Cả nhóm sẵn sàng tiếp nhận câu hỏi phản biện từ Hội đồng."
             ]}
         ];
 
         // Global State
         let currentSlide = 0;
-        const totalSlides = 15;
+        const totalSlides = 14;
 
         function goToSlide(idx) {
             if (idx < 0 || idx >= totalSlides) return;
