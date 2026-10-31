@@ -22,7 +22,7 @@ Master's NLP final project (FSB). Topic: **an agentic AI system that matches and
 - Langfuse (self-hosted) traces every run; one session per run_id.
 
 ## Component IDs
-`docs/architecture.html` is the architecture map. Every component has a stable ID (N1–N12 nodes, R1–R4 routers, L1–L6 loops, S state keys, H harness controls, C0–C8 criteria, X1–X10 NLP stages, E1–E12 evaluation, P/D/O/T/A/U/K/I). When the user names an ID ("N6 is too slow", "tighten H1 for L2"), look it up in the `REG` table at the bottom of that file for its file › symbol. When you add, rename or remove a component, update `REG` in the same change.
+`docs/architecture.html` is the architecture map. Every component has a stable ID (N1–N12 nodes, R1–R4 routers, L1–L6 loops, S state keys, H harness controls, C0–C8 criteria, X1–X10 NLP stages, E1–E13 evaluation, P/D/O/T/A/U/K/I). When the user names an ID ("N6 is too slow", "tighten H1 for L2"), look it up in the `REG` table at the bottom of that file for its file › symbol. When you add, rename or remove a component, update `REG` in the same change.
 
 ## Commands
 ```bash
@@ -36,6 +36,7 @@ cd backend && uv run python -m app.eval.run retrieval    # B0–B3 + chunking ab
 cd backend && uv run python -m app.eval.benchmark report    # THE official table: NLP501-bench v1 (docs/BENCHMARK.md); `verify` checks the frozen inputs
 cd backend && uv run python -m app.eval.extraction       # RQ1: CV/JD extraction F1 + redaction leaks vs the coding branch's generator truth
 cd backend && uv run python -m app.eval.robustness       # Q11: counterfactual fairness (name/gender/age/marital twins) + format robustness
+cd backend && uv run python -m app.eval.clarify          # H6: vague twins of all 18 JDs, asking HR vs not (`report` re-renders)
 uv run uvicorn app.main:app --app-dir backend --reload   # API :8000
 cd frontend && npm run dev                               # UI :5173
 ```

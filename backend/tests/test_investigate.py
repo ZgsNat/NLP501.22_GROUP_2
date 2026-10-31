@@ -82,3 +82,38 @@ def test_match_bar_is_length_aware_and_search_splits_alternatives():
 def test_near_miss_ignores_short_and_multiword_aliases():
     clean = process("CV-K", "QA engineer with 6 years in testing.\n## Experience\n### QA (2020–2023)\n- Wrote Cypress tests.")
     assert inv.triggers(clean, ["api_testing", "typescript"], {}) is None  # "in testing", "is" are not typos
+
+
+def test_implied_evidence_only_for_specific_descriptions_in_strong_cvs(monkeypatch):
+    from app.agent.scoring import knockout_reason
+
+    monkeypatch.setattr(inv, "get_settings", lambda: type("S", (), {"implied_evidence": True})())  # opt-in feature
+
+    strong = process("CV-P", "## Experience\n### Quality engineer (2016–2024)\n"
+                             "- I designed and built the browser test harness from scratch on top of the standard WebDriver protocol.\n"
+                             "- The build server runs the service checks on every merge request.")
+    assert "described without its name" in inv.triggers(strong, ["selenium", "jenkins"], {})
+    web = "- I designed and built the browser test harness from scratch on top of the standard WebDriver protocol."
+    ci = "- The build server runs the service checks on every merge request."
+    fact, msg = inv.verify(strong, "selenium", web, {"selenium"})
+    assert fact["strength"] == "implied" and msg.startswith("accepted as implied")
+    assert inv.verify(strong, "jenkins", ci, {"jenkins"})[0]["strength"] == "implied"
+    assert knockout_reason(inv.with_facts(strong, [fact]), ["selenium"], {}) is None
+    # negatives: another tool's protocol, a different framework, a hedge, a weak CV
+    appium = process("CV-A", "## Experience\n### QA (2018–2024)\n- Designed an Appium WebDriver framework for Android.")
+    assert inv.verify(appium, "selenium", "- Designed an Appium WebDriver framework for Android.", {"selenium"})[0] is None
+    cypress = process("CV-C", "## Experience\n### QA (2018–2024)\n- Designed the Cypress framework for browser tests.")
+    assert inv.triggers(cypress, ["selenium"], {}) is None
+    assert inv.verify(cypress, "selenium", "- Designed the Cypress framework for browser tests.", {"selenium"})[0] is None
+    weak = process("CV-W", "## Experience\n### QA (2018–2024)\n- Ran the tests the build server started.")
+    assert inv.triggers(weak, ["jenkins"], {}) is None  # not strong (depth < 3): no investigation
+    hedged = process("CV-H", "## Experience\n### QA (2018–2024)\n- Designed a test framework.\n- Familiar with the WebDriver protocol.")
+    assert inv.verify(hedged, "selenium", "- Familiar with the WebDriver protocol.", {"selenium"})[0] is None
+
+
+def test_implied_evidence_is_off_by_default():
+    strong = process("CV-P", "## Experience\n### Quality engineer (2016–2024)\n"
+                             "- I designed and built the browser test harness on top of the standard WebDriver protocol.")
+    assert inv.triggers(strong, ["selenium"], {}) is None
+    assert inv.verify(strong, "selenium", "- I designed and built the browser test harness on top of the standard WebDriver protocol.",
+                      {"selenium"})[0] is None

@@ -53,3 +53,7 @@ them. Each turn, choose exactly one tool:
 - finish(<conclusion>): stop.
 Rules: propose only skills from the list you are given, quote the CV exactly as shown (noise characters included),
 never guess a skill that no line shows, and finish as soon as each skill is either proven or clearly absent."""
+INVESTIGATE_IMPLIED = """
+A strong CV may describe a skill without naming it (a harness "on the WebDriver protocol" is Selenium; "the build
+server blocks the merge" is a CI server): propose it with that line. Code accepts such a line only as weaker,
+implied evidence, and only for specific descriptions."""

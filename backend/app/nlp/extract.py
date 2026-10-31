@@ -17,7 +17,7 @@ from app.nlp.chunking import Chunk
 from app.nlp.segment import Entry, merged_months
 from app.nlp.taxonomy import alias_regex, automation_evidence, skills
 
-CREDIT = {"used": 1.0, "listed": 0.7, "hedged": 0.2}
+CREDIT = {"used": 1.0, "listed": 0.7, "implied": 0.5, "hedged": 0.2}  # implied: described, not named (N12 verifies)
 
 PRE_HEDGE = re.compile(
     r"\b(?:familiar(?:ity)? with|basic (?:knowledge|understanding) of|some (?:knowledge|exposure)|exposure to|"

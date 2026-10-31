@@ -73,6 +73,11 @@ class Settings(BaseSettings):
     llm_concurrency: int = 4
     max_investigations: int = 4  # L6: knocked-out CVs the investigator may examine per search round
     max_investigation_steps: int = 6  # L6: tool calls per investigated CV
+    # L6 may accept a must-have a strong CV describes without naming ("harness on the WebDriver protocol") as implied
+    # evidence: skill-specific cue, experience line, not hedged; credit 0.5 and an HR flag. Not adopted (EVAL.md §8):
+    # on the benchmark dev split it rescued CV-047 twice, both correct by the labels, but below the top 10, so
+    # nDCG@10 was unchanged (0.867 -> 0.867); the rule needs a gain on one source. Off by default.
+    implied_evidence: bool = False
     max_reviews: int = 5  # L5: HR re-weight rounds before the ranking is final
     ask_hr_substitutes: bool = True  # L2 proposes related tools and HR approves (False = accept silently, v1)
     tier_strong: float = 0.75  # HR-facing tiers on the weighted total; provisional until calibrated on gold labels

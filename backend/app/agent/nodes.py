@@ -538,7 +538,9 @@ async def score(state: AgentState) -> dict:
     _versus_next(rows, state)
     dup = quality.duplicates([prof(state, r["cv_id"]) for r in rows])
     for r in rows:
-        r["flags"] = quality.flags(prof(state, r["cv_id"])) + ([f"duplicate_of:{dup[r['cv_id']]}"] if r["cv_id"] in dup else [])
+        implied = sorted({m.skill for ms in prof(state, r["cv_id"]).skills.values() for m in ms if m.strength == "implied"})
+        r["flags"] = quality.flags(prof(state, r["cv_id"])) + ([f"duplicate_of:{dup[r['cv_id']]}"] if r["cv_id"] in dup else []) \
+            + ([f"implied_evidence:{','.join(implied)} (described, not named: verify in interview)"] if implied else [])
     if flagged := [r["cv_id"] for r in rows if r["flags"]]:
         emit("score", f"Data-quality flags on {flagged} (short, garbled, undated or duplicate CVs): check before trusting "
                       "their score", "warn")

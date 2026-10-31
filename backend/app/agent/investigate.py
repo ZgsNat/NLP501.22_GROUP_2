@@ -22,14 +22,41 @@ from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from app.agent import prompts
 from app.agent.schemas import InvestigatorAction
 from app.agent.scoring import locate
+from app.config import get_settings
 from app.nlp import extract, quality
 from app.nlp.pipeline import CVProfile
 from app.nlp.segment import ENTRY_SECTIONS
-from app.nlp.taxonomy import aliases, skills
+from app.nlp.taxonomy import aliases, group, mentions, skills
 from app.nlp.taxonomy import key as tkey
 
 TOKEN = re.compile(r"[^\s/,;()]+")  # "Postman/Newman" is two tools
 NEAR = 0.8  # a token this similar to an alias, but not equal, is a near-miss spelling (typo or OCR noise)
+
+
+# Implied evidence: a strong CV may describe a must-have without naming it. Cues are specific to one skill or one
+# group, never generic words: "WebDriver" is Selenium's protocol (not WebdriverIO, not Appium's), a build server or
+# merge-request pipeline is a CI server. Anything else must be named.
+IMPLIED = {"selenium": re.compile(r"(?<![a-z])(?<!appium )webdriver(?![a-z])|selenium grid", re.I)}
+IMPLIED_GROUP = {"cicd": re.compile(r"\bbuild servers?\b|\b(?:ci|cd|ci/cd|delivery|deployment|release) pipelines?\b|"
+                                    r"\bpipeline templates?\b|\bmerge requests?\b|\brelease gates?\b", re.I)}
+
+
+def implied_cue(skill: str) -> re.Pattern | None:
+    return IMPLIED.get(skill) or IMPLIED_GROUP.get(group(skill))
+
+
+def described(p: CVProfile, terms: list[str]) -> tuple[str, str] | None:
+    """(term, line) when a strong CV (framework depth or above) describes a missing must-have in an experience or
+    project line without naming it; None otherwise."""
+    if not get_settings().implied_evidence or p.depth_cue < 3:
+        return None
+    lines = [ln for c in p.chunks if c.section in ENTRY_SECTIONS for ln in c.text.split("\n")]
+    for t in terms:
+        cue = implied_cue(t)
+        line = next((ln for ln in lines if cue and cue.search(ln) and not any(mentions(ln, a) for a in [t])), None)
+        if line:
+            return t, line.strip()
+    return None
 
 
 def match_bar(alias: str) -> float:
@@ -83,6 +110,8 @@ def triggers(p: CVProfile, missing: list[str], subs: dict[str, list[str]]) -> st
     if near:
         k, line = next(iter(near.items()))
         return f"'{k}' looks misspelt in \"{line[:60]}\""
+    if hit := described(p, [t for m in missing for t in [m, *subs.get(m, [])]]):
+        return f"'{hit[0]}' may be described without its name in \"{hit[1][:60]}\""
     return None
 
 
@@ -114,6 +143,14 @@ def search(p: CVProfile, term: str, limit: int = 5) -> str:
     return "\n".join(hits) or f"No line resembles '{term}'."
 
 
+def names(alias: str, span: str) -> bool:
+    """Every word of a multi-word name must match its own token: "S%lenium W#bDriver" names selenium webdriver,
+    "standard WebDriver" does not (one shared word is a description, not the name)."""
+    words, toks = alias.lower().split(), [_clean(t) for t in TOKEN.findall(span)]
+    return len(words) == len(toks) and all(SequenceMatcher(None, w, t, autojunk=False).ratio() >= match_bar(w)
+                                           for w, t in zip(words, toks))
+
+
 def verify(p: CVProfile, skill: str, quote: str, allowed: set[str]) -> tuple[dict | None, str]:
     """Code, not the model, decides whether a proposal becomes a fact."""
     k = tkey(skill)
@@ -124,8 +161,16 @@ def verify(p: CVProfile, skill: str, quote: str, allowed: set[str]) -> tuple[dic
     grounded, section = locate(quote, p)
     if not grounded:
         return None, "rejected: the quote is not in the CV (copy the line exactly as shown)"
-    (r, a, b), al = max((similarity(al, quote), al) for al in aliases(k))
-    if r < match_bar(al):
+    named = [((r, a, b), al) for al in aliases(k) for (r, a, b) in [similarity(al, quote)]
+             if r >= match_bar(al) and (" " not in al or names(al, quote[a:b]))]
+    (r, a, b), al = max(named) if named else max((similarity(al, quote), al) for al in aliases(k))
+    if not named:
+        cue = implied_cue(k)
+        m = cue.search(quote) if cue and get_settings().implied_evidence and section in ENTRY_SECTIONS else None
+        if m and not extract.is_hedged(quote.lower(), m.start(), m.end()):
+            return ({"skill": k, "quote": quote.strip(), "section": section, "similarity": round(r, 2),
+                     "strength": "implied"},
+                    f"accepted as implied: {k} is described, not named (credit 0.5; HR should verify)")
         return None, f"rejected: the quote does not name {k} (best match {r:.2f})"
     if extract.is_hedged(quote.lower(), a, b):
         return None, f"rejected: {k} is only hedged here (familiar with / learning), which does not count"
@@ -140,7 +185,7 @@ async def investigate_cv(model, p: CVProfile, title: str, missing: list[str], su
     """ReAct loop over typed actions → {"facts", "trace", "calls", "invalid"}. Stops at `finish`, at the step budget,
     or as soon as every missing must-have has a verified fact (the deterministic stopping rule)."""
     allowed = {tkey(t) for m in missing for t in [m, *subs.get(m, [])]}
-    msgs = [SystemMessage(prompts.INVESTIGATE),
+    msgs = [SystemMessage(prompts.INVESTIGATE + (prompts.INVESTIGATE_IMPLIED if get_settings().implied_evidence else "")),
             HumanMessage(f"Role: {title}. Knocked out for missing {missing}"
                          + (f"; accepted alternatives {({m: subs[m] for m in missing if subs.get(m)})}" if any(subs.get(m) for m in missing) else "")
                          + f". Why investigate: {why}. Skills you may propose: {sorted(allowed)}. "
