@@ -240,3 +240,13 @@ def test_consented_intake_keeps_only_redacted_text(tmp_path, monkeypatch):
     out = (tmp_path / "redacted" / "cv1.txt").read_text()
     assert "Mai" not in out and "mai@corp.vn" not in out and "Selenium" in out
     assert "cv1: masked" in report
+
+
+def test_vague_twin_hides_tools_and_years_and_hr_answer_restores_them():
+    from app.eval.clarify import hr_answer, vague
+
+    v = vague("Must have:\n- 3+ years with Selenium WebDriver and Java.\n- Jenkins or GitLab CI.\n- Tối thiểu 2 năm kinh nghiệm")
+    assert "Selenium" not in v and "Java" not in v and "Jenkins" not in v and "3+" not in v and "2 năm" not in v
+    assert "a browser automation framework" in v and "a CI server" in v and "several years" in v and "nhiều năm" in v
+    assert hr_answer({"must_have": ["selenium", "java"], "min_years": 3}, {"selenium": ["playwright"]}) == \
+        "Must-have: selenium or playwright; java. At least 3 years of experience."
