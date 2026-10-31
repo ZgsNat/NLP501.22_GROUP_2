@@ -1,7 +1,8 @@
 """Q13 / E1: validate the silver labels with people (docs/EVAL.md §2).
 
     python -m app.eval.human sample   → docs/labeling/index.html: 120 blind (JD, CV) pairs, one page, no server
-    python -m app.eval.human score    → docs/HUMAN_LABELS.md from data/eval/human_*.json (the files the page downloads)
+    python -m app.eval.human score    → docs/HUMAN_LABELS.md from data/eval/human_*.json (the files the page downloads);
+                                        model annotators (llm_annotator_*.json) are reported in a separate section
 
 The page shows only the JD and the CV text: never the silver grades, a system's rank or another person's labels.
 """
@@ -145,6 +146,17 @@ def score() -> str:
     for h in names:
         for sname, s in silver.items():
             row(h, humans[h], sname, s)
+    # Model annotators (llm_annotator_*.json) are reported apart and never count as human validation (Q13).
+    llms = {json.loads(f.read_text())["annotator"]: {(x["jd"], x["cv"]): x["grade"] for x in json.loads(f.read_text())["labels"]}
+            for f in sorted(LABELS.glob("llm_annotator_*.json"))}
+    if llms:
+        lines += ["", "## Model annotators (not human; reported apart, they do not validate the silver set)", "",
+                  "| Pair | pairs | exact agreement | weighted κ |", "|---|---|---|---|"]
+        for m, x in llms.items():
+            for sname, s in silver.items():
+                row(m, x, sname, s)
+            for h in names:
+                row(m, x, h, humans[h])
     text = "\n".join(lines) + "\n"
     (ROOT / "docs" / "HUMAN_LABELS.md").write_text(text)
     return text

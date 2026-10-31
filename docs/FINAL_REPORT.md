@@ -502,7 +502,11 @@ We count only the errors that cost HR something:
 
 - **Silver labels.** Our labels come from two Claude models, which agree too readily (κ 0.919). Two teammates are
   grading a blind 120-pair sample (`docs/labeling/`). If human–silver κ ≥ 0.8 the set stays; otherwise the human
-  labels replace it as benchmark v1.1. Until then, ranking numbers are provisional.
+  labels replace it as benchmark v1.1. A third, blind Claude annotator (recruiter persona, graded from the labelling
+  page's text only) agreed with the silver labels at κ_w 0.889 (`docs/HUMAN_LABELS.md`, reported apart from human
+  rows). The two silver annotators agree with each other at 0.884 on this sample. The silver set is therefore stable
+  within the Claude family; whether people agree is what the human grading will show. Until then, ranking numbers are
+  provisional.
 - **Synthetic ranking data.** Real text was used only to check the NLP. Consented real CVs are being collected.
   Comparisons between systems are the result; the absolute numbers will not transfer.
 - **Small test split.** With 10 test JDs, CIs are ±0.05–0.08 for the stronger systems and up to ±0.15 for the
