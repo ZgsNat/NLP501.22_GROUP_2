@@ -26,6 +26,8 @@ locked test split of 10, and every input pinned by checksum. On that test split:
 - **Rules score; the LLM controls and explains.** The agent and its fixed twin rank alike (0.847 vs 0.848, p = 0.47). The agent's
   value is the work rules cannot do: asking HR on a vague JD, reading CVs the parser cannot, catching contradicted
   claims (2.1% → 0.6%) and keeping the arbiter to true near-ties.
+- **Where the agent decides, the ranking shows it.** On vague twins of all 18 JDs, a pipeline that cannot ask scores
+  0.626 nDCG@10. Asking HR recovers 57% of the loss (+0.129, p < 0.001); the agent as it runs scores 0.704 (§5.5).
 - **Evaluation found and fixed real faults:**
   - a recall funnel sized for 50 CVs that failed at 200 (the agent rose from 0.60 to 0.77–0.78 on those JDs);
   - an arbiter acting beyond its mandate;
@@ -251,8 +253,9 @@ acted (filled), across all benchmark JDs. Numbers: the AI-output scorecards in `
     scored 18/18, there entirely through the rules: qwen listed no ambiguities.
   - **L6 investigator:** 0 false recoveries in 42 planted cases on qwen3:8b. All misspelt tools were recovered and
     all negatives kept out, but only 12 of 47 true facts were recovered on heavily garbled CVs.
-  - **Sonnet vs qwen** on 17 capped cases: both made 0 false recoveries. On garbled CVs alone Sonnet recovered 5 true
-    facts and qwen 3; both also recovered all 4 typos.
+  - **Sonnet 5.5 on the same 42 planted cases**, re-run on the current JD requirements: 0 false recoveries and 41/42
+    correct final statuses. All 4 typos were recovered, but only 6 of 32 true facts on heavily garbled CVs. The two
+    models are not compared case by case, because the requirements changed between the runs.
 - **Q11 fairness:** no score changed in 6 twin variants × 1,800 (CV, JD) pairs. Religion, ethnicity, nationality and
   disability are masked but were not twinned.
 
@@ -324,7 +327,8 @@ system on test.
 - **The retrieval baselines:** `bank_api_qa`.
 - **Đán's core:** JD-011.
 
-Two failure modes remain (§8): **vague JDs**, and **CVs that describe tools without naming them**.
+Two failure modes remain (§8): **vague JDs**, and **CVs that describe tools without naming them**. §5.5 and §5.6
+test a remedy for each.
 
 ### 5.2 Agent vs fixed pipeline, and ablations (RQ4)
 
@@ -347,7 +351,9 @@ dev JDs, and P6 moved from 0.883 to 0.882 after both fixes, well inside the nois
 - **Verify (L4)** is what removes contradicted claims.
 - **The arbiter** reorders true near-ties and caught position bias in its verdicts.
 - **The investigator** costs nothing on clean CVs and is the only part that can rescue a good candidate from noisy
-  text (§6.2).
+  text (§6.2). On the benchmark it rescued no CV, and that is mostly right: of the knocked-out CVs its trigger
+  selects, 36 of 37 are graded 0–1. The one miss, `syn_196` on `bank_api_qa` (gold 2), has Java and RestAssured under
+  heavy OCR noise. On 42 planted cases Sonnet made 0 false recoveries (§4).
 - **The cost of control:** P6 makes 1.6× the LLM calls of B4 on our JDs (177 vs 108) and 3.1× on Đán's (175 vs 57),
   about 2.1× calls and tokens overall. Latency is not comparable: most runs reused cached responses. The one fully
   uncached P6 run, an earlier run, took about 80 s per JD through the CLI.
@@ -382,6 +388,44 @@ explain those decisions are learned by pairwise logistic regression and logged.
 
 **The JD parser.** The parser choice mattered more than the weights: under Claude, hybrid beat LLM-only by +0.039 on ours
 and lost by 0.003 on coding (§4).
+
+### 5.5 Does asking HR help? A controlled test (H6, `docs/CLARIFY_RESULTS.md`)
+
+Only 3 benchmark JDs are vague, too few to test the clarify loop. So each of the 18 JDs got a **vague twin**: tool
+names replaced by their category ("a browser automation framework"), year counts by "several years". The twin keeps
+the original labels, which encode what the hiring manager wanted: exactly what HR knows and the vague text no longer
+says. Every condition is ranked by the agent's own deterministic scorer.
+
+| Condition (18 JDs) | nDCG@10 | Kendall τ |
+|---|---|---|
+| clear JD (upper bound) | 0.851 | 0.513 |
+| vague twin, nobody asks (what a fixed pipeline gets) | 0.626 | 0.451 |
+| vague twin, HR asked and answered | 0.756 | 0.507 |
+| **the agent as it runs** (HR's answer only where the gate asked) | **0.704** | 0.495 |
+
+- **Asking helps:** +0.129 nDCG@10 (p < 0.001) and +0.056 τ (p = 0.012), paired over 18 JDs. That recovers 57% of the
+  loss.
+- **The gate asked on 15 of 18 twins.** The 3 it missed still contain "API testing", which the rule counts as a
+  concrete tool. On the clear JDs it asked once without need (`startup_framework`) in this run; in the benchmark runs
+  it asked on none of the 15 clear JDs.
+- **Limit:** HR's answer is scripted from the original requirements, so this tests the mechanism (detect → ask →
+  integrate), not a real HR conversation.
+
+### 5.6 A negative result: tools a CV describes but does not name
+
+- **Problem:** 3 of the agent's 5 misses on ours (§8) are CV-047 and CV-048. They describe "a harness on the WebDriver
+  protocol" or "build servers" instead of naming Selenium or GitLab CI.
+- **Change tried:** the investigator may accept such a line as *implied* evidence. The line needs a skill-specific
+  cue, must sit in the experience of a strong CV (depth L3+) and must not be hedged. It earns credit 0.5 instead of
+  1.0, plus a flag telling HR to verify in interview.
+- **Dev result:** CV-047 moved up on three dev JDs (best: rank 40 → 19). The labels agree with each move, but none
+  reached the top 10, so dev nDCG@10 stayed at 0.867. On Đán's dev JDs the cue never fires.
+- **Decision (EVAL.md §8):** no gain on either source, so it is **not adopted**. It stays behind
+  `Settings.implied_evidence = False`.
+- **A later check, not used for the decision:** on one test JD from Đán's templates, a cue as broad as "CI pipeline"
+  fires on 15 knocked-out CVs, 8 of them graded 0. Describing a tool is weaker evidence than naming it.
+- **Kept:** a stricter verify check found along the way. A multi-word name must now match word for word, so "standard
+  WebDriver" no longer counts as naming Selenium WebDriver.
 
 ## 6. Case studies
 
@@ -461,17 +505,19 @@ the knock-out and score 0.855. HR sees exactly how close a rejected candidate wa
 
 ## 7. Hypotheses vs results
 
-The midterm deck stated four quantitative hypotheses before any experiment. Here they are, against what we measured.
+The midterm deck stated four quantitative hypotheses before any experiment; the team's final deck adds H6. Here they
+are, against what we measured.
 
 | Hypothesis (midterm) | Predicted | Measured | Verdict |
 |---|---|---|---|
-| H1: the agent beats the fixed pipeline on ranking | P6 86.8 vs B4 83.2 nDCG@10 | test: 0.847 vs 0.848 | **Not supported.** Rules score both, so ranking is equal by design. The agent's value moved to control (§4) |
+| H1: the agent beats the fixed pipeline on ranking | P6 86.8 vs B4 83.2 nDCG@10 | test: 0.847 vs 0.848 | **Not supported.** Rules score both, so ranking is equal by design. The agent's value moved to control (§4) and to vague JDs (§5.5) |
 | H2: the selective arbiter cuts token cost | −78% tokens; 7.2 s, $0.09 per JD vs 18.4 s, $0.42 | P6 uses about 2.1× the calls and tokens of our B4 (1.6× on ours, 3.1× on coding) | **Refuted as stated.** The −78% compared against an LLM that reranks every candidate. Our fixed pipeline already calls the LLM only for a shortlist of 8, so the agent's loops add cost |
 | H3: verification keeps explanations grounded | 97.6% grounded (A1 72.2%) | 100% grounded with and without verify | **Met, for a different reason.** Claude rarely invents quotes; verify's measurable effect is on contradicted *claims* (2.8% without it vs 0.9% with it) |
 | H4: company profiles align with HR | τ 0.81 vs 0.52 generic | τ 0.554 vs 0.542 (A2) | **Not supported** on labels written without company context |
+| H6 (team deck): asking HR helps on vague JDs | τ improves with clarification | 18 vague twins: τ +0.056 (p = 0.012), nDCG@10 +0.129 (p < 0.001) | **Supported** in a controlled test with scripted HR answers (§5.5) |
 
-Three hypotheses were not supported (one refuted outright), and one was met for a different reason. That is
-a result. They moved the design from "the LLM decides and the agent saves
+Of the four midterm hypotheses, three were not supported (one refuted outright) and one was met for a different
+reason. H6, tested last, is supported. That is a result. They moved the design from "the LLM decides and the agent saves
 tokens" to "rules decide and the agent controls the LLM".
 
 ## 8. Error analysis (`docs/ERROR_ANALYSIS.md`, test split)
@@ -494,8 +540,9 @@ We count only the errors that cost HR something:
 - **On Đán's set, every error is on one JD, the vague `ambiguous_senior`:** all 5 misses and the false alarm. Four of
   the misses are shared with Đán's core, which has no HR step (diagnosis "ISTQB 0, tools 50"), so they come from how
   the rules and the rubric weigh this vague JD. Only one miss and the false alarm are specific to the agent.
-- **Two failure modes remain:** vague JDs, and CVs that describe tools without naming them. The investigator triggers
-  on misspelt tool names, not on paraphrases; extending it to those is the next step.
+- **Two failure modes remain:** vague JDs, and CVs that describe tools without naming them. For vague JDs, asking HR
+  recovers 57% of the loss (§5.5). Accepting described tools as weaker evidence did not change dev nDCG@10 and was
+  not adopted (§5.6).
 - **The one false alarm on ours** is a CV whose must-have (Python) is only listed, never used.
 
 ## 9. Limitations and ethics
@@ -531,7 +578,9 @@ that unit tests never would.
 **Next:**
 - human labels (benchmark v1.1);
 - consented real CVs;
-- a larger test split, enough to separate the merged system from Đán's core with confidence.
+- a larger test split, enough to separate the merged system from Đán's core with confidence;
+- a gate rule that does not count a test type ("API testing") as a concrete tool: the cause of the 3 missed asks in
+  §5.5, to be tuned on dev.
 
 ## 11. Contributions and reproduction
 

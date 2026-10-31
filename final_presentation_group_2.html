@@ -273,7 +273,7 @@ tr.hi td { background: var(--acc-soft); font-weight: 600; }
       <h3>Decisions (Q8)</h3>
       <ul class="small">
         <li>Ask-HR gate on Claude: asked on exactly the <b>3 of 18</b> JDs that need it, none of the others</li>
-        <li>Investigator: <b>0</b> false recoveries in 42 + 17 planted cases</li>
+        <li>Investigator: <b>0</b> false recoveries in 42 planted cases (qwen3:8b and Sonnet)</li>
         <li>0 invalid outputs, 0 gate fallbacks</li>
         <li>Cost: about 2× the LLM calls of the fixed pipeline</li>
       </ul>
@@ -357,8 +357,8 @@ tr.hi td { background: var(--acc-soft); font-weight: 600; }
         <li>Rules set the score, so ranking is equal by design.</li>
         <li><b>Verify</b> is what removes contradicted claims.</li>
         <li><b>The arbiter</b> checks both orders and now judges only true near-ties.</li>
-        <li><b>The investigator</b> costs nothing on clean CVs and is the only part that can rescue a good CV from bad text.</li>
-        <li><b>Asking HR</b> on the vague JD made the ranking follow HR's answer; offline labels cannot reward that.</li>
+        <li><b>The investigator</b> costs nothing on clean CVs and is the only part that can rescue a good CV from bad text. On the benchmark it rescued none, and was right to for 36 of 37 knock-outs.</li>
+        <li><b>Asking HR</b> pays where JDs are vague: on vague twins of all 18 JDs it recovers 57% of the lost nDCG@10 (+0.129, p &lt; 0.001), 0.704 vs 0.626 for a pipeline that cannot ask.</li>
         <li>Price of control: about 2× the LLM calls.</li>
       </ul>
     </div>
@@ -395,7 +395,7 @@ tr.hi td { background: var(--acc-soft); font-weight: 600; }
       <h3>Test split: 10 avoidable misses, 2 false alarms (10 JDs)</h3>
       <ul class="small">
         <li><b>All 6 errors on Đán's set</b> are on one vague JD; 4 are shared with Đán's core</li>
-        <li><b>3 of 5 on ours</b> are vocabulary: strong CVs that describe tools without naming them ("build servers")</li>
+        <li><b>3 of 5 on ours</b> are vocabulary: strong CVs that describe tools without naming them ("build servers"). Accepting those as weaker evidence left dev nDCG@10 unchanged: not adopted</li>
         <li>Đán's core on the same JDs: 14 misses, 1 false alarm</li>
         <li>the one false alarm: a must-have only listed, never used</li>
       </ul>

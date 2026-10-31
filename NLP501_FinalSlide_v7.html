@@ -2292,17 +2292,17 @@
                     <table class="w-full text-[10.5px] border-collapse">
                         <thead><tr class="bg-slate-100 border-b border-slate-300 text-slate-800"><th class="p-1.5 text-left font-bold">Giả thuyết (slide 26)</th><th class="p-1.5 text-left font-bold">Đo được</th><th class="p-1.5 text-left font-bold">Kết luận</th></tr></thead>
                         <tbody>
-<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H0</strong> · P6 tốt hơn B4 về nDCG@10 hoặc độ trung thực, chi phí trong ngân sách</td><td class="p-1.5">nDCG@10 0.847 vs 0.848 (p = 0.47); nhận định mâu thuẫn CV 0.6% vs 2.9%; ≈ 2.1× lượt gọi LLM</td><td class="p-1.5"><span class="text-amber-700 font-bold">Ủng hộ một phần:</span> hơn về độ trung thực, không hơn về xếp hạng</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H0</strong> · P6 tốt hơn B4 về nDCG@10 hoặc độ trung thực, chi phí trong ngân sách</td><td class="p-1.5">nDCG@10 0.847 vs 0.848 (p = 0.47); nhận định mâu thuẫn CV 0.6% vs 2.9%; ≈ 2.1× lượt gọi LLM; JD mơ hồ: 0.704 vs 0.626 (H6)</td><td class="p-1.5"><span class="text-amber-700 font-bold">Ủng hộ một phần:</span> hơn về độ trung thực và trên JD mơ hồ; trên JD rõ thì xếp hạng ngang nhau</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H1</strong> · B2 ≥ max(B0, B1) và cao hơn ít nhất một</td><td class="p-1.5">Dữ liệu nhóm: B2 0.824 > B0 0.794 > B1 0.741 · dữ liệu Đán: B2 0.473 < B0 0.542 · test: 0.681 < 0.695</td><td class="p-1.5"><span class="text-rose-700 font-bold">Không được ủng hộ</span> trên benchmark chung (đúng trên dữ liệu nhóm)</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H2</strong> · Kendall τ: P6 > A2 (bỏ Criteria Profile)</td><td class="p-1.5">τ 0.554 vs 0.542 (12 JD của nhóm)</td><td class="p-1.5"><span class="text-amber-700 font-bold">Chưa đủ bằng chứng:</span> đúng hướng nhưng rất nhỏ; nhãn không có bối cảnh công ty</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H3</strong> · P6 không kém "LLM xếp lại toàn bộ top 20" quá ε, ít lượt gọi hơn</td><td class="p-1.5">Chưa xây cấu hình LLM-all. Gián tiếp: khi LLM chấm điểm (v2), nDCG@10 giảm 0.033</td><td class="p-1.5"><span class="text-slate-600 font-bold">Chưa kiểm định trực tiếp</span></td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H4</strong> · Tỷ lệ nhận định thiếu bằng chứng: P6 < A1 (bỏ verify)</td><td class="p-1.5">100% trích dẫn có căn cứ ở cả hai; nhận định mâu thuẫn CV 0.9% vs 2.8%</td><td class="p-1.5"><span class="text-emerald-700 font-bold">Được ủng hộ</span></td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H5</strong> · impact ratio ≥ 0.8; Δ thứ hạng ≈ 0 khi đổi tên</td><td class="p-1.5">0 thay đổi điểm trong 6 biến thể × 1.800 cặp (CV, JD): đổi tên, giới tính, tuổi, hôn nhân</td><td class="p-1.5"><span class="text-emerald-700 font-bold">Được ủng hộ</span> (impact ratio = 1 theo cấu tạo)</td></tr>
-<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H6</strong> · τ cải thiện trên JD mơ hồ khi bật hỏi lại HR</td><td class="p-1.5">τ trung bình 0.458 vs 0.447 trên 3 JD mơ hồ; nDCG@10 giảm ở 2/3 JD</td><td class="p-1.5"><span class="text-amber-700 font-bold">Xu hướng đúng, chưa đủ để kết luận</span> (3 JD)</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H6</strong> · τ cải thiện trên JD mơ hồ khi bật hỏi lại HR</td><td class="p-1.5">18 JD → bản sinh đôi mơ hồ (tên công cụ → nhóm công cụ). Hỏi HR: τ +0.056 (p = 0.012), nDCG@10 +0.129 (p &lt; 0.001), lấy lại 57% phần mất; agent khi chạy thật 0.704 vs 0.626 khi không hỏi</td><td class="p-1.5"><span class="text-emerald-700 font-bold">Được ủng hộ</span> (thí nghiệm có kiểm soát, câu trả lời HR dựng sẵn từ JD gốc)</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="p-2.5 rounded-xl card-blue text-blue-950 text-[11px]"><strong>Tổng kết:</strong> 2 được ủng hộ (H4, H5) · 1 ủng hộ một phần (H0) · 2 chưa đủ bằng chứng (H2, H6) · 1 không được ủng hộ (H1) · 1 chưa kiểm định (H3). H1 dùng nDCG@10 (độ đo chính của benchmark) thay cho Recall@100/MRR@10 đã đặt ở slide 26; B4 khác P6 ở nhiều vòng, nên H6 chưa phải phép cắt bỏ riêng bước hỏi HR.</div>
+                <div class="p-2.5 rounded-xl card-blue text-blue-950 text-[11px]"><strong>Tổng kết:</strong> 3 được ủng hộ (H4, H5, H6) · 1 ủng hộ một phần (H0) · 1 chưa đủ bằng chứng (H2) · 1 không được ủng hộ (H1) · 1 chưa kiểm định (H3). H1 dùng nDCG@10 (độ đo chính của benchmark) thay cho Recall@100/MRR@10 đã đặt ở slide 26; H6 tách riêng bước hỏi HR, cùng một bộ chấm điểm (báo cáo thêm nDCG@10).</div>
                 <div class="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-950 text-xs flex justify-between items-center font-medium">
                     <span><strong>TIẾP THEO:</strong> Đầu ra của LLM được kiểm soát và đo như thế nào?</span>
                     <span class="text-blue-700 font-bold whitespace-nowrap ml-3">Slide 30: Kiểm soát đầu ra LLM →</span>
@@ -2337,7 +2337,7 @@
                     </div>
                     <div class="col-span-5 p-2.5 rounded-xl card-blue text-blue-950 text-[11px] space-y-1.5">
                         <div><strong>Quyết định đúng lúc (Q8):</strong> agent hỏi HR đúng 3/18 JD cần hỏi, không hỏi thừa JD nào.</div>
-                        <div><strong>Investigator:</strong> 0 khôi phục sai trên 42 ca (qwen3:8b) và 17 ca (Sonnet): mô hình chọn nơi tìm, code quyết định điều gì thành dữ kiện.</div>
+                        <div><strong>Investigator:</strong> 0 khôi phục sai trên 42 ca (qwen3:8b và Sonnet): mô hình chọn nơi tìm, code quyết định. Trên benchmark không cứu CV nào: đúng ở 36/37 CV bị loại (điểm 0–1), 1 bỏ sót do OCR nặng.</div>
                         <div><strong>Luật chấm điểm, LLM giải thích:</strong> LLM không đặt điểm tiêu chí nào; khi LLM chấm (v2), nDCG@10 giảm 0.033.</div>
                     </div>
                 </div>
@@ -2446,7 +2446,7 @@
                         <div class="font-bold">Bước tiếp theo</div>
                         <div>1. Hai thành viên chấm mù 120 cặp; κ ≥ 0.8 giữ nhãn bạc, nếu thấp hơn nhãn người thay thế (benchmark v1.1).</div>
                         <div>2. Thu thập 5–10 CV thật có sự đồng ý (che PII, chỉ lưu bản ẩn danh).</div>
-                        <div>3. Mở rộng investigator cho CV mô tả công cụ mà không gọi tên.</div>
+                        <div>3. Luật hỏi HR không coi loại kiểm thử ("API testing") là công cụ cụ thể (3 lần không hỏi ở H6). Đã thử nhận công cụ chỉ được mô tả: nDCG@10 dev không đổi (0.867) → không áp dụng.</div>
                         <div>4. Mở rộng tập test để tách bản hợp nhất khỏi lõi của Đán một cách có ý nghĩa.</div>
                     </div>
                 </div>
@@ -3009,8 +3009,9 @@
                 "<strong>Kết luận:</strong> bản hợp nhất tốt nhất (0.847) nhưng chưa vượt lõi của Đán có ý nghĩa thống kê (p = 0.22); mỗi bản gốc thắng trên dữ liệu của mình."
             ]},
             { title: "Slide 29 · Kiểm định H0–H6 (Nguyễn Thái Thịnh)", notes: [
-                "<strong>Báo cáo đầy đủ:</strong> H4, H5 được ủng hộ; H0 một phần; H2, H6 chưa đủ bằng chứng; H1 không được ủng hộ; H3 chưa kiểm định.",
-                "<strong>Điểm chính:</strong> luật chấm điểm cho cả P6 và B4, nên giá trị của agent nằm ở độ trung thực và kiểm soát, không ở thứ hạng."
+                "<strong>Báo cáo đầy đủ:</strong> H4, H5, H6 được ủng hộ; H0 một phần; H2 chưa đủ bằng chứng; H1 không được ủng hộ; H3 chưa kiểm định.",
+                "<strong>H6:</strong> chỉ 3 JD mơ hồ thật là quá ít, nên mỗi JD có một bản sinh đôi mơ hồ giữ nguyên nhãn. Hỏi HR lấy lại 57% phần nDCG@10 bị mất (+0.129, p &lt; 0.001). 3 lần không hỏi: bản mơ hồ vẫn còn cụm \"API testing\".",
+                "<strong>Điểm chính:</strong> luật chấm điểm cho cả P6 và B4, nên trên JD rõ hai bản xếp hạng như nhau; agent hơn ở độ trung thực và ở JD mơ hồ (0.704 vs 0.626)."
             ]},
             { title: "Slide 30 · Kiểm soát đầu ra LLM (Nguyễn Thái Thịnh)", notes: [
                 "<strong>Q1–Q13:</strong> 100% trích dẫn có căn cứ; nhận định mâu thuẫn 2.1% → 0.6%; 17/17 phán quyết ổn định.",
@@ -3026,7 +3027,7 @@
             ]},
             { title: "Slide 33 · Giới hạn & bước tiếp theo (Nguyễn Thái Thịnh)", notes: [
                 "<strong>Trung thực:</strong> nhãn bạc từ LLM, dữ liệu tổng hợp, tập test nhỏ.",
-                "<strong>Tiếp theo:</strong> nhãn người (v1.1), CV thật có đồng ý, mở rộng investigator."
+                "<strong>Tiếp theo:</strong> nhãn người (v1.1), CV thật có đồng ý, luật hỏi HR chặt hơn. Kết quả âm: nhận công cụ chỉ được mô tả đẩy CV-047 lên hạng nhưng không vào top 10, nên không áp dụng."
             ]},
             { title: "Slide 34 · Tổng kết & Q&A (Cả nhóm)", notes: [
                 "<strong>Nhóm đã nghiên cứu được gì:</strong> 7 findings từ literature, mỗi finding có level evidence – nổi bật là fine-tune contrastive mạnh nhưng lexical signal phụ thuộc domain, LLM rerank mạnh nhưng tốn kém, agent trong HR chưa được đo bằng ranking metrics và faithfulness.",
