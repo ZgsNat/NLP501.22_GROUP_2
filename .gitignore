@@ -3,3 +3,8 @@ __pycache__/
 *.pyc
 .uv/
 .python-version
+.env
+.runtime/
+node_modules/
+frontend/dist/
+.pytest_cache/

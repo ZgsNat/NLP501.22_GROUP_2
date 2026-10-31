@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv run pytest:*)", "Bash(uv sync:*)", "Bash(uv pip list:*)",
+      "Bash(git status:*)", "Bash(git diff:*)", "Bash(git log:*)", "Bash(git branch:*)",
+      "Bash(docker compose ps:*)", "Bash(docker compose logs:*)",
+      "Bash(npx tsc --noEmit:*)", "Bash(npm run build:*)", "Bash(curl -s localhost:*)"
+    ],
+    "deny": ["Read(./.env)", "Bash(git push --force:*)", "Bash(git reset --hard:*)"]
+  }
+}
