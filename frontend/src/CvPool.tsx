@@ -30,7 +30,7 @@ export default function CvPool({ onOpen }: { onOpen: (id: string) => void }) {
   return (
     <section className="card">
       <h2>CV pool <span className="muted small">{cvs.length} CVs</span></h2>
-      <input ref={input} type="file" hidden accept=".pdf,.docx,.md,.txt" onChange={(e) => upload(e.target.files?.[0])} />
+      <input ref={input} type="file" hidden accept=".pdf,.docx,.md,.txt,.png,.jpg,.jpeg" onChange={(e) => upload(e.target.files?.[0])} />
       <button className="ghost" disabled={busy} onClick={() => input.current?.click()}>{busy ? 'Parsing…' : 'Upload CV'}</button>
       <p className="muted small">.pdf, .docx, .md or .txt. You get a parse preview right after.</p>
       {err && <p className="err small">{err}</p>}

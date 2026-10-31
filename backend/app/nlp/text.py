@@ -9,6 +9,9 @@ import re
 import unicodedata
 from pathlib import Path
 
+from app.nlp import ocr
+
+IMAGES = {".png", ".jpg", ".jpeg"}
 BULLET = re.compile(r"^[ \t]*(?:[•●▪◦■►▸✓✔∙·]|[*+\-–—](?=\s))[ \t]*", re.M)  # "*x*" emphasis is not a bullet
 LIGATURES = {"ﬁ": "fi", "ﬂ": "fl", "ﬀ": "ff", "ﬃ": "ffi", "ﬄ": "ffl"}
 INVISIBLE = re.compile("[\\u200b-\\u200d\\ufeff\\u00ad]")  # zero-width chars and soft hyphens
@@ -18,12 +21,28 @@ VI_STOPWORDS = {"và", "của", "các", "trong", "với", "được", "cho", "nh
 
 
 def read_file(name: str, data: bytes) -> str:
-    """Bytes of an uploaded CV → raw text. Supports .md/.txt, .pdf (text layer) and .docx (paragraphs + tables)."""
+    """Bytes of an uploaded CV → raw text. Supports .md/.txt, .pdf (text layer; scanned pages by OCR), .docx
+    (paragraphs + tables) and .png/.jpg photos (OCR). OCR is optional: app.nlp.ocr."""
     ext = Path(name).suffix.lower()
     if ext == ".pdf":
         from pypdf import PdfReader
 
-        return "\n".join(page.extract_text() or "" for page in PdfReader(io.BytesIO(data)).pages)
+        pages = [page.extract_text() or "" for page in PdfReader(io.BytesIO(data)).pages]
+        if ocr.available():
+            pages = [t if len(t.strip()) >= ocr.MIN_CHARS else ocr.image_text(ocr.pdf_page(data, i))
+                     for i, t in enumerate(pages)]
+        return "\n".join(pages)
+    if ext in IMAGES:
+        if not ocr.available():
+            raise ValueError("A photo of a CV needs OCR: uv sync --group ocr")
+        from PIL import Image
+
+        try:
+            img = Image.open(io.BytesIO(data))
+            img.load()
+        except Exception as e:
+            raise ValueError(f"Unreadable image: {e}") from e
+        return ocr.image_text(img)
     if ext == ".docx":
         from docx import Document
 
@@ -33,7 +52,14 @@ def read_file(name: str, data: bytes) -> str:
         return "\n".join(lines)
     if ext in {".md", ".txt", ""}:
         return data.decode("utf-8-sig", errors="replace")
-    raise ValueError(f"Unsupported CV format: {ext} (use .pdf, .docx, .md or .txt)")
+    raise ValueError(f"Unsupported CV format: {ext} (use .pdf, .docx, .md, .txt, .png or .jpg)")
+
+
+def fold(s: str) -> str:
+    """Lowercase without diacritics ("Kinh nghiệm", "KINH NGHIEM" → "kinh nghiem"). For matching headings and labels
+    typed without accents or misread by OCR; the CV text itself keeps its diacritics."""
+    s = unicodedata.normalize("NFD", s.lower().replace("đ", "d"))
+    return "".join(ch for ch in s if not unicodedata.combining(ch))
 
 
 def normalize(text: str) -> str:

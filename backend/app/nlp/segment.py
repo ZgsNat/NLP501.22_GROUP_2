@@ -5,6 +5,9 @@ inside them, and (c) date ranges → months, so years of experience are computed
 import re
 from dataclasses import dataclass
 from datetime import date
+from difflib import SequenceMatcher
+
+from app.nlp.text import fold
 
 SECTION_ALIASES = {
     "summary": ["summary", "professional summary", "profile", "professional profile", "about me", "about", "overview",
@@ -24,6 +27,8 @@ SECTION_ALIASES = {
               "hoạt động", "giải thưởng"],
 }
 ALIAS_TO_KIND = {a: k for k, aliases in SECTION_ALIASES.items() for a in aliases}
+FOLDED_ALIASES = {fold(a): k for a, k in ALIAS_TO_KIND.items()}
+LOOSE_HEADING = 0.85  # "KINH NGHIM" (OCR) or "KY NANG" (no accents) vs the folded alias; measured in docs/OCR_RESULTS.md
 ENTRY_SECTIONS = ("experience", "projects")
 
 MONTHS = {m: i for i, m in enumerate(
@@ -68,10 +73,19 @@ def heading_kind(line: str) -> str | None:
     core = re.sub(r"\s*\(.*\)$", "", re.sub(r"\s+", " ", core))  # "Work Experience (2016–2025)"
     # Bilingual headings: "Summary / Tóm tắt", "Kinh nghiệm | Experience"
     kind = next((ALIAS_TO_KIND[p.strip()] for p in re.split(r"\s*[/|]\s*", core) if p.strip() in ALIAS_TO_KIND), None)
+    if not kind and (s.isupper() or s.endswith((":", "："))) and len(core.split()) <= 4:
+        kind = loose_heading(core)
     if kind:
         if md or s.isupper() or s.rstrip().endswith((":", "：")) or s.startswith("**") or len(core.split()) <= 6:
             return kind
     return "other" if md else None  # an unknown markdown heading still ends the previous section
+
+
+def loose_heading(core: str) -> str | None:
+    """The section kind of a heading typed without diacritics or misread by OCR, if one alias is close enough."""
+    f = fold(core)
+    best = max(FOLDED_ALIASES, key=lambda a: SequenceMatcher(None, f, a).ratio())
+    return FOLDED_ALIASES[best] if SequenceMatcher(None, f, best).ratio() >= LOOSE_HEADING else None
 
 
 def sections(text: str) -> list[Section]:

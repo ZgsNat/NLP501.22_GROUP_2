@@ -184,6 +184,56 @@ def test_read_docx():
         read_file("cv.png", b"")
 
 
+def test_ocr_boxes_become_lines_in_reading_order_with_section_gaps():
+    from app.nlp.ocr import lines
+    boxes = {"Selenium,": [300, 102, 420, 128], "- Used": [100, 100, 290, 130], "KINH NGHIỆM": [100, 40, 300, 70],
+             "Postman": [430, 104, 520, 126], "KỸ NĂNG": [100, 200, 260, 230]}
+    assert lines(list(boxes), list(boxes.values())) == "KINH NGHIỆM\n- Used Selenium, Postman\n\nKỸ NĂNG"
+
+
+def test_ocr_capital_i_read_as_l_is_fixed_only_in_tool_names():
+    from app.nlp.ocr import fix_capital_i
+    assert fix_capital_i("- Used Cypress, WebdriverlO, XCUlTest with GitLab Cl") == \
+        "- Used Cypress, WebdriverIO, XCUITest with GitLab CI"
+    assert fix_capital_i("Hello World, Ltd, SQL, PlayWright, Ali") == "Hello World, Ltd, SQL, PlayWright, Ali"
+
+
+def test_scanned_pdf_pages_and_photos_are_read_by_ocr(monkeypatch):
+    from pypdf import PdfWriter
+    from app.nlp import ocr
+    w = PdfWriter()
+    w.add_blank_page(width=595, height=842)  # no text layer, like a scan
+    buf = io.BytesIO()
+    w.write(buf)
+    monkeypatch.setattr(ocr, "available", lambda: True)
+    monkeypatch.setattr(ocr, "pdf_page", lambda data, i: f"page {i}")
+    monkeypatch.setattr(ocr, "image_text", lambda img: f"OCR of {img}")
+    assert read_file("scan.pdf", buf.getvalue()) == "OCR of page 0"
+    with pytest.raises(ValueError, match="Unreadable image"):
+        read_file("cv.png", b"not an image")
+    monkeypatch.setattr(ocr, "available", lambda: False)
+    assert read_file("scan.pdf", buf.getvalue()) == ""  # no OCR installed: the upload is rejected as unreadable
+    with pytest.raises(ValueError, match="needs OCR"):
+        read_file("cv.jpg", b"")
+
+
+def test_headings_and_pii_labels_survive_missing_diacritics_and_ocr_damage():
+    from app.nlp.redact import redact
+    from app.nlp.segment import heading_kind
+    from app.nlp.text import fold
+    assert fold("KINH NGHIỆM Đào tạo") == "kinh nghiem dao tao"
+    # PaddleOCR's latin model drops letters with stacked diacritics; CVs typed without accents lose only the marks
+    for line, kind in [("KINH NGHIM", "experience"), ("KINH NGHIEM", "experience"), ("TÓM TT", "summary"),
+                       ("K NĂNG", "skills"), ("Ky nang:", "skills"), ("D ÁN", "projects")]:
+        assert heading_kind(line) == kind, line
+    for line in ["FPT SOFTWARE", "Responsibilities:", "Kỹ năng mềm và giao tiếp tốt với khách hàng"]:
+        assert heading_kind(line) is None, line
+    text, counts = redact("Giói tính: Nam\nĐa ch: 234 Nguyen Trai Street\nGioi tinh: Nu\nNgay sinh: 01/01/1990\n"
+                          "Tools: Selenium\nLocation: Hanoi\nNgoại ngữ: English\nCertification: ISTQB")
+    assert counts == {"gender": 2, "address": 1, "birth_date": 1}
+    assert text.endswith("Tools: Selenium\nLocation: Hanoi\nNgoại ngữ: English\nCertification: ISTQB")
+
+
 def test_jd_parser_reads_sections_cues_and_one_of_groups():
     from app.nlp.jd import parse
     jd = ("# QA Automation Engineer\n## About the role\nA retail bank building mobile banking apps.\n"

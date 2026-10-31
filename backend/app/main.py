@@ -162,7 +162,7 @@ async def list_cvs():
 
 @app.post("/api/cvs", status_code=201)
 async def upload_cv(file: UploadFile):
-    """PDF/DOCX/MD/TXT → NLP pipeline → indexed. Only the redacted text is stored; the raw file never touches disk."""
+    """PDF/DOCX/MD/TXT/PNG/JPG (scans and photos by OCR) → NLP pipeline → indexed. Only the redacted text is stored; the raw file never touches disk."""
     try:
         raw = read_file(file.filename or "", await file.read())
     except ValueError as e:
@@ -171,7 +171,7 @@ async def upload_cv(file: UploadFile):
     cv_id = f"UP-{n:03d}"
     p = process(cv_id, raw)
     if len(p.text.split()) < 30:
-        raise HTTPException(400, "No readable text found (a scanned PDF needs OCR first)")
+        raise HTTPException(400, "No readable text found (scans and photos need OCR: uv sync --group ocr)")
     headline = next((ln.strip("#* ") for ln in p.text.splitlines() if ln.strip()), "")[:80]
     p = process(cv_id, raw, headline)
     upload_dir().mkdir(parents=True, exist_ok=True)

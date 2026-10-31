@@ -5,8 +5,10 @@ religion, health, photo or address. Asking the LLM to "ignore" them is a hope; d
 matched in English and Vietnamese because real Vietnamese CVs put "Ngày sinh / Giới tính" in the header."""
 
 import re
+from difflib import SequenceMatcher
 
 from app.nlp.segment import heading_kind
+from app.nlp.text import fold
 
 # "Label: value" lines whose whole line is removed. Order matters only for the kind reported.
 LABELLED = {
@@ -26,6 +28,11 @@ LABEL_LINE = re.compile(
     r".*$",
     re.I | re.M,
 )
+# A "label: value" line whose label is typed without diacritics or misread by OCR ("Dia chi:", "Gii tính:"): matched
+# after folding against labels of 5+ letters (shorter ones such as "age" or "tên" are too easy to hit by accident).
+LOOSE_LINE = re.compile(r"^[ \t]*(?:[-*#]+\s*)?(?:\*\*)?(?P<label>[^\n:：*\[]{3,25}?)(?:\*\*)?\s*[:：].*$", re.M)
+FOLDED_LABELS = {fold(a): k for k, v in LABELLED.items() for a in v.split("|") if len(fold(a)) >= 5}
+LOOSE_LABEL = 0.8
 INLINE = {
     "email": re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+"),
     "url": re.compile(r"(?:https?://|www\.)\S+|\b(?:linkedin|github|facebook)\.com/\S+", re.I),
@@ -57,6 +64,12 @@ def _kind(label: str) -> str:
     return next(k for k, v in LABELLED.items() if re.fullmatch(v, label.strip(), re.I))
 
 
+def loose_kind(label: str) -> str | None:
+    f = fold(label.strip())
+    best = max(FOLDED_LABELS, key=lambda a: SequenceMatcher(None, f, a).ratio())
+    return FOLDED_LABELS[best] if SequenceMatcher(None, f, best).ratio() >= LOOSE_LABEL else None
+
+
 def redact(text: str) -> tuple[str, dict[str, int]]:
     """→ (text with [REDACTED:<kind>] placeholders, {kind: count}). Never stores what it removed."""
     counts: dict[str, int] = {}
@@ -67,6 +80,14 @@ def redact(text: str) -> tuple[str, dict[str, int]]:
         return f"[REDACTED:{kind}]"
 
     text = LABEL_LINE.sub(labelled, text)
+
+    def loose(m: re.Match) -> str:
+        if not (kind := loose_kind(m["label"])):
+            return m[0]
+        counts[kind] = counts.get(kind, 0) + 1
+        return f"[REDACTED:{kind}]"
+
+    text = LOOSE_LINE.sub(loose, text)
     if name := header_name(text):
         text, k = re.subn(re.escape(name), "[REDACTED:name]", text, flags=re.I)
         counts["name"] = counts.get("name", 0) + k
