@@ -261,7 +261,7 @@
 
                 <div class="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-950 text-xs flex justify-between items-center font-medium">
                     <span><strong>Câu hỏi xuyên suốt:</strong> Agentic AI có thể xếp hạng ứng viên Automation Test theo đúng Criteria Profile của từng công ty, có bằng chứng và chịu sự kiểm soát của con người như thế nào?</span>
-                    <span class="text-blue-700 font-bold whitespace-nowrap ml-3">Slide 28–38: Kết quả thực nghiệm</span>
+                    <span class="text-blue-700 font-bold whitespace-nowrap ml-3">Slide 28–33: Kết quả thực nghiệm</span>
                 </div>
             </section>
 
@@ -2171,7 +2171,7 @@
 
                 <div class="grid grid-cols-12 gap-2.5 text-[11px]">
                     <div class="col-span-7 p-2.5 rounded-xl card-blue text-blue-950"><strong>Cách đọc slide:</strong> cột Bằng chứng là số liệu thật của công trình gốc; cột Giả thuyết là điều nhóm <em>cam kết kiểm định</em>. Giả thuyết không được dữ liệu ủng hộ vẫn được báo cáo đầy đủ.</div>
-                    <div class="col-span-5 p-2.5 rounded-xl card-emerald text-emerald-950"><strong>Đã có kết quả thực nghiệm của nhóm.</strong> Xem slide 28–38: H0–H7 được kiểm định trên dữ liệu chạy cục bộ.</div>
+                    <div class="col-span-5 p-2.5 rounded-xl card-emerald text-emerald-950"><strong>Đã có kết quả thực nghiệm của nhóm.</strong> Xem slide 28–33: H0–H6 được kiểm định trên benchmark chung NLP501-bench v1.</div>
                 </div>
 
                 <div class="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-950 text-xs flex justify-between items-center font-medium">
@@ -2196,7 +2196,7 @@
                     <div class="lg:col-span-7 card-academic p-3 flex flex-col justify-between bg-slate-50/50 space-y-2">
                         <div class="flex justify-between items-center text-xs pb-1 border-b border-slate-200">
                             <span class="font-bold text-slate-800">Các bậc cấu hình (chiều cao thể hiện độ phức tạp, không phải điểm số)</span>
-                            <span class="text-[10px] text-slate-500">Đã thực hiện, kết quả ở slide 29</span>
+                            <span class="text-[10px] text-slate-500">Đã thực hiện, kết quả ở slide 28</span>
                         </div>
                         <div class="grid grid-cols-6 gap-1.5 items-end h-36 pt-1 px-1 border-b border-slate-200 text-center">
                             <div class="flex flex-col items-center space-y-1"><span class="text-[9px] text-slate-500 font-bold">cơ sở</span><div class="w-full h-8 rounded-t-lg bg-slate-300 border-t-2 border-slate-500 flex flex-col items-center justify-center"><span class="mono font-bold text-slate-800 text-xs">B0</span><span class="text-[8px] text-slate-600">BM25</span></div></div>
@@ -2245,12 +2245,228 @@
             <!-- ================================================================= -->
             <!-- SLIDE 13: VISUAL SUMMARY & Q&A                                    -->
             <!-- ================================================================= -->
-            <section data-slide="27" data-part="6" data-speaker="Cả nhóm (Hỏi & Đáp)" class="slide-content hidden h-full flex flex-col justify-between text-center">
+            <section data-slide="27" data-part="7" data-speaker="Nguyễn Thái Thịnh" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="badge-academic bg-emerald-100 text-emerald-900">07 · KẾT QUẢ THỰC NGHIỆM</span>
+                        <span class="badge-academic bg-amber-100 text-amber-900">Đo thực tế · NLP501-bench v1</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Benchmark Chung Của Cả Nhóm: Phiên Bản Nào Tốt Nhất?</h2>
+                </div>
+                <div class="text-[11px] text-slate-700">Bộ benchmark cả nhóm thống nhất và đóng băng: 18 JD từ hai nguồn (dữ liệu của nhóm 50 CV × 12 JD; dữ liệu của Đán 200 CV × 6 JD), chia dev/test theo JD, <strong>10 JD test khoá</strong>, 268 tệp đầu vào ghim bằng SHA-256. LLM: Claude Sonnet 5.5 / Haiku 5.5.</div>
+                <div class="card-academic overflow-hidden">
+                    <table class="w-full text-[10.5px] border-collapse">
+                        <thead><tr class="bg-slate-100 border-b border-slate-300 text-slate-800"><th class="p-1.5 text-left font-bold">Hệ thống</th><th class="p-1.5 text-left font-bold">nDCG@10 · test (10 JD)</th><th class="p-1.5 text-left font-bold">JD của nhóm (6)</th><th class="p-1.5 text-left font-bold">JD của Đán (4)</th></tr></thead>
+                        <tbody>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">B0 · BM25</td><td class="p-1.5">0.695</td><td class="p-1.5">0.800</td><td class="p-1.5">0.536</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">B2 · Truy hồi lai (BM25 + dense)</td><td class="p-1.5">0.681</td><td class="p-1.5">0.859</td><td class="p-1.5">0.413</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Chunk cấu trúc + Cross-encoder</td><td class="p-1.5">0.726</td><td class="p-1.5">0.830</td><td class="p-1.5">0.570</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Lõi xếp hạng của Đán (nhánh coding, giữ nguyên)</td><td class="p-1.5">0.810</td><td class="p-1.5">0.773</td><td class="p-1.5"><strong>0.866</strong></td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">v2 của nhóm (4 tiêu chí luật ⊕ CE)</td><td class="p-1.5">0.751</td><td class="p-1.5">0.806</td><td class="p-1.5">0.669</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Hợp nhất v3.1 · tất định (B3)</td><td class="p-1.5">0.837</td><td class="p-1.5">0.890</td><td class="p-1.5">0.758</td></tr>
+<tr class="border-b border-slate-100 align-top bg-emerald-50 font-semibold"><td class="p-1.5">Hợp nhất v3.1 · quy trình cố định (B4)</td><td class="p-1.5"><strong>0.848</strong></td><td class="p-1.5">0.890</td><td class="p-1.5">0.784</td></tr>
+<tr class="border-b border-slate-100 align-top bg-emerald-50 font-semibold"><td class="p-1.5">Hợp nhất v3.1 · agent đầy đủ (P6)</td><td class="p-1.5">0.847</td><td class="p-1.5"><strong>0.897</strong></td><td class="p-1.5">0.772</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="grid grid-cols-12 gap-2.5 text-[11px]">
+                    <div class="col-span-5 p-2.5 rounded-xl card-emerald text-emerald-950"><strong>Bản hợp nhất tốt nhất:</strong> +0.086 so với v2 (p = 0.004); +0.037 so với lõi của Đán (p = 0.22, <em>chưa có ý nghĩa thống kê</em>).</div>
+                    <div class="col-span-4 p-2.5 rounded-xl card-blue text-blue-950"><strong>Mỗi bản gốc thắng trên dữ liệu của mình:</strong> lõi của Đán 0.866 trên JD của Đán; chỉ bản hợp nhất mạnh trên cả hai.</div>
+                    <div class="col-span-3 p-2.5 rounded-xl card-blue text-blue-950"><strong>Dữ kiện thắng văn bản:</strong> +0.11 so với hệ chỉ truy hồi tốt nhất.</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-950 text-xs flex justify-between items-center font-medium">
+                    <span><strong>TIẾP THEO:</strong> Kiểm định từng giả thuyết H0–H6 đã đặt ở slide 26.</span>
+                    <span class="text-blue-700 font-bold whitespace-nowrap ml-3">Slide 29: H0–H6 →</span>
+                </div>
+            </section>
+
+            <section data-slide="28" data-part="7" data-speaker="Nguyễn Thái Thịnh" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="badge-academic bg-emerald-100 text-emerald-900">07 · KẾT QUẢ THỰC NGHIỆM</span>
+                        <span class="badge-academic bg-amber-100 text-amber-900">Báo cáo đầy đủ, kể cả giả thuyết không được ủng hộ</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Kiểm Định Giả Thuyết H0–H6: Dữ Liệu Nói Gì?</h2>
+                </div>
+                <div class="card-academic overflow-hidden">
+                    <table class="w-full text-[10.5px] border-collapse">
+                        <thead><tr class="bg-slate-100 border-b border-slate-300 text-slate-800"><th class="p-1.5 text-left font-bold">Giả thuyết (slide 26)</th><th class="p-1.5 text-left font-bold">Đo được</th><th class="p-1.5 text-left font-bold">Kết luận</th></tr></thead>
+                        <tbody>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H0</strong> · P6 tốt hơn B4 về nDCG@10 hoặc độ trung thực, chi phí trong ngân sách</td><td class="p-1.5">nDCG@10 0.847 vs 0.848 (p = 0.47); nhận định mâu thuẫn CV 0.6% vs 2.9%; ≈ 2.1× lượt gọi LLM</td><td class="p-1.5"><span class="text-amber-700 font-bold">Ủng hộ một phần:</span> hơn về độ trung thực, không hơn về xếp hạng</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H1</strong> · B2 ≥ max(B0, B1) và cao hơn ít nhất một</td><td class="p-1.5">Dữ liệu nhóm: B2 0.824 > B0 0.794 > B1 0.741 · dữ liệu Đán: B2 0.473 < B0 0.542 · test: 0.681 < 0.695</td><td class="p-1.5"><span class="text-rose-700 font-bold">Không được ủng hộ</span> trên benchmark chung (đúng trên dữ liệu nhóm)</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H2</strong> · Kendall τ: P6 > A2 (bỏ Criteria Profile)</td><td class="p-1.5">τ 0.554 vs 0.542 (12 JD của nhóm)</td><td class="p-1.5"><span class="text-amber-700 font-bold">Chưa đủ bằng chứng:</span> đúng hướng nhưng rất nhỏ; nhãn không có bối cảnh công ty</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H3</strong> · P6 không kém "LLM xếp lại toàn bộ top 20" quá ε, ít lượt gọi hơn</td><td class="p-1.5">Chưa xây cấu hình LLM-all. Gián tiếp: khi LLM chấm điểm (v2), nDCG@10 giảm 0.033</td><td class="p-1.5"><span class="text-slate-600 font-bold">Chưa kiểm định trực tiếp</span></td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H4</strong> · Tỷ lệ nhận định thiếu bằng chứng: P6 < A1 (bỏ verify)</td><td class="p-1.5">100% trích dẫn có căn cứ ở cả hai; nhận định mâu thuẫn CV 0.9% vs 2.8%</td><td class="p-1.5"><span class="text-emerald-700 font-bold">Được ủng hộ</span></td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H5</strong> · impact ratio ≥ 0.8; Δ thứ hạng ≈ 0 khi đổi tên</td><td class="p-1.5">0 thay đổi điểm trong 6 biến thể × 1.800 cặp (CV, JD): đổi tên, giới tính, tuổi, hôn nhân</td><td class="p-1.5"><span class="text-emerald-700 font-bold">Được ủng hộ</span> (impact ratio = 1 theo cấu tạo)</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H6</strong> · τ cải thiện trên JD mơ hồ khi bật hỏi lại HR</td><td class="p-1.5">τ trung bình 0.458 vs 0.447 trên 3 JD mơ hồ; nDCG@10 giảm ở 2/3 JD</td><td class="p-1.5"><span class="text-amber-700 font-bold">Xu hướng đúng, chưa đủ để kết luận</span> (3 JD)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-2.5 rounded-xl card-blue text-blue-950 text-[11px]"><strong>Tổng kết:</strong> 2 được ủng hộ (H4, H5) · 1 ủng hộ một phần (H0) · 2 chưa đủ bằng chứng (H2, H6) · 1 không được ủng hộ (H1) · 1 chưa kiểm định (H3). H1 dùng nDCG@10 (độ đo chính của benchmark) thay cho Recall@100/MRR@10 đã đặt ở slide 26; B4 khác P6 ở nhiều vòng, nên H6 chưa phải phép cắt bỏ riêng bước hỏi HR.</div>
+                <div class="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-950 text-xs flex justify-between items-center font-medium">
+                    <span><strong>TIẾP THEO:</strong> Đầu ra của LLM được kiểm soát và đo như thế nào?</span>
+                    <span class="text-blue-700 font-bold whitespace-nowrap ml-3">Slide 30: Kiểm soát đầu ra LLM →</span>
+                </div>
+            </section>
+
+            <section data-slide="29" data-part="7" data-speaker="Nguyễn Thái Thịnh" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="badge-academic bg-emerald-100 text-emerald-900">07 · KẾT QUẢ THỰC NGHIỆM</span>
+                        <span class="badge-academic bg-amber-100 text-amber-900">13 tiêu chí Q1–Q13 · kiểm tra bằng code</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Kiểm Soát Đầu Ra LLM: Đo Được, Và Có Hành Động Khi Sai</h2>
+                </div>
+                <div class="grid grid-cols-4 gap-2.5">
+                    <div class="p-2.5 rounded-xl card-emerald text-emerald-950"><div class="text-xl font-black">100%</div><div class="text-[10.5px] mt-0.5">trích dẫn bằng chứng có thật trong CV (Q2)</div></div>
+                    <div class="p-2.5 rounded-xl card-emerald text-emerald-950"><div class="text-xl font-black">2.1% → 0.6%</div><div class="text-[10.5px] mt-0.5">nhận định mâu thuẫn CV, trước → sau vòng verify (Q4); 2.9% khi không có verify</div></div>
+                    <div class="p-2.5 rounded-xl card-emerald text-emerald-950"><div class="text-xl font-black">0</div><div class="text-[10.5px] mt-0.5">nhận định không có căn cứ đến tay HR: 5.9% bị phát hiện, phần còn lại sau sinh lại bị gỡ (Q6)</div></div>
+                    <div class="p-2.5 rounded-xl card-blue text-blue-950"><div class="text-xl font-black">17 / 17</div><div class="text-[10.5px] mt-0.5">phán quyết của trọng tài không đổi khi đảo thứ tự hai ứng viên (Q7)</div></div>
+                </div>
+                <div class="grid grid-cols-12 gap-2.5">
+                    <div class="col-span-7 card-academic overflow-hidden">
+                        <div class="px-2.5 pt-2 text-[11px] font-bold text-slate-900">Mô hình mạnh hơn cần kiểm soát nhiều hơn (nDCG@10 · nhóm / Đán)</div>
+                        <table class="w-full text-[10.5px] border-collapse mt-1">
+                            <thead><tr class="bg-slate-100 border-b border-slate-300"><th class="p-1.5 text-left font-bold">Bộ đọc JD</th><th class="p-1.5 text-left font-bold">JD do qwen3:8b đọc</th><th class="p-1.5 text-left font-bold">JD do Claude Sonnet đọc</th></tr></thead>
+                            <tbody>
+                                <tr class="border-b border-slate-100"><td class="p-1.5">Chỉ LLM</td><td class="p-1.5">0.884 / 0.824</td><td class="p-1.5 text-rose-700 font-bold">0.842 / 0.795</td></tr>
+                                <tr class="bg-emerald-50 font-semibold"><td class="p-1.5">Lai: luật trước, LLM bổ sung</td><td class="p-1.5">0.876 / 0.791</td><td class="p-1.5">0.881 / 0.792</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="px-2.5 pb-2 text-[10.5px] text-slate-600 mt-1">Sonnet đọc JD chặt hơn: "Jenkins hoặc GitLab CI" thành hai yêu cầu bắt buộc (JD-008: 5 vs 2) → số ca loại oan tăng 9 → 17. Bộ đọc lai ổn định với cả hai mô hình nên được chọn mặc định.</div>
+                    </div>
+                    <div class="col-span-5 p-2.5 rounded-xl card-blue text-blue-950 text-[11px] space-y-1.5">
+                        <div><strong>Quyết định đúng lúc (Q8):</strong> agent hỏi HR đúng 3/18 JD cần hỏi, không hỏi thừa JD nào.</div>
+                        <div><strong>Investigator:</strong> 0 khôi phục sai trên 42 ca (qwen3:8b) và 17 ca (Sonnet): mô hình chọn nơi tìm, code quyết định điều gì thành dữ kiện.</div>
+                        <div><strong>Luật chấm điểm, LLM giải thích:</strong> LLM không đặt điểm tiêu chí nào; khi LLM chấm (v2), nDCG@10 giảm 0.033.</div>
+                    </div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-950 text-xs flex justify-between items-center font-medium">
+                    <span><strong>TIẾP THEO:</strong> Dữ liệu được xử lý và kiểm chứng như thế nào?</span>
+                    <span class="text-blue-700 font-bold whitespace-nowrap ml-3">Slide 31: Xử lý dữ liệu →</span>
+                </div>
+            </section>
+
+            <section data-slide="30" data-part="7" data-speaker="Nguyễn Thái Thịnh" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="badge-academic bg-emerald-100 text-emerald-900">07 · KẾT QUẢ THỰC NGHIỆM</span>
+                        <span class="badge-academic bg-amber-100 text-amber-900">Đo trên dữ liệu của Đán và 217 CV thật</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Xử Lý Dữ Liệu Được Đo, Và Đo Thì Tìm Ra Lỗi</h2>
+                </div>
+                <div class="grid grid-cols-12 gap-2.5">
+                    <div class="col-span-6">                <div class="card-academic overflow-hidden">
+                    <table class="w-full text-[10.5px] border-collapse">
+                        <thead><tr class="bg-slate-100 border-b border-slate-300 text-slate-800"><th class="p-1.5 text-left font-bold">Kiểm tra</th><th class="p-1.5 text-left font-bold">Kết quả</th></tr></thead>
+                        <tbody>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Trích xuất công cụ (F1, 200 CV có sự thật ẩn)</td><td class="p-1.5">0.978 · CV sạch 0.994 · CV nhiễu OCR 0.192</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Số năm kinh nghiệm · độ sâu tự động hoá</td><td class="p-1.5">MAE 0.79 năm · đúng 89%</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Rò rỉ thông tin cá nhân sau che PII</td><td class="p-1.5">0% ở mọi trường</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">CV nhiễu OCR được gắn cờ</td><td class="p-1.5">7/7 (CV sạch: 17/193, đều do thiếu mốc thời gian)</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">217 CV thật (MIT): phân tích · độ chính xác trong văn xuôi</td><td class="p-1.5">217/217 · 90%</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Chunk: cấu trúc vs cả CV (có cross-encoder)</td><td class="p-1.5">+0.011 / +0.008 (không có ý nghĩa)</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Dữ kiện có cấu trúc vs cùng bộ truy hồi</td><td class="p-1.5"><strong>+0.052 / +0.164</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                    </div>
+                    <div class="col-span-6 p-2.5 rounded-xl card-amber text-amber-950 text-[11px] space-y-1">
+                        <div class="font-bold">7 lỗi mà kiểm thử đơn vị đã bỏ qua, đều đã sửa:</div>
+                        <div>1. Tên ứng viên lộ ở 100% CV có dòng tên đứng đầu → 0%.</div>
+                        <div>2. Giới tính dưới nhãn bị lỗi OCR ("%%nd~r: Female") không được che.</div>
+                        <div>3. Cờ "văn bản nhiễu" bắt 0/7 CV nhiễu → 7/7.</div>
+                        <div>4. CV cách dòng đôi mất chức danh: số năm tự động hoá 8.0 → 14.8.</div>
+                        <div>5. "pull requests" bị hiểu là thư viện <code>requests</code>.</div>
+                        <div>6. Jira bị tính là công việc tự động hoá của tester thủ công.</div>
+                        <div>7. Thiếu công cụ trong từ điển: Azure DevOps, Kotlin, UFT/QTP, Sikuli, AutoIT, HP ALM.</div>
+                        <div class="text-[10px] text-amber-800 pt-1">Số liệu trích xuất lạc quan vì đo trên chính tập dữ liệu đã dùng để tìm lỗi.</div>
+                    </div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-950 text-xs flex justify-between items-center font-medium">
+                    <span><strong>TIẾP THEO:</strong> Benchmark thứ hai còn phát hiện điều gì?</span>
+                    <span class="text-blue-700 font-bold whitespace-nowrap ml-3">Slide 32: Lỗi được phát hiện →</span>
+                </div>
+            </section>
+
+            <section data-slide="31" data-part="7" data-speaker="Nguyễn Thái Thịnh" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="badge-academic bg-emerald-100 text-emerald-900">07 · KẾT QUẢ THỰC NGHIỆM</span>
+                        <span class="badge-academic bg-amber-100 text-amber-900">Phân tích lỗi trên tập test</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Dữ Liệu Thứ Hai Tìm Ra Hai Lỗi Mà Dữ Liệu Của Nhóm Không Thể Tìm</h2>
+                </div>
+                <div class="grid grid-cols-2 gap-2.5 text-[11px]">
+                    <div class="p-2.5 rounded-xl card-amber text-amber-950 space-y-1">
+                        <div class="font-bold">1 · Phễu truy hồi tối ưu cho 50 CV</div>
+                        <div>Top 40 kết quả truy hồi = 80% của 50 CV nhưng chỉ 20% của 200 CV: ứng viên tốt không bao giờ được chấm.</div>
+                        <div><strong>Sửa:</strong> thêm kênh theo điểm luật (không tốn token). Quyết định trên dev (+0.023 / −0.003).</div>
+                        <div class="text-lg font-black">0.60 → 0.77</div><div class="text-[10.5px]">agent trên JD test của Đán (bank_api_qa: 0.43 → 0.84)</div>
+                    </div>
+                    <div class="p-2.5 rounded-xl card-amber text-amber-950 space-y-1">
+                        <div class="font-bold">2 · Trọng tài vượt thẩm quyền</div>
+                        <div>Một trace thật: "Δ = −0.150" vẫn được coi là sát điểm, nên LLM đưa ứng viên 0.77 lên trên ứng viên 0.92.</div>
+                        <div><strong>Sửa:</strong> chỉ xét |Δ| &lt; 0.05, kèm kiểm thử hồi quy.</div>
+                        <div class="text-lg font-black">90% → 100%</div><div class="text-[10.5px]">phán quyết ổn định khi đảo thứ tự (17/17)</div>
+                    </div>
+                </div>
+                <div class="card-academic overflow-hidden">
+                    <table class="w-full text-[10.5px] border-collapse">
+                        <thead><tr class="bg-slate-100 border-b border-slate-300 text-slate-800"><th class="p-1.5 text-left font-bold">Phân tích lỗi (test, 10 JD)</th><th class="p-1.5 text-left font-bold">Bỏ sót tránh được</th><th class="p-1.5 text-left font-bold">Báo nhầm (top 5)</th><th class="p-1.5 text-left font-bold">Nguyên nhân chính</th></tr></thead>
+                        <tbody>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">P6 · hợp nhất v3.1</td><td class="p-1.5">10</td><td class="p-1.5">2</td><td class="p-1.5">JD mơ hồ (cả 6 lỗi trên dữ liệu Đán ở ambiguous_senior, 4 trùng với lõi của Đán) · CV mô tả công cụ mà không gọi tên (3/5 lỗi trên dữ liệu nhóm)</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Lõi xếp hạng của Đán</td><td class="p-1.5">14</td><td class="p-1.5">1</td><td class="p-1.5">Cùng JD mơ hồ trên dữ liệu Đán; nhiều bỏ sót hơn trên dữ liệu nhóm</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-950 text-xs flex justify-between items-center font-medium">
+                    <span><strong>TIẾP THEO:</strong> Giới hạn và bước tiếp theo.</span>
+                    <span class="text-blue-700 font-bold whitespace-nowrap ml-3">Slide 33: Giới hạn →</span>
+                </div>
+            </section>
+
+            <section data-slide="32" data-part="7" data-speaker="Nguyễn Thái Thịnh" class="slide-content hidden h-full flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="badge-academic bg-emerald-100 text-emerald-900">07 · KẾT QUẢ THỰC NGHIỆM</span>
+                        <span class="badge-academic bg-amber-100 text-amber-900">Báo cáo trung thực</span>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Giới Hạn Và Bước Tiếp Theo</h2>
+                </div>
+                <div class="grid grid-cols-2 gap-2.5 text-[11px]">
+                    <div class="p-2.5 rounded-xl card-amber text-amber-950 space-y-1.5">
+                        <div class="font-bold">Giới hạn</div>
+                        <div><strong>Nhãn bạc từ LLM</strong> (2 annotator Claude, κ<sub>w</sub> 0.919). Annotator Claude thứ ba chấm mù đồng thuận κ<sub>w</sub> 0.889: ổn định trong cùng họ mô hình, <em>chưa phải</em> kiểm chứng của con người.</div>
+                        <div><strong>Dữ liệu xếp hạng là dữ liệu tổng hợp;</strong> CV thật chỉ dùng để kiểm tra NLP.</div>
+                        <div><strong>Tập test 10 JD:</strong> khoảng tin cậy ±0.05–0.08; chênh lệch dưới ~0.03 không có ý nghĩa.</div>
+                        <div><strong>LLM chạy qua Claude Code CLI</strong> thay cho API: hành vi giữ nguyên, độ trễ và chi phí thì không.</div>
+                    </div>
+                    <div class="p-2.5 rounded-xl card-blue text-blue-950 space-y-1.5">
+                        <div class="font-bold">Bước tiếp theo</div>
+                        <div>1. Hai thành viên chấm mù 120 cặp; κ ≥ 0.8 giữ nhãn bạc, nếu thấp hơn nhãn người thay thế (benchmark v1.1).</div>
+                        <div>2. Thu thập 5–10 CV thật có sự đồng ý (che PII, chỉ lưu bản ẩn danh).</div>
+                        <div>3. Mở rộng investigator cho CV mô tả công cụ mà không gọi tên.</div>
+                        <div>4. Mở rộng tập test để tách bản hợp nhất khỏi lõi của Đán một cách có ý nghĩa.</div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-2.5 text-[11px]">
+                    <div class="p-2.5 rounded-xl card-emerald text-emerald-950"><strong>Agentic ở nơi luật không với tới:</strong> hỏi HR, đọc văn bản nhiễu, phân xử ca sát điểm.</div>
+                    <div class="p-2.5 rounded-xl card-emerald text-emerald-950"><strong>Dữ liệu phải được đo:</strong> đo trên dữ liệu thứ hai tìm ra lỗi mà hơn 100 kiểm thử bỏ qua.</div>
+                    <div class="p-2.5 rounded-xl card-emerald text-emerald-950"><strong>Mô hình mạnh hơn cần kiểm soát hơn:</strong> mọi đầu ra LLM có tiêu chí, kiểm tra và hành động.</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-950 text-xs flex justify-between items-center font-medium">
+                    <span>Chi tiết: <code>docs/FINAL_REPORT.md</code> · <code>docs/BENCHMARK.md</code> · <code>docs/AI_OUTPUT_CRITERIA.md</code></span>
+                    <span class="text-blue-700 font-bold whitespace-nowrap ml-3">Slide 34: Hỏi đáp →</span>
+                </div>
+            </section>
+
+            <section data-slide="33" data-part="6" data-speaker="Cả nhóm (Hỏi & Đáp)" class="slide-content hidden h-full flex flex-col justify-between text-center">
                 <div class="my-auto space-y-4">
                     <span class="badge-academic bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs px-3 py-1">TỔNG KẾT VÀ HỎI ĐÁP</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Xin Cảm Ơn Cô Và Các Bạn Đã Lắng Nghe</h2>
                     <p class="text-slate-600 max-w-2xl mx-auto text-xs sm:text-sm">
-                        Nhóm đã đánh giá có hệ thống bằng chứng từ các nghiên cứu trước, đề xuất quy trình Agentic AI có khả năng giải thích và có con người kiểm soát, và kiểm định các giả thuyết H0–H7 bằng thực nghiệm chạy cục bộ.
+                        Nhóm đã đánh giá có hệ thống bằng chứng từ các nghiên cứu trước, đề xuất quy trình Agentic AI có khả năng giải thích và có con người kiểm soát, và kiểm định các giả thuyết H0–H6 trên benchmark chung NLP501-bench v1.
                     </p>
 
                     <!-- 3 Academic Contributions -->
@@ -2298,7 +2514,7 @@
                         <span class="px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700"><strong>Nguyễn Văn Vũ:</strong> 02 · 31 công trình, thẩm định, đánh đổi · S6–8</span>
                         <span class="px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700"><strong>Nguyễn Đình Đán:</strong> 02 · Agentic AI, nghiên cứu trước và khoảng trống · S9–13</span>
                         <span class="px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700"><strong>Trần Việt Hoa:</strong> 03–05 · Dữ liệu, độ đo, kết quả trước · S14–19</span>
-                        <span class="px-2.5 py-1 rounded-full bg-blue-100 border border-blue-200 text-blue-900 font-bold"><strong>Nguyễn Thái Thịnh:</strong> 06 · Quy trình, xAI, vai trò HR, H0–H6 · S20–27</span>
+                        <span class="px-2.5 py-1 rounded-full bg-blue-100 border border-blue-200 text-blue-900 font-bold"><strong>Nguyễn Thái Thịnh:</strong> 06–07 · Quy trình, xAI, vai trò HR, H0–H6 và kết quả thực nghiệm · S20–33</span>
                     </div>
                 </div>
 
@@ -2387,7 +2603,8 @@
             { part: 3, label: "03. Dữ liệu", speaker: "Trần Việt Hoa" },
             { part: 4, label: "04. Độ đo", speaker: "Trần Việt Hoa" },
             { part: 5, label: "05. Nghiên cứu trước", speaker: "Trần Việt Hoa" },
-            { part: 6, label: "06. Đề xuất", speaker: "Nguyễn Thái Thịnh" }
+            { part: 6, label: "06. Đề xuất", speaker: "Nguyễn Thái Thịnh" },
+            { part: 7, label: "07. Kết quả", speaker: "Nguyễn Thái Thịnh" }
         ];
 
         // Slide 1 Funnel Data
@@ -2787,7 +3004,31 @@
                 "<strong>Protocol:</strong> Gold Set mục tiêu khoảng 200 CV Automation Test, ít nhất 2 QA Lead, đo Cohen’s κ; group split và time split; paired bootstrap 95% CI và Wilcoxon theo JD; báo cáo effect size. Operational metrics đo trên cùng hardware và model.",
                 "<strong>Chuyển lời:</strong> Xin mời cả nhóm cùng tổng kết và nhận câu hỏi từ Hội đồng."
             ]},
-            { title: "Slide 28 · Tổng kết & Q&A (Cả nhóm)", notes: [
+            { title: "Slide 28 · Benchmark chung & so sánh ba phiên bản (Nguyễn Thái Thịnh)", notes: [
+                "<strong>Benchmark chung:</strong> 18 JD từ dữ liệu của nhóm và của Đán, 10 JD test khoá, 268 tệp ghim SHA-256.",
+                "<strong>Kết luận:</strong> bản hợp nhất tốt nhất (0.847) nhưng chưa vượt lõi của Đán có ý nghĩa thống kê (p = 0.22); mỗi bản gốc thắng trên dữ liệu của mình."
+            ]},
+            { title: "Slide 29 · Kiểm định H0–H6 (Nguyễn Thái Thịnh)", notes: [
+                "<strong>Báo cáo đầy đủ:</strong> H4, H5 được ủng hộ; H0 một phần; H2, H6 chưa đủ bằng chứng; H1 không được ủng hộ; H3 chưa kiểm định.",
+                "<strong>Điểm chính:</strong> luật chấm điểm cho cả P6 và B4, nên giá trị của agent nằm ở độ trung thực và kiểm soát, không ở thứ hạng."
+            ]},
+            { title: "Slide 30 · Kiểm soát đầu ra LLM (Nguyễn Thái Thịnh)", notes: [
+                "<strong>Q1–Q13:</strong> 100% trích dẫn có căn cứ; nhận định mâu thuẫn 2.1% → 0.6%; 17/17 phán quyết ổn định.",
+                "<strong>Phát hiện:</strong> mô hình mạnh hơn (Sonnet) đọc JD chặt hơn, nên cần bộ đọc lai do luật dẫn dắt."
+            ]},
+            { title: "Slide 31 · Xử lý dữ liệu (Nguyễn Thái Thịnh)", notes: [
+                "<strong>Đo trên dữ liệu của Đán:</strong> F1 0.978, rò rỉ PII 0%, 7/7 CV nhiễu được gắn cờ.",
+                "<strong>7 lỗi tìm ra nhờ đo,</strong> trong đó tên ứng viên lộ 100% → 0%."
+            ]},
+            { title: "Slide 32 · Lỗi do benchmark phát hiện (Nguyễn Thái Thịnh)", notes: [
+                "<strong>Phễu 50 CV:</strong> sửa bằng kênh điểm luật, quyết định trên dev; agent trên JD của Đán 0.60 → 0.77.",
+                "<strong>Trọng tài:</strong> chỉ xét |Δ| < 0.05; hai kiểu lỗi còn lại là JD mơ hồ và CV không gọi tên công cụ."
+            ]},
+            { title: "Slide 33 · Giới hạn & bước tiếp theo (Nguyễn Thái Thịnh)", notes: [
+                "<strong>Trung thực:</strong> nhãn bạc từ LLM, dữ liệu tổng hợp, tập test nhỏ.",
+                "<strong>Tiếp theo:</strong> nhãn người (v1.1), CV thật có đồng ý, mở rộng investigator."
+            ]},
+            { title: "Slide 34 · Tổng kết & Q&A (Cả nhóm)", notes: [
                 "<strong>Nhóm đã nghiên cứu được gì:</strong> 7 findings từ literature, mỗi finding có level evidence – nổi bật là fine-tune contrastive mạnh nhưng lexical signal phụ thuộc domain, LLM rerank mạnh nhưng tốn kém, agent trong HR chưa được đo bằng ranking metrics và faithfulness.",
                 "<strong>Nhóm đề xuất gì:</strong> Criteria Profile với hard knock-out và trọng số theo công ty; Hybrid Retrieval; Selective Arbiter; verify_evidence; xAI 6 layers; Human-in-the-loop với 3 checkpoints.",
                 "<strong>Hiệu quả chứng minh thế nào:</strong> hypothesis H0–H6 đặt trước, kiểm chứng bằng B0–B4, P6, A1, A2 trên Gold Set Automation Test, có thống kê và báo cáo trung thực cả khi hypothesis bị bác bỏ.",
@@ -2797,7 +3038,7 @@
 
         // Global State
         let currentSlide = 0;
-        const totalSlides = 28;
+        const totalSlides = 34;
 
         function goToSlide(idx) {
             if (idx < 0 || idx >= totalSlides) return;
@@ -2874,7 +3115,7 @@
                 } else {
                     html += `<span class="text-slate-400 text-[11px]">${p.label}</span>`;
                 }
-                if (p.part < 6) html += `<span class="text-slate-300">›</span>`;
+                if (p.part < 7) html += `<span class="text-slate-300">›</span>`;
             });
             nav.innerHTML = html;
         }
