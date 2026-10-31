@@ -124,7 +124,7 @@ tr.hi td { background: var(--acc-soft); font-weight: 600; }
 
 <section class="slide">
   <div class="kicker">Point 2 · Measured</div>
-  <h2>Measuring against another team's data found 7 bugs that tests had missed</h2>
+  <h2>Measuring against another team's data and scans found 10 bugs that tests had missed</h2>
   <div class="cols">
     <div>
       <table>
@@ -135,6 +135,7 @@ tr.hi td { background: var(--acc-soft); font-weight: 600; }
         <tr><td>Redaction leak, every PII field</td><td class="n">0%</td></tr>
         <tr><td>Garbled CVs flagged</td><td class="n">7 / 7</td></tr>
         <tr><td>Real CVs parsed · prose precision</td><td class="n">217 / 217 · 90%</td></tr>
+        <tr><td>Scanned CVs via PaddleOCR (30 held out)</td><td class="n">= text, 0% leak</td></tr>
       </table>
     </div>
     <div>
@@ -146,6 +147,7 @@ tr.hi td { background: var(--acc-soft); font-weight: 600; }
         <li>"pull requests" counted as the <i>requests</i> library (incl. our own trap CV)</li>
         <li>Jira counted as automation work for manual testers</li>
         <li>Gazetteer gaps: Azure DevOps, Kotlin, UFT/QTP, Sikuli, AutoIT, HP ALM</li>
+        <li>Through OCR (no Vietnamese model): I read as "l" in tool names; headings and PII labels missing letters leaked the address on 15/15 Vietnamese scans → 0</li>
       </ul>
     </div>
   </div>
@@ -418,7 +420,7 @@ tr.hi td { background: var(--acc-soft); font-weight: 600; }
   <h2>What we would tell the next team building an agentic ranker</h2>
   <div class="cols c3">
     <div class="stat"><h3>1 · Agentic where it earns it</h3><p class="small">Let the model decide what rules cannot: when to ask, how to read noisy text, which near-tie flips. Measure it by the paths it takes and the errors it prevents, not only by nDCG.</p></div>
-    <div class="stat"><h3>2 · Data work is measurable work</h3><p class="small">Measuring against another team's data found 7 bugs, including a 100% name leak, that 100+ unit tests missed. Mask by deleting; structure CVs into facts.</p></div>
+    <div class="stat"><h3>2 · Data work is measurable work</h3><p class="small">Measuring against another team's data and scanned CVs found 10 bugs, including a 100% name leak, that 100+ unit tests missed. Mask by deleting; structure CVs into facts.</p></div>
     <div class="stat g"><h3>3 · Control scales with capability</h3><p class="small">Write the criteria, check them in code, give every failure an action. The stronger model needed the control layer most.</p></div>
   </div>
   <p class="foot">Repo: feature/merged-pipeline · report: docs/FINAL_REPORT.md · benchmark: docs/BENCHMARK.md · criteria: docs/AI_OUTPUT_CRITERIA.md · 123 tests</p>

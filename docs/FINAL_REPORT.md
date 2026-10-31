@@ -32,7 +32,7 @@ locked test split of 10, and every input pinned by checksum. On that test split:
   - a recall funnel sized for 50 CVs that failed at 200 (the agent rose from 0.60 to 0.77–0.78 on those JDs);
   - an arbiter acting beyond its mandate;
   - a 100% name leak in masking;
-  - six more defects in data processing.
+  - nine more defects in data processing, three of them found by reading scanned CVs through OCR.
 - **A stronger model needed more control, not less.** When Claude instead of qwen3:8b read the JDs, the LLM-only JD
   parser fell from 0.884 to 0.842 nDCG@10 on our JDs. The rules-first hybrid parser did not move.
 - **Every LLM output passes code checks at run time** (Q1–Q7 of 13 written criteria; the rest are offline
@@ -168,6 +168,7 @@ a guarantee.
 | Real CVs (217): parsed · prose precision (`REALTEXT_RESULTS.md`) | 217/217 · 90% |
 | Counterfactual twins: name / gender / age / marital status (`ROBUSTNESS_RESULTS.md`) | 0 score changes in 6 twin variants × 1,800 (CV, JD) pairs |
 | Quality flags on clean CVs | 17/193 flagged, all for having no dated roles |
+| Scanned CVs: 30 held-out CVs as scans and phone photos, read by PaddleOCR (`OCR_RESULTS_heldout.md`) | tool F1, years and sections identical to reading the text; 0% PII leak; CER 0.3–0.4% English, 5.7–6.1% Vietnamese |
 
 The extraction numbers were measured after fixing defects that this same measurement exposed, so they are
 optimistic for this set. The real-text and twin checks are independent of those fixes.
@@ -181,6 +182,24 @@ optimistic for this set. The real-text and twin checks are independent of those 
 5. **"pull requests" counted as the *requests* library,** giving false credit to our own trap CV.
 6. **Jira counted as automation work.**
 7. **Tool names missing from the gazetteer,** found in the coding set and in real CVs.
+
+**Scanned CVs (OCR).** The benchmark's "OCR-garbled" CVs are synthetic noise; no benchmark CV is a scan. Real
+candidates do send scans and photos, so `read_file` now reads a PDF page without a text layer, or a photo, with
+PaddleOCR (PP-OCRv5, an optional dependency). PaddleOCR has no Vietnamese model: its latin model drops letters with
+stacked diacritics ("KINH NGHIỆM" → "KINH NGHIM"). On 30 coding CVs rendered as scans, the first run found three
+more defects, all in how our pipeline read OCR output:
+
+- **Capital I read as "l"** ("WebdriverlO", "GitLab Cl") caused every missed tool (recall 0.93).
+- **Vietnamese headings with dropped letters** were not recognised: 0/15 Vietnamese CVs had an experience section.
+- **PII labels with dropped letters** ("Đa chi:", "Giói tính:") were not masked: the address leaked on 15/15
+  Vietnamese CVs and the gender on 6/15.
+
+The fixes: tool-name-only I/l correction, and headings and labels matched after folding diacritics. The diacritics fix
+also covers real CVs typed without accents ("Dia chi:"). After the fixes, the 30 development CVs read as well as their
+text, and **30 held-out CVs, never looked at, match their text exactly with 0 leaks** (`OCR_RESULTS_heldout.md`).
+Applied to the benchmark, the fixes changed only the 4 garbled CVs (two more sections found, partial PII such as
+"Ge@der: @em%l@" now masked). nDCG@10 is unchanged on all 18 JDs. The scans are rendered single-column CVs; two-column
+layouts and tables are untested.
 
 **Chunking (RQ1).** With the cross-encoder, structural chunks are slightly best on both sets (0.829 / 0.628 vs whole
 CV 0.818 / 0.620, not significant). Without it, whole CVs retrieve best. The large gain is elsewhere: **rule scoring

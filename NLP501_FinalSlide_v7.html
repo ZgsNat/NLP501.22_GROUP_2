@@ -2365,6 +2365,7 @@
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5">Rò rỉ thông tin cá nhân sau che PII</td><td class="p-1.5">0% ở mọi trường</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5">CV nhiễu OCR được gắn cờ</td><td class="p-1.5">7/7 (CV sạch: 17/193, đều do thiếu mốc thời gian)</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5">217 CV thật (MIT): phân tích · độ chính xác trong văn xuôi</td><td class="p-1.5">217/217 · 90%</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">CV scan / ảnh chụp qua PaddleOCR (30 CV giữ riêng)</td><td class="p-1.5">Như đọc text: F1, số năm, mục; rò rỉ 0%</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5">Chunk: cấu trúc vs cả CV (có cross-encoder)</td><td class="p-1.5">+0.011 / +0.008 (không có ý nghĩa)</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5">Dữ kiện có cấu trúc vs cùng bộ truy hồi</td><td class="p-1.5"><strong>+0.052 / +0.164</strong></td></tr>
                         </tbody>
@@ -2372,7 +2373,7 @@
                 </div>
                     </div>
                     <div class="col-span-6 p-2.5 rounded-xl card-amber text-amber-950 text-[11px] space-y-1">
-                        <div class="font-bold">7 lỗi mà kiểm thử đơn vị đã bỏ qua, đều đã sửa:</div>
+                        <div class="font-bold">10 lỗi mà kiểm thử đơn vị đã bỏ qua, đều đã sửa:</div>
                         <div>1. Tên ứng viên lộ ở 100% CV có dòng tên đứng đầu → 0%.</div>
                         <div>2. Giới tính dưới nhãn bị lỗi OCR ("%%nd~r: Female") không được che.</div>
                         <div>3. Cờ "văn bản nhiễu" bắt 0/7 CV nhiễu → 7/7.</div>
@@ -2380,6 +2381,7 @@
                         <div>5. "pull requests" bị hiểu là thư viện <code>requests</code>.</div>
                         <div>6. Jira bị tính là công việc tự động hoá của tester thủ công.</div>
                         <div>7. Thiếu công cụ trong từ điển: Azure DevOps, Kotlin, UFT/QTP, Sikuli, AutoIT, HP ALM.</div>
+                        <div>8–10. Qua OCR (Paddle không có model tiếng Việt): "I" đọc thành "l" làm sót công cụ; tiêu đề mục mất chữ (tìm thấy 0/15 → 15/15); nhãn mất chữ làm lộ địa chỉ 15/15 CV tiếng Việt → 0.</div>
                         <div class="text-[10px] text-amber-800 pt-1">Số liệu trích xuất lạc quan vì đo trên chính tập dữ liệu đã dùng để tìm lỗi.</div>
                     </div>
                 </div>
@@ -3019,7 +3021,7 @@
             ]},
             { title: "Slide 31 · Xử lý dữ liệu (Nguyễn Thái Thịnh)", notes: [
                 "<strong>Đo trên dữ liệu của Đán:</strong> F1 0.978, rò rỉ PII 0%, 7/7 CV nhiễu được gắn cờ.",
-                "<strong>7 lỗi tìm ra nhờ đo,</strong> trong đó tên ứng viên lộ 100% → 0%."
+                "<strong>10 lỗi tìm ra nhờ đo,</strong> trong đó tên ứng viên lộ 100% → 0%; 3 lỗi cuối tìm ra khi đọc CV scan qua PaddleOCR (không có model tiếng Việt)."
             ]},
             { title: "Slide 32 · Lỗi do benchmark phát hiện (Nguyễn Thái Thịnh)", notes: [
                 "<strong>Phễu 50 CV:</strong> sửa bằng kênh điểm luật, quyết định trên dev; agent trên JD của Đán 0.60 → 0.77.",

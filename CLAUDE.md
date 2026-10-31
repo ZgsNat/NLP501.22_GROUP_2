@@ -14,7 +14,7 @@ Master's NLP final project (FSB). Topic: **an agentic AI system that matches and
 - `backend/app/agent/graph.py`: LangGraph StateGraph. **Read it first.** 12 nodes, 6 bounded loops: L1 HR clarification (interrupt), L2 query expansion (taxonomy; HR approves substitutes via interrupt), L3 selective arbiter (LLM only on near-ties, |Δ| < near_tie_delta, both orders), L4 verify_evidence (quotes grounded and supported, claims consistent with the CV), L5 HR review/re-weight (interrupt), L6 investigate (N12, `agent/investigate.py`: tool-using LLM loop for knock-outs that look like parse failures; code verifies every fact). Search screens by retrieval and by rule score (`rule_recall`). Every CV ends with a status + reason.
 - `backend/app/agent/nodes.py`: one job per node; narrate decisions with `emit()`. `scoring.py`: pure, deterministic and tested (rule criteria, explanation cards, HR weight calibration).
 - `backend/app/providers/llm.py`: `LLMProvider` interface + `@register` registry + factory. Switch the whole agent with `LLM_PROVIDER` in `.env` (openai, anthropic, google, ollama, gateway, claude_code = the local `claude` CLI on a subscription login, dev only); `LLM_REASONING`/`LLM_FAST` pin a role to a full `"<provider>:<model>"`. Roles: `reasoning` (judgement) and `fast` (typed gate decisions via `providers/decider.py`).
-- `backend/app/nlp/`: the CV pipeline (normalize → redact → sections/dates → structural chunks → skill mentions with NegEx-style hedges, years, depth cue → `CVProfile`). Everything downstream reads `pipeline.profile(cv_id)`, never raw text. `jd.py` parses JDs without an LLM (`JD_PARSER`), `quality.py` flags bad parses and duplicates. See `docs/NLP_PIPELINE.md`.
+- `backend/app/nlp/`: the CV pipeline (read_file, with OCR for scans in `ocr.py` → normalize → redact → sections/dates → structural chunks → skill mentions with NegEx-style hedges, years, depth cue → `CVProfile`). Everything downstream reads `pipeline.profile(cv_id)`, never raw text. `jd.py` parses JDs without an LLM (`JD_PARSER`), `quality.py` flags bad parses and duplicates. See `docs/NLP_PIPELINE.md`.
 - `backend/app/rag/`: Qdrant hybrid store (fastembed: bge-small dense + BM25 sparse + MiniLM cross-encoder); `retrieve.py` = one query per requirement over chunks, max-pooled per CV. `data/` holds the synthetic, anonymised corpus; `data/eval/` the silver labels.
 - `backend/app/eval/`: the B0 → P6 ladder, chunking ablation and A1–A4 against labels, on two benchmarks (`bench.py`: `ours`, and the `coding` branch's synthetic set via `--bench coding`; the agent runs on it via `bench materialize` + `DATA_DIR`), combined into the frozen **NLP501-bench v1** (`benchmark.py`, `docs/BENCHMARK.md`); extraction, robustness, real-text, scenario, error and human-label evaluations alongside; `docs/EVAL.md` (protocol, §8 = v3 decision rule) → `docs/EVAL_RESULTS*.md` (generated, never hand-edit).
 - `backend/app/main.py`: FastAPI; runs stream as NDJSON; contract in `docs/API.md`. Checkpoints in `.runtime/checkpoints.sqlite`.
@@ -22,7 +22,7 @@ Master's NLP final project (FSB). Topic: **an agentic AI system that matches and
 - Langfuse (self-hosted) traces every run; one session per run_id.
 
 ## Component IDs
-`docs/architecture.html` is the architecture map. Every component has a stable ID (N1–N12 nodes, R1–R4 routers, L1–L6 loops, S state keys, H harness controls, C0–C8 criteria, X1–X10 NLP stages, E1–E13 evaluation, P/D/O/T/A/U/K/I). When the user names an ID ("N6 is too slow", "tighten H1 for L2"), look it up in the `REG` table at the bottom of that file for its file › symbol. When you add, rename or remove a component, update `REG` in the same change.
+`docs/architecture.html` is the architecture map. Every component has a stable ID (N1–N12 nodes, R1–R4 routers, L1–L6 loops, S state keys, H harness controls, C0–C8 criteria, X1–X10 NLP stages, E1–E14 evaluation, P/D/O/T/A/U/K/I). When the user names an ID ("N6 is too slow", "tighten H1 for L2"), look it up in the `REG` table at the bottom of that file for its file › symbol. When you add, rename or remove a component, update `REG` in the same change.
 
 ## Commands
 ```bash
@@ -37,6 +37,7 @@ cd backend && uv run python -m app.eval.benchmark report    # THE official table
 cd backend && uv run python -m app.eval.extraction       # RQ1: CV/JD extraction F1 + redaction leaks vs the coding branch's generator truth
 cd backend && uv run python -m app.eval.robustness       # Q11: counterfactual fairness (name/gender/age/marital twins) + format robustness
 cd backend && uv run python -m app.eval.clarify          # H6: vague twins of all 18 JDs, asking HR vs not (`report` re-renders)
+cd backend && uv run --group ocr python -m app.eval.ocr  # scanned CVs: PaddleOCR (optional group `ocr`, ~1 GB) → pipeline; `rescore` = no OCR
 uv run uvicorn app.main:app --app-dir backend --reload   # API :8000
 cd frontend && npm run dev                               # UI :5173
 ```

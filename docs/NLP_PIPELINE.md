@@ -23,7 +23,7 @@ Every stage is deterministic, costs zero tokens and is unit-tested (`backend/tes
 
 | ID | Stage | Technique | Why |
 |---|---|---|---|
-| X1 | `read_file` | PDF text layer (pypdf); DOCX paragraphs and tables (python-docx); MD and TXT | HR has PDFs and Word files, not markdown. Scanned PDFs are rejected with an "OCR needed" error rather than ranked as empty. |
+| X1 | `read_file` | PDF text layer (pypdf); a page without one, and PNG/JPG photos, by OCR (`ocr.py`: PaddleOCR PP-OCRv5, optional `uv` group `ocr`); DOCX paragraphs and tables (python-docx); MD and TXT | HR has PDFs and Word files, not markdown, and some candidates send scans or photos. Without the OCR group, scans are rejected as unreadable rather than ranked as empty. |
 | X2 | `normalize` | Unicode NFC; strip zero-width characters and soft hyphens; expand ligatures; normalise bullets (`• ● ▪ + –` → `- `); de-hyphenate PDF line breaks; re-join hard-wrapped lines | PDFs and Word store Vietnamese diacritics *decomposed* (e + ◌̂ + ◌́). Without NFC, "kiểm thử" from a PDF and from a web form are different strings, so BM25, regexes and quote grounding fail silently. |
 | X4 | `redact` | Remove "label: value" lines (EN and VN: name, birth date, age, gender, marital status, nationality, religion, health, address, photo); inline email, URL and phone patterns. Phones must start with `+cc` or a trunk `0`, so year ranges like `2019.05-2021` are never removed. v3.1: also the **unlabelled name heading the CV** (one of the first 3 lines with 2–5 capitalised tokens, no digits or contact punctuation, not a section heading or job title; masked wherever it recurs) and a **gender value under a garbled label** ("%%nd~r: Female"). | The fairness policy forbids protected attributes. *Asking* an LLM to ignore them is a hope; deleting them before indexing and prompting is a guarantee. Uploads persist only the redacted text. |
 | X3 | `detect_language` | Share of words with Vietnamese-only letters or Vietnamese function words: `vi` ≥ 35%, `mixed` ≥ 6% | Routing and reporting. The corpus has 44 en, 5 vi and 1 mixed CV. |
@@ -117,6 +117,21 @@ The first run of these evaluations found three bugs, now fixed and tested:
   the date line the title, which inflated automation years from 8.0 to 14.8 (`segment.entries` now looks back to the
   previous non-empty line).
 
+## Scanned CVs: OCR (X1, `docs/OCR_RESULTS*.md`)
+
+`python -m app.eval.ocr` renders clean coding CVs as image-only PDFs (a flat-bed scan and a phone photo) and reads them
+back through the real upload path. Gold is the generator truth; the same CVs read as text are the baseline.
+
+- **PaddleOCR has no Vietnamese model.** `lang="vi"` is its latin model: CER < 1% on English, about 6% on Vietnamese,
+  almost all of it dropped letters with stacked diacritics.
+- **The first run found three defects in our pipeline,** fixed and tested: capital I read as "l" in tool names (recall
+  0.93 → 1.00), Vietnamese headings with dropped letters (experience section 0/15 → 15/15), PII labels with dropped
+  letters (address leaked on 15/15 Vietnamese CVs, gender on 6/15 → 0).
+- **Held out:** 30 other CVs, never looked at while fixing, match their text exactly (tool F1, years, sections) with 0
+  leaks (`--heldout`).
+- **The detector needed a fixed input size.** With PaddleOCR's default it found no text at all on a clean 200-dpi page.
+- **Cost:** about 8 s per page on the CPU, so OCR runs only on pages without a text layer.
+
 ## Faithfulness: grounded vs supported (N7, H15)
 
 v1 counted a quote as faithful if it **existed** in the CV (difflib ≥ 0.85). v2 adds a second level:
@@ -130,6 +145,9 @@ An ungrounded quote sends the assessment back to the LLM (L4). A grounded but un
 - **Lexicon recall.** The depth cue misses unusual phrasing, so two plain-language L3 CVs read as L2. That is why depth is still judged by the LLM, with the cue as a cross-check and as the B3 baseline. Hedge cues are a closed list, so new phrasings need new cues and a test.
 - **Vietnamese BM25.** `Qdrant/bm25` tokenises on whitespace with English stemming. Tool names are English in VN CVs, so must-have matching works, but Vietnamese prose gets no word segmentation. A VN word segmenter or a multilingual dense model is the next step.
 - **"Present"** resolves to today's date, so synthetic CVs written in 2025 gain about a year.
-- **No OCR.** Scanned PDFs are rejected rather than guessed.
+- **OCR reads Vietnamese without stacked diacritics.** PaddleOCR has no Vietnamese model; its latin model drops letters
+  such as "ệ" or "ữ" (CER ≈ 6% on Vietnamese, < 1% on English). Headings and PII labels are therefore matched after
+  folding diacritics, and tool names are ASCII, so extraction holds (§ Scanned CVs); prose quoted from an OCR'd CV
+  shows the missing letters.
 - **"X with A, B or C".** `canonicalize` makes A, B and C alternatives to X. The right reading here is X plus one of A, B or C. Grouping alternatives by taxonomy category would fix this phrasing, but it would make JD-008's "RestAssured with Java, **or** Postman/Newman" stricter than the JD means. Both phrasings are common, so a fix needs a test for each.
 - **Names elsewhere.** A bare name heading the CV is masked (v3.1); a name only inside prose (a signature line at the end, "Contact Nguyen …") is not. A NER-based name redactor would close that gap. Heavily garbled names survive in garbled form; those CVs are flagged.

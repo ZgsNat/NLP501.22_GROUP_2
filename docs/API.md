@@ -53,9 +53,10 @@ Body depends on the pending interrupt `kind`:
 `lang` is `"en" | "vi" | "mixed"`. `uploaded` is `true` for CVs added through `POST /cvs` (as opposed to the seeded corpus).
 
 ### `POST /cvs`
-`multipart/form-data` with one field `file` (`.pdf`, `.docx`, `.md` or `.txt`). On success: **201** with a `CVProfileView`
+`multipart/form-data` with one field `file` (`.pdf`, `.docx`, `.md`, `.txt`, `.png` or `.jpg`; scanned PDF pages and photos
+are read by OCR when the optional `ocr` dependency group is installed). On success: **201** with a `CVProfileView`
 (see below), and the CV joins the pool, so it is returned by `GET /cvs` and `GET /cvs/{id}` and is searchable in later runs.
-**400** `{ "detail": "…" }` on an unsupported format or when no text can be extracted (empty / scanned file).
+**400** `{ "detail": "…" }` on an unsupported format or when no text can be extracted (empty file, or a scan/photo without the `ocr` group).
 
 ### `GET /cvs/{cv_id}`
 ```json
