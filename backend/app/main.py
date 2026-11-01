@@ -4,6 +4,7 @@ import json
 import uuid
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from typing import Literal
 
 from fastapi import FastAPI, HTTPException, UploadFile
 from fastapi.responses import StreamingResponse
@@ -13,6 +14,7 @@ from pydantic import BaseModel
 
 from app import observability
 from app.agent.graph import build_graph
+from app.agent.orchestrator import build_agent_graph
 from app.agent.state import public_view
 from app.config import get_settings
 from app.providers import cache
@@ -31,7 +33,7 @@ async def lifespan(app: FastAPI):
     if s.llm_cache:
         cache.enable(s.runtime_dir / "llm_cache.sqlite")
     async with AsyncSqliteSaver.from_conn_string(str(s.runtime_dir / "checkpoints.sqlite")) as saver:
-        app.state.graph = build_graph(saver)
+        app.state.graphs = {"pipeline": build_graph(saver), "agent": build_agent_graph(saver)}
         yield
     observability.flush()
 
@@ -43,6 +45,14 @@ class RunRequest(BaseModel):
     jd_text: str
     company_profile: str = "default"
     models: dict[str, str] = {}
+    mode: Literal["agent", "pipeline"] = "agent"  # agent = P7 orchestrator (an LLM picks the tools); pipeline = P6
+    goal: str = ""  # agent mode: what HR wants, in their words
+
+
+async def _graph_for(run_id: str):
+    """Both graphs share one checkpointer; a P7 run is the one whose state has a goal."""
+    state = await app.state.graphs["pipeline"].aget_state(_config(run_id))
+    return app.state.graphs["agent" if "goal" in (state.values or {}) else "pipeline"]
 
 
 def _config(run_id: str) -> dict:
@@ -118,10 +128,13 @@ async def start_run(req: RunRequest):
             raise HTTPException(400, str(e))
     run_id = uuid.uuid4().hex[:12]
     inp = {"jd_text": req.jd_text, "company_profile": req.company_profile, "models": req.models}
+    if req.mode == "agent":
+        inp["goal"] = req.goal
 
     async def gen():
-        yield json.dumps({"type": "run_started", "run_id": run_id, "trace_url": observability.session_url(run_id)}) + "\n"
-        async for ev in _events(app.state.graph, inp, run_id):
+        yield json.dumps({"type": "run_started", "run_id": run_id, "mode": req.mode,
+                          "trace_url": observability.session_url(run_id)}) + "\n"
+        async for ev in _events(app.state.graphs[req.mode], inp, run_id):
             yield ev
 
     return _stream(gen())
@@ -133,10 +146,11 @@ async def resume_run(run_id: str, body: dict):
         observability.run_dir(run_id)
     except ValueError as e:
         raise HTTPException(400, str(e))
-    state = await app.state.graph.aget_state(_config(run_id))
+    graph = await _graph_for(run_id)
+    state = await graph.aget_state(_config(run_id))
     if not state.next:
         raise HTTPException(409, "Run is not waiting for input")
-    return _stream(_events(app.state.graph, Command(resume=body), run_id))
+    return _stream(_events(graph, Command(resume=body), run_id))
 
 
 @app.get("/api/runs/{run_id}")
@@ -145,11 +159,12 @@ async def get_run(run_id: str):
         observability.run_dir(run_id)
     except ValueError as e:
         raise HTTPException(400, str(e))
-    state = await app.state.graph.aget_state(_config(run_id))
+    state = await (await _graph_for(run_id)).aget_state(_config(run_id))
     if not state.values:
         raise HTTPException(404, "Unknown run")
     pending = next((i.value for t in state.tasks for i in t.interrupts), None)
-    return {"run_id": run_id, "values": public_view(state.values), "next": list(state.next), "interrupt": pending,
+    return {"run_id": run_id, "mode": "agent" if "goal" in state.values else "pipeline",
+            "values": public_view(state.values), "next": list(state.next), "interrupt": pending,
             "usage": observability.usage_counter(run_id).summary(), "logs": observability.read_logs(run_id)}
 
 

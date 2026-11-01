@@ -88,7 +88,8 @@ export function Requirements({ run }: { run: RunState }) {
   )
 }
 
-const TITLE = { clarification: 'Clarification needed', substitutes: 'Accept related tools?', review: 'Review ranking' }
+const TITLE = { clarification: 'Clarification needed', substitutes: 'Accept related tools?', review: 'Review ranking',
+  chat: 'The agent answered' }
 
 export function InterruptPanel({ interrupt, criteria, onSubmit }: {
   interrupt: Interrupt
@@ -101,6 +102,7 @@ export function InterruptPanel({ interrupt, criteria, onSubmit }: {
       {interrupt.kind === 'clarification' && <Clarify questions={interrupt.payload.questions} onSubmit={onSubmit} />}
       {interrupt.kind === 'substitutes' && <Substitutes proposals={interrupt.payload.proposals} onSubmit={onSubmit} />}
       {interrupt.kind === 'review' && <Review payload={interrupt.payload} criteria={criteria} onSubmit={onSubmit} />}
+      {interrupt.kind === 'chat' && <Chat payload={interrupt.payload} onSubmit={onSubmit} />}
     </section>
   )
 }
@@ -213,5 +215,27 @@ function Review({ payload, criteria, onSubmit }: {
         {left !== undefined && <p className="muted small">{left} re-score round(s) left; each costs 0 new assessments.</p>}
       </div>
     </div>
+  )
+}
+
+// P7: the agent's answer, and HR's next instruction in plain words (it may ask, re-weight, change requirements, decide).
+function Chat({ payload, onSubmit }: { payload: Extract<Interrupt, { kind: 'chat' }>['payload']; onSubmit: (b: ResumeBody) => void }) {
+  const [say, setSay] = useState('')
+  return (
+    <form onSubmit={(e) => { e.preventDefault(); if (say.trim()) onSubmit({ message: say.trim() }) }}>
+      <p className="bubble agent">{payload.message}</p>
+      {payload.shortlist.length > 0 && (
+        <ol className="mini-rank">
+          {payload.shortlist.map((r) => <li key={r.cv_id}><span className="mono">{r.cv_id}</span> {r.headline} <b>{Math.round(r.total * 100)}%</b></li>)}
+        </ol>
+      )}
+      <textarea rows={2} value={say} onChange={(e) => setSay(e.target.value)}
+                placeholder="e.g. Why is CV-012 below CV-030? · Make Docker a must-have · Reject CV-030, too junior" />
+      <div className="row">
+        <button className="primary" type="submit" disabled={!say.trim() || payload.turns_left <= 0}>Send to agent</button>
+        <button className="ghost" type="button" onClick={() => onSubmit({ action: 'approve' })}>Approve and finish</button>
+      </div>
+      <p className="muted small">{payload.turns_left} message(s) left in this run.</p>
+    </form>
   )
 }

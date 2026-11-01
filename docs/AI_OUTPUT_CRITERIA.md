@@ -42,6 +42,8 @@ The LLM is a powerful but unreliable component, so it gets a narrow job and ever
 | **Q11** | Ranking ignores protected attributes | whole pipeline | counterfactual CV pairs differing only in name / gender / age cues | 0 rank change | treated as a release blocker | `app/eval/robustness.py` |
 | **Q12** | Bounded cost | every run | LLM calls, tokens, latency p50/p95 per JD; loop counters | within `Settings` limits | loop limits stop the run on budget | `observability.UsageCounter` |
 | **Q13** | An LLM judge is validated before use | silver labels, any LLM grader | weighted κ against human labels on a blind sample | κ ≥ 0.8 to replace humans; ≥ 0.6 to assist | below 0.6: not used as ground truth | `app/eval/metrics.weighted_kappa`, EVAL.md §2 |
+| **Q14** | Orchestrator decisions are valid and allowed | P7 tool calls | known tool, schema-valid arguments, the tool's precondition (`Tool.check`), HR tools alone in their step; task-level right behaviour on the E15 suite | 0 unchecked calls run; E15 checks reported | refused with the reason as the tool result (the model adapts); budget hit → code answers HR (`finalize`) | `orchestrator.guard`, `tools.check_*`, `app/eval/agentic.py` |
+| **Q15** | What the agent tells HR is faithful | P7 `respond_to_hr` | shortlisted CVs ranked and explained (L4-verified); CV ids exist; per-CV sentences pass Q4; Q5 | 0 delivered failures | refused with the failing claims; the model rewrites | `tools.check_respond` |
 
 ## 3. What the checks do not catch
 

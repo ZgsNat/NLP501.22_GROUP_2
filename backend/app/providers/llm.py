@@ -141,7 +141,7 @@ class ClaudeCodeProvider(LLMProvider):
     def create(self, model: str) -> BaseChatModel:
         from app.providers.claude_code import ChatClaudeCode
 
-        return ChatClaudeCode(model=model, workdir=self.s.runtime_dir / "claude_code")
+        return ChatClaudeCode(model=model, effort=self.s.claude_code_effort, workdir=self.s.runtime_dir / "claude_code")
 
     def default_model(self, role: Role) -> str:
         return self.s.anthropic_model if role == "reasoning" else self.s.anthropic_fast_model

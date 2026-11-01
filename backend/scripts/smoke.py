@@ -2,6 +2,7 @@
 
     cd backend && uv run python -m scripts.smoke JD-002            # default models from .env
     cd backend && uv run python -m scripts.smoke JD-003 --reasoning anthropic:claude-sonnet-5-5
+    cd backend && uv run python -m scripts.smoke JD-002 --agent "Shortlist 5; ISTQB is a plus"   # P7 orchestrator
 """
 
 import argparse
@@ -13,22 +14,27 @@ from langgraph.types import Command
 
 from app import observability
 from app.agent.graph import build_graph
+from app.agent.orchestrator import build_agent_graph
 from app.rag.corpus import get_doc
 
 
-async def main(jd_id: str, models: dict[str, str]) -> None:
+async def main(jd_id: str, models: dict[str, str], goal: str | None = None) -> None:
     jd = get_doc("jds", jd_id)
-    graph = build_graph(InMemorySaver())
+    graph = build_agent_graph(InMemorySaver()) if goal is not None else build_graph(InMemorySaver())
     run_id = f"smoke-{jd_id}-{int(time.time())}"
     usage = observability.UsageCounter()
     config = {"configurable": {"thread_id": run_id}, "callbacks": [*observability.callbacks(), usage],
               "metadata": {"langfuse_session_id": run_id}, "run_name": "cv-agent"}
     inp = {"jd_text": jd.text, "company_profile": jd.meta["company_profile"], "models": models}
+    if goal is not None:
+        inp["goal"] = goal
     t0 = time.perf_counter()
     while True:
         async for mode, chunk in graph.astream(inp, config, stream_mode=["updates", "custom"]):
             if mode == "custom" and chunk["type"] == "log":
                 print(f"{'↺' if chunk['level'] == 'loop' else '·'} [{chunk['node']}] {chunk['message']}")
+            elif mode == "custom" and chunk["type"] == "tool":
+                print(f"  🔧 {chunk['name']}({chunk['args']})")
             elif mode == "custom" and chunk["type"] == "node_end":
                 print(f"  ✓ {chunk['node']} {chunk['duration_ms']} ms")
         state = await graph.aget_state(config)
@@ -40,6 +46,10 @@ async def main(jd_id: str, models: dict[str, str]) -> None:
                        for q in pending["payload"]["questions"]}
             print(f"\n👤 HR answers {len(answers)} question(s)\n")
             inp = Command(resume={"answers": answers})
+        elif pending["kind"] == "chat":
+            print(f"\n🤖 {pending['payload']['message']}\n   shortlist: {[r['cv_id'] for r in pending['payload']['shortlist']]}"
+                  "\n\n👤 HR approves\n")
+            inp = Command(resume={"action": "approve"})
         elif pending["kind"] == "substitutes":
             accept = {p["must_have"]: p["related"] for p in pending["payload"]["proposals"]}
             print(f"\n👤 HR accepts substitutes {accept}\n")
@@ -70,5 +80,6 @@ if __name__ == "__main__":
     p.add_argument("jd_id")
     p.add_argument("--reasoning")
     p.add_argument("--fast")
+    p.add_argument("--agent", nargs="?", const="", metavar="GOAL", help="run the P7 orchestrator with HR's goal")
     a = p.parse_args()
-    asyncio.run(main(a.jd_id, {k: v for k, v in {"reasoning": a.reasoning, "fast": a.fast}.items() if v}))
+    asyncio.run(main(a.jd_id, {k: v for k, v in {"reasoning": a.reasoning, "fast": a.fast}.items() if v}, a.agent))

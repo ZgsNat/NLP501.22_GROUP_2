@@ -1,5 +1,7 @@
 import type { CSSProperties } from 'react'
-import type { LoopKey, NodeName, RunState } from './types'
+import type { LoopKey, NODES, RunState } from './types'
+
+type NodeName = (typeof NODES)[number]
 
 const W = 130, H = 44
 // [x, y, subtitle, tone]; layout follows the proposed-methods slide, flow wraps right-to-left on row 2.

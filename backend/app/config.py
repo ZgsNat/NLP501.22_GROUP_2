@@ -31,6 +31,8 @@ class Settings(BaseSettings):
     ollama_model: str = "qwen3:8b"
     ollama_fast_model: str = "qwen3:8b"
 
+    claude_code_effort: str = ""  # claude_code only: --effort for the CLI (low | medium | high | max); "" = CLI default
+
     gateway_base_url: str = ""
     gateway_api_key: str = ""
     gateway_model: str = "claude-sonnet-5-5"
@@ -83,6 +85,15 @@ class Settings(BaseSettings):
     tier_strong: float = 0.75  # HR-facing tiers on the weighted total; provisional until calibrated on gold labels
     tier_possible: float = 0.55
     llm_cache: bool = False  # cache LLM responses in .runtime/llm_cache.sqlite (reproducible, cheap evaluation)
+
+    # P7 orchestrator (agent/orchestrator.py, loop L7): an LLM picks the next tool; these bound what it may spend.
+    agent_role: Literal["fast", "reasoning"] = "fast"  # who orchestrates; judgement inside tools stays on reasoning
+    max_agent_steps: int = 12  # orchestrator decisions per HR turn; then code answers HR with the current ranking
+    # Orchestrator tokens (input + output) per HR turn, same fallback. Each decision re-reads the conversation, so a
+    # first turn with explain + three arbiter calls used ~110k on claude_code (Sonnet 5.5, its CLI adds ~1.4k a call).
+    max_agent_tokens: int = 150_000
+    max_hr_turns: int = 6  # HR messages per run (the conversation loop L5 in agent mode)
+    max_explain: int = 10  # CVs one explain call may assess (each is one reasoning-model call)
 
 
 @lru_cache

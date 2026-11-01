@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import AgentView from './AgentView'
 import { api, isMock } from './api'
 import CvPool from './CvPool'
 import CvPreview from './CvPreview'
@@ -7,7 +8,7 @@ import { InterruptPanel, Requirements, Timeline } from './Panels'
 import Results from './Results'
 import RunPanel from './RunPanel'
 import {
-  emptyRun, INTERRUPT_NODE, NODES,
+  AGENT_NODES, emptyRun, INTERRUPT_NODE, NODES,
   type Assessment, type Config, type LoopKey, type NodeName, type ResumeBody,
   type RunRequest, type RunState, type StreamEvent,
 } from './types'
@@ -22,7 +23,9 @@ const LOOP_OF: Partial<Record<NodeName, LoopKey>> = {
 function applyEvent(s: RunState, ev: StreamEvent): RunState {
   switch (ev.type) {
     case 'run_started':
-      return { ...s, runId: ev.run_id, traceUrl: ev.trace_url ?? null }
+      return { ...s, runId: ev.run_id, traceUrl: ev.trace_url ?? null, mode: ev.mode ?? 'pipeline' }
+    case 'tool':
+      return { ...s, tools: [...s.tools, { name: ev.name, args: ev.args, result: ev.result }] }
     case 'node_start':
       return { ...s, interrupt: null, nodes: { ...s.nodes, [ev.node]: { status: 'running' } } }
     case 'node_end':
@@ -33,8 +36,13 @@ function applyEvent(s: RunState, ev: StreamEvent): RunState {
       return { ...s, flash, logs: [...s.logs, { node: ev.node, level: ev.level, message: ev.message }] }
     }
     case 'update': {
-      const { assessments, ...rest } = ev.update
+      const { assessments, loops, ...rest } = ev.update
       const values = { ...s.values, ...rest }
+      if (loops) { // the stream sends each node's increments (the add_counts reducer): sum them
+        const sum = { ...s.values.loops } as Record<string, number>
+        for (const [k, n] of Object.entries(loops)) sum[k] = (sum[k] ?? 0) + (n ?? 0)
+        values.loops = sum as typeof values.loops
+      }
       if (assessments) {
         const merged: Record<string, Assessment> = { ...s.values.assessments }
         for (const [id, a] of Object.entries(assessments)) merged[id] = a
@@ -48,10 +56,11 @@ function applyEvent(s: RunState, ev: StreamEvent): RunState {
       return { ...s, values, expanded }
     }
     case 'interrupt': {
-      const node = INTERRUPT_NODE[ev.kind]
+      const node = s.mode === 'agent' && ev.kind !== 'chat' ? 'ask_hr' : INTERRUPT_NODE[ev.kind]
       const ms = s.nodes[node]?.ms
+      const chat = ev.kind === 'chat' ? [...s.chat, { who: 'agent' as const, text: ev.payload.message }] : s.chat
       return { ...s, running: false, interrupt: { kind: ev.kind, payload: ev.payload } as RunState['interrupt'],
-        nodes: { ...s.nodes, [node]: { status: 'waiting', ms } } }
+        nodes: { ...s.nodes, [node]: { status: 'waiting', ms } }, chat }
     }
     case 'done':
       return { ...s, running: false, done: true, interrupt: null, values: { ...s.values, report: ev.report }, usage: ev.usage ?? null }
@@ -89,7 +98,7 @@ export default function App() {
 
   function start(req: RunRequest) {
     setError(null)
-    setRun({ ...emptyRun, running: true })
+    setRun({ ...emptyRun, running: true, mode: req.mode ?? 'agent' })
     consume(api.start(req), ++gen.current)
   }
 
@@ -98,8 +107,9 @@ export default function App() {
     setError(null)
     setRun((s) => {
       const nodes = { ...s.nodes }
-      for (const n of NODES) if (nodes[n]?.status === 'waiting') nodes[n] = { status: 'running', ms: nodes[n]!.ms }
-      return { ...s, interrupt: null, running: true, nodes }
+      for (const n of [...NODES, ...AGENT_NODES]) if (nodes[n]?.status === 'waiting') nodes[n] = { status: 'running', ms: nodes[n]!.ms }
+      const chat = 'message' in body ? [...s.chat, { who: 'hr' as const, text: body.message }] : s.chat
+      return { ...s, interrupt: null, running: true, nodes, chat }
     })
     consume(api.resume(run.runId, body), ++gen.current)
   }
@@ -112,10 +122,11 @@ export default function App() {
       gen.current++
       const finished = snap.next.length === 0 && !snap.interrupt
       const nodes: RunState['nodes'] = {}
-      if (finished) for (const n of NODES) nodes[n] = { status: 'done' }
+      const mode = snap.values.goal !== undefined ? 'agent' : 'pipeline'
+      if (finished) for (const n of mode === 'agent' ? AGENT_NODES : NODES) nodes[n] = { status: 'done' }
       if (snap.interrupt) nodes[INTERRUPT_NODE[snap.interrupt.kind]] = { status: 'waiting' }
       setRun({ ...emptyRun, runId: snap.run_id, values: snap.values, interrupt: snap.interrupt, nodes, done: finished,
-        usage: snap.usage?.calls ? snap.usage : null, logs: snap.logs ?? [] })
+        usage: snap.usage?.calls ? snap.usage : null, logs: snap.logs ?? [], mode })
     } catch (e) {
       setError(`Cannot load run: ${(e as Error).message}`)
     }
@@ -158,7 +169,7 @@ export default function App() {
           <Requirements run={run} />
         </aside>
         <main>
-          <GraphView run={run} />
+          {run.mode === 'agent' ? <AgentView run={run} /> : <GraphView run={run} />}
           {run.interrupt && <InterruptPanel interrupt={run.interrupt} criteria={config?.criteria ?? []} onSubmit={resume} />}
           <Results run={run} config={config} onOpenCv={setPreviewId} />
           <Timeline logs={run.logs} />

@@ -10,10 +10,14 @@ export const NODES = [
   'ingest', 'clarify', 'search', 'investigate', 'expand_query', 'rerank', 'assess',
   'verify_evidence', 'score', 'arbitrate', 'report', 'hr_review',
 ] as const
-export type NodeName = (typeof NODES)[number]
+// P7: the orchestrator graph (backend/app/agent/orchestrator.py); the model picks tools, the guard checks them.
+export const AGENT_NODES = ['start', 'agent', 'guard', 'act', 'ask_hr', 'finalize', 'hr_turn'] as const
+export type NodeName = (typeof NODES)[number] | (typeof AGENT_NODES)[number] | 'update_requirements' | 'set_weights'
+export type Mode = 'agent' | 'pipeline'
 
 export type LoopKey = 'clarify' | 'expand' | 'investigate' | 'verify' | 'arbitrate' | 'review'
-export type Loops = Record<LoopKey, number>
+// P7 adds agent, agent_tokens, guard_rejections, cache_hits, budget_stops, hr_turn, version
+export type Loops = Record<LoopKey, number> & Partial<Record<string, number>>
 
 export interface Config {
   providers: { name: string; configured: boolean }[]
@@ -28,6 +32,8 @@ export interface RunRequest {
   jd_text: string
   company_profile: string
   models?: { reasoning?: string; fast?: string }
+  mode?: Mode // default agent (P7)
+  goal?: string // agent mode: what HR wants, in their words
 }
 
 export type ResumeBody =
@@ -36,6 +42,7 @@ export type ResumeBody =
   | { action: 'adjust'; weights?: Record<string, number>; instruction?: string }
   | { action: 'decide'; decisions: Decision[] } // HR decisions (with reasons) calibrate the weights
   | { accept: Record<string, string[]> } // substitutes: must-have → accepted related tools ([] = reject)
+  | { message: string } // agent mode: HR's next message to the orchestrator
 
 export interface Requirements {
   title: string
@@ -100,6 +107,9 @@ export interface Values {
   ranking: RankRow[]
   report: Report
   loops: Loops
+  goal?: string // agent mode
+  shortlist?: string[]
+  reply?: string
 }
 
 export interface SubstituteProposal { must_have: string; covered: number; related: string[] }
@@ -108,15 +118,17 @@ export type Interrupt =
   | { kind: 'clarification'; payload: { questions: string[] } }
   | { kind: 'substitutes'; payload: { proposals: SubstituteProposal[] } }
   | { kind: 'review'; payload: { ranking: RankRow[]; weights: Record<string, number>; adjustments_left?: number } }
+  | { kind: 'chat'; payload: { message: string; shortlist: RankRow[]; turns_left: number } }
 
 // Graph node that owns each interrupt (it shows "waiting for HR" in the graph).
 export const INTERRUPT_NODE: Record<Interrupt['kind'], NodeName> = {
-  clarification: 'clarify', substitutes: 'expand_query', review: 'hr_review',
+  clarification: 'clarify', substitutes: 'expand_query', review: 'hr_review', chat: 'hr_turn',
 }
 
 export type LogLevel = 'info' | 'loop' | 'warn'
 export type StreamEvent =
-  | { type: 'run_started'; run_id: string; trace_url?: string | null }
+  | { type: 'run_started'; run_id: string; mode?: Mode; trace_url?: string | null }
+  | { type: 'tool'; name: string; args: Record<string, unknown>; result: string } // P7: a tool the guard let run
   | { type: 'node_start'; node: NodeName }
   | { type: 'log'; node: NodeName; level: LogLevel; message: string }
   | { type: 'update'; node: NodeName; update: Partial<Values> }
@@ -175,8 +187,11 @@ export interface RunState {
   done: boolean
   usage: Usage | null
   traceUrl: string | null
+  mode: Mode
+  tools: { name: string; args: Record<string, unknown>; result: string }[] // P7 tool calls that ran, in order
+  chat: { who: 'hr' | 'agent'; text: string }[] // P7 conversation
 }
 export const emptyRun: RunState = {
   runId: null, values: {}, nodes: {}, logs: [], interrupt: null,
-  expanded: [], flash: {}, running: false, done: false, usage: null, traceUrl: null,
+  expanded: [], flash: {}, running: false, done: false, usage: null, traceUrl: null, mode: 'agent', tools: [], chat: [],
 }

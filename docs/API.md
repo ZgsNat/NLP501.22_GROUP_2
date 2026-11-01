@@ -34,6 +34,8 @@ Base URL: `http://localhost:8000/api`. All bodies are JSON. Streaming endpoints 
 { "jd_text": "...", "company_profile": "bank", "models": { "reasoning": "openai:gpt-5", "fast": "ollama:qwen3:8b" } }
 ```
 `models` is optional; each value is `"<provider>:<model>"`.
+`mode` is `"agent"` (default: the P7 orchestrator, `agent/orchestrator.py`) or `"pipeline"` (the fixed P6 graph);
+`goal` (agent mode) is HR's request in their own words, e.g. `"Shortlist 5 senior Playwright testers; ISTQB is a plus"`.
 
 ### `POST /runs/{run_id}/resume`
 Body depends on the pending interrupt `kind`:
@@ -90,7 +92,8 @@ The output of the CV NLP pipeline, shown in the UI as the "Parse preview".
 Each line is one of:
 
 ```jsonc
-{ "type": "run_started", "run_id": "…", "trace_url": "http://localhost:3000/…" | null }
+{ "type": "run_started", "run_id": "…", "mode": "agent" | "pipeline", "trace_url": "http://localhost:3000/…" | null }
+{ "type": "tool", "name": "screen", "args": {}, "result": "<first 300 chars of the observation>" }   // agent mode
 { "type": "node_start", "node": "search" }
 { "type": "log", "node": "search", "level": "info" | "loop" | "warn", "message": "…" }
 { "type": "update", "node": "search", "update": { /* partial state, see below */ } }
@@ -109,6 +112,10 @@ Each line is one of:
 | `clarification` | `clarify` (L1) | `{ questions: string[] }` | `{ answers: { question: answer } }` |
 | `substitutes` | `expand_query` (L2) | `{ proposals: { must_have: string; covered: number; related: string[] }[] }` | `{ accept: { must_have: string[] } }` |
 | `review` | `hr_review` (L5) | `{ ranking: RankRow[]; weights; adjustments_left }` | `{ action: "approve" }`, `{ action: "adjust", weights?, instruction? }` or `{ action: "decide", decisions }` |
+| `chat` | `hr_turn` (agent mode) | `{ message: string; shortlist: RankRow[]; turns_left: number }` | `{ message: "…" }` (the agent takes its next turn), `{ action: "approve" }` (end), or `{ decisions }` as for `review` |
+
+In agent mode, `clarification` and `substitutes` are raised by the `ask_hr` node (the orchestrator chose `ask_hr` or
+`propose_substitutes`); their payloads and resume bodies are the same.
 
 `substitutes`: when coverage of a must-have is too low (`covered` CVs show it), L2 no longer widens the query silently; it
 proposes related tools (taxonomy) and HR picks which may stand in for the must-have. The client shows `expand_query` as
@@ -126,6 +133,18 @@ ingest → clarify ─┬─(ambiguous, L1: ask HR)──→ ingest
 Node names: `ingest, clarify, search, expand_query, rerank, assess, verify_evidence, score, arbitrate, report, hr_review`.
 Three nodes can pause the graph for HR (interrupt): `clarify` (`clarification`, L1), `expand_query` (`substitutes`, L2) and
 `hr_review` (`review`, L5).
+
+### Agent mode (P7) nodes
+```
+start → agent ⇄ guard ─┬→ act ──────→ agent          (tool results back to the model)
+                       ├→ ask_hr ⏸ ──→ agent          (clarification / substitutes)
+                       └→ finalize ──→ hr_turn         (budget hit: code answers HR)
+        act(respond_to_hr) → hr_turn ⏸ ─┬─(message)→ agent
+                                         └─(approve)→ END
+```
+Extra keys in agent-mode `update`: `goal`, `shortlist`, `reply`, `tool_calls` (`{name, args}[]` the model just made),
+and `loops.{agent, agent_tokens, guard_rejections, cache_hits, budget_stops, hr_turn}`. Tools run P6 code, so P6 node
+names (`search`, `rerank`, `score`, …) also appear in `node_start`/`log` events.
 
 ## State shapes (keys that may appear in `update`)
 

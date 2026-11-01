@@ -251,11 +251,8 @@ async def ask_hr_gate(model: BaseChatModel, jd: str, req: JDRequirements) -> tup
 
 
 # ── L6: investigate — a tool-using agent for knock-outs the parser itself may have caused ──────────────
-@traced("investigate")
-async def investigate(state: AgentState) -> dict:
-    s = get_settings()
-    if off(state, "investigate"):
-        return {}
+def investigable(state: AgentState) -> list[tuple[str, list[str], str]]:
+    """Knock-outs that look like parse failures, closest to passing first: (cv_id, missing must-haves, why)."""
     req, subs, done = state["requirements"], state.get("substitutes", {}), state.get("investigated", {})
     todo = []
     for cid, reason in state["knocked_out"].items():
@@ -265,7 +262,19 @@ async def investigate(state: AgentState) -> dict:
         missing = [m for m in req["must_have"] if knockout_reason(p, [m], subs)]
         if missing and (why := inv.triggers(p, missing, subs)):
             todo.append((len(missing), cid, missing, why))
-    todo = [t[1:] for t in sorted(todo)[: s.max_investigations]]  # closest to passing first
+    return [t[1:] for t in sorted(todo)]
+
+
+@traced("investigate")
+async def investigate(state: AgentState) -> dict:
+    return {} if off(state, "investigate") else await investigate_some(state)
+
+
+async def investigate_some(state: AgentState, only: list[str] | None = None) -> dict:
+    """The L6 body; `only` limits it to the CVs the P7 orchestrator chose (still only where a trigger fires)."""
+    s = get_settings()
+    req, subs = state["requirements"], state.get("substitutes", {})
+    todo = [t for t in investigable(state) if only is None or t[0] in only][: s.max_investigations]
     if not todo:
         emit("investigate", "No knock-out looks like a parsing failure (no garbled text, no misspelt must-have) → "
                             "investigator not needed (0 LLM calls)", investigated=0, recovered=0, calls=0, invalid=0)
@@ -313,9 +322,8 @@ async def investigate(state: AgentState) -> dict:
 
 
 # ── L2: query expansion via the taxonomy — HR approves substitutes (zero tokens) ─────────────────────
-@traced("expand_query")
-async def expand_query(state: AgentState) -> dict:
-    # Cheap and deterministic, so it is safe to recompute when LangGraph re-runs this node on resume.
+def substitute_proposals(state: AgentState) -> list[dict]:
+    """Must-haves too few candidates cover, with related skills HR has not yet accepted or declined."""
     req, subs, declined = state["requirements"], state.get("substitutes", {}), state.get("declined", {})
     proposals = []
     for m in req["must_have"]:
@@ -323,6 +331,14 @@ async def expand_query(state: AgentState) -> dict:
         extra = [r for r in related(m) if r not in subs.get(m, []) and r not in declined.get(m, [])]
         if have < get_settings().min_coverage and extra:
             proposals.append({"must_have": m, "covered": have, "related": extra})
+    return proposals
+
+
+@traced("expand_query")
+async def expand_query(state: AgentState) -> dict:
+    # Cheap and deterministic, so it is safe to recompute when LangGraph re-runs this node on resume.
+    req, subs = state["requirements"], state.get("substitutes", {})
+    proposals = substitute_proposals(state)
     if not proposals:
         return {"loops": {"expand": 1}}
     if get_settings().ask_hr_substitutes:
@@ -397,7 +413,7 @@ async def _assess_call(state: AgentState, cv_id: str, prev: dict | None, sem: as
         HumanMessage(f"JD requirements:\n{json.dumps(req, indent=1)}\n\n{p.facts_for_llm()}\n\n"
                      f"CV {cv_id} (each passage is labelled with the section the parser found it in):\n{p.for_llm()}"),
     ]
-    if prev:  # tell the model exactly what failed: since v3 its quotes live in llm_review, not in the rule criteria
+    if prev and prev.get("llm_review"):  # tell the model exactly what failed: since v3 its quotes live in llm_review, not in the rule criteria
         review = prev.get("llm_review", {})
         bad = [f'quote not in the CV: "{e["quote"]}"' for c in review.values() for e in c["evidence"] if e["grounded"] is False]
         bad += [f"{k}: {i}" for k, issues in prev.get("checks", {}).items() for i in issues]
@@ -563,6 +579,22 @@ def _versus_next(rows: list[dict], state: AgentState) -> None:
 
 
 # ── L3: selective arbiter — only spend LLM on near-ties ───────────────────────────────────────────────
+async def judge_pair(state: AgentState, a: str, b: str) -> list:
+    """The arbiter's two verdicts on a pair. Each pair is judged in both orders (ported from the `coding` branch's
+    arbiter): an LLM that picks whoever is shown first is position-biased, so only a verdict that survives the swap
+    may change the rule order."""
+    def evidence(cid: str) -> str:
+        x = state["assessments"][cid]
+        rules = [f"{k} {v['score']}: " + "; ".join(e["quote"] for e in v["evidence"]) for k, v in x["criteria"].items()]
+        review = [f"{k} (review): {v['rationale']} " + "; ".join(e["quote"] for e in v["evidence"] if e["grounded"])
+                  for k, v in x.get("llm_review", {}).items()]
+        return "\n".join(rules + review)
+
+    return [await decide(llm(state, "reasoning"), prompts.ARBITER, [first, second],
+                         f"JD: {json.dumps(state['requirements'])}\n\n{first}:\n{evidence(first)}"
+                         f"\n\n{second}:\n{evidence(second)}") for first, second in ((a, b), (b, a))]
+
+
 @traced("arbitrate")
 async def arbitrate(state: AgentState) -> dict:
     s = get_settings()
@@ -579,22 +611,7 @@ async def arbitrate(state: AgentState) -> dict:
         if calls + 2 > s.max_arbiter_calls or a["cv_id"] in judged:
             continue  # each candidate is judged at most once → no cascades of LLM overrides
         judged |= {a["cv_id"], b["cv_id"]}
-
-        def evidence(cid: str) -> str:
-            x = state["assessments"][cid]
-            rules = [f"{k} {v['score']}: " + "; ".join(e["quote"] for e in v["evidence"]) for k, v in x["criteria"].items()]
-            review = [f"{k} (review): {v['rationale']} " + "; ".join(e["quote"] for e in v["evidence"] if e["grounded"])
-                      for k, v in x.get("llm_review", {}).items()]
-            return "\n".join(rules + review)
-
-        # Each pair is judged in both orders (ported from the `coding` branch's arbiter): an LLM that picks whoever is
-        # shown first is position-biased, so only a verdict that survives the swap may change the rule order.
-        verdicts = []
-        for first, second in ((a, b), (b, a)):
-            verdicts.append(await decide(
-                llm(state, "reasoning"), prompts.ARBITER, [first["cv_id"], second["cv_id"]],
-                f"JD: {json.dumps(state['requirements'])}\n\n{first['cv_id']}:\n{evidence(first['cv_id'])}"
-                f"\n\n{second['cv_id']}:\n{evidence(second['cv_id'])}"))
+        verdicts = await judge_pair(state, a["cv_id"], b["cv_id"])
         calls += 2
         delta = a["total"] - b["total"]
         if verdicts[0].choice == verdicts[1].choice:

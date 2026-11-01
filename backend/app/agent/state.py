@@ -1,9 +1,13 @@
 from typing import Annotated, Any, TypedDict
 
+from langchain_core.messages import AnyMessage
+from langgraph.graph.message import add_messages
+
 
 def merge(left: dict | None, right: dict | None) -> dict:
-    """Reducer: shallow-merge dict updates instead of replacing (lets nodes update one key of loops/assessments)."""
-    return {**(left or {}), **(right or {})}
+    """Reducer: shallow-merge dict updates instead of replacing (lets nodes update one key of loops/assessments).
+    A None value deletes its key (P7's screen drops assessments of CVs that left the shortlist)."""
+    return {k: v for k, v in {**(left or {}), **(right or {})}.items() if v is not None}
 
 
 def add_counts(left: dict | None, right: dict | None) -> dict:
@@ -47,7 +51,23 @@ class AgentState(TypedDict, total=False):
 
     loops: Annotated[dict[str, int], add_counts]
 
+    # P7 orchestrator only (agent/orchestrator.py)
+    goal: str  # what HR asked for, in their words
+    messages: Annotated[list[AnyMessage], add_messages]  # the orchestrator's conversation: HR, its tool calls, results
+    calls: list[dict]  # tool calls the guard approved, waiting to run
+    turn_start: int  # loops["agent"] when the current HR turn began (the step budget is per turn)
+    turn_tokens: int  # loops["agent_tokens"] when the current HR turn began (so is the token budget)
+    seen: dict[str, str]  # "tool:args:version" → observation, so a repeated call costs nothing
+    shortlist: list[str]  # what the agent last presented to HR
+    reply: str  # what the agent last said to HR
+    responded: bool  # the agent answered HR this step: hand the turn to HR
+    halt: str  # why the harness stopped the agent this turn (budget, repeated errors); code answers HR instead
+
 
 def public_view(update: dict[str, Any]) -> dict[str, Any]:
     """What the UI gets: drop internal / bulky keys."""
-    return {k: v for k, v in update.items() if k not in {"jd_text", "models", "ablate"}}
+    out = {k: v for k, v in update.items() if k not in {"jd_text", "models", "ablate", "messages", "calls", "seen"}}
+    if "messages" in update:  # the agent's tool calls, as plain dicts the UI can show
+        out["tool_calls"] = [{"name": c["name"], "args": c["args"]} for m in update["messages"]
+                             for c in getattr(m, "tool_calls", None) or []]
+    return out

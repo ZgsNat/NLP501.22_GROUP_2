@@ -173,3 +173,11 @@ dl.facts blockquote { margin-top: 4px; }
 .chip { font-size: 11px; padding: 0 6px; margin-left: 2px; border-radius: 10px; border: 1px solid var(--line, #d1d5db); background: none; cursor: pointer; }
 .chip.on { background: var(--accent, #2563eb); color: #fff; border-color: transparent; }
 input.reason { font-size: 11px; margin-left: 4px; width: 14em; }
+
+/* P7 agent view */
+.tool-calls { padding-left: 20px; max-height: 260px; overflow: auto; }
+.tool-calls li { margin: 4px 0; }
+.chat { display: flex; flex-direction: column; gap: 6px; }
+.bubble { margin: 0; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border); white-space: pre-wrap; }
+.bubble.agent { background: var(--card2); }
+.bubble.hr { align-self: flex-end; background: transparent; }
