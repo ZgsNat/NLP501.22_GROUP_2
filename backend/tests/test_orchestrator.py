@@ -223,3 +223,19 @@ def test_hr_authority_needs_hr_to_name_the_change():
     assert "never mentioned" in t.check_requirements(st, t.RequirementArgs(remove_must_have=["selenium"]))
     dec = lambda cid: t.check_decisions(st, t.DecisionArgs(decisions=[t.Decision(cv_id=cid, action="reject", reason="x y z")]))  # noqa: E731
     assert dec("CV-001") is None and "never mentioned" in dec("CV-002")
+
+
+def test_screen_ignores_indexed_cvs_outside_the_pool(agent, monkeypatch):
+    """Regression (demo with a 10-CV DATA_DIR over a 50-CV index): CVs the index holds but the pool does not must never
+    reach the ranking, or score() looks them up and fails."""
+    orig = KeywordStore.hybrid_search
+
+    def with_ghost(self, collection, query, limit, where=None, mode="hybrid"):
+        hits = orig(self, collection, query, limit, where, mode)
+        return ([Hit("CV-999", 99.0, {"doc_id": "CV-999", "chunk_id": "CV-999#x", "section": "experience", "text": query})]
+                + hits) if collection == "cv_chunks" else hits
+    monkeypatch.setattr(KeywordStore, "hybrid_search", with_ghost)
+    v, _, _ = agent([lambda m: call("parse_jd"), lambda m: call("screen"),
+                     lambda m: call("respond_to_hr", message="Screened.")])
+    assert not any("failed" in m.content for m in v["messages"] if isinstance(m, ToolMessage))
+    assert "CV-999" not in {r["cv_id"] for r in v["ranking"]} and v["ranking"]

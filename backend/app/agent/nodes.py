@@ -189,10 +189,12 @@ async def search(state: AgentState) -> dict:
     s = get_settings()
     req, subs = state["requirements"], state.get("substitutes", {})
     qs = retrieve.queries(req, state["query_terms"], subs)
-    hits = retrieve.rank_cvs(get_store(), retrieve.CHUNKS, qs)
     pool = [d.id for d in load_dir("cvs")]
+    # The index may hold more CVs than the pool (a smaller DATA_DIR, removed uploads): only the pool is ranked.
+    in_pool = set(pool)
+    hits = [h for h in retrieve.rank_cvs(get_store(), retrieve.CHUNKS, qs) if h.cv_id in in_pool]
     found = {h.cv_id for h in hits}
-    order = [h for h in hits if h.cv_id in pool][: s.search_limit]
+    order = hits[: s.search_limit]
     screened = {h.cv_id: f"Not retrieved: relevance rank {i} of {len(hits)} is below the search limit ({s.search_limit})"
                 for i, h in enumerate(hits, 1) if h not in order}
     screened |= {cid: "Not retrieved: no passage matched any requirement" for cid in pool if cid not in found}
