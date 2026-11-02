@@ -97,7 +97,7 @@ def start(page: Page, jd: str, goal: str) -> None:
 
 
 def scenario_a(page: Page) -> None:
-    print("A · JD-002: shortlist, then three follow-ups from HR")
+    print("A · JD-002: shortlist, then three follow-ups from HR (why, decision, protected request)")
     start(page, "JD-002", "Shortlist the 5 strongest candidates for this role; ISTQB is a plus. Tell me what to probe in interview.")
     shot(page, "a01-start")
     page.get_by_role("button", name="Start").click()
@@ -116,9 +116,8 @@ def scenario_a(page: Page) -> None:
         wait_turn(page)
         shot(page, "a08-why", "section.interrupt")
         shot(page, "a08-why-tools", agent_card(page))
-    say(page, "Make Docker a must-have for this role.")
-    wait_turn(page)
-    shot(page, "a09-require-docker", "section.interrupt")
+    # max_hr_turns = 3: why → decision → protected request (a requirement change is the same kind of feedback as a
+    # decision; E15's `require` task covers it)
     top = shortlist(page)
     if top:
         say(page, f"Reject {top[0]}: the client needs more test-architecture experience.")

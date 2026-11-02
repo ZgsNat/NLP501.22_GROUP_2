@@ -92,7 +92,10 @@ class Settings(BaseSettings):
     # Orchestrator tokens (input + output) per HR turn, same fallback. Each decision re-reads the conversation, so a
     # first turn with explain + three arbiter calls used ~110k on claude_code (Sonnet 5.5, its CLI adds ~1.4k a call).
     max_agent_tokens: int = 150_000
-    max_hr_turns: int = 6  # HR messages per run (the conversation loop L5 in agent mode)
+    # HR messages per run (HR-in-the-loop, L5 in agent mode). Kept small on purpose: the core result is the first
+    # answer (goal → shortlist + evidence); follow-ups are HR feedback, not a general chatbot, and each one re-reads
+    # the whole conversation (demo A: 87k tokens for one turn on JD-003 vs 454k for five on JD-002).
+    max_hr_turns: int = 3
     max_explain: int = 10  # CVs one explain call may assess (each is one reasoning-model call)
 
 

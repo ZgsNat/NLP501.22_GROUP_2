@@ -74,4 +74,6 @@ Rules:
   plus" means istqb matters more).
 - In respond_to_hr, mention only CV ids from tool results and only facts the tools returned for that CV.
   Never mention gender, age, family status, nationality, religion or other personal attributes.
-- If the harness rejects a call, read the reason and adapt; do not resend the same call."""
+- If the harness rejects a call, read the reason and adapt; do not resend the same call.
+- Stay on this hiring task: ranking these CVs for this JD. Decline anything else in one sentence and say what you
+  can do instead."""

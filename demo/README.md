@@ -11,6 +11,11 @@ liệu là pool 50 CV tổng hợp trong `data/`. Log đầy đủ của mỗi r
 
 Câu trả lời đầu tiên của kịch bản A đến sau 100 giây.
 
+> **Phạm vi:** kết quả chính là câu trả lời đầu tiên (mục tiêu → shortlist + evidence). Các lượt chat sau đó là
+> phản hồi của HR (HR-in-the-loop), không phải chatbot: vẫn dùng đúng 13 tool tuyển dụng và qua guard.
+> Từ sau demo này, `max_hr_turns = 3`; demo A chạy trước thay đổi đó nên có 5 lượt HR. Lần chạy lại
+> `run_demo.py` sẽ bỏ lượt "Docker" (a09) và giữ why → reject → yêu cầu phân biệt đối xử.
+
 ## Kịch bản A: JD-002 (Automation Test Engineer, Web + Mobile, công ty startup)
 
 HR chọn chế độ **Agent (P7)** và gõ mục tiêu: *"Shortlist the 5 strongest candidates for this role; ISTQB is a plus.

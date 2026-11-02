@@ -34,7 +34,20 @@ INPUT                                           OUTPUT
 ```
 
 HR can approve right after the first answer: then it works exactly like "CVs + JD in, shortlist + evidence out".
-The conversation after that is optional.
+
+### Scope: a pipeline with HR-in-the-loop, not a chatbot
+
+- **The core result is the first answer** (goal → shortlist + evidence). The main numbers measure only this.
+- **Follow-up messages are HR feedback**, the natural-language form of P6's review loop (L5). HR can ask why, change
+  a requirement or a weight, or record a decision with a reason. Decisions re-fit the weights and go to the audit log.
+  This answers the lecturer's question on how HR feedback improves the ranking step by step.
+- **Deliberately bounded.** Every message is served by the same 13 recruiting tools and checked by the guard. There
+  is no memory across sessions, and nothing outside this hiring task: the prompt makes the agent decline anything
+  else. `max_hr_turns = 3`.
+- **Why keep it.** It is the most visible proof of agency: each HR message produces a different chain of tools
+  (demo A, steps 7–10).
+- **Why bound it.** Each turn re-reads the whole conversation. Demo B (one turn) used 87k tokens; demo A (five
+  turns) used 454k.
 
 ## 3. The loop
 
@@ -135,6 +148,8 @@ answer. The path depends on what the agent sees; that is the agentic part.
   - protected-attribute request.
 
   It reports checks passed, decisions, tools, refusals, cache hits and tokens → `docs/AGENTIC_RESULTS.md`.
+- **Main numbers come from the first turn only.** Follow-ups are covered by the E15 tasks why / require / decide /
+  protected, as qualitative evidence of HR-in-the-loop, not as a separate benchmark.
 - **Ranking quality:** P7's ranking comes from the same rule scores as P6. Differences come only from the agent's
   choices (investigations, arbiter calls, HR questions).
 - **Data:** see `docs/data-select-strategy.md`.
