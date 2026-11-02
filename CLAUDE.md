@@ -37,6 +37,7 @@ cd backend && uv run python -m app.eval.run retrieval    # B0–B3 + chunking ab
 cd backend && uv run python -m app.eval.benchmark report    # THE official table: NLP501-bench v1 (docs/BENCHMARK.md); `verify` checks the frozen inputs
 cd backend && uv run python -m app.eval.extraction       # RQ1: CV/JD extraction F1 + redaction leaks vs the coding branch's generator truth
 cd backend && uv run python -m app.eval.agentic          # E15: P7 on HR tasks (behaviour checks, refusals, tokens, nDCG vs P6; dev JDs)
+cd backend && uv run python -m app.eval.injection        # Q16 layer 1b: System One model (ollama pull nimble) vs paraphrased injection
 cd backend && uv run python -m app.eval.robustness       # Q11: counterfactual fairness (name/gender/age/marital twins) + format robustness
 cd backend && uv run python -m app.eval.clarify          # H6: vague twins of all 18 JDs, asking HR vs not (`report` re-renders)
 cd backend && uv run --group ocr python -m app.eval.ocr  # scanned CVs: PaddleOCR (optional group `ocr`, ~1 GB) → pipeline; `rescore` = no OCR

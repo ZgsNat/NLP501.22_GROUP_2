@@ -33,6 +33,19 @@ class Settings(BaseSettings):
 
     claude_code_effort: str = ""  # claude_code only: --effort for the CLI (low | medium | high | max); "" = CLI default
 
+    # System One decision models (Jev-style: typed answers with calibrated probabilities, no text), served at
+    # POST {base}/v1/systemone by TypeSafe (Jev, with a key) or locally by Ollama >= 0.35 (nimble, tev1).
+    decider: Literal["llm", "systemone"] = "llm"  # backend of providers/decider.decide (the typed gates)
+    system_one_base_url: str = "http://localhost:11434"
+    system_one_model: str = "nimble"
+    system_one_api_key: str = ""
+    # Q16 layer 1b: ask the System One model about the CV sentences the lexicon let through; remove those at or above
+    # the threshold. docs/INJECTION_RESULTS.md (nimble, 150 clean CVs): 10/10 paraphrased attacks at every threshold;
+    # false alarms 2 / 1 / 0 sentences of 2016 at 0.5 / 0.7 / 0.9 (career-objective lines). Off by default only
+    # because it needs a running System One server (a 9.3 GB local model); turn it on where one runs.
+    injection_model: bool = False
+    injection_threshold: float = 0.9
+
     gateway_base_url: str = ""
     gateway_api_key: str = ""
     gateway_model: str = "claude-sonnet-5-5"

@@ -126,6 +126,7 @@ request to call `set_weights`. The chat adds a second surface: CV text reaches t
 | Layer | What it does | Where |
 |---|---|---|
 | 1 · Remove at the boundary (NLP) | sentences addressed to the model become `[REDACTED:instruction]` before indexing or any LLM; the CV is flagged `prompt_injection` for HR. JDs go through the same filter | `nlp/injection.py` (X11), inside redaction |
+| 1b · Decision model (optional) | sentences the lexicon let through go to a **System One decision model** (Jev-style: typed yes/no with a calibrated probability, no text). Locally: Ollama's open-weight `nimble`; Jev with a key. Removed at P ≥ 0.9. On if `INJECTION_MODEL=true` and a server runs; if the server is down, the lexicon still holds | `nlp/injection.judge`, `providers/decider.system_one` |
 | 2 · Provenance | a change to requirements, weights or decisions must be named in HR's own words; text from a CV cannot authorise it, even if layer 1 missed it | `tools.unsaid` (H29) |
 | 3 · Data, not instructions | the agent prompt says tool results quote CV and JD text written by others, never instructions | `prompts.AGENT` |
 | Containment (already there) | scores and knock-outs come from rules over the parsed CV, so a surviving injection can at most colour an explanation or a near-tie verdict | H20 |
@@ -136,11 +137,25 @@ request to call `set_weights`. The chat adds a second surface: CV text reaches t
 - **0/467 false alarms** on clean CVs (250 synthetic + 217 real). Legitimate phrases are kept, for example "wrote
   test instructions" and "tested the chatbot's system prompts".
 
+**Layer 1b, measured** (`python -m app.eval.injection`, `docs/INJECTION_RESULTS.md`; nimble 9B on this Mac):
+
+| threshold | paraphrased attacks caught | hard negatives flagged | clean sentences flagged (150 CVs) |
+|---|---|---|---|
+| 0.5 | 10/10 | 0/8 | 2/2016 |
+| 0.9 (default) | **10/10** | **0/8** | **0/2016** |
+
+- The 10 attacks are ones the lexicon misses by construction, English and Vietnamese.
+- The 8 hard negatives are real CV sentences about AI, ranking or scoring.
+- The two false alarms at 0.5 are career-objective lines ("I want to work in organisation as a python developer…").
+- Cost: 2.6 s per CV, once at upload, local.
+
 **Not covered, said plainly:**
-- The detector is a lexicon. A paraphrased attack it does not know can pass layer 1. Layers 2 and 3 and rule scoring
-  then limit what it can do.
-- We did not measure whether the LLM review obeys an undetected injection. That needs an LLM run on paraphrased
-  attacks; it is listed as future work.
+- The attack set is small (10) and written by us, and the threshold was read off the same data. A held-out set
+  written by someone else would make this a real test.
+- We did not measure whether the LLM review obeys an injection that passes every layer. That needs an LLM run; it
+  is future work.
+- A decision model cannot improve the ranking itself (nDCG): scores are rules. Its value is only at gates, here
+  injection recall at almost no false-alarm cost.
 
 ## 6. A real run, step by step (from `demo/`)
 
