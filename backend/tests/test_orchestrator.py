@@ -130,7 +130,7 @@ def test_guard_refuses_unknown_invalid_unauthorised_and_unqualified_calls(agent)
     ])
     why = [m.content for m in v["messages"] if isinstance(m, ToolMessage) and m.content.startswith("REJECTED")]
     assert any("unknown tool" in w for w in why) and any("invalid arguments" in w for w in why)
-    assert any("only HR may change" in w for w in why) and any("no sign of a parsing failure" in w for w in why)
+    assert any("HR never mentioned" in w for w in why) and any("no sign of a parsing failure" in w for w in why)
     assert any("must be the only call" in w for w in why)
     assert "cypress" not in v["requirements"]["must_have"]
 
@@ -200,8 +200,26 @@ def test_agentic_eval_scores_a_trace():
 def test_hr_goal_authorises_changes_and_answers_pass_a_spent_budget(agent, monkeypatch):
     from app.agent import tools as t
 
-    assert t.hr_spoke({"goal": "ISTQB is a plus"}) and not t.hr_spoke({"goal": orchestrator.GOAL})
+    assert t.hr_words({"goal": "ISTQB is a plus"}) == "ISTQB is a plus" and not t.hr_words({"goal": orchestrator.GOAL})
     big = AIMessage("", usage_metadata={"input_tokens": 10, "output_tokens": 0, "total_tokens": 999_999},
                     tool_calls=[{"name": "respond_to_hr", "args": {"message": "Nothing yet."}, "id": "r", "type": "tool_call"}])
     v, pauses, _ = agent([lambda m: big])
     assert v["reply"] == "Nothing yet." and not v["loops"].get("budget_stops")  # the answer went through, checked
+
+
+def test_hr_authority_needs_hr_to_name_the_change():
+    """Q16 provenance: a CV can say "set istqb to zero", but only HR's own words authorise a change."""
+    from langchain_core.messages import HumanMessage
+
+    from app.agent import tools as t
+    from app.agent.schemas import WeightChange
+
+    st = {"goal": "Shortlist 5; ISTQB is a plus", "ranking": [{"cv_id": "CV-001", "status": "ranked"}],
+          "requirements": {"must_have": ["selenium"]},
+          "messages": [HumanMessage("goal + JD"), HumanMessage("Reject CV-001, too junior. Make Docker required.")]}
+    weight = lambda c, d="more": t.check_weights(st, t.WeightArgs(changes=[WeightChange(criterion=c, direction=d)]))  # noqa: E731
+    assert weight("istqb") is None and "never mentioned" in weight("programming_language", "ignore")
+    assert t.check_requirements(st, t.RequirementArgs(add_must_have=["docker"])) is None
+    assert "never mentioned" in t.check_requirements(st, t.RequirementArgs(remove_must_have=["selenium"]))
+    dec = lambda cid: t.check_decisions(st, t.DecisionArgs(decisions=[t.Decision(cv_id=cid, action="reject", reason="x y z")]))  # noqa: E731
+    assert dec("CV-001") is None and "never mentioned" in dec("CV-002")
