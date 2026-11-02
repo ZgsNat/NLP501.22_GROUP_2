@@ -17,7 +17,7 @@ raw file ─► X1 read_file ─► X2 normalize ─► X4 redact ─► X3 dete
   (one query per requirement)    N6 rule scores (tools, years)        + verified parser facts           grounded AND supported
 ```
 
-Every stage is deterministic, costs zero tokens and is unit-tested (`backend/tests/test_nlp.py`, 51 cases in English and Vietnamese). Code: `backend/app/nlp/`. IDs refer to the architecture map, `docs/architecture.html`.
+Every stage is deterministic, costs zero tokens (one exception, opt-in: with `INJECTION_MODEL=true`, X4 asks a local decision model about sentences the lexicon kept; see X11) and is unit-tested (`backend/tests/test_nlp.py`, 51 cases in English and Vietnamese). Code: `backend/app/nlp/`. IDs refer to the architecture map, `docs/architecture.html`.
 
 ## Stages
 
