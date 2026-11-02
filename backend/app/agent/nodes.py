@@ -46,7 +46,7 @@ from app.agent.state import AgentState
 from app.config import get_settings
 from app.nlp.jd import parse as parse_jd
 from app.nlp import quality
-from app.nlp.injection import neutralize
+from app.nlp.injection import sanitize
 from app.nlp.pipeline import profile
 from app.providers.decider import decide
 from app.providers.llm import create_llm, default_spec
@@ -140,7 +140,7 @@ async def extract_requirements(model: BaseChatModel, jd: str, mode: str | None =
 @traced("ingest")
 async def ingest(state: AgentState) -> dict:
     s = get_settings()
-    jd, planted = neutralize(state["jd_text"])  # a pasted JD is untrusted text too (Q16)
+    jd, planted = sanitize(state["jd_text"], "job description")  # a pasted JD is untrusted text too (Q16)
     if planted:
         emit("ingest", f"Removed {planted} instruction-like sentence(s) from the JD before any LLM saw it", "warn")
     if answers := state.get("clarifications"):

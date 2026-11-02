@@ -7,8 +7,7 @@ matched in English and Vietnamese because real Vietnamese CVs put "Ngày sinh / 
 import re
 from difflib import SequenceMatcher
 
-from app.config import get_settings
-from app.nlp.injection import judge, neutralize
+from app.nlp.injection import sanitize
 from app.nlp.segment import heading_kind
 from app.nlp.text import fold
 
@@ -76,8 +75,7 @@ def redact(text: str) -> tuple[str, dict[str, int]]:
     """→ (text with [REDACTED:<kind>] placeholders, {kind: count}). Never stores what it removed.
     Prompt injection ("ignore previous instructions...") is removed here too, as kind "instruction" (nlp/injection.py)."""
     counts: dict[str, int] = {}
-    s = get_settings()
-    text, k = neutralize(text, judge if s.injection_model else None, s.injection_threshold)
+    text, k = sanitize(text, "CV")
     if k:
         counts["instruction"] = k
 

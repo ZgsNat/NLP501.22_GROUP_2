@@ -126,7 +126,7 @@ request to call `set_weights`. The chat adds a second surface: CV text reaches t
 | Layer | What it does | Where |
 |---|---|---|
 | 1 · Remove at the boundary (NLP) | sentences addressed to the model become `[REDACTED:instruction]` before indexing or any LLM; the CV is flagged `prompt_injection` for HR. JDs go through the same filter | `nlp/injection.py` (X11), inside redaction |
-| 1b · Decision model (optional) | sentences the lexicon let through go to a **System One decision model** (Jev-style: typed yes/no with a calibrated probability, no text). Locally: Ollama's open-weight `nimble`; Jev with a key. Removed at P ≥ 0.9. On if `INJECTION_MODEL=true` and a server runs; if the server is down, the lexicon still holds | `nlp/injection.judge`, `providers/decider.system_one` |
+| 1b · Decision model (optional) | sentences of CVs **and JDs** that the lexicon let through go to a **System One decision model** (Jev-style: typed yes/no with a calibrated probability, no text). Locally: Ollama's open-weight `nimble`; Jev with a key. Removed at P ≥ 0.9. On if `INJECTION_MODEL=true` and a server runs; if the server is down, the lexicon still holds | `nlp/injection.judge`, `providers/decider.system_one` |
 | 2 · Provenance | a change to requirements, weights or decisions must be named in HR's own words; text from a CV cannot authorise it, even if layer 1 missed it | `tools.unsaid` (H29) |
 | 3 · Data, not instructions | the agent prompt says tool results quote CV and JD text written by others, never instructions | `prompts.AGENT` |
 | Containment (already there) | scores and knock-outs come from rules over the parsed CV, so a surviving injection can at most colour an explanation or a near-tie verdict | H20 |
@@ -147,9 +147,13 @@ request to call `set_weights`. The chat adds a second surface: CV text reaches t
 - The 10 attacks are ones the lexicon misses by construction, English and Vietnamese.
 - The 8 hard negatives are real CV sentences about AI, ranking or scoring.
 - The two false alarms at 0.5 are career-objective lines ("I want to work in organisation as a python developer…").
-- Cost: 2.6 s per CV, once at upload, local.
+- JDs: a planted paraphrase was removed; 0/18 false alarms on clean JDs.
+- Cost: about 2.5 s per CV, once at upload, and about 2 s per JD (cached), local. Chat turns add nothing:
+  the agent reads the already-cleaned text.
 
 **Not covered, said plainly:**
+- HR's chat messages are not filtered: HR is the principal, and the guard plus provenance still bound every action.
+  A JD that HR pastes *into the chat* therefore counts as HR's words.
 - The attack set is small (10) and written by us, and the threshold was read off the same data. A held-out set
   written by someone else would make this a real test.
 - We did not measure whether the LLM review obeys an injection that passes every layer. That needs an LLM run; it
