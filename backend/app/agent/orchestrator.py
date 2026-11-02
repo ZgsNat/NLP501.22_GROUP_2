@@ -28,6 +28,7 @@ from app.agent.nodes import emit, traced
 from app.agent.state import AgentState
 from app.agent.tools import TOOLS, Run, ranked
 from app.config import get_settings
+from app.nlp.injection import neutralize
 
 GOAL = "Shortlist the strongest candidates for this job description and tell me what to probe in interview."
 
@@ -59,7 +60,7 @@ async def start(state: AgentState) -> dict:
     goal = (state.get("goal") or "").strip() or GOAL
     emit("start", f"HR goal: “{goal}” → the orchestrator plans its own steps (≤ {get_settings().max_agent_steps} per turn)")
     return {"messages": [HumanMessage(f"HR goal: {goal}\nCompany profile: {state.get('company_profile', 'default')}"
-                                      f"\n\nJob description:\n{state['jd_text']}")],
+                                      f"\n\nJob description:\n{neutralize(state['jd_text'])[0]}")],
             "goal": goal, "turn_start": 0, "turn_tokens": 0, "seen": {}, "calls": [], "responded": False, "halt": ""}
 
 

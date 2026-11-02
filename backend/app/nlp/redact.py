@@ -7,6 +7,7 @@ matched in English and Vietnamese because real Vietnamese CVs put "Ngày sinh / 
 import re
 from difflib import SequenceMatcher
 
+from app.nlp.injection import neutralize
 from app.nlp.segment import heading_kind
 from app.nlp.text import fold
 
@@ -71,8 +72,12 @@ def loose_kind(label: str) -> str | None:
 
 
 def redact(text: str) -> tuple[str, dict[str, int]]:
-    """→ (text with [REDACTED:<kind>] placeholders, {kind: count}). Never stores what it removed."""
+    """→ (text with [REDACTED:<kind>] placeholders, {kind: count}). Never stores what it removed.
+    Prompt injection ("ignore previous instructions...") is removed here too, as kind "instruction" (nlp/injection.py)."""
     counts: dict[str, int] = {}
+    text, k = neutralize(text)
+    if k:
+        counts["instruction"] = k
 
     def labelled(m: re.Match) -> str:
         kind = _kind(m["label"])

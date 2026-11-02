@@ -30,6 +30,8 @@ def flags(p: CVProfile) -> list[str]:
         out.append("no_experience_section")
     if p.years_total is None:
         out.append("no_dated_roles")
+    if p.redactions.get("instruction"):  # text aimed at the screening model was removed (nlp/injection.py)
+        out.append("prompt_injection")
     return out
 
 
