@@ -47,6 +47,7 @@ from app.config import get_settings
 from app.nlp.jd import parse as parse_jd
 from app.nlp import quality
 from app.nlp.injection import sanitize
+from app.nlp.taxonomy import group
 from app.nlp.pipeline import profile
 from app.providers.decider import decide
 from app.providers.llm import create_llm, default_spec
@@ -226,6 +227,17 @@ async def search(state: AgentState) -> dict:
 JUNIOR = re.compile(r"\b(?:junior|fresher|intern|entry[- ]level|graduate|thực tập|mới tốt nghiệp)\b", re.I)
 SENIOR = re.compile(r"\b(?:senior|lead|principal|staff|architect|head|trưởng nhóm)\b", re.I)
 
+# Vague-JD detection (Literature Review §1.1 Mức 4, §1.4): Automation Test JDs that leave out specifics the system
+# needs for knock-out and scoring. Each criterion has three states: clear (skip), vague/missing (ask).
+EXPERIENCE_CUE = re.compile(r"\b(?:experienc\w*|years?|kinh\s*nghiệm|năm)\b", re.I)
+# Groups whose tools already reveal the kind of testing, so asking "which type?" would be redundant (fix B).
+TYPE_GROUPS = {"web_e2e": "web", "mobile": "mobile", "api": "api", "performance": "performance"}
+# A foreign language the JD mentions but hedges between must-have and nice-to-have (JD-003: "a plus, or maybe
+# required depending on the client"). "a plus"/"preferred" alone is a clear nice-to-have, so it is NOT a hedge.
+FOREIGN_WORDS = re.compile(r"\benglish\b|tiếng\s*anh|toeic|ielts|toefl|\bjapanese\b|tiếng\s*nhật|jlpt", re.I)
+LANG_HEDGE = re.compile(r"\b(?:maybe|may\s+be|might|depend(?:s|ing)?|or\s+(?:maybe\s+)?required)\b|tùy|có\s*thể", re.I)
+MANY_MUST_HAVES = 6  # a "must-have" list longer than this cannot realistically be all knock-outs (fix D)
+
 
 def seniority_conflict(title: str, min_years: int | None) -> str | None:
     """A JD that contradicts itself ("Junior" but 4+ years) cannot be ranked fairly without asking which one holds."""
@@ -236,15 +248,66 @@ def seniority_conflict(title: str, min_years: int | None) -> str | None:
     return None
 
 
+def _foreign_language_hedged(jd: str) -> bool:
+    """True if a JD line mentions a foreign language AND hedges whether it is required — the must/nice status
+    changes the outsourcing weight a lot (Literature Review §1.4, Bảng 4: English ≥ B2 is worth 0.20 there)."""
+    return any(FOREIGN_WORDS.search(ln) and LANG_HEDGE.search(ln) for ln in jd.splitlines())
+
+
+def vagueness_questions(jd: str, req: JDRequirements) -> list[str]:
+    """Detect domain-specific vagueness/omissions in an Automation Test JD and generate targeted questions for HR.
+
+    Literature Review §1.1 Mức 4: depth L1–L4 is invisible from a tool name alone (ii), and QA years ≠ automation
+    years (iv); §1.4: foreign language and test type carry company-specific weight. These are *soft* questions: on
+    their own they don't force asking, but they enrich the single clarification round.
+    """
+    qs: list[str] = []
+    # Years — vague ("several years") or omitted, but only when the JD signals experience matters at all
+    if req.min_years is None and EXPERIENCE_CUE.search(jd):
+        qs.append("How many years of test automation experience are required (not total QA)?")
+    # Depth L1–L4 — a tool name ("Selenium") doesn't say run vs write scripts vs build a framework
+    if req.depth_level is None and req.must_have:
+        qs.append("What level of automation ownership is expected: writing test scripts on an existing framework, "
+                  "or building/maintaining the framework and CI integration?")
+    # Test type — ask only when NEITHER the duties NOR the must-have tools reveal it (fix B)
+    tool_types = {TYPE_GROUPS[g] for m in req.must_have if (g := group(m)) in TYPE_GROUPS}
+    if not req.test_types and not tool_types:
+        qs.append("Which types of testing: web UI, mobile, API, performance, or a combination?")
+    # Foreign language present but hedged between required and preferred (fix C)
+    if req.foreign_languages and _foreign_language_hedged(jd):
+        names = ", ".join(lang.title() for lang in req.foreign_languages)
+        qs.append(f"Is {names} a hard requirement or just preferred?")
+    # Laundry list — too many must-haves to all be genuine knock-outs (fix D)
+    if len(req.must_have) >= MANY_MUST_HAVES:
+        qs.append(f"The JD lists {len(req.must_have)} must-have tools; which are truly required vs nice-to-have?")
+    # No programming language and no must-have tools that imply one
+    if not req.languages and not req.must_have:
+        qs.append("Which programming language does the team use for test automation?")
+    return qs
+
+
 async def ask_hr_gate(model: BaseChatModel, jd: str, req: JDRequirements) -> tuple[bool, str | None]:
-    """L1 decision: pause for HR or proceed? (mutates req.ambiguities when the rule fires). → (ask, narration)."""
+    """L1 decision: pause for HR or proceed? (mutates req.ambiguities when it asks). → (ask, narration)."""
+    soft = vagueness_questions(jd, req)
+
+    def enrich(lead: list[str]) -> None:
+        """Order the one clarification round (max_clarifications=1, so HR is asked at most once): rule questions
+        first (lead), then the domain-specific soft ones, then the LLM's own — deduplicated, capped at 4 (fixes A, F)."""
+        ordered: list[str] = []
+        for q in [*lead, *soft, *req.ambiguities]:
+            if q.lower() not in {x.lower() for x in ordered}:
+                ordered.append(q)
+        req.ambiguities = ordered[:4]
+
     if not req.must_have:
         # Rule before model: with zero must-have tools there is no knock-out and no fair ranking — always ask.
-        req.ambiguities = ["Which tools/frameworks are must-have for this role?", *req.ambiguities][:4]
+        enrich(["Which tools/frameworks are must-have for this role?"])
         return True, "Rule: no concrete must-have tools → ask HR (no LLM needed)"
     if conflict := seniority_conflict(req.title, req.min_years):
-        req.ambiguities = [conflict, *req.ambiguities][:4]
+        enrich([conflict])
         return True, f"Rule: {conflict} → ask HR (no LLM needed)"
+
+    enrich([])  # soft questions + the LLM's own ambiguities
     if not req.ambiguities:
         return False, None
     # System-One gate: is it worth interrupting a human?

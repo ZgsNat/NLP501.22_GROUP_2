@@ -169,8 +169,11 @@ async def parse_jd(state: AgentState, _: NoArgs) -> tuple[dict, dict]:
     req = r.state["requirements"]
     blocking = [q for q in ["Which tools/frameworks are must-have for this role?" if not req["must_have"] else None,
                             nodes.seniority_conflict(req["title"], req["min_years"])] if q]
+    from app.agent.schemas import JDRequirements
+    req_obj = JDRequirements(**{k: req[k] for k in JDRequirements.model_fields if k in req})
+    open_qs = list(dict.fromkeys(req["ambiguities"] + nodes.vagueness_questions(state["jd_text"], req_obj)))
     obs = {k: req[k] for k in ("title", "must_have", "nice_to_have", "min_years", "depth_level", "languages", "test_types")}
-    obs |= {"blocking_questions": blocking, "open_questions": req["ambiguities"], "weights": r.state["weights"],
+    obs |= {"blocking_questions": blocking, "open_questions": open_qs, "weights": r.state["weights"],
             "hr_answers_applied": bool(state.get("clarifications"))}
     return obs, r.update
 
