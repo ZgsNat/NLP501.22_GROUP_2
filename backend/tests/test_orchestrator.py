@@ -58,6 +58,14 @@ class Scripted:
         return step(msgs)
 
     def with_structured_output(self, schema):
+        from app.agent.llm_rank import LLMRanking, RankedCV
+
+        if schema is LLMRanking:  # prefers the highest CV number, however the shortlist is shown
+            class Rank:
+                async def ainvoke(self, msgs, config=None):
+                    ids = sorted(set(re.findall(r"=== (CV-\d{3}) ===", msgs[-1].content)), reverse=True)
+                    return LLMRanking(ranking=[RankedCV(cv_id=c, reason="evidence") for c in ids])
+            return Rank()
         assert schema is CandidateAssessment
         crit = {"score": 60, "rationale": "Meets the role with concrete work.", "evidence": []}
         review = CandidateAssessment.model_validate({
@@ -239,3 +247,16 @@ def test_screen_ignores_indexed_cvs_outside_the_pool(agent, monkeypatch):
                      lambda m: call("respond_to_hr", message="Screened.")])
     assert not any("failed" in m.content for m in v["messages"] if isinstance(m, ToolMessage))
     assert "CV-999" not in {r["cv_id"] for r in v["ranking"]} and v["ranking"]
+
+
+def test_rank_shortlist_reorders_and_the_order_survives_explain(agent):
+    v, _, _ = agent([
+        lambda m: call("parse_jd"), lambda m: call("screen"), lambda m: call("rank_shortlist"),
+        lambda m: call("explain", cv_ids=[last_result(m, "rank_shortlist")["order"][0]]),
+        lambda m: call("rank_shortlist"), lambda m: call("rank_shortlist"),  # budget: 2 per run
+        lambda m: call("respond_to_hr", message="Ranked."),
+    ])
+    order = [r["cv_id"] for r in v["ranking"] if r["status"] == "ranked"]
+    assert order == sorted(order, reverse=True) and order == v["llm_order"][:len(order)]  # explain kept the LLM order
+    refused = [m.content for m in v["messages"] if isinstance(m, ToolMessage) and m.content.startswith("REJECTED")]
+    assert v["loops"]["llm_rank"] == 2 and any("ranking budget used" in w for w in refused)

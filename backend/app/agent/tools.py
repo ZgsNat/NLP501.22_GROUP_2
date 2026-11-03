@@ -106,6 +106,7 @@ def screen_view(state: AgentState) -> dict:
 
 async def screen_into(r: Run) -> dict:
     """search → rerank → rule assessment of the shortlist → score: the P6 pipeline up to the ranking, 0 LLM tokens."""
+    r.add({"llm_order": []})  # a new screen invalidates an LLM order of the old shortlist
     r.add(await nodes.search(r.state))
     r.add(await nodes.rerank(r.state))
     short, old = r.state["retry_ids"], r.state.get("assessments", {})
@@ -333,6 +334,35 @@ async def compare(state: AgentState, args: PairArgs) -> tuple[dict, dict]:
     return obs, {"ranking": rows, "loops": {"arbitrate": 2}}
 
 
+def check_rank(state: AgentState, _: NoArgs) -> str | None:
+    s = get_settings()
+    if why := needs_ranking(state):
+        return why
+    if state.get("loops", {}).get("llm_rank", 0) >= s.max_llm_ranks:
+        return f"LLM ranking budget used ({s.max_llm_ranks} per run)"
+    return None if len(ranked(state)) >= 2 else "fewer than two ranked candidates: nothing to order"
+
+
+async def rank_shortlist(state: AgentState, _: NoArgs) -> tuple[dict, dict]:
+    """The top Settings.llm_rank_size of the screened order (rule-assessed if not yet), reordered by the LLM under the
+    controls of agent/llm_rank.py; rule scores and knock-outs stay; explanations stay valid."""
+    from app.agent import llm_rank
+    from app.nlp.injection import sanitize
+
+    s, r = get_settings(), Run(state)
+    top = [x["cv_id"] for x in state["ranking"] if x["status"] in ("ranked", "not_shortlisted")][: s.llm_rank_size]
+    r.add({"assessments": {c: rule_assessment(state, c, None) for c in top if c not in state.get("assessments", {})}})
+    res = await llm_rank.rank(nodes.llm(state, "reasoning"), sanitize(state["jd_text"], "job description")[0],
+                              state["requirements"], top, {c: nodes.prof(state, c) for c in top})
+    r.add({"llm_order": res["order"]})
+    r.add(await nodes.score(r.state))
+    nodes.emit("rank_shortlist", f"LLM ranked the top {len(top)} in both input orders (agreement@5 "
+                                 f"{res['agreement@5']:.0%}) → {res['order'][:5]}", "loop", agreement=res["agreement@5"])
+    return {"order": res["order"], "agreement@5": res["agreement@5"],
+            "reasons": {c: res["reasons"].get(c, "")[:160] for c in res["order"][:10]},
+            "screen": screen_view(r.state)}, {**r.update, "loops": {**r.update.get("loops", {}), "llm_rank": 1}}
+
+
 class CandidateArgs(BaseModel):
     cv_id: str
     section: str = Field("", description="Optional: also return one CV section verbatim (experience, skills, ...)")
@@ -528,6 +558,9 @@ TOOLS = {t.name: t for t in [
          "re-screen.", NoArgs, "hr", propose_substitutes, check_substitutes),
     Tool("explain", "LLM review of ranked candidates with evidence quotes that code verifies against the CV (one "
          "reasoning call each). Required before recommending a candidate.", CVsArgs, "act", explain, check_explain),
+    Tool("rank_shortlist", "Reorder the top of the screened pool by LLM judgement of each CV's evidence, checked: every "
+         "candidate is read, two passes in opposite orders are averaged, rule scores and knock-outs stay. Use after "
+         "screen, before explaining your shortlist.", NoArgs, "act", rank_shortlist, check_rank),
     Tool("compare", "Why one ranked candidate sits above another, criterion by criterion (0 tokens). On an adjacent "
          "near-tie it also asks the arbiter in both orders, which may swap them.", PairArgs, "act", compare, check_compare),
     Tool("get_candidate", "Facts about one CV: parsed skills, years, depth, status, score breakdown, review; "

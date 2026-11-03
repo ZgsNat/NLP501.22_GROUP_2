@@ -110,6 +110,8 @@ class Settings(BaseSettings):
     # the whole conversation (demo A: 87k tokens for one turn on JD-003 vs 454k for five on JD-002).
     max_hr_turns: int = 3
     max_explain: int = 10  # CVs one explain call may assess (each is one reasoning-model call)
+    llm_rank_size: int = 15  # controlled LLM ranking (agent/llm_rank.py): shortlist size it may reorder (2 calls)
+    max_llm_ranks: int = 2  # LLM ranking calls per HR turn in P7 (each is two passes)
     max_single_agent_steps: int = 30  # S1 baseline (eval/single_agent.py): one LLM, tools, no harness; its only limit
 
 

@@ -74,7 +74,7 @@ work.** That is the difference from P6.
 
 ## 4. The tools
 
-All 13 wrap code that already existed. P6 and P7 share every rule, check and prompt.
+All 14 wrap code that already existed, except `rank_shortlist` (v4, from the S1 finding). P6 and P7 share every rule, check and prompt.
 
 | Tool | What it does | LLM inside? |
 |---|---|---|
@@ -84,6 +84,7 @@ All 13 wrap code that already existed. P6 and P7 share every rule, check and pro
 | `investigate(cv_ids)` | sub-agent (N12) re-reads garbled CVs; code verifies each fact; re-screens | yes, bounded |
 | `propose_substitutes` | HR approves related tools for a scarce must-have; re-screens | — |
 | `explain(cv_ids)` | LLM review with quotes; `verify_evidence` checks them (L4) | 1 per CV |
+| `rank_shortlist` | the top 15 of the screened pool reordered by LLM judgement of each CV's evidence: every CV read, two passes in opposite orders averaged, rule scores and knock-out kept (Q17; `docs/LLM_RANK_RESULTS.md`) | 2 calls |
 | `compare(a, b)` | why one ranks above the other (0 tokens); on an adjacent near-tie, the arbiter in both orders | 0 or 2 calls |
 | `get_candidate(cv_id)` | parsed facts, status, score breakdown, review; optionally one CV section | 0 |
 | `search_cvs(query)` | free-text search over CV passages | 0 |

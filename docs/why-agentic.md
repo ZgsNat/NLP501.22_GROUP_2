@@ -130,6 +130,22 @@ not to pick S1 or P7, but to **bring that judgement inside P7 as a controlled to
 
 It is decided on dev, and confirmed against human labels before any claim.
 
+**Built and measured** (`rank_shortlist`, `agent/llm_rank.py`; `docs/LLM_RANK_RESULTS.md`; dev JDs):
+
+| | B3 ⊕ CE | + controlled LLM ranking | P6 | S1 |
+|---|---|---|---|---|
+| `ours` (Claude-made labels), 6 JDs | 0.871 | **0.955** | 0.867 | 0.942 |
+| `coding` (rubric labels), 2 JDs | 0.861 | **0.859** | 0.862 | — |
+| tokens per JD | 0 | ≈ 34k | ≈ 120k | ≈ 179k |
+
+- **Same judgement as S1, under the system's controls.** It matches S1's ranking at about a fifth of the tokens.
+  Every candidate is read; two passes are averaged; rules and knock-out stay; every CV gets a reason.
+- **Passes the §8 rule** (not lower than 0.01 on either benchmark, higher on one), so P7's playbook now calls it after
+  `screen`.
+- **But the gain appears only on LLM-made labels.** On the rubric labels it ties, with a +0.095 / −0.098 swing between
+  the two JDs (the drop is on a vague JD). Circularity is not ruled out. Human labels decide whether it is a real
+  improvement.
+
 
 ## 7. Still to prove
 

@@ -598,6 +598,8 @@ async def score(state: AgentState) -> dict:
     ranked.sort(key=lambda r: (r["reason"] is None,
                                tiebreak_key(r, state["assessments"].get(r["cv_id"]), rerank.get(r["cv_id"])) if by_total
                                else (-fused.get(r["cv_id"], len(fused)),)), reverse=True)
+    if lo := state.get("llm_order"):  # P7 rank_shortlist: the controlled LLM order holds until the pool is re-screened
+        ranked.sort(key=lambda r: (r["reason"] is not None, lo.index(r["cv_id"]) if r["cv_id"] in lo else len(lo)))
     # The tail is ordered too (HR browses it, τ measures it): what the LLM never assessed is ordered by the
     # zero-token rule score. Order of groups: reranked → not retrieved → needs review → knocked out.
     w = state["weights"]
