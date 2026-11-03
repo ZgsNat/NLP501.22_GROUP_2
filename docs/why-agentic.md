@@ -145,6 +145,11 @@ It is decided on dev, and confirmed against human labels before any claim.
 - **But the gain appears only on LLM-made labels.** On the rubric labels it ties, with a +0.095 / −0.098 swing between
   the two JDs (the drop is on a vague JD). Circularity is not ruled out. Human labels decide whether it is a real
   improvement.
+- **LLM labels move with the labeller.** A fourth annotator, explicitly an LLM (Claude Opus 5.5, blind, the written
+  rubric; `data/eval/llm_annotator_d.json`), agrees with the silver set at weighted κ **0.79**, against 0.89 for the
+  earlier model annotator. It is also stricter: mean grade 1.04 vs 1.28; 35 pairs lower, 8 higher. It reads "a tool
+  only in the skills list" as 0, as the rubric says. So "relevant" already shifts between two Claude labellers, which
+  is one more reason human labels decide.
 
 
 ## 7. Still to prove

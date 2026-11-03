@@ -1,0 +1,726 @@
+{
+ "annotator": "llm-annotator-d (claude-opus-5-5, LLM, blind, rubric; not human)",
+ "sample": "v1-seed13",
+ "labels": [
+  {
+   "jd": "JD-001",
+   "cv": "CV-019",
+   "grade": 2,
+   "note": "Strong Java RestAssured/Postman work with CI gates in fintech, and it shows real Selenium POM work, but the UI automation is modest (80 tests) and the automation tenure is borderline."
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-049",
+   "grade": 0,
+   "note": "1.5 years of Cypress/JavaScript work only; no Selenium, no Java and far below the 5-year requirement."
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-021",
+   "grade": 1,
+   "note": "Strong senior automation work in Robot Framework/Python with SeleniumLibrary, REST and Jenkins parallel runs, but no Java, so the Selenium+Java must-have is unmet."
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-017",
+   "grade": 0,
+   "note": "Junior with 1 year of experience who runs and maintains existing Selenium suites and lists Java as basic; well short of the experience and hands-on requirements."
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-033",
+   "grade": 3,
+   "note": "7 years (about 5 in automation) at a banking vendor building a Selenium+Java+TestNG POM framework, RestAssured tests in GitLab CI, Selenium Grid on Docker, audit evidence, mentoring and ISTQB."
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-011",
+   "grade": 0,
+   "note": "Selenium, Java and Jenkins appear only in the skills list; the experience bullets are vague claims with no concrete framework, API or CI work."
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-038",
+   "grade": 2,
+   "note": "Excellent Java/RestAssured API frameworks, CI gates, audit evidence, banking domain and ISTQB Advanced, but hands-on Selenium is limited to about a year of UI work in 2016–2017."
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-006",
+   "grade": 0,
+   "note": "Mostly manual tester; automation tools are hedged as 'familiar with' or 'basic knowledge', and there is no Selenium/Java or CI experience."
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-014",
+   "grade": 1,
+   "note": "5 years of real Selenium/Robot Framework automation with Grid and Jenkins, but all of it is in Python with no Java and no banking domain experience."
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-018",
+   "grade": 3,
+   "note": "12 years in banking building Java/Selenium/RestAssured/Cucumber platforms with POM, Selenium Grid, GitLab/Jenkins quality gates, audit evidence and mentoring."
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-036",
+   "grade": 0,
+   "note": "5 years of strong Robot Framework/Python automation with CI, Docker and API testing, but no Playwright or TypeScript at all."
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-002",
+   "grade": 3,
+   "note": "Built a Playwright+TypeScript framework from scratch (850 tests), sharded GitHub Actions down to 11 min, used traces to cut flaky rate to 1.5%, and wrote API tests with Postman/Newman."
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-026",
+   "grade": 3,
+   "note": "Migrated 130 tests to Playwright+TypeScript with fixtures and page objects, runs them on pull requests in GitHub Actions, and adds Postman/Newman API tests, Appium Android tests and startup experience; about 3 years total."
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-010",
+   "grade": 0,
+   "note": "Performance engineer using k6 with TypeScript in GitHub Actions; no Playwright or web end-to-end UI automation."
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-050",
+   "grade": 0,
+   "note": "API-only automation (RestAssured, Postman/Newman, GitLab CI); no Playwright, TypeScript or web end-to-end testing."
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-033",
+   "grade": 0,
+   "note": "Selenium+Java framework owner with RestAssured and GitLab CI, but no Playwright or TypeScript."
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-004",
+   "grade": 0,
+   "note": "Manual tester whose automation tools are only 'familiar with' claims; no Playwright, TypeScript or hands-on automation."
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-023",
+   "grade": 0,
+   "note": "Good mobile/Appium and WebdriverIO JavaScript generalist with GitHub Actions and Postman, but no Playwright or TypeScript."
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-012",
+   "grade": 1,
+   "note": "Owns a Cypress+TypeScript end-to-end framework with parallel GitHub Actions runs and API tests at a startup, but has no Playwright, so this is a close adjacent fit."
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-038",
+   "grade": 0,
+   "note": "Strong Java/RestAssured API test framework owner with CI gates, but no Playwright, TypeScript or web end-to-end work."
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-018",
+   "grade": 3,
+   "note": "12 years with hands-on Selenium/RestAssured frameworks, Kubernetes grid, Pact contract tests and CI quality gates; strong fit, though more senior than this role."
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-035",
+   "grade": 3,
+   "note": "Built an Appium/Java/TestNG framework shared by Android and iOS with 140 automated scenarios, run in GitHub Actions and on a device farm, over 4 years."
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-021",
+   "grade": 3,
+   "note": "7 years designing Robot Framework/Python automation (2,400 cases) with parallel Jenkins runs, cutting regression time from 14h to 3h, and reporting results to release managers."
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-026",
+   "grade": 3,
+   "note": "Moved 130 Cypress tests to Playwright, wrote Appium/WDIO and Newman API tests, and set up CI, which shows broad, fast-learning automation skills."
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-032",
+   "grade": 3,
+   "note": "About 4 years writing around 320 Selenium/Java tests and 90 RestAssured API tests, extending a POM framework and running nightly on Jenkins; ISTQB certified."
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-005",
+   "grade": 0,
+   "note": "Hands-on experience is manual testing only; every automation tool is hedged as 'familiar with' from demos, workshops or courses."
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-017",
+   "grade": 0,
+   "note": "Only 1 year of experience; runs and maintains existing scripts and is still 'learning to write scripts under supervision'."
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-029",
+   "grade": 2,
+   "note": "About 2 years of real automation work: 200 Selenium and 70 Appium Python tests, GitLab CI and Docker, built on a framework a senior engineer designed."
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-010",
+   "grade": 1,
+   "note": "Specialises in performance testing (k6/JMeter); functional automation is limited to simple Postman/Newman API checks, so only an adjacent fit."
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-046",
+   "grade": 1,
+   "note": "The Lead SDET title overstates the work: they mostly ran suites other people wrote and made small locator fixes, with almost no test writing."
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-029",
+   "grade": 0,
+   "note": "UI and mobile automation with only light Postman API checks, and no JMeter or k6 experience."
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-028",
+   "grade": 2,
+   "note": "Set up k6 performance thresholds that block deploys in GitLab CI and brought in Postman/Newman checks, but the performance work is a gate rather than load/stress testing and the main API tool is RestSharp."
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-033",
+   "grade": 0,
+   "note": "Strong RestAssured work in GitLab CI and ISTQB-certified, but no JMeter or k6 performance testing."
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-026",
+   "grade": 0,
+   "note": "Has Postman/Newman in GitHub Actions, but there is no JMeter or k6 performance testing at all, which is a core must-have."
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-025",
+   "grade": 0,
+   "note": "Cypress plus Postman/Newman in GitHub Actions, but no JMeter or k6 performance experience."
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-010",
+   "grade": 3,
+   "note": "Five years of k6 and JMeter load and soak testing, p95 thresholds that fail GitHub Actions builds, Grafana/Prometheus baselines and Newman in Jenkins."
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-022",
+   "grade": 0,
+   "note": "BDD/Selenium with RestAssured in Jenkins, but no performance testing with JMeter or k6."
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-039",
+   "grade": 2,
+   "note": "Owns k6 performance thresholds as CI gates, RestAssured in Jenkins and GitLab CI, and Grafana/Prometheus dashboards, but there is little hands-on load or stress test design and JMeter is listed as basic."
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-007",
+   "grade": 0,
+   "note": "Mobile-only Appium/Espresso work with Postman only for side checks, and no JMeter or k6."
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-030",
+   "grade": 0,
+   "note": "Selenium lead with RestAssured, Newman and Jenkins, but no JMeter or k6 performance experience."
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-039",
+   "grade": 3,
+   "note": "Designed and shipped a TypeScript + Playwright shared UI library since 2021, plus parallel CI on GitLab and Kubernetes (UI pipeline cut from 40 to 9 min) and proven framework architecture."
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-020",
+   "grade": 0,
+   "note": "Python/pytest Selenium with Jenkins; no Playwright and no TypeScript at all."
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-042",
+   "grade": 3,
+   "note": "3 years owning a 420-test Playwright/TS suite with worker fixtures, role-based page objects, 6-shard GitHub Actions in 9–11 min, axe checks, seeded envs and a developer guide."
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-028",
+   "grade": 0,
+   "note": "Strong C# Selenium platform work, but no Playwright anywhere, and TypeScript is only claimed, not shown in any project."
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-047",
+   "grade": 0,
+   "note": "Solid Java WebDriver harness design and parallel runs, but no Playwright or TypeScript."
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-013",
+   "grade": 0,
+   "note": "Cypress in JavaScript following an existing structure; no Playwright or TypeScript, and CI use was only running Jenkins jobs."
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-026",
+   "grade": 2,
+   "note": "Migrated 130 Cypress tests to Playwright + TypeScript with fixtures and page objects, run on PRs in GitHub Actions; meets the 3-year minimum, but sharding and design depth are thinner."
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-037",
+   "grade": 3,
+   "note": "Led a Cypress-to-Playwright/TS migration with typed fixtures and a shared package, sharded GitHub Actions (48 to 11 min), visual and API checks, flaky rate under 2%, and a developer testing guide."
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-043",
+   "grade": 0,
+   "note": "Manual tester who says she is still learning Cypress and has no hands-on automation."
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-012",
+   "grade": 0,
+   "note": "Strong Cypress + TypeScript framework with parallel GitHub Actions and preview envs, but no Playwright experience, which is a must-have."
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-036",
+   "grade": 0,
+   "note": "Robot Framework web and API automation; no mobile or Appium experience."
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-011",
+   "grade": 0,
+   "note": "Vague claims with no concrete evidence; Appium appears only in the skills list."
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-026",
+   "grade": 1,
+   "note": "60 Appium tests in TypeScript (WebdriverIO) at a startup, but Android only, no iOS, and mostly web Playwright work."
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-020",
+   "grade": 0,
+   "note": "Selenium and API testing in Python for telecom; no mobile or Appium experience."
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-034",
+   "grade": 0,
+   "note": "Manual tester whose automation is only a 2-week training course; no project work."
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-035",
+   "grade": 3,
+   "note": "4 years of Appium; built a shared Android/iOS Java framework for a wallet app; ran tests in GitHub Actions on emulators and on a cloud farm; handled permissions, push and deep links."
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-013",
+   "grade": 0,
+   "note": "Cypress web e-commerce automation only; no Appium and no mobile automation."
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-023",
+   "grade": 2,
+   "note": "120 Appium tests for Android and iOS apps at a payments startup, run on real devices and a cloud farm; in JavaScript, and Appium-in-CI and mobile edge cases aren't shown explicitly."
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-049",
+   "grade": 0,
+   "note": "About 1.5 years of Cypress web testing with no Appium or mobile automation at all."
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-029",
+   "grade": 1,
+   "note": "Real Appium work in Python with GitLab CI, but Android only and no iOS, so a must-have is only half met."
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-035",
+   "grade": 0,
+   "note": "Mobile Appium automation in Java/Python; no Cypress or web JavaScript testing."
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-017",
+   "grade": 0,
+   "note": "Only runs and maintains Selenium/Java scripts and is still learning to write them; no Cypress or JavaScript."
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-003",
+   "grade": 3,
+   "note": "Wrote Cypress tests in JavaScript and moved 280 Selenium tests to Cypress, plus Jenkins/GitHub Actions, Postman and ISTQB; senior and Playwright-focused lately."
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-005",
+   "grade": 0,
+   "note": "Cypress only 'familiar' from developer demos; all hands-on work is manual testing."
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-025",
+   "grade": 3,
+   "note": "Wrote 240 Cypress tests in JavaScript with custom commands, cy.intercept and GitHub Actions, plus Postman work, ISTQB and Agile retrospectives."
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-018",
+   "grade": 0,
+   "note": "Java/Selenium architect with no Cypress or JavaScript experience."
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-013",
+   "grade": 3,
+   "note": "3 years writing and maintaining Cypress JavaScript specs inside the existing structure, plus shared commands, Jenkins runs, Jira reports and sprint planning."
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-042",
+   "grade": 3,
+   "note": "3 years writing Cypress tests (TypeScript) with custom commands and GitLab CI at an agency, plus Postman, ISTQB and outsourcing; recent focus is Playwright and may be overqualified."
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-011",
+   "grade": 0,
+   "note": "Only buzzwords with no concrete work; Cypress appears only in the skills list."
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-027",
+   "grade": 0,
+   "note": "Good outsourcing and English background, but only Selenium/Java with no Cypress or JavaScript."
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-030",
+   "grade": 1,
+   "note": "Selenium/Java UI framework lead; RestAssured and Postman API layers are a side addition with no detail on API test design, auth or schema validation."
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-018",
+   "grade": 2,
+   "note": "Banking architect: Java/RestAssured platform, Pact across 60 microservices, GitLab CI gates and audit-ready evidence; hands-on API test detail and OAuth2/JWT/schema work are thin."
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-008",
+   "grade": 0,
+   "note": "Mobile UI automation only; Postman appears only in the skills list and no API test automation is shown."
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-038",
+   "grade": 3,
+   "note": "Built a RestAssured/Java framework at a digital bank: about 1,100 tests, OAuth2/JWT handling, JSON schema validation against OpenAPI, GitLab CI gates, audit evidence, Pact, WireMock, SQL and systematic boundary testing."
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-050",
+   "grade": 3,
+   "note": "Five years of payments API automation with RestAssured and Postman/Newman at scale, OAuth2, JSON schema/OpenAPI, GitLab CI and Jenkins gates, Pact pilot, SQL ledger checks and negative/idempotency testing."
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-003",
+   "grade": 1,
+   "note": "Playwright/TypeScript end-to-end specialist; API checks through Postman/Newman and Playwright are secondary, with no Java/RestAssured, auth or schema evidence."
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-021",
+   "grade": 1,
+   "note": "Real REST/SOAP API automation in Jenkins, but done with Robot Framework/RESTinstance rather than RestAssured or Postman/Newman, and auth or schema validation is not shown."
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-028",
+   "grade": 1,
+   "note": "Strong fintech SDET with contract tests and CI gates, but API work is in C#/RestSharp, and Postman/Newman use was early-career and not at scale."
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-039",
+   "grade": 2,
+   "note": "Built a shared Java/RestAssured API library, rolled out Pact contract testing across 35 services and ran CI quality gates in GitLab and Jenkins, but the role is broad and UI-heavy and OAuth2/JWT/JSON schema work is not shown."
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-032",
+   "grade": 1,
+   "note": "Mostly Selenium UI automation in fintech; API work is limited to 90 RestAssured tests, short of 3+ years of API automation, and auth or schema work is not shown."
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-046",
+   "grade": 0,
+   "note": "Mostly schedules and runs existing pytest/Selenium suites written by others; no Robot Framework and little evidence of writing libraries."
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-014",
+   "grade": 3,
+   "note": "About 4 years building Robot Framework + Selenium suites with custom Python keyword libraries and resource files, Jenkins and Docker, plus fluent English client reporting across several clients."
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-045",
+   "grade": 0,
+   "note": "Runs and maintains existing Selenium/Java scripts; no Robot Framework or Python, and little evidence of building anything."
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-044",
+   "grade": 0,
+   "note": "Manual mobile tester; Appium only at tutorial level, and no Robot Framework, Python or CI automation."
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-021",
+   "grade": 3,
+   "note": "7 years of Robot Framework with layered Python keyword libraries, SeleniumLibrary, variable files, Jenkins/pabot, and REST/SOAP keywords reused across teams."
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-020",
+   "grade": 0,
+   "note": "Solid Python/pytest/Selenium/Jenkins work, but no Robot Framework experience at all, which is the core must-have."
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-029",
+   "grade": 0,
+   "note": "Good Python/pytest/Selenium and GitLab CI work, but no Robot Framework, which is the core must-have."
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-013",
+   "grade": 0,
+   "note": "Cypress/JavaScript tester with no Robot Framework or Python experience."
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-032",
+   "grade": 0,
+   "note": "Has Selenium/Java/TestNG and Jenkins but no Robot Framework or Python, both core must-haves."
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-026",
+   "grade": 0,
+   "note": "Playwright/Cypress/TypeScript with GitHub Actions; no Robot Framework, Python or Jenkins/GitLab CI."
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-049",
+   "grade": 0,
+   "note": "About 1.5 years of Cypress and JavaScript only, with no Selenium or Java and below the experience minimum."
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-022",
+   "grade": 3,
+   "note": "Built a Cucumber, Selenium and Java framework with POM in banking, plus Grid on Docker, Jenkins, RestAssured, Jira traceability, audit evidence and ISTQB."
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-046",
+   "grade": 0,
+   "note": "Runs and triages existing Python and Selenium suites, with no Java, no framework building and no API testing."
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-018",
+   "grade": 3,
+   "note": "Banking automation architect who built a Selenium, TestNG, POM and Allure framework, plus RestAssured, Cucumber, Grid, Jenkins and GitLab CI, audit evidence and ISTQB."
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-045",
+   "grade": 0,
+   "note": "Despite the architect title, the work is only running and fixing existing Selenium scripts, with no framework building and no API testing."
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-033",
+   "grade": 3,
+   "note": "At a banking vendor, built a Selenium, Java and TestNG POM framework, about 200 RestAssured tests in GitLab CI, parallel Grid on Docker, audit evidence, mentoring and ISTQB."
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-038",
+   "grade": 1,
+   "note": "Strong Java and RestAssured framework work in banking with CI and audit evidence, but Selenium UI automation is limited to about a year in 2016–2017."
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-039",
+   "grade": 3,
+   "note": "At a financial services firm, created a Selenium, Java, TestNG, POM and Allure framework, plus Grid on Docker, RestAssured in Jenkins and mentoring; leads an automation platform now."
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-021",
+   "grade": 0,
+   "note": "Robot Framework and Python automation with no Java, which is a core must-have."
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-010",
+   "grade": 0,
+   "note": "Performance testing profile (k6, JMeter) with no Selenium or Java UI automation."
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-017",
+   "grade": 0,
+   "note": "Junior with 1 year who runs existing suites and still learns scripting under supervision; well short of every must-have."
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-015",
+   "grade": 0,
+   "note": "6 years as a single-project C# engineer with no lead or architect role and no framework shared across teams."
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-011",
+   "grade": 0,
+   "note": "All buzzwords: no concrete framework, team count, gate or metric, and tools appear only in a skills list."
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-028",
+   "grade": 2,
+   "note": "Strong platform evidence (NuGet framework used by 9 teams, Kubernetes/Helm runners, GitLab gates that block deploys, k6, contract tests), but the hands-on work is C#; TypeScript appears only as a claim, so the stack must-have needs checking on a call."
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-008",
+   "grade": 0,
+   "note": "5 years of mobile-only QA with no lead or architect role and no framework shared across teams, so the 8+ years and 3+ years lead must-haves are missing."
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-036",
+   "grade": 0,
+   "note": "About 5 years of automation with no lead or architect role; the keyword library was shared only across their own outsourcing projects."
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-018",
+   "grade": 3,
+   "note": "12 years, 6 as architect; shared Java platform adopted by 14 squads as versioned libraries, Kubernetes grid, Pact across 60 services, and GitLab gates that block production promotions."
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-030",
+   "grade": 1,
+   "note": "11 years with 6 as lead and a Java framework template reused by 6 client projects, but no evidence of quality gates that block releases, no maintained versioned shared library, and no Kubernetes or contract testing."
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-050",
+   "grade": 0,
+   "note": "About 6 years of API-only testing with no lead or architect role; the Pact pilot and blocking gates are relevant, but the core seniority must-haves are missing."
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-047",
+   "grade": 2,
+   "note": "About 10 years; designed a Java WebDriver harness used by 5 squads, container pool, merge-blocking service checks and a flaky-test reduction, but no formal lead title, no named CI tool, and no Kubernetes, contract or performance work."
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-050",
+   "grade": 0,
+   "note": "API functional automation only; no load/performance testing, k6/JMeter or monitoring dashboards."
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-011",
+   "grade": 0,
+   "note": "Vague buzzword achievements; JMeter appears only in the skills list with no demonstrated performance work."
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-045",
+   "grade": 0,
+   "note": "Maintains existing Selenium regression; no performance testing experience."
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-028",
+   "grade": 1,
+   "note": "Implemented k6 performance thresholds as GitLab CI gates, but the role is a general SDET with no dedicated performance testing experience."
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-009",
+   "grade": 3,
+   "note": "8 years of performance testing with JMeter/Gatling, workload models, Jenkins threshold pass/fail, Grafana/InfluxDB and a p95 bottleneck fix."
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-040",
+   "grade": 0,
+   "note": "Mobile functional automation specialist; no load testing tools or performance testing experience."
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-041",
+   "grade": 3,
+   "note": "E-commerce performance engineer: k6 scripts with p95/p99 thresholds in GitLab CI, Grafana/Prometheus dashboards, bottlenecks found, baselines, Docker/K8s."
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-024",
+   "grade": 1,
+   "note": "One demonstrated JMeter load test (1,000 users, slow queries found), but mainly Selenium work with no dashboards or perf CI thresholds."
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-018",
+   "grade": 0,
+   "note": "Automation architect; JMeter only listed as 'basic' and performance thresholds mentioned generically, no performance testing track record."
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-042",
+   "grade": 0,
+   "note": "Playwright/Cypress UI automation engineer; no load testing tools or performance experience."
+  }
+ ]
+}

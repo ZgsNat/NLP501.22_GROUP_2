@@ -13,3 +13,6 @@ Decision rule (EVAL.md §2): κ(human, silver) ≥ 0.8 keeps the silver set as t
 | llm-annotator-c (Claude, recruiter persona, blind) vs annotator A (Opus) | 120 | 74.2% | 0.894 |
 | llm-annotator-c (Claude, recruiter persona, blind) vs annotator B (Sonnet) | 120 | 77.5% | 0.895 |
 | llm-annotator-c (Claude, recruiter persona, blind) vs silver gold (mean, rounded) | 120 | 75.8% | 0.889 |
+| llm-annotator-d (claude-opus-5-5, LLM, blind, rubric; not human) vs annotator A (Opus) | 120 | 67.5% | 0.872 |
+| llm-annotator-d (claude-opus-5-5, LLM, blind, rubric; not human) vs annotator B (Sonnet) | 120 | 45.8% | 0.785 |
+| llm-annotator-d (claude-opus-5-5, LLM, blind, rubric; not human) vs silver gold (mean, rounded) | 120 | 45.8% | 0.789 |
