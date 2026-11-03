@@ -284,10 +284,10 @@ def test_consented_intake_keeps_only_redacted_text(tmp_path, monkeypatch):
     from app.eval import realtext
 
     (tmp_path / "raw").mkdir()
-    (tmp_path / "raw" / "cv1.txt").write_text("Trần Thị Mai\nEmail: mai@corp.vn\n## Experience\n### QA (2020–2023)\n- Wrote Selenium tests.")
+    (tmp_path / "raw" / "cv1.txt").write_text("Trần Thị Mai\nEmail: mai@corp.vn\n## Experience\n### QA (2020–2023)\n- Wrote Selenium tests.", encoding="utf-8")
     monkeypatch.setattr(realtext, "CONSENTED", tmp_path)
     report = realtext.intake()
-    out = (tmp_path / "redacted" / "cv1.txt").read_text()
+    out = (tmp_path / "redacted" / "cv1.txt").read_text(encoding="utf-8")
     assert "Mai" not in out and "mai@corp.vn" not in out and "Selenium" in out
     assert "cv1: masked" in report
 

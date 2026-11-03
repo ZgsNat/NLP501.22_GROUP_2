@@ -28,7 +28,17 @@ class KnowledgeStore:
     def __init__(self, s: Settings):
         self.s = s
         url = s.qdrant_url
-        self.client = QdrantClient(location=":memory:") if url == ":memory:" else QdrantClient(url=url)
+        if url == ":memory:":
+            self.client = QdrantClient(location=":memory:")
+        else:
+            try:
+                probe = QdrantClient(url=url, timeout=1.5)
+                probe.get_collections()
+                self.client = probe
+            except Exception:
+                import logging
+                logging.getLogger(__name__).warning("Qdrant at %s offline; falling back to in-memory Qdrant", url)
+                self.client = QdrantClient(location=":memory:")
 
     @cached_property
     def dense(self) -> TextEmbedding:
@@ -80,6 +90,8 @@ class KnowledgeStore:
     def hybrid_search(self, collection: str, query: str, limit: int, where: models.Filter | None = None,
                       mode: str = "hybrid") -> list[Hit]:
         """mode: hybrid (BM25 + dense, fused by RRF) | bm25 | dense. The single modes are the B0/B1 baselines."""
+        if not self.client.collection_exists(collection):
+            return []
         dense = models.Prefetch(query=next(iter(self.dense.query_embed(query))).tolist(), using="dense",
                                 limit=limit * 2, filter=where)
         sv = next(iter(self.sparse.query_embed(query)))

@@ -88,8 +88,12 @@ export function Requirements({ run }: { run: RunState }) {
   )
 }
 
-const TITLE = { clarification: 'Clarification needed', substitutes: 'Accept related tools?', review: 'Review ranking',
-  chat: 'The agent answered' }
+const TITLE = {
+  clarification: 'Làm rõ yêu cầu tuyển dụng (Clarification)',
+  substitutes: 'Chấp thuận công cụ thay thế tương đương?',
+  review: 'Rà soát bảng xếp hạng & Tinh chỉnh trọng số',
+  chat: 'Trợ lý tuyển dụng phản hồi',
+}
 
 export function InterruptPanel({ interrupt, criteria, onSubmit }: {
   interrupt: Interrupt
@@ -97,8 +101,11 @@ export function InterruptPanel({ interrupt, criteria, onSubmit }: {
   onSubmit: (body: ResumeBody) => void
 }) {
   return (
-    <section className="card interrupt">
-      <h2><span className="badge amber">waiting for HR</span> {TITLE[interrupt.kind]}</h2>
+    <section className="card interrupt modern-interrupt">
+      <div className="interrupt-header">
+        <span className="badge amber">Cần tương tác từ HR</span>
+        <h2>{TITLE[interrupt.kind]}</h2>
+      </div>
       {interrupt.kind === 'clarification' && <Clarify questions={interrupt.payload.questions} onSubmit={onSubmit} />}
       {interrupt.kind === 'substitutes' && <Substitutes proposals={interrupt.payload.proposals} onSubmit={onSubmit} />}
       {interrupt.kind === 'review' && <Review payload={interrupt.payload} criteria={criteria} onSubmit={onSubmit} />}
@@ -110,13 +117,20 @@ export function InterruptPanel({ interrupt, criteria, onSubmit }: {
 function Clarify({ questions, onSubmit }: { questions: string[]; onSubmit: (b: ResumeBody) => void }) {
   const [answers, setAnswers] = useState<Record<string, string>>({})
   return (
-    <form onSubmit={(e) => { e.preventDefault(); onSubmit({ answers }) }}>
+    <form onSubmit={(e) => { e.preventDefault(); onSubmit({ answers }) }} className="interrupt-form">
+      <p className="muted small mb-2">Hệ thống phát hiện JD có điểm cần xác nhận để thiết lập tiêu chí chấm điểm chính xác nhất:</p>
       {questions.map((q) => (
-        <label key={q}>{q}
-          <input value={answers[q] ?? ''} onChange={(e) => setAnswers({ ...answers, [q]: e.target.value })} />
+        <label key={q} className="form-question">
+          <span className="question-text">{q}</span>
+          <input
+            className="text-input"
+            placeholder="Nhập câu trả lời hoặc yêu cầu cụ thể..."
+            value={answers[q] ?? ''}
+            onChange={(e) => setAnswers({ ...answers, [q]: e.target.value })}
+          />
         </label>
       ))}
-      <button className="primary" type="submit">Submit answers</button>
+      <button className="primary mt-2" type="submit">Gửi phản hồi xác nhận</button>
     </form>
   )
 }
@@ -127,23 +141,24 @@ function Substitutes({ proposals, onSubmit }: { proposals: SubstituteProposal[];
   const flip = (m: string, tool: string) =>
     setAccept((a) => ({ ...a, [m]: a[m].includes(tool) ? a[m].filter((t) => t !== tool) : [...a[m], tool] }))
   return (
-    <form onSubmit={(e) => { e.preventDefault(); onSubmit({ accept }) }}>
+    <form onSubmit={(e) => { e.preventDefault(); onSubmit({ accept }) }} className="interrupt-form">
       {proposals.map((p) => (
-        <fieldset key={p.must_have} className="subst">
+        <fieldset key={p.must_have} className="subst modern-subst">
           <legend>
-            Only {p.covered} CV{p.covered === 1 ? '' : 's'} show <b>{p.must_have}</b>. Accept these related tools as substitutes?
+            Chỉ có {p.covered} hồ sơ đáp ứng trực tiếp <b>{p.must_have}</b>. Bạn có đồng ý chấp nhận các công cụ tương đương sau không?
           </legend>
           <div className="chips">
             {p.related.map((t) => (
-              <label key={t} className="check">
-                <input type="checkbox" checked={accept[p.must_have].includes(t)} onChange={() => flip(p.must_have, t)} /> {t}
+              <label key={t} className="check-chip">
+                <input type="checkbox" checked={accept[p.must_have].includes(t)} onChange={() => flip(p.must_have, t)} />
+                <span>{t}</span>
               </label>
             ))}
           </div>
         </fieldset>
       ))}
-      <p className="muted small">Unchecking every tool rejects substitutes for that must-have.</p>
-      <button className="primary" type="submit">Continue search</button>
+      <p className="muted small">Bỏ chọn tất cả nếu bạn bắt buộc ứng viên phải có đúng công cụ gốc.</p>
+      <button className="primary mt-2" type="submit">Tiếp tục tìm kiếm & Mở rộng</button>
     </form>
   )
 }

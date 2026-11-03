@@ -152,7 +152,16 @@ export interface Usage {
   by_node: Record<string, { calls: number; input_tokens: number; output_tokens: number }>
 }
 
-export interface CVListItem { id: string; headline: string; lang: Lang; uploaded: boolean }
+export interface CVListItem {
+  id: string
+  headline: string
+  filename?: string
+  uploaded_at?: string
+  lang: Lang
+  skills?: string[]
+  years_automation?: number | null
+  uploaded: boolean
+}
 export interface CV { id: string; headline: string; text: string; profile: CVProfileView }
 
 // Output of the CV NLP pipeline (language → redaction → sections → chunks → skills/facts).

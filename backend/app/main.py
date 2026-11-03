@@ -1,12 +1,15 @@
 """FastAPI entrypoint:  uv run uvicorn app.main:app --app-dir backend --reload"""
 
+import csv
+import io
 import json
 import uuid
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from datetime import datetime, timezone
 from typing import Literal
 
-from fastapi import FastAPI, HTTPException, UploadFile
+from fastapi import FastAPI, File, HTTPException, Response, UploadFile
 from fastapi.responses import StreamingResponse
 from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 from langgraph.types import Command
@@ -168,34 +171,193 @@ async def get_run(run_id: str):
             "usage": observability.usage_counter(run_id).summary(), "logs": observability.read_logs(run_id)}
 
 
+def _next_cv_id() -> str:
+    existing = {d.id for d in load_dir("cvs") if d.id.startswith("UP-")}
+    i = 1
+    while f"UP-{i:03d}" in existing:
+        i += 1
+    return f"UP-{i:03d}"
+
+
+def _save_uploaded_cv(cv_id: str, raw_text: str, filename: str):
+    p = process(cv_id, raw_text)
+    if len(p.text.split()) < 10:
+        raise ValueError("Văn bản CV quá ngắn hoặc không đọc được nội dung (tối thiểu 10 từ). Nếu là ảnh chụp/scan cần cài đặt OCR.")
+    headline = next((ln.strip("#* ") for ln in p.text.splitlines() if ln.strip()), "")[:80]
+    p = process(cv_id, raw_text, headline)
+    upload_dir().mkdir(parents=True, exist_ok=True)
+    now = datetime.now(timezone.utc).isoformat()
+    content = f"---\nid: {cv_id}\nheadline: {json.dumps(headline)}\nfilename: {json.dumps(filename)}\nuploaded_at: {json.dumps(now)}\n---\n{p.text}\n"
+    (upload_dir() / f"{cv_id}.md").write_text(content, encoding="utf-8")
+    return {"id": cv_id, "headline": headline, "filename": filename, "uploaded_at": now}, p.text, p
+
+
 @app.get("/api/cvs")
 async def list_cvs():
     uploaded = {p.stem for p in upload_dir().glob("*.md")} if upload_dir().exists() else set()
-    return [{"id": d.id, "headline": d.meta.get("headline", ""), "lang": profile(d.id).lang, "uploaded": d.id in uploaded}
-            for d in load_dir("cvs")]
+    result = []
+    for d in load_dir("cvs"):
+        try:
+            prof = profile(d.id)
+            skills = sorted(list(prof.skills.keys()))
+            years = prof.years_automation
+            lang = prof.lang
+        except Exception:
+            skills = []
+            years = 0.0
+            lang = "vi"
+        result.append({
+            "id": d.id,
+            "headline": d.meta.get("headline", ""),
+            "filename": d.meta.get("filename", f"{d.id}.md"),
+            "uploaded_at": d.meta.get("uploaded_at"),
+            "lang": lang,
+            "skills": skills,
+            "years_automation": years,
+            "uploaded": d.id in uploaded,
+        })
+    return result
 
 
 @app.post("/api/cvs", status_code=201)
 async def upload_cv(file: UploadFile):
-    """PDF/DOCX/MD/TXT/PNG/JPG (scans and photos by OCR) → NLP pipeline → indexed. Only the redacted text is stored; the raw file never touches disk."""
+    """PDF/DOCX/MD/TXT/PNG/JPG (scans and photos by OCR) → NLP pipeline → indexed."""
     try:
         raw = read_file(file.filename or "", await file.read())
+        cv_id = _next_cv_id()
+        meta, text, p = _save_uploaded_cv(cv_id, raw, file.filename or "")
     except ValueError as e:
         raise HTTPException(400, str(e))
-    n = 1 + sum(1 for d in load_dir("cvs") if d.id.startswith("UP-"))
-    cv_id = f"UP-{n:03d}"
-    p = process(cv_id, raw)
-    if len(p.text.split()) < 30:
-        raise HTTPException(400, "No readable text found (scans and photos need OCR: uv sync --group ocr)")
-    headline = next((ln.strip("#* ") for ln in p.text.splitlines() if ln.strip()), "")[:80]
-    p = process(cv_id, raw, headline)
-    upload_dir().mkdir(parents=True, exist_ok=True)
-    (upload_dir() / f"{cv_id}.md").write_text(f"---\nid: {cv_id}\nheadline: {json.dumps(headline)}\n---\n{p.text}\n")
     load_dir.cache_clear()
-    store = get_store()
-    store.upsert_items(retrieve.WHOLE, [(cv_id, p.text, {"doc_id": cv_id, "text": p.text, "headline": headline})])
-    store.upsert_items(retrieve.CHUNKS, retrieve.chunk_items([p]))
-    return p.view()
+    profile.cache_clear()
+    try:
+        store = get_store()
+        store.upsert_items(retrieve.WHOLE, [(cv_id, text, {"doc_id": cv_id, "text": text, "headline": meta["headline"]})])
+        store.upsert_items(retrieve.CHUNKS, retrieve.chunk_items([p]))
+    except Exception:
+        # When vector store (Qdrant) is offline, markdown files and NLP profiles remain fully functional
+        pass
+    view = p.view()
+    view["filename"] = meta["filename"]
+    view["uploaded_at"] = meta["uploaded_at"]
+    return view
+
+
+@app.post("/api/cvs/batch", status_code=200)
+async def batch_upload_cvs(files: list[UploadFile] = File(...)):
+    """Upload multiple CV files at once."""
+    succeeded = []
+    failed = []
+    new_profiles = []
+    whole_items = []
+
+    for f in files:
+        fname = f.filename or "unknown"
+        try:
+            content_bytes = await f.read()
+            raw = read_file(fname, content_bytes)
+            cv_id = _next_cv_id()
+            meta, text, p = _save_uploaded_cv(cv_id, raw, fname)
+            # Clear cache so next iteration sees the newly allocated UP-xxx ID
+            load_dir.cache_clear()
+            succeeded.append({
+                "id": cv_id,
+                "filename": fname,
+                "headline": meta["headline"],
+                "skills": sorted(list(p.skills.keys())),
+                "years_automation": p.years_automation,
+                "lang": p.lang,
+            })
+            new_profiles.append(p)
+            whole_items.append((cv_id, text, {"doc_id": cv_id, "text": text, "headline": meta["headline"]}))
+        except Exception as e:
+            failed.append({"filename": fname, "error": str(e)})
+
+    if new_profiles:
+        load_dir.cache_clear()
+        profile.cache_clear()
+        try:
+            store = get_store()
+            store.upsert_items(retrieve.WHOLE, whole_items)
+            store.upsert_items(retrieve.CHUNKS, retrieve.chunk_items(new_profiles))
+        except Exception:
+            pass
+
+    return {
+        "total": len(files),
+        "succeeded": len(succeeded),
+        "failed": len(failed),
+        "items": succeeded,
+        "errors": failed,
+    }
+
+
+@app.post("/api/jds/parse", status_code=200)
+async def parse_jd_endpoint(file: UploadFile = File(...)):
+    """Upload a JD file (.docx, .pdf, .md, .txt) → NLP normalization → extract requirements using app.nlp.jd."""
+    from app.nlp.jd import parse as parse_jd
+    from app.nlp.text import normalize
+
+    filename = file.filename or "jd.txt"
+    try:
+        raw = read_file(filename, await file.read())
+    except Exception as e:
+        raise HTTPException(400, f"Không thể đọc tệp JD: {e}")
+
+    norm_text = normalize(raw)
+    if len(norm_text.split()) < 10:
+        raise HTTPException(400, "Nội dung tệp JD quá ngắn hoặc không đọc được (tối thiểu 10 từ).")
+
+    parsed = parse_jd(norm_text)
+    lines = [ln.strip("#* \t") for ln in norm_text.splitlines() if ln.strip()]
+    title = lines[0][:80] if lines else "Automation Test Engineer"
+    parsed["title"] = title
+    parsed["filename"] = filename
+    parsed["raw_text"] = norm_text
+    return parsed
+
+
+@app.delete("/api/cvs/{cv_id}")
+async def delete_cv(cv_id: str):
+    """Delete an uploaded CV (.runtime/cvs/UP-*.md). Built-in CVs cannot be deleted."""
+    if not cv_id.startswith("UP-"):
+        raise HTTPException(400, "Only uploaded CVs (UP-*) can be deleted")
+    target = upload_dir() / f"{cv_id}.md"
+    if not target.exists():
+        raise HTTPException(404, f"CV {cv_id} not found in uploads")
+    target.unlink()
+    load_dir.cache_clear()
+    profile.cache_clear()
+    try:
+        from qdrant_client.http import models as qmodels
+        store = get_store()
+        point_id = str(uuid.uuid5(uuid.NAMESPACE_URL, cv_id))
+        store.client.delete(retrieve.WHOLE, points_selector=[point_id])
+        store.client.delete(
+            retrieve.CHUNKS,
+            points_selector=qmodels.FilterSelector(
+                filter=qmodels.Filter(must=[qmodels.FieldCondition(key="doc_id", match=qmodels.MatchValue(value=cv_id))])
+            ),
+        )
+    except Exception:
+        pass
+    return {"status": "deleted", "id": cv_id}
+
+
+@app.post("/api/cvs/reset")
+async def reset_uploaded_cvs():
+    """Remove all user-uploaded CVs, returning the pool to pristine benchmark state."""
+    deleted_count = 0
+    if upload_dir().exists():
+        for f in upload_dir().glob("*.md"):
+            try:
+                f.unlink()
+                deleted_count += 1
+            except Exception:
+                pass
+    load_dir.cache_clear()
+    profile.cache_clear()
+    return {"status": "reset", "deleted_count": deleted_count}
 
 
 @app.get("/api/cvs/{cv_id}")
@@ -204,4 +366,57 @@ async def get_cv(cv_id: str):
     if not doc:
         raise HTTPException(404, "Unknown CV")
     p = profile(cv_id)
-    return {"id": doc.id, "headline": doc.meta.get("headline", ""), "text": p.text, "profile": p.view()}
+    return {
+        "id": doc.id,
+        "headline": doc.meta.get("headline", ""),
+        "filename": doc.meta.get("filename", f"{doc.id}.md"),
+        "uploaded_at": doc.meta.get("uploaded_at"),
+        "text": p.text,
+        "profile": p.view(),
+    }
+
+
+@app.get("/api/runs/{run_id}/export/csv")
+async def export_run_csv(run_id: str):
+    """Export screening and ranking results as a formatted CSV with UTF-8 BOM."""
+    try:
+        graph = await _graph_for(run_id)
+        state = await graph.aget_state(_config(run_id))
+    except Exception as e:
+        raise HTTPException(404, f"Cannot load run: {e}")
+    if not state.values:
+        raise HTTPException(404, "Unknown run")
+    ranking = state.values.get("ranking") or []
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow([
+        "Hạng (Rank)",
+        "Mã CV (ID)",
+        "Tiêu đề (Headline)",
+        "Điểm phù hợp (Score %)",
+        "Xếp loại (Tier)",
+        "Trạng thái (Status)",
+        "Lý do phân loại (Reason)",
+        "Ghi chú thẩm định (Arbiter Note)",
+        "Cờ cảnh báo (Flags)",
+    ])
+    for r in ranking:
+        total_pct = f"{round(float(r.get('total', 0)) * 100)}%"
+        flags_str = ", ".join(r.get("flags") or [])
+        writer.writerow([
+            r.get("rank", ""),
+            r.get("cv_id", ""),
+            r.get("headline", ""),
+            total_pct,
+            r.get("tier", ""),
+            r.get("status", ""),
+            r.get("reason", ""),
+            r.get("arbiter_note", ""),
+            flags_str,
+        ])
+    bom_bytes = b"\xef\xbb\xbf" + output.getvalue().encode("utf-8")
+    return Response(
+        content=bom_bytes,
+        media_type="text/csv",
+        headers={"Content-Disposition": f'attachment; filename="ket_qua_tuyen_dung_{run_id}.csv"'},
+    )
