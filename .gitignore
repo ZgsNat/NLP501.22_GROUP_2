@@ -8,3 +8,6 @@ __pycache__/
 node_modules/
 frontend/dist/
 .pytest_cache/
+
+# backups of .env (may hold keys)
+.env.bak*
