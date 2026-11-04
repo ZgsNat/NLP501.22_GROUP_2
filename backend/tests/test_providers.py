@@ -22,7 +22,9 @@ def test_llm_provider_switches_both_roles(provider):
 
 def test_woku_provider_builds_model():
     llm = create_llm("woku:gpt-4o", settings(woku_api_key="sk-woku-test", woku_base_url="https://api.wokushop.com/v1"))
-    assert type(llm).__name__ == "ChatOpenAI"
+    from langchain_openai import ChatOpenAI
+
+    assert isinstance(llm, ChatOpenAI)  # a ProxyChatOpenAI.wrap subclass of it
 
 
 def test_explicit_role_spec_overrides_provider():
