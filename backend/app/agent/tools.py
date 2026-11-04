@@ -106,7 +106,7 @@ def screen_view(state: AgentState) -> dict:
 
 async def screen_into(r: Run) -> dict:
     """search → rerank → rule assessment of the shortlist → score: the P6 pipeline up to the ranking, 0 LLM tokens."""
-    r.add({"llm_order": []})  # a new screen invalidates an LLM order of the old shortlist
+    r.add({"llm_order": [], "llm_reasons": {}})  # a new screen invalidates an LLM order of the old shortlist
     r.add(await nodes.search(r.state))
     r.add(await nodes.rerank(r.state))
     short, old = r.state["retry_ids"], r.state.get("assessments", {})
@@ -354,7 +354,7 @@ async def rank_shortlist(state: AgentState, _: NoArgs) -> tuple[dict, dict]:
     r.add({"assessments": {c: rule_assessment(state, c, None) for c in top if c not in state.get("assessments", {})}})
     res = await llm_rank.rank(nodes.llm(state, "reasoning"), sanitize(state["jd_text"], "job description")[0],
                               state["requirements"], top, {c: nodes.prof(state, c) for c in top})
-    r.add({"llm_order": res["order"]})
+    r.add({"llm_order": res["order"], "llm_reasons": res["reasons"]})
     r.add(await nodes.score(r.state))
     nodes.emit("rank_shortlist", f"LLM ranked the top {len(top)} in both input orders (agreement@5 "
                                  f"{res['agreement@5']:.0%}) → {res['order'][:5]}", "loop", agreement=res["agreement@5"])

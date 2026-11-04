@@ -108,6 +108,7 @@ export interface Values {
   report: Report
   loops: Loops
   goal?: string // agent mode
+  llm_reasons?: Record<string, string> // rank_shortlist: why each CV sits where it does
   shortlist?: string[]
   reply?: string
 }

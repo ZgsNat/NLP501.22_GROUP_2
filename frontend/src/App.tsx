@@ -5,6 +5,7 @@ import CvLibrary from './CvLibrary'
 import CvPool from './CvPool'
 import CvPreview from './CvPreview'
 import GraphView from './GraphView'
+import PipelineProgress from './PipelineProgress'
 import { InterruptPanel, Requirements, Timeline } from './Panels'
 import Results from './Results'
 import RunHistoryModal, { type HistoryItem } from './RunHistoryModal'
@@ -20,6 +21,7 @@ import {
   type NodeName,
   type ResumeBody,
   type RunRequest,
+  type LogLine,
   type RunState,
   type StreamEvent,
 } from './types'
@@ -97,6 +99,23 @@ function applyEvent(s: RunState, ev: StreamEvent): RunState {
     case 'error':
       return { ...s, running: false }
   }
+}
+
+// A run loaded from history has no live tool events: rebuild the tools the assistant ran from its narration
+// ("… → screen({})"), minus the calls the guard refused, so the progress bar shows the run as it happened.
+function toolsFromLogs(logs: LogLine[]): RunState['tools'] {
+  const out: RunState['tools'] = []
+  for (const l of logs) {
+    if (l.node === 'agent') {
+      const calls = l.message.includes(' → ') ? l.message.split(' → ').pop()! : l.message
+      for (const m of calls.matchAll(/\b([a-z_]+)\(/g)) out.push({ name: m[1], args: {}, result: '' })
+    } else if (l.node === 'guard' && l.message.startsWith('Refused ')) {
+      const name = l.message.slice(8).split(':')[0]
+      const i = out.map((t) => t.name).lastIndexOf(name)
+      if (i >= 0) out.splice(i, 1)
+    }
+  }
+  return out
 }
 
 export default function App() {
@@ -205,6 +224,7 @@ export default function App() {
         done: finished,
         usage: snap.usage?.calls ? snap.usage : null,
         logs: snap.logs ?? [],
+        tools: toolsFromLogs(snap.logs ?? []),
         mode,
       }
       setRun(newRun)
@@ -217,19 +237,6 @@ export default function App() {
     } catch (e) {
       setError(`Cannot load run: ${(e as Error).message}`)
     }
-  }
-
-  // Stepper active calculation
-  const getStepStatus = (step: number) => {
-    if (run.done) return 'done'
-    if (run.running) {
-      if (step === 1) return 'done'
-      if (step === 2) return run.values.candidates?.length ? 'done' : 'active'
-      if (step === 3) return run.values.assessments && Object.keys(run.values.assessments).length ? 'active' : 'pending'
-      if (step === 4) return 'pending'
-    }
-    if (step === 1) return run.values.requirements ? 'done' : 'active'
-    return 'pending'
   }
 
   return (
@@ -309,28 +316,7 @@ export default function App() {
         </main>
       ) : (
         <div className="screening-workflow">
-          {/* Stepper Bar */}
-          <div className="workflow-stepper">
-            <div className={`step-item ${getStepStatus(1)}`}>
-              <span className="step-num">1</span>
-              <span className="step-text">Tiêu chí & JD</span>
-            </div>
-            <div className="step-line" />
-            <div className={`step-item ${getStepStatus(2)}`}>
-              <span className="step-num">2</span>
-              <span className="step-text">Quét kho ứng viên</span>
-            </div>
-            <div className="step-line" />
-            <div className={`step-item ${getStepStatus(3)}`}>
-              <span className="step-num">3</span>
-              <span className="step-text">Kiểm chứng kinh nghiệm</span>
-            </div>
-            <div className="step-line" />
-            <div className={`step-item ${getStepStatus(4)}`}>
-              <span className="step-num">4</span>
-              <span className="step-text">Xếp hạng & Báo cáo</span>
-            </div>
-          </div>
+          <PipelineProgress run={run} />
 
           <div className="layout">
             <aside>
@@ -363,19 +349,6 @@ export default function App() {
                     <span className="badge slate">{run.mode === 'agent' ? 'P7 Autonomous Agent' : 'P6 Pipeline'}</span>
                   </div>
                   {run.mode === 'agent' ? <AgentView run={run} /> : <GraphView run={run} />}
-                </div>
-              )}
-
-              {/* Running Status Banner */}
-              {run.running && !auditView && (
-                <div className="card running-banner">
-                  <div className="spinner" />
-                  <div>
-                    <h4>Trợ lý AI đang thực hiện phân tích và xếp hạng ứng viên...</h4>
-                    <p className="muted small">
-                      Đang xử lý bóc tách NLP, đối chiếu kinh nghiệm và thẩm định bằng chứng trích dẫn.
-                    </p>
-                  </div>
                 </div>
               )}
 

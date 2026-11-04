@@ -63,6 +63,7 @@ class AgentState(TypedDict, total=False):
     responded: bool  # the agent answered HR this step: hand the turn to HR
     halt: str  # why the harness stopped the agent this turn (budget, repeated errors); code answers HR instead
     llm_order: list[str]  # rank_shortlist's controlled LLM order of the shortlist (agent/llm_rank.py); [] = rule order
+    llm_reasons: dict[str, str]  # cv_id → the LLM's one-sentence reason for its place (shown to HR)
 
 
 def public_view(update: dict[str, Any]) -> dict[str, Any]:

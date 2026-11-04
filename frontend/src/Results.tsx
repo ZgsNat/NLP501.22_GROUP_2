@@ -1,3 +1,4 @@
+import AgentProposal from './AgentProposal'
 import { Fragment, useState } from 'react'
 import { api } from './api'
 import CompareModal from './CompareModal'
@@ -91,7 +92,7 @@ export default function Results({
             Bảng xếp hạng & Đánh giá ứng viên{' '}
             {run.done && <span className="badge green">Đã hoàn tất</span>}
           </h2>
-          {report && <p className="results-summary">{report.summary}</p>}
+          {report && !(run.mode === 'agent' && run.values.reply) && <p className="results-summary">{report.summary}</p>}
         </div>
 
         <div className="results-actions">
@@ -107,6 +108,9 @@ export default function Results({
           )}
         </div>
       </div>
+
+      <AgentProposal run={run} labels={labels} onOpenCv={onOpenCv} selected={selectedForCompare}
+        onToggleCompare={(id) => toggleSelectCompare(id, { stopPropagation() {} } as React.MouseEvent)} />
 
       {/* Filter Tabs */}
       <div className="tab-pills">

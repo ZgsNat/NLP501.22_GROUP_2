@@ -142,7 +142,7 @@ start → agent ⇄ guard ─┬→ act ──────→ agent          (to
         act(respond_to_hr) → hr_turn ⏸ ─┬─(message)→ agent
                                          └─(approve)→ END
 ```
-Extra keys in agent-mode `update`: `goal`, `shortlist`, `reply`, `tool_calls` (`{name, args}[]` the model just made),
+Extra keys in agent-mode `update`: `goal`, `shortlist`, `reply`, `llm_order` and `llm_reasons` (from `rank_shortlist`), `tool_calls` (`{name, args}[]` the model just made),
 and `loops.{agent, agent_tokens, guard_rejections, cache_hits, budget_stops, hr_turn}`. Tools run P6 code, so P6 node
 names (`search`, `rerank`, `score`, …) also appear in `node_start`/`log` events.
 
