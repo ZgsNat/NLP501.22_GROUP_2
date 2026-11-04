@@ -1,25 +1,43 @@
 import { useEffect, useRef, useState } from 'react'
 import AgentView from './AgentView'
 import { api, isMock } from './api'
+import CvLibrary from './CvLibrary'
 import CvPool from './CvPool'
 import CvPreview from './CvPreview'
 import GraphView from './GraphView'
 import { InterruptPanel, Requirements, Timeline } from './Panels'
 import Results from './Results'
+import RunHistoryModal, { type HistoryItem } from './RunHistoryModal'
 import RunPanel from './RunPanel'
 import {
-  AGENT_NODES, emptyRun, INTERRUPT_NODE, NODES,
-  type Assessment, type Config, type LoopKey, type NodeName, type ResumeBody,
-  type RunRequest, type RunState, type StreamEvent,
+  AGENT_NODES,
+  emptyRun,
+  INTERRUPT_NODE,
+  NODES,
+  type Assessment,
+  type Config,
+  type LoopKey,
+  type NodeName,
+  type ResumeBody,
+  type RunRequest,
+  type RunState,
+  type StreamEvent,
 } from './types'
 
 // Which loop edge a `level: "loop"` log belongs to, by emitting node.
 const LOOP_OF: Partial<Record<NodeName, LoopKey>> = {
-  ingest: 'clarify', clarify: 'clarify', search: 'expand', expand_query: 'expand', investigate: 'investigate', assess: 'verify',
-  verify_evidence: 'verify', arbitrate: 'arbitrate', score: 'review', hr_review: 'review',
+  ingest: 'clarify',
+  clarify: 'clarify',
+  search: 'expand',
+  expand_query: 'expand',
+  investigate: 'investigate',
+  assess: 'verify',
+  verify_evidence: 'verify',
+  arbitrate: 'arbitrate',
+  score: 'review',
+  hr_review: 'review',
 }
 
-// Fold one stream event into the run state.
 function applyEvent(s: RunState, ev: StreamEvent): RunState {
   switch (ev.type) {
     case 'run_started':
@@ -38,7 +56,7 @@ function applyEvent(s: RunState, ev: StreamEvent): RunState {
     case 'update': {
       const { assessments, loops, ...rest } = ev.update
       const values = { ...s.values, ...rest }
-      if (loops) { // the stream sends each node's increments (the add_counts reducer): sum them
+      if (loops) {
         const sum = { ...s.values.loops } as Record<string, number>
         for (const [k, n] of Object.entries(loops)) sum[k] = (sum[k] ?? 0) + (n ?? 0)
         values.loops = sum as typeof values.loops
@@ -59,36 +77,87 @@ function applyEvent(s: RunState, ev: StreamEvent): RunState {
       const node = s.mode === 'agent' && ev.kind !== 'chat' ? 'ask_hr' : INTERRUPT_NODE[ev.kind]
       const ms = s.nodes[node]?.ms
       const chat = ev.kind === 'chat' ? [...s.chat, { who: 'agent' as const, text: ev.payload.message }] : s.chat
-      return { ...s, running: false, interrupt: { kind: ev.kind, payload: ev.payload } as RunState['interrupt'],
-        nodes: { ...s.nodes, [node]: { status: 'waiting', ms } }, chat }
+      return {
+        ...s,
+        running: false,
+        interrupt: { kind: ev.kind, payload: ev.payload } as RunState['interrupt'],
+        nodes: { ...s.nodes, [node]: { status: 'waiting', ms } },
+        chat,
+      }
     }
     case 'done':
-      return { ...s, running: false, done: true, interrupt: null, values: { ...s.values, report: ev.report }, usage: ev.usage ?? null }
+      return {
+        ...s,
+        running: false,
+        done: true,
+        interrupt: null,
+        values: { ...s.values, report: ev.report },
+        usage: ev.usage ?? null,
+      }
     case 'error':
       return { ...s, running: false }
   }
 }
 
 export default function App() {
+  const [tab, setTab] = useState<'screening' | 'library'>('screening')
   const [config, setConfig] = useState<Config | null>(null)
   const [run, setRun] = useState<RunState>(emptyRun)
   const [error, setError] = useState<string | null>(null)
-  const [loadId, setLoadId] = useState('')
-  const [previewId, setPreviewId] = useState<string | null>(null) // CV shown in the parse-preview modal
-  const gen = useRef(0) // ignore events from a stream that has been superseded
+  const [previewId, setPreviewId] = useState<string | null>(null)
+  const [auditView, setAuditView] = useState(false)
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false)
+  const [history, setHistory] = useState<HistoryItem[]>(() => {
+    try {
+      return JSON.parse(localStorage.getItem('ts_run_history_v1') || '[]')
+    } catch {
+      return []
+    }
+  })
+  const gen = useRef(0)
 
   useEffect(() => {
     api.config().then(setConfig).catch((e) => setError(`Cannot load /api/config: ${e.message}`))
-    const shared = new URLSearchParams(location.search).get('run') // ?run=<id> → shareable link to a run
-    if (shared) { setLoadId(shared); load(shared) }
+    const shared = new URLSearchParams(location.search).get('run')
+    if (shared) load(shared)
   }, [])
+
+  const saveToHistory = (runId: string, title: string, topCandidate?: string, mode?: string) => {
+    setHistory((prev) => {
+      const filtered = prev.filter((h) => h.id !== runId)
+      const updated = [
+        {
+          id: runId,
+          timestamp: new Date().toISOString(),
+          title: title || 'Chiến dịch tuyển dụng',
+          topCandidate,
+          mode,
+        },
+        ...filtered,
+      ].slice(0, 20)
+      localStorage.setItem('ts_run_history_v1', JSON.stringify(updated))
+      return updated
+    })
+  }
+
+  const clearHistory = () => {
+    localStorage.removeItem('ts_run_history_v1')
+    setHistory([])
+  }
 
   async function consume(stream: AsyncIterable<StreamEvent>, myGen: number) {
     try {
       for await (const ev of stream) {
         if (gen.current !== myGen) return
         if (ev.type === 'error') setError(ev.message)
-        setRun((s) => applyEvent(s, ev))
+        setRun((s) => {
+          const nextState = applyEvent(s, ev)
+          if (ev.type === 'done' && nextState.runId) {
+            const top = nextState.values.ranking?.[0]?.cv_id
+            saveToHistory(nextState.runId, nextState.values.requirements?.title || '', top, nextState.mode)
+          }
+          return nextState
+        })
       }
     } catch (e) {
       if (gen.current === myGen) setError((e as Error).message)
@@ -107,14 +176,16 @@ export default function App() {
     setError(null)
     setRun((s) => {
       const nodes = { ...s.nodes }
-      for (const n of [...NODES, ...AGENT_NODES]) if (nodes[n]?.status === 'waiting') nodes[n] = { status: 'running', ms: nodes[n]!.ms }
+      for (const n of [...NODES, ...AGENT_NODES]) {
+        if (nodes[n]?.status === 'waiting') nodes[n] = { status: 'running', ms: nodes[n]!.ms }
+      }
       const chat = 'message' in body ? [...s.chat, { who: 'hr' as const, text: body.message }] : s.chat
       return { ...s, interrupt: null, running: true, nodes, chat }
     })
     consume(api.resume(run.runId, body), ++gen.current)
   }
 
-  async function load(id = loadId) {
+  async function load(id: string) {
     if (!id.trim()) return
     setError(null)
     try {
@@ -125,57 +196,216 @@ export default function App() {
       const mode = snap.values.goal !== undefined ? 'agent' : 'pipeline'
       if (finished) for (const n of mode === 'agent' ? AGENT_NODES : NODES) nodes[n] = { status: 'done' }
       if (snap.interrupt) nodes[INTERRUPT_NODE[snap.interrupt.kind]] = { status: 'waiting' }
-      setRun({ ...emptyRun, runId: snap.run_id, values: snap.values, interrupt: snap.interrupt, nodes, done: finished,
-        usage: snap.usage?.calls ? snap.usage : null, logs: snap.logs ?? [], mode })
+      const newRun: RunState = {
+        ...emptyRun,
+        runId: snap.run_id,
+        values: snap.values,
+        interrupt: snap.interrupt,
+        nodes,
+        done: finished,
+        usage: snap.usage?.calls ? snap.usage : null,
+        logs: snap.logs ?? [],
+        mode,
+      }
+      setRun(newRun)
+      saveToHistory(
+        snap.run_id,
+        snap.values.requirements?.title || '',
+        snap.values.ranking?.[0]?.cv_id,
+        mode
+      )
     } catch (e) {
       setError(`Cannot load run: ${(e as Error).message}`)
     }
   }
 
+  // Stepper active calculation
+  const getStepStatus = (step: number) => {
+    if (run.done) return 'done'
+    if (run.running) {
+      if (step === 1) return 'done'
+      if (step === 2) return run.values.candidates?.length ? 'done' : 'active'
+      if (step === 3) return run.values.assessments && Object.keys(run.values.assessments).length ? 'active' : 'pending'
+      if (step === 4) return 'pending'
+    }
+    if (step === 1) return run.values.requirements ? 'done' : 'active'
+    return 'pending'
+  }
+
   return (
-    <>
-      <header className="top">
-        <h1>Agentic CV Ranking {isMock && <span className="badge amber">mock</span>}</h1>
-        <div className="grow" />
-        <form className="row" onSubmit={(e) => { e.preventDefault(); load() }}>
-          <input value={loadId} onChange={(e) => setLoadId(e.target.value)} placeholder="run id" />
-          <button type="submit" className="ghost">Load run</button>
-        </form>
-        {config?.langfuse_url && (
-          <a href={config.langfuse_url} target="_blank" rel="noreferrer">Open traces in Langfuse</a>
-        )}
+    <div className="app-shell">
+      {/* Top Application Header */}
+      <header className="app-header">
+        <div className="brand-group">
+          <div className="brand-logo">🎯</div>
+          <div>
+            <h1 className="brand-name">
+              TalentScout AI{' '}
+              {isMock && <span className="badge amber">Mock Demo</span>}
+            </h1>
+            <p className="brand-sub">Hệ thống Sàng lọc & Đánh giá Ứng viên Chuẩn Enterprise</p>
+          </div>
+        </div>
+
+        {/* Navigation Tabs */}
+        <nav className="header-nav">
+          <button
+            className={`nav-tab ${tab === 'screening' ? 'active' : ''}`}
+            onClick={() => setTab('screening')}
+          >
+            📋 Chiến dịch sàng lọc
+          </button>
+          <button
+            className={`nav-tab ${tab === 'library' ? 'active' : ''}`}
+            onClick={() => setTab('library')}
+          >
+            📁 Kho hồ sơ ứng viên
+          </button>
+        </nav>
+
+        {/* Header Right Tools */}
+        <div className="header-actions">
+          <button
+            className="ghost header-btn"
+            onClick={() => setIsHistoryOpen(true)}
+            title="Xem danh sách các đợt chạy trước"
+          >
+            ⏱️ Lịch sử ({history.length})
+          </button>
+
+          <button
+            className={`ghost header-btn ${auditView ? 'audit-active' : ''}`}
+            onClick={() => setAuditView(!auditView)}
+            title="Bật/Tắt chế độ kiểm chứng kỹ thuật & log hệ thống"
+          >
+            {auditView ? '👁️ Đang xem Kiểm chứng' : '🔍 Bật Kiểm chứng'}
+          </button>
+
+          {config?.langfuse_url && (
+            <a
+              href={config.langfuse_url}
+              target="_blank"
+              rel="noreferrer"
+              className="ghost header-btn external-link"
+              title="Mở Langfuse Traces"
+            >
+              Langfuse ↗
+            </a>
+          )}
+        </div>
       </header>
+
       {error && (
         <div className="banner" role="alert">
           <span>{error}</span>
-          <button className="ghost" onClick={() => setError(null)}>Dismiss</button>
+          <button className="ghost small-btn" onClick={() => setError(null)}>Đóng</button>
         </div>
       )}
-      <div className="layout">
-        <aside>
-          <RunPanel config={config} running={run.running} onStart={start} />
-          <CvPool onOpen={setPreviewId} />
-          {run.runId && (
-            <p className="muted mono">
-              run {run.runId}
-              {run.traceUrl && <> · <a href={run.traceUrl} target="_blank" rel="noreferrer">trace</a></>}
-            </p>
-          )}
-          {run.usage && (
-            <p className="muted mono" title={Object.entries(run.usage.by_node).map(([n, u]) => `${n}: ${u.calls} calls, ${u.input_tokens + u.output_tokens} tokens`).join('\n')}>
-              LLM {run.usage.calls} calls · {run.usage.total_tokens.toLocaleString()} tokens
-            </p>
-          )}
-          <Requirements run={run} />
-        </aside>
-        <main>
-          {run.mode === 'agent' ? <AgentView run={run} /> : <GraphView run={run} />}
-          {run.interrupt && <InterruptPanel interrupt={run.interrupt} criteria={config?.criteria ?? []} onSubmit={resume} />}
-          <Results run={run} config={config} onOpenCv={setPreviewId} />
-          <Timeline logs={run.logs} />
+
+      {/* Main Content Area */}
+      {tab === 'library' ? (
+        <main className="library-container">
+          <CvLibrary onOpenCv={setPreviewId} />
         </main>
-      </div>
+      ) : (
+        <div className="screening-workflow">
+          {/* Stepper Bar */}
+          <div className="workflow-stepper">
+            <div className={`step-item ${getStepStatus(1)}`}>
+              <span className="step-num">1</span>
+              <span className="step-text">Tiêu chí & JD</span>
+            </div>
+            <div className="step-line" />
+            <div className={`step-item ${getStepStatus(2)}`}>
+              <span className="step-num">2</span>
+              <span className="step-text">Quét kho ứng viên</span>
+            </div>
+            <div className="step-line" />
+            <div className={`step-item ${getStepStatus(3)}`}>
+              <span className="step-num">3</span>
+              <span className="step-text">Kiểm chứng kinh nghiệm</span>
+            </div>
+            <div className="step-line" />
+            <div className={`step-item ${getStepStatus(4)}`}>
+              <span className="step-num">4</span>
+              <span className="step-text">Xếp hạng & Báo cáo</span>
+            </div>
+          </div>
+
+          <div className="layout">
+            <aside>
+              <RunPanel config={config} running={run.running} onStart={start} />
+              <CvPool onOpen={setPreviewId} />
+
+              {run.runId && (
+                <div className="run-info-card card">
+                  <div className="flex-between">
+                    <span className="small muted">Mã đợt chạy:</span>
+                    <span className="mono strong">{run.runId}</span>
+                  </div>
+                  {run.usage && (
+                    <div className="mt-1 small muted">
+                      LLM: {run.usage.calls} lượt gọi · {run.usage.total_tokens.toLocaleString()} tokens
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <Requirements run={run} />
+            </aside>
+
+            <main>
+              {/* Technical Audit View toggleable */}
+              {auditView && (
+                <div className="audit-section">
+                  <div className="audit-header">
+                    <h4>🔍 Sơ đồ quy trình thực thi (Orchestrator Graph)</h4>
+                    <span className="badge slate">{run.mode === 'agent' ? 'P7 Autonomous Agent' : 'P6 Pipeline'}</span>
+                  </div>
+                  {run.mode === 'agent' ? <AgentView run={run} /> : <GraphView run={run} />}
+                </div>
+              )}
+
+              {/* Running Status Banner */}
+              {run.running && !auditView && (
+                <div className="card running-banner">
+                  <div className="spinner" />
+                  <div>
+                    <h4>Trợ lý AI đang thực hiện phân tích và xếp hạng ứng viên...</h4>
+                    <p className="muted small">
+                      Đang xử lý bóc tách NLP, đối chiếu kinh nghiệm và thẩm định bằng chứng trích dẫn.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {run.interrupt && (
+                <InterruptPanel
+                  interrupt={run.interrupt}
+                  criteria={config?.criteria ?? []}
+                  onSubmit={resume}
+                />
+              )}
+
+              <Results run={run} config={config} onOpenCv={setPreviewId} />
+
+              {auditView && <Timeline logs={run.logs} />}
+            </main>
+          </div>
+        </div>
+      )}
+
+      {/* Modals */}
       {previewId && <CvPreview id={previewId} onClose={() => setPreviewId(null)} />}
-    </>
+
+      <RunHistoryModal
+        isOpen={isHistoryOpen}
+        currentRunId={run.runId}
+        history={history}
+        onClose={() => setIsHistoryOpen(false)}
+        onSelectRun={load}
+        onClearHistory={clearHistory}
+      />
+    </div>
   )
 }

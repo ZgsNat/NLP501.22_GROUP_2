@@ -43,7 +43,7 @@ SYSTEMS = {"B0 BM25": "keyword baseline, whole CV",
 
 
 def _sha(p: Path) -> str:
-    return hashlib.sha256(p.read_bytes()).hexdigest()
+    return hashlib.sha256(p.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def _inputs() -> list[Path]:

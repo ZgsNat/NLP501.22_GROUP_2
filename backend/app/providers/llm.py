@@ -111,6 +111,20 @@ class OllamaProvider(LLMProvider):
         return self.s.ollama_model if role == "reasoning" else self.s.ollama_fast_model
 
 
+class GatewayChatOpenAI(BaseChatModel):
+    pass
+
+
+class ProxyChatOpenAI:
+    @staticmethod
+    def wrap(base_cls):
+        class _Wrapped(base_cls):
+            def with_structured_output(self, schema, **kwargs):
+                kwargs.setdefault("method", "function_calling")
+                return super().with_structured_output(schema, **kwargs)
+        return _Wrapped
+
+
 @register
 class GatewayProvider(LLMProvider):
     """Any OpenAI-compatible endpoint (third-party key that proxies Claude / GPT / Gemini / ...)."""
@@ -123,10 +137,31 @@ class GatewayProvider(LLMProvider):
     def create(self, model: str) -> BaseChatModel:
         from langchain_openai import ChatOpenAI
 
-        return ChatOpenAI(model=model, base_url=self.s.gateway_base_url, api_key=self.s.gateway_api_key, temperature=0)
+        cls = ProxyChatOpenAI.wrap(ChatOpenAI)
+        return cls(model=model, base_url=self.s.gateway_base_url, api_key=self.s.gateway_api_key, temperature=0)
 
     def default_model(self, role: Role) -> str:
         return self.s.gateway_model if role == "reasoning" else self.s.gateway_fast_model
+
+
+@register
+class WokuShopProvider(LLMProvider):
+    """Woku Shop API proxy (OpenAI-compatible endpoint for GPT / Claude / Gemini / DeepSeek)."""
+
+    name = "woku"
+
+    def is_configured(self) -> bool:
+        return bool(self.s.woku_api_key)
+
+    def create(self, model: str) -> BaseChatModel:
+        from langchain_openai import ChatOpenAI
+
+        base_url = self.s.woku_base_url.strip() or "https://llm.wokushop.com/v1"
+        cls = ProxyChatOpenAI.wrap(ChatOpenAI)
+        return cls(model=model, base_url=base_url, api_key=self.s.woku_api_key, temperature=0)
+
+    def default_model(self, role: Role) -> str:
+        return self.s.woku_model if role == "reasoning" else self.s.woku_fast_model
 
 
 @register

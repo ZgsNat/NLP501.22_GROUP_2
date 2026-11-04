@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>Kịch Bản Thuyết Trình — Hoàng Xuân Sơn (iPhone & Desktop)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-light: #3b82f6;
+            --primary-bg: #eff6ff;
+            --accent: #0284c7;
+            --accent-warm: #d97706;
+            --accent-warm-bg: #fef3c7;
+            --success: #059669;
+            --success-bg: #d1fae5;
+            --danger: #dc2626;
+            --bg-page: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-subtle: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-main: #0f172a;
+            --text-body: #1e293b;
+            --text-sub: #64748b;
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.07);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.08);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --script-font-size: 1.15rem;
+            --safe-top: env(safe-area-inset-top, 0px);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+            --safe-left: env(safe-area-inset-left, 0px);
+            --safe-right: env(safe-area-inset-right, 0px);
+        }
+
+        /* Dark Mode Theme */
+        body.dark-mode {
+            --primary: #38bdf8;
+            --primary-light: #60a5fa;
+            --primary-bg: #1e293b;
+            --accent: #38bdf8;
+            --accent-warm: #fbbf24;
+            --accent-warm-bg: #3b2f15;
+            --success: #34d399;
+            --success-bg: #064e3b;
+            --danger: #f87171;
+            --bg-page: #0b0f19;
+            --bg-card: #151d30;
+            --bg-subtle: #1c263d;
+            --border-color: #273553;
+            --text-main: #f8fafc;
+            --text-body: #e2e8f0;
+            --text-sub: #94a3b8;
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-body);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: calc(85px + var(--safe-bottom));
+            transition: background-color 0.25s, color 0.25s;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Top Sticky Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: calc(10px + var(--safe-top)) calc(16px + var(--safe-right)) 10px calc(16px + var(--safe-left));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-sm);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        body.dark-mode header {
+            background: rgba(21, 29, 48, 0.95);
+        }
+
+        .header-title-box h1 {
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .header-sub {
+            font-size: 0.76rem;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+
+        .badge-academic {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 3px 8px;
+            border-radius: 9999px;
+            border: 1px solid transparent;
+        }
+
+        .badge-blue {
+            background-color: var(--primary-bg);
+            color: var(--primary);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        /* Rehearsal Timer Box */
+        .timer-widget {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-subtle);
+            padding: 5px 10px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timer-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--primary);
+            min-width: 58px;
+            text-align: center;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            min-height: 36px;
+        }
+
+        body.dark-mode .btn {
+            color: #0b0f19;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn.secondary {
+            background: var(--bg-card);
+            color: var(--text-body);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn.secondary:hover {
+            background: var(--bg-subtle);
+        }
+
+        /* Top Slide Selector Bar */
+        .slide-nav-bar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 8px calc(16px + var(--safe-right)) 8px calc(16px + var(--safe-left));
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            position: sticky;
+            top: 57px;
+            z-index: 40;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slide-nav-bar::-webkit-scrollbar {
+            height: 3px;
+        }
+        .slide-nav-bar::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .nav-tab-btn {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-body);
+            padding: 7px 12px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            min-height: 36px;
+        }
+
+        .nav-tab-btn:hover {
+            border-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .nav-tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 2px 6px rgba(30, 64, 175, 0.25);
+        }
+
+        body.dark-mode .nav-tab-btn.active {
+            color: #0b0f19;
+            box-shadow: 0 2px 6px rgba(56, 189, 248, 0.3);
+        }
+
+        .nav-tab-btn .tab-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            opacity: 0.85;
+            font-weight: 500;
+        }
+
+        /* Mode & View Toggle */
+        .mode-toggle-group {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--bg-subtle);
+            padding: 3px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .mode-btn {
+            background: transparent;
+            border: none;
+            padding: 5px 9px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-sub);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .mode-btn.active {
+            background: var(--bg-card);
+            color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Main Container */
+        .layout-container {
+            max-width: 1300px;
+            margin: 16px auto 30px auto;
+            padding: 0 calc(16px + var(--safe-right)) 0 calc(16px + var(--safe-left));
+            width: 100%;
+        }
+
+        /* Slide Card */
+        .slide-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        /* Slide Card Header */
+        .slide-card-header {
+            padding: 14px 20px;
+            background: var(--bg-subtle);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .slide-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .slide-badge-num {
+            width: 38px;
+            height: 38px;
+            background: var(--primary);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        body.dark-mode .slide-badge-num {
+            color: #0b0f19;
+        }
+
+        .slide-title-box h2 {
+            font-size: 1.15rem;
+            line-height: 1.3;
+        }
+
+        .slide-title-box .slide-sub {
+            font-size: 0.76rem;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+
+        .slide-header-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Mobile Segmented View Inside Slide (Speech vs Actions) */
+        .mobile-tab-switch {
+            display: none;
+            width: 100%;
+            background: var(--bg-subtle);
+            border-bottom: 1px solid var(--border-color);
+            padding: 8px 16px;
+            gap: 8px;
+        }
+
+        .mobile-pill {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-sub);
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .mobile-pill.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        body.dark-mode .mobile-pill.active {
+            color: #0b0f19;
+        }
+
+        /* Slide Split Layout (2 Columns: Directing vs Script) */
+        .slide-split-body {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            min-height: 400px;
+        }
+
+        /* Left Column: Directing & Cues */
+        .col-directing {
+            width: 360px;
+            flex-shrink: 0;
+            background: var(--bg-subtle);
+            border-right: 1px solid var(--border-color);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .cue-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .cue-box-title {
+            font-size: 0.74rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-sub);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cue-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: var(--text-body);
+        }
+
+        .cue-list li {
+            position: relative;
+            padding-left: 16px;
+            line-height: 1.45;
+        }
+
+        .cue-list li::before {
+            content: "•";
+            position: absolute;
+            left: 2px;
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 1rem;
+            top: -2px;
+        }
+
+        .chip-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--primary-bg);
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 6px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .chip-time {
+            display: inline-block;
+            background: var(--bg-subtle);
+            color: var(--text-main);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            margin-right: 4px;
+        }
+
+        /* Right Column: Spoken Script */
+        .col-script {
+            flex: 1;
+            min-width: 0;
+            padding: 26px 32px;
+            background: var(--bg-card);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .script-body {
+            font-size: var(--script-font-size);
+            line-height: 1.9;
+            color: var(--text-main);
+        }
+
+        .script-body p {
+            margin-bottom: 18px;
+        }
+
+        .speech-quote {
+            font-weight: 500;
+        }
+
+        .speech-highlight {
+            background: linear-gradient(120deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 38%;
+            background-position: 0 88%;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Stage Directions Inside Script */
+        .dir-tag {
+            display: inline-block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            font-style: italic;
+            padding: 2px 8px;
+            border-radius: 6px;
+            margin: 6px 0;
+            line-height: 1.4;
+        }
+
+        .dir-tag.voice {
+            background: var(--accent-warm-bg);
+            color: var(--accent-warm);
+            border-left: 3px solid var(--accent-warm);
+        }
+
+        .dir-tag.action {
+            background: var(--primary-bg);
+            color: var(--primary);
+            border-left: 3px solid var(--primary);
+        }
+
+        /* Handoff Box (Mic Relay) */
+        .handoff-box {
+            background: var(--primary-bg);
+            border: 2px solid rgba(59, 130, 246, 0.4);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 22px;
+        }
+
+        .handoff-header {
+            font-size: 0.74rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .handoff-speech {
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: var(--primary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* Slide Footer Pagination */
+        .slide-footer-nav {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* Q&A Cards */
+        .qa-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 20px;
+        }
+
+        .qa-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 18px 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .qa-question {
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .qa-badge {
+            background: rgba(220, 38, 38, 0.15);
+            color: var(--danger);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 6px;
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .qa-answer {
+            background: var(--bg-subtle);
+            border-left: 4px solid var(--primary);
+            padding: 14px 18px;
+            border-radius: 0 10px 10px 0;
+            font-size: 0.94rem;
+            line-height: 1.8;
+            color: var(--text-body);
+        }
+
+        .qa-answer strong {
+            color: var(--text-main);
+        }
+
+        /* Copy Button */
+        .btn-copy {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text-sub);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-copy:hover {
+            color: var(--primary);
+            border-color: var(--primary-light);
+        }
+
+        .btn-copy.copied {
+            color: var(--success) !important;
+            border-color: var(--success) !important;
+        }
+
+        /* Floating Bottom Dock For iPhone / Mobile (Sticky) */
+        .mobile-bottom-dock {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-top: 1px solid var(--border-color);
+            padding: 8px calc(10px + var(--safe-right)) calc(8px + var(--safe-bottom)) calc(10px + var(--safe-left));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body.dark-mode .mobile-bottom-dock {
+            background: rgba(21, 29, 48, 0.96);
+            box-shadow: 0 -4px 16px rgba(0,0,0,0.35);
+        }
+
+        .dock-btn {
+            background: var(--bg-subtle);
+            color: var(--text-body);
+            border: 1px solid var(--border-color);
+            padding: 8px 10px;
+            border-radius: 10px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            min-height: 44px; /* Apple HIG standard */
+            touch-action: manipulation;
+            transition: all 0.15s;
+        }
+
+        .dock-btn:active {
+            transform: scale(0.96);
+            background: var(--primary-bg);
+            color: var(--primary);
+        }
+
+        .dock-btn.prev {
+            flex: 0.8;
+            min-width: 60px;
+        }
+
+        .dock-btn.qa {
+            flex: 0.8;
+            min-width: 60px;
+            border-color: rgba(220, 38, 38, 0.3);
+            color: var(--danger);
+            background: rgba(220, 38, 38, 0.06);
+        }
+
+        .dock-btn.qa:active {
+            background: rgba(220, 38, 38, 0.15);
+        }
+
+        .dock-btn.next {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            flex: 1.25;
+            min-width: 95px;
+        }
+
+        body.dark-mode .dock-btn.next {
+            color: #0b0f19;
+        }
+
+        .dock-timer-badge {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 4px 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            cursor: pointer;
+            user-select: none;
+            flex: 0.9;
+            min-width: 68px;
+            touch-action: manipulation;
+        }
+
+        .dock-timer-badge:active {
+            transform: scale(0.96);
+            background: var(--primary-bg);
+        }
+
+        .dock-timer-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .dock-timer-state {
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+
+        /* ================= MOBILE / IPHONE 14 PRO SPECIFIC MEDIA QUERIES ================= */
+        @media (max-width: 900px) {
+            .slide-split-body {
+                flex-direction: column;
+            }
+            .col-directing {
+                width: 100% !important;
+                border-right: none !important;
+                border-bottom: 1px solid var(--border-color);
+                padding: 16px;
+            }
+            .col-script {
+                padding: 20px 16px;
+            }
+            .mobile-tab-switch {
+                display: flex !important;
+            }
+            /* In mobile toggle mode */
+            .col-directing.mobile-hidden {
+                display: none !important;
+            }
+            .col-script.mobile-hidden {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* On iPhone / mobile, let the long academic header scroll naturally with the page */
+            header {
+                position: static !important;
+                padding: calc(12px + var(--safe-top)) calc(14px + var(--safe-right)) 10px calc(14px + var(--safe-left)) !important;
+            }
+
+            .header-title-box h1 {
+                font-size: 1.05rem;
+            }
+
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 4px;
+            }
+
+            .header-actions .timer-widget {
+                display: none; /* Moved to thumb-friendly bottom dock */
+            }
+
+            /* The slide nav bar sticks at the very top (under Dynamic Island / Notch) */
+            .slide-nav-bar {
+                position: sticky !important;
+                top: 0 !important;
+                z-index: 90 !important;
+                padding: calc(6px + var(--safe-top)) calc(10px + var(--safe-right)) 6px calc(10px + var(--safe-left)) !important;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
+                border-bottom: 1px solid var(--border-color);
+                gap: 6px;
+            }
+
+            body.dark-mode .slide-nav-bar {
+                background: rgba(21, 29, 48, 0.95);
+            }
+
+            .nav-tab-btn {
+                padding: 6px 10px;
+                font-size: 0.74rem;
+                min-height: 38px;
+                border-radius: 8px;
+            }
+
+            .mode-toggle-group {
+                display: none; /* In mobile, focus mode is automatically enforced */
+            }
+
+            .layout-container {
+                padding: 0 10px;
+                margin: 10px auto;
+            }
+
+            .slide-card {
+                border-radius: 16px;
+                margin-bottom: 16px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            }
+
+            .slide-card-header {
+                padding: 10px 14px;
+            }
+
+            .slide-badge-num {
+                width: 32px;
+                height: 32px;
+                font-size: 0.92rem;
+                border-radius: 8px;
+            }
+
+            .slide-title-box h2 {
+                font-size: 0.98rem;
+                line-height: 1.35;
+            }
+
+            .slide-title-box .slide-sub {
+                font-size: 0.7rem;
+            }
+
+            .mobile-tab-switch {
+                padding: 6px 12px;
+                gap: 6px;
+            }
+
+            .mobile-pill {
+                padding: 9px 12px;
+                font-size: 0.78rem;
+                min-height: 42px; /* Apple 44pt touch comfort */
+                border-radius: 10px;
+            }
+
+            .col-script {
+                padding: 16px 14px;
+            }
+
+            :root {
+                --script-font-size: 1.12rem;
+            }
+
+            .script-body {
+                font-size: var(--script-font-size);
+                line-height: 1.85;
+            }
+
+            .script-body p {
+                margin-bottom: 14px;
+            }
+
+            .dir-tag {
+                font-size: 0.8rem;
+                padding: 3px 8px;
+                border-radius: 6px;
+            }
+
+            .handoff-box {
+                padding: 12px 14px;
+                margin-top: 16px;
+                border-radius: 10px;
+            }
+
+            .handoff-header {
+                font-size: 0.7rem;
+            }
+
+            .handoff-speech {
+                font-size: 0.92rem;
+                line-height: 1.6;
+            }
+
+            .slide-footer-nav {
+                margin-top: 16px;
+                padding-top: 12px;
+                gap: 8px;
+            }
+
+            .qa-grid {
+                padding: 12px 10px;
+                gap: 12px;
+            }
+
+            .qa-card {
+                padding: 14px 12px;
+                border-radius: 12px;
+            }
+
+            .qa-question {
+                font-size: 0.92rem;
+                line-height: 1.45;
+            }
+
+            .qa-badge {
+                font-size: 0.65rem;
+                padding: 2px 6px;
+            }
+
+            .qa-answer {
+                font-size: 0.88rem;
+                line-height: 1.7;
+                padding: 12px;
+                border-radius: 0 8px 8px 0;
+            }
+
+            /* Floating Thumb Dock for iPhone 14 Pro */
+            .mobile-bottom-dock {
+                display: flex !important;
+                padding: 6px calc(8px + var(--safe-right)) calc(8px + var(--safe-bottom)) calc(8px + var(--safe-left)) !important;
+                gap: 6px;
+            }
+
+            body {
+                padding-bottom: calc(85px + var(--safe-bottom)) !important;
+            }
+        }
+
+        /* Desktop view */
+        @media (min-width: 769px) {
+            .mobile-bottom-dock {
+                display: none !important;
+            }
+            .mobile-tab-switch {
+                display: none !important;
+            }
+            .col-directing.mobile-hidden {
+                display: flex !important;
+            }
+            .col-script.mobile-hidden {
+                display: flex !important;
+            }
+            body {
+                padding-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="header-title-box">
+            <h1>
+                <span>🎤 Kịch Bản Thuyết Trình</span>
+                <span class="badge-academic badge-blue">Hoàng Xuân Sơn</span>
+            </h1>
+            <div class="header-sub">
+                Đề tài: <strong>Agentic AI Xếp Hạng Ứng Viên Automation Test</strong> · Master S3 NLP501
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <!-- Timer Widget on Desktop -->
+            <div class="timer-widget">
+                <span style="font-size: 0.7rem; font-weight: 800; color: var(--text-sub); text-transform: uppercase;">Thời gian:</span>
+                <span id="timer-display-header" class="timer-display">00:00</span>
+                <button id="btn-timer-header" class="btn" style="padding: 4px 10px; font-size: 0.72rem; min-height: 28px;" onclick="toggleTimer()">BẮT ĐẦU</button>
+            </div>
+
+            <!-- Theme Toggle -->
+            <button id="btn-theme-toggle" class="btn secondary" style="padding: 4px 10px; min-height: 32px;" onclick="toggleDarkMode()" title="Đổi giao diện Tối / Sáng">
+                🌙 Tối
+            </button>
+
+            <!-- Font Resizer -->
+            <div style="display: flex; gap: 4px;">
+                <button class="btn secondary" style="padding: 4px 8px; min-height: 32px;" onclick="changeFontSize(-0.06)" title="Giảm cỡ chữ">A-</button>
+                <button class="btn secondary" style="padding: 4px 8px; min-height: 32px;" onclick="changeFontSize(0.06)" title="Tăng cỡ chữ">A+</button>
+            </div>
+
+            <a href="NLP501_FinalSlide_v7.html" target="_blank" class="btn secondary" style="min-height: 32px;">
+                SLIDE ↗
+            </a>
+        </div>
+    </header>
+
+    <!-- Top Slide Tabs -->
+    <div class="slide-nav-bar" id="top-nav-bar">
+        <button class="nav-tab-btn active" onclick="switchView('slide-1', this)">
+            <span>01 · Bìa Mở Đầu</span>
+            <span class="tab-time">0:00–0:45</span>
+        </button>
+        <button class="nav-tab-btn" onclick="switchView('slide-2', this)">
+            <span>02 · Dàn Ý 6 Phần</span>
+            <span class="tab-time">0:45–1:15</span>
+        </button>
+        <button class="nav-tab-btn" onclick="switchView('slide-3', this)">
+            <span>03 · Phễu 4 Tầng</span>
+            <span class="tab-time">1:15–2:15</span>
+        </button>
+        <button class="nav-tab-btn" onclick="switchView('slide-4', this)">
+            <span>04 · CV & Công Thức</span>
+            <span class="tab-time">2:15–3:15</span>
+        </button>
+        <button class="nav-tab-btn" onclick="switchView('slide-5', this)">
+            <span>05 · Radar & Chuyển Mic</span>
+            <span class="tab-time">3:15–4:00</span>
+        </button>
+        <button class="nav-tab-btn" onclick="switchView('slide-conclusion', this)">
+            <span>28 · Tổng Kết Nhóm</span>
+            <span class="tab-time">13:15–14:00</span>
+        </button>
+        <button class="nav-tab-btn" onclick="switchView('qa-section', this)" style="border-color: rgba(239, 68, 68, 0.4); color: var(--danger);">
+            <span>🎯 4 Câu Hỏi Q&A</span>
+        </button>
+
+        <!-- View Mode Switcher -->
+        <div class="mode-toggle-group">
+            <button id="btn-mode-focus" class="mode-btn active" onclick="setMode('focus')">Tập Trung</button>
+            <button id="btn-mode-all" class="mode-btn" onclick="setMode('all')">Cuộn Dọc</button>
+        </div>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="layout-container">
+
+        <!-- ================= SLIDE 1 ================= -->
+        <section id="slide-1" class="slide-card">
+            <div class="slide-card-header">
+                <div class="slide-header-left">
+                    <div class="slide-badge-num">01</div>
+                    <div class="slide-title-box">
+                        <h2>Slide 1 · Bìa Báo Cáo & Bản Đồ Tiếp Sức 5 Diễn Giả</h2>
+                        <div class="slide-sub">Slide Deck: <code>data-slide="0"</code> · Phần 0: Mở đầu · Định vị tầm nhìn đề tài</div>
+                    </div>
+                </div>
+                <div class="slide-header-right">
+                    <span class="badge-academic badge-blue">⏱️ 0:00 – 0:45 (45s)</span>
+                    <button class="btn-copy" onclick="copySpeech('speech-1', this)">📋 Copy</button>
+                </div>
+            </div>
+
+            <!-- Mobile Sub-tabs: Toggle Directing vs Speech -->
+            <div class="mobile-tab-switch">
+                <button class="mobile-pill active" onclick="setMobileSubTab('slide-1', 'speech', this)">🎙️ Lời Thoại Nói (Chính)</button>
+                <button class="mobile-pill" onclick="setMobileSubTab('slide-1', 'directing', this)">🖱️ Chỉ Dẫn & Thao Tác</button>
+            </div>
+
+            <div class="slide-split-body">
+                <!-- Guidance Column -->
+                <div class="col-directing mobile-hidden" id="slide-1-directing">
+                    <div class="cue-box">
+                        <div class="cue-box-title">👁️ Tư Thế & Phong Thái</div>
+                        <ul class="cue-list">
+                            <li>Đứng thẳng tự tin, hai tay mở tự nhiên, ánh mắt bao quát quý Thầy Cô trong Hội đồng.</li>
+                            <li>Nụ cười tươi, giọng mở màn vang, dõng dạc, tốc độ khoảng 130 từ/phút.</li>
+                            <li><strong>Không đọc chữ trên slide</strong>; slide là màn hình minh chứng cho lời nói.</li>
+                        </ul>
+                    </div>
+
+                    <div class="cue-box">
+                        <div class="cue-box-title">🖱️ Điểm Chạm Trực Quan (Slide Actions)</div>
+                        <ul class="cue-list">
+                            <li><span class="chip-time">0:00 - 0:15</span> Chỉ tay vào tiêu đề đề tài chữ lớn trên slide.</li>
+                            <li><span class="chip-time">0:16 - 0:35</span> Hướng tay vào dải tiếp sức 5 khối màu ở chân slide.</li>
+                            <li><span class="chip-time">0:36 - 0:45</span> Nhấn giọng dứt khoát chuyển sang phần đặt vấn đề.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Speech Column -->
+                <div class="col-script" id="slide-1-speech">
+                    <div id="speech-1" class="script-body">
+                        <p>
+                            <span class="dir-tag voice">[Cúi đầu chào trang trọng, giọng đĩnh đạc, ấm áp hướng về Hội đồng]</span><br>
+                            <span class="speech-quote">"Kính thưa quý Thầy Cô trong Hội đồng chấm luận văn tốt nghiệp và toàn thể các bạn học viên cao học, hôm nay Nhóm 2 xin phép được báo cáo đề tài nghiên cứu: <span class="speech-highlight">Ứng dụng Agentic AI trong đối sánh và xếp hạng ứng viên Automation Test có giải thích</span>."</span>
+                        </p>
+                        <p>
+                            <span class="dir-tag action">[Hướng tay về dải tiếp sức 5 thành viên ở nửa dưới màn hình]</span><br>
+                            <span class="speech-quote">"Bài báo cáo hôm nay được nhóm chúng em chuẩn bị công phu và vận hành theo <strong>mạch tiếp sức khép kín của 5 thành viên</strong>:
+                            Em là <strong>Hoàng Xuân Sơn</strong>, phụ trách phần mở đầu và phát biểu bài toán; tiếp theo bạn <strong>Nguyễn Văn Vũ</strong> sẽ tổng quan 31 công trình khoa học; bạn <strong>Nguyễn Đình Đán</strong> phân tích cơ chế Agentic AI và các khoảng trống nghiên cứu; bạn <strong>Trần Việt Hoa</strong> làm rõ hệ sinh thái dữ liệu và phễu độ đo; và cuối cùng bạn <strong>Nguyễn Thái Thịnh</strong> sẽ trình bày chi tiết kiến trúc StateGraph đề xuất cùng kết quả thực nghiệm benchmark."</span>
+                        </p>
+                        <p>
+                            <span class="dir-tag voice">[Hạ nhẹ tông giọng, chuyển tiếp dứt khoát]</span><br>
+                            <span class="speech-quote">"Sau đây, em xin phép đi thẳng vào dàn ý chi tiết và những thách thức cốt lõi của bài toán."</span>
+                        </p>
+                    </div>
+
+                    <div class="slide-footer-nav">
+                        <span>🎯 Mục tiêu: Gây ấn tượng học thuật và định vị vai trò đội ngũ trong 15s đầu.</span>
+                        <button class="btn" onclick="switchView('slide-2')">Tiếp theo: Slide 2 (0:45) →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SLIDE 2 ================= -->
+        <section id="slide-2" class="slide-card">
+            <div class="slide-card-header">
+                <div class="slide-header-left">
+                    <div class="slide-badge-num">02</div>
+                    <div class="slide-title-box">
+                        <h2>Slide 2 · Dàn Ý: 6 Phần Theo Yêu Cầu Đề Tài</h2>
+                        <div class="slide-sub">Slide Deck: <code>data-slide="1"</code> · Phần 0: Mở đầu · Cấu trúc & Câu hỏi nghiên cứu xuyên suốt</div>
+                    </div>
+                </div>
+                <div class="slide-header-right">
+                    <span class="badge-academic badge-blue">⏱️ 0:45 – 1:15 (30s)</span>
+                    <button class="btn-copy" onclick="copySpeech('speech-2', this)">📋 Copy</button>
+                </div>
+            </div>
+
+            <div class="mobile-tab-switch">
+                <button class="mobile-pill active" onclick="setMobileSubTab('slide-2', 'speech', this)">🎙️ Lời Thoại Nói (Chính)</button>
+                <button class="mobile-pill" onclick="setMobileSubTab('slide-2', 'directing', this)">🖱️ Chỉ Dẫn & Thao Tác</button>
+            </div>
+
+            <div class="slide-split-body">
+                <div class="col-directing mobile-hidden" id="slide-2-directing">
+                    <div class="cue-box">
+                        <div class="cue-box-title">👁️ Tư Thế & Nhịp Điệu</div>
+                        <ul class="cue-list">
+                            <li>Nói nhanh, dứt khoát trong vòng 30 giây, không ngắt quãng hay giải thích sâu.</li>
+                            <li>Chứng minh với Hội đồng rằng nhóm tuân thủ 100% đề cương 6 phần quy định.</li>
+                        </ul>
+                    </div>
+
+                    <div class="cue-box">
+                        <div class="cue-box-title">🖱️ Điểm Chạm Trực Quan (Slide Actions)</div>
+                        <ul class="cue-list">
+                            <li><span class="chip-time">0:45 - 0:58</span> Lướt tay nhanh qua 6 khối từ 01 đến 06.</li>
+                            <li><span class="chip-time">0:59 - 1:15</span> Chỉ vào hộp màu xanh dương ở chân slide: <em>Câu hỏi nghiên cứu xuyên suốt</em>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-script" id="slide-2-speech">
+                    <div id="speech-2" class="script-body">
+                        <p>
+                            <span class="dir-tag action">[Chỉ tay lướt qua lưới 6 phần trên slide]</span><br>
+                            <span class="speech-quote">"Thưa Thầy Cô, cấu trúc bài báo cáo hôm nay bám sát đúng <strong>6 phần chuẩn mực</strong> theo yêu cầu học thuật: từ Phát biểu bài toán, Tổng quan tài liệu, Dữ liệu, Phương pháp đo lường, cho đến Đánh giá kết quả của các nghiên cứu trước và Phương pháp đề xuất cùng kết quả thực nghiệm của nhóm."</span>
+                        </p>
+                        <p>
+                            <span class="dir-tag voice">[Nhấn giọng dứt khoát vào câu hỏi nghiên cứu cốt lõi]</span><br>
+                            <span class="speech-quote">"Xuyên suốt toàn bộ 34 slide, nhóm chúng em chỉ tập trung trả lời một câu hỏi cốt lõi duy nhất: <span class="speech-highlight">Làm thế nào để Agentic AI có thể xếp hạng ứng viên Automation Test chuẩn xác theo đúng Criteria Profile của từng công ty, có bằng chứng xác thực và chịu sự kiểm soát chặt chẽ của con người?</span>"</span>
+                        </p>
+                        <p>
+                            <span class="speech-quote">"Ngay sau đây, em xin đi sâu vào Phần 01: Tại sao bài toán xếp hạng kỹ sư Automation Test lại khó khăn và đòi hỏi một cách tiếp cận đa tầng?"</span>
+                        </p>
+                    </div>
+
+                    <div class="slide-footer-nav">
+                        <button class="btn secondary" onclick="switchView('slide-1')">← Slide 1</button>
+                        <button class="btn" onclick="switchView('slide-3')">Tiếp theo: Slide 3 (1:15) →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SLIDE 3 ================= -->
+        <section id="slide-3" class="slide-card">
+            <div class="slide-card-header">
+                <div class="slide-header-left">
+                    <div class="slide-badge-num">03</div>
+                    <div class="slide-title-box">
+                        <h2>Slide 3 · Phễu Tuyển Dụng 4 Tầng & 3 Điểm Nghẽn Của Automation Test</h2>
+                        <div class="slide-sub">Slide Deck: <code>data-slide="2"</code> · Phần 01: Phát biểu bài toán · Phễu tương tác SVG & 3 Nỗi đau</div>
+                    </div>
+                </div>
+                <div class="slide-header-right">
+                    <span class="badge-academic badge-blue" style="background: var(--accent-warm-bg); color: var(--accent-warm);">🔥 SLIDE TRỌNG TÂM · 1:15 – 2:15 (60s)</span>
+                    <button class="btn-copy" onclick="copySpeech('speech-3', this)">📋 Copy</button>
+                </div>
+            </div>
+
+            <div class="mobile-tab-switch">
+                <button class="mobile-pill active" onclick="setMobileSubTab('slide-3', 'speech', this)">🎙️ Lời Thoại Nói (Chính)</button>
+                <button class="mobile-pill" onclick="setMobileSubTab('slide-3', 'directing', this)">🖱️ Chỉ Dẫn & Thao Tác</button>
+            </div>
+
+            <div class="slide-split-body">
+                <div class="col-directing mobile-hidden" id="slide-3-directing">
+                    <div class="cue-box">
+                        <div class="cue-box-title">🖱️ Thao Tác Click Tương Tác Bắt Buộc</div>
+                        <ul class="cue-list">
+                            <li><span class="chip-action">Click Nút T1</span> (Giây 75–85): Nỗi đau lọc từ khóa và rủi ro thiên lệch PII.</li>
+                            <li><span class="chip-action">Click Nút T2</span> (Giây 86–95): Sự khác biệt khẩu vị giữa các công ty.</li>
+                            <li><span class="chip-action">Click Nút T3</span> (Giây 96–105): Hiện tượng ứng viên sát điểm nhau (Near-Ties).</li>
+                            <li><span class="chip-action">Click Nút T4</span> (Giây 106–135): 3 điểm nghẽn đặc thù của Automation Test.</li>
+                        </ul>
+                    </div>
+
+                    <div class="cue-box">
+                        <div class="cue-box-title">💡 Luận Điểm "Ăn Điểm" Hội Đồng</div>
+                        <p style="font-size: 0.78rem; color: var(--text-sub); line-height: 1.5;">
+                            Không có một mô hình đơn lẻ nào giải quyết được toàn bộ phễu (No Single-Model Solution). Mỗi tầng cần một công cụ chuyên biệt tối ưu.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-script" id="slide-3-speech">
+                    <div id="speech-3" class="script-body">
+                        <p>
+                            <span class="dir-tag action">[Thao tác: Click chọn Tầng 1 trên phễu SVG bên trái]</span><br>
+                            <span class="speech-quote">"Kính thưa Thầy Cô, quy trình tuyển dụng thực tế luôn có dạng một chiếc phễu thu hẹp dần:  
+                            Ở <strong>Tầng 1 đại trà</strong> với quy mô hơn 10.000 hồ sơ, các hệ thống ATS lọc từ khóa truyền thống đang bộc lộ nhược điểm chết người: <em>chúng loại nhầm rất nhiều nhân tài chỉ vì khác biệt câu chữ</em>. Ví dụ bản mô tả yêu cầu 'Test Automation', nhưng trong CV ứng viên lại viết 'Built E2E Regression Suite' là bị đánh rớt oan! Đồng thời đây cũng là nơi dễ phát sinh thiên vị vô thức theo họ tên hay tuổi tác."</span>
+                        </p>
+                        <p>
+                            <span class="dir-tag action">[Thao tác: Click chọn Tầng 2 và Tầng 3]</span><br>
+                            <span class="speech-quote">"Khi thu hẹp xuống <strong>Tầng 2</strong>, mỗi doanh nghiệp lại có một khẩu vị riêng biệt — cùng một CV có thể trúng tuyển công ty gia công nhưng rớt ngân hàng.  
+                            Xuống đến <strong>Tầng 3</strong>, các ứng viên lọt vào top 20 có điểm số bám đuổi cực kỳ sít sao — gọi LLM cho cả 20 người thì chi phí và độ trễ tăng vọt, nhưng không dùng LLM thì không thể phân định được ai có tư duy kiến trúc tốt hơn."</span>
+                        </p>
+                        <p>
+                            <span class="dir-tag action">[Thao tác: Click chọn Tầng 4 - Mức màu đỏ nổi bật, giọng nhấn mạnh từng từ]</span><br>
+                            <span class="speech-quote">"Đặc biệt nhất tại <strong>Tầng 4 – trọng tâm nghiên cứu của đề tài là kỹ sư Automation Test</strong>, nhóm phát hiện 3 điểm nghẽn đặc thù mà các hệ thống hiện tại hoàn toàn bất lực:  
+                            <br>
+                            <strong>Thứ nhất là Thang độ sâu năng lực:</strong> Một bạn chỉ biết chạy kịch bản ghi sẵn <em>Record & Playback</em> khác xa một kỹ sư tự tay thiết kế kiến trúc <em>Page Object Model</em> và dựng hạ tầng CI/CD. ATS từ khóa thấy chữ 'Selenium' là đánh đồng như nhau!  
+                            <br>
+                            <strong>Thứ hai là Quan hệ tương đương công cụ:</strong> Playwright, Cypress hay Selenium có kiến trúc rất gần gũi. Lọc cứng theo từ khóa sẽ loại oan những kỹ sư giỏi có khả năng chuyển đổi công nghệ chỉ sau vài tuần.  
+                            <br>
+                            <strong>Thứ ba là Ứng viên chuyển ngang từ Manual QA:</strong> Họ có nghiệp vụ ngân hàng sâu sắc và tư duy bắt lỗi tuyệt vời nhưng số năm viết code ít hơn. Lọc cứng theo năm kinh nghiệm sẽ bỏ sót nhân tài."</span>
+                        </p>
+                        <p>
+                            <span class="dir-tag voice">[Chốt hạ luận điểm, nhìn thẳng Hội đồng]</span><br>
+                            <span class="speech-quote">"Vì vậy, thông điệp thiết kế cốt lõi của nhóm là: <strong>Mỗi tầng phễu cần một công cụ xử lý thích ứng riêng; không có một mô hình đơn lẻ nào giải quyết được toàn bộ phễu.</strong>"</span>
+                        </p>
+                    </div>
+
+                    <div class="slide-footer-nav">
+                        <button class="btn secondary" onclick="switchView('slide-2')">← Slide 2</button>
+                        <button class="btn" onclick="switchView('slide-4')">Tiếp theo: Slide 4 (2:15) →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SLIDE 4 ================= -->
+        <section id="slide-4" class="slide-card">
+            <div class="slide-card-header">
+                <div class="slide-header-left">
+                    <div class="slide-badge-num">04</div>
+                    <div class="slide-title-box">
+                        <h2>Slide 4 · Chuẩn Hoá Lược Đồ CV Ẩn Danh & Công Thức Chấm Điểm 8 Tiêu Chí</h2>
+                        <div class="slide-sub">Slide Deck: <code>data-slide="3"</code> · Phần 01: Phát biểu bài toán · Đóng góp lý thuyết: PII & Hàm mục tiêu tường minh</div>
+                    </div>
+                </div>
+                <div class="slide-header-right">
+                    <span class="badge-academic badge-blue" style="background: var(--accent-warm-bg); color: var(--accent-warm);">📐 ĐÓNG GÓP TOÁN HỌC · 2:15 – 3:15 (60s)</span>
+                    <button class="btn-copy" onclick="copySpeech('speech-4', this)">📋 Copy</button>
+                </div>
+            </div>
+
+            <div class="mobile-tab-switch">
+                <button class="mobile-pill active" onclick="setMobileSubTab('slide-4', 'speech', this)">🎙️ Lời Thoại Nói (Chính)</button>
+                <button class="mobile-pill" onclick="setMobileSubTab('slide-4', 'directing', this)">🖱️ Chỉ Dẫn & Thao Tác</button>
+            </div>
+
+            <div class="slide-split-body">
+                <div class="col-directing mobile-hidden" id="slide-4-directing">
+                    <div class="cue-box">
+                        <div class="cue-box-title">👁️ Tư Thế & Cử Chỉ</div>
+                        <ul class="cue-list">
+                            <li>Bên trái là CV ẩn danh, bên phải là công thức toán học. Dùng tay chuyển giao trực quan từ Trái sang Phải.</li>
+                            <li>Nhấn mạnh tính tuân thủ pháp lý đạo đức AI: Đạo luật <em>NYC Local Law 144</em> và <em>EU AI Act</em>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="cue-box">
+                        <div class="cue-box-title">📐 Mô Hình Toán Học Tường Minh</div>
+                        <div style="background: var(--slate-900); color: white; padding: 10px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; text-align: center; margin-top: 4px;">
+                            Score = 1[H(c)] × ∑ w(c,k) · S(c,k)
+                        </div>
+                        <ul class="cue-list" style="margin-top: 8px;">
+                            <li><strong>1[H(c)]:</strong> Hàm knock-out (0 hoặc 1).</li>
+                            <li><strong>w(c,k):</strong> Trọng số công ty (∑ w = 1.0).</li>
+                            <li><strong>S(c,k):</strong> Điểm tiêu chí có span bằng chứng.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-script" id="slide-4-speech">
+                    <div id="speech-4" class="script-body">
+                        <p>
+                            <span class="dir-tag action">[Chỉ tay vào mô phỏng tờ CV bên trái màn hình]</span><br>
+                            <span class="speech-quote">"Để giải quyết các thách thức trên, ở Slide số 4, nhóm đưa ra hai đóng góp nền tảng về chuẩn hóa dữ liệu và mô hình toán học:  
+                            Phía bên trái là một hồ sơ CV sau khi đi qua cổng tiếp nhận của nhóm. Toàn bộ thông tin định danh nhạy cảm gồm <strong>họ tên, ảnh chân dung, tuổi tác, giới tính và địa chỉ đều bị che hoàn toàn (PII Masking)</strong> trước khi đưa vào bất kỳ mô hình ngôn ngữ nào. Điều này đảm bảo hệ thống tuân thủ nghiêm ngặt các quy định pháp lý quốc tế về chống thiên lệch trong tuyển dụng như Đạo luật <em>NYC Local Law 144</em> và <em>EU AI Act</em>."</span>
+                        </p>
+                        <p>
+                            <span class="dir-tag action">[Chuyển tay sang hộp đen công thức toán học bên phải]</span><br>
+                            <span class="speech-quote">"Từ dữ liệu đã chuẩn hóa, điểm số của một ứng viên được định nghĩa tường minh bằng công thức toán học ở bên phải:  
+                            <br>
+                            <span class="mono" style="font-weight: 800; color: var(--primary);">Score(CV, JD) = 1[H(c)] × ∑ w(c,k) · S(c,k)</span>  
+                            <br>
+                            Công thức này tách biệt rạch ròi hai thành phần:  
+                            <strong>Thành phần thứ nhất là 1[H(c)] – Điều kiện loại trừ cứng (Knock-out):</strong> Đây là hàm chỉ thị nhận giá trị 0 hoặc 1. Nếu doanh nghiệp bắt buộc phải có Java hoặc tiếng Anh B2 mà hồ sơ ứng viên hoàn toàn không có, giá trị này bằng 0 và điểm tổng lập tức về 0, hệ thống không lãng phí tài nguyên để xét tiếp!  
+                            <br>
+                            <strong>Thành phần thứ hai là tổng có trọng số của 8 trục tiêu chí:</strong> Doanh nghiệp được cấu hình bộ trọng số <em>w(c,k)</em> với tổng bằng 1.0; và mỗi điểm thành phần <em>S(c,k)</em> đều nằm trong thang [0, 1]."</span>
+                        </p>
+                        <p>
+                            <span class="dir-tag voice">[Nhấn mạnh tuyệt đối luận điểm xAI]</span><br>
+                            <span class="speech-quote">"Đặc biệt nhất về mặt học thuật: <span class="speech-highlight">Mọi điểm thành phần S(c,k) bắt buộc phải gắn kèm đoạn trích dẫn chứng thực (Evidence Span) từ chính văn bản CV gốc</span>, hoàn toàn loại bỏ hiện tượng 'điểm số hộp đen' của các mô hình LLM thông thường."</span>
+                        </p>
+                    </div>
+
+                    <div class="slide-footer-nav">
+                        <button class="btn secondary" onclick="switchView('slide-3')">← Slide 3</button>
+                        <button class="btn" onclick="switchView('slide-5')">Tiếp theo: Slide 5 (3:15) →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SLIDE 5 ================= -->
+        <section id="slide-5" class="slide-card">
+            <div class="slide-card-header">
+                <div class="slide-header-left">
+                    <div class="slide-badge-num">05</div>
+                    <div class="slide-title-box">
+                        <h2>Slide 5 · Biểu Đồ Trọng Số 8 Tiêu Chí (Radar SVG) & 4 Profile Doanh Nghiệp</h2>
+                        <div class="slide-sub">Slide Deck: <code>data-slide="4"</code> · Phần 01: Phát biểu bài toán · Demo đa giác động & Chuyển mic sang Vũ</div>
+                    </div>
+                </div>
+                <div class="slide-header-right">
+                    <span class="badge-academic badge-blue" style="background: var(--success-bg); color: var(--success);">✨ ĐOẠN ĂN ĐIỂM · 3:15 – 4:00 (45s)</span>
+                    <button class="btn-copy" onclick="copySpeech('speech-5', this)">📋 Copy</button>
+                </div>
+            </div>
+
+            <div class="mobile-tab-switch">
+                <button class="mobile-pill active" onclick="setMobileSubTab('slide-5', 'speech', this)">🎙️ Lời Thoại Nói (Chính)</button>
+                <button class="mobile-pill" onclick="setMobileSubTab('slide-5', 'directing', this)">🖱️ Chỉ Dẫn & Thao Tác</button>
+            </div>
+
+            <div class="slide-split-body">
+                <div class="col-directing mobile-hidden" id="slide-5-directing">
+                    <div class="cue-box">
+                        <div class="cue-box-title">🖱️ Thao Tác Bấm 4 Nút Radar Trên Slide</div>
+                        <ul class="cue-list">
+                            <li><span class="chip-action">Bấm 'Mặc định'</span> (Giây 195–205): Nêu 3 trục kỹ thuật cốt lõi.</li>
+                            <li><span class="chip-action">Bấm 'Gia công'</span> (Giây 206–215): Đa giác kéo dãn mạnh về Trục 8 (Ngoại ngữ 20%).</li>
+                            <li><span class="chip-action">Bấm 'Ngân hàng'</span> (Giây 216–225): Đa giác dịch sang Trục 7 (ISTQB 15%) & Trục 8 (Fintech 15%).</li>
+                            <li><span class="chip-action">Bấm 'Startup'</span> (Giây 226–235): Phình to ở Trục 2 (POM 25%), Trục 5 (CI/CD 15%), ISTQB = 0%.</li>
+                        </ul>
+                    </div>
+
+                    <div class="cue-box">
+                        <div class="cue-box-title">🎤 Kỹ Thuật Chuyển Mic (Handoff Cue)</div>
+                        <p style="font-size: 0.78rem; color: var(--text-sub); line-height: 1.5;">
+                            Giây thứ 235: Quay người nhẹ 45 độ về phía bạn <strong>Nguyễn Văn Vũ</strong>, đưa tay hướng về bạn, đọc dõng dạc câu hỏi tiếp sức.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-script" id="slide-5-speech">
+                    <div id="speech-5" class="script-body">
+                        <p>
+                            <span class="dir-tag action">[Thao tác: Bấm lần lượt 4 nút chọn cấu hình công ty trên đầu slide]</span><br>
+                            <span class="speech-quote">"Kính mời quý Thầy Cô quan sát trực tiếp sự biến đổi của đa giác trọng số 8 tiêu chí trên màn hình:  
+                            <br>
+                            Ở cấu hình <strong>Mặc định</strong>, hệ thống cân bằng giữa công cụ (25%), độ sâu framework (20%) và ngôn ngữ lập trình (15%).  
+                            <br>
+                            <span class="dir-tag action">[Bấm nút 'Gia công phần mềm']</span>  
+                            Nhưng khi em chuyển sang một doanh nghiệp <strong>Gia công (Outsourcing)</strong>, trục số 8 về Ngoại ngữ và Kỹ năng giao tiếp lập tức tăng vọt gấp 4 lần – từ 5% lên 20%, bởi vì ứng viên bắt buộc phải họp daily và demo trực tiếp với khách hàng quốc tế.  
+                            <br>
+                            <span class="dir-tag action">[Bấm nút 'Ngân hàng và tài chính']</span>  
+                            Khi chuyển sang khối <strong>Ngân hàng / Fintech</strong>, trục số 7 về chuẩn kiểm thử ISTQB và nghiệp vụ thanh toán lại chiếm ưu thế tuyệt đối, đồng thời chuộng hệ sinh thái Java cổ điển vì yêu cầu an toàn thông tin khắt khe.  
+                            <br>
+                            <span class="dir-tag action">[Bấm nút 'Startup Mobile']</span>  
+                            Ngược lại, với một <strong>Startup Mobile</strong> thực chiến, trục số 2 về tự dựng Framework chiếm tới 25%, kiểm thử Mobile/API chiếm 15%, CI/CD chiếm 15%; trong khi chứng chỉ ISTQB lùi về đúng 0% vì họ cần tốc độ release tính bằng ngày hơn bằng cấp."</span>
+                        </p>
+
+                        <!-- Handoff Cue Box -->
+                        <div class="handoff-box">
+                            <div class="handoff-header">🎤 CÂU CHUYỂN GIAO TIẾP SỨC MẪU MỰC: HOÀNG XUÂN SƠN → NGUYỄN VĂN VŨ</div>
+                            <div class="handoff-speech">
+                                "Như vậy, bài toán đòi hỏi hệ thống vừa phải thẩm định được độ sâu kỹ thuật, vừa phải tùy biến linh hoạt theo đa giác tiêu chí riêng của từng doanh nghiệp. Vậy trong 31 công trình khoa học từ 2018 đến 2026, giới học thuật NLP đã giải quyết bài toán này đến đâu? Sau đây, xin mời bạn <strong>Nguyễn Văn Vũ</strong> sẽ mở các trích đoạn bài báo tiêu biểu để chứng minh!"
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide-footer-nav">
+                        <button class="btn secondary" onclick="switchView('slide-4')">← Slide 4</button>
+                        <button class="btn" onclick="switchView('slide-conclusion')">Slide 28 Tổng Kết →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= SLIDE CONCLUSION ================= -->
+        <section id="slide-conclusion" class="slide-card">
+            <div class="slide-card-header">
+                <div class="slide-header-left">
+                    <div class="slide-badge-num" style="background: var(--slate-900);">28</div>
+                    <div class="slide-title-box">
+                        <h2>Slide 28 · Tổng Kết Toàn Nhóm & Khởi Động Phiên Q&A</h2>
+                        <div class="slide-sub">Slide Deck: <code>data-slide="27"</code> · Tổng kết đề tài · Cả 5 thành viên cùng đứng lên bục bảo vệ</div>
+                    </div>
+                </div>
+                <div class="slide-header-right">
+                    <span class="badge-academic badge-blue">⏱️ 13:15 – 14:00 (45s)</span>
+                    <button class="btn-copy" onclick="copySpeech('speech-concl', this)">📋 Copy</button>
+                </div>
+            </div>
+
+            <!-- Mobile Sub-tabs: Toggle Directing vs Speech -->
+            <div class="mobile-tab-switch">
+                <button class="mobile-pill active" onclick="setMobileSubTab('slide-conclusion', 'speech', this)">🎙️ Lời Thoại Nói (Chính)</button>
+                <button class="mobile-pill" onclick="setMobileSubTab('slide-conclusion', 'directing', this)">🖱️ Chỉ Dẫn & Thao Tác</button>
+            </div>
+
+            <div class="slide-split-body">
+                <div class="col-directing mobile-hidden" id="slide-conclusion-directing" style="width: 320px;">
+                    <div class="cue-box">
+                        <div class="cue-box-title">🤝 Phối Hợp Đội Hình 5 Người</div>
+                        <ul class="cue-list">
+                            <li>Sau khi bạn Thịnh dứt lời ở Slide 27, cả 5 bạn cùng bước lên bục phía trước.</li>
+                            <li>Sơn là người mở lời tổng kết và nói câu chào kết, thể hiện vai trò nhóm trưởng / người điều phối.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-script" id="slide-conclusion-speech">
+                    <div id="speech-concl" class="script-body">
+                        <p>
+                            <span class="dir-tag voice">[Thịnh vừa dứt lời, Sơn bước lên một bước, phong thái chững chạc, đại diện nhóm tổng kết]</span><br>
+                            <span class="speech-quote">"Kính thưa quý Thầy Cô trong Hội đồng và toàn thể các bạn, để khép lại bài thuyết trình hôm nay, Nhóm 2 xin tóm lược đề tài qua ba câu trả lời lớn:  
+                            <br>
+                            1. <strong>Về mặt nghiên cứu:</strong> Nhóm đã thẩm định có hệ thống 31 công trình khoa học và định vị rõ 5 khoảng trống nghiên cứu đang còn bỏ ngỏ.  
+                            <br>
+                            2. <strong>Về mặt đề xuất:</strong> Nhóm xây dựng thành công kiến trúc Agentic AI điều phối truy xuất lai, kiểm soát nghiêm ngặt bằng 4 cơ chế phản tư tự kiểm chứng và cá nhân hóa theo tiêu chí riêng của từng doanh nghiệp.  
+                            <br>
+                            3. <strong>Về mặt thực nghiệm:</strong> Hiệu quả của hệ thống đã được kiểm chứng trung thực trên frozen benchmark NLP501-bench với 250 CV và 18 JD thực tế."</span>
+                        </p>
+                        <p>
+                            <span class="dir-tag voice">[Cả 5 thành viên cùng cúi đầu cảm ơn]</span><br>
+                            <span class="speech-quote">"Nhóm 2 chúng em xin trân trọng cảm ơn quý Thầy Cô trong Hội đồng đã chú ý lắng nghe và tận tình hướng dẫn chúng em. Sau đây, cả 5 thành viên chúng em xin phép được lắng nghe ý kiến nhận xét và sẵn sàng trả lời các câu hỏi phản biện của Thầy Cô ạ!"</span>
+                        </p>
+                    </div>
+
+                    <div class="slide-footer-nav">
+                        <button class="btn secondary" onclick="switchView('slide-5')">← Slide 5</button>
+                        <button class="btn" style="background: var(--danger); color: white;" onclick="switchView('qa-section')">Xem tiếp: 4 Câu hỏi Q&A Phản Biện →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= Q&A SECTION ================= -->
+        <section id="qa-section" class="slide-card" style="border: 2px solid rgba(239, 68, 68, 0.4);">
+            <div class="slide-card-header" style="background: rgba(239, 68, 68, 0.08);">
+                <div class="slide-header-left">
+                    <div class="slide-badge-num" style="background: var(--danger);">QA</div>
+                    <div class="slide-title-box">
+                        <h2 style="color: var(--danger);">Bộ Câu Hỏi Phản Biện Chuyên Sâu Của Hoàng Xuân Sơn</h2>
+                        <div class="slide-sub">4 Câu hỏi Thầy Cô Hội đồng dễ chất vấn nhất & Kịch bản trả lời mẫu mực</div>
+                    </div>
+                </div>
+                <span class="badge-academic badge-blue" style="background: rgba(220, 38, 38, 0.15); color: var(--danger);">Bảo Vệ Chuyên Môn</span>
+            </div>
+
+            <div class="qa-grid">
+                <!-- Question 1 -->
+                <div class="qa-card">
+                    <div class="qa-question">
+                        <span class="qa-badge">CÂU 1</span>
+                        <span>Tại sao đề tài chỉ tập trung vào ngách Automation Test mà không làm tổng quát cho toàn bộ các ngành nghề hay toàn bộ ngành CNTT?</span>
+                    </div>
+                    <div class="qa-answer">
+                        <strong>Gợi ý trả lời xuất sắc của Sơn:</strong><br>
+                        "Dạ thưa Thầy Cô trong Hội đồng, việc giải quyết bài toán tuyển dụng chung chung cho mọi ngành thường dẫn đến hệ thống 'biết tất cả nhưng không giỏi cái gì'. Nhóm chọn ngách Automation Test dựa trên <strong>hai căn cứ khoa học và thực tiễn vững chắc</strong>:
+                        <br><br>
+                        1. <strong>Căn cứ thực nghiệm từ bài báo Resume2Vec (2025):</strong> Khi khảo sát trên 24 ngành nghề, các tác giả phát hiện một hiện tượng bất thường: riêng ngành <em>Software Testing</em>, hệ thống ATS so khớp từ khóa truyền thống lại đạt độ tương quan cao hơn mô hình Embedding ngữ nghĩa thuần túy! Lý do là tên công cụ kiểm thử (như Selenium, Playwright, Cypress) là các thực thể từ vựng cứng mang tính bắt buộc, không thể thay thế bằng từ đồng nghĩa mơ hồ.
+                        <br><br>
+                        2. <strong>Đặc thù phân tầng kỹ thuật sâu sắc:</strong> Không một vị trí nào có sự phân hóa năng lực rõ như Automation Test — giữa một bạn chỉ biết chạy script Record & Playback với một kỹ sư tự dựng framework POM và pipeline CI/CD. Việc thu hẹp ngách cho phép nhóm lượng hóa được <em>Thang đo độ sâu 1–4 chuẩn xác</em> và xây dựng bộ từ điển tương đương công cụ thực chiến, giải quyết triệt để điểm nghẽn thực tế mà các hệ thống hiện tại đang bỏ ngỏ ạ!"
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="qa-card">
+                    <div class="qa-question">
+                        <span class="qa-badge">CÂU 2</span>
+                        <span>Làm thế nào hệ thống bóc tách và phân loại được một ứng viên đạt Mức 1, 2, 3 hay 4 trong thang độ sâu từ văn bản CV tự do?</span>
+                    </div>
+                    <div class="qa-answer">
+                        <strong>Gợi ý trả lời xuất sắc của Sơn:</strong><br>
+                        "Dạ thưa Thầy Cô, hệ thống không chỉ đếm từ khóa đơn thuần mà kết hợp giữa <strong>trích xuất thực thể theo vị trí mục (Section-aware)</strong> và <strong>nhận diện các cụm động từ hành động ở đầu mệnh đề (Clause-initial action verbs)</strong> trong phần kinh nghiệm dự án:
+                        <br><br>
+                        • <strong>Mức 1 (Runs & maintains):</strong> Khi công cụ chỉ xuất hiện đơn lẻ trong mục liệt kê kỹ năng hoặc các câu dạng <em>'ran regression test suite', 'updated locators'</em>.<br>
+                        • <strong>Mức 2 (Writes new tests):</strong> Khi có động từ viết kịch bản trên nền tảng sẵn có: <em>'authored 150 Cypress test cases', 'created API test scripts'</em>.<br>
+                        • <strong>Mức 3 (Designs a framework):</strong> Khi có bằng chứng thiết kế cấu trúc rõ ràng: <em>'designed Selenium framework with Page Object Model from scratch', 'implemented parallel execution on Grid'</em>.<br>
+                        • <strong>Mức 4 (Architecture & platform):</strong> Khi có bằng chứng hạ tầng và dẫn dắt: <em>'architected test platform adopted by 14 squads', 'built release quality gates in GitLab CI with Docker'</em>.
+                        <br><br>
+                        Điểm mấu chốt là: Toàn bộ gán nhãn độ sâu này đều được lưu thành <strong>Span văn bản trích dẫn gốc</strong>. Công cụ <code>verify_evidence</code> của nhóm sẽ đối chiếu lại chính xác đoạn văn này trong CV; nếu không tìm thấy bằng chứng thì hệ thống không cho phép tự ý nâng bậc ứng viên ạ!"
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="qa-card">
+                    <div class="qa-question">
+                        <span class="qa-badge">CÂU 3</span>
+                        <span>Điều kiện Knock-out 1[H(c)] hoạt động như thế nào? Liệu có rủi ro loại nhầm ứng viên xuất sắc nếu họ dùng từ đồng nghĩa hoặc không ghi rõ?</span>
+                    </div>
+                    <div class="qa-answer">
+                        <strong>Gợi ý trả lời xuất sắc của Sơn:</strong><br>
+                        "Dạ thưa Thầy Cô, loại nhầm ứng viên là rủi ro nguy hiểm nhất trong tuyển dụng. Vì vậy nhóm thiết kế cơ chế Knock-out với <strong>3 tầng bảo vệ nghiêm ngặt</strong>:
+                        <br><br>
+                        1. <strong>Ánh xạ từ điển tương đương (Taxonomy Mapping):</strong> Knock-out không so khớp xâu ký tự thô mà ánh xạ qua cây kỹ năng ESCO-lite. Nếu JD yêu cầu Playwright nhưng CV có Cypress, hệ thống kích hoạt Vòng lặp L2 để hỏi HR có chấp thuận công cụ thay thế hay không chứ không tự ý loại ngay.
+                        <br><br>
+                        2. <strong>Phân biệt mức độ bằng chứng (Evidence Strength):</strong> Hệ thống phân biệt rõ giữa việc 'đã làm thực tế trong dự án' (used) với việc 'chỉ mới đang học' (hedged: <em>'familiar with', 'currently learning'</em>). Chỉ những hồ sơ hoàn toàn không có kỹ năng hoặc chỉ nhắc dạng hedged mới bị kích hoạt lý do knock-out.
+                        <br><br>
+                        3. <strong>Nguyên tắc Decision Support:</strong> Hệ thống không xóa hồ sơ mà đưa vào danh sách kèm lý do tường minh (ví dụ: <em>'Missing must-have: Java'</em>) để HR rà soát lại ở bước cuối trước khi ra quyết định ạ!"
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="qa-card">
+                    <div class="qa-question">
+                        <span class="qa-badge">CÂU 4</span>
+                        <span>Việc cho phép HR tự do thay đổi bộ trọng số w(c,k) có làm mất đi tính khách quan và chuẩn mực của hệ thống đánh giá không?</span>
+                    </div>
+                    <div class="qa-answer">
+                        <strong>Gợi ý trả lời xuất sắc của Sơn:</strong><br>
+                        "Dạ thưa Thầy Cô, bản chất của tuyển dụng là không có một 'mẫu số chung' hoàn hảo cho mọi doanh nghiệp. Sự phù hợp luôn mang tính tương đối giữa ứng viên và ngữ cảnh kinh doanh:
+                        <br><br>
+                        • Một công ty Outsourcing làm việc trực tiếp với khách hàng Âu Mỹ bắt buộc phải ưu tiên tiếng Anh giao tiếp ngay từ ngày đầu.<br>
+                        • Ngược lại, một Startup đang cần release app gấp chỉ cần một bạn vào dựng được ngay framework test tự động, họ sẵn sàng bỏ qua việc ứng viên chưa có chứng chỉ ISTQB.
+                        <br><br>
+                        Nếu hệ thống áp đặt một bộ trọng số cứng nhắc, nó sẽ phục vụ sai nhu cầu của ít nhất 50% doanh nghiệp trên thị trường. <strong>Tính khách quan của hệ thống không nằm ở việc ép mọi công ty dùng chung một thước đo, mà nằm ở tính nhất quán và minh bạch:</strong> Khi công ty đã chọn ma trận trọng số của họ, toàn bộ ứng viên đều được đo lường công bằng trên cùng một thang đo đó, không bị ảnh hưởng bởi thiên lệch họ tên, giới tính nhờ lớp che PII, và mọi điểm số đều được chứng minh bằng văn bản gốc ạ!"
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Floating Bottom Dock For iPhone 14 Pro Mobile Navigation -->
+    <div class="mobile-bottom-dock">
+        <button class="dock-btn prev" onclick="prevSlideMobile()" title="Slide trước">
+            <span>← Trước</span>
+        </button>
+
+        <div class="dock-timer-badge" onclick="toggleTimer()" title="Bấm để Bắt đầu / Tạm dừng bấm giờ">
+            <span id="dock-timer-display" class="dock-timer-time">00:00</span>
+            <span id="dock-timer-label" class="dock-timer-state">BẤM CHẠY</span>
+        </div>
+
+        <button class="dock-btn qa" onclick="switchView('qa-section')" title="Chuyển nhanh sang 4 câu hỏi Q&A">
+            <span>🎯 Q&A</span>
+        </button>
+
+        <button class="dock-btn next" onclick="nextSlideMobile()" title="Slide tiếp theo">
+            <span id="dock-btn-next-label">Tiếp: Slide 2 →</span>
+        </button>
+    </div>
+
+    <!-- Interactive Navigation Scripts -->
+    <script>
+        const slideSequence = ['slide-1', 'slide-2', 'slide-3', 'slide-4', 'slide-5', 'slide-conclusion', 'qa-section'];
+        const slideLabels = {
+            'slide-1': 'Slide 1 · Mở Đầu',
+            'slide-2': 'Slide 2 · Dàn Ý',
+            'slide-3': 'Slide 3 · Phễu 4 Tầng',
+            'slide-4': 'Slide 4 · CV & Công Thức',
+            'slide-5': 'Slide 5 · Radar 8 Trục',
+            'slide-conclusion': 'Slide 28 · Tổng Kết',
+            'qa-section': '4 Câu Hỏi Q&A'
+        };
+
+        let currentMode = 'focus'; // 'focus' | 'all'
+        let currentSlideId = 'slide-1';
+
+        function switchView(slideId, btnElement) {
+            currentSlideId = slideId;
+
+            // Update Tab Active
+            document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (btnElement) {
+                btnElement.classList.add('active');
+            } else {
+                const targetBtn = Array.from(document.querySelectorAll('.nav-tab-btn')).find(b => b.getAttribute('onclick') && b.getAttribute('onclick').includes(slideId));
+                if (targetBtn) {
+                    targetBtn.classList.add('active');
+                    targetBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }
+            }
+
+            if (currentMode === 'focus') {
+                document.querySelectorAll('.slide-card').forEach(card => {
+                    card.style.display = card.id === slideId ? 'block' : 'none';
+                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                const el = document.getElementById(slideId);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+            updateBottomDock();
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            const focusBtn = document.getElementById('btn-mode-focus');
+            const allBtn = document.getElementById('btn-mode-all');
+            if (focusBtn) focusBtn.classList.toggle('active', mode === 'focus');
+            if (allBtn) allBtn.classList.toggle('active', mode === 'all');
+
+            if (mode === 'focus') {
+                switchView(currentSlideId);
+            } else {
+                document.querySelectorAll('.slide-card').forEach(card => {
+                    card.style.display = 'block';
+                });
+            }
+        }
+
+        // Mobile Segmented Switch (Directing vs Speech)
+        function setMobileSubTab(slideId, type, btn) {
+            const container = document.getElementById(slideId);
+            if (!container) return;
+
+            container.querySelectorAll('.mobile-pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const directingCol = document.getElementById(`${slideId}-directing`);
+            const speechCol = document.getElementById(`${slideId}-speech`);
+
+            if (type === 'speech') {
+                if (directingCol) directingCol.classList.add('mobile-hidden');
+                if (speechCol) speechCol.classList.remove('mobile-hidden');
+            } else {
+                if (directingCol) directingCol.classList.remove('mobile-hidden');
+                if (speechCol) speechCol.classList.add('mobile-hidden');
+            }
+        }
+
+        // Bottom Dock Update
+        function updateBottomDock() {
+            const idx = slideSequence.indexOf(currentSlideId);
+            const nextIdx = idx + 1;
+            const nextLabel = nextIdx < slideSequence.length ? `Tiếp: ${slideLabels[slideSequence[nextIdx]]} →` : 'Đã Hết →';
+            const dockLabelEl = document.getElementById('dock-btn-next-label');
+            if (dockLabelEl) {
+                dockLabelEl.textContent = nextLabel;
+            }
+        }
+
+        function prevSlideMobile() {
+            const idx = slideSequence.indexOf(currentSlideId);
+            if (idx > 0) {
+                switchView(slideSequence[idx - 1]);
+            }
+        }
+
+        function nextSlideMobile() {
+            const idx = slideSequence.indexOf(currentSlideId);
+            if (idx < slideSequence.length - 1) {
+                switchView(slideSequence[idx + 1]);
+            }
+        }
+
+        // Swipe Gestures for Mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeDistanceX = touchEndX - touchStartX;
+            const swipeDistanceY = touchEndY - touchStartY;
+            // Only trigger if horizontal swipe is intentional (> 55px) and not mostly vertical scroll (< 50px)
+            if (Math.abs(swipeDistanceX) > 55 && Math.abs(swipeDistanceY) < 50) {
+                if (swipeDistanceX < 0) {
+                    nextSlideMobile(); // Swipe Left -> Next
+                } else {
+                    prevSlideMobile(); // Swipe Right -> Prev
+                }
+            }
+        }
+
+        // Font Size Adjuster
+        let baseFontSize = 1.15;
+        function changeFontSize(delta) {
+            baseFontSize = Math.max(0.9, Math.min(1.55, baseFontSize + delta));
+            document.documentElement.style.setProperty('--script-font-size', baseFontSize + 'rem');
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const isDark = document.body.classList.toggle('dark-mode');
+            const btn = document.getElementById('btn-theme-toggle');
+            btn.textContent = isDark ? '☀️ Sáng' : '🌙 Tối';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Rehearsal Timer
+        let timerInterval = null;
+        let totalSeconds = 0;
+        let isRunning = false;
+
+        function updateTimer() {
+            const mins = Math.floor(totalSeconds / 60);
+            const secs = totalSeconds % 60;
+            const formatted = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            
+            const headerDisplay = document.getElementById('timer-display-header');
+            const dockDisplay = document.getElementById('dock-timer-display');
+            
+            if (headerDisplay) headerDisplay.textContent = formatted;
+            if (dockDisplay) dockDisplay.textContent = formatted;
+
+            const color = totalSeconds > 240 ? 'var(--danger)' : totalSeconds > 210 ? 'var(--accent-warm)' : 'var(--primary)';
+            if (headerDisplay) headerDisplay.style.color = color;
+            if (dockDisplay) dockDisplay.style.color = color;
+        }
+
+        function toggleTimer() {
+            const headerBtn = document.getElementById('btn-timer-header');
+            const dockState = document.getElementById('dock-timer-label');
+            if (isRunning) {
+                clearInterval(timerInterval);
+                if (headerBtn) headerBtn.textContent = 'TIẾP TỤC';
+                if (dockState) dockState.textContent = 'ĐÃ DỪNG';
+                isRunning = false;
+            } else {
+                timerInterval = setInterval(() => {
+                    totalSeconds++;
+                    updateTimer();
+                }, 1000);
+                if (headerBtn) headerBtn.textContent = 'TẠM DỪNG';
+                if (dockState) dockState.textContent = 'ĐANG ĐẾM';
+                isRunning = true;
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            totalSeconds = 0;
+            updateTimer();
+            const headerBtn = document.getElementById('btn-timer-header');
+            const dockState = document.getElementById('dock-timer-label');
+            if (headerBtn) headerBtn.textContent = 'BẮT ĐẦU';
+            if (dockState) dockState.textContent = 'BẤM ĐỂ CHẠY';
+        }
+
+        // Copy Speech
+        function copySpeech(elementId, btn) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const old = btn.innerHTML;
+                btn.innerHTML = '✅ Đã Copy';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = old;
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('btn-theme-toggle').textContent = '☀️ Sáng';
+            }
+            setMode('focus');
+            updateBottomDock();
+        });
+    </script>
+</body>
+</html>

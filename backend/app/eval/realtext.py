@@ -161,7 +161,7 @@ def intake() -> str:
     for f in sorted(p for p in raw.glob("*") if p.is_file()):
         text = normalize(read_file(f.name, f.read_bytes()))
         p = process(f.stem, text)
-        (out / f"{f.stem}.txt").write_text(p.text)
+        (out / f"{f.stem}.txt").write_text(p.text, encoding="utf-8")
         left = [k for k, rx in INLINE.items() if rx.search(p.text)] + (["name?"] if header_name(p.text) else [])
         report.append(f"{f.stem}: masked {p.redactions or 'nothing'}; still matching {left or 'nothing'}; "
                       f"flags {quality.flags(p) or 'none'}")

@@ -9,15 +9,20 @@ def settings(**kw) -> Settings:
 
 
 def test_all_providers_registered():
-    assert set(PROVIDERS) == {"openai", "anthropic", "google", "ollama", "gateway", "claude_code"}
+    assert set(PROVIDERS) == {"openai", "anthropic", "google", "ollama", "gateway", "claude_code", "woku"}
 
 
-@pytest.mark.parametrize("provider", ["openai", "anthropic", "google", "ollama", "gateway", "claude_code"])
+@pytest.mark.parametrize("provider", ["openai", "anthropic", "google", "ollama", "gateway", "claude_code", "woku"])
 def test_llm_provider_switches_both_roles(provider):
     s = settings(llm_provider=provider)
     p = get_provider(provider, s)
     assert default_spec("reasoning", s) == f"{provider}:{p.default_model('reasoning')}"
     assert default_spec("fast", s) == f"{provider}:{p.default_model('fast')}"
+
+
+def test_woku_provider_builds_model():
+    llm = create_llm("woku:gpt-4o", settings(woku_api_key="sk-woku-test", woku_base_url="https://api.wokushop.com/v1"))
+    assert type(llm).__name__ == "ChatOpenAI"
 
 
 def test_explicit_role_spec_overrides_provider():

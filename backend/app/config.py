@@ -51,6 +51,12 @@ class Settings(BaseSettings):
     gateway_model: str = "claude-sonnet-5-5"
     gateway_fast_model: str = "claude-haiku-5-5"
 
+    # Woku Shop API (OpenAI-compatible proxy for GPT / Claude / Gemini / DeepSeek)
+    woku_base_url: str = "https://llm.wokushop.com/v1"
+    woku_api_key: str = ""
+    woku_model: str = "claude-sonnet-4-6"
+    woku_fast_model: str = "claude-sonnet-4-6"
+
     qdrant_url: str = "http://localhost:6333"  # ":memory:" for tests
     embed_dense_model: str = "BAAI/bge-small-en-v1.5"
     embed_sparse_model: str = "Qdrant/bm25"

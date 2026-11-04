@@ -450,4 +450,43 @@ export const mockApi: Api = {
     uploaded[id] = { headline, text }
     return profileOf(id, headline, text)
   },
+  batchUploadCvs: async (files) => {
+    await sleep(800)
+    const items = []
+    for (const f of files) {
+      const id = `CV-U${String(Object.keys(uploaded).length + 1).padStart(3, '0')}`
+      const headline = f.name.replace(/\.[^/.]+$/, '')
+      uploaded[id] = { headline, text: SAMPLE_UPLOAD }
+      items.push({ id, filename: f.name, headline, skills: ['selenium', 'java'], years_automation: 3.0, lang: 'vi' as const })
+    }
+    return { total: files.length, succeeded: files.length, failed: 0, items, errors: [] }
+  },
+  deleteCv: async (id) => {
+    delete uploaded[id]
+    return { status: 'deleted', id }
+  },
+  resetCvs: async () => {
+    const count = Object.keys(uploaded).length
+    for (const k of Object.keys(uploaded)) delete uploaded[k]
+    return { status: 'reset', deleted_count: count }
+  },
+  getExportCsvUrl: (runId) => `#export-${runId}`,
+  parseJd: async (file) => {
+    await sleep(400)
+    const raw_text = await file.text()
+    return {
+      title: file.name.replace(/\.[^/.]+$/, ''),
+      must_have: ['playwright', 'typescript', 'api_testing'],
+      nice_to_have: ['istqb', 'docker'],
+      substitutes: { playwright: ['selenium'] },
+      min_years: 3,
+      depth_level: 3,
+      languages: ['typescript', 'python'],
+      test_types: ['web', 'api'],
+      foreign_languages: ['english'],
+      domains: ['banking'],
+      filename: file.name,
+      raw_text: raw_text || 'Senior Automation QA Engineer with Playwright and CI/CD experience.',
+    }
+  },
 }

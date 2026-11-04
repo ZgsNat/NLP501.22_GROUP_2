@@ -8,18 +8,19 @@ from app.nlp.extract import jd_depth
 from app.nlp.taxonomy import aliases, group, mentions, skills
 
 MUST_HEADER = re.compile(r"^\W*(?:requirements?|qualifications?|must[-\s]have|yêu\s*cầu(?:\s*công\s*việc)?|"
+                         r"yeu\s*cau(?:\s*cong\s*viec)?|"
                          r"what\s+you\s+(?:need|bring)|job\s+requirements?)\s*:?\s*$", re.I)
 NICE_HEADER = re.compile(r"^\W*(?:nice[-\s]to[-\s]have|preferred(?:\s+qualifications?)?|bonus|plus|ưu\s*tiên|"
-                         r"điểm\s*cộng|is\s+a\s+plus)\s*:?\s*$", re.I)
+                         r"uu\s*tien|điểm\s*cộng|diem\s*cong|is\s+a\s+plus)\s*:?\s*$", re.I)
 OTHER_HEADER = re.compile(r"^\W*(?:responsibilit(?:y|ies)|job\s+description|about\s+(?:the\s+role|us)|"
-                          r"what\s+you\s+will\s+do|mô\s*tả\s*công\s*việc|trách\s*nhiệm(?:\s*công\s*việc)?|"
-                          r"giới\s*thiệu(?:\s*vị\s*trí)?)\s*:?\s*$", re.I)
-BENEFIT_HEADER = re.compile(r"^\W*(?:benefits?|perks|why\s+join(?:\s+us)?|we\s+offer|quyền\s*lợi|phúc\s*lợi)\s*:?\s*$",
+                          r"what\s+you\s+will\s+do|mô\s*tả\s*công\s*việc|mo\s*ta\s*cong\s*viec|trách\s*nhiệm(?:\s*công\s*việc)?|"
+                          r"trach\s*nhiem|giới\s*thiệu(?:\s*vị\s*trí)?|gioi\s*thieu)\s*:?\s*$", re.I)
+BENEFIT_HEADER = re.compile(r"^\W*(?:benefits?|perks|why\s+join(?:\s+us)?|we\s+offer|quyền\s*lợi|quyen\s*loi|phúc\s*lợi|phuc\s*loi)\s*:?\s*$",
                             re.I)
-MUST_CUE = re.compile(r"\b(?:must|required|mandatory|at\s+least|minimum|bắt\s*buộc|tối\s*thiểu|cần\s*có)\b", re.I)
-NICE_CUE = re.compile(r"nice\s+to\s+have|is\s+a\s+plus|\ba\s+plus\b|preferred|advantage|bonus|ưu\s*tiên|lợi\s*thế|"
-                      r"điểm\s*cộng", re.I)
-YEARS = re.compile(r"(\d{1,2})(?:\s*(?:-|–|to|đến)\s*\d{1,2})?\s*\+?\s*(?:years?|yrs?|năm)", re.I)
+MUST_CUE = re.compile(r"\b(?:must|required|mandatory|at\s+least|minimum|bắt\s*buộc|bat\s*buoc|tối\s*thiểu|toi\s*thieu|cần\s*có|can\s*co)\b", re.I)
+NICE_CUE = re.compile(r"nice\s+to\s+have|is\s+a\s+plus|\ba\s+plus\b|preferred|advantage|bonus|ưu\s*tiên|uu\s*tien|lợi\s*thế|loi\s*the|"
+                      r"điểm\s*cộng|diem\s*cong", re.I)
+YEARS = re.compile(r"(\d{1,2})(?:\s*(?:-|–|to|đến|den)\s*\d{1,2})?\s*\+?\s*(?:years?|yrs?|năm|nam)", re.I)
 TEST_TYPES = {"web": r"\bweb\b|\bui\b|browser|end-to-end|\be2e\b", "mobile": r"mobile|android|\bios\b",
               "api": r"\bapi\b|\brest\b|graphql", "performance": r"performance|\bload\b|stress|hiệu năng"}
 FOREIGN = {"english": r"\benglish\b|tiếng anh|toeic|ielts|toefl", "japanese": r"japanese|tiếng nhật|jlpt|nihongo"}
