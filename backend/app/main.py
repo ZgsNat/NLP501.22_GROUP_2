@@ -101,7 +101,12 @@ def _stream(gen: AsyncIterator[str]) -> StreamingResponse:
 
 @app.get("/api/health")
 async def health():
-    return {"status": "ok"}
+    """The API is up; `store` says whether search works: qdrant, memory (QDRANT_FALLBACK_MEMORY, no search) or offline."""
+    try:
+        store = "memory" if get_store().degraded else "qdrant"
+    except RuntimeError as e:
+        return {"status": "ok", "store": "offline", "detail": str(e)}
+    return {"status": "ok", "store": store}
 
 
 @app.get("/api/config")

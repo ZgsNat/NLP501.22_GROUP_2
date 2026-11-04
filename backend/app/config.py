@@ -58,6 +58,9 @@ class Settings(BaseSettings):
     woku_fast_model: str = "claude-sonnet-4-6"
 
     qdrant_url: str = "http://localhost:6333"  # ":memory:" for tests
+    # Qdrant unreachable: False (default) = a clear error; True = run on an empty in-memory index, so the CV library
+    # and parsing work without Docker but search finds nothing (and /api/health says so).
+    qdrant_fallback_memory: bool = False
     embed_dense_model: str = "BAAI/bge-small-en-v1.5"
     embed_sparse_model: str = "Qdrant/bm25"
     rerank_model: str = "Xenova/ms-marco-MiniLM-L-6-v2"
