@@ -14,23 +14,24 @@ NICE_HEADER = re.compile(r"^\W*(?:nice[-\s]to[-\s]have|preferred(?:\s+qualificat
                          r"uu\s*tien|điểm\s*cộng|diem\s*cong|is\s+a\s+plus)\s*:?\s*$", re.I)
 OTHER_HEADER = re.compile(r"^\W*(?:responsibilit(?:y|ies)|job\s+description|about\s+(?:the\s+role|us)|"
                           r"what\s+you\s+will\s+do|mô\s*tả\s*công\s*việc|mo\s*ta\s*cong\s*viec|trách\s*nhiệm(?:\s*công\s*việc)?|"
-                          r"trach\s*nhiem|giới\s*thiệu(?:\s*vị\s*trí)?|gioi\s*thieu)\s*:?\s*$", re.I)
+                          r"trach\s*nhiem(?:\s*cong\s*viec)?|giới\s*thiệu(?:\s*vị\s*trí)?|gioi\s*thieu(?:\s*vi\s*tri)?)\s*:?\s*$", re.I)
 BENEFIT_HEADER = re.compile(r"^\W*(?:benefits?|perks|why\s+join(?:\s+us)?|we\s+offer|quyền\s*lợi|quyen\s*loi|phúc\s*lợi|phuc\s*loi)\s*:?\s*$",
                             re.I)
 MUST_CUE = re.compile(r"\b(?:must|required|mandatory|at\s+least|minimum|bắt\s*buộc|bat\s*buoc|tối\s*thiểu|toi\s*thieu|cần\s*có|can\s*co)\b", re.I)
 NICE_CUE = re.compile(r"nice\s+to\s+have|is\s+a\s+plus|\ba\s+plus\b|preferred|advantage|bonus|ưu\s*tiên|uu\s*tien|lợi\s*thế|loi\s*the|"
                       r"điểm\s*cộng|diem\s*cong", re.I)
-YEARS = re.compile(r"(\d{1,2})(?:\s*(?:-|–|to|đến|den)\s*\d{1,2})?\s*\+?\s*(?:years?|yrs?|năm|nam)", re.I)
+YEARS = re.compile(r"(\d{1,2})(?:\s*(?:-|–|to|đến|den)\s*\d{1,2})?\s*\+?\s*(?:years?|yrs?|năm|nam)\b", re.I)  # \b: "3 names", "namespaces"
 TEST_TYPES = {"web": r"\bweb\b|\bui\b|browser|end-to-end|\be2e\b", "mobile": r"mobile|android|\bios\b",
               "api": r"\bapi\b|\brest\b|graphql", "performance": r"performance|\bload\b|stress|hiệu năng"}
-FOREIGN = {"english": r"\benglish\b|tiếng anh|toeic|ielts|toefl", "japanese": r"japanese|tiếng nhật|jlpt|nihongo"}
+FOREIGN = {"english": r"\benglish\b|tiếng anh|tieng anh|toeic|ielts|toefl",
+           "japanese": r"japanese|tiếng nhật|tieng nhat|jlpt|nihongo"}
 DOMAINS = {"banking": r"\bbank|fintech|payment|core banking|ngân hàng|thanh toán|tài chính",
            "ecommerce": r"e-?commerce|online retail|marketplace|thương mại điện tử",
            "telecom": r"telecom|viễn thông", "healthcare": r"health|medical|y tế", "insurance": r"insurance|bảo hiểm"}
 
-AND = re.compile(r"\s+(?:and|và)\s+|;\s*")
-OR = re.compile(r"\s(?:or|hoặc)\s|/")
-SOFT = re.compile(r"\b(?:or similar|or equivalent|e\.g\.|such as|a plus)\b|tương tự|tương đương")
+AND = re.compile(r"\s+(?:and|và|va)\s+|;\s*")
+OR = re.compile(r"\s(?:or|hoặc|hoac)\s|/")  # "hoac": unaccented Vietnamese
+SOFT = re.compile(r"\b(?:or similar|or equivalent|e\.g\.|such as|a plus)\b|tương tự|tương đương|tuong tu|tuong duong")
 
 
 def canonicalize(phrases: list[str]) -> tuple[list[str], list[str], dict[str, list[str]]]:
