@@ -10,33 +10,74 @@ The page shows only the JD and the CV text: never the silver grades, a system's 
 import json
 import random
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
+
+import yaml
 
 from app.config import ROOT
 from app.eval import metrics
-from app.eval.run import annotators, gold
 from app.rag.corpus import load_dir
 
 KIT = ROOT / "docs" / "labeling"
 LABELS = ROOT / "data" / "eval"
-PER_JD = 10
+SAMPLE_ID = "v2-all-disagreements-seed13"
+SAMPLE_SIZE = 120
+
+
+def annotators() -> dict[str, dict[str, dict[str, int]]]:
+    """Load label sources without importing the full evaluation stack (LangGraph, retrieval and model providers)."""
+    return {p.stem.removeprefix("annotator_"): yaml.safe_load(p.read_text())
+            for p in sorted(LABELS.glob("annotator_*.yaml"))}
+
+
+def gold() -> dict[str, dict[str, float]]:
+    ann = list(annotators().values())
+    return {jd: {cv: sum(a[jd][cv] for a in ann) / len(ann) for cv in ann[0][jd]} for jd in ann[0]}
 
 
 def sample(seed: int = 13) -> list[dict]:
-    """10 pairs per JD, stratified by silver grade, a third of them where the two silver annotators disagree."""
+    """All A/B disagreements plus agreeing controls balanced across JDs and silver grades."""
     rnd, a, b, g = random.Random(seed), *annotators().values(), gold()
-    pairs = []
+    selected: list[tuple[str, str]] = []
+    agreement_pool: dict[str, list[tuple[str, int]]] = defaultdict(list)
+    by_jd: Counter[str] = Counter()
+    by_jd_grade: dict[str, Counter[int]] = defaultdict(Counter)
+
     for jd in sorted(g):
-        bins = defaultdict(list)
         for cv, grade in sorted(g[jd].items()):
-            bins["disagree" if a[jd][cv] != b[jd][cv] else min(int(grade), 3)].append(cv)
-        take = rnd.sample(bins["disagree"], min(3, len(bins["disagree"])))
-        quota = {3: 2, 2: 2, 1: 2, 0: 1}  # + 3 disagreements = 10; empty bins are topped up below
-        for grade, n in quota.items():
-            take += rnd.sample([c for c in bins[grade] if c not in take], min(n, len(bins[grade])))
-        rest = [c for c in g[jd] if c not in take]
-        take += rnd.sample(rest, max(0, PER_JD - len(take)))
-        pairs += [{"jd": jd, "cv": cv} for cv in take]
+            rounded = min(int(grade + 0.5), 3)
+            if a[jd][cv] != b[jd][cv]:
+                selected.append((jd, cv))
+                by_jd[jd] += 1
+                by_jd_grade[jd][rounded] += 1
+            else:
+                agreement_pool[jd].append((cv, rounded))
+
+    if len(selected) > SAMPLE_SIZE:
+        raise ValueError(f"{len(selected)} disagreements do not fit in a {SAMPLE_SIZE}-pair sample")
+
+    # Fill the remaining slots with agreements. Prefer the least represented JD, then the least represented grade
+    # inside that JD. Random choice only breaks ties, so seed 13 remains reproducible while coverage stays balanced.
+    while len(selected) < SAMPLE_SIZE:
+        available_jds = [jd for jd, pool in agreement_pool.items() if pool]
+        if not available_jds:
+            raise ValueError(f"Only {len(selected)} distinct labelled pairs are available")
+        least_jd_count = min(by_jd[jd] for jd in available_jds)
+        jd = rnd.choice(sorted(jd for jd in available_jds if by_jd[jd] == least_jd_count))
+        grades = {grade for _, grade in agreement_pool[jd]}
+        least_grade_count = min(by_jd_grade[jd][grade] for grade in grades)
+        grade = rnd.choice(sorted(grade for grade in grades if by_jd_grade[jd][grade] == least_grade_count))
+        candidates = sorted(cv for cv, candidate_grade in agreement_pool[jd] if candidate_grade == grade)
+        cv = rnd.choice(candidates)
+        agreement_pool[jd].remove((cv, grade))
+        selected.append((jd, cv))
+        by_jd[jd] += 1
+        by_jd_grade[jd][grade] += 1
+
+    disagreements = {(jd, cv) for jd in g for cv in g[jd] if a[jd][cv] != b[jd][cv]}
+    assert len(selected) == SAMPLE_SIZE and len(set(selected)) == SAMPLE_SIZE
+    assert disagreements <= set(selected)
+    pairs = [{"jd": jd, "cv": cv} for jd, cv in selected]
     rnd.shuffle(pairs)
     return pairs
 
@@ -71,7 +112,7 @@ Grade alone: do not discuss pairs with the other annotator until both of you hav
 <script>
 const DATA = __DATA__;
 const GR = ['0 · not relevant', '1 · weak / adjacent', '2 · would phone-screen', '3 · would interview'];
-const KEY = 'cvjd-labels-v1';
+const KEY = 'cvjd-labels-' + DATA.sample;
 let st = {who: '', i: 0, labels: {}};
 try { st = Object.assign(st, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
@@ -99,6 +140,7 @@ $('dl').onclick = () => {
   if (!st.who) { alert('Type your name first.'); return; }
   const out = {annotator: st.who, sample: DATA.sample, labels: DATA.pairs.filter((p) => st.labels[pid(p)]?.grade !== undefined)
     .map((p) => ({jd: p.jd, cv: p.cv, ...st.labels[pid(p)]}))};
+  if (out.labels.length !== DATA.pairs.length) { alert(`Grade all ${DATA.pairs.length} pairs before downloading.`); return; }
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 1)], {type: 'application/json'}));
   a.download = `human_${st.who.toLowerCase().replace(/\\W+/g, '_')}.json`; a.click();
 };
@@ -110,7 +152,7 @@ def write_kit() -> None:
     pairs = sample()
     jds = {d.id: d.text for d in load_dir("jds")}
     cvs = {d.id: d.text for d in load_dir("cvs")}
-    data = {"sample": "v1-seed13", "pairs": pairs, "jds": {p["jd"]: jds[p["jd"]] for p in pairs},
+    data = {"sample": SAMPLE_ID, "pairs": pairs, "jds": {p["jd"]: jds[p["jd"]] for p in pairs},
             "cvs": {c: cvs[c] for c in sorted({p["cv"] for p in pairs})}}
     KIT.mkdir(parents=True, exist_ok=True)
     (KIT / "index.html").write_text(PAGE.replace("__DATA__", json.dumps(data, ensure_ascii=False)))
@@ -119,9 +161,18 @@ def write_kit() -> None:
 
 
 def score() -> str:
-    files = sorted(LABELS.glob("human_*.json"))
-    humans = {json.loads(f.read_text())["annotator"]: {(x["jd"], x["cv"]): x["grade"] for x in json.loads(f.read_text())["labels"]}
-              for f in files}
+    files = [p for p in sorted(LABELS.glob("human_*.json")) if "djinni" not in p.name]
+    expected = {(p["jd"], p["cv"]) for p in sample()}
+    humans = {}
+    for f in files:
+        payload = json.loads(f.read_text())
+        if payload.get("sample") != SAMPLE_ID:
+            raise ValueError(f"{f.name}: expected sample {SAMPLE_ID!r}, got {payload.get('sample')!r}")
+        labels = payload.get("labels", [])
+        keys = [(x["jd"], x["cv"]) for x in labels]
+        if len(keys) != len(set(keys)) or set(keys) != expected:
+            raise ValueError(f"{f.name}: labels must contain every pair in {SAMPLE_ID} exactly once")
+        humans[payload["annotator"]] = {key: x["grade"] for key, x in zip(keys, labels)}
     a, b = annotators().values()
     silver = {"annotator A (Opus)": {(j, c): v for j, d in a.items() for c, v in d.items()},
               "annotator B (Sonnet)": {(j, c): v for j, d in b.items() for c, v in d.items()},
@@ -146,9 +197,13 @@ def score() -> str:
     for h in names:
         for sname, s in silver.items():
             row(h, humans[h], sname, s)
-    # Model annotators (llm_annotator_*.json) are reported apart and never count as human validation (Q13).
-    llms = {json.loads(f.read_text())["annotator"]: {(x["jd"], x["cv"]): x["grade"] for x in json.loads(f.read_text())["labels"]}
-            for f in sorted(LABELS.glob("llm_annotator_*.json"))}
+    # Model annotators are reported apart and never count as human validation (Q13). Ignore files from older sample
+    # versions: comparing them with the current humans on an accidental subset would make the pair count misleading.
+    llms = {}
+    for f in sorted(LABELS.glob("llm_annotator_*.json")):
+        payload = json.loads(f.read_text())
+        if payload.get("sample") == SAMPLE_ID:
+            llms[payload["annotator"]] = {(x["jd"], x["cv"]): x["grade"] for x in payload["labels"]}
     if llms:
         lines += ["", "## Model annotators (not human; reported apart, they do not validate the silver set)", "",
                   "| Pair | pairs | exact agreement | weighted κ |", "|---|---|---|---|"]

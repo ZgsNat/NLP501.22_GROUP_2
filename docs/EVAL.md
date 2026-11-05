@@ -27,9 +27,10 @@ What CV-031–050 add:
 - **Agreement.** Exact agreement is 84.3% and quadratic-weighted Cohen's κ = 0.919. No pair differs by more than one grade.
 - **Gold.** The mean of the two annotators, so half grades occur.
 - **Status: SILVER.** Both annotators are LLMs from one model family, so their errors are correlated and κ is optimistic. Before the final report, two humans (Hoa plus one teammate) should:
-  1. re-grade a stratified sample of 120 pairs blind;
+  1. re-grade a blind sample of 120 pairs containing all 94 A/B disagreements plus 26 agreeing controls;
   2. report human–human and human–silver κ;
-  3. adjudicate the 94 pairs where A and B differ (`python -m app.eval.run report` writes them to `.runtime/eval/to_adjudicate.yaml`).
+  3. use those same labels to adjudicate all 94 pairs where A and B differ (`python -m app.eval.run report` writes
+     the audit copy to `.runtime/eval/to_adjudicate.yaml`).
 
   If human–silver κ ≥ 0.8, keep the silver set as the main test set.
 

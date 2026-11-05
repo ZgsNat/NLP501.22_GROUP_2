@@ -56,9 +56,9 @@ can fairly ask whether the system just learned our own data.
 It is the only data with graded labels for this domain, and it is already frozen with a dev/test split
 (`docs/BENCHMARK.md`).
 
-**Fix its weakness first:** two team members grade a stratified sample of about 120 pairs blind (`docs/labeling/`),
-and we report κ(human, silver). This is the planned v1.1 (BENCHMARK.md rule 7), and the cheapest answer to "who says
-these candidates are relevant?"
+**Fix its weakness first:** two team members grade a blind sample of 120 pairs (`docs/labeling/`) containing all 94
+A/B disagreements plus 26 agreeing controls, and we report κ(human, silver). This is the planned v1.1
+(BENCHMARK.md rule 7), and the cheapest answer to "who says these candidates are relevant?"
 - κ ≥ 0.8: the silver labels stay the main test set.
 - 0.6 ≤ κ < 0.8: they become a secondary set.
 - κ < 0.6: the human labels replace them.

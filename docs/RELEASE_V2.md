@@ -67,7 +67,7 @@ Note: "Knocked out" counts the whole pool of 50, because v2 screens every CV and
 6. **Verify loops buy trust, not rank.** Verification raises grounded quotes from 96.1% to 99.2% and costs about 0.01 nDCG@10.
 
 ## Known limitations
-- **Silver labels.** Two Claude models graded the pairs. Their errors are correlated, and a Claude assessor would be favoured. Humans must adjudicate 94 disagreements and blind-grade 120 pairs before the final report.
+- **Silver labels.** Two Claude models graded the pairs. Their errors are correlated, and a Claude assessor would be favoured. The 120-pair blind human sample contains all 94 disagreements plus 26 agreeing controls.
 - **Post-hoc fusion.** B3⊕ was designed after seeing v2 retrieval results. It needs new JDs to count as a held-out result.
 - **Small sample.** With 12 JDs, only differences of about 0.03 nDCG@10 or more can be detected.
 - **Synthetic CVs** spelled with the taxonomy's names. Real CVs will be noisier, and scanned PDFs are rejected (no OCR).
@@ -77,7 +77,7 @@ Note: "Knocked out" counts the whole pool of 50, because v2 screens every CV and
 ## Next steps (suggested owners)
 | Work | Owner |
 |---|---|
-| Human adjudication of the 94 disagreements + a 120-pair blind sample; report human–silver κ | Hoa + one teammate |
+| Grade the 120-pair blind sample (all 94 disagreements + 26 agreeing controls); report human–silver κ | Hoa + one teammate |
 | The same ladder with a frontier model for `reasoning`. Use a non-Claude family too (label bias) | Thịnh |
 | 4–6 new JDs as a held-out test of B3⊕ and the JD depth floor | Sơn |
 | Map the findings (cross-encoder, structure, LLM-as-judge limits) to the 31 papers for the report | Vũ, Đán |

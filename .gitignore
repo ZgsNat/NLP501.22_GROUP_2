@@ -11,3 +11,7 @@ frontend/dist/
 
 # backups of .env (may hold keys)
 .env.bak*
+
+# OS artifacts
+.DS_Store
+*/.DS_Store
