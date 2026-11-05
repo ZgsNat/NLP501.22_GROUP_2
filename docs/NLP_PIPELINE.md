@@ -145,7 +145,19 @@ An ungrounded quote sends the assessment back to the LLM (L4). A grounded but un
 
 - **Lexicon recall.** The depth cue misses unusual phrasing, so two plain-language L3 CVs read as L2. That is why depth is still judged by the LLM, with the cue as a cross-check and as the B3 baseline. Hedge cues are a closed list, so new phrasings need new cues and a test.
 - **Vietnamese BM25.** `Qdrant/bm25` tokenises on whitespace with English stemming. Tool names are English in VN CVs, so must-have matching works, but Vietnamese prose gets no word segmentation. A VN word segmenter or a multilingual dense model is the next step.
-- **"Present"** resolves to today's date, so synthetic CVs written in 2025 gain about a year.
+- **"Present"** resolves to today's date in the app, so synthetic CVs written in 2025 gain about a year. Evaluations pin
+  it with `REFERENCE_DATE` (v4.1): without that, the extraction MAE drifted from 0.79 to 0.89 years in a week with no
+  code change, and years feed the experience criterion and so the ranking.
+- **Real PDFs (E23, `docs/KAGGLE_RESUME_RESULTS.md`).** Measured on 2,484 Kaggle résumé PDFs, v4.1 fixed three faults the
+  synthetic sets never showed:
+  - date ranges split over lines (`01/2010` · `to` · `Current`) now re-join in X2: dated roles 41.9% → 97.7%;
+  - cp1252 mojibake (`â€¢` for `•`) is repaired in X2, so bullets and dashes parse;
+  - tool names that are ordinary words (requests, cypress, espresso, postman, ...) count only on a line about software
+    or testing, or next to another tool (X7): CVs of other trades with a "testing tool" 17.2% → 1.6%, knock-out false
+    passes 0.3% → 0.0%. The cost on the labelled sets: one garbled CV loses "postman" (low-quality slice).
+  "requests" still fires 27 times on lines with words like "API"; the dataset has no QA category, so it cannot measure
+  recall on real QA CVs (Djinni does that).
+- **Vietnamese typed without diacritics** (v4.2). Many Vietnamese CVs are typed without accents ("Xay dung framework"). The depth cue and its hedge / manual / automation guards now match folded clauses against a folded lexicon, with the Vietnamese verbs anchored at a word boundary ("Viettel" is not "viết"). On the 72 clean Vietnamese CVs with diacritics stripped (`extraction.strip_accents`): depth accuracy 0.0% → 87.5%, the same as the accented text; depth and years are unchanged on all 502 CVs of the three benchmarks, so no ranking moves.
 - **OCR reads Vietnamese without stacked diacritics.** PaddleOCR has no Vietnamese model; its latin model drops letters
   such as "ệ" or "ữ" (CER ≈ 6% on Vietnamese, < 1% on English). Headings and PII labels are therefore matched after
   folding diacritics, and tool names are ASCII, so extraction holds (§ Scanned CVs); prose quoted from an OCR'd CV

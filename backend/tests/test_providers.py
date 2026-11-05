@@ -201,3 +201,13 @@ def test_fallback_wraps_the_main_model_and_follows_structured_output():
     assert isinstance(llm.with_structured_output(Out), RunnableWithFallbacks)
     assert not isinstance(create_llm("ollama:qwen3:8b", s), RunnableWithFallbacks)  # no fallback to itself
     assert not isinstance(create_llm("woku:gpt-6.1-sol", settings(woku_api_key="sk")), RunnableWithFallbacks)
+
+
+def test_claude_code_runs_outside_any_git_repository():
+    """The CLI loads the enclosing repository's memory and CLAUDE.md: a workdir inside this repo leaked the
+    developer's own instructions into the system under evaluation."""
+    from app.config import ROOT
+    from app.providers.llm import isolated_workdir
+
+    d = isolated_workdir().resolve()
+    assert ROOT.resolve() not in d.parents and not any((p / ".git").exists() for p in (d, *d.parents))

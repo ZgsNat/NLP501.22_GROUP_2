@@ -1,4 +1,4 @@
-"""E19 / lecturer feedback 4: what HR teaches in one session is the next session's starting point, bounded."""
+"""E24 / lecturer feedback 4: what HR teaches in one session is the next session's starting point, bounded."""
 
 from app.agent import hr_memory
 from app.agent.nodes import profile_weights, start_weights

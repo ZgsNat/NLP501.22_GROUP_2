@@ -50,6 +50,7 @@ class RunRequest(BaseModel):
     models: dict[str, str] = {}
     mode: Literal["agent", "pipeline"] = "agent"  # agent = P7 orchestrator (an LLM picks the tools); pipeline = P6
     goal: str = ""  # agent mode: what HR wants, in their words
+    lang: Literal["en", "vi"] = "en"  # language of the LLM's explanations, report and replies (the UI's language)
 
 
 async def _graph_for(run_id: str):
@@ -135,7 +136,7 @@ async def start_run(req: RunRequest):
         except ValueError as e:
             raise HTTPException(400, str(e))
     run_id = uuid.uuid4().hex[:12]
-    inp = {"jd_text": req.jd_text, "company_profile": req.company_profile, "models": req.models}
+    inp = {"jd_text": req.jd_text, "company_profile": req.company_profile, "models": req.models, "lang": req.lang}
     if req.mode == "agent":
         inp["goal"] = req.goal
 

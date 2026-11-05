@@ -172,24 +172,24 @@ plan depend on the goal, and makes the agent say what it cannot do.
 
 | Step | Tool (0 tokens unless noted) | Control |
 |---|---|---|
-| Understand | `formalize_goal` (the LLM writes a GoalSpec as the call's arguments) | every constraint quotes HR's words (Q18); skill constraints rewrite the requirements, HR wins over the JD |
-| Name the unknown | `define_concept` (LLM proposes terms) | HR must have named it (Q18); code finds and grades evidence per CV: used in a role > listed > hedged |
+| Understand | `formalize_goal` (the LLM writes a GoalSpec as the call's arguments) | every constraint quotes HR's words (Q19); skill constraints rewrite the requirements, HR wins over the JD |
+| Name the unknown | `define_concept` (LLM proposes terms) | HR must have named it (Q19); code finds and grades evidence per CV: used in a role > listed > hedged |
 | Can it be done? | feasibility, returned by both tools | per must-have and joint counts over the whole pool, bottleneck, what relaxing each gives |
 | Confirm | `ask_hr` | **goal gate (H31)**: `screen` is refused while targets are unknown, questions are open, or the goal is infeasible and HR has not accepted fewer |
 | Act | `screen`, `investigate`, `rank_shortlist`, `explain`, `compare` … chosen by the agent | concept musts filter and (big) plusses add `goal_bonus(_strong) × credit` at scoring, shown on the card |
 | Check | `check_goal` | the shortlist against the GoalSpec, by code |
-| Answer | `respond_to_hr` | **H32 / Q19**: refused while part of the goal is unmet and `limits` is empty; code appends its own goal check |
+| Answer | `respond_to_hr` | **H32 / Q20**: refused while part of the goal is unmet and `limits` is empty; code appends its own goal check |
 
 StateGraph keeps its role as the runtime (state, interrupts, checkpoints, loop limits); the plan is the agent's,
-per goal. P6 stays as the fixed baseline and as the `screen` tool. Evaluated by E23 (`app.eval.goals`,
+per goal. P6 stays as the fixed baseline and as the `screen` tool. Evaluated by E26 (`app.eval.goals`,
 data/goal_suite): five goals, including the one above, an infeasible skill pair and a vague "good with AI".
 
-**E23 on Claude Sonnet 5.5, three rounds** (behaviour checks passed; earlier rounds kept in .runtime/eval/goal_rounds):
+**E26 on Claude Sonnet 5.5, three rounds** (behaviour checks passed; earlier rounds kept in .runtime/eval/goal_rounds):
 
 | Round | Result | What failed | Change before the next round |
 |---|---|---|---|
 | 1 | 25/28 | the eval did not see `ask_hr` (no stream event; E15's "vague" check had the same blind spot); feasibility ignored the JD's own must-haves; `vague_ai` hit the 12-step budget; `feasible` asked an unneeded question | ask_hr emits its tool event; feasibility counts JD must-haves, marked "(JD)"; max_agent_steps 12 → 16; asking policy in the prompt |
-| 2 | 24/27 | `impossible_skills` kept searching after HR accepted fewer and hit the budget; the harness's fallback answer did not declare the unmet goal; `feasible` still asked | Q19 also on the harness's fallback answer; prompt: once HR accepts a shortfall, answer with who exists |
+| 2 | 24/27 | `impossible_skills` kept searching after HR accepted fewer and hit the budget; the harness's fallback answer did not declare the unmet goal; `feasible` still asked | Q20 also on the harness's fallback answer; prompt: once HR accepts a shortfall, answer with who exists |
 | 3 | **28/28** | — | — |
 
 `feasible` passed in round 3 with no change aimed at it: its question ("do the JD's other must-haves still apply?")

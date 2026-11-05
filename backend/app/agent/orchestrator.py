@@ -68,7 +68,7 @@ async def start(state: AgentState) -> dict:
 async def agent(state: AgentState) -> dict:
     model = nodes.llm(state, get_settings().agent_role).bind_tools(tools.schemas())
     try:
-        msg = await model.ainvoke([SystemMessage(prompts.AGENT), *state["messages"]])
+        msg = await model.ainvoke([SystemMessage(prompts.localized(prompts.AGENT, state.get("lang"))), *state["messages"]])
     except Exception as e:  # a provider hiccup or unparseable output costs a step, never the run
         emit("agent", f"Model output unusable ({type(e).__name__}: {str(e)[:120]}) → retrying", "warn")
         return {"loops": {"agent": 1, "agent_errors": 1}}
@@ -175,7 +175,7 @@ async def finalize(state: AgentState) -> dict:
     msg = (f"I stopped before finishing: {state['halt']}. "
            + (f"The current rule-based ranking is {', '.join(f'{r['cv_id']} ({r['total']:.2f})' for r in top)}; "
               "these candidates are not yet explained or checked by me." if top else "No candidate is ranked yet."))
-    rep = tools.goal_check(state, [])  # Q19 holds for code's answer too: nothing recommended, say what is unmet
+    rep = tools.goal_check(state, [])  # Q20 holds for code's answer too: nothing recommended, say what is unmet
     limits = [f"stopped before finishing ({state['halt']}): nothing recommended yet"] if state.get("goal_spec") else []
     msg += tools.goal_footer(rep, limits)
     emit("finalize", msg, "warn")

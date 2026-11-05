@@ -136,7 +136,17 @@ prompt-injection detection, quote grounding.
 | Asking HR | vague JD 0.626 → 0.756 when HR answers; agent as it runs 0.704 | ✅ the clarification loop has measurable value |
 | LLM shortlist ranking | ours 0.871 → 0.955; rubric set 0.861 → 0.859 | ⚠ gain only on LLM-made labels: possibly circular |
 | Single agent on its own (S1) | 0.942 vs P6 0.867 on dev, but 126k–230k tokens per JD and ranks CVs it never read | ⚠ negative result, reported as such |
-| Cost | B4 0.93M tokens / 12 dev JDs; ablations A1–A4 1.32–1.44M | measured, not yet compared against an all-LLM ranker |
+| P7 agent on HR tasks, E15 (`AGENTIC_RESULTS.md`, live, Claude via claude_code) | **40/42 behaviour checks** over 11 runs (6 dev JDs + 5 HR conversations): screens before answering, explains every recommended CV, asks HR on the vague JD (L1), adds Docker as a must-have when told, records a rejection and drops the CV, refuses an age/gender filter (guard Q5). Misses: on 'why is #1 above #2' it answers from an earlier compare instead of checking again; on JD-012 it asks HR although the JD is clear. A second run failed a different check (JD-008 named five CVs but left the shortlist empty): 39–40 of ~41 per run. nDCG@10 on dev: P7 0.941 vs P6 0.867; 105k–264k tokens per run | ✅ measured agentic behaviour within the harness. ⚠ the nDCG gain comes from `rank_shortlist`, whose gain was only on LLM-made labels (E18): possibly circular. Found and fixed on the way: a rejected #1 stayed #1 (now `rejected_by_hr`), and the claude_code workdir inside the repo let the developer's own Claude memory into the system under evaluation (now outside any repository) |
+| Cost | B4 0.93M tokens / 12 dev JDs; ablations A1–A4 1.32–1.44M | measured |
+| **v2 test (18 JDs, + 8 real Djinni JDs)** (`BENCHMARK_V2_RESULTS.md`) | BM25 0.582 · hybrid 0.618 · 8-axis ⊕ CE 0.780 · **B4 0.787** · P6 0.782; Djinni alone: BM25 0.441 → B4 0.723, P6 0.696 | ✅ the ladder holds on real CVs; CI narrower (P6 ±0.054). ⚠ P6 ≈ B4 again (−0.005, p = 0.65) |
+| NLP-stage ablation, E19 (`NLP_ABLATION_RESULTS.md`) | 18 JDs: switching off hedge scope, used/listed, depth cue or dated years moves nDCG by +0.001 to +0.013; all four off +0.021 (p = 0.986) | ❌ negative on nDCG. What the hedge scope does buy: traps@10 0.00 with it, 0.17 without (trap CVs in the top 10, ours) |
+| Fine-tuned cross-encoder, E20 (`FINETUNE_RESULTS.md`, trained on Colab) | v1 test: 8-axis ⊕ CE-ft 0.877 vs 0.831 (+0.046, p = 0.003); Djinni: 0.692 vs 0.719 with the base model (−0.027); v2 all 18: +0.015, p = 0.17 | ⚠ helps on synthetic data only, does not transfer to real CVs. CV-disjoint check (G5, test JDs over held-out CVs): fused CE-ft⊥ 0.850 = leaked CE-ft 0.850 < base CE0 0.867; alone CE-ft⊥ +0.074 over CE0 (p = 0.057). The fused gain does not hold; what holds is the new CE input (CE0 fused 0.867 vs current 0.844) |
+| Token cost of selectivity, E21 (`TOKEN_COST_RESULTS.md`) | vs E-every (LLM on every eligible candidate), 8 dev JDs: P6 −47.4%, B4 −66.9% tokens; E-every +0.015 nDCG over P6, p = 0.34 | ✅ selectivity halves tokens at no significant accuracy cost; ⚠ below the −78% target |
+| Djinni labels (`DJINNI_LABELS.md`) | 424 pooled pairs, Opus vs Sonnet κ = 0.778. **Human labels (Đán, all 424 pairs, review mode: Opus's grade shown):** changed 73/424 Opus grades (82.8% kept, mostly 0 → 1); κ(human, silver mean) = **0.820** | ✅ κ ≥ 0.8: silver stays the main Djinni set (EVAL §2). ⚠ one annotator who saw the model's grade, so κ is an upper bound; a second, blind annotator is still needed for adjudicated gold (v2.1) |
+| Djinni scored with the human labels (`BENCHMARK_V2_RESULTS.md`, v2.1 preview) | every system 0.05-0.09 lower than on silver; system order kept (Kendall τ 0.86): B3 rules ⊕ CE 0.646, B4 0.637, 8-axis ⊕ CE 0.623, P6 0.602, BM25 0.445 | ✅ conclusions hold under human labels (B4 ≥ P6; the ladder over BM25 / hybrid). ⚠ under human labels the 4-criteria ranker edges the 8-criteria one on real CVs |
+| Annotator quality check (`DJINNI_LABELS.md`) | Human labels count towards gold only with weighted κ ≥ 0.4 against another annotator and, when blind, ≥ 10 s per pair (the page stamps every grade). A first blind attempt failed it and was set aside. Đán's review-mode labels: median 1.4 s per pair, i.e. mostly Opus's grade accepted | ⚠ the only human set is anchored on Opus, so the κ 0.820 and the human-label preview are weak human validation, not independent evidence; no adjudicated v2.1 gold |
+| Real résumé PDFs, E23 (`KAGGLE_RESUME_RESULTS.md`) | 2,484 PDFs, 24 trades: 100% read, token F1 1.000 vs the dataset text; v4.1 fixes: dated roles 41.9% → 97.7%, "testing tool" false positives in other trades 17.2% → 1.6%, knock-out false passes 0.3% → 0.0% | ✅ found and fixed three faults synthetic data never showed; ranking on ours / coding / Djinni unchanged (±0.002) |
+| Reproducibility (v4.1) | query text depended on PYTHONHASHSEED (aliases from a set): two runs of JD-002 swapped near-ties. Fixed; v1 test B3 8-axis ⊕ CE 0.831 → 0.841, dev Δ ≤ 0.005. "Present" now pinned by REFERENCE_DATE in evaluations (extraction MAE had drifted 0.79 → 0.89 with no code change) | ✅ the same JD now gives the same ranking on every run |
 
 ### Against the deck's targets
 | Target in the deck | Measured | |
@@ -144,7 +154,7 @@ prompt-injection detection, quote grounding.
 | nDCG@10 0.868 | 0.847 (test) | close, not reached |
 | 97.6% grounded | 100% | reached |
 | Kendall τ 0.81 | ~0.51 | far below |
-| −78% tokens | not measured as that comparison | open |
+| −78% tokens | −47.4% (P6), −66.9% (B4) vs the LLM on every candidate (E21) | not reached |
 
 Absolute numbers are not comparable with papers (different data). What is comparable is the direction: hybrid beats
 keyword-only and dense-only, and the LLM adds on top at a cost. Both match the literature.
@@ -155,15 +165,15 @@ keyword-only and dense-only, and the LLM adds on top at a cost. Both match the l
 
 | # | Item | Why it matters | Suggested owner | Entry point |
 |---|---|---|---|---|
-| 1 | **Human labels** (κ vs silver) | Every number rests on LLM or rubric labels; biggest weakness | everyone (label) + Hoa (analysis) | `docs/HUMAN_LABELS.md`, `docs/labeling/` |
-| 2 | Contrastive learning (ConFit-style) | Lecturer feedback; gap vs §05 | Vũ / Đán | new retriever behind `rag/retrieve.py`, judged by `app.eval.run retrieval` |
-| 3 | Public dataset layer (e.g. Djinni QA) | Lecturer feedback: not only synthetic data | Hoa | `docs/data-select-strategy.md` |
+| 1 | **A blind human annotator who reads each pair (Djinni)** | Next: the stratified 80-pair subset (10 per JD) at `review.html?blind=1&subset=1` (grading unlocks after 20 s, a note required for 1 or 2); about 40–60 minutes; enough for a human–human κ. Then `djinni import` (the check runs in `djinni score`) | another member (label) + Hoa (analysis) | `docs/DJINNI_LABELS.md` |
+| 2 | Learned component: done as a fine-tuned cross-encoder (E20); contrastive bi-encoder still open | E20 gains on synthetic data, not on Djinni | Vũ / Đán | `app.eval.finetune`, `notebooks/finetune_ce_colab.ipynb` |
+| 3 | ~~Public dataset layer~~ done: Djinni in NLP501-bench v2 | | Hoa | `docs/BENCHMARK.md` §v2 |
 | 4 | Learning from HR feedback across sessions | Lecturer feedback | Sơn / Thịnh | `scoring` weight calibration |
-| 5 | Live E15 run of P7 | End-to-end agentic evidence | Thịnh | `app.eval.agentic` |
+| 5 | ~~Live E15 run of P7~~ done: 40/42 checks (`AGENTIC_RESULTS.md`). Next: repeat runs for a pass rate per check, and a guard that refuses a final answer whose message recommends CVs but whose shortlist is empty | | Thịnh | `app.eval.agentic` |
 | 6 | Held-out injection attack set | Current 10/10 is on a small set | anyone | `app.eval.injection` |
-| 7 | Token-saving comparison (selective arbiter vs LLM on every pair) | Deck target −78% is unmeasured | Thịnh | `app.eval.run agent` |
-| 8 | Depth cues without diacritics | Unaccented Vietnamese CVs miss L1–L4 | anyone | `nlp/extract.py` |
-| 9 | Low-quality CV extraction (F1 0.19) | Weakest NLP slice | anyone | `app.eval.extraction` |
+| 7 | ~~Token-saving comparison~~ done (E21): −47% (P6) / −67% (B4) | | Thịnh | `app.eval.token_cost` |
+| 8 | ~~Depth cues without diacritics~~ done (v4.2): unaccented Vietnamese CVs 0.0% → 87.5% depth accuracy, = accented; no ranking change | | anyone | `nlp/extract.py`, `EXTRACTION_RESULTS.md` |
+| 9 | Low-quality CV extraction (parser F1 0.157) | Garbled CVs are N12's job by design. Measured (v4.2): even if the LLM proposed every near-miss N12's search finds, `verify` keeps 11/45 gold tools: F1 0.157 → 0.367 at most. The generator replaces ~40% of letters; loosening the similarity bar costs precision on clean CVs. Next step would be a live N12 run on these 7 CVs | anyone | `app.eval.extraction`, `agent/investigate.py` |
 
 Rules when contributing: tune on dev JDs only, report test once; a change is "better" only when the eval says so,
 and negative results are reported too; every new LLM output needs a Q row; generated `*_RESULTS.md` files are never

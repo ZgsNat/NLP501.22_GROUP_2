@@ -9,7 +9,9 @@ To add a provider: subclass LLMProvider, decorate with @register. Nothing else c
 
 import json
 import shutil
+import tempfile
 from abc import ABC, abstractmethod
+from pathlib import Path
 from typing import Literal
 
 from langchain_core.language_models import BaseChatModel
@@ -221,6 +223,13 @@ class WokuShopProvider(LLMProvider):
         return self.s.woku_model if role == "reasoning" else self.s.woku_fast_model
 
 
+def isolated_workdir() -> Path:
+    """An empty folder OUTSIDE any git repository for `claude -p`. The CLI keys a project's memory (and CLAUDE.md
+    lookup) on the enclosing repository, so a folder inside this repo would load the developer's own memory into the
+    system under evaluation (it did: E15 replies came out in Vietnamese)."""
+    return Path(tempfile.gettempdir()) / "nlp501-claude-code"
+
+
 @register
 class ClaudeCodeProvider(LLMProvider):
     """Claude via the local `claude` CLI on the logged-in subscription: no key, dev only (see claude_code.py)."""
@@ -233,7 +242,7 @@ class ClaudeCodeProvider(LLMProvider):
     def create(self, model: str) -> BaseChatModel:
         from app.providers.claude_code import ChatClaudeCode
 
-        return ChatClaudeCode(model=model, effort=self.s.claude_code_effort, workdir=self.s.runtime_dir / "claude_code")
+        return ChatClaudeCode(model=model, effort=self.s.claude_code_effort, workdir=isolated_workdir())
 
     def default_model(self, role: Role) -> str:
         return self.s.anthropic_model if role == "reasoning" else self.s.anthropic_fast_model

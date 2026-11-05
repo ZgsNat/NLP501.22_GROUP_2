@@ -15,6 +15,8 @@ from app.nlp.pipeline import profile
 from app.rag.corpus import get_doc, load_dir
 from app.rag.store import Hit
 
+_REAL_DECIDE = nodes._decide  # before the fixture stubs it
+
 
 class KeywordStore:
     """Stands in for Qdrant: word overlap over the real CV chunks, a flat cross-encoder."""
@@ -311,10 +313,29 @@ def test_a_complex_goal_is_planned_checked_confirmed_with_hr_and_its_limits_decl
 
 
 def test_when_the_budget_stops_the_agent_code_declares_the_unmet_goal(agent):
-    """Q19 holds for the harness's own answer: a budget stop on a goal says what was not delivered."""
+    """Q20 holds for the harness's own answer: a budget stop on a goal says what was not delivered."""
     c = {"kind": "must", "target": "selenium", "hr_quote": "selenium là bắt buộc"}
     v, _, _ = agent([lambda m: call("parse_jd"), lambda m: call("formalize_goal", count=5, constraints=[c])]
                     + [lambda m: call("get_candidate", cv_id=f"CV-0{i:02d}") for i in range(10, 40)],
                     goal=HR_GOAL, max_agent_steps=4)
     assert "Goal check (by code)" in v["reply"] and v["report"]["goal"]["limits"]
     assert any("count: 0 of the 5" in u for u in v["report"]["goal"]["unmet"])
+
+
+def test_hr_rejection_takes_the_cv_out_of_the_ranking_for_good(agent, monkeypatch, tmp_path):
+    """E15 'decide' found this: a rejected #1 stayed #1, because a reject only re-fitted the weights."""
+    monkeypatch.setattr(get_settings(), "runtime_dir", tmp_path)  # the audit log goes here
+    monkeypatch.setattr(nodes, "_decide", _REAL_DECIDE)  # the fixture stubs it out
+    v, _, _ = agent([
+        lambda m: call("parse_jd"),
+        lambda m: call("screen"),
+        lambda m: call("respond_to_hr", message="Screened the pool."),
+        lambda m: call("record_decisions", decisions=[{"cv_id": "CV-002", "action": "reject",
+                                                       "reason": "needs more test-architecture experience"}]),
+        lambda m: call("screen"),  # a later re-screen must not bring it back
+        lambda m: call("respond_to_hr", message="CV-002 is out, as you asked."),
+    ], answers=[{"message": "Reject CV-002: the client needs more test-architecture experience."}])
+    row = next(r for r in v["ranking"] if r["cv_id"] == "CV-002")
+    assert row["status"] == "rejected_by_hr" and "test-architecture" in row["reason"]
+    assert "CV-002" not in [r["cv_id"] for r in v["ranking"] if r["status"] == "ranked"]
+    assert (tmp_path / "hr_audit.jsonl").exists()

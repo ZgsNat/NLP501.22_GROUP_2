@@ -5,6 +5,7 @@ import CvLibrary from './CvLibrary'
 import CvPool from './CvPool'
 import CvPreview from './CvPreview'
 import GraphView from './GraphView'
+import { useLang, useT } from './i18n'
 import PipelineProgress from './PipelineProgress'
 import { InterruptPanel, Requirements, Timeline } from './Panels'
 import Results from './Results'
@@ -119,6 +120,8 @@ function toolsFromLogs(logs: LogLine[]): RunState['tools'] {
 }
 
 export default function App() {
+  const { t, term } = useT()
+  const { lang, setLang } = useLang()
   const [tab, setTab] = useState<'screening' | 'library'>('screening')
   const [config, setConfig] = useState<Config | null>(null)
   const [run, setRun] = useState<RunState>(emptyRun)
@@ -136,7 +139,7 @@ export default function App() {
   const gen = useRef(0)
 
   useEffect(() => {
-    api.config().then(setConfig).catch((e) => setError(`Cannot load /api/config: ${e.message}`))
+    api.config().then(setConfig).catch((e) => setError(`${t('Cannot load', 'Không nạp được')} /api/config: ${e.message}`))
     const shared = new URLSearchParams(location.search).get('run')
     if (shared) load(shared)
   }, [])
@@ -148,7 +151,7 @@ export default function App() {
         {
           id: runId,
           timestamp: new Date().toISOString(),
-          title: title || 'Chiến dịch tuyển dụng',
+          title: title || t('Hiring campaign', 'Chiến dịch tuyển dụng'),
           topCandidate,
           mode,
         },
@@ -235,7 +238,7 @@ export default function App() {
         mode
       )
     } catch (e) {
-      setError(`Cannot load run: ${(e as Error).message}`)
+      setError(`${t('Cannot load the run', 'Không nạp được đợt chạy')}: ${(e as Error).message}`)
     }
   }
 
@@ -250,7 +253,8 @@ export default function App() {
               TalentScout AI{' '}
               {isMock && <span className="badge amber">Mock Demo</span>}
             </h1>
-            <p className="brand-sub">Hệ thống Sàng lọc & Đánh giá Ứng viên Chuẩn Enterprise</p>
+            <p className="brand-sub">{t('CV screening & candidate assessment for Automation Test roles',
+              'Hệ thống sàng lọc & đánh giá ứng viên Automation Test')}</p>
           </div>
         </div>
 
@@ -260,32 +264,48 @@ export default function App() {
             className={`nav-tab ${tab === 'screening' ? 'active' : ''}`}
             onClick={() => setTab('screening')}
           >
-            📋 Chiến dịch sàng lọc
+            📋 {t('Screening', 'Chiến dịch sàng lọc')}
           </button>
           <button
             className={`nav-tab ${tab === 'library' ? 'active' : ''}`}
             onClick={() => setTab('library')}
           >
-            📁 Kho hồ sơ ứng viên
+            📁 {t('CV library', 'Kho hồ sơ ứng viên')}
           </button>
         </nav>
 
         {/* Header Right Tools */}
         <div className="header-actions">
+          <div className="lang-switch" role="group" aria-label={t('Language', 'Ngôn ngữ')}>
+            {(['vi', 'en'] as const).map((l) => (
+              <button
+                key={l}
+                type="button"
+                className={`lang-btn ${lang === l ? 'active' : ''}`}
+                aria-pressed={lang === l}
+                title={l === 'vi' ? 'Tiếng Việt' : 'English'}
+                onClick={() => setLang(l)}
+              >
+                {l.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
           <button
             className="ghost header-btn"
             onClick={() => setIsHistoryOpen(true)}
-            title="Xem danh sách các đợt chạy trước"
+            title={t('Previous runs', 'Xem danh sách các đợt chạy trước')}
           >
-            ⏱️ Lịch sử ({history.length})
+            ⏱️ {t('History', 'Lịch sử')} ({history.length})
           </button>
 
           <button
             className={`ghost header-btn ${auditView ? 'audit-active' : ''}`}
             onClick={() => setAuditView(!auditView)}
-            title="Bật/Tắt chế độ kiểm chứng kỹ thuật & log hệ thống"
+            title={t('Show or hide the technical audit view and system log',
+              'Bật/tắt chế độ kiểm chứng kỹ thuật & nhật ký hệ thống')}
           >
-            {auditView ? '👁️ Đang xem Kiểm chứng' : '🔍 Bật Kiểm chứng'}
+            {auditView ? `👁️ ${t('Audit view on', 'Đang xem kiểm chứng')}` : `🔍 ${t('Audit view', term('Audit'))}`}
           </button>
 
           {config?.langfuse_url && (
@@ -294,7 +314,7 @@ export default function App() {
               target="_blank"
               rel="noreferrer"
               className="ghost header-btn external-link"
-              title="Mở Langfuse Traces"
+              title={t('Open Langfuse traces', `Mở Langfuse ${term('Trace')}`)}
             >
               Langfuse ↗
             </a>
@@ -305,7 +325,7 @@ export default function App() {
       {error && (
         <div className="banner" role="alert">
           <span>{error}</span>
-          <button className="ghost small-btn" onClick={() => setError(null)}>Đóng</button>
+          <button className="ghost small-btn" onClick={() => setError(null)}>{t('Close', 'Đóng')}</button>
         </div>
       )}
 
@@ -326,12 +346,12 @@ export default function App() {
               {run.runId && (
                 <div className="run-info-card card">
                   <div className="flex-between">
-                    <span className="small muted">Mã đợt chạy:</span>
+                    <span className="small muted">{t('Run id:', 'Mã đợt chạy:')}</span>
                     <span className="mono strong">{run.runId}</span>
                   </div>
                   {run.usage && (
                     <div className="mt-1 small muted">
-                      LLM: {run.usage.calls} lượt gọi · {run.usage.total_tokens.toLocaleString()} tokens
+                      LLM: {run.usage.calls} {t('calls', 'lượt gọi')} · {run.usage.total_tokens.toLocaleString()} {t('tokens', 'token')}
                     </div>
                   )}
                 </div>
@@ -345,7 +365,7 @@ export default function App() {
               {auditView && (
                 <div className="audit-section">
                   <div className="audit-header">
-                    <h4>🔍 Sơ đồ quy trình thực thi (Orchestrator Graph)</h4>
+                    <h4>🔍 {t('Execution graph (orchestrator)', `Sơ đồ quy trình thực thi (${term('Orchestrator')})`)}</h4>
                     <span className="badge slate">{run.mode === 'agent' ? 'P7 Autonomous Agent' : 'P6 Pipeline'}</span>
                   </div>
                   {run.mode === 'agent' ? <AgentView run={run} /> : <GraphView run={run} />}

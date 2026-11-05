@@ -45,12 +45,13 @@ def overlap(a: list[str], b: list[str], k: int) -> float:
 
 
 async def rank(model: BaseChatModel, jd_text: str, requirements: dict, order: list[str],
-               profiles: dict[str, CVProfile], chars: int = 2500, config: dict | None = None) -> dict:
+               profiles: dict[str, CVProfile], chars: int = 2500, config: dict | None = None,
+               lang: str | None = None) -> dict:
     """→ {order, reasons, agreement@5}. `order` is the rule order of the shortlist; the answer is a permutation of it."""
     async def one(ids: list[str]) -> tuple[list[str], dict[str, str]]:
         cvs = "\n\n".join(f"=== {c} ===\n{profiles[c].facts_for_llm()}\n{profiles[c].for_llm()[:chars]}" for c in ids)
         out: LLMRanking = await model.with_structured_output(LLMRanking).ainvoke([
-            SystemMessage(prompts.LLM_RANK),
+            SystemMessage(prompts.localized(prompts.LLM_RANK, lang)),  # lang: the reasons are shown to HR
             HumanMessage(f"Job description:\n{jd_text}\n\nParsed requirements: {json.dumps(requirements)}\n\n"
                          f"Candidates ({len(ids)}):\n\n{cvs}")], config=config)
         return canonical([r.cv_id.strip() for r in out.ranking], order), {r.cv_id.strip(): r.reason for r in out.ranking}

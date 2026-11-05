@@ -11,10 +11,12 @@ Our pipeline was not developed on this set, so the numbers are closer to held-ou
 import json
 import re
 import sys
+import unicodedata
 from collections import defaultdict
 
 import yaml
 
+from app.agent import investigate as inv
 from app.config import ROOT
 from app.eval.bench import CODING_DIR
 from app.nlp import quality
@@ -32,6 +34,12 @@ def to_key(name: str) -> str | None:
     return next((k for k in skills() if low in aliases(k) or low.replace(" ", "") == k.replace("_", "")), None)
 
 
+def strip_accents(text: str) -> str:
+    """The same CV typed without Vietnamese diacritics (case kept): "Xây dựng" → "Xay dung", "Đà Nẵng" → "Da Nang"."""
+    text = unicodedata.normalize("NFD", text.replace("đ", "d").replace("Đ", "D"))
+    return unicodedata.normalize("NFC", "".join(ch for ch in text if not unicodedata.combining(ch)))
+
+
 def prf(tp: int, fp: int, fn: int) -> tuple[float, float, float]:
     p = tp / (tp + fp) if tp + fp else 0.0
     r = tp / (tp + fn) if tp + fn else 0.0
@@ -39,12 +47,13 @@ def prf(tp: int, fp: int, fn: int) -> tuple[float, float, float]:
 
 
 def cv_extraction() -> dict:
-    latent = json.loads((CODING_DIR / "latent.json").read_text())
+    latent = json.loads((CODING_DIR / "latent.json").read_text(encoding="utf-8"))
     vocab = {k for x in latent for t in x["tools"] + x["langs"] + x["cicd"] if (k := to_key(t))}
     counts = defaultdict(lambda: [0, 0, 0])  # slice → tp, fp, fn
     gaps: dict[str, int] = defaultdict(int)
     years_err, depth_hit, depth_n, istqb_hit, fl_hit, leaks, n = [], 0, 0, 0, 0, defaultdict(int), defaultdict(int)
     flagged = defaultdict(int)  # quality flags (X10) on low-quality vs clean CVs
+    plain = defaultdict(int)  # Vietnamese CVs again with the diacritics stripped: depth and years robustness
     for x in latent:
         raw = (CODING_DIR / "cvs" / f"{x['cv_id']}.txt").read_text(encoding="utf-8")
         p = process(x["cv_id"], raw)
@@ -53,11 +62,27 @@ def cv_extraction() -> dict:
             k = to_key(t)
             gold.add(k) if k else gaps.__setitem__(t, gaps[t] + 1)
         pred = {k for k in p.skills if k in vocab}
-        for sl in ("all", x["lang_cv"], "low_quality" if x["low_quality"] else "clean"):
+        slices = ["all", x["lang_cv"], "low_quality" if x["low_quality"] else "clean"]
+        if x["low_quality"]:  # what N12's code path can recover: every near-miss line proposed, then verified
+            near = inv.near_misses(p, sorted(vocab - pred))
+            recovered = {k for k, line in near.items() if inv.verify(p, k, line, {k})[0]}
+            c = counts["low_quality + N12 search (upper bound)"]
+            c[0] += len((pred | recovered) & gold)
+            c[1] += len((pred | recovered) - gold)
+            c[2] += len(gold - pred - recovered)
+        for sl in slices:
             c = counts[sl]
             c[0] += len(pred & gold)
             c[1] += len(pred - gold)
             c[2] += len(gold - pred)
+        if x["lang_cv"] == "vi" and not x["low_quality"]:
+            q = process(x["cv_id"], strip_accents(raw))
+            plain["n"] += 1
+            plain["depth_accented"] += p.depth_cue == x["depth"]
+            plain["depth_plain"] += q.depth_cue == x["depth"]
+            plain["years_accented"] += p.years_total is not None and abs(p.years_total - x["years"]) <= 1
+            plain["years_plain"] += q.years_total is not None and abs(q.years_total - x["years"]) <= 1
+            plain["tools_same"] += {k for k in q.skills if k in vocab} == pred
         flagged["low_quality" if x["low_quality"] else "clean"] += bool(quality.flags(p))
         flagged["n_low" if x["low_quality"] else "n_clean"] += 1
         if p.years_total is not None:
@@ -82,13 +107,13 @@ def cv_extraction() -> dict:
             "years_mae": sum(years_err) / len(years_err) if years_err else None, "years_n": len(years_err),
             "years_within_1": sum(e <= 1 for e in years_err), "depth_acc": depth_hit / depth_n,
             "istqb_acc": istqb_hit / len(latent), "foreign_acc": fl_hit / len(latent),
-            "leaks": dict(leaks), "fields": dict(n), "flagged": dict(flagged)}
+            "leaks": dict(leaks), "fields": dict(n), "flagged": dict(flagged), "plain": dict(plain)}
 
 
 def jd_extraction() -> dict:
     """Field-level agreement of the three JD parsers (Settings.jd_parser) with `gold_spec`, on the cached requirements
     the ladder used (python -m app.eval.run retrieval --bench coding writes them)."""
-    jds = {j["id"]: j for j in yaml.safe_load((CODING_DIR / "jds.yaml").read_text()) if j.get("gold_spec")}
+    jds = {j["id"]: j for j in yaml.safe_load((CODING_DIR / "jds.yaml").read_text(encoding="utf-8")) if j.get("gold_spec")}
     out = {}
     for mode in ("llm", "rules", "hybrid"):
         c = defaultdict(lambda: [0, 0, 0])
@@ -97,7 +122,7 @@ def jd_extraction() -> dict:
             path = REQ / mode / f"{jid}.json"
             if not path.exists():
                 continue
-            r, subs, g = json.loads(path.read_text())["req"], json.loads(path.read_text())["subs"], j["gold_spec"]
+            r, subs, g = json.loads(path.read_text(encoding="utf-8"))["req"], json.loads(path.read_text(encoding="utf-8"))["subs"], j["gold_spec"]
             tool = lambda ks: {k for k in ks if k and group(k) not in ("language", "certification")}  # noqa: E731
             must = tool(r["must_have"] + [s for m in r["must_have"] for s in subs.get(m, [])])
             every = must | tool(r["nice_to_have"])
@@ -119,6 +144,15 @@ def jd_extraction() -> dict:
     return out
 
 
+def _plain_rows(pl: dict) -> list[str]:
+    if not pl.get("n"):
+        return []
+    n = pl["n"]
+    return [f"Vietnamese CVs typed without diacritics ({n} clean vi CVs, `strip_accents`): automation depth "
+            f"{pl['depth_accented'] / n:.1%} accented → **{pl['depth_plain'] / n:.1%}** without diacritics; years within 1 "
+            f"year {pl['years_accented']}/{n} → {pl['years_plain']}/{n}; same tool set {pl['tools_same']}/{n}.", ""]
+
+
 def render(cv: dict, jd: dict) -> str:
     f = lambda t: f"{t:.3f}"  # noqa: E731
     lines = ["# Extraction and redaction results (generated by `python -m app.eval.extraction`; do not edit by hand)", "",
@@ -127,8 +161,10 @@ def render(cv: dict, jd: dict) -> str:
              "numbers are optimistic for this set. Tools are compared as taxonomy keys over the "
              "generator's vocabulary (a closed-vocabulary evaluation).", "",
              "## CV → facts (deterministic NLP pipeline, no LLM)", "",
+             "Garbled CVs are left to the investigator (N12) by design; its row is an upper bound: every near-miss line "
+             "its search finds is proposed (the LLM's job) and kept only if `investigate.verify` accepts it.", "",
              "| Slice | tool precision | tool recall | tool F1 | TP / FP / FN |", "|---|---|---|---|---|"]
-    for sl in ("all", "en", "vi", "clean", "low_quality"):
+    for sl in ("all", "en", "vi", "clean", "low_quality", "low_quality + N12 search (upper bound)"):
         if sl in cv["counts"]:
             tp, fp, fn = cv["counts"][sl]
             p, r, f1 = prf(tp, fp, fn)
@@ -141,6 +177,7 @@ def render(cv: dict, jd: dict) -> str:
               f"| foreign languages (English, Japanese) | exact set {cv['foreign_acc']:.1%} |",
               f"| quality flag (X10) raised | {cv['flagged'].get('low_quality', 0)}/{cv['flagged'].get('n_low', 0)} "
               f"low-quality CVs, {cv['flagged'].get('clean', 0)}/{cv['flagged'].get('n_clean', 0)} clean CVs |", "",
+              *_plain_rows(cv.get("plain", {})),
               "Gazetteer gaps (generator tools our taxonomy has no key for, with CV counts): "
               + (", ".join(f"{k} ({v})" for k, v in cv["gaps"].items()) or "none"), "",
               "## Redaction (masking before anything is indexed or shown to an LLM)", "",
@@ -166,5 +203,5 @@ def render(cv: dict, jd: dict) -> str:
 
 if __name__ == "__main__":
     text = render(cv_extraction(), jd_extraction())
-    OUT.write_text(text)
+    OUT.write_text(text, encoding="utf-8")
     print(text if "-q" not in sys.argv else f"→ {OUT}")

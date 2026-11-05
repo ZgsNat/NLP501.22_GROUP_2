@@ -1,4 +1,4 @@
-# E23 goal suite: complex HR goals with the behaviour a controlled agent should show. Pool = data/cvs + goal_suite/cvs
+# E26 goal suite: complex HR goals with the behaviour a controlled agent should show. Pool = data/cvs + goal_suite/cvs
 # (CV-101..106 mention AI at different levels: used in a role, listed, hedged, without Selenium, testing an AI product).
 # `hr` answers any clarification; `expect` keys are checked by app/eval/goals.py.
 - id: ai_goal

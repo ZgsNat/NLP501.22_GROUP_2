@@ -19,6 +19,7 @@ from app.agent import investigate as inv
 from app.agent.schemas import (
     CRITERIA,
     CandidateAssessment,
+    HrTexts,
     JDRequirements,
     RankingReport,
     WeightInstruction,
@@ -92,6 +93,23 @@ def llm(state: AgentState, role: str) -> BaseChatModel:
     return _llm(state.get("models", {}).get(role) or default_spec(role))
 
 
+async def for_hr(state: AgentState, texts: list[str]) -> list[str]:
+    """LLM free text HR reads, in the UI language (Q18). English or nothing to do: unchanged. A translation that
+    drops an item, a number or a tool is not used: HR then reads the English original."""
+    if state.get("lang") != "vi" or not texts:
+        return texts
+    try:
+        out: HrTexts = await llm(state, "fast").with_structured_output(HrTexts).ainvoke(
+            [SystemMessage(prompts.TO_VIETNAMESE), HumanMessage(json.dumps(texts, ensure_ascii=False))])
+    except Exception as e:  # a translation never costs the run
+        emit("ingest", f"Translation for HR failed ({type(e).__name__}) → English kept", "warn")
+        return texts
+    if issues := checks.translation_issues(texts, out.items):
+        emit("ingest", f"Translation for HR rejected {issues} → English kept", "warn")
+        return texts
+    return out.items
+
+
 def prof(state: AgentState, cv_id: str):
     """The parsed CV plus any facts the investigator verified (N12): what every rule below reads."""
     return inv.with_facts(profile(cv_id), state.get("recovered", {}).get(cv_id, []))
@@ -116,6 +134,7 @@ async def extract_requirements(model: BaseChatModel, jd: str, mode: str | None =
                              foreign_languages=parsed["foreign_languages"], domains=parsed["domains"])
         return req, parsed["substitutes"], parsed["must_have"]
     req: JDRequirements = await model.with_structured_output(JDRequirements).ainvoke(
+        # Never localized: its title and lists feed retrieval and scoring, and the UI language must not move a rank
         [SystemMessage(prompts.INGEST), HumanMessage(jd)]
     )
     # Harness boundary: LLM free text never drives deterministic logic directly — canonicalize to taxonomy keys.
@@ -164,6 +183,7 @@ async def ingest(state: AgentState) -> dict:
         jd += "\n\nHR clarifications (authoritative):\n" + "\n".join(f"- Q: {q}\n  A: {a}" for q, a in answers.items())
 
     req, subs, raw = await extract_requirements(llm(state, "reasoning"), jd)
+    req.ambiguities = await for_hr(state, req.ambiguities)  # HR reads these questions; the requirements stay English
     if raw != req.must_have:
         emit("ingest", f"Canonicalized must-have {raw} → {req.must_have}", "warn")
     emit("ingest", f"Must-have: {req.must_have or '—'} · min years: {req.min_years} · depth: L{req.depth_level}")
@@ -255,6 +275,16 @@ TYPE_GROUPS = {"web_e2e": "web", "mobile": "mobile", "api": "api", "performance"
 FOREIGN_WORDS = re.compile(r"\benglish\b|tiếng\s*anh|toeic|ielts|toefl|\bjapanese\b|tiếng\s*nhật|jlpt", re.I)
 LANG_HEDGE = re.compile(r"\b(?:maybe|may\s+be|might|depend(?:s|ing)?|or\s+(?:maybe\s+)?required)\b|tùy|có\s*thể", re.I)
 MANY_MUST_HAVES = 6  # a "must-have" list longer than this cannot realistically be all knock-outs (fix D)
+# Taxonomy keys that name a test TYPE ("API testing"), not a concrete tool/framework. They reveal the kind of
+# testing (so vagueness_questions needn't ask "which type?"), but they are NOT a named knock-out tool: a JD whose
+# only must-have is an umbrella phrase still hasn't named a required tool, so L1 must ask for one (fix #1; see the
+# false-negative noted in docs/CLARIFY_RESULTS.md where a vague twin collapsed to ['api_testing'] and nobody asked).
+TYPE_UMBRELLA = {"api_testing"}
+
+
+def concrete_must_have(must_have: list[str]) -> list[str]:
+    """must-have entries that actually name a tool/framework — a test-type umbrella ("api testing") is not one."""
+    return [m for m in must_have if m not in TYPE_UMBRELLA]
 
 
 def seniority_conflict(title: str, min_years: int | None) -> str | None:
@@ -317,9 +347,10 @@ async def ask_hr_gate(model: BaseChatModel, jd: str, req: JDRequirements) -> tup
                 ordered.append(q)
         req.ambiguities = ordered[:4]
 
-    if not req.must_have:
-        # Rule before model: with zero must-have tools there is no knock-out and no fair ranking — always ask.
-        enrich(["Which tools/frameworks are must-have for this role?"])
+    if not concrete_must_have(req.must_have):
+        # Rule before model: with no named tool (or only a test-type umbrella like "API testing") there is no
+        # knock-out and no fair ranking — always ask.
+        enrich(["Which specific tools or frameworks are must-have for this role?"])
         return True, "Rule: no concrete must-have tools → ask HR (no LLM needed)"
     if conflict := seniority_conflict(req.title, req.min_years):
         enrich([conflict])
@@ -493,7 +524,7 @@ async def _assess_call(state: AgentState, cv_id: str, prev: dict | None, sem: as
     req, p = state["requirements"], prof(state, cv_id)
     policy = "\n\n".join(x["text"] for x in state.get("policy_context", []))
     msgs = [
-        SystemMessage(prompts.ASSESS + "\n\nCompany hiring policy:\n" + policy),
+        SystemMessage(prompts.localized(prompts.ASSESS, state.get("lang")) + "\n\nCompany hiring policy:\n" + policy),
         HumanMessage(f"JD requirements:\n{json.dumps(req, indent=1)}\n\n{p.facts_for_llm()}\n\n"
                      f"CV {cv_id} (each passage is labelled with the section the parser found it in):\n{p.for_llm()}"),
     ]
@@ -621,8 +652,9 @@ async def score(state: AgentState) -> dict:
         "cv_id": cid, "headline": head(cid), "status": status, "knocked_out": status == "knocked_out",
         "total": total, "tier": tier(total) if status == "ranked" else None, "reason": reason, "arbiter_note": None,
         "card": None, "flags": []}
+    out_by_hr = state.get("hr_rejected", {})
     ranked = [row(cid, "ranked", weighted_total(a, state["weights"], False))
-              for cid, a in state["assessments"].items() if cid in cands]
+              for cid, a in state["assessments"].items() if cid in cands and cid not in out_by_hr]
     ranked, goal_out = apply_goal(state, ranked, row)
     rerank = {c["cv_id"]: c.get("rerank_score") for c in state["candidates"]}
     req, subs = state["requirements"], state.get("substitutes", {})
@@ -644,11 +676,12 @@ async def score(state: AgentState) -> dict:
     knocked = sorted((row(cid, "knocked_out", reason=r) for cid, r in state["knocked_out"].items() if r != NEEDS_REVIEW),
                      key=lambda r: pre(r["cv_id"]), reverse=True) + goal_out
     rest = [row(cid, "not_shortlisted", reason=r) for cid, r in state.get("screened", {}).items()
-            if cid not in state["assessments"] and cid not in state["knocked_out"]]
+            if cid not in state["assessments"] and cid not in state["knocked_out"] and cid not in out_by_hr]
+    by_hr = [row(cid, "rejected_by_hr", reason=f"Rejected by HR: {why}") for cid, why in out_by_hr.items()]
     reranked = sorted((r for r in rest if rerank.get(r["cv_id"]) is not None), key=lambda r: fused[r["cv_id"]])
     unretrieved = sorted((r for r in rest if rerank.get(r["cv_id"]) is None), key=lambda r: pre(r["cv_id"]), reverse=True)
     screened = reranked + unretrieved
-    rows = ranked + screened + review + knocked
+    rows = ranked + screened + by_hr + review + knocked
     for i, r in enumerate(rows, 1):
         r["rank"] = i
     fb = state.get("fallbacks", {})
@@ -697,7 +730,7 @@ async def judge_pair(state: AgentState, a: str, b: str) -> list:
                   for k, v in x.get("llm_review", {}).items()]
         return "\n".join(rules + review)
 
-    return [await decide(llm(state, "reasoning"), prompts.ARBITER, [first, second],
+    return [await decide(llm(state, "reasoning"), prompts.localized(prompts.ARBITER, state.get("lang")), [first, second],
                          f"JD: {json.dumps(state['requirements'])}\n\n{first}:\n{evidence(first)}"
                          f"\n\n{second}:\n{evidence(second)}") for first, second in ((a, b), (b, a))]
 
@@ -766,7 +799,7 @@ async def report(state: AgentState) -> dict:
                        for k, v in a.get("llm_review", {}).items()},
             "what_if": (r.get("card") or {}).get("what_if"),
         })
-    msgs = [SystemMessage(prompts.REPORT),
+    msgs = [SystemMessage(prompts.localized(prompts.REPORT, state.get("lang"))),
             HumanMessage(f"JD: {json.dumps(state['requirements'])}\nWeights: {state['weights']}\n\n"
                          f"Ranked candidates:\n{json.dumps(facts, indent=1)}")]
     profiles = {i: prof(state, i) for i in top_ids}
@@ -817,7 +850,8 @@ def _decide(state: AgentState, decisions: list[dict]) -> dict:
     company = state.get("company_profile", "default")
     if get_settings().hr_memory and not off(state, "profile") and hr_memory.remember(company, w, profile_weights(company), len(pairs)):
         emit("hr_review", f"Remembered for the next '{company}' run (.runtime/hr_memory.json)", "info")
-    return {"hr_action": "adjust", "weights": w, "loops": {"review": 1}}
+    rejected = {d["cv_id"]: d["reason"].strip() for d in ok if d["action"] == "reject"}  # HR's word is final
+    return {"hr_action": "adjust", "weights": w, "hr_rejected": rejected, "loops": {"review": 1}}
 
 
 

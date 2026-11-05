@@ -37,7 +37,8 @@ from app.rag import retrieve
 from app.rag.corpus import get_doc, load_dir
 from app.rag.store import get_store
 
-MERGED = {"clarifications", "substitutes", "declined", "fallbacks", "recovered", "investigated", "assessments"}
+MERGED = {"clarifications", "substitutes", "declined", "fallbacks", "recovered", "investigated", "assessments",
+          "hr_rejected"}
 CV_ID = r"\b(?:CV|UP)-\d{3}\b"
 
 
@@ -383,7 +384,7 @@ async def rank_shortlist(state: AgentState, _: NoArgs) -> tuple[dict, dict]:
     top = [x["cv_id"] for x in state["ranking"] if x["status"] in ("ranked", "not_shortlisted")][: s.llm_rank_size]
     r.add({"assessments": {c: rule_assessment(state, c, None) for c in top if c not in state.get("assessments", {})}})
     res = await llm_rank.rank(nodes.llm(state, "reasoning"), sanitize(state["jd_text"], "job description")[0],
-                              state["requirements"], top, {c: nodes.prof(state, c) for c in top})
+                              state["requirements"], top, {c: nodes.prof(state, c) for c in top}, lang=state.get("lang"))
     r.add({"llm_order": res["order"], "llm_reasons": res["reasons"]})
     r.add(await nodes.score(r.state))
     nodes.emit("rank_shortlist", f"LLM ranked the top {len(top)} in both input orders (agreement@5 "
@@ -521,7 +522,7 @@ async def record_decisions(state: AgentState, args: DecisionArgs) -> tuple[dict,
     """HR's decisions → audit log → weights that best explain them (pairwise logistic regression) → re-screen."""
     update = nodes._decide(state, [d.model_dump() for d in args.decisions])
     r = Run(state)
-    r.add({"weights": update["weights"]})
+    r.add({"weights": update["weights"], "hr_rejected": update.get("hr_rejected", {})})
     return {"weights": update["weights"], "screen": await screen_into(r)}, r.update
 
 
@@ -604,13 +605,13 @@ def check_formalize(state: AgentState, spec: goal.GoalSpec) -> str | None:
         return f"goal revision budget used ({get_settings().max_goal_revisions}); answer HR with what you have"
     said = hr_words(state)
     if bad := [c.hr_quote for c in spec.constraints if not goal.quoted(c.hr_quote, said)]:
-        return f"Q18: {bad} are not HR's words; every constraint must quote what HR actually said"
+        return f"Q19: {bad} are not HR's words; every constraint must quote what HR actually said"
     concepts = state.get("concepts", {})
     if bad := [c.target for c in spec.constraints
                if goal.target_kind(c.target, concepts) == "skill" and not said_skill(c.target)(c.hr_quote)]:
-        return f"Q18: the quotes for {bad} do not name those skills; quote the words where HR names each one"
+        return f"Q19: the quotes for {bad} do not name those skills; quote the words where HR names each one"
     if spec.accept_shortfall and not goal.quoted(spec.accept_shortfall, said):
-        return "Q18: accept_shortfall must quote HR accepting fewer candidates"
+        return "Q19: accept_shortfall must quote HR accepting fewer candidates"
     return None
 
 
@@ -675,7 +676,7 @@ class ConceptArgs(BaseModel):
 
 def check_concept(state: AgentState, args: ConceptArgs) -> str | None:
     if not goal.quoted(args.hr_quote, hr_words(state)):
-        return f"Q18: “{args.hr_quote}” is not HR's words; a concept exists only because HR named it"
+        return f"Q19: “{args.hr_quote}” is not HR's words; a concept exists only because HR named it"
     have = state.get("concepts", {})
     if goal.slug(args.name) not in have and len(have) >= get_settings().max_concepts:
         return f"concept budget used ({get_settings().max_concepts})"

@@ -65,6 +65,25 @@ def review_issues(review: dict[str, dict], p: CVProfile) -> dict[str, list[str]]
     return {k: issues for k, c in review.items() if (issues := claim_issues(c.get("rationale", ""), p))}
 
 
+NUMBER = re.compile(r"\d+(?:[.,]\d+)?")
+
+
+def translation_issues(source: list[str], target: list[str]) -> list[str]:
+    """Q18: a translation for HR keeps every item, every number and every tool it names (it may not add a tool)."""
+    if len(source) != len(target):
+        return [f"{len(target)} items for {len(source)}"]
+    out = []
+    for s, t in zip(source, target):
+        if not t.strip():
+            out.append(f"empty translation of {s[:60]!r}")
+            continue
+        if sorted(NUMBER.findall(s)) != sorted(NUMBER.findall(t)):
+            out.append(f"numbers changed in {s[:60]!r}")
+        if {k for k in skills() if mentions(s, k)} != {k for k in skills() if mentions(t, k)}:
+            out.append(f"tools changed in {s[:60]!r}")
+    return out
+
+
 def strip_protected(text: str) -> str:
     """Q5 action: drop every sentence that mentions a protected attribute."""
     return " ".join(s for s in SENTENCE.split(text or "") if s.strip() and not PROTECTED.search(s))

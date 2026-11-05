@@ -16,6 +16,7 @@ from dataclasses import dataclass
 from app.nlp.chunking import Chunk
 from app.nlp.segment import Entry, merged_months
 from app.nlp.taxonomy import alias_regex, automation_evidence, skills
+from app.nlp.text import fold
 
 CREDIT = {"used": 1.0, "listed": 0.7, "implied": 0.5, "hedged": 0.2}  # implied: described, not named (N12 verifies)
 
@@ -27,36 +28,33 @@ PRE_HEDGE = re.compile(
     r"proof of concept|"
     r"(?:our|the|other) (?:developers|devs|dev team)|a colleague|colleagues|"  # someone else did the work
     r"tìm hiểu|đang học|tự học|biết cơ bản|làm quen|chưa có kinh nghiệm|chưa (?:sử dụng|làm|thực hành)|"
-    r"kiến thức cơ bản|khó?a (?:học|đào tạo)|khoá (?:học|đào tạo)|"
-    # the same cues typed without diacritics
-    r"tim hieu|dang hoc|tu hoc|biet co ban|lam quen|chua co kinh nghiem|chua (?:su dung|lam|thuc hanh)|"
-    r"kien thuc co ban|khoa (?:hoc|dao tao))"
+    r"kiến thức cơ bản|khó?a (?:học|đào tạo)|khoá (?:học|đào tạo))"
 )
 # After the term, within its clause: "(basic)", "- beginner", or a strong cue anywhere ("Cypress: following a
 # beginner course"). Plain "basic" further away is not a hedge ("Selenium tests covering basic flows").
 POST_HEDGE = re.compile(
     r"^\s*(?:\([^)]*\b(?:basic|beginner|learning|familiar|not used|no production|training|course|theory|cơ bản|"
-    r"đang học|tìm hiểu|co ban|dang hoc|tim hieu)\b|[-–:]\s*(?:basic|beginner|learning)\b|(?:basic|beginner)\b)"
+    r"đang học|tìm hiểu)\b|[-–:]\s*(?:basic|beginner|learning)\b|(?:basic|beginner)\b)"
     r"|\b(?:beginner|course|tutorial|not used|no hands-on|no (?:production|project)|currently learning|"
     r"chưa (?:dùng|sử dụng|tham gia|thực hành)|khóa học|đang học)"
 )
 SCOPE_BREAK = re.compile(r"\b(?:but|however|whereas|nhưng|tuy nhiên)\b")
-AUTOMATION = re.compile(r"automat|\bscripts?\b|framework|tự động|\btu dong\b")
+AUTOMATION = re.compile(r"automat|\bscripts?\b|framework|tự động")
 
 # Depth cues are matched only at the START of a clause, i.e. on the candidate's own action verb. That is the
 # difference between "Executed the existing automated suite" (L1: "automated" is an adjective) and "Automated 80
 # cases" (L2), or between "Our developers run Cypress tests" (not the candidate) and "Ran the Cypress suite" (L1).
 _OBJ = r"[^.;]{0,90}?"
 DEPTH_CUES = {  # checked from L4 down; the first level with a match wins
-    4: rf"(?:led|lead|own|defin|drove|driv|design|buil|creat|architect|set up|introduc|establish|roll|xây dựng|thiết kế|xay dung|thiet ke)"
+    4: rf"(?:led|lead|own|defin|drove|driv|design|buil|creat|architect|set up|introduc|establish|roll|xây dựng\b|thiết kế\b)"
        rf"\w*\b{_OBJ}(?:(?:test|testing|qa|quality|automation)\s+(?:strategy|architecture|platform|roadmap|guild)|"
        rf"(?:across|for|by|to)\s+(?:\d+|two|three|four|five|six|multiple|several|all|other)\s+(?:\w+\s+)?"
-       rf"(?:teams|squads|products|tribes)|quality gates?|release gates?|chiến lược kiểm thử|kiến trúc kiểm thử|chien luoc kiem thu|kien truc kiem thu)",
-    3: rf"(?:design|buil|creat|architect|set up|introduc|develop|implement|xây dựng|thiết kế|xay dung|thiet ke)\w*\b{_OBJ}"
+       rf"(?:teams|squads|products|tribes)|quality gates?|release gates?|chiến lược kiểm thử|kiến trúc kiểm thử)",
+    3: rf"(?:design|buil|creat|architect|set up|introduc|develop|implement|xây dựng\b|thiết kế\b)\w*\b{_OBJ}"
        rf"(?:framework|harness|page object|base (?:layer|classes)|test platform|shared librar|khung)",
-    2: rf"(?:wr(?:ote|ite|itten)|author|automat|develop|implement|creat|buil|add|cover|script|migrat|viết|tự động hóa|tự động hoá|viet(?=\s)|tu dong hoa)"
-       rf"\w*\b{_OBJ}\b(?:tests?|scripts?|cases|suites?|checks|scenarios|kịch bản|kich ban)\b",
-    1: rf"(?:execut|ran\b|run|maintain|updat|trigger|monitor|chạy|chay(?=\s))\w*\b{_OBJ}\b(?:tests?|scripts?|suites?|regression|"
+    2: rf"(?:wr(?:ote|ite|itten)|author|automat|develop|implement|creat|buil|add|cover|script|migrat|viết\b|tự động hóa\b)"
+       rf"\w*\b{_OBJ}\b(?:tests?|scripts?|cases|suites?|checks|scenarios|kịch bản)\b",
+    1: rf"(?:execut|ran\b|run|maintain|updat|trigger|monitor|chạy\b)\w*\b{_OBJ}\b(?:tests?|scripts?|suites?|regression|"
        rf"jobs?|locators|test case)",
 }
 DEPTH_RX = {lv: re.compile(rx) for lv, rx in DEPTH_CUES.items()}
@@ -65,6 +63,12 @@ SUBJECT = re.compile(r"^(?:i|we|also|then|and|tôi|đã|personally)\s+")
 MANUAL = re.compile(r"\bmanual(?:ly)?\b|thủ công")
 GAP = re.compile(r"career break|no employment|not employed|unemployed|sabbatical|\bgap\b|nghỉ việc|thời gian nghỉ")
 YEARS_CLAIM = re.compile(r"(\d{1,2}(?:[.,]\d)?)\s*\+?\s*(?:years?|yrs|năm)")
+# The depth cue reads clauses folded (lowercase, no diacritics), with the lexicon folded the same way, so a Vietnamese
+# CV typed without accents ("xay dung framework", "viet test script") reads like an accented one. fold() keeps one
+# character per character, and the patterns use only lowercase escapes, so folding a pattern keeps its regex.
+FOLDED = {name: re.compile(fold(rx.pattern)) for name, rx in
+          {"hedge": PRE_HEDGE, "subject": SUBJECT, "manual": MANUAL, "automation": AUTOMATION}.items()}
+FOLDED_DEPTH = {lv: re.compile(fold(rx)) for lv, rx in DEPTH_CUES.items()}
 
 
 @dataclass
@@ -88,12 +92,29 @@ def is_hedged(line: str, start: int, end: int) -> bool:
     return bool(POST_HEDGE.search(line[end:seg_end]))
 
 
+# Tool names that are also ordinary words or places ("customer requests", "an espresso machine", "Cypress, CA", "a postman"):
+# 369 of 2,246 non-IT Kaggle résumés "used" requests before this (E23). They count only on a line about software or
+# testing, or in a chunk that names another, unambiguous tool.
+AMBIGUOUS = frozenset({"requests", "cypress", "espresso", "postman", "gatling", "pact", "locust", "cucumber"})
+TECH_CONTEXT = re.compile(
+    r"\b(?:test\w*|automat\w*|qa|api|apis|rest|http|framework|script\w*|e2e|end-to-end|ui|mobile|android|ios|library|"
+    r"package|python|java\w*|typescript|node|code|coding|ci|bdd|gherkin|load|performance|contract|kiểm thử|tự động)\b")
+
+
+def _context_ok(key: str, line: str, chunk_has_tool: bool) -> bool:
+    return key not in AMBIGUOUS or chunk_has_tool or bool(TECH_CONTEXT.search(line))
+
+
 def skill_mentions(chunks: list[Chunk]) -> dict[str, list[Mention]]:
     out: dict[str, list[Mention]] = {}
     for ch in chunks:
+        low_chunk = ch.text.lower()
+        chunk_has_tool = any(alias_regex(k).search(low_chunk) for k in skills() if k not in AMBIGUOUS)
         for raw in ch.text.split("\n"):
             low = raw.lower()
             for key in skills():
+                if not _context_ok(key, low, chunk_has_tool):
+                    continue
                 for m in alias_regex(key).finditer(low):
                     if is_hedged(low, m.start(), m.end()):
                         strength = "hedged"
@@ -156,13 +177,13 @@ def jd_depth(text: str) -> tuple[int, str | None]:
 
 def _deepest(raw_lines: list[str]) -> tuple[int, str | None]:
     lines = [ln.strip().removeprefix("- ").strip() for ln in raw_lines]
-    clauses = [(ln, SUBJECT.sub("", cl.strip().lower())) for ln in lines if ln and not PRE_HEDGE.search(ln.lower())
-               for cl in CLAUSE.split(ln)]
+    clauses = [(ln, FOLDED["subject"].sub("", fold(cl.strip()))) for ln in lines
+               if ln and not FOLDED["hedge"].search(fold(ln)) for cl in CLAUSE.split(ln)]
     for level in (4, 3, 2, 1):
         for ln, cl in clauses:
             # L1/L2 verbs ("wrote … test cases") are only automation when the clause is about tools or scripts
-            if level <= 2 and (MANUAL.search(cl) or not (AUTOMATION.search(cl) or _names_tool(cl))):
+            if level <= 2 and (FOLDED["manual"].search(cl) or not (FOLDED["automation"].search(cl) or _names_tool(cl))):
                 continue
-            if DEPTH_RX[level].match(cl):
+            if FOLDED_DEPTH[level].match(cl):
                 return level, ln
     return 0, None

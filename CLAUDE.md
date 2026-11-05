@@ -12,7 +12,7 @@ Master's NLP final project (FSB). Topic: **an agentic AI system that matches and
 
 ## Architecture
 - `backend/app/agent/graph.py`: LangGraph StateGraph. **Read it first.** 12 nodes, 6 bounded loops: L1 HR clarification (interrupt), L2 query expansion (taxonomy; HR approves substitutes via interrupt), L3 selective arbiter (LLM only on near-ties, |Δ| < near_tie_delta, both orders), L4 verify_evidence (quotes grounded and supported, claims consistent with the CV), L5 HR review/re-weight (interrupt), L6 investigate (N12, `agent/investigate.py`: tool-using LLM loop for knock-outs that look like parse failures; code verifies every fact). Across runs, `agent/hr_memory.py` (H30, `HR_MEMORY`) starts each run from the weights HR's decisions taught for that company profile. Search screens by retrieval and by rule score (`rule_recall`). Every CV ends with a status + reason.
-- `backend/app/agent/orchestrator.py` (v4, **P7**, API mode `agent`, the default): the agentic version. An LLM works towards HR's goal with the tools in `agent/tools.py` (17 typed tools wrapping the nodes below: `screen` = the P6 pipeline up to the ranking at 0 tokens, `rank_shortlist` (controlled LLM ranking, `agent/llm_rank.py`), `explain`, `investigate`, `compare`, `ask_hr`, `respond_to_hr`, ...); Goal loop (`agent/goal.py`, T11/T12/H31/H32): `formalize_goal` turns HR's goal into a GoalSpec whose every constraint quotes HR (Q18), `define_concept` makes criteria no taxonomy holds searchable (code grades the evidence), feasibility is checked before ranking and an infeasible or unclear goal goes back to HR, and `respond_to_hr` must declare unmet goal parts (Q19). `guard` is the harness (schema, per-tool preconditions, HR authority, Q14/Q15, cache, budgets `max_agent_steps`/`max_agent_tokens`/`max_hr_turns`); `hr_turn` makes it a multi-turn conversation with HR. `graph.py` stays as the fixed P6 baseline. `claude_code` emulates tool calling via `--json-schema`.
+- `backend/app/agent/orchestrator.py` (v4, **P7**, API mode `agent`, the default): the agentic version. An LLM works towards HR's goal with the tools in `agent/tools.py` (17 typed tools wrapping the nodes below: `screen` = the P6 pipeline up to the ranking at 0 tokens, `rank_shortlist` (controlled LLM ranking, `agent/llm_rank.py`), `explain`, `investigate`, `compare`, `ask_hr`, `respond_to_hr`, ...); Goal loop (`agent/goal.py`, T11/T12/H31/H32): `formalize_goal` turns HR's goal into a GoalSpec whose every constraint quotes HR (Q19), `define_concept` makes criteria no taxonomy holds searchable (code grades the evidence), feasibility is checked before ranking and an infeasible or unclear goal goes back to HR, and `respond_to_hr` must declare unmet goal parts (Q20). `guard` is the harness (schema, per-tool preconditions, HR authority, Q14/Q15, cache, budgets `max_agent_steps`/`max_agent_tokens`/`max_hr_turns`); `hr_turn` makes it a multi-turn conversation with HR. `graph.py` stays as the fixed P6 baseline. `claude_code` emulates tool calling via `--json-schema`.
 - `backend/app/agent/nodes.py`: one job per node; narrate decisions with `emit()`. `scoring.py`: pure, deterministic and tested (rule criteria, explanation cards, HR weight calibration).
 - `backend/app/providers/llm.py`: `LLMProvider` interface + `@register` registry + factory. Switch the whole agent with `LLM_PROVIDER` in `.env` (openai, anthropic, google, ollama, gateway, claude_code = the local `claude` CLI on a subscription login, dev only); `LLM_REASONING`/`LLM_FAST` pin a role to a full `"<provider>:<model>"`. Roles: `reasoning` (judgement) and `fast` (typed gate decisions via `providers/decider.py`).
 - `backend/app/nlp/`: the CV pipeline (read_file, with OCR for scans in `ocr.py` → normalize → redact → sections/dates → structural chunks → skill mentions with NegEx-style hedges, years, depth cue → `CVProfile`). Everything downstream reads `pipeline.profile(cv_id)`, never raw text. `jd.py` parses JDs without an LLM (`JD_PARSER`), `quality.py` flags bad parses and duplicates. See `docs/NLP_PIPELINE.md`.
@@ -33,8 +33,16 @@ cd backend && uv run python -m app.rag.ingest            # (re)index data/ into 
 cd backend && uv run python -m scripts.smoke JD-002      # end-to-end in terminal, auto-answers HR
 uv run pytest                                            # tests (no LLM, no Docker needed)
 cd backend && uv run python -m app.eval.run retrieval    # B0–B3 + chunking ablation (minutes); `agent` = LLM systems; `report`
-# eval numbers in docs/ are produced with PYTHONHASHSEED=0 (set ordering breaks retrieval ties) and LLM_PROVIDER=claude_code
+# eval numbers in docs/ are produced with PYTHONHASHSEED=0, LLM_PROVIDER=claude_code and REFERENCE_DATE=2026-10-30
+# ("Present" in a CV resolves to it, so years and ranks do not drift with the calendar); query text no longer depends on
+# the hash seed (taxonomy.aliases keeps the declared order)
 cd backend && uv run python -m app.eval.benchmark report    # THE official table: NLP501-bench v1 (docs/BENCHMARK.md); `verify` checks the frozen inputs
+cd backend && uv run python -m app.eval.benchmark_v2 report # v2 = v1 + 8 real Djinni JDs in test (18 test JDs); `freeze`, `verify`
+cd backend && uv run python -m app.eval.djinni fetch     # real-data layer to .runtime; `silver`, `import labels_A.xlsx labels_B.xlsx`, `score` (κ)
+cd backend && uv run python -m app.eval.nlp_ablation     # E19: nDCG cost of switching off hedge scope / evidence / depth cue / dated years
+cd backend && uv run --group ml python -m app.eval.finetune train   # E20: cross-encoder fine-tuned on dev JDs; `score` = test + Djinni
+cd backend && uv run python -m app.eval.token_cost       # E21: tokens of B4 / P6 vs E-every (LLM on every candidate), after `run agent --systems B4,P6,E-every`
+cd backend && uv run python -m app.eval.kaggle_resume    # E23: pipeline on 2,484 real résumé PDFs (reading, structure, tool false positives); `fetch cv2.zip` first
 cd backend && uv run python -m app.eval.extraction       # RQ1: CV/JD extraction F1 + redaction leaks vs the coding branch's generator truth
 cd backend && uv run python -m app.eval.agentic          # E15: P7 on HR tasks (behaviour checks, refusals, tokens, nDCG vs P6; dev JDs)
 cd backend && uv run python -m app.eval.llm_rank         # E18: controlled LLM ranking of the shortlist, dev JDs, both benchmarks
@@ -42,12 +50,9 @@ cd backend && uv run python -m app.eval.single_agent     # S1: one agent on its 
 cd backend && uv run python -m app.eval.injection        # Q16 layer 1b: System One model (ollama pull nimble) vs paraphrased injection
 cd backend && uv run python -m app.eval.robustness       # Q11: counterfactual fairness (name/gender/age/marital twins) + format robustness
 cd backend && uv run python -m app.eval.clarify          # H6: vague twins of all 18 JDs, asking HR vs not (`report` re-renders)
-cd backend && uv run python -m app.eval.hr_learning    # E19: HR learning across sessions, simulated HR, zero LLM (HR_MEMORY / H30)
-cd backend && uv run python -m app.eval.bench fetch djinni   # E21: public Djinni set → .runtime/bench/djinni; label sheets labeling/labels_{A,B}.xlsx
-cd backend && uv run --with openpyxl python -m app.eval.run retrieval --bench djinni   # needs both sheets graded; `report --bench djinni`
-cd backend && uv run --with sentence-transformers python -m app.eval.contrastive --ft <fine-tuned dir>   # E20: ConFit-style encoder in our ladder
-cd backend && uv run python -m scripts.preflight         # E22: before a demo, are models, Ollama, Qdrant, index, API ready?
-DATA_DIR=$(cd backend && uv run python -m app.eval.goals materialize) uv run --directory backend python -m app.eval.goals   # E23: complex HR goals, scripted HR, in-memory index
+cd backend && uv run python -m app.eval.hr_learning    # E24: HR learning across sessions, simulated HR, zero LLM (HR_MEMORY / H30)
+cd backend && uv run python -m scripts.preflight         # E25: before a demo, are models, Ollama, Qdrant, index, API ready?
+DATA_DIR=$(cd backend && uv run python -m app.eval.goals materialize) uv run --directory backend python -m app.eval.goals   # E26: complex HR goals, scripted HR, in-memory index
 cd backend && uv run --group ocr python -m app.eval.ocr  # scanned CVs: PaddleOCR (optional group `ocr`, ~1 GB) → pipeline; `rescore` = no OCR
 uv run uvicorn app.main:app --app-dir backend --reload   # API :8000
 cd frontend && npm run dev                               # UI :5173

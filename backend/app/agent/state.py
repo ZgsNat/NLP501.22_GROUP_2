@@ -22,6 +22,7 @@ class AgentState(TypedDict, total=False):
     jd_text: str
     company_profile: str
     models: dict[str, str]  # {"reasoning": "...", "fast": "..."} — persisted so resumes use the same brain
+    lang: str  # "en" | "vi": the language of every LLM text HR reads (prompts.localized); quotes stay verbatim
     ablate: list[str]  # evaluation only: switch off parts ("clarify", "expand", "verify", "arbiter", "profile")
 
     # criteria
@@ -39,6 +40,7 @@ class AgentState(TypedDict, total=False):
     candidates: list[dict]
     knocked_out: dict[str, str]  # cv_id -> reason (H(c) = 0)
     screened: dict[str, str]  # cv_id -> why it was not assessed (not retrieved / not shortlisted)
+    hr_rejected: Annotated[dict[str, str], merge]  # cv_id -> HR's reason (L5 / record_decisions): out of the ranking
     recovered: Annotated[dict[str, list[dict]], merge]  # cv_id -> facts the investigator verified (L6)
     investigated: Annotated[dict[str, str], merge]  # cv_id -> outcome of its investigation (never twice)
 

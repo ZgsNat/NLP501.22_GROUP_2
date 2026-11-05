@@ -173,6 +173,30 @@ def test_clarification_round_bundles_soft_questions():
     assert len(r.ambiguities) <= 4
 
 
+def test_umbrella_type_is_not_a_concrete_must_have():
+    """Fix #1: "API testing" names a test TYPE, not a tool. A JD whose only must-have is the umbrella phrase still
+    hasn't named a knock-out tool, so the hard rule asks for concrete tools (no model called); a real tool alongside
+    it leaves no gap, so the gate proceeds."""
+    import asyncio
+
+    from app.agent.nodes import ask_hr_gate, concrete_must_have
+    from app.agent.schemas import JDRequirements
+
+    assert concrete_must_have(["api_testing"]) == []
+    assert concrete_must_have(["api_testing", "postman"]) == ["postman"]
+
+    def req(must):
+        return JDRequirements(title="QA Engineer", must_have=list(must), nice_to_have=[], min_years=3, depth_level=3,
+                              languages=["java"], test_types=["api"], ambiguities=[])
+
+    umbrella_only = req(("api_testing",))
+    ask, why = asyncio.run(ask_hr_gate(None, "Looking for API testing experience.", umbrella_only))
+    assert ask and "no concrete" in why.lower()
+    assert any("tools or frameworks" in q.lower() for q in umbrella_only.ambiguities), umbrella_only.ambiguities
+    # A concrete tool named alongside the umbrella → the hard rule does not fire, no gaps → proceed without a model.
+    assert asyncio.run(ask_hr_gate(None, "Postman for API testing.", req(("api_testing", "postman")))) == (False, None)
+
+
 def test_arbiter_only_judges_true_near_ties(monkeypatch):
     import asyncio
 

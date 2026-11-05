@@ -1,4 +1,4 @@
-"""E23: the goal suite's cases parse and its behaviour checks judge a run the way the docstring says."""
+"""E26: the goal suite's cases parse and its behaviour checks judge a run the way the docstring says."""
 
 from app.eval.agentic import Trace
 from app.eval.goals import cases, checks

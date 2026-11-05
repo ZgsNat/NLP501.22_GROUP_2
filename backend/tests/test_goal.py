@@ -37,6 +37,8 @@ def test_concept_evidence_is_graded_by_where_and_how_the_cv_says_it():
     assert ev["B"]["strength"] == "listed"  # skills list only
     assert ev["C"]["strength"] == "hedged"  # "currently learning"
     assert "D" not in ev
+    for line in ("Đang học Copilot cho test tự động", "Dang hoc Copilot cho test tu dong"):  # typed with or without accents
+        assert goal.concept_evidence(cv("V", "Wrote Selenium tests", line), AI_TERMS)["strength"] == "hedged", line
 
 
 def test_feasibility_counts_the_pool_names_the_bottleneck_and_what_relaxing_gives():

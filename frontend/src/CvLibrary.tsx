@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { api } from './api'
 import BatchUploadModal from './BatchUploadModal'
+import { useT } from './i18n'
 import type { CVListItem } from './types'
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export default function CvLibrary({ onOpenCv }: Props) {
+  const { t } = useT()
   const [cvs, setCvs] = useState<CVListItem[]>([])
   const [search, setSearch] = useState('')
   const [selectedSkill, setSelectedSkill] = useState<string>('all')
@@ -22,7 +24,7 @@ export default function CvLibrary({ onOpenCv }: Props) {
     setError(null)
     api.listCvs()
       .then(setCvs)
-      .catch((e) => setError(`Không thể tải danh sách CV: ${e.message}`))
+      .catch((e) => setError(`${t('Cannot load the CV list', 'Không thể tải danh sách CV')}: ${e.message}`))
       .finally(() => setLoading(false))
   }
 
@@ -66,27 +68,29 @@ export default function CvLibrary({ onOpenCv }: Props) {
   }, [cvs, sourceFilter, selectedSkill, search])
 
   const handleDelete = async (id: string) => {
-    if (!window.confirm(`Bạn có chắc chắn muốn xóa hồ sơ ${id}?`)) return
+    if (!window.confirm(t(`Delete CV ${id}?`, `Bạn có chắc chắn muốn xoá hồ sơ ${id}?`))) return
     setDeleteId(id)
     try {
       await api.deleteCv(id)
       await loadData()
     } catch (e) {
-      alert(`Xóa thất bại: ${(e as Error).message}`)
+      alert(`${t('Delete failed', 'Xoá thất bại')}: ${(e as Error).message}`)
     } finally {
       setDeleteId(null)
     }
   }
 
   const handleResetUploads = async () => {
-    if (!window.confirm('Bạn có chắc muốn xóa TẤT CẢ hồ sơ đã tải lên để hoàn nguyên kho mẫu chuẩn?')) return
+    if (!window.confirm(t('Delete ALL uploaded CVs and go back to the benchmark pool?',
+      'Bạn có chắc muốn xoá TẤT CẢ hồ sơ đã tải lên để hoàn nguyên kho mẫu chuẩn?'))) return
     setLoading(true)
     try {
       const res = await api.resetCvs()
-      alert(`Đã hoàn nguyên kho dữ liệu (đã xóa ${res.deleted_count} hồ sơ tải lên).`)
+      alert(t(`Pool restored (${res.deleted_count} uploaded CVs removed).`,
+        `Đã hoàn nguyên kho dữ liệu (đã xoá ${res.deleted_count} hồ sơ tải lên).`))
       await loadData()
     } catch (e) {
-      alert(`Lỗi: ${(e as Error).message}`)
+      alert(`${t('Error', 'Lỗi')}: ${(e as Error).message}`)
     } finally {
       setLoading(false)
     }
@@ -99,17 +103,19 @@ export default function CvLibrary({ onOpenCv }: Props) {
     <div className="cv-library-page">
       <header className="page-header">
         <div>
-          <h2>Kho hồ sơ ứng viên (Candidate Pool)</h2>
-          <p className="muted">Quản lý toàn bộ hồ sơ ứng viên dùng cho việc kiểm thử, sàng lọc và đánh giá tự động.</p>
+          <h2>{t('Candidate pool', 'Kho hồ sơ ứng viên (candidate pool)')}</h2>
+          <p className="muted">{t('Every CV used for testing, screening and automated assessment.',
+            'Quản lý toàn bộ hồ sơ ứng viên dùng cho kiểm thử, sàng lọc và đánh giá tự động.')}</p>
         </div>
         <div className="header-actions">
           {uploadedCount > 0 && (
-            <button className="ghost danger-text" onClick={handleResetUploads} title="Xóa tất cả các CV người dùng tải lên">
-              Dọn dẹp tải lên ({uploadedCount})
+            <button className="ghost danger-text" onClick={handleResetUploads}
+              title={t('Delete every CV users uploaded', 'Xoá tất cả CV người dùng đã tải lên')}>
+              {t('Clear uploads', 'Dọn dẹp tải lên')} ({uploadedCount})
             </button>
           )}
           <button className="primary" onClick={() => setIsBatchOpen(true)}>
-            + Tải lên hàng loạt
+            + {t('Batch upload', 'Tải lên hàng loạt')}
           </button>
         </div>
       </header>
@@ -118,19 +124,20 @@ export default function CvLibrary({ onOpenCv }: Props) {
 
       <div className="stats-cards-grid">
         <div className="stat-card">
-          <span className="stat-title">Tổng số hồ sơ</span>
+          <span className="stat-title">{t('CVs in total', 'Tổng số hồ sơ')}</span>
           <span className="stat-value">{cvs.length}</span>
-          <span className="stat-desc">Bao gồm {uploadedCount} tải lên, {benchmarkCount} mẫu chuẩn</span>
+          <span className="stat-desc">{t(`${uploadedCount} uploaded, ${benchmarkCount} benchmark`,
+            `Gồm ${uploadedCount} tải lên, ${benchmarkCount} mẫu chuẩn`)}</span>
         </div>
         <div className="stat-card">
-          <span className="stat-title">Kỹ năng nhận diện</span>
+          <span className="stat-title">{t('Skills detected', 'Kỹ năng nhận diện được')}</span>
           <span className="stat-value">{allSkills.length}</span>
-          <span className="stat-desc">Kỹ năng công nghệ & công cụ QA</span>
+          <span className="stat-desc">{t('Technical skills & QA tools', 'Kỹ năng công nghệ & công cụ QA')}</span>
         </div>
         <div className="stat-card">
-          <span className="stat-title">Hồ sơ hiển thị</span>
+          <span className="stat-title">{t('CVs shown', 'Hồ sơ đang hiển thị')}</span>
           <span className="stat-value">{filtered.length}</span>
-          <span className="stat-desc">Theo bộ lọc tìm kiếm hiện tại</span>
+          <span className="stat-desc">{t('With the current filters', 'Theo bộ lọc tìm kiếm hiện tại')}</span>
         </div>
       </div>
 
@@ -138,7 +145,7 @@ export default function CvLibrary({ onOpenCv }: Props) {
         <div className="search-box">
           <input
             type="text"
-            placeholder="Tìm theo ID, chức danh, kỹ năng, tên tệp..."
+            placeholder={t('Search by id, title, skill, file name…', 'Tìm theo mã, chức danh, kỹ năng, tên tệp…')}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -147,20 +154,20 @@ export default function CvLibrary({ onOpenCv }: Props) {
 
         <div className="filters-row">
           <select value={selectedSkill} onChange={(e) => setSelectedSkill(e.target.value)}>
-            <option value="all">Tất cả kỹ năng ({allSkills.length})</option>
+            <option value="all">{t('All skills', 'Tất cả kỹ năng')} ({allSkills.length})</option>
             {allSkills.map((s) => (
               <option key={s} value={s}>{s}</option>
             ))}
           </select>
 
           <select value={sourceFilter} onChange={(e) => setSourceFilter(e.target.value as any)}>
-            <option value="all">Tất cả nguồn ({cvs.length})</option>
-            <option value="uploaded">Người dùng tải lên ({uploadedCount})</option>
-            <option value="benchmark">Kho chuẩn benchmark ({benchmarkCount})</option>
+            <option value="all">{t('All sources', 'Tất cả nguồn')} ({cvs.length})</option>
+            <option value="uploaded">{t('Uploaded by users', 'Người dùng tải lên')} ({uploadedCount})</option>
+            <option value="benchmark">{t('Benchmark pool', 'Kho chuẩn benchmark')} ({benchmarkCount})</option>
           </select>
 
-          <button className="ghost" onClick={loadData} disabled={loading} title="Làm mới">
-            {loading ? 'Đang tải...' : '↻ Làm mới'}
+          <button className="ghost" onClick={loadData} disabled={loading} title={t('Refresh', 'Làm mới')}>
+            {loading ? t('Loading…', 'Đang tải…') : `↻ ${t('Refresh', 'Làm mới')}`}
           </button>
         </div>
       </div>
@@ -169,13 +176,13 @@ export default function CvLibrary({ onOpenCv }: Props) {
         <table className="library-table">
           <thead>
             <tr>
-              <th>Mã hồ sơ</th>
-              <th>Tiêu đề / Chức danh</th>
-              <th>Kỹ năng chính</th>
-              <th>Kinh nghiệm</th>
-              <th>Ngôn ngữ</th>
-              <th>Nguồn</th>
-              <th className="text-right">Thao tác</th>
+              <th>{t('CV id', 'Mã hồ sơ')}</th>
+              <th>{t('Headline / title', 'Tiêu đề / chức danh')}</th>
+              <th>{t('Main skills', 'Kỹ năng chính')}</th>
+              <th>{t('Experience', 'Kinh nghiệm')}</th>
+              <th>{t('Language', 'Ngôn ngữ')}</th>
+              <th>{t('Source', 'Nguồn')}</th>
+              <th className="text-right">{t('Actions', 'Thao tác')}</th>
             </tr>
           </thead>
           <tbody>
@@ -189,7 +196,7 @@ export default function CvLibrary({ onOpenCv }: Props) {
                     <span className="file-hint muted small">{c.filename}</span>
                   )}
                 </td>
-                <td className="headline-cell">{c.headline || <span className="muted">Chưa có tiêu đề</span>}</td>
+                <td className="headline-cell">{c.headline || <span className="muted">{t('No title', 'Chưa có tiêu đề')}</span>}</td>
                 <td>
                   <div className="table-skills">
                     {(c.skills || []).slice(0, 4).map((s) => (
@@ -203,7 +210,7 @@ export default function CvLibrary({ onOpenCv }: Props) {
                   </div>
                 </td>
                 <td className="nowrap">
-                  {c.years_automation != null ? `${c.years_automation} năm` : '-'}
+                  {c.years_automation != null ? `${c.years_automation} ${t('yrs', 'năm')}` : '-'}
                 </td>
                 <td>
                   <span className={`badge ${c.lang === 'vi' ? 'emerald' : c.lang === 'en' ? 'sky' : 'amber'}`}>
@@ -212,14 +219,14 @@ export default function CvLibrary({ onOpenCv }: Props) {
                 </td>
                 <td>
                   {c.uploaded ? (
-                    <span className="badge sky">Đã tải lên</span>
+                    <span className="badge sky">{t('Uploaded', 'Đã tải lên')}</span>
                   ) : (
-                    <span className="badge slate">Chuẩn</span>
+                    <span className="badge slate">{t('Benchmark', 'Chuẩn')}</span>
                   )}
                 </td>
                 <td className="text-right nowrap">
                   <button className="ghost small-btn" onClick={() => onOpenCv(c.id)}>
-                    Chi tiết
+                    {t('Details', 'Chi tiết')}
                   </button>
                   {c.uploaded && (
                     <button
@@ -227,7 +234,7 @@ export default function CvLibrary({ onOpenCv }: Props) {
                       disabled={deleteId === c.id}
                       onClick={() => handleDelete(c.id)}
                     >
-                      {deleteId === c.id ? '...' : 'Xóa'}
+                      {deleteId === c.id ? '...' : t('Delete', 'Xoá')}
                     </button>
                   )}
                 </td>
@@ -236,7 +243,7 @@ export default function CvLibrary({ onOpenCv }: Props) {
             {filtered.length === 0 && (
               <tr>
                 <td colSpan={7} className="text-center muted empty-cell">
-                  {loading ? 'Đang nạp dữ liệu...' : 'Không tìm thấy hồ sơ phù hợp với bộ lọc.'}
+                  {loading ? t('Loading…', 'Đang nạp dữ liệu…') : t('No CV matches the filters.', 'Không tìm thấy hồ sơ phù hợp với bộ lọc.')}
                 </td>
               </tr>
             )}

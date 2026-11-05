@@ -1,5 +1,6 @@
 from functools import lru_cache
 from pathlib import Path
+from datetime import date
 from typing import Literal
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -89,6 +90,9 @@ class Settings(BaseSettings):
     # stronger model turns alternatives and preferences into hard must-haves, while hybrid held at 0.881 / 0.792.
     # Hybrid is stable across models, so it is the default (docs/EVAL.md §8 rule; docs/FINAL_REPORT.md §5.2).
     jd_parser: Literal["llm", "rules", "hybrid"] = "hybrid"
+    # What "Present" / "đến nay" resolves to; None = today. Evaluations pin it (REFERENCE_DATE=2026-10-30, the v1
+    # freeze) so years of experience, and so the ranking, do not drift with the calendar.
+    reference_date: date | None = None
     near_tie_delta: float = 0.05
     max_arbiter_calls: int = 6  # LLM calls; each near-tie pair is judged in both orders (2 calls), so 3 pairs
     # v3: the LLM explains and arbitrates; the 8 rule criteria set Score. True = v2 (LLM scores 5 of 8 criteria).
@@ -117,7 +121,7 @@ class Settings(BaseSettings):
 
     # P7 orchestrator (agent/orchestrator.py, loop L7): an LLM picks the next tool; these bound what it may spend.
     agent_role: Literal["fast", "reasoning"] = "fast"  # who orchestrates; judgement inside tools stays on reasoning
-    max_agent_steps: int = 16  # decisions per HR turn, then code answers HR; 16 (was 12): the goal loop (define_concept, formalize_goal, ask_hr) costs ~3 steps (E23)
+    max_agent_steps: int = 16  # decisions per HR turn, then code answers HR; 16 (was 12): the goal loop (define_concept, formalize_goal, ask_hr) costs ~3 steps (E26)
     # Orchestrator tokens (input + output) per HR turn, same fallback. Each decision re-reads the conversation, so a
     # first turn with explain + three arbiter calls used ~110k on claude_code (Sonnet 5.5, its CLI adds ~1.4k a call).
     max_agent_tokens: int = 150_000

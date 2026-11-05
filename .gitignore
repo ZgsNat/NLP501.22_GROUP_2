@@ -11,3 +11,7 @@ frontend/dist/
 
 # backups of .env (may hold keys)
 .env.bak*
+
+# fine-tuned weights (app.eval.finetune): rebuilt by `train`, never committed
+models/ce-ft-dev/
+models/ce-ft-dev-cvdisjoint/

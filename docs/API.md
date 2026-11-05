@@ -36,6 +36,10 @@ Base URL: `http://localhost:8000/api`. All bodies are JSON. Streaming endpoints 
 `models` is optional; each value is `"<provider>:<model>"`.
 `mode` is `"agent"` (default: the P7 orchestrator, `agent/orchestrator.py`) or `"pipeline"` (the fixed P6 graph);
 `goal` (agent mode) is HR's request in their own words, e.g. `"Shortlist 5 senior Playwright testers; ISTQB is a plus"`.
+`lang` is `"en"` (default) or `"vi"`: the language of every LLM text HR reads (explanations, report, arbiter reasons,
+clarification questions, agent replies). In `"vi"` technical terms stay in English with a Vietnamese gloss; evidence
+quotes are always verbatim from the CV. Stored in the run state, so resumes keep it. Deterministic texts (statuses,
+reasons, rule rationales, the event log) stay English in the API; the UI translates their templates (`frontend/src/i18n.tsx`).
 
 ### `POST /runs/{run_id}/resume`
 Body depends on the pending interrupt `kind`:
@@ -178,10 +182,10 @@ Evidence = { quote: string;
 // grounded && !supported = "listed, not demonstrated" (e.g. depth evidence quoted from a skills list);
 // !grounded = hallucinated quote (L4 sends it back to assess).
 
-ranking: RankRow[]    // EVERY CV in the pool, in this order: ranked (by rank), not_shortlisted, needs_review, knocked_out
+ranking: RankRow[]    // EVERY CV in the pool, in this order: ranked (by rank), not_shortlisted, rejected_by_hr, needs_review, knocked_out
 RankRow = { rank: number; cv_id: string; headline: string; total: number /*0–1*/;
             knocked_out: boolean; arbiter_note: string | null;
-            status: "ranked" | "needs_review" | "not_shortlisted" | "knocked_out";
+            status: "ranked" | "needs_review" | "not_shortlisted" | "rejected_by_hr" | "knocked_out";
             tier: "strong" | "possible" | "weak" | null;   // only set when status = "ranked"
             reason: string | null;                         // why the CV is not ranked; null for ranked
             card: Card | null;                             // v3: deterministic explanation (ranked + knocked_out rows)
@@ -194,6 +198,7 @@ Card = { decomposition?: { criterion; weight; score /*0–100*/; contribution /*
 // reason examples:
 //   not_shortlisted  "Rank 11 after rerank; best evidence matched: selenium, java; missing: jenkins"
 //   knocked_out      "Missing must-have: playwright"
+//   rejected_by_hr   "Rejected by HR: needs more test-architecture experience" (L5 / record_decisions; kept on re-screen)
 //   knocked_out      "Only hedged mention of appium: 'familiar with Appium (not used in production)'"
 // knocked_out (bool) stays for compatibility and is true exactly when status = "knocked_out".
 report: { summary: string;

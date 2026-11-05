@@ -1,0 +1,2549 @@
+{
+ "annotator": "silver b (claude-sonnet-5-5, LLM, blind, rubric; not human)",
+ "labels": [
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_88978c4b56",
+   "grade": 0,
+   "note": "Junior with 1 year, Cypress/JS only, no C#, no API testing, intermediate English."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_496c0147cb",
+   "grade": 2,
+   "note": "3 yrs automation, fluent English, Selenium, Git, Jenkins, C#/NUnit listed, but C# is only in a knowledge list and no API/REST evidence."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_67873b8178",
+   "grade": 1,
+   "note": "Fintech/crypto and API (Postman) experience but automation in Cypress/JS/TS, no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_251e6a0ca9",
+   "grade": 1,
+   "note": "5 yrs QA with REST/Selenium and Forex trading, but JS-focused with no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_1d6c1abff0",
+   "grade": 1,
+   "note": "Only 1 year, Java stack rather than C#, though API and Jenkins are covered."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_3efde2f542",
+   "grade": 1,
+   "note": "Strong senior automation with Selenium, REST Assured, Git and Jenkins, but Java/Groovy with no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_2447114acb",
+   "grade": 0,
+   "note": "Manual QA only, no automation."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_404601dabd",
+   "grade": 1,
+   "note": "10 yrs Java Selenium/RestAssured with CI, but no C# and avoids manual testing."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_5a13c0f19f",
+   "grade": 2,
+   "note": "Years of Selenium C# with BDD step definitions and QA lead experience; API and CI evidence is thin."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_1d5ea8a2f3",
+   "grade": 1,
+   "note": "Selenium and Rest Assured with Cucumber and Jenkins, but Java rather than C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_d78cf190ad",
+   "grade": 3,
+   "note": "5 yrs C# automation with NUnit, Azure DevOps CI, REST API, Git, fluent English."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_f873540014",
+   "grade": 1,
+   "note": "Senior with Python/JS automation and API testing, but no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_4124aac16f",
+   "grade": 1,
+   "note": "Selenium/RestAssured/Cucumber framework in Java, no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_3d30a94f2d",
+   "grade": 3,
+   "note": "7 yrs C# Selenium NUnit/xUnit, UI and API testing, CI (Jenkins/Bamboo), Bitbucket."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_534d40a1b2",
+   "grade": 1,
+   "note": "Mostly manual, only about 1 year of Java automation, no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_4e7d52c59c",
+   "grade": 0,
+   "note": "1.5 yrs, Selenium Java course-level, intermediate English, no C# or API."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_009bdade06",
+   "grade": 1,
+   "note": "Java REST Assured API testing but no C#, 2 yrs, intermediate English."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_711d6d444d",
+   "grade": 0,
+   "note": "1 year of QA automation in Java/JS, intermediate English, no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_e6bb174482",
+   "grade": 0,
+   "note": "Manual QA only, no automation."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_c5814f3a84",
+   "grade": 1,
+   "note": "7 yrs Java mobile and backend BDD automation, no C# or web focus."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_5541e45ae5",
+   "grade": 1,
+   "note": "Real C# UI+API automation with TeamCity CI, but only 1.5 years and intermediate English versus 3+ years and fluent required."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_eb53548434",
+   "grade": 0,
+   "note": "JS/TS Cypress only and explicitly excludes C# automation, so the core C# must-have is missing."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_5a38d160ad",
+   "grade": 0,
+   "note": "Java/Serenity stack with no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_0ad3ef06b8",
+   "grade": 0,
+   "note": "Cypress/JS automation with only 1+ year of automation and no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_0ff0905ccf",
+   "grade": 0,
+   "note": "Java/Cucumber/Rest Assured, 2 years, no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_2def5612b8",
+   "grade": 0,
+   "note": "JS Protractor automation with no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_128252a092",
+   "grade": 2,
+   "note": "Claims 4 years of C# with SpecFlow, Selenium, RestSharp, Docker, Postgres and CI, but gives no project detail or payments context."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_06f7856906",
+   "grade": 0,
+   "note": "Java/PHP/Go stack, no C#, and English is pre-intermediate."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_e4bedb3d56",
+   "grade": 0,
+   "note": "Only 0.5 years of mostly manual testing, with no C# automation."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_1e732649f9",
+   "grade": 0,
+   "note": "C# is listed only as basic, and the main stack is Java."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_6cd6fe5244",
+   "grade": 1,
+   "note": "Has past C# automation (Seleno, BDDfy, NUnit, RestSharp) but it is dated, and the candidate is now a manager on TypeScript/Cypress who deprioritises C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_173a06b684",
+   "grade": 0,
+   "note": "Mostly manual with Java/JS automation and no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_0d52f97bb3",
+   "grade": 0,
+   "note": "Java Selenium with only 0.5 years of experience."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_93771f55e7",
+   "grade": 0,
+   "note": "Java-only automation and no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_c5317648c4",
+   "grade": 0,
+   "note": "Java-based frameworks with no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_1daaad6cfd",
+   "grade": 0,
+   "note": "Python/Swift automation with no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_ec2fc7ec68",
+   "grade": 0,
+   "note": "Java stack and only 2 years, with no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_97054335dd",
+   "grade": 0,
+   "note": "Java Selenium/Rest Assured with no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_0e91364a48",
+   "grade": 2,
+   "note": "11 years of testing, including manual, with C# Selenium and SpecFlow automation, REST and fluent English, though Git and CI are not mentioned."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_6f5e6c9d80",
+   "grade": 0,
+   "note": "Java/Spring automation lead with no C#."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_03b4bd8836",
+   "grade": 1,
+   "note": "Payment-system testing and Selenium/REST/Git, but automation is Java/Ruby with no C#, English intermediate."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_452a18b38a",
+   "grade": 1,
+   "note": "3 years of web automation with Git and CI, but in JS/TS Cypress/WDIO/Python with no C# or payments."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_15308e2e4b",
+   "grade": 2,
+   "note": "Only CV with C# (NUnit) plus Java for UI and API automation, with manual testing and Git, but 2.5 years and no payments or explicit CI."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_0c4999985f",
+   "grade": 1,
+   "note": "5 years of Selenium/Java and REST/SOAP API testing, but no C#, no stated CI or Git, English intermediate."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_d5df5453a7",
+   "grade": 1,
+   "note": "Strong automation, patterns, CI and Git across 5 years, but in TS/JS/Java with no C# or payments."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_3d5f39acec",
+   "grade": 1,
+   "note": "Java/Selenium and REST with banking domain, but no C#, no CI or Git evidence, and thin automation detail."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_16a829535f",
+   "grade": 1,
+   "note": "Ruby/Cucumber automation with CI and Git, but no C# and a mostly lead profile."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_964e6f7c93",
+   "grade": 1,
+   "note": "Mobile payment and e-commerce testing, fluent English, Java Selenium and SoapUI, but no C#, CI or Git evidence."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_8accc54ec7",
+   "grade": 0,
+   "note": "Self-described junior with a basic Java/Selenium course only, mostly manual desktop testing, English pre-intermediate."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_749f7fdd66",
+   "grade": 1,
+   "note": "Broad automation across Java/JS/TS/Python with Git, but no C#, no project detail and no CI or payments evidence."
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_aa89e318fb",
+   "grade": 1,
+   "note": "Java API/UI automation with CircleCI, but only about 1.5 years of real automation, no C# and English intermediate."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_6cd6fe5244",
+   "grade": 1,
+   "note": "Senior QA manager with API/BDD experience but in Cypress/TypeScript/C#; no Python, Behave, or recent Selenium, and prefers part-time/lead roles."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_452a18b38a",
+   "grade": 1,
+   "note": "3 years automation mostly Cypress/JS; Python only with Robot Framework on one project, no Behave, Selenium or REST detail."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_a493942bc5",
+   "grade": 2,
+   "note": "10 years, Python main language with Pytest, Selenium, REST API, Git, Jenkins; no Behave but strong core match."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_67ccfec12a",
+   "grade": 2,
+   "note": "4 years automation with Python/Java Selenium, Cucumber BDD, Robot; close to Behave, would phone-screen."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_d5df5453a7",
+   "grade": 1,
+   "note": "Strong QA with ISTQB, REST/GraphQL, but frameworks are Playwright/Cypress/Java; no Python or Behave."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_4124aac16f",
+   "grade": 1,
+   "note": "Java Selenium/Cucumber/RestAssured; BDD and API fit but no Python."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_c6601f1183",
+   "grade": 2,
+   "note": "11 years Python AQA with pytest, REST API and UI, Jenkins, code review; Behave and Selenium not explicit."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_3d30a94f2d",
+   "grade": 1,
+   "note": "Senior Selenium and API automation, but all C#/NUnit; no Python or Behave."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_a6f51396ad",
+   "grade": 0,
+   "note": "Junior with 0.5 years and only basic Python/Selenium knowledge; far below 3+ years."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_22d744861d",
+   "grade": 1,
+   "note": "Python/JS autotests for 4 years but no mention of Selenium, Behave, REST specifics or CI; thin evidence."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_4560d1840d",
+   "grade": 0,
+   "note": "Front-end React developer with no QA automation experience."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_aa89e318fb",
+   "grade": 1,
+   "note": "Java Cucumber/RestAssured/Selenium, only about 1.5 years automation, no Python."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_1daaad6cfd",
+   "grade": 2,
+   "note": "5 years Python, Pytest, Selenium, Requests, Jenkins, Git, Jira; lacks Behave but solid evidence."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_1ada623556",
+   "grade": 0,
+   "note": "Junior with no automation experience."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_ec2fc7ec68",
+   "grade": 1,
+   "note": "Java Selenium/Cucumber/RestAssured with 2 years; no Python."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_926169a496",
+   "grade": 0,
+   "note": "Manual QA with ISTQB; no automation evidence."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_0ff0905ccf",
+   "grade": 1,
+   "note": "Java Cucumber/RestAssured with only basic Selenium, 2 years, AWS; no Python."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_e4bedb3d56",
+   "grade": 0,
+   "note": "0.5 years, mostly manual, Selenium IDE only."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_dca700455a",
+   "grade": 1,
+   "note": "3 years Selenium, Robot Framework and API automation but language unspecified; no Python or Behave evidence."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_9d986d6fd9",
+   "grade": 0,
+   "note": "Entry-level with no commercial experience."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_5a38d160ad",
+   "grade": 0,
+   "note": "Java/Serenity stack, no Python or Behave; only basic AWS/JS knowledge mentioned."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_16a829535f",
+   "grade": 2,
+   "note": "11 yrs QA with Cucumber/Capybara BDD, Selenium, Git, CI; Python only listed, main framework work in Ruby, so BDD experience transferable."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_84a81f2c26",
+   "grade": 2,
+   "note": "8 yrs senior automation with Python, REST API, CI/CD GitHub Actions, ISTQB; no Selenium or Behave evidence."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_0d52f97bb3",
+   "grade": 0,
+   "note": "Only 0.5 yr experience, Java stack, no Python."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_e1e543ed30",
+   "grade": 0,
+   "note": "Manual QA with only basic automation knowledge; no Python or Selenium."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_251e6a0ca9",
+   "grade": 1,
+   "note": "JS automation with Selenium WebDriver and BDD knowledge but no Python."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_36edc90c19",
+   "grade": 0,
+   "note": "Java backend developer, no QA automation experience."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_ad45253c7e",
+   "grade": 1,
+   "note": "JS automation (Webdriver.io, Cypress), ISTQB, CI/CD, AWS but no Python or Behave."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_982b2890ed",
+   "grade": 1,
+   "note": "Test manager with JS/C# automation, Selenium, REST and Cucumber js but no Python."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_4de7c0f8f6",
+   "grade": 1,
+   "note": "Java Cucumber BDD, Selenide, REST Assured, ISTQB, but no Python."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_749f7fdd66",
+   "grade": 2,
+   "note": "5 yrs automation with Selenium, Python, Robot Framework, API testing, Git; no Behave but would phone-screen."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_d47488a06a",
+   "grade": 1,
+   "note": "Python REST automation for only 1 yr with Python 2, no Selenium or Behave."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_534d40a1b2",
+   "grade": 0,
+   "note": "Java automation for about 1 yr, no Python."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_009bdade06",
+   "grade": 0,
+   "note": "Java REST Assured with Cucumber, no Python or Selenium UI experience."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_8accc54ec7",
+   "grade": 0,
+   "note": "Manual tester with only a 3-month Java Selenium course."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_97054335dd",
+   "grade": 1,
+   "note": "4 yrs Java Selenium, REST and Cucumber automation with Jira/Confluence, but no Python."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_06f7856906",
+   "grade": 1,
+   "note": "6+ yrs Selenium and REST automation but Java/PHP/Go, no Python or Behave."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_173a06b684",
+   "grade": 1,
+   "note": "Python only listed in skills; automation is Java/JS, about 2 yrs."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_0aa520e5b9",
+   "grade": 0,
+   "note": "1.5 yrs, vague Python and Selenium claims, no concrete automation evidence."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_f0ddeda8bc",
+   "grade": 1,
+   "note": "Java Selenium automation with ISTQB, 2.5 yrs, no Python or Behave."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_0044b992cd",
+   "grade": 0,
+   "note": "Groovy/Spock and Java/Selenium stack, no Python, no Behave; Selenium only as a trainee; only 3 years total."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_964e6f7c93",
+   "grade": 0,
+   "note": "Selenium with Java and SOAP UI; no Python, Behave or REST evidence listed."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_cc4f99029f",
+   "grade": 0,
+   "note": "Manual QA with only basic Python/Selenium claims in a skills list; no automation work shown."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_eb53548434",
+   "grade": 1,
+   "note": "3 years of automation with API/CI/Git and ISTQB, but in JS/TS Cypress; no Python, Selenium or Behave."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_1b3a2e00bb",
+   "grade": 1,
+   "note": "Claims Python 2 years in automation, but no Selenium, Behave or REST API evidence, and the CV is mostly manual."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_8d2aa74275",
+   "grade": 2,
+   "note": "8 years; Python Selenium for UI and Pytest for API with Allure and Jenkins; no Behave/BDD, but a strong Python core."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_c5814f3a84",
+   "grade": 1,
+   "note": "BDD with Cucumber in Java/Spring and Espresso; Selenium only mentioned in passing, no Python."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_3e595418dc",
+   "grade": 0,
+   "note": "Only 0.5 years of automation experience, Java and basic Selenium, no Python."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_128252a092",
+   "grade": 1,
+   "note": "Senior with Selenium, BDD/Cucumber, REST and CI, but Python only 1 year and explicitly not interested in Python."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_c0ba26ab77",
+   "grade": 1,
+   "note": "Lists many stacks including Python and Selenium, but the recent focus is Cypress/JS; no Behave or Python depth."
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_f873540014",
+   "grade": 2,
+   "note": "9 years with Python/Pytest/Selene/Playwright, Appium/Python, API testing with Python, BDD, Git, CI and ISTQB; Behave and Selenium depth unclear."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_19bd96550f",
+   "grade": 3,
+   "note": "5 yrs automation with Java+TestNG across API, web, mobile, and CI; far exceeds trainee requirements."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_0c4999985f",
+   "grade": 2,
+   "note": "Java+Selenium+Serenity automation, SQL, API testing, 5 yrs; overqualified for trainee but relevant, no TestNG explicitly."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_737cabb8bf",
+   "grade": 3,
+   "note": "Java/TestNG/Selenide/REST Assured/Jenkins automation plus manual test cases and checklists; strong match."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_01f05d1b51",
+   "grade": 1,
+   "note": "Generic QA automation claims with no Java or framework mentioned; fintech/Unix focus."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_22ba97f26f",
+   "grade": 3,
+   "note": "Manual background plus practical Java/Selenium/Appium automation, Jenkins, TestRail, upper English; ideal trainee profile."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_4124aac16f",
+   "grade": 3,
+   "note": "Built Java/Selenium/TestNG/Cucumber/RestAssured framework with test cases and SQL; strong demonstrated work."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_3efde2f542",
+   "grade": 2,
+   "note": "Java/Groovy Selenium and REST Assured automation, senior; Java present but seniority far above trainee role."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_0e31cb8668",
+   "grade": 2,
+   "note": "Junior with basic Java, running automation tests and regression testing; matches trainee level."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_128252a092",
+   "grade": 1,
+   "note": "Senior mainly JS/C#, only 1 yr Java-family and explicitly not interested in Java."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_2def5612b8",
+   "grade": 1,
+   "note": "Automation in JavaScript/Protractor, no Java; strong manual and test-case background."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_1da1c1b859",
+   "grade": 2,
+   "note": "Java Selenium/Selenide/TestNG automation 8 yrs; seniority mismatch for trainee but skills match."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_0044b992cd",
+   "grade": 3,
+   "note": "Started as trainee with Java 8/JUnit5/Selenium UI tests, later Groovy API automation; relevant."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_8cda2be5bc",
+   "grade": 2,
+   "note": "Java/TestNG/Selenide/Rest Assured framework built from scratch; overqualified team lead but strong skills."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_69a19b824d",
+   "grade": 3,
+   "note": "Junior with QA course, Java, SQL, test docs and automation tests at Rozetka; ideal trainee fit."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_19965ebe12",
+   "grade": 1,
+   "note": "Java developer/tech lead with only incidental automation involvement; not a QA profile."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_6173001c4b",
+   "grade": 2,
+   "note": "Senior with Java/TestNG/Selenium API framework work; vague details and seniority mismatch but relevant."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_4e7d52c59c",
+   "grade": 2,
+   "note": "Manual QA background, Selenium with Java course, current automation role; fits trainee level though thin evidence."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_b88c787b3f",
+   "grade": 2,
+   "note": "Java-focused TAF building 8 yrs; skills match but sparse detail and overqualified."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_534d40a1b2",
+   "grade": 3,
+   "note": "Manual background with test cases/checklists plus Java/TestNG/Selenium/Jenkins/Cucumber automation experience."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_a493942bc5",
+   "grade": 1,
+   "note": "Primarily Python senior with some Java/TestNG; seniority and primary language mismatch."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_404601dabd",
+   "grade": 2,
+   "note": "Demonstrated Java/TestNG/Selenium/RestAssured/Jenkins frameworks, but senior level and avoids manual work, so overqualified for a trainee role."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_c6c1f4b08a",
+   "grade": 3,
+   "note": "Built Java TestNG/JUnit frameworks plus Jenkins and DB work; strong demonstrated Java automation."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_97054335dd",
+   "grade": 3,
+   "note": "Java Selenium, RestAssured, TestNG frameworks built from scratch, Jenkins, plus 3 years manual background."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_0aa520e5b9",
+   "grade": 1,
+   "note": "Manual testing plus Python scripts; no Java, and Selenium is only listed as 'familiar'."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_daeeef3dfc",
+   "grade": 3,
+   "note": "2 years Java AQA with Selenide, RestAssured, TestNG, Jenkins, DB work, and some manual testing."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_7e3877c75f",
+   "grade": 3,
+   "note": "Built frameworks from scratch with Selenide, TestNG, JUnit and RestAssured (Java stack), with DB and message-broker exposure."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_c6601f1183",
+   "grade": 1,
+   "note": "Senior Python SDET; the experience is real but there is no Java."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_8accc54ec7",
+   "grade": 3,
+   "note": "8 years manual testing, ISTQB, Java/Selenium/TestNG course work, pre-intermediate English, and explicitly seeking a junior Java automation role."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_6f5e6c9d80",
+   "grade": 2,
+   "note": "Strong Java/Spring/TestNG/Kafka/PostgreSQL/Docker/Jenkins experience, but a lead-level profile is far above a trainee role."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_1d6c1abff0",
+   "grade": 3,
+   "note": "1 year building a Java/Selenium/JUnit/Cucumber framework with REST Assured, Jenkins and JDBC; a good level match."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_be81de5fc6",
+   "grade": 3,
+   "note": "Java/Selenide/TestNG/RestAssured with Jenkins, Docker and PostgreSQL; English is pre-intermediate, which meets the requirement."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_496c0147cb",
+   "grade": 2,
+   "note": "Java core, JUnit, Selenide, Jenkins and manual plus automated testing, but also a lot of C# and a thinner Java narrative."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_1e732649f9",
+   "grade": 2,
+   "note": "Junior with 2.5 years manual and 2 years automation, mid-level Java, JMeter, QA courses; a reasonable trainee fit with limited detail."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_d78cf190ad",
+   "grade": 1,
+   "note": "Automation in C#/NUnit; no Java."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_749f7fdd66",
+   "grade": 2,
+   "note": "Lists Java among several languages and Selenium among several tools with broad automation experience, but the Java evidence is thin."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_14207e5fa4",
+   "grade": 3,
+   "note": "Trainee-level manual QA writing test cases and check-lists, with an Automation QA Java course; matches the trainee profile and the 'plus' items."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_964e6f7c93",
+   "grade": 2,
+   "note": "Selenium WebDriver (Java) and SQL with 8+ years of manual and automated testing, but senior and remote-only."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_eac2b113da",
+   "grade": 1,
+   "note": "Automation in webdriverIO, codeception and Python, plus Scrum/lead work; no Java."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_251e6a0ca9",
+   "grade": 1,
+   "note": "Manual and JS automation, wants a JS project; no Java."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_eb53548434",
+   "grade": 0,
+   "note": "JS/TS only and explicitly refuses Java automation."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_166fc2fac6",
+   "grade": 2,
+   "note": "Demonstrated Java/JUnit/RestAssured/WireMock automation at Allegro and Samsung, but senior, now Angular frontend, seeks remote part-time, so a mismatch for a trainee role."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_d5df5453a7",
+   "grade": 1,
+   "note": "Strong automation but mainly Playwright/Cypress in TypeScript; Java (Selenide) only listed last in skills, with no demonstrated Java work."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_3d30a94f2d",
+   "grade": 0,
+   "note": "Senior C#/Selenium/NUnit engineer with no Java anywhere, so the core Java requirement is absent."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_ec2fc7ec68",
+   "grade": 3,
+   "note": "2 years of Java automation with Selenium, TestNG, REST Assured and Jenkins, plus manual test cases and plans in Jira X-Ray."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_06f7856906",
+   "grade": 2,
+   "note": "8 years of Java, TestNG/Selenide, Jenkins and PostgreSQL, and writes test cases and checklists, but it's a skills-list-heavy CV and far above trainee level."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_aa50f38d38",
+   "grade": 3,
+   "note": "2.5 years of Java automation (Selenium, TestNG, RestAssured, Jenkins) after a manual QA start, which matches the stack well."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_3e595418dc",
+   "grade": 3,
+   "note": "2 years of commercial testing with test documentation, Java Core, basic Selenium and Jenkins, a good fit for a trainee."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_42bd71417c",
+   "grade": 1,
+   "note": "Manual QA on practice projects with test cases, checklists and API testing, but no Java or automation shown."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_173a06b684",
+   "grade": 3,
+   "note": "Manual background plus 2 years of Java automation (Selenide/Selenium, TestNG, RestAssured), writes test cases and checklists, English upper."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_711d6d444d",
+   "grade": 3,
+   "note": "1+ year of Java automation with RestAssured, Selenium, TestNG, Kafka, Docker and Jenkins, which overlaps well with the project stack."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_0d52f97bb3",
+   "grade": 3,
+   "note": "Built a Java/Selenium/TestNG framework from scratch and set up Jenkins and Grid, a strong junior match."
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_9d986d6fd9",
+   "grade": 3,
+   "note": "Entry-level with practical Java/TestNG and Page Object work on a real project under a mentor, which suits a trainee role."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_0ad3ef06b8",
+   "grade": 3,
+   "note": "Cypress/JS UI and Postman/Newman API automation since 2020, Jenkins, Docker, 5+ yrs manual, upper English, documentation and analytics collaboration."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_3db90b31e3",
+   "grade": 1,
+   "note": "Cypress/Playwright/JS web automation claimed with 2.5 yrs, but no demonstrated detail, no Python/Jenkins/API, and manual experience is unclear."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_b88c787b3f",
+   "grade": 1,
+   "note": "Java-focused automation (Java preferred), no Python, Selenium/Cypress, Jenkins or API evidence shown, sparse details."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_3d30a94f2d",
+   "grade": 2,
+   "note": "Strong C#/Selenium UI+API automation with Jenkins and CI, but no Python/JS and little manual testing stated."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_3e79248027",
+   "grade": 0,
+   "note": "Manual testing only with no automation experience shown."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_d5df5453a7",
+   "grade": 2,
+   "note": "Playwright/Cypress TS/JS UI and API automation, Postman/Newman, GitLab CI; no Jenkins or Python, but strong overall and good documentation."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_aa89e318fb",
+   "grade": 1,
+   "note": "Selenium/Cucumber Java UI and API automation with about 1.5 yrs, but CircleCI instead of Jenkins, no Python, and little manual experience."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_1ae9314ee1",
+   "grade": 2,
+   "note": "Deep Python automation architecture, API/UI/mobile and CI/CD experience, but no explicit Jenkins or manual testing detail."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_f873540014",
+   "grade": 3,
+   "note": "Python/Pytest/Playwright/Selene UI and API automation, JS/Protractor, Jenkins, BDD, 9 yrs experience, fluent English."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_1023b9e6d2",
+   "grade": 2,
+   "note": "Python/Selenium/Appium/Pytest automation with Jenkins and JS, 8 yrs QA including manual, though the last two years were backend dev."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_04f7d1f5b7",
+   "grade": 1,
+   "note": "Java automation with REST testing and extensive manual work; no Python, JS or Jenkins evidence, and only pipelines on Azure/GitLab."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_23de22b664",
+   "grade": 0,
+   "note": "No QA experience, elementary Java, junior with pre-level English."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_0ff0905ccf",
+   "grade": 1,
+   "note": "Java Cucumber/Rest Assured API automation with 2 yrs, but only basic Selenium, no Python or Jenkins, and little manual experience."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_e03dcd86cd",
+   "grade": 2,
+   "note": "Java UI/API automation with Jenkins, BDD and 7 yrs including manual and mentoring; no Python or JS, intermediate English."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_534d40a1b2",
+   "grade": 2,
+   "note": "5+ yrs manual and 1+ yr Selenium/Cucumber/Jenkins automation matching the experience bar, but Java rather than Python and API testing is not explicit."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_c5814f3a84",
+   "grade": 1,
+   "note": "Android/Espresso and backend BDD in Java; no web UI, Python or Jenkins, mostly mobile native."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_88978c4b56",
+   "grade": 2,
+   "note": "Cypress/Cucumber and Jenkins automation, but junior with 1 yr, limited manual experience, no Python or API evidence, intermediate English."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_8d2aa74275",
+   "grade": 2,
+   "note": "Python Selenium UI and Pytest API automation with Allure via Jenkins, 8 yrs; thin detail on manual testing and documentation."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_1daaad6cfd",
+   "grade": 3,
+   "note": "Python/Pytest/Selenium UI and API automation, Jenkins, Angular, test run analysis and documentation, plus iOS XCUITest."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_38dd4ee655",
+   "grade": 0,
+   "note": "Trainee with no commercial QA experience and pre-level English."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_982b2890ed",
+   "grade": 2,
+   "note": "Test Manager with 9 yrs; demonstrated Selenium/Protractor/Cucumber JS, REST API, Jenkins, Angular/React, mobile Appium, SQL; no Python and managerial role, but would phone-screen."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_ceb40f3ba4",
+   "grade": 2,
+   "note": "11+ yrs Selenium/Cucumber, Jenkins setup and CI demonstrated, API testing; Java not Python/JS, but strong Jenkins and automation."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_4d8c0ebbb2",
+   "grade": 0,
+   "note": "Zero experience; only manual/pet projects and freelance testing, no demonstrated automation or Jenkins."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_496c0147cb",
+   "grade": 2,
+   "note": "3 yrs automation with Selenium, Jenkins, frameworks from scratch; Java/C# rather than Python/JS, no explicit API testing."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_dca700455a",
+   "grade": 2,
+   "note": "3 yrs Selenium, Robot Framework (Python-based), API automation and manual test cases; no Jenkins mentioned."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_5541e45ae5",
+   "grade": 1,
+   "note": "1.5 yrs C# UI+API automation with TeamCity CI; no Python/JS/Jenkins and limited manual experience."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_711d6d444d",
+   "grade": 2,
+   "note": "1+ yr API and web automation with Cypress/Selenium/RestAssured, Jenkins; limited experience, no Python but fits minimums."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_452a18b38a",
+   "grade": 3,
+   "note": "3 yrs Cypress/JS/TS plus WDIO, Python, Robot on web and mobile, manual testing and documentation; CI mentioned, Jenkins not explicit but strong fit."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_ec2fc7ec68",
+   "grade": 2,
+   "note": "Java Selenium/Cucumber, REST Assured, Jenkins with manual testing; 2 yrs, no Python/JS but meets core automation and Jenkins."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_c3225a945c",
+   "grade": 3,
+   "note": "7 yrs with Python 3 yrs and JS 4 yrs, UI and API tests, CI/environment maintenance, manual testing."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_1d6c1abff0",
+   "grade": 2,
+   "note": "1 yr Selenium/Cucumber, API with REST Assured, Jenkins scheduling, Cypress bootcamp; short experience and Java based."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_eb53548434",
+   "grade": 2,
+   "note": "3 yrs JS/TS Cypress UI and SuperTest API, Jenkins CI, 2+ yrs manual; no Python, no mobile."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_7e3877c75f",
+   "grade": 2,
+   "note": "4 yrs Selenium, RestAssured, UI/API/mobile automation; Java-based, Jenkins not mentioned."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_16a829535f",
+   "grade": 2,
+   "note": "11 yrs, Cucumber/Selenium/Ruby framework, Python, Jenkins, mobile Calabash, QA lead; dated Ruby focus but would phone-screen."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_0d52f97bb3",
+   "grade": 1,
+   "note": "Only 0.5 yr automation, Java/Selenium with Jenkins setup; no API testing or manual experience shown."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_1d5ea8a2f3",
+   "grade": 2,
+   "note": "5 yrs Selenium, Rest Assured, Cucumber, Jenkins, documentation; Java-based, lead-oriented, no Python."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_97054335dd",
+   "grade": 2,
+   "note": "4 yrs automation, Selenium, Appium, REST API frameworks, Jenkins, 3 yrs manual; Java not Python, prefers minimal manual testing."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_62b2c94a19",
+   "grade": 1,
+   "note": "1 yr, skills-list heavy with Protractor/Frisby/Selenium, pre-intermediate English, no Jenkins or demonstrated work."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_404601dabd",
+   "grade": 2,
+   "note": "10 yrs Java UI/API frameworks, Jenkins pipelines, React migration; no Python/JS and avoids manual testing."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_d834eb99e1",
+   "grade": 2,
+   "note": "1 yr with Cypress UI/API and Robot Framework API on real projects, Python/JS, manual on marketplace; Jenkins not mentioned."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_9d986d6fd9",
+   "grade": 0,
+   "note": "0 years experience, no Jenkins, API testing or demonstrated project work beyond mentored practice."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_0e91364a48",
+   "grade": 1,
+   "note": "Long manual and Selenium/SpecFlow experience, but C#-based with no Python or Jenkins, and no explicit API automation."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_128252a092",
+   "grade": 2,
+   "note": "Strong senior SDET with Selenium/Cypress/Cucumber, API tools and Jenkins, but only 1 year Python, uninterested in manual testing and Python."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_7779121a8b",
+   "grade": 2,
+   "note": "5+ years UI automation, 2+ years API automation, Jenkins and Postman, plus manual QA; C# rather than Python."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_67873b8178",
+   "grade": 2,
+   "note": "Cypress with BDD/Gherkin, JS/TS, Postman and K6 as Lead Automation QA; no Python or Jenkins stated."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_3e595418dc",
+   "grade": 1,
+   "note": "Only basic Selenium with Java, Jenkins listed, 2 years testing, short automation experience; weak on Python and API automation."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_c6c1f4b08a",
+   "grade": 2,
+   "note": "4 years building Selenium/Cucumber frameworks with Jenkins and web-services testing; no Python."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_749f7fdd66",
+   "grade": 2,
+   "note": "5 years automation with Selenium/Cypress/Playwright/Robot, Python, web/mobile and API testing; Jenkins and manual testing not stated."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_173a06b684",
+   "grade": 3,
+   "note": "5 years manual plus 2 years automation with Cypress/Selenium/Cucumber, Postman, RestAssured and Jenkins, plus documentation and Python listed."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_c0ba26ab77",
+   "grade": 2,
+   "note": "11 years with Cypress/JS and Selenium, manual and automation, Python listed; leadership-heavy and no Jenkins mention."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_166fc2fac6",
+   "grade": 2,
+   "note": "Cypress E2E and RestAssured API automation in CI with Angular background; Java/JS rather than Python, and Jenkins not mentioned."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_e80cc482a2",
+   "grade": 0,
+   "note": "Game designer/full stack developer with no QA or test automation experience."
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_eac2b113da",
+   "grade": 2,
+   "note": "8 years AQA with webdriverIO, seleniumbase and REST tests, CI integration and Python; Jenkins and manual testing not explicit."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_d7f5fc8de2",
+   "grade": 2,
+   "note": "2+ yrs Python/Robot Framework automation at GlobalLogic; no explicit Linux/pytest evidence but would phone-screen."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_19bd96550f",
+   "grade": 0,
+   "note": "Java/Swift/Kotlin automation only; no Python or Linux evidence."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_7779121a8b",
+   "grade": 0,
+   "note": "C#/.NET automation stack; no Python or Linux."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_4560d1840d",
+   "grade": 0,
+   "note": "Front-end developer, no test automation."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_a493942bc5",
+   "grade": 3,
+   "note": "10 yrs, Python+Pytest backend/CLI/DB automation, Jenkins, Postgres; strong fit."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_f0ddeda8bc",
+   "grade": 0,
+   "note": "Java/Selenium/Appium automation; no Python."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_1daaad6cfd",
+   "grade": 3,
+   "note": "5 yrs Python/Pytest UI/API automation, framework from scratch, Git/Jenkins; strong fit."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_3ce185c178",
+   "grade": 0,
+   "note": "Aircraft quality control background; Python only in skills list, no automation work."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_f873540014",
+   "grade": 3,
+   "note": "9 yrs automation with Python/Pytest, frameworks built, Linux, API testing."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_d47488a06a",
+   "grade": 3,
+   "note": "Python automated REST tests, Jenkins, Linux (Ubuntu/Centos), shell; junior-level match."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_3108d0ae9f",
+   "grade": 0,
+   "note": "0.5 yrs, no commercial experience, no Python."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_e1e543ed30",
+   "grade": 0,
+   "note": "Manual QA with only basic automation knowledge; no Python."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_a8a575ae36",
+   "grade": 0,
+   "note": "Manual testing, basic Python claim only."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_8d2aa74275",
+   "grade": 2,
+   "note": "8 yrs Python Selenium/Pytest API automation; sparse detail, no Linux mention."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_f9c0c28914",
+   "grade": 1,
+   "note": "Titled Python automation but no Python or automation evidence in content."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_964e6f7c93",
+   "grade": 0,
+   "note": "Java Selenium automation; no Python."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_e03dcd86cd",
+   "grade": 0,
+   "note": "Java-based automation; no Python."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_da3e534c8f",
+   "grade": 2,
+   "note": "Python/pytest billing backend tests and Selenium Python; automation experience but QA-lead focused."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_be45abb318",
+   "grade": 0,
+   "note": "C#/Microsoft stack; no Python or Linux."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_36edc90c19",
+   "grade": 0,
+   "note": "Java backend developer, no test automation."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_452a18b38a",
+   "grade": 2,
+   "note": "3 yrs automation with Python/Robot on one project, Git, CI; no Linux/networking evidence but would phone-screen."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_9d776682e0",
+   "grade": 0,
+   "note": "Mostly manual testing; 'basic automatic testing' only, no Python or demonstrated automation."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_d5df5453a7",
+   "grade": 1,
+   "note": "5 yrs automation in TS/JS/Java, OOP, Ubuntu, SQL; no Python and a management focus, so adjacent."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_b88c787b3f",
+   "grade": 1,
+   "note": "Experienced automation engineer but Java/JS focus, no Python or Linux evidence."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_173a06b684",
+   "grade": 1,
+   "note": "Mostly manual, 2 yrs automation in Java/JS; Python only in a skills list."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_8accc54ec7",
+   "grade": 0,
+   "note": "Manual tester with a 3-month Java automation course only, no Python, intermediate-low English."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_38dd4ee655",
+   "grade": 0,
+   "note": "No commercial experience; Python only from university courses."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_22d744861d",
+   "grade": 2,
+   "note": "4 yrs automation in Python/JS across backend, DB and AI; Linux and English are intermediate, but would phone-screen."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_1d6c1abff0",
+   "grade": 1,
+   "note": "1 yr automation in Java/Selenium with SQL, API and AWS; no Python, and Linux is only self-study."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_3213646762",
+   "grade": 1,
+   "note": "1 yr junior API automation in JS/Jest; no Python or Linux evidence."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_0c4999985f",
+   "grade": 1,
+   "note": "Automation in Java/Selenium with SQL; no Python or Linux evidence, and wants a Senior manual role."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_1876f6f091",
+   "grade": 0,
+   "note": "Mostly manual and QA lead; only 6 months of Java automation, no Python."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_3db90b31e3",
+   "grade": 0,
+   "note": "Candidate restricts to Cypress/Playwright/JS/TS only and rules out Java and Selenium; no Python."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_128252a092",
+   "grade": 1,
+   "note": "Strong SDET but Python only 1 yr and the candidate says not interested in Python; wants TS/.NET."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_c3223a50b7",
+   "grade": 1,
+   "note": "Senior QA claiming Python and automation tools, but there are no concrete projects."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_a6f51396ad",
+   "grade": 0,
+   "note": "0.5 yr; basic Python+Selenium knowledge only, no demonstrated automation."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_0575c7a9ed",
+   "grade": 1,
+   "note": "9 yrs automation lead with a BDD framework, but no Python or Linux stated and the domains are enterprise apps."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_eb53548434",
+   "grade": 1,
+   "note": "3 yrs JS/TS automation with Bash, SQL and CI; no Python and the candidate rejects non-JS stacks."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_749f7fdd66",
+   "grade": 2,
+   "note": "5 yrs automation including Python and Robot Framework plus Selenium and Appium; thin on Linux but would phone-screen."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_01f05d1b51",
+   "grade": 2,
+   "note": "3 yrs automation on Unix/Linux apps with SQL and CI; Python not stated, but the Linux angle is relevant."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_1e931c1642",
+   "grade": 0,
+   "note": "Junior DevOps with no test automation or Python evidence; only a pet project deploying a web app."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_9f3e6022dc",
+   "grade": 2,
+   "note": "7 years Python automation with framework ownership, but lead-level (overqualified for junior), no Linux/pytest/networking/SQL evidence stated."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_69a19b824d",
+   "grade": 1,
+   "note": "Only 0.5 years, Java course background, no Python or Linux evidence; mostly manual/API testing."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_f65208fb14",
+   "grade": 2,
+   "note": "Demonstrated Python and Pytest API automation over several years; senior-level, no Linux/embedded/networking mentioned, but would phone-screen."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_f5c02d58dc",
+   "grade": 3,
+   "note": "5 years with Python, pytest, Selenium, CI/CD, API automation and Allure; solid demonstrated automation work."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_84a81f2c26",
+   "grade": 2,
+   "note": "Senior automation engineer with Python, Bash, Docker, and frameworks; Python is one of many stacks, but Linux/scripting fit is plausible."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_1023b9e6d2",
+   "grade": 3,
+   "note": "Strong Python, Pytest, Linux, SQL and automation framework experience across 8 years of QA."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_c6601f1183",
+   "grade": 3,
+   "note": "11 years of Python AQA with pytest frameworks, API/UI automation, and Jenkins; strong demonstrated fit."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_711d6d444d",
+   "grade": 1,
+   "note": "1 year of automation but in Java/JS stack, no Python; adjacent fit."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_6ede4972c8",
+   "grade": 0,
+   "note": "Python web developer with no test automation experience."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_d834eb99e1",
+   "grade": 1,
+   "note": "1 year of AQA, mainly Cypress/JS and Robot Framework; Python claimed as a passion but no demonstrated Python project."
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_9d986d6fd9",
+   "grade": 1,
+   "note": "No commercial experience; Python pytest/Selenium claimed from mentored project only, below the 1+ year requirement."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_711d6d444d",
+   "grade": 3,
+   "note": "1+ yr QA automation with Selenium, TestNG, RestAssured, Java, Jenkins, Docker, Maven/Gradle; intermediate English; strong nice-to-haves."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_8accc54ec7",
+   "grade": 2,
+   "note": "8 yrs manual testing, Test Link, Git, ISTQB; Selenium/Java/TestNG only from a 3-month course, but would phone-screen; English pre-intermediate is a risk."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_be81de5fc6",
+   "grade": 3,
+   "note": "Years of Java/Selenium/TestNG/RestAssured automation with CI, Docker, Postman, JMeter; English pre-intermediate is a minor concern."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_ef40096a4d",
+   "grade": 1,
+   "note": "Manual QA internship only, no Selenium or programming; wants to learn automation."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_1d6c1abff0",
+   "grade": 3,
+   "note": "Built Selenium/Java/JUnit POM framework, REST Assured, Jenkins, AWS, Git; upper English."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_71fff1cf1d",
+   "grade": 1,
+   "note": "Manual QA with only 'Selenide' listed and basic Java knowledge; no demonstrated Selenium work."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_2447114acb",
+   "grade": 0,
+   "note": "Manual only, no Selenium or programming mentioned."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_aa89e318fb",
+   "grade": 3,
+   "note": "Demonstrated Selenium/Selenide Java TestNG automation, RestAssured, CircleCI, Gatling, test cases; intermediate English."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_c3b737bd6f",
+   "grade": 1,
+   "note": "Manual QA with TestRail, but no Selenium or Java; only states a wish to learn."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_ecc5cb0118",
+   "grade": 0,
+   "note": "Manual only; no Selenium or programming experience."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_404601dabd",
+   "grade": 3,
+   "note": "10 yrs Java/Selenium/RestAssured/TestNG framework work with Jenkins; avoids manual testing, which is a motivation risk but the skills fit strongly."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_e1e543ed30",
+   "grade": 1,
+   "note": "Manual QA with TestRail and Jenkins; Java and automation only basic; no Selenium."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_0d52f97bb3",
+   "grade": 3,
+   "note": "Built Java/Selenium/PageObject framework with XPath, TestNG, Jenkins, Grid, Git; only 0.5 yr, but lacks little else."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_0e91364a48",
+   "grade": 2,
+   "note": "11 yrs manual and Selenium WebDriver automation, XML/XPath/REST; C# rather than Java but acceptable."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_c88333c1e3",
+   "grade": 1,
+   "note": "QA lead with manual experience only; no Selenium or automation evidence."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_6f5e6c9d80",
+   "grade": 3,
+   "note": "Strong Java automation lead with Selenoid/Selenium grid, Jenkins, Docker, AWS, TestRail; some manual background."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_5a38d160ad",
+   "grade": 3,
+   "note": "EPAM test automation with Selenium, REST Assured, Java, JUnit, Gradle, Git, Jenkins, and manual test case creation."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_04f7d1f5b7",
+   "grade": 2,
+   "note": "5 yrs Java automation and 10 yrs testing, REST, CI pipelines; Selenium not explicit, but would phone-screen."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_2744fd7f2c",
+   "grade": 1,
+   "note": "Manual QA with 'Java Selenium' only listed from a course; no demonstrated automation."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_77364fea0d",
+   "grade": 0,
+   "note": "Manual only; no Selenium or programming."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_0c4999985f",
+   "grade": 2,
+   "note": "5 yrs QA with Selenium, Java, SoapUI/REST, HTML and automation framework creation; manual breadth, but evidence is a terse list, no TestRail/Git."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_22ba97f26f",
+   "grade": 3,
+   "note": "2.5 yrs manual plus Java/Selenium automation, TestRail, Postman, Jenkins, Git; matches nearly every requirement."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_8cda2be5bc",
+   "grade": 3,
+   "note": "5 yrs QA, 3 as AQA; built Java/Selenium/Selenide framework with TestNG, Maven, Jenkins, AWS, Docker, Rest Assured."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_daeeef3dfc",
+   "grade": 3,
+   "note": "2 yrs Java AQA with Selenide, RestAssured, TestNG, CI, performance testing and manual testing."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_a493942bc5",
+   "grade": 2,
+   "note": "10 yrs senior automation, mainly Python/backend, with Selenium, Java, TestNG, Maven, Jenkins; UI/Selenium and manual are less central."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_7d780d3df4",
+   "grade": 2,
+   "note": "5 yrs manual with Selenium WebDriver scripts and SOAP/SQL; no Java, and English is only pre-intermediate."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_7af463bc16",
+   "grade": 1,
+   "note": "Strong manual with TestRail and Postman, but no Selenium or programming; only wants to learn automation."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_06f7856906",
+   "grade": 2,
+   "note": "8 yrs with strong Java/Selenium/XPath/Maven/CI stack, but English is only pre-intermediate, which fails a must-have."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_2755166a56",
+   "grade": 0,
+   "note": "Java developer with no QA or Selenium experience."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_ed599af3b4",
+   "grade": 1,
+   "note": "Junior with pet projects only, TestRail/Postman/XML, but no Selenium or programming and no commercial QA experience."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_534d40a1b2",
+   "grade": 3,
+   "note": "5 yrs manual plus 1+ yr Java/TestNG/Selenium/Jenkins automation; fits the 50/50 role."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_173a06b684",
+   "grade": 3,
+   "note": "5 yrs manual and 2 yrs Java/Selenium/TestNG automation, with XPath, Postman, Git, Jenkins, Maven and test documentation."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_85e2de8b6b",
+   "grade": 3,
+   "note": "1.5 yrs manual and 1.5 yrs Java/Selenium/TestNG automation with Maven, REST Assured and CI."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_3db90b31e3",
+   "grade": 0,
+   "note": "Explicitly no Java and no Selenium; Cypress/Playwright only."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_69a19b824d",
+   "grade": 1,
+   "note": "Half a year of experience with a course, some Java and automation, but very thin and no Selenium named."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_9d776682e0",
+   "grade": 1,
+   "note": "2 yrs manual with API testing, but only 'basic automatic testing' and no Selenium or Java."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_3efde2f542",
+   "grade": 2,
+   "note": "Senior with Selenium, Java, Maven, Git, Jenkins, REST Assured and Docker, but a skills list only with no manual QA evidence."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_4de7c0f8f6",
+   "grade": 3,
+   "note": "4 yrs Java automation with Selenide/Selenium-based UI, Cucumber, Rest Assured and Appium, plus testing process and estimation."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_128252a092",
+   "grade": 1,
+   "note": "Strong automation including Selenium, but prefers TS/C#, is not interested in Java or manual, which is half the role."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_1d5ea8a2f3",
+   "grade": 3,
+   "note": "Java/Selenium/Rest Assured framework built from scratch with Maven, Jenkins, Docker, and test documentation and QA lead experience."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_15308e2e4b",
+   "grade": 3,
+   "note": "2.5 yrs Java+Selenium UI/API automation, manual testing, TestRail, Postman, Git, Maven/Gradle, TestNG/JUnit; strong match."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_11ef315be4",
+   "grade": 1,
+   "note": "Manual only, no Selenium or programming; no real experience, just junior knowledge of HTTP/HTML."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_166fc2fac6",
+   "grade": 2,
+   "note": "Strong automation with Java/RestAssured/JUnit and Cypress, but no Selenium listed; transferable, would phone-screen."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_1e732649f9",
+   "grade": 1,
+   "note": "2 yrs automation claimed with Java listed as middle, but no Selenium and no project evidence; thin."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_19bd96550f",
+   "grade": 2,
+   "note": "Java+TestNG+Selenium (with Appium) and REST Assured automation, 5 yrs; no manual or detail but likely screen."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_d5df5453a7",
+   "grade": 2,
+   "note": "Selenium/Selenide Java is least-relevant; mostly Playwright/Cypress TS, but broad QA, XPath, XML, TestRail; phone-screen."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_1da1c1b859",
+   "grade": 3,
+   "note": "8 yrs Java Selenium/TestNG/Gradle automation, CI, Docker, Postman, QA processes; strong."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_aa50f38d38",
+   "grade": 3,
+   "note": "Java Selenium, TestNG, Maven, XPath, RestAssured, Jenkins, Git, some manual experience; strong fit."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_0e72c88085",
+   "grade": 0,
+   "note": "No Selenium or programming experience, pre-intermediate English, junior coursework only."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_ec2fc7ec68",
+   "grade": 3,
+   "note": "Java Selenium/TestNG/Cucumber, REST Assured, Jenkins, Git, Jira X-Ray, manual and automation; good match."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_ed2dded99e",
+   "grade": 0,
+   "note": "Only a generic summary with no tools or project evidence, Selenium not shown, pre-intermediate English."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_eb53548434",
+   "grade": 1,
+   "note": "Cypress/JS automation and no Selenium or Java; explicitly refuses Java automation."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_2b22a86e06",
+   "grade": 1,
+   "note": "Mostly manual lead, Selenium only in a skills list and automation 'under supervision'; weak on core."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_964e6f7c93",
+   "grade": 3,
+   "note": "8+ yrs, Selenium WebDriver Java, SoapUI, load testing, manual and automation; strong."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_42bd71417c",
+   "grade": 1,
+   "note": "Manual testing on practice projects, TestRail, API; no Selenium or programming evidence."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_97054335dd",
+   "grade": 3,
+   "note": "4 yrs Java Selenium, 3 yrs manual, REST Assured, XPath, XML, TestRail, Jenkins; strong despite wanting little manual."
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_737cabb8bf",
+   "grade": 2,
+   "note": "Java Selenide/Selenoid automation with manual, TestRail, Jenkins; English pre-intermediate is a concern, plain Selenium not named."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_a493942bc5",
+   "grade": 2,
+   "note": "Senior with TestNG, Selenium, Maven, Git, Jenkins, REST/DB automation, but Python is the main language and Java is secondary."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_e03dcd86cd",
+   "grade": 2,
+   "note": "7 years of Java UI/API automation, frameworks and Jenkins CI, but Selenium, SQL and Maven are not named."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_d47488a06a",
+   "grade": 1,
+   "note": "Junior with 1 year of Python REST automation and no Java or Selenium evidence."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_1ae9314ee1",
+   "grade": 1,
+   "note": "Strong automation architect, but the stack is Python with no Java, Selenium/TestNG or SQL shown."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_be81de5fc6",
+   "grade": 3,
+   "note": "5 years of Java, Selenium, Selenide, TestNG, REST Assured and Postman, with MySQL, Linux and CI."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_eb53548434",
+   "grade": 2,
+   "note": "JS/TS with Mocha, Chai, SuperTest, SQL and bash matches the project stack, but there is no Java or Selenium and the CV rejects Java."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_8accc54ec7",
+   "grade": 1,
+   "note": "Mostly manual testing; Java and Selenium come only from a 3-month course."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_128252a092",
+   "grade": 2,
+   "note": "Senior with TS/JS, Selenium and API tools, but only 1 year of Java and no interest in Java or SQL."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_aa50f38d38",
+   "grade": 3,
+   "note": "2.5 years of Java automation with Selenium, TestNG, Maven, XPath, RestAssured, Postman, MySQL, Jenkins and Git."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_16a829535f",
+   "grade": 1,
+   "note": "Ruby/Capybara automation with Selenium, but no Java, TestNG or SQL."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_f873540014",
+   "grade": 1,
+   "note": "Python and JS automation with Postman and Linux, but no Java, Selenium/TestNG or SQL."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_e1e543ed30",
+   "grade": 0,
+   "note": "Manual QA with only basic automation knowledge."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_ad45253c7e",
+   "grade": 1,
+   "note": "JS automation tools are listed without project detail, and there is no Java or SQL."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_0ad3ef06b8",
+   "grade": 1,
+   "note": "Cypress/JS and Postman with only about 1 year of automation, and no Java or Selenium."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_22d744861d",
+   "grade": 1,
+   "note": "Python/JS autotests described vaguely, with no Java or Selenium evidence."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_06f7856906",
+   "grade": 3,
+   "note": "6+ years of Java automation with Selenium, TestNG, Maven, Postman, REST Assured, SQL, Jenkins and Linux."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_d5df5453a7",
+   "grade": 2,
+   "note": "Playwright/Cypress TS lead with Postman, MySQL and OOP; Java Selenium is listed as least relevant."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_1daaad6cfd",
+   "grade": 1,
+   "note": "Python/Pytest/Selenium UI and API automation, but no Java."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_19bd96550f",
+   "grade": 2,
+   "note": "Java, TestNG, Selenide and REST Assured automation across web, mobile and API, but there are no details and no SQL."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_85e2de8b6b",
+   "grade": 2,
+   "note": "Java, Selenium, TestNG, Maven and REST Assured, but only 1.5 years of automation and mostly mobile."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_2447114acb",
+   "grade": 0,
+   "note": "Manual QA only with 1 year experience; no automation or Java shown."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_b24573ae31",
+   "grade": 1,
+   "note": "Middle SDET with Java/Selenium/TestNG named only in a generic summary, with no projects, API or SQL evidence."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_1da1c1b859",
+   "grade": 2,
+   "note": "8 years Java Selenium/Selenide/TestNG, REST API, Postman, Git and CI; SQL and Maven not shown."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_3efde2f542",
+   "grade": 2,
+   "note": "Stack matches (Java, Selenium, Maven, Git, REST Assured, Mocha, Node, MySQL, Jenkins) but it is a bare tool list with no project detail."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_daeeef3dfc",
+   "grade": 3,
+   "note": "2+ years Java AQA with Selenide, RestAssured, TestNG, CI, DB work and performance testing, described through actual duties."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_3bec104245",
+   "grade": 0,
+   "note": "Frontend developer with no QA or automation experience."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_1d5ea8a2f3",
+   "grade": 3,
+   "note": "5 years building Java/Selenium/Rest Assured/Maven/Jenkins frameworks from scratch, with test docs and customer communication."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_534fe8b887",
+   "grade": 1,
+   "note": "Recent work is performance testing (Gatling/SOASTA); Selenium+JUnit appears only in the skills list."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_737cabb8bf",
+   "grade": 3,
+   "note": "3 years Java, Selenide, TestNG, REST Assured, Postman, SQL, Jenkins and Linux-based project, with documented duties."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_4cbb961ff5",
+   "grade": 0,
+   "note": "Mostly manual tester; automation, Java and SQL listed as beginner or basic."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_c3223a50b7",
+   "grade": 1,
+   "note": "Generic list of tools and languages with no project evidence."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_93771f55e7",
+   "grade": 2,
+   "note": "4 years automation on Java/TestNG/RestAssured/Selenium projects; no SQL, Maven or Postman details."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_3e595418dc",
+   "grade": 1,
+   "note": "Only 0.5 years in automation, with Selenium listed as basic."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_166fc2fac6",
+   "grade": 2,
+   "note": "6 years QA with Java/JUnit/RestAssured and Maven/Git, but the UI work is Cypress and there is no Selenium or SQL."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_ec2fc7ec68",
+   "grade": 3,
+   "note": "2 years covering Java, Selenium, TestNG/JUnit, Maven, Git, data-driven testing with Cucumber, Postman, REST Assured, JDBC/MySQL and Jenkins."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_4124aac16f",
+   "grade": 3,
+   "note": "3 years building a Selenium/Java/TestNG/Cucumber framework with RestAssured, Postman and SQL, with measured results."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_6f5e6c9d80",
+   "grade": 2,
+   "note": "11 years as a lead who built Java/Selenium/TestNG/Maven frameworks and CI, but it is management-heavy with no explicit SQL or Postman."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_04f7d1f5b7",
+   "grade": 2,
+   "note": "10 years including 5 in Java automation, REST/Postman and pipelines; Selenium and SQL are not explicit."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_6cd6fe5244",
+   "grade": 1,
+   "note": "Manager whose automation is Cypress/TypeScript and C#, with no Java and a stated move away from automation."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_1d6c1abff0",
+   "grade": 2,
+   "note": "Only 1 year, but has a Java/Maven/Selenium/JUnit POM framework with data-driven Cucumber, REST Assured, JDBC and Jenkins."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_c6c1f4b08a",
+   "grade": 3,
+   "note": "4 yrs building Java/NodeJS automation frameworks with TestNG/JUnit, Webdriver Java+JS, data-driven, Linux, Jenkins, DBs; strong match incl. JS stack."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_173a06b684",
+   "grade": 2,
+   "note": "Manual-leaning title but 2 yrs automation with Java, Selenium, TestNG, Postman, Rest Assured, SQL, Git, Ubuntu, plus test design/docs; would phone-screen."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_15308e2e4b",
+   "grade": 2,
+   "note": "2.5 yrs commercial Java UI/API automation with Selenium, TestNG, Postman, Maven, Git, Linux and docs; no explicit SQL or data-driven, but meets core."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_711d6d444d",
+   "grade": 2,
+   "note": "About 1 yr QA automation (Java/JS, Selenium, RestAssured, Cypress, TestNG, Jenkins) plus long dev background with SQL; below the 2+ yr requirement but relevant stack."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_97054335dd",
+   "grade": 3,
+   "note": "4 yrs automation: Java Selenium, TestNG, XPath, Rest Assured, Postman, MySQL, data-driven, Jenkins, built frameworks from scratch."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_5a38d160ad",
+   "grade": 2,
+   "note": "About 3 yrs EPAM automation in Java/Selenium/REST Assured/JUnit/Jenkins/SQL/Postman, with basic JS; the Serenity BDD stack is a bit different but relevant."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_0d52f97bb3",
+   "grade": 1,
+   "note": "Only 0.5 yr automation experience, well short of 2+ years, though the Java/Selenium/TestNG/Maven/Git stack matches."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_404601dabd",
+   "grade": 3,
+   "note": "10 yrs Java UI/API frameworks with Selenium, RestAssured, TestNG, Jenkins CI/CD, React migration work; overqualified but strong demonstrated fit."
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_aa89e318fb",
+   "grade": 2,
+   "note": "About 1.5 yrs hands-on automation (Java, Selenium, TestNG, Rest Assured, Cucumber, CI, performance) with test documentation; slightly short on experience and SQL is not stated."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_88978c4b56",
+   "grade": 0,
+   "note": "Junior with 1 year, Cypress/JS only; no C#, API, SQL or backend testing."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_009bdade06",
+   "grade": 1,
+   "note": "Backend REST testing with Java/REST Assured, but no C#, SQL, SoapUI evidence; adjacent."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_5a13c0f19f",
+   "grade": 2,
+   "note": "Real C# Selenium automation over many years with BDD, but UI/CRM focus, no REST/SQL/SoapUI evidence; phone-screen."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_e80cc482a2",
+   "grade": 0,
+   "note": "Game designer/full stack dev, no QA experience."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_737cabb8bf",
+   "grade": 1,
+   "note": "Strong API/SoapUI/JMeter/SQL backend testing but automation is Java, not C#."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_be81de5fc6",
+   "grade": 1,
+   "note": "Solid API automation and Docker/JMeter but Java/PHP, no C#, no SOAP."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_711d6d444d",
+   "grade": 1,
+   "note": "API automation in Java with MSSQL and Docker but only 1 year QA, no C#."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_251e6a0ca9",
+   "grade": 1,
+   "note": "REST, SoapUI, SQL, Docker but automation in JS; wants JS projects, no C#."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_e03dcd86cd",
+   "grade": 1,
+   "note": "Senior API/UI automation and JMeter in Java; no C# or SOAP/SQL evidence."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_496c0147cb",
+   "grade": 2,
+   "note": "Lists C#/NUnit alongside Selenium/SQL and 3+ years automation, but C# is only a knowledge claim and focus is UI; borderline phone-screen."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_57eaa16610",
+   "grade": 0,
+   "note": "Pure .NET developer, no QA or test automation experience."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_eb53548434",
+   "grade": 1,
+   "note": "Strong API/SoapUI/SQL testing but JS/TS only and explicitly rejects C# automation."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_c94298531b",
+   "grade": 0,
+   "note": "Student front-end trainee, no QA experience."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_128252a092",
+   "grade": 3,
+   "note": "4 years C# automation, RestSharp/SpecFlow, JMeter, Docker, MSSQL; though dislikes pure backend/SQL testing, strong fit."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_2b22a86e06",
+   "grade": 1,
+   "note": "Senior manual QA with Postman, JMeter, MSSQL; automation only basic Java under supervision."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_3efde2f542",
+   "grade": 1,
+   "note": "Groovy/Java REST Assured and Docker, no C# or SQL/SOAP evidence."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_f9c0c28914",
+   "grade": 0,
+   "note": "Titled Python automation but only lists Postman/JMeter and no actual automation or C# evidence."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_01f05d1b51",
+   "grade": 0,
+   "note": "Vague, basic SQL only, no language or API/C# automation detail."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_6f5e6c9d80",
+   "grade": 1,
+   "note": "Strong lead with REST/MS SQL/Docker/Kafka automation but all Java; no C#."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_2447114acb",
+   "grade": 0,
+   "note": "Manual QA only with Postman, no automation."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_93771f55e7",
+   "grade": 1,
+   "note": "4 yrs automation with REST API but Java/RestAssured stack, no C#, SQL, SoapUI or Docker evidence."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_6cd6fe5244",
+   "grade": 3,
+   "note": "Real C# API/smoke automation (RestSharp, NUnit) at Ciklum, JMeter, MS SQL, Azure DevOps, Scrum; recent roles are TS/Cypress and prefers less C#, but strong fit."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_8accc54ec7",
+   "grade": 0,
+   "note": "Manual testing background, no real automation or C#, only basic Java course."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_d5df5453a7",
+   "grade": 1,
+   "note": "Strong API/JMeter/Docker but automation in TS/Java, no C#, MySQL not MS SQL."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_1da1c1b859",
+   "grade": 1,
+   "note": "Java automation with REST and Docker, but no C#, SQL or SoapUI/JMeter evidence."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_0ad3ef06b8",
+   "grade": 1,
+   "note": "API testing with Postman/SoapUI, Docker, SQL Server, but UI automation in JS/Cypress, no C#."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_781a1da890",
+   "grade": 0,
+   "note": "Manual QA only, no automation or C#."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_0c4999985f",
+   "grade": 1,
+   "note": "SoapUI/ReadyAPI, SOAP/REST, JMeter, SQL and automation, but Java stack not C#."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_1daaad6cfd",
+   "grade": 1,
+   "note": "API/UI automation in Python, no C#, SoapUI or MS SQL."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_5541e45ae5",
+   "grade": 2,
+   "note": "Hands-on C# UI and API automation maintained in CI, but only 1.5 years and no SQL/SoapUI/JMeter evidence."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_3d30a94f2d",
+   "grade": 2,
+   "note": "Senior C# automation with UI and API, NUnit, CI; lacks stated SOAP, SQL, JMeter, Docker."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_3213646762",
+   "grade": 0,
+   "note": "Junior with JS Jest API tests only, no C#."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_452a18b38a",
+   "grade": 0,
+   "note": "Front-end/mobile automation in JS/Python, no C#, API or SQL evidence."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_3e79248027",
+   "grade": 0,
+   "note": "Manual testing, no automation mentioned."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_3e595418dc",
+   "grade": 0,
+   "note": "Very junior, Java basic, SoapUI only listed in tools."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_0b2ee1fe98",
+   "grade": 0,
+   "note": "Front-end React developer, not QA."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_48bd18fb97",
+   "grade": 0,
+   "note": ".NET developer, no QA or test automation experience."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_daeeef3dfc",
+   "grade": 1,
+   "note": "2 years Java API/UI automation with DB work, but no C#, SoapUI or Docker."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_69a19b824d",
+   "grade": 0,
+   "note": "Junior, 0.5 years, course-level Java and SQL, no real C# automation."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_1b3a2e00bb",
+   "grade": 0,
+   "note": "Mostly manual with Java/Python automation claims, no C#, API or SQL evidence."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_166fc2fac6",
+   "grade": 1,
+   "note": "Strong API/SoapUI/Docker/K8s automation but in Java/RestAssured and Cypress; no C#, no SQL evidence."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_03a165a19b",
+   "grade": 1,
+   "note": "Java automation with SQL, JMeter, web service data flow, but no C#, SOAP/REST or Docker evidence."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_7779121a8b",
+   "grade": 3,
+   "note": "C# automation with NUnit/MSTest, 2+ years API automation, SQL, JMeter, 8 years QA."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_51d605036f",
+   "grade": 0,
+   "note": "Manual QA only; API regression mentioned but no automation or C#."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_b88c787b3f",
+   "grade": 0,
+   "note": "Java/JS automation; no C#, SOAP/REST, or tool evidence in the summary."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_534fe8b887",
+   "grade": 1,
+   "note": "Performance and Selenium/Java work; C# only in a skills list, REST perf design but no C# automation."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_e1e543ed30",
+   "grade": 0,
+   "note": "Manual QA with only basic automation knowledge; no C#."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_c0ba26ab77",
+   "grade": 1,
+   "note": "Senior automation lead; C#+NUnit is among many stacks but recent work is Cypress/JS, no API/SQL/SOAP evidence."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_15308e2e4b",
+   "grade": 2,
+   "note": "Wrote UI and API automation in Java and C#/NUnit with Git and Scrum; limited SQL/SOAP/Docker, 2.5 years."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_06f7856906",
+   "grade": 1,
+   "note": "Strong Java API/REST, JMeter, MS SQL, but no C# and pre-level English."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_ef40096a4d",
+   "grade": 0,
+   "note": "Student with manual internship only, no automation."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_1d6c1abff0",
+   "grade": 1,
+   "note": "Java backend/API automation with SQL and REST Assured, but no C# and only 1 year."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_0e91364a48",
+   "grade": 2,
+   "note": "11 years with C#, Selenium/SpecFlow, MSSQL, REST; automation less detailed and no SoapUI/Docker."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_1e732649f9",
+   "grade": 1,
+   "note": "Junior with basic C# and SQL, Postman/JMeter at middle level; thin demonstrated automation."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_8d5066d046",
+   "grade": 2,
+   "note": "6+ years C# API/UI test automation (integration, component, E2E); no SQL, SOAP, Docker or JMeter detail."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_d78cf190ad",
+   "grade": 3,
+   "note": "5 years C#/NUnit framework with Azure DevOps, MSSQL, REST API, Git, Scrum, fluent English."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_f0ddeda8bc",
+   "grade": 1,
+   "note": "Java/Selenium and Appium with Postman API; no C# and limited back-end depth."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_2def5612b8",
+   "grade": 1,
+   "note": "JS/Protractor UI and API automation with Docker; no C#, no SQL."
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_828238b17a",
+   "grade": 1,
+   "note": "Broad automation (JMeter, Postman API) but in JS/TS; no C# or SQL."
+  }
+ ]
+}

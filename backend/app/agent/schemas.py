@@ -99,3 +99,8 @@ class InvestigatorAction(BaseModel):
     arg: str = Field(description="read_section: a section name; search: a term (typos and noise are fine); "
                      "propose: the skill key; finish: one sentence with your conclusion")
     quote: str = Field("", description="propose only: the CV line that proves the skill, copied exactly as shown")
+
+
+class HrTexts(BaseModel):
+    """nodes.for_hr: LLM free text translated for HR, one item per source item, in order (Q18)."""
+    items: list[str] = Field(description="The translations, same count and order as the input list")

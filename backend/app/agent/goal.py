@@ -8,11 +8,11 @@ declare what it could not meet. The LLM writes the spec and the concept terms; c
 (provenance), counts what the pool can deliver, scores bonuses and audits the shortlist.
 
     GoalSpec        count + constraints (must / nice / bonus / exclude) on taxonomy skills or HR-named concepts; each
-                    constraint carries the HR words it comes from (Q18)
+                    constraint carries the HR words it comes from (Q19)
     concept         an open-vocabulary criterion: terms the LLM proposes, evidence that code finds and grades in the
                     CV (used in a role > listed > hedged), never a score the LLM sets
     feasibility     per-constraint and joint counts over the whole pool, the bottleneck, what relaxing it would give
-    goal_report     the shortlist against the spec: unmet items the answer to HR must declare (Q19)
+    goal_report     the shortlist against the spec: unmet items the answer to HR must declare (Q20)
 """
 
 import re
@@ -22,7 +22,7 @@ from pydantic import BaseModel, Field
 
 from app.agent.scoring import knockout_reason
 from app.config import get_settings
-from app.nlp.extract import CREDIT, PRE_HEDGE
+from app.nlp.extract import CREDIT, FOLDED
 from app.nlp.segment import ENTRY_SECTIONS
 from app.nlp.taxonomy import key as tkey
 from app.nlp.taxonomy import skills
@@ -55,7 +55,7 @@ def _norm(s: str) -> str:
 
 
 def quoted(quote: str, hr_text: str) -> bool:
-    """Q18: the quote is HR's words (case, accents and spacing ignored)."""
+    """Q19: the quote is HR's words (case, accents and spacing ignored)."""
     q = _norm(quote)
     return bool(q) and re.search(rf"(?<![a-z0-9]){re.escape(q)}(?![a-z0-9])", _norm(hr_text)) is not None
 
@@ -85,7 +85,7 @@ def concept_evidence(p, terms: list[str]) -> dict | None:
             m = rx.search(_norm(line))
             if not m:
                 continue
-            strength = ("hedged" if PRE_HEDGE.search(line.lower())
+            strength = ("hedged" if FOLDED["hedge"].search(fold(line))  # "đang học" and "dang hoc" alike
                         else "used" if c.section in ENTRY_SECTIONS else "listed")
             if best is None or order[strength] > order[best["strength"]]:
                 best = {"strength": strength, "term": m.group(0), "section": c.section, "quote": line.strip()[:200]}
