@@ -17,7 +17,7 @@ Labels follow TREC pooling: per JD, the union of four rankers' top 20 plus 10 ra
                                                              browser, blind or with Opus's grade shown; its exported
                                                              JSON goes to `import` like the xlsx files
 
-Gold (`gold()`): the adjudicated human labels once both annotators finished every pair and no pair is left ≥ 2 grades
+Gold (`gold()`): the adjudicated human labels once two annotators who pass the quality check (`qc_problems`) finished every pair and no pair is left ≥ 2 grades
 apart; until then the mean of the two silver annotators. Which one is in use is stated in every report.
 """
 
@@ -43,6 +43,8 @@ DIR = get_settings().runtime_dir / "bench" / "djinni"
 LABELS = ROOT / "data" / "eval"
 DOC = ROOT / "docs" / "DJINNI_LABELS.md"
 BATCH = 20  # CVs per silver-label call
+QC_MIN_KAPPA = 0.4  # an annotator must reach "moderate" weighted κ with at least one other annotator (Landis & Koch)
+QC_MIN_SECONDS = 10.0  # blind labels: median seconds between grades; below this nobody read a JD and a CV
 
 
 # ── data ──────────────────────────────────────────────────────────────────────────────────────────────
@@ -92,6 +94,48 @@ def human_files() -> list[Path]:
     return sorted(p for p in LABELS.glob("human_djinni_*.json") if p.stem != "human_djinni_adjudicated")
 
 
+def median_seconds(labels: list[dict]) -> float | None:
+    """Median gap between consecutive grades (the page stamps `at` on every click); None without timestamps."""
+    from datetime import datetime
+    from statistics import median
+
+    ts = sorted(datetime.fromisoformat(x["at"].replace("Z", "+00:00")) for x in labels if x.get("at"))
+    return median((b - a).total_seconds() for a, b in zip(ts, ts[1:])) if len(ts) > 2 else None
+
+
+def qc_problems(labels: list[dict], others: dict[str, dict[tuple[str, str], int]]) -> list[str]:
+    """Why an annotator's labels cannot be gold ([] = usable). κ floor for everyone; the speed floor only for blind
+    labels (accepting a shown model grade is fast, and review mode is already reported as anchored on the model)."""
+    mine = {(x["jd"], x["cv"]): int(x["grade"]) for x in labels}
+    problems, best = [], None
+    for other in others.values():
+        common = sorted(set(mine) & set(other))
+        if len(common) >= 20:
+            k = metrics.weighted_kappa([mine[c] for c in common], [other[c] for c in common])
+            best = k if best is None else max(best, k)
+    if best is not None and best < QC_MIN_KAPPA:
+        problems.append(f"best κ with any other annotator {best:.2f} < {QC_MIN_KAPPA}")
+    secs = median_seconds(labels)
+    blind = not any(x.get("saw_model") for x in labels)
+    if blind and secs is not None and secs < QC_MIN_SECONDS:
+        problems.append(f"median {secs:.1f} s per pair < {QC_MIN_SECONDS:.0f} s")
+    return problems
+
+
+def _raw(path: Path) -> list[dict]:
+    return json.loads(path.read_text(encoding="utf-8"))["labels"]
+
+
+def qc_report() -> dict[Path, list[str]]:
+    """Every human label file → its QC problems, judged against all other annotators (human, silver, Opus)."""
+    named = {p: _load(p) for p in human_files() + silver_files() + ([MODEL_GOLD] if MODEL_GOLD.exists() else [])}
+    return {p: qc_problems(_raw(p), {q: v for q, v in named.items() if q != p}) for p in human_files()}
+
+
+def qualified_humans() -> list[Path]:
+    return [p for p, problems in qc_report().items() if not problems]
+
+
 def adjudicate(a: dict, b: dict, override: dict | None = None) -> tuple[dict, list[tuple[str, str]]]:
     """Coding-branch rule: equal → keep; 1 apart → the lower grade; ≥ 2 apart → a conflict, unless `override` (the
     pair both annotators settled together) gives the grade. → (gold, unresolved conflicts)."""
@@ -109,7 +153,7 @@ def adjudicate(a: dict, b: dict, override: dict | None = None) -> tuple[dict, li
 def gold() -> tuple[dict[str, dict[str, float]], str]:
     """→ (JD → CV → grade over the judged pairs, which labels these are)."""
     want = {(j, c) for j, cs in pairs().items() for c in cs}
-    hum = [_load(p) for p in human_files()]
+    hum = [_load(p) for p in qualified_humans()]
     adj = LABELS / "human_djinni_adjudicated.json"
     if len(hum) >= 2 and all(want <= set(h) for h in hum[:2]):
         g, conflicts = adjudicate(hum[0], hum[1], _load(adj) if adj.exists() else None)
@@ -129,7 +173,7 @@ def human_gold() -> tuple[dict[str, dict[str, float]], str] | None:
     g, source = gold()
     if source.startswith("human"):
         return g, source
-    for p in human_files():
+    for p in qualified_humans():
         d = json.loads(p.read_text(encoding="utf-8"))
         labels = {(x["jd"], x["cv"]): x for x in d["labels"]}
         if want <= set(labels):
@@ -230,7 +274,8 @@ def labels_from_page(path: Path) -> tuple[str, list[dict]]:
         if int(x["grade"]) not in range(4):
             raise ValueError(f"{path.name}: grade {x['grade']!r} for {x['jd']} / {x['cv']} is not 0–3")
     return d["annotator"], [{"jd": x["jd"], "cv": x["cv"], "grade": int(x["grade"]), "note": x.get("note", ""),
-                             "saw_model": bool(x.get("saw_model"))} for x in d["labels"]]
+                             "saw_model": bool(x.get("saw_model")), **({"at": x["at"]} if x.get("at") else {})}
+                            for x in d["labels"]]
 
 
 def slug(name: str) -> str:
@@ -331,12 +376,27 @@ def score() -> str:
     if not humans:
         lines += ["", "No human labels yet: fill `labels_A.xlsx` / `labels_B.xlsx` (team members who did not write "
                   "the criteria) and run `python -m app.eval.djinni import`."]
-    if len(humans) >= 2:
-        h = list(humans.values())
+    if humans:
+        lines += ["", "## Annotator quality check", "",
+                  f"Gold uses only annotators who pass: weighted κ ≥ {QC_MIN_KAPPA} with at least one other annotator, "
+                  f"and, for blind labels, a median of ≥ {QC_MIN_SECONDS:.0f} s per pair (the page stamps every grade). "
+                  "Review-mode labels are fast by nature (accepting a shown grade) and count as anchored on the model.",
+                  "", "| Annotator | mode | median s / pair | notes written | verdict |", "|---|---|---|---|---|"]
+        for p, problems in qc_report().items():
+            raw = _raw(p)
+            secs = median_seconds(raw)
+            mode = "review (saw Opus's grade)" if any(x.get("saw_model") for x in raw) else "blind"
+            lines.append(f"| {json.loads(p.read_text(encoding='utf-8'))['annotator']} | {mode} | "
+                         f"{'n/a' if secs is None else f'{secs:.1f}'} | {sum(bool(x.get('note')) for x in raw)} | "
+                         f"{'✅ usable' if not problems else '❌ excluded: ' + '; '.join(problems)} |")
+    good = [_load(p) for p in qualified_humans()]
+    if len(good) >= 2:
         adj = LABELS / "human_djinni_adjudicated.json"
-        _, conflicts = adjudicate(h[0], h[1], _load(adj) if adj.exists() else None)
+        _, conflicts = adjudicate(good[0], good[1], _load(adj) if adj.exists() else None)
         lines += ["", f"Pairs ≥ 2 grades apart still to settle together: **{len(conflicts)}**"]
         lines += [f"- {j} / {c}" for j, c in conflicts[:50]]
+    elif len(humans) >= 2:
+        lines += ["", f"Adjudicated human gold (v2.1) needs two annotators who pass the check; {len(good)} do."]
     lines += ["", "## Agreement", "", "| Pair | pairs | exact agreement | weighted κ |", "|---|---|---|---|"]
     lines += kappa_rows({**humans, **silvers}) or ["| (needs two annotators) | | | |"]
     DOC.write_text("\n".join(lines) + "\n", encoding="utf-8")

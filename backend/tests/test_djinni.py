@@ -126,3 +126,44 @@ def test_human_gold_uses_one_complete_annotator_and_says_how(tmp_path, monkeypat
     g, source = djinni.human_gold()
     assert g == {"J": {"a": 2.0, "b": 1.0}} and "1 annotator" in source and "2/2" in source
     assert djinni.gold()[1].startswith("silver")  # one person is not the frozen gold: that needs two, adjudicated
+
+
+def _stamped(grades, seconds, saw_model=False):
+    from datetime import datetime, timedelta
+
+    t0 = datetime(2026, 11, 5)
+    return [{"jd": "J", "cv": f"c{i}", "grade": g, "saw_model": saw_model,
+             "at": (t0 + timedelta(seconds=seconds * i)).isoformat() + "Z"} for i, g in enumerate(grades)]
+
+
+def test_qc_rejects_a_blind_annotator_who_agrees_with_nobody_and_grades_in_seconds():
+    truth = [0, 1, 2, 3] * 10
+    other = {"silver": {("J", f"c{i}"): g for i, g in enumerate(truth)}}
+    noise = [3, 2, 1, 0] * 10  # the reverse of everyone else
+    problems = djinni.qc_problems(_stamped(noise, 4), other)
+    assert any("κ" in p for p in problems) and any("s per pair" in p for p in problems)
+    assert djinni.qc_problems(_stamped(truth, 30), other) == []
+
+
+def test_qc_speed_floor_applies_to_blind_labels_only():
+    truth = [0, 1, 2, 3] * 10
+    other = {"silver": {("J", f"c{i}"): g for i, g in enumerate(truth)}}
+    assert djinni.qc_problems(_stamped(truth, 1, saw_model=True), other) == []  # accepting a shown grade is fast
+    assert djinni.median_seconds([{"jd": "J", "cv": "a", "grade": 1}]) is None  # no timestamps: no speed check
+
+
+def test_gold_ignores_a_second_annotator_who_fails_qc(tmp_path, monkeypatch):
+    import json
+
+    cvs = [f"c{i}" for i in range(40)]
+    truth = [0, 1, 2, 3] * 10
+    monkeypatch.setattr(djinni, "pairs", lambda: {"J": cvs})
+    monkeypatch.setattr(djinni, "LABELS", tmp_path)
+    monkeypatch.setattr(djinni, "MODEL_GOLD", tmp_path / "none.json")
+    (tmp_path / "djinni_silver_a.json").write_text(json.dumps({"annotator": "s", "labels": _stamped(truth, 0)}))
+    (tmp_path / "human_djinni_a.json").write_text(json.dumps({"annotator": "human a", "labels": _stamped(truth, 30)}))
+    (tmp_path / "human_djinni_b.json").write_text(json.dumps({"annotator": "human b",
+                                                              "labels": _stamped([3, 2, 1, 0] * 10, 4)}))
+    assert djinni.qualified_humans() == [tmp_path / "human_djinni_a.json"]
+    assert djinni.gold()[1].startswith("silver")  # one usable human is not adjudicated gold
+    assert "1 annotator, blind" in djinni.human_gold()[1]
