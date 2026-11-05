@@ -37,7 +37,8 @@ from app.rag import retrieve
 from app.rag.corpus import get_doc, load_dir
 from app.rag.store import get_store
 
-MERGED = {"clarifications", "substitutes", "declined", "fallbacks", "recovered", "investigated", "assessments"}
+MERGED = {"clarifications", "substitutes", "declined", "fallbacks", "recovered", "investigated", "assessments",
+          "hr_rejected"}
 CV_ID = r"\b(?:CV|UP)-\d{3}\b"
 
 
@@ -491,7 +492,7 @@ async def record_decisions(state: AgentState, args: DecisionArgs) -> tuple[dict,
     """HR's decisions → audit log → weights that best explain them (pairwise logistic regression) → re-screen."""
     update = nodes._decide(state, [d.model_dump() for d in args.decisions])
     r = Run(state)
-    r.add({"weights": update["weights"]})
+    r.add({"weights": update["weights"], "hr_rejected": update.get("hr_rejected", {})})
     return {"weights": update["weights"], "screen": await screen_into(r)}, r.update
 
 

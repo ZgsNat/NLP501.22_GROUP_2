@@ -617,8 +617,9 @@ async def score(state: AgentState) -> dict:
         "cv_id": cid, "headline": head(cid), "status": status, "knocked_out": status == "knocked_out",
         "total": total, "tier": tier(total) if status == "ranked" else None, "reason": reason, "arbiter_note": None,
         "card": None, "flags": []}
+    out_by_hr = state.get("hr_rejected", {})
     ranked = [row(cid, "ranked", weighted_total(a, state["weights"], False))
-              for cid, a in state["assessments"].items() if cid in cands]
+              for cid, a in state["assessments"].items() if cid in cands and cid not in out_by_hr]
     rerank = {c["cv_id"]: c.get("rerank_score") for c in state["candidates"]}
     req, subs = state["requirements"], state.get("substitutes", {})
     for r in ranked:
@@ -639,11 +640,12 @@ async def score(state: AgentState) -> dict:
     knocked = sorted((row(cid, "knocked_out", reason=r) for cid, r in state["knocked_out"].items() if r != NEEDS_REVIEW),
                      key=lambda r: pre(r["cv_id"]), reverse=True)
     rest = [row(cid, "not_shortlisted", reason=r) for cid, r in state.get("screened", {}).items()
-            if cid not in state["assessments"] and cid not in state["knocked_out"]]
+            if cid not in state["assessments"] and cid not in state["knocked_out"] and cid not in out_by_hr]
+    by_hr = [row(cid, "rejected_by_hr", reason=f"Rejected by HR: {why}") for cid, why in out_by_hr.items()]
     reranked = sorted((r for r in rest if rerank.get(r["cv_id"]) is not None), key=lambda r: fused[r["cv_id"]])
     unretrieved = sorted((r for r in rest if rerank.get(r["cv_id"]) is None), key=lambda r: pre(r["cv_id"]), reverse=True)
     screened = reranked + unretrieved
-    rows = ranked + screened + review + knocked
+    rows = ranked + screened + by_hr + review + knocked
     for i, r in enumerate(rows, 1):
         r["rank"] = i
     fb = state.get("fallbacks", {})
@@ -808,7 +810,8 @@ def _decide(state: AgentState, decisions: list[dict]) -> dict:
     moved = {k: round(w[k] - state["weights"][k], 3) for k in w if abs(w[k] - state["weights"][k]) >= 0.01}
     emit("hr_review", f"HR recorded {len(ok)} decision(s) → {len(pairs)} preference pair(s) → weights moved "
                       f"{moved or 'not at all'} (audit: .runtime/hr_audit.jsonl)", "loop")
-    return {"hr_action": "adjust", "weights": w, "loops": {"review": 1}}
+    rejected = {d["cv_id"]: d["reason"].strip() for d in ok if d["action"] == "reject"}  # HR's word is final
+    return {"hr_action": "adjust", "weights": w, "hr_rejected": rejected, "loops": {"review": 1}}
 
 
 

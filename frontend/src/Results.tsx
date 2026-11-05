@@ -29,6 +29,8 @@ function groups({ t, term }: T): { status: Exclude<RankStatus, 'ranked'>; title:
       hint: t('The agent hit an ambiguity; a person should read these', 'Agent gặp điểm mơ hồ; nên để người đọc lại'), open: true },
     { status: 'not_shortlisted', title: t('Not shortlisted', `Không vào ${term('Shortlist')}`),
       hint: t('Passed the knock-out, but the total is not high enough', 'Đã qua vòng loại trừ nhưng điểm tổng chưa đủ cao') },
+    { status: 'rejected_by_hr', title: t('Rejected by HR', 'HR đã loại'),
+      hint: t("Out of the ranking by HR's decision; the reason is HR's own", 'Rời bảng xếp hạng theo quyết định của HR, kèm lý do của HR'), open: true },
     { status: 'knocked_out', title: t('Knocked out', term('Knock-out')),
       hint: t('A must-have tool is missing or only vaguely listed', 'Thiếu công cụ bắt buộc hoặc chỉ liệt kê mơ hồ') },
   ]
@@ -48,7 +50,7 @@ export default function Results({
   const [sel, setSel] = useState<string | null>(null)
   const [selectedForCompare, setSelectedForCompare] = useState<string[]>([])
   const [isCompareOpen, setIsCompareOpen] = useState(false)
-  const [activeTab, setActiveTab] = useState<'all' | 'ranked' | 'needs_review' | 'not_shortlisted' | 'knocked_out'>('all')
+  const [activeTab, setActiveTab] = useState<'all' | 'ranked' | 'needs_review' | 'not_shortlisted' | 'rejected_by_hr' | 'knocked_out'>('all')
   const [decisions, setDecisions] = useState<Record<string, 'shortlist' | 'hold' | 'reject'>>({})
 
   const { ranking, report, assessments, weights } = run.values
@@ -62,6 +64,7 @@ export default function Results({
   const needsReview = ranking.filter((r) => statusOf(r) === 'needs_review')
   const notShortlisted = ranking.filter((r) => statusOf(r) === 'not_shortlisted')
   const knockedOut = ranking.filter((r) => statusOf(r) === 'knocked_out')
+  const rejectedByHr = ranking.filter((r) => statusOf(r) === 'rejected_by_hr')
 
   const toggle = (id: string) => setSel(id === sel ? null : id)
 
@@ -143,6 +146,12 @@ export default function Results({
           <button className={`pill-btn ${activeTab === 'not_shortlisted' ? 'active' : ''}`}
             onClick={() => setActiveTab('not_shortlisted')}>
             {t('Not shortlisted', 'Chưa vào top')} ({notShortlisted.length})
+          </button>
+        )}
+        {rejectedByHr.length > 0 && (
+          <button className={`pill-btn ${activeTab === 'rejected_by_hr' ? 'active' : ''}`}
+            onClick={() => setActiveTab('rejected_by_hr')}>
+            {t('Rejected by HR', 'HR đã loại')} ({rejectedByHr.length})
           </button>
         )}
         {knockedOut.length > 0 && (

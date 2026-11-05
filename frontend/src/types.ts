@@ -88,7 +88,7 @@ export interface Card {
   versus_next?: { vs: string; advantages: { criterion: Criterion; delta: number }[]; disadvantages: { criterion: Criterion; delta: number }[] } | null
   what_if?: { if_used: string[]; must_have: boolean; passes_knockout: boolean; total: number; delta: number }[]
 }
-export type RankStatus = 'ranked' | 'needs_review' | 'not_shortlisted' | 'knocked_out'
+export type RankStatus = 'ranked' | 'needs_review' | 'not_shortlisted' | 'rejected_by_hr' | 'knocked_out'
 export type Tier = 'strong' | 'possible' | 'weak'
 export interface Report {
   summary: string
