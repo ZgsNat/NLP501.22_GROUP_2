@@ -24,7 +24,7 @@ def path() -> Path:
 
 def _load(p: Path) -> dict:
     try:
-        return json.loads(p.read_text())
+        return json.loads(p.read_text(encoding="utf-8"))
     except (FileNotFoundError, json.JSONDecodeError):
         return {}
 
@@ -61,7 +61,7 @@ def remember(company: str, weights: dict[str, float], base: dict[str, float], pa
              "sessions": old.get("sessions", 0) + 1, "pairs": old.get("pairs", 0) + pairs, "updated": time.time()}
     data[company] = entry
     p.parent.mkdir(parents=True, exist_ok=True)
-    p.write_text(json.dumps(data, indent=1, ensure_ascii=False))
+    p.write_text(json.dumps(data, indent=1, ensure_ascii=False), encoding="utf-8")
     return entry
 
 
@@ -70,4 +70,4 @@ def forget(company: str | None = None, p: Path | None = None) -> None:
     p = p or path()
     data = {} if company is None else {k: v for k, v in _load(p).items() if k != company}
     if p.exists() or data:
-        p.write_text(json.dumps(data, indent=1, ensure_ascii=False))
+        p.write_text(json.dumps(data, indent=1, ensure_ascii=False), encoding="utf-8")

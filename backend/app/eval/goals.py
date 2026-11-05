@@ -39,7 +39,7 @@ def materialize() -> Path:
 
 
 def cases() -> list[dict]:
-    return yaml.safe_load((SUITE / "goals.yaml").read_text())
+    return yaml.safe_load((SUITE / "goals.yaml").read_text(encoding="utf-8"))
 
 
 def _order(tr: Trace) -> list[str]:
@@ -121,8 +121,8 @@ async def main(only: set[str] | None) -> None:
         print(f"{case['id']}: {sum(x for x in rows[-1][2].values() if x)}/"
               f"{sum(x is not None for x in rows[-1][2].values())} checks", flush=True)
     from app.providers.llm import default_spec
-    OUT.write_text(render(rows, default_spec("reasoning")))
-    print(OUT.read_text())
+    OUT.write_text(render(rows, default_spec("reasoning")), encoding="utf-8")
+    print(OUT.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

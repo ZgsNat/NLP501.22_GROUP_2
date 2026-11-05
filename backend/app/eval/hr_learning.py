@@ -108,8 +108,8 @@ async def main() -> None:
     with tempfile.TemporaryDirectory() as tmp:
         # one memory per benchmark (never the real .runtime/hr_memory.json): "bank" in both must not share labels
         rows = [r for name in ("ours", "coding") for r in await run_bench(name, Path(tmp) / f"{name}.json")]
-    OUT.write_text(render(rows))
-    print(OUT.read_text())
+    OUT.write_text(render(rows), encoding="utf-8")
+    print(OUT.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":
