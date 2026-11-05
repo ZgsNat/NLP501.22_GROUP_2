@@ -9,8 +9,9 @@ The official numbers come from **NLP501-bench v1**, the benchmark the team agree
 such: v2, qwen3:8b, before a fix, or an uncached run.
 
 **v4 update (6 Nov 2026).** This report was first written for v3.1 (the P6 graph). Since then the system gained an
-agentic layer on top (P7, §3.1) and was measured on it (E15, §5.7); a second, larger test set with real CVs was frozen
-(NLP501-bench v2, §5.8); and further evaluations E18–E23 were run (§5.9). v1 numbers below are unchanged.
+agentic layer on top (P7, §3.1) that also takes complex HR goals, and was measured on it (E15, E26, §5.7); a second,
+larger test set with real CVs was frozen (NLP501-bench v2, §5.8); the first blind human labels came in (§5.8, §9); and
+further evaluations E18–E25 were run (§5.9). v1 numbers below are unchanged.
 
 ## Abstract
 
@@ -39,13 +40,17 @@ locked test split of 10, and every input pinned by checksum. On that test split:
   - nine more defects in data processing, three of them found by reading scanned CVs through OCR.
 - **A stronger model needed more control, not less.** When Claude instead of qwen3:8b read the JDs, the LLM-only JD
   parser fell from 0.884 to 0.842 nDCG@10 on our JDs. The rules-first hybrid parser did not move.
-- **v4: an LLM orchestrator over the same tools (P7).** The model chooses the next of 14 typed tools; a code harness
+- **v4: an LLM orchestrator over the same tools (P7).** The model chooses the next of 17 typed tools; a code harness
   checks every call. Live on HR tasks (E15) it passed **40 of 42 behaviour checks** and exposed one real fault (an HR
-  rejection did not take the CV out of the ranking), now fixed (§3.1, §5.7).
+  rejection did not take the CV out of the ranking), now fixed. On complex HR goals (E26) it passed **27 of 28**: it
+  turns the goal into constraints that quote HR, checks the pool can meet them, and goes back to HR when it cannot
+  (§3.1, §5.7).
 - **Real CVs (NLP501-bench v2).** Eight real QA Automation JDs from Djinni were added to the test split (18 test JDs).
   The ladder holds on real text: BM25 0.441 → fixed pipeline 0.723 on Djinni; 0.582 → 0.787 over all 18 (§5.8).
-- **Every LLM output passes code checks at run time** (Q1–Q7 and Q14–Q18 of 18 written criteria; the rest are offline
-  evaluations). **The ranking ignores the protected attributes we twinned** (name, gender, age, marital status): no
+- **Every LLM output passes code checks at run time** (Q1–Q7 and Q14–Q20 of 20 written criteria; the rest are offline
+  evaluations).
+- **First blind human labels.** Two teammates graded 120 pairs of `ours` blind and agreed at κ 0.965; they side with
+  the stricter model where the two silver annotators disagree (§9). **The ranking ignores the protected attributes we twinned** (name, gender, age, marital status): no
   score changed in 6 twin variants × 1,800 (CV, JD) pairs.
 
 ## 1. Introduction
@@ -222,11 +227,18 @@ The system has two layers (`docs/architecture.html`, `docs/agentic-architecture-
 
 ### 3.1 P7: an LLM orchestrator inside a code harness (v4, the API default)
 
-`agent/orchestrator.py`. HR states a goal in their own words; the model then picks the next step from **14 typed
-tools** (`agent/tools.py`): `parse_jd`, `ask_hr`, `screen`, `investigate`, `propose_substitutes`, `explain`,
-`rank_shortlist`, `compare`, `get_candidate`, `search_cvs`, `update_requirements`, `set_weights`, `record_decisions`,
-`respond_to_hr`. `screen` is the P6 pipeline up to the ranking at 0 tokens, so the tools reuse the nodes below. It is a
-multi-turn conversation: HR can ask why, change a requirement, re-weight or reject a candidate, and the agent acts.
+`agent/orchestrator.py`. HR states a goal in their own words; the model then picks the next step from **17 typed
+tools** (`agent/tools.py`): `parse_jd`, `formalize_goal`, `define_concept`, `check_goal`, `ask_hr`, `screen`,
+`investigate`, `propose_substitutes`, `explain`, `rank_shortlist`, `compare`, `get_candidate`, `search_cvs`,
+`update_requirements`, `set_weights`, `record_decisions`, `respond_to_hr`. `screen` is the P6 pipeline up to the
+ranking at 0 tokens, so the tools reuse the nodes below. It is a multi-turn conversation: HR can ask why, change a
+requirement, re-weight or reject a candidate, and the agent acts.
+
+**Goal-driven control** (`agent/goal.py`). A complex goal such as "5 CVs, Selenium a must, Playwright nice, AI a must,
+AI in automation a big plus" becomes a typed plan. Code checks that every constraint quotes HR (Q19); a concept no
+taxonomy holds ("AI in automation") is defined once and graded by code; `check_goal` counts what the pool can deliver
+before anything is ranked; when the goal cannot be met the agent must go back to HR, and its answer must state what
+it could not deliver (Q20).
 
 A **guard** (the harness) runs before every tool and refuses with a reason the model reads (Q14):
 
@@ -268,7 +280,7 @@ deterministic input. Since v3:
 
 ## 4. Controlling what the LLM produces
 
-`docs/AI_OUTPUT_CRITERIA.md` defines 18 criteria (Q1–Q13 for v3, Q14–Q18 added with P7). Each has a code check, a
+`docs/AI_OUTPUT_CRITERIA.md` defines 20 criteria (Q1–Q13 for v3, Q14–Q20 added with P7). Each has a code check, a
 target and an action on failure.
 
 | | Criterion | Check | Action on failure |
@@ -291,6 +303,8 @@ target and an action on failure.
 | Q16 | untrusted text cannot steer the system | injection lexicon (+ optional decision model); HR provenance of every change | sentence removed and CV flagged; change refused |
 | Q17 | LLM ranking read, unbiased, bounded | shortlisted ids only; two passes in opposite orders | repaired at the boundary; agreement reported |
 | Q18 | UI language never changes a result | requirement extraction never localized; translations keep numbers and tools | English original shown |
+| Q19 | a formalized goal is HR's goal | every constraint quotes HR's words | refused; the model re-formalizes |
+| Q20 | the answer states what the goal could not get | shortfall vs the feasibility count | refused until declared |
 
 ![What the agent's controls change](figures/controls.svg)
 
@@ -521,6 +535,13 @@ leaves the ranking with HR's reason, with a regression test. (2) The `claude_cod
 inside the repository, so the CLI loaded the developer's own Claude memory and the agent replied in Vietnamese; the
 CLI now runs outside any repository, and the contaminated run and its cache entries were discarded.
 
+**Complex HR goals (E26, `docs/GOAL_RESULTS.md`).** Five goals on `data/cvs` plus six goal-suite CVs that mention AI
+at different levels. Round 4 passed **27 of 28** checks (round 3: 28/28): the agent formalizes the goal quoting HR,
+defines "AI in automation" as a concept graded by code, goes back to HR when the goal cannot be met (Cypress +
+Appium: 1 CV of 5 wanted), recommends only CVs with HR's must-haves and declares the shortfall. The miss: on the
+feasible goal it sometimes asks HR an unneeded question. 88k–231k tokens per goal; one run per case, scripted HR.
+E15 above was run before goal-driven control was added.
+
 **A single agent without the harness (S1, `SINGLE_AGENT_RESULTS.md`)** reached 0.942 on the same dev JDs, but used
 127k–230k tokens per JD and ranked CVs it never read. That is the case for the harness, not for fewer controls.
 
@@ -544,9 +565,11 @@ blind LLM annotators (Opus and Sonnet, κ 0.778); metrics are condensed to judge
 - **P6 ≈ B4 again** (−0.005), as on v1: rules set the score in both.
 - **Human labels on Djinni.** One team member graded all 424 pairs with Opus's grade shown (review mode): κ 0.820
   against the silver mean, every system 0.05–0.09 lower, system order kept (Kendall τ 0.86). The grading took a median
-  of 1.4 s per pair, so these labels are anchored on the model and are weak human evidence. A blind second set failed
-  the annotator quality check (κ ≈ 0 with every annotator, 4.3 s per pair) and was set aside. There is no adjudicated
-  human gold yet (§9).
+  of 1.4 s per pair, so these labels are anchored on the model and are weak human evidence. Two blind sets failed the
+  annotator quality check (κ ≥ 0.4 with another annotator; blind ≥ 10 s per pair): one at 4.3 s per pair and κ ≈ 0,
+  and a careful one (the 80-pair stratified subset, 29.5 s per pair, 51 notes) at κ 0.164 with the review-mode set and at
+  most 0.25 with any annotator. A careful blind reader disagreeing with everyone points at the rubric, not the
+  reader: short real profiles need an adjudication session before more labelling. No human gold for Djinni yet.
 
 ### 5.9 Further v4 evaluations
 
@@ -556,7 +579,8 @@ blind LLM annotators (Opus and Sonnet, κ 0.778); metrics are condensed to judge
 | E20 `FINETUNE_RESULTS.md` | cross-encoder fine-tuned on dev JDs (Colab) | v1 test +0.046 (p = 0.003); Djinni −0.027; v2 all +0.010 (p = 0.26). On held-out CVs the fused gain disappears: **does not transfer to real CVs** |
 | E21 `TOKEN_COST_RESULTS.md` | selective LLM vs the LLM on every candidate (E-every), dev | P6 −47.4%, B4 −66.9% tokens; E-every +0.015 nDCG, p = 0.34. Selectivity halves the cost at no significant accuracy loss; below the −78% the deck predicted |
 | E23 `KAGGLE_RESUME_RESULTS.md` | the NLP pipeline on 2,484 real résumé PDFs (24 trades) | 100% read; three faults synthetic data never showed were fixed: dated roles 41.9% → 97.7%, "testing tool" false positives in other trades 17.2% → 1.6% |
-| v4.2 `EXTRACTION_RESULTS.md` | Vietnamese CVs typed without diacritics | depth-cue accuracy 0.0% → 87.5% (= accented); no ranking change on the 502 benchmark CVs |
+| v4.2 `EXTRACTION_RESULTS.md` | Vietnamese CVs typed without diacritics | depth-cue accuracy 0.0% → 87.5% (= accented); no ranking change on the 502 benchmark CVs; hedge cues fold the same way |
+| E24 `HR_LEARNING_RESULTS.md` | weights learned from HR decisions across sessions (H30, off by default), with a simulated consistent HR | learned vs static Δ −0.008 nDCG@10 (p = 0.78): **negative**. HR rejections are kept as hard decisions (`rejected_by_hr`) instead |
 
 ## 6. Case studies
 
@@ -678,10 +702,13 @@ We count only the errors that cost HR something:
 
 ## 9. Limitations and ethics
 
-- **Human labels are still missing.** On v1 no human grading is in yet. On Djinni the only human set was graded with
-  the model's grade shown, at a median of 1.4 s per pair, and the first blind set failed the quality check. An
-  80-pair stratified blind subset with a 20-second read lock is ready for the next annotator
-  (`review.html?blind=1&subset=1`). Until then every ranking number rests on LLM-made labels.
+- **Human labels: a first check, not yet a gold.** On `ours`, Hoa and Phúc graded 120 pairs blind (all 94 pairs where
+  the two silver annotators disagree, plus 26 controls) and agreed at κ 0.965 (`HUMAN_LABELS.md`,
+  `DATA_EVAL_SUMMARY.md`). They agree with Opus at 0.87–0.88 and with Sonnet at 0.65–0.69; on the disagreements they
+  side with the stricter Opus on 65 and 74 of the 94 (Sonnet on 25 and 16), so the silver mean is about half a grade too generous there. Two
+  caveats: the silver grades sat next to the guideline on their page, and that page stamps no time per grade. The
+  sample is disagreement-heavy, so this κ does not describe all 600 pairs. Re-scoring v1 with these 120 pairs as
+  adjudicated gold is the next step. On Djinni no blind set has passed the quality check (§5.8).
 - **Silver labels.** Our labels come from two Claude models, which agree too readily (κ 0.919). Two teammates are
   grading a blind 120-pair sample (`docs/labeling/`). If human–silver κ ≥ 0.8 the set stays; otherwise the human
   labels replace it as benchmark v1.1. A third, blind Claude annotator (recruiter persona, graded from the labelling
@@ -715,7 +742,8 @@ Measured on one frozen benchmark, the merged system is the best version of the p
 that unit tests never would.
 
 **Next:**
-- human labels: the blind 80-pair Djinni subset, then benchmark v1.1 / v2.1;
+- human labels: re-score v1 with the 120 blind human pairs (v1.1); one adjudication session on how the rubric reads
+  short real profiles, then re-grade the Djinni subset blind (v2.1);
 - repeated E15 runs for a pass rate per check, and a guard that refuses a final reply that recommends CVs but leaves
   the shortlist empty;
 - consented real CVs;
@@ -736,7 +764,7 @@ that unit tests never would.
 ```bash
 uv sync && docker compose up -d && (cd backend && uv run python -m app.rag.ingest)
 cd backend && export PYTHONHASHSEED=0 LLM_PROVIDER=claude_code
-uv run pytest                                    # 229 tests, no LLM or Docker needed
+uv run pytest                                    # 249 tests, no LLM or Docker needed
 export REFERENCE_DATE=2026-10-30                 # pins "Present" in CVs (v4.1)
 uv run python -m app.eval.benchmark verify       # the frozen benchmark is intact
 # full benchmark run: docs/BENCHMARK.md › Reproduce;  official table: python -m app.eval.benchmark report
