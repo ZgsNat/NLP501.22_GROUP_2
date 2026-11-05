@@ -36,6 +36,9 @@ def load(name: str = "ours") -> Bench:
     if name == "ours":
         from app.eval.run import gold
         return Bench("ours", list(load_dir("cvs")), list(load_dir("jds")), gold(), OUR_TRAPS)
+    if name == "djinni":
+        from app.eval import djinni
+        return Bench("djinni", djinni.cvs(), djinni.jds(), djinni.gold()[0], frozenset())
     if not (CODING_DIR / "gold.json").exists():
         raise SystemExit("coding benchmark missing: run `python -m app.eval.bench fetch` first")
     g = json.loads((CODING_DIR / "gold.json").read_text())
@@ -49,7 +52,6 @@ def load(name: str = "ours") -> Bench:
                  frozenset())
 
 
-CORPUS_DIR = get_settings().runtime_dir / "bench" / "coding_corpus"
 # The coding branch scripts HR's clarification answers as option indices (cv_agent/criteria/clarify.py); our agent
 # takes words, so each index is written out with the same meaning.
 HR_OPTIONS = {
@@ -67,28 +69,31 @@ HR_OPTIONS = {
 }
 
 
-def materialize() -> Path:
-    """Lay the coding benchmark out like data/ so the whole agent can run on it: DATA_DIR=<this dir>."""
+def materialize(name: str = "coding") -> Path:
+    """Lay a benchmark (coding or djinni) out like data/ so the whole agent can run on it: DATA_DIR=<this dir>."""
     import shutil
 
-    b = load("coding")
-    meta = {j["id"]: j for j in yaml.safe_load((CODING_DIR / "jds.yaml").read_text())}
+    b, out = load(name), get_settings().runtime_dir / "bench" / f"{name}_corpus"
+    meta = {j["id"]: j for j in yaml.safe_load((CODING_DIR / "jds.yaml").read_text())} if name == "coding" else {}
     for sub in ("cvs", "jds"):
-        (CORPUS_DIR / sub).mkdir(parents=True, exist_ok=True)
+        (out / sub).mkdir(parents=True, exist_ok=True)
     for d in b.cvs:
-        (CORPUS_DIR / "cvs" / f"{d.id}.md").write_text(f"---\nid: {d.id}\nheadline: ''\n---\n{d.text}\n", encoding="utf-8")
+        front = {"id": d.id, "headline": d.meta.get("headline", "") if name != "coding" else ""}
+        (out / "cvs" / f"{d.id}.md").write_text(
+            f"---\n{yaml.safe_dump(front, allow_unicode=True)}---\n{d.text}\n", encoding="utf-8")
     for d in b.jds:
-        answers = " ".join(HR_OPTIONS[q][i] for q, i in (meta[d.id].get("hr_answers") or {}).items() if q in HR_OPTIONS)
+        answers = " ".join(HR_OPTIONS[q][i] for q, i in (meta.get(d.id, {}).get("hr_answers") or {}).items()
+                           if q in HR_OPTIONS)
         front = {"id": d.id, "title": d.meta["title"], "company_profile": d.meta["company_profile"]}
         if answers:
             front["hr_answer"] = answers
-        (CORPUS_DIR / "jds" / f"{d.id}.md").write_text(
+        (out / "jds" / f"{d.id}.md").write_text(
             f"---\n{yaml.safe_dump(front, allow_unicode=True)}---\n{d.text}\n", encoding="utf-8")
     data = ROOT / "data"
     for f in ("criteria_profiles.yaml", "skills_taxonomy.yaml"):
-        shutil.copy(data / f, CORPUS_DIR / f)
-    shutil.copytree(data / "policies", CORPUS_DIR / "policies", dirs_exist_ok=True)
-    return CORPUS_DIR
+        shutil.copy(data / f, out / f)
+    shutil.copytree(data / "policies", out / "policies", dirs_exist_ok=True)
+    return out
 
 
 def fetch(ref: str = "origin/coding") -> None:
@@ -107,6 +112,6 @@ if __name__ == "__main__":
     if sys.argv[1:2] == ["fetch"]:
         fetch(*sys.argv[2:3])
     elif sys.argv[1:2] == ["materialize"]:
-        print(f"DATA_DIR={materialize()}")
+        print(f"DATA_DIR={materialize(*sys.argv[2:3])}")
     else:
         print(__doc__)

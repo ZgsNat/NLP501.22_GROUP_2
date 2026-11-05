@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Djinni · gán nhãn</title>
+<style>
+:root{--bg:#f6f5f1;--card:#fff;--ink:#1c1c1a;--mut:#6b6a64;--line:#e3e1da;--acc:#2f5bd3;--on:#e8eefc;
+  --g0:#c0392b;--g1:#d68910;--g2:#2e86c1;--g3:#1e8449;--warn:#fff4d6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141413;--card:#1f1f1d;--ink:#ecebe6;
+  --mut:#a3a29c;--line:#34332f;--acc:#7d9cf0;--on:#24304e;--warn:#3a3218}}
+:root[data-theme="dark"]{--bg:#141413;--card:#1f1f1d;--ink:#ecebe6;--mut:#a3a29c;--line:#34332f;--acc:#7d9cf0;--on:#24304e;--warn:#3a3218}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{position:sticky;top:0;z-index:2;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 16px;
+  background:var(--card);border-bottom:1px solid var(--line)}
+header b{font-size:16px}.mut{color:var(--mut)}.sp{flex:1}
+input,button,select,textarea{font:inherit;color:inherit}
+input,select,textarea{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
+button{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer}
+button:hover{border-color:var(--acc)}button:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+button.pri{background:var(--acc);border-color:var(--acc);color:#fff}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;width:160px}
+.bar i{display:block;height:100%;background:var(--acc)}
+main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;padding:12px 16px}
+@media (max-width:860px){main{grid-template-columns:1fr}}
+section{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px;max-height:58vh;overflow:auto}
+h2{font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin:0 0 6px;color:var(--mut)}
+h3{margin:0 0 8px;font-size:16px}
+pre{white-space:pre-wrap;word-break:break-word;font:14px/1.5 ui-monospace,Consolas,monospace;margin:0}
+.panel{margin:0 16px 12px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.grades{display:flex;flex-wrap:wrap;gap:8px}
+.grades button{min-width:200px;text-align:left;border-width:2px}
+.grades button.on{background:var(--on);border-color:var(--acc);font-weight:600}
+.k{display:inline-block;min-width:20px;padding:0 5px;border:1px solid var(--line);border-radius:4px;text-align:center;
+  font:12px ui-monospace,monospace;margin-right:6px}
+.hint{background:var(--warn);border-radius:6px;padding:8px 10px;margin-top:10px}
+.chip{display:inline-block;padding:1px 8px;border-radius:10px;color:#fff;font-size:12px;font-weight:600}
+.c0{background:var(--g0)}.c1{background:var(--g1)}.c2{background:var(--g2)}.c3{background:var(--g3)}
+details summary{cursor:pointer;color:var(--mut)}
+textarea{width:100%;min-height:44px;margin-top:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+</style>
+</head>
+<body>
+<header>
+  <b>Djinni · gán nhãn CV–JD</b>
+  <label class="mut">Người gán nhãn <input id="who" placeholder="tên của bạn" size="12"></label>
+  <label class="mut">Chế độ
+    <select id="mode">
+      <option value="blind">Mù: không hiện gợi ý của Opus</option>
+      <option value="review">Duyệt: hiện gợi ý của Opus</option>
+    </select></label>
+  <label class="mut">Lọc
+    <select id="filter">
+      <option value="all">Tất cả cặp</option>
+      <option value="todo">Chưa gán nhãn</option>
+      <option value="diff">Lệch với Opus (sau khi gán)</option>
+    </select></label>
+  <span class="sp"></span>
+  <span class="mut" id="prog"></span><span class="bar"><i id="barfill"></i></span>
+  <button id="prev" title="Phím ←">← Trước</button><button id="next" title="Phím →">Sau →</button>
+  <button class="pri" id="export">Xuất nhãn (JSON)</button>
+  <label class="mut" style="cursor:pointer">Tiếp tục từ file <input id="resume" type="file" accept=".json" style="width:150px"></label>
+</header>
+
+<div class="panel" id="pairhead"></div>
+<main>
+  <section><h2>Mô tả công việc (JD)</h2><h3 id="jdtitle"></h3><pre id="jd"></pre></section>
+  <section><h2>CV ứng viên</h2><pre id="cv"></pre></section>
+</main>
+<div class="panel">
+  <div class="grades" id="grades"></div>
+  <div id="hint"></div>
+  <textarea id="note" placeholder="Ghi chú ngắn (bắt buộc nên có khi chọn 1 hoặc 2): bằng chứng trong CV"></textarea>
+  <details style="margin-top:8px"><summary>Thang điểm và quy tắc</summary><pre id="rubric" style="margin-top:6px"></pre>
+    <p class="mut">Phím tắt: <span class="k">0</span>–<span class="k">3</span> chọn điểm và sang cặp sau ·
+      <span class="k">←</span><span class="k">→</span> chuyển cặp · <span class="k">N</span> ghi chú.
+      Tiến độ tự lưu trong trình duyệt theo tên người gán nhãn; vẫn nên xuất file thường xuyên.</p></details>
+</div>
+
+<script>
+const DATA = __DATA__;
+const GRADES = [["0", "Không phù hợp: thiếu kỹ năng bắt buộc, hoặc chỉ liệt kê / chỉ đang học"],
+                ["1", "Yếu hoặc chỉ gần đúng"], ["2", "Đáng gọi phỏng vấn sơ bộ"], ["3", "Rất phù hợp, có bằng chứng làm thật"]];
+const $ = (id) => document.getElementById(id);
+const key = (p) => p.jd + "|" + p.cv;
+const store = {get(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}},
+               set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let st = {who: store.get("djinni.who") || "", labels: {}, i: 0};
+function load(){ st.labels = (store.get("djinni.labels." + st.who) || {}); }
+function save(){ store.set("djinni.who", st.who); store.set("djinni.labels." + st.who, st.labels); }
+function order(){
+  const f = $("filter").value;
+  return DATA.pairs.filter((p) => {
+    const l = st.labels[key(p)], m = DATA.model[key(p)];
+    if (f === "todo") return !l;
+    if (f === "diff") return l && m && l.grade !== m.grade;
+    return true; });
+}
+function chip(g){ return `<span class="chip c${g}">${g}</span>`; }
+function esc(s){ const d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
+function show(){
+  const list = order();
+  const done = DATA.pairs.filter((p) => st.labels[key(p)]).length;
+  $("prog").textContent = `${done}/${DATA.pairs.length} đã gán`;
+  $("barfill").style.width = (100 * done / DATA.pairs.length) + "%";
+  if (!list.length){ $("pairhead").textContent = "Không còn cặp nào theo bộ lọc này."; return; }
+  st.i = Math.max(0, Math.min(st.i, list.length - 1));
+  const p = list[st.i], jd = DATA.jds[p.jd], l = st.labels[key(p)];
+  $("pairhead").innerHTML = `<b>Cặp ${st.i + 1}/${list.length}</b> <span class="mut">· ${esc(p.jd)} × ${esc(p.cv)}</span>`;
+  $("jdtitle").textContent = jd.title; $("jd").textContent = jd.text; $("cv").textContent = DATA.cvs[p.cv];
+  $("grades").innerHTML = GRADES.map(([g, t]) =>
+    `<button data-g="${g}" class="${l && String(l.grade) === g ? "on" : ""}"><span class="k">${g}</span>${chip(g)} ${t}</button>`).join("");
+  $("note").value = l ? (l.note || "") : "";
+  const m = DATA.model[key(p)];
+  $("hint").innerHTML = ($("mode").value === "review" && m)
+    ? `<div class="hint"><b>Gợi ý của Opus 5.5:</b> ${chip(m.grade)} ${esc(m.note || "")}<br><span class="mut">Đây là nhãn của LLM. Chỉ giữ nếu bạn đồng ý sau khi tự đọc CV.</span></div>`
+    : "";
+  $("grades").querySelectorAll("button").forEach((b) => b.onclick = () => grade(Number(b.dataset.g)));
+}
+function grade(g){
+  const p = order()[st.i]; if (!p) return;
+  if (!st.who){ alert("Nhập tên người gán nhãn trước."); $("who").focus(); return; }
+  st.labels[key(p)] = {jd: p.jd, cv: p.cv, grade: g, note: $("note").value.trim(),
+                       saw_model: $("mode").value === "review", at: new Date().toISOString()};
+  save();
+  if ($("filter").value === "all") st.i += 1;
+  show();
+}
+$("note").addEventListener("change", () => { const p = order()[st.i]; const l = p && st.labels[key(p)];
+  if (l){ l.note = $("note").value.trim(); save(); } });
+$("who").value = st.who; load();
+$("who").addEventListener("change", () => { st.who = $("who").value.trim(); load(); save(); show(); });
+$("mode").addEventListener("change", show); $("filter").addEventListener("change", () => { st.i = 0; show(); });
+$("prev").onclick = () => { st.i -= 1; show(); }; $("next").onclick = () => { st.i += 1; show(); };
+document.addEventListener("keydown", (e) => {
+  if (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT") return;
+  if ("0123".includes(e.key) && e.key.length === 1) grade(Number(e.key));
+  else if (e.key === "ArrowRight"){ st.i += 1; show(); } else if (e.key === "ArrowLeft"){ st.i -= 1; show(); }
+  else if (e.key.toLowerCase() === "n"){ e.preventDefault(); $("note").focus(); }
+});
+$("export").onclick = () => {
+  if (!st.who){ alert("Nhập tên người gán nhãn trước."); return; }
+  const labels = Object.values(st.labels);
+  const out = {annotator: "human " + st.who, source: "review.html", pool: DATA.pool,
+               saw_model: labels.filter((l) => l.saw_model).length, labels};
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 1)], {type: "application/json"}));
+  a.download = `human_djinni_${st.who.toLowerCase().replace(/\W+/g, "_")}.json`; a.click();
+};
+$("resume").onchange = async (e) => {
+  const f = e.target.files[0]; if (!f) return;
+  try { const d = JSON.parse(await f.text());
+    st.who = d.annotator.replace(/^human /, ""); $("who").value = st.who;
+    st.labels = Object.fromEntries(d.labels.map((l) => [l.jd + "|" + l.cv, l])); save(); show();
+  } catch (err) { alert("File không đọc được: " + err.message); }
+};
+$("rubric").textContent = DATA.rubric;
+show();
+</script>
+</body>
+</html>

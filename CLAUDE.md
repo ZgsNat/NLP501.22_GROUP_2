@@ -35,6 +35,11 @@ uv run pytest                                            # tests (no LLM, no Doc
 cd backend && uv run python -m app.eval.run retrieval    # B0–B3 + chunking ablation (minutes); `agent` = LLM systems; `report`
 # eval numbers in docs/ are produced with PYTHONHASHSEED=0 (set ordering breaks retrieval ties) and LLM_PROVIDER=claude_code
 cd backend && uv run python -m app.eval.benchmark report    # THE official table: NLP501-bench v1 (docs/BENCHMARK.md); `verify` checks the frozen inputs
+cd backend && uv run python -m app.eval.benchmark_v2 report # v2 = v1 + 8 real Djinni JDs in test (18 test JDs); `freeze`, `verify`
+cd backend && uv run python -m app.eval.djinni fetch     # real-data layer to .runtime; `silver`, `import labels_A.xlsx labels_B.xlsx`, `score` (κ)
+cd backend && uv run python -m app.eval.nlp_ablation     # E19: nDCG cost of switching off hedge scope / evidence / depth cue / dated years
+cd backend && uv run --group ml python -m app.eval.finetune train   # E20: cross-encoder fine-tuned on dev JDs; `score` = test + Djinni
+cd backend && uv run python -m app.eval.token_cost       # E21: tokens of B4 / P6 vs E-every (LLM on every candidate), after `run agent --systems B4,P6,E-every`
 cd backend && uv run python -m app.eval.extraction       # RQ1: CV/JD extraction F1 + redaction leaks vs the coding branch's generator truth
 cd backend && uv run python -m app.eval.agentic          # E15: P7 on HR tasks (behaviour checks, refusals, tokens, nDCG vs P6; dev JDs)
 cd backend && uv run python -m app.eval.llm_rank         # E18: controlled LLM ranking of the shortlist, dev JDs, both benchmarks

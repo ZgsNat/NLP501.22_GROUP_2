@@ -28,6 +28,10 @@ dev = [
     "pytest>=9.2.0",
     "pytest-asyncio>=1.4.1",
 ]
+ml = [
+    "sentence-transformers>=3.0",
+    "torch>=2.2",
+]
 ocr = [
     "paddleocr>=3.4.1",
     "paddlepaddle>=3.3.1",
