@@ -172,7 +172,7 @@ keyword-only and dense-only, and the LLM adds on top at a cost. Both match the l
 | 6 | Held-out injection attack set | Current 10/10 is on a small set | anyone | `app.eval.injection` |
 | 7 | ~~Token-saving comparison~~ done (E21): −47% (P6) / −67% (B4) | | Thịnh | `app.eval.token_cost` |
 | 8 | ~~Depth cues without diacritics~~ done (v4.2): unaccented Vietnamese CVs 0.0% → 87.5% depth accuracy, = accented; no ranking change | | anyone | `nlp/extract.py`, `EXTRACTION_RESULTS.md` |
-| 9 | Low-quality CV extraction (F1 0.19) | Weakest NLP slice | anyone | `app.eval.extraction` |
+| 9 | Low-quality CV extraction (parser F1 0.157) | Garbled CVs are N12's job by design. Measured (v4.2): even if the LLM proposed every near-miss N12's search finds, `verify` keeps 11/45 gold tools: F1 0.157 → 0.367 at most. The generator replaces ~40% of letters; loosening the similarity bar costs precision on clean CVs. Next step would be a live N12 run on these 7 CVs | anyone | `app.eval.extraction`, `agent/investigate.py` |
 
 Rules when contributing: tune on dev JDs only, report test once; a change is "better" only when the eval says so,
 and negative results are reported too; every new LLM output needs a Q row; generated `*_RESULTS.md` files are never

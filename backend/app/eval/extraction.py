@@ -16,6 +16,7 @@ from collections import defaultdict
 
 import yaml
 
+from app.agent import investigate as inv
 from app.config import ROOT
 from app.eval.bench import CODING_DIR
 from app.nlp import quality
@@ -61,7 +62,15 @@ def cv_extraction() -> dict:
             k = to_key(t)
             gold.add(k) if k else gaps.__setitem__(t, gaps[t] + 1)
         pred = {k for k in p.skills if k in vocab}
-        for sl in ("all", x["lang_cv"], "low_quality" if x["low_quality"] else "clean"):
+        slices = ["all", x["lang_cv"], "low_quality" if x["low_quality"] else "clean"]
+        if x["low_quality"]:  # what N12's code path can recover: every near-miss line proposed, then verified
+            near = inv.near_misses(p, sorted(vocab - pred))
+            recovered = {k for k, line in near.items() if inv.verify(p, k, line, {k})[0]}
+            c = counts["low_quality + N12 search (upper bound)"]
+            c[0] += len((pred | recovered) & gold)
+            c[1] += len((pred | recovered) - gold)
+            c[2] += len(gold - pred - recovered)
+        for sl in slices:
             c = counts[sl]
             c[0] += len(pred & gold)
             c[1] += len(pred - gold)
@@ -152,8 +161,10 @@ def render(cv: dict, jd: dict) -> str:
              "numbers are optimistic for this set. Tools are compared as taxonomy keys over the "
              "generator's vocabulary (a closed-vocabulary evaluation).", "",
              "## CV → facts (deterministic NLP pipeline, no LLM)", "",
+             "Garbled CVs are left to the investigator (N12) by design; its row is an upper bound: every near-miss line "
+             "its search finds is proposed (the LLM's job) and kept only if `investigate.verify` accepts it.", "",
              "| Slice | tool precision | tool recall | tool F1 | TP / FP / FN |", "|---|---|---|---|---|"]
-    for sl in ("all", "en", "vi", "clean", "low_quality"):
+    for sl in ("all", "en", "vi", "clean", "low_quality", "low_quality + N12 search (upper bound)"):
         if sl in cv["counts"]:
             tp, fp, fn = cv["counts"][sl]
             p, r, f1 = prf(tp, fp, fn)

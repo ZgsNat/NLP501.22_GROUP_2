@@ -4,6 +4,8 @@ Gold: the `coding` branch generator's latent facts for 200 synthetic CVs and its
 
 ## CV → facts (deterministic NLP pipeline, no LLM)
 
+Garbled CVs are left to the investigator (N12) by design; its row is an upper bound: every near-miss line its search finds is proposed (the LLM's job) and kept only if `investigate.verify` accepts it.
+
 | Slice | tool precision | tool recall | tool F1 | TP / FP / FN |
 |---|---|---|---|---|
 | all | 0.986 | 0.970 | 0.978 | 1307 / 18 / 41 |
@@ -11,6 +13,7 @@ Gold: the `coding` branch generator's latent facts for 200 synthetic CVs and its
 | vi | 0.966 | 0.972 | 0.969 | 488 / 17 / 14 |
 | clean | 0.988 | 1.000 | 0.994 | 1303 / 16 / 0 |
 | low_quality | 0.667 | 0.089 | 0.157 | 4 / 2 / 41 |
+| low_quality + N12 search (upper bound) | 0.733 | 0.244 | 0.367 | 11 / 4 / 34 |
 
 | Fact | result |
 |---|---|
