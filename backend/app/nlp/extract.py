@@ -27,33 +27,36 @@ PRE_HEDGE = re.compile(
     r"proof of concept|"
     r"(?:our|the|other) (?:developers|devs|dev team)|a colleague|colleagues|"  # someone else did the work
     r"tìm hiểu|đang học|tự học|biết cơ bản|làm quen|chưa có kinh nghiệm|chưa (?:sử dụng|làm|thực hành)|"
-    r"kiến thức cơ bản|khó?a (?:học|đào tạo)|khoá (?:học|đào tạo))"
+    r"kiến thức cơ bản|khó?a (?:học|đào tạo)|khoá (?:học|đào tạo)|"
+    # the same cues typed without diacritics
+    r"tim hieu|dang hoc|tu hoc|biet co ban|lam quen|chua co kinh nghiem|chua (?:su dung|lam|thuc hanh)|"
+    r"kien thuc co ban|khoa (?:hoc|dao tao))"
 )
 # After the term, within its clause: "(basic)", "- beginner", or a strong cue anywhere ("Cypress: following a
 # beginner course"). Plain "basic" further away is not a hedge ("Selenium tests covering basic flows").
 POST_HEDGE = re.compile(
     r"^\s*(?:\([^)]*\b(?:basic|beginner|learning|familiar|not used|no production|training|course|theory|cơ bản|"
-    r"đang học|tìm hiểu)\b|[-–:]\s*(?:basic|beginner|learning)\b|(?:basic|beginner)\b)"
+    r"đang học|tìm hiểu|co ban|dang hoc|tim hieu)\b|[-–:]\s*(?:basic|beginner|learning)\b|(?:basic|beginner)\b)"
     r"|\b(?:beginner|course|tutorial|not used|no hands-on|no (?:production|project)|currently learning|"
     r"chưa (?:dùng|sử dụng|tham gia|thực hành)|khóa học|đang học)"
 )
 SCOPE_BREAK = re.compile(r"\b(?:but|however|whereas|nhưng|tuy nhiên)\b")
-AUTOMATION = re.compile(r"automat|\bscripts?\b|framework|tự động")
+AUTOMATION = re.compile(r"automat|\bscripts?\b|framework|tự động|\btu dong\b")
 
 # Depth cues are matched only at the START of a clause, i.e. on the candidate's own action verb. That is the
 # difference between "Executed the existing automated suite" (L1: "automated" is an adjective) and "Automated 80
 # cases" (L2), or between "Our developers run Cypress tests" (not the candidate) and "Ran the Cypress suite" (L1).
 _OBJ = r"[^.;]{0,90}?"
 DEPTH_CUES = {  # checked from L4 down; the first level with a match wins
-    4: rf"(?:led|lead|own|defin|drove|driv|design|buil|creat|architect|set up|introduc|establish|roll|xây dựng|thiết kế)"
+    4: rf"(?:led|lead|own|defin|drove|driv|design|buil|creat|architect|set up|introduc|establish|roll|xây dựng|thiết kế|xay dung|thiet ke)"
        rf"\w*\b{_OBJ}(?:(?:test|testing|qa|quality|automation)\s+(?:strategy|architecture|platform|roadmap|guild)|"
        rf"(?:across|for|by|to)\s+(?:\d+|two|three|four|five|six|multiple|several|all|other)\s+(?:\w+\s+)?"
-       rf"(?:teams|squads|products|tribes)|quality gates?|release gates?|chiến lược kiểm thử|kiến trúc kiểm thử)",
-    3: rf"(?:design|buil|creat|architect|set up|introduc|develop|implement|xây dựng|thiết kế)\w*\b{_OBJ}"
+       rf"(?:teams|squads|products|tribes)|quality gates?|release gates?|chiến lược kiểm thử|kiến trúc kiểm thử|chien luoc kiem thu|kien truc kiem thu)",
+    3: rf"(?:design|buil|creat|architect|set up|introduc|develop|implement|xây dựng|thiết kế|xay dung|thiet ke)\w*\b{_OBJ}"
        rf"(?:framework|harness|page object|base (?:layer|classes)|test platform|shared librar|khung)",
-    2: rf"(?:wr(?:ote|ite|itten)|author|automat|develop|implement|creat|buil|add|cover|script|migrat|viết|tự động hóa)"
-       rf"\w*\b{_OBJ}\b(?:tests?|scripts?|cases|suites?|checks|scenarios|kịch bản)\b",
-    1: rf"(?:execut|ran\b|run|maintain|updat|trigger|monitor|chạy)\w*\b{_OBJ}\b(?:tests?|scripts?|suites?|regression|"
+    2: rf"(?:wr(?:ote|ite|itten)|author|automat|develop|implement|creat|buil|add|cover|script|migrat|viết|tự động hóa|tự động hoá|viet(?=\s)|tu dong hoa)"
+       rf"\w*\b{_OBJ}\b(?:tests?|scripts?|cases|suites?|checks|scenarios|kịch bản|kich ban)\b",
+    1: rf"(?:execut|ran\b|run|maintain|updat|trigger|monitor|chạy|chay(?=\s))\w*\b{_OBJ}\b(?:tests?|scripts?|suites?|regression|"
        rf"jobs?|locators|test case)",
 }
 DEPTH_RX = {lv: re.compile(rx) for lv, rx in DEPTH_CUES.items()}

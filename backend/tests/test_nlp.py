@@ -347,3 +347,16 @@ def test_jd_without_diacritics_parses_like_the_accented_one():
     for k in ("must_have", "nice_to_have", "min_years", "languages", "test_types", "substitutes", "foreign_languages"):
         assert a[k] == b[k], k
     # depth_level is not compared: the depth lexicon (nlp/extract.py) has accented Vietnamese verbs only
+
+
+def test_depth_and_hedges_read_vietnamese_typed_without_diacritics():
+    from app.nlp.extract import _deepest
+
+    for accented, folded, level in [
+        ("Xây dựng framework kiểm thử tự động với Playwright", "Xay dung framework kiem thu tu dong voi Playwright", 3),
+        ("Viết kịch bản kiểm thử tự động bằng Selenium", "Viet kich ban kiem thu tu dong bang Selenium", 2),
+        ("Chạy bộ regression tự động trên Jenkins", "Chay bo regression tu dong tren Jenkins", 1),
+    ]:
+        assert _deepest([accented])[0] == _deepest([folded])[0] == level, folded
+    assert _deepest(["Dang hoc viet kich ban Selenium tu dong"])[0] == 0  # hedged: learning, not doing
+    assert _deepest(["Viettel test cases were executed by the team"])[0] != 2  # "viet" only as a word
