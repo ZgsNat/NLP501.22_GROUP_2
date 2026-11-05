@@ -201,8 +201,10 @@ def save(name: str, per_jd: dict, bench: str = "ours") -> None:
 
 # ── report ────────────────────────────────────────────────────────────────────────────────────────────
 def score_system(per_jd: dict, g: dict, traps: frozenset[str] = OUR_TRAPS) -> dict:
-    jds = sorted(per_jd)
-    order = lambda jd: per_jd[jd] if isinstance(per_jd[jd], list) else per_jd[jd]["ranking"]  # noqa: E731
+    jds = sorted(j for j in per_jd if j in g)
+    # judged-only (condensed list): a pooled benchmark (djinni) leaves pairs unlabelled; they are skipped, not scored 0.
+    # ours / coding label every CV of a JD, so for them this changes nothing.
+    order = lambda jd: [c for c in (per_jd[jd] if isinstance(per_jd[jd], list) else per_jd[jd]["ranking"]) if c in g[jd]]  # noqa: E731
     m = {"ndcg@10": [metrics.ndcg(order(j), g[j], 10) for j in jds],
          "ndcg@5": [metrics.ndcg(order(j), g[j], 5) for j in jds],
          "p@5": [metrics.precision(order(j), g[j], 5) for j in jds],
@@ -229,6 +231,16 @@ def report(bench: str = "ours") -> str:
                   f"quadratic-weighted κ = {metrics.weighted_kappa(flat_a, flat_b):.3f}. Gold = mean of the two. "
                   "These are **silver** labels until human annotators check them (docs/EVAL.md). The second "
                   "benchmark is in [EVAL_RESULTS_coding.md](EVAL_RESULTS_coding.md).", ""]
+    elif bench == "djinni":
+        from app.eval.bench import agreement, djinni_labels
+
+        ag = agreement(djinni_labels())
+        kappa = (f"{ag['pairs']} pairs graded by both: exact {ag['exact']:.1%}, quadratic-weighted κ = {ag['kappa']:.3f}"
+                 if ag["pairs"] else "only one annotator so far: no agreement yet")
+        lines += [f"Benchmark `djinni`: public data, the Djinni Recruitment Dataset (UNLP 2024, MIT). {len(b.jds)} English "
+                  f"QA Automation JDs, {len(b.cvs)} real anonymised profiles, TREC-pooled pairs graded 0–3 by **human** "
+                  f"annotators ({kappa}). Gold = mean grade. Judged-only metrics. Every JD is test: nothing was tuned "
+                  "on it.", ""]
     else:
         lines += [f"Benchmark `{bench}`: the `coding` branch's synthetic set ({len(b.cvs)} template CVs, {len(b.jds)} "
                   "JDs, gold from its own annotation rubric; see app/eval/bench.py). Our pipeline was not developed "
@@ -352,7 +364,7 @@ def main() -> None:
     ap.add_argument("--dense", default=get_settings().embed_dense_model)
     ap.add_argument("--systems", default="P6,B4,A1,A2,A3,A4")
     ap.add_argument("--jds", default="")
-    ap.add_argument("--bench", default="ours", choices=["ours", "coding"])
+    ap.add_argument("--bench", default="ours", choices=["ours", "coding", "djinni"])
     ap.add_argument("--model", help='agent only: "<provider>:<model>" for both roles, e.g. claude_code:claude-sonnet-5-5')
     a = ap.parse_args()
     cache.enable(get_settings().runtime_dir / "llm_cache.sqlite")
@@ -362,9 +374,9 @@ def main() -> None:
             save(name + suffix, per_jd, a.bench)
             print(f"saved {name + suffix}")
     elif a.what == "agent":
-        if (a.bench == "coding") != (get_settings().data_dir != ROOT / "data"):
-            raise SystemExit("--bench coding runs on the materialized corpus: DATA_DIR=$(python -m app.eval.bench "
-                             "materialize), re-ingest, then rerun; --bench ours needs the default data/")
+        if (a.bench != "ours") != (get_settings().data_dir != ROOT / "data"):
+            raise SystemExit(f"--bench {a.bench} runs on the materialized corpus: DATA_DIR=$(python -m app.eval.bench "
+                             f"materialize {a.bench}), re-ingest, then rerun; --bench ours needs the default data/")
         asyncio.run(run_agents(a.systems.split(","), [d for d in load_dir("jds") if not a.jds or d.id in a.jds.split(",")],
                                a.model, a.bench))
     else:
