@@ -4,13 +4,13 @@ Model: `claude_code:claude-sonnet-5-5`. Pool: data/cvs + data/goal_suite/cvs (56
 
 | case | checks passed | shortlist | goal check (code) | limits declared | tools | refusals | tokens |
 |---|---|---|---|---|---|---|---|
-| ai_goal | 7/7 | CV-101 | count: 1 of the 5 candidates HR asked for | 2 | parse_jd → define_concept → formalize_goal → ask_hr → screen → explain → check_goal → respond_to_hr | 0 | 103,506 |
-| feasible | 5/5 | CV-001, CV-018, CV-031 | met | 0 | parse_jd → formalize_goal → screen → rank_shortlist → explain → check_goal → respond_to_hr | 0 | 139,015 |
-| impossible_skills | 6/6 | CV-026 | count: 1 of the 5 candidates HR asked for | 1 | parse_jd → formalize_goal → ask_hr → screen → explain → check_goal → respond_to_hr | 0 | 103,330 |
-| vague_ai | 6/6 | CV-002, CV-042, CV-003, CV-037, CV-026 | bonus ai_in_testing: no shortlisted candidate shows it | 1 | parse_jd → define_concept → formalize_goal → ask_hr → screen → rank_shortlist → explain → check_goal → get_candidate → respond_to_hr | 1 | 244,052 |
-| exclude | 4/4 | CV-018, CV-022, CV-031, CV-038 | met | 0 | parse_jd → define_concept → formalize_goal → screen → rank_shortlist → check_goal → explain → respond_to_hr | 0 | 165,117 |
+| ai_goal | 7/7 | CV-101 | count: 1 of the 5 candidates HR asked for | 3 | parse_jd → define_concept → formalize_goal → hr_clarification → ask_hr → screen → explain → check_goal → respond_to_hr | 0 | 101,480 |
+| feasible | 4/5 | CV-018, CV-033, CV-001 | met | 1 | parse_jd → formalize_goal → hr_clarification → ask_hr → screen → rank_shortlist → explain → check_goal → respond_to_hr | 1 | 170,729 |
+| impossible_skills | 6/6 | CV-026 | count: 1 of the 5 candidates HR asked for | 1 | parse_jd → formalize_goal → hr_clarification → ask_hr → screen → explain → check_goal → respond_to_hr | 0 | 87,703 |
+| vague_ai | 6/6 | CV-003, CV-042, CV-002, CV-037, CV-026 | bonus ai_in_testing: no shortlisted candidate shows it; open questions not settled with HR: ['Which AI skills count beyond the proposed terms (e.g. AI-assisted test generation, self-healing locators, LLM evaluation)?'] | 1 | parse_jd → define_concept → formalize_goal → hr_clarification → ask_hr → screen → rank_shortlist → explain → check_goal → get_candidate → respond_to_hr | 0 | 184,760 |
+| exclude | 4/4 | CV-018, CV-031, CV-022, CV-038 | met | 0 | parse_jd → define_concept → formalize_goal → hr_clarification → ask_hr → screen → rank_shortlist → explain → check_goal → respond_to_hr | 1 | 230,855 |
 
-**28/28 behaviour checks passed.**
+**27/28 behaviour checks passed.**
 
 ## ai_goal
 
@@ -26,48 +26,47 @@ Goal: “5 CV, trong đó yêu cầu selenium là bắt buộc, playwright là c
 
 Answer to HR:
 
-> Kết quả: chỉ có 1 CV đạt đủ yêu cầu bắt buộc (selenium + java + API testing + AI trong automation) và được xếp hạng: CV-101. Bạn đã chấp nhận lấy ít hơn 5 người, nên tôi dừng ở đây.
+> Chỉ có 1 CV đáp ứng đủ tất cả must-have (Selenium, Java, API testing, AI trong automation). Bạn đã chấp nhận lấy ít hơn 5, nên tôi chỉ đề xuất CV-101.
 > 
-> CV-101: Java dùng trong thiết kế framework và script qua hai vị trí trong sáu năm; Selenium/Java/TestNG với POM chạy trên Jenkins mỗi merge request; RestAssured cho API test dịch vụ giỏ hàng và thanh toán; dùng GitHub Copilot và prompt LLM nội bộ để sinh test case, sau đó tự động hóa 300 test. Có ISTQB Foundation. Điểm yếu: chưa có bằng chứng về quality gate chặn release, Docker, Selenium Grid, hay audit traceability; nền tảng là thương mại điện tử, không phải ngân hàng hay lĩnh vực được quản lý chặt.
+> CV-101: đã kiểm chứng bằng công cụ: dùng GitHub Copilot và LLM prompt library để sinh test case từ user story, rồi tự động hóa 300 test. Có Selenium/Java/TestNG framework với POM chạy trên Jenkins, RestAssured cho API test của cart và payment, có Playwright, có ISTQB Foundation. Điểm yếu theo đánh giá: nền tảng e-commerce chứ không phải ngân hàng hay ngành được quản lý; không có bằng chứng về quality gate chặt, Docker, Selenium Grid, hay audit traceability; không rõ quy mô test.
 > 
-> Lưu ý về số liệu: bảng khả thi cho thấy 2 CV đáp ứng mọi must-have, nhưng screen chỉ xếp hạng 1 CV. CV còn lại đã bị loại bởi luật sàng lọc của screen (không phải do lỗi đọc CV), và tôi chưa kiểm tra lý do cụ thể. Nếu bạn muốn, tôi có thể kiểm tra CV đó.
-> 
-> Nếu bạn muốn đủ 5 người, cần nới một must-have. Nới 'AI là bắt buộc' sẽ mở rộng nhóm ứng viên nhiều nhất. Nới API testing hoặc Java cho ra rất ít người thêm. Bạn chọn hướng nào?
+> Trong pool 56 CV có 5 CV có AI trong testing, nhưng 4 CV còn lại thiếu ít nhất một must-have khác (tôi chưa kiểm tra CV nào thiếu gì). Nếu bạn hạ AI xuống điểm cộng lớn (bonus), khoảng 17 CV đủ điều kiện và tôi có thể xếp hạng lại 5 người. Hoặc tôi có thể liệt kê 4 CV AI còn lại kèm must-have nào họ thiếu, để bạn quyết định.
 > 
 > Goal check (by code):
 > - must selenium: 1/1
-> - nice playwright: 1/1
 > - must ai_in_testing: 1/1
+> - nice playwright: 1/1
 > - bonus ai_in_testing: 1/1
 > - not met: count: 1 of the 5 candidates HR asked for
-> - limit: Mục tiêu 5 CV: chỉ đạt 1 CV (CV-101). Lý do: trong pool 56 CV, chỉ 1 CV xếp hạng đáp ứng đủ các must-have, và HR đã chấp nhận lấy ít hơn. Có thể nới AI hoặc API testing để có thêm ứng viên.
-> - limit: Một CV khác đáp ứng mọi must-have theo bảng khả thi nhưng screen loại nó; chưa kiểm tra lý do. Có thể kiểm tra nếu HR muốn.
+> - limit: Chỉ đạt 1/5 ứng viên bạn yêu cầu: chỉ CV-101 đủ mọi must-have (Selenium + Java + API testing + AI trong automation). Nguyên nhân: AI là bottleneck, chỉ 5 CV có AI trong testing.
+> - limit: Muốn đủ 5 người: hạ 'AI là bắt buộc' thành điểm cộng lớn (khoảng 17 CV đủ điều kiện), hoặc chấp nhận CV thiếu một must-have khác.
+> - limit: CV-101 chưa có bằng chứng về nền tảng ngân hàng/thanh toán được quản lý, quality gate, Docker hay Selenium Grid.
 
 ## feasible
 
 Goal: “Top 3 candidates; Selenium and Java are required.”
 
 - ✅ formalized the goal
-- ✅ asked HR before ranking
+- ❌ asked HR before ranking
 - ✅ recommended only CVs with HR's must-haves
 - ✅ shortlist within HR's count
 - ✅ within budget
+- refused: Refused screen: settle the open questions with HR first (ask_hr): ['Is GitLab CI acceptable in place of Jenkins?', 'Are RestAssured and Postman both needed, or either one?']
 
 Answer to HR:
 
-> Top 3 for the Senior Automation Test Engineer role, all with Selenium and Java as required. The pool has 56 CVs and 17 meet both must-haves, so the goal was feasible.
+> Top 3 for the Senior Automation Test Engineer role. All three meet your must-haves (Selenium and Java), confirmed by check_goal. The pool has 17 candidates who meet every JD must-have, so the goal was feasible.
 > 
-> 1. CV-001: nine years in banking and payments. Selenium 4 + Java + TestNG framework, 600+ RestAssured payment API tests as a Jenkins merge gate, Selenium Grid on Docker, ISTQB Foundation and Advanced. No GitLab CI or performance evidence.
-> 2. CV-018: twelve years in banking and core banking. Java/Selenium/RestAssured/Cucumber platform, GitLab CI quality gates, Kubernetes grid, Pact contract testing, audit-ready evidence, ISTQB Foundation and Advanced. The CV never names 'api testing' in those words, but RestAssured and Pact cover it.
-> 3. CV-031: banking and payments Selenium + Java POM framework on a Docker Grid, RestAssured API suites as a Jenkins gate, traceability matrix, ISTQB Foundation. The CV is in Vietnamese and does not show English, which the JD's nice-to-have asks for.
+> 1. CV-018: Strongest fit. 12 years in banking and core banking, Java/Selenium/RestAssured platform shared across many squads, GitLab CI quality gates that block production promotions, Pact contract testing, and audit-ready test evidence. ISTQB Foundation and Advanced Test Automation Engineer. Rated L4 on automation depth.
+> 2. CV-033: Banking Selenium+Java+TestNG framework with POM, about 200 RestAssured tests for loan and account APIs, and RestAssured tests run in GitLab CI merge checks. Mentoring and audit evidence are present, and ISTQB Foundation and Advanced are listed. Unclear whether releases are blocked by quality gates. Rated L3.
+> 3. CV-001: Banking and payments Selenium+Java framework with Grid on Docker, 600+ RestAssured tests as a Jenkins merge gate, and flaky-test control. ISTQB Advanced. Rated L3.
 > 
-> Reserve: CV-033 (banking, Selenium/Java/TestNG on Grid, RestAssured, GitLab CI, ISTQB Advanced). It is a close fourth and is the next pick if CV-031's English matters to you.
-> 
-> Open points from the JD that could change the ranking: the JD names both RestAssured and Postman, and both Jenkins and GitLab CI. I counted RestAssured and Jenkins as the match. Mobile and performance testing are not in the requirements, so I did not score them.
+> Caveats to probe at interview: CV-001 shows Jenkins, not GitLab CI, and the JD now lists GitLab CI as a must-have. CV-033 is unclear on quality gates. CV-001's CV shows no performance or contract testing. Runners-up are CV-031 (5.7 years, Jenkins) and CV-038 (strong API and GitLab CI, but limited UI Selenium depth).
 > 
 > Goal check (by code):
 > - must selenium: 3/3
 > - must java: 3/3
+> - limit: CV-001 has no evidence of GitLab CI, which the JD now lists as a must-have alongside Jenkins. HR could accept Jenkins experience or confirm the gap at interview.
 
 ## impossible_skills
 
@@ -82,21 +81,25 @@ Goal: “I need 5 candidates who must know both Cypress and Appium.”
 
 Answer to HR:
 
-> Only one CV in the pool of 56 meets every must-have, so I can give you 1 candidate, not 5. You accepted fewer candidates, so I kept all of your requirements.
+> Only one CV in the pool of 56 meets every must-have you set: Cypress, Appium, Playwright, TypeScript and API testing. You asked for 5 and said fewer is fine, so this is the full result.
 > 
-> Must-haves applied: Cypress and Appium (your words), plus the JD's Playwright, TypeScript and API testing.
+> CV-026 (rank 1, strong tier):
+> - Cypress: JavaScript Cypress work is evidenced.
+> - Appium: mobile automation with Appium/WebdriverIO, using TypeScript.
+> - Playwright and TypeScript: a Playwright TypeScript framework with fixtures, Page Objects and CI integration, reused by another squad. Automation depth rated L3.
+> - API testing: via Postman/Newman, collection-based.
+> - CI: GitHub Actions with PR runs and reports, plus Newman in CI.
+> - Gaps: no performance testing evidenced; Docker only basic and not shown in work.
 > 
-> CV-026 meets all of them. The review verified 10 quotes from the CV: Playwright and Appium/WebdriverIO tests written in TypeScript, Cypress for web tests, and Postman/Newman API tests run in GitHub Actions. It also shows a migrated suite on Playwright with fixtures and Page Objects, and reporting. The review notes no performance testing and only basic, hedged Docker experience. It is a strong match on the JD, but it does not reach your 5.
+> The bottleneck is Playwright (7 CVs in the pool), with Appium (8) close behind. Relaxing Appium to nice-to-have would have given about 5 candidates, but you chose to keep both as must-haves.
 > 
-> To get more candidates, you would need to relax a must. Per requirement, 7 CVs have Playwright, 8 have Appium, 11 have Cypress, 12 have TypeScript and 36 have API testing. Playwright is the bottleneck. Dropping Cypress or Appium as a must would not raise the count above 1 while Playwright stays a must. Dropping Playwright would give more candidates, but it is a JD must-have and would change the role.
-> 
-> Next step if you want a wider slate: a sourcing push for candidates who have both Cypress and Appium, or a decision to treat Playwright as a plus.
+> Next step: I can search the pool for the Cypress or Appium terms in other wording, or look at near-misses that fail only one must-have, if you want more names to review.
 > 
 > Goal check (by code):
 > - must cypress: 1/1
 > - must appium: 1/1
 > - not met: count: 1 of the 5 candidates HR asked for
-> - limit: Count: 1 of the 5 requested. Only CV-026 meets all must-haves (Cypress, Appium, Playwright, TypeScript, API testing). Why: the pool has no other CV with that combination. HR could relax the count (already accepted), drop Playwright as a must (7 CVs have it, and it is the bottleneck), or source more candidates.
+> - limit: Count: 1 candidate meets all must-haves (Cypress, Appium, Playwright, TypeScript, API testing) against the 5 requested. Why: only one of 56 CVs has all five. What HR could relax: Appium to nice-to-have (about 5 candidates), or accept Cypress as a substitute for Playwright (not verified).
 
 ## vague_ai
 
@@ -108,29 +111,29 @@ Goal: “Find me people who are good with AI.”
 - ✅ shortlist within HR's count
 - ✅ declared the shortfall
 - ✅ within budget
-- refused: Refused respond_to_hr: claims not supported by the CVs: ['CV-104: names api_testing but the CV never mentions it', 'CV-101: names api_testing but the CV never mentions it', 'CV-101: names typescript but the CV never mentions it', 'CV-104: names api_testing but the CV never mentions it']; rewrite them
 
 Answer to HR:
 
-> Five CVs meet every JD must-have (Playwright, TypeScript, API testing, 3+ years). Ranked by evidence: CV-002, CV-042, CV-003, CV-037, CV-026. All five are strong on Playwright and TypeScript, GitHub Actions sharding and measured CI speedups. None of the five shows AI use in test automation, so the strong plus for AI does not lift anyone here.
+> Five candidates meet all your must-haves (Playwright, TypeScript, API testing, 3+ years). None of them shows AI-in-testing evidence, so the strong AI bonus is not met inside this shortlist.
 > 
-> The AI-using CVs in the pool are CV-101, CV-102, CV-104 and CV-106. Screen knocked all of them out on a must-have:
-> - CV-104 (Playwright, TypeScript, GitHub Actions, AI tooling) is knocked out on one must-have. Screen estimates it would score about 0.81 if that gap were filled.
-> - CV-101 (Selenium/Java, AI-assisted testing) is knocked out on more than one must-have, and its Playwright mention is only hedged.
-> - CV-102 (Selenium/Python, Healenium) and CV-106 (LLM evaluation suite) are also knocked out. I have not checked which must-haves they miss.
+> The four CVs with AI-in-testing evidence (CV-101, CV-102, CV-104, CV-106) are knocked out. CV-101 has only a hedged Playwright mention and no TypeScript or API testing. Adding those three skills would give it a score (0.69) and it would pass the knock-out, so it is only one change away. I have not checked the other three in detail, but they are outside the five because they fail at least one must-have.
 > 
-> Options:
-> 1. Keep the five above. No AI-using candidate is included.
-> 2. Relax the API-testing must-have so CV-104 can be ranked. I can then re-screen and check whether it beats the five.
-> 3. Ask me to check CV-102 and CV-106 for near-misses.
+> The five, best first:
+> 1. CV-003: built a Playwright/TypeScript framework from scratch (820 tests) at a fintech startup; GitHub Actions sharding cut runs from 65 to 12 min; flaky rate 8% to 1.8%.
+> 2. CV-042: replaced Selenium with about 420 Playwright/TypeScript tests; 6-shard GitHub Actions runs in 9–11 min; strong web, API and accessibility testing.
+> 3. CV-002: near-identical evidence: 850-test Playwright/TypeScript framework; GitHub Actions sharding (70 to 11 min); flaky rate 9% to 1.5%.
+> 4. CV-037: led Cypress-to-Playwright migration; sharded CI from 48 to 11 min; shared package used by three squads.
+> 5. CV-026: only 3 years; the only one with real Appium (WebdriverIO) mobile tests; Postman-based API testing; startup experience.
 > 
-> CV-026 is the only candidate with mobile evidence (Appium/WebdriverIO on Android), which the JD asks for. The other four show no mobile work. How many candidates do you want? I have not set a count.
+> Gaps across the list: no performance testing, and mobile automation appears only in CV-026.
+> 
+> Decision for you: the AI bonus can only bring in candidates if you relax a must-have, for example accepting code-based API testing in place of a strict TypeScript requirement, or accepting a related skill for Playwright. Tell me which must-have to relax and I will re-screen. Otherwise, the five above are the best fit for the JD as written.
 > 
 > Goal check (by code):
 > - bonus ai_in_testing: 0/5
-> - must playwright: 5/5
 > - not met: bonus ai_in_testing: no shortlisted candidate shows it
-> - limit: The AI strong plus is unmet: none of the five shows AI use in test automation. The AI users (CV-101, CV-102, CV-104, CV-106) are knocked out on must-haves, so they cannot be ranked unless HR relaxes a must-have. Relaxing the API-testing must-have is the option that would bring in CV-104.
+> - not met: open questions not settled with HR: ['Which AI skills count beyond the proposed terms (e.g. AI-assisted test generation, self-healing locators, LLM evaluation)?']
+> - limit: Strong AI bonus: none of the five shortlisted CVs shows AI-in-testing evidence. The four that do (CV-101, CV-102, CV-104, CV-106) are knocked out for missing must-haves. To include them, relax a must-have such as TypeScript, API testing or the exact Playwright requirement.
 
 ## exclude
 
@@ -140,19 +143,20 @@ Goal: “Shortlist 4 Selenium candidates, but exclude anyone whose experience is
 - ✅ recommended only CVs with HR's must-haves
 - ✅ shortlist within HR's count
 - ✅ within budget
+- refused: Refused screen: settle the open questions with HR first (ask_hr): ['Is GitLab CI acceptable in place of Jenkins?', 'Is API testing required with both RestAssured and Postman, or either one?']
 
 Answer to HR:
 
-> Shortlist of 4 Selenium candidates, none with mostly manual testing experience. Ranked after evidence review:
+> All four candidates meet the must-haves (Selenium, Java, API testing) and none has mostly manual-testing experience. Ranked:
 > 
-> 1. CV-018: 12 years in banking. Java, Selenium and RestAssured, Selenium Grid on Kubernetes, GitLab CI release-blocking gates, audit evidence, mentoring. ISTQB Foundation and Advanced. Strongest overall. API testing via RestAssured and Pact is evidenced, though the CV never names 'api_testing' itself.
-> 2. CV-022: Banking Selenium/Java/Cucumber framework with POM, Dockerised Selenium Grid, Jenkins, nightly regression, audit traceability. Weaker on API testing (narrow RestAssured scope) and has no release-blocking gates.
-> 3. CV-031: Banking/payments Selenium+Java framework, RestAssured API tests as Jenkins merge gates, audit traceability, ISTQB Foundation. The CV is in Vietnamese, so English is not evidenced. No GitLab CI mentioned.
-> 4. CV-038: Strong banking API automation (RestAssured, Pact, GitLab CI gates, ISTQB Foundation and Advanced Test Automation). Caveat: Selenium UI evidence is thin and dated, so it meets 'Selenium' weakly. Probe this first if Selenium depth matters most.
+> 1. CV-018: 12 years in banking. Java, Selenium and RestAssured frameworks, Pact contract tests, GitLab CI release gates, ISTQB Advanced. Strongest overall.
+> 2. CV-031: banking and payments Selenium+Java framework on Docker Grid, 250 RestAssured tests as Jenkins merge gates, audit traceability. GitLab CI is not shown.
+> 3. CV-022: banking Selenium+Java+Cucumber framework with Grid and Jenkins. Weakest point: API testing is only RestAssured steps for account and card APIs, and no release-blocking gates are shown.
+> 4. CV-038: strong API automation (about 1,100 tests, GitLab CI merge gates, ISTQB Foundation and Advanced). Selenium UI experience is brief and early, so the Selenium must is met on thin evidence.
 > 
-> If HR wants Selenium UI depth above API work, CV-024 (deep Selenium/Java/TestNG framework, POM, Jenkins+Docker, regulated domain) is the alternative, but it has no RestAssured experience. I have not explained CV-024.
+> Alternative for slot 4: CV-019 has strong RestAssured/Postman API work and GitLab/Jenkins pipelines, plus some Selenium UI, but UI automation is limited.
 > 
-> Open JD questions for HR: RestAssured vs Postman, Jenkins vs GitLab CI, and whether mobile or performance testing is in scope.
+> Assumptions: your replies did not answer my two questions, so I treated the JD as settled. Either RestAssured or Postman is enough, and GitLab CI counts as the CI/CD tool. Please confirm both. Performance and mobile testing are also unaddressed in the JD and are not part of this ranking.
 > 
 > Goal check (by code):
 > - must selenium: 4/4

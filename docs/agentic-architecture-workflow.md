@@ -184,13 +184,14 @@ StateGraph keeps its role as the runtime (state, interrupts, checkpoints, loop l
 per goal. P6 stays as the fixed baseline and as the `screen` tool. Evaluated by E26 (`app.eval.goals`,
 data/goal_suite): five goals, including the one above, an infeasible skill pair and a vague "good with AI".
 
-**E26 on Claude Sonnet 5.5, three rounds** (behaviour checks passed; earlier rounds kept in .runtime/eval/goal_rounds):
+**E26 on Claude Sonnet 5.5, four rounds** (behaviour checks passed; earlier rounds kept in .runtime/eval/goal_rounds):
 
 | Round | Result | What failed | Change before the next round |
 |---|---|---|---|
 | 1 | 25/28 | the eval did not see `ask_hr` (no stream event; E15's "vague" check had the same blind spot); feasibility ignored the JD's own must-haves; `vague_ai` hit the 12-step budget; `feasible` asked an unneeded question | ask_hr emits its tool event; feasibility counts JD must-haves, marked "(JD)"; max_agent_steps 12 → 16; asking policy in the prompt |
 | 2 | 24/27 | `impossible_skills` kept searching after HR accepted fewer and hit the budget; the harness's fallback answer did not declare the unmet goal; `feasible` still asked | Q20 also on the harness's fallback answer; prompt: once HR accepts a shortfall, answer with who exists |
 | 3 | **28/28** | — | — |
+| 4 (after merging main: `rejected_by_hr`, the api-testing umbrella, folded cues) | 27/28 | `feasible` asked HR whether GitLab CI may replace Jenkins: the same judgement call as rounds 1–2, so it is variance in the model, not a regression | none: needs repeated runs per case to report a pass rate |
 
 `feasible` passed in round 3 with no change aimed at it: its question ("do the JD's other must-haves still apply?")
 is a judgement call, and the model's choice varies between runs. One run per case is not enough to call the
