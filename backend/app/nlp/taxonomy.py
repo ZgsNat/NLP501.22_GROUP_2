@@ -22,7 +22,9 @@ def _entry(skill: str) -> dict:
 
 def aliases(skill: str) -> list[str]:
     entry = _entry(skill)
-    return list({skill.lower(), *(a.lower() for a in entry.get("aliases", []))})
+    # Declared order, no repeats: a set here made the query text (and so dense and cross-encoder scores) depend on
+    # PYTHONHASHSEED, enough to swap near-tied candidates between two runs of the same JD
+    return list(dict.fromkeys([skill.lower(), *(a.lower() for a in entry.get("aliases", []))]))
 
 
 def related(skill: str) -> list[str]:

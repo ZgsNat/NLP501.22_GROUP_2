@@ -347,3 +347,67 @@ def test_jd_without_diacritics_parses_like_the_accented_one():
     for k in ("must_have", "nice_to_have", "min_years", "languages", "test_types", "substitutes", "foreign_languages"):
         assert a[k] == b[k], k
     # depth_level is not compared: the depth lexicon (nlp/extract.py) has accented Vietnamese verbs only
+
+
+def test_requirement_queries_do_not_depend_on_the_hash_seed():
+    """Two runs of the same JD must send the same query text (aliases used to come out of a set)."""
+    import os
+    import subprocess
+    import sys
+
+    code = ("from app.rag import retrieve\n"
+            "req={'title':'QA','must_have':['playwright','api_testing'],'nice_to_have':['docker'],'test_types':['api']}\n"
+            "print('|'.join(q.text for q in retrieve.queries(req, ['playwright','api_testing','docker'])))")
+    backend = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    outs = {subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, check=True, cwd=backend,
+                           env={**os.environ, "PYTHONHASHSEED": seed, "PYTHONPATH": backend}).stdout
+            for seed in ("1", "2", "3")}
+    assert len(outs) == 1
+
+
+def test_aliases_keep_the_declared_order_without_repeats():
+    from app.nlp.taxonomy import aliases
+
+    a = aliases("api_testing")
+    assert a[0] == "api_testing" and len(a) == len(set(a))
+
+
+def test_ambiguous_tool_names_need_a_software_context():
+    def found(text):
+        return set(process("CV-A", f"## Experience\n### Chef — Bistro (2019–2021)\n- {text}\n").skills)
+
+    assert "requests" not in found("Handled customer requests and special orders.")
+    assert "espresso" not in found("Prepared espresso drinks for 200 guests a day.")
+    assert "cypress" not in found("Moved to Cypress, CA in 2020.")
+    assert "requests" in found("Wrote API tests with the Python requests library.")
+    assert "cypress" in found("Built Cypress end-to-end tests.")
+    # in a skills list next to an unambiguous tool, the name is a tool
+    p = process("CV-B", "## Skills\nSelenium, Postman, Cucumber\n")
+    assert {"selenium", "postman", "cucumber"} <= set(p.skills)
+
+
+def test_normalize_repairs_mojibake_and_rejoins_split_date_ranges():
+    assert normalize("â€¢ Wrote tests") == "- Wrote tests"
+    assert normalize("Sales Manager\n01/2010\n\nto\nCurrent\nCompany") == "Sales Manager\n01/2010 to Current\nCompany"
+    assert normalize("September 2013 to\nNovember 2015") == "September 2013 to November 2015"
+    assert normalize("- Wrote tests\n- Ran suites") == "- Wrote tests\n- Ran suites"  # bullets are not ranges
+
+
+def test_a_split_date_range_now_gives_years():
+    cv = "## Experience\nSales Manager\n01/2010\n\nto\n12/2014\n- Sold software.\n"
+    assert process("CV-C", cv).years_total == 5.0
+
+
+def test_present_resolves_to_the_reference_date(monkeypatch):
+    from datetime import date
+
+    from app.config import get_settings
+    from app.nlp.segment import date_range
+
+    monkeypatch.setenv("REFERENCE_DATE", "2026-10-30")
+    get_settings.cache_clear()
+    try:
+        assert date_range("Jan 2020 – Present")[1] == 2026 * 12 + 10  # October 2026, whatever today is
+        assert date_range("Jan 2020 – Present", today=date(2021, 1, 1))[1] == 2021 * 12 + 1  # explicit today wins
+    finally:
+        get_settings.cache_clear()

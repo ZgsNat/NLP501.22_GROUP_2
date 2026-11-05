@@ -123,9 +123,16 @@ def _month(token: str, end: bool) -> int | None:
     return y * 12 + mo - 1 + (1 if end else 0)  # month-precise end is inclusive
 
 
+def reference_date() -> date:
+    """What "Present" means: today, or Settings.reference_date so an evaluation gives the same years on any day."""
+    from app.config import get_settings
+
+    return get_settings().reference_date or date.today()
+
+
 def date_range(line: str, today: date | None = None) -> tuple[int, int] | None:
     """'Jan 2020 – Present' → (start_month, end_month) in months since year 0, or None."""
-    today = today or date.today()
+    today = today or reference_date()
     now = today.year * 12 + today.month
     if m := RANGE.search(line):
         a = _month(m["a"], end=False)

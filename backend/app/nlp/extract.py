@@ -85,12 +85,29 @@ def is_hedged(line: str, start: int, end: int) -> bool:
     return bool(POST_HEDGE.search(line[end:seg_end]))
 
 
+# Tool names that are also ordinary words or places ("customer requests", "an espresso machine", "Cypress, CA", "a postman"):
+# 369 of 2,246 non-IT Kaggle résumés "used" requests before this (E23). They count only on a line about software or
+# testing, or in a chunk that names another, unambiguous tool.
+AMBIGUOUS = frozenset({"requests", "cypress", "espresso", "postman", "gatling", "pact", "locust", "cucumber"})
+TECH_CONTEXT = re.compile(
+    r"\b(?:test\w*|automat\w*|qa|api|apis|rest|http|framework|script\w*|e2e|end-to-end|ui|mobile|android|ios|library|"
+    r"package|python|java\w*|typescript|node|code|coding|ci|bdd|gherkin|load|performance|contract|kiểm thử|tự động)\b")
+
+
+def _context_ok(key: str, line: str, chunk_has_tool: bool) -> bool:
+    return key not in AMBIGUOUS or chunk_has_tool or bool(TECH_CONTEXT.search(line))
+
+
 def skill_mentions(chunks: list[Chunk]) -> dict[str, list[Mention]]:
     out: dict[str, list[Mention]] = {}
     for ch in chunks:
+        low_chunk = ch.text.lower()
+        chunk_has_tool = any(alias_regex(k).search(low_chunk) for k in skills() if k not in AMBIGUOUS)
         for raw in ch.text.split("\n"):
             low = raw.lower()
             for key in skills():
+                if not _context_ok(key, low, chunk_has_tool):
+                    continue
                 for m in alias_regex(key).finditer(low):
                     if is_hedged(low, m.start(), m.end()):
                         strength = "hedged"

@@ -8,9 +8,9 @@ v1 unchanged + 8 Djinni JDs (real anonymised CVs) in test. Manifest: data/eval/b
 |---|---|---|---|---|---|---|---|---|---|
 | B0 BM25 | keyword baseline, whole CV | 18 | 0.582 [0.485, 0.680] | 0.800 | 0.536 | 0.441 | 0.567 | 0.554 | 0.240 |
 | B2 hybrid | BM25 + dense (RRF), whole CV | 18 | 0.618 [0.522, 0.714] | 0.859 | 0.413 | 0.539 | 0.611 | 0.576 | 0.287 |
-| R structural + CE | requirement-wise retrieval over structural chunks + cross-encoder | 18 | 0.691 [0.605, 0.777] | 0.804 | 0.570 | 0.667 | 0.689 | 0.637 | 0.404 |
-| B3 rules ⊕ CE | our v2 branch: 4 rule criteria fused with the cross-encoder | 18 | 0.728 [0.648, 0.804] | 0.800 | 0.669 | 0.703 | 0.744 | 0.664 | 0.479 |
-| B3 8-axis ⊕ CE [hybrid] | merged v3.1, deterministic: 8 rule criteria, hybrid JD parser | 18 | 0.780 [0.725, 0.834] | 0.888 | 0.746 | 0.715 | 0.856 | 0.711 | 0.497 |
+| R structural + CE | requirement-wise retrieval over structural chunks + cross-encoder | 18 | 0.693 [0.605, 0.782] | 0.813 | 0.568 | 0.665 | 0.689 | 0.634 | 0.404 |
+| B3 rules ⊕ CE | our v2 branch: 4 rule criteria fused with the cross-encoder | 18 | 0.729 [0.648, 0.805] | 0.801 | 0.669 | 0.704 | 0.744 | 0.664 | 0.480 |
+| B3 8-axis ⊕ CE [hybrid] | merged v3.1, deterministic: 8 rule criteria, hybrid JD parser | 18 | 0.785 [0.729, 0.839] | 0.888 | 0.770 | 0.715 | 0.856 | 0.712 | 0.497 |
 | B4 | merged v3.1, fixed pipeline: the agent with every loop off | 18 | 0.787 [0.732, 0.840] | 0.877 | 0.781 | 0.723 | 0.856 | 0.713 | 0.499 |
 | P6 | merged v3.1, full agent | 18 | 0.782 [0.728, 0.835] | 0.882 | 0.805 | 0.696 | 0.844 | 0.714 | 0.500 |
 | B3 8-axis ⊕ CE-ft [hybrid] | the same, with the cross-encoder fine-tuned on dev JDs (E20) | 18 | 0.795 [0.724, 0.863] | 0.916 | 0.818 | 0.692 | 0.833 | 0.714 | 0.491 |
@@ -18,11 +18,11 @@ v1 unchanged + 8 Djinni JDs (real anonymised CVs) in test. Manifest: data/eval/b
 
 | First | second | JDs in common | ΔnDCG@10 | p |
 |---|---|---|---|---|
-| B3 8-axis ⊕ CE [hybrid] | B3 rules ⊕ CE | 18 | +0.052 | 0.013 |
-| B3 8-axis ⊕ CE [hybrid] | B2 hybrid | 18 | +0.162 | 0.000 |
-| B3 8-axis ⊕ CE-ft [hybrid] | B3 8-axis ⊕ CE [hybrid] | 18 | +0.015 | 0.167 |
+| B3 8-axis ⊕ CE [hybrid] | B3 rules ⊕ CE | 18 | +0.056 | 0.011 |
+| B3 8-axis ⊕ CE [hybrid] | B2 hybrid | 18 | +0.167 | 0.000 |
+| B3 8-axis ⊕ CE-ft [hybrid] | B3 8-axis ⊕ CE [hybrid] | 18 | +0.010 | 0.259 |
 | P6 | B4 | 18 | -0.005 | 0.646 |
-| P6 | B3 8-axis ⊕ CE [hybrid] | 18 | +0.002 | 0.425 |
+| P6 | B3 8-axis ⊕ CE [hybrid] | 18 | -0.003 | 0.566 |
 
 Per JD nDCG@10:
 
@@ -30,9 +30,9 @@ Per JD nDCG@10:
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | B0 BM25 | 0.77 | 0.93 | 0.61 | 0.85 | 0.74 | 0.90 | 0.40 | 0.38 | 0.61 | 0.76 | 0.20 | 0.59 | 0.56 | 0.39 | 0.27 | 0.63 | 0.53 | 0.36 |
 | B2 hybrid | 0.86 | 0.99 | 0.88 | 0.87 | 0.71 | 0.85 | 0.41 | 0.19 | 0.52 | 0.53 | 0.39 | 0.66 | 0.67 | 0.50 | 0.35 | 0.68 | 0.43 | 0.63 |
-| R structural + CE | 0.89 | 0.99 | 0.83 | 0.89 | 0.67 | 0.56 | 0.57 | 0.28 | 0.62 | 0.82 | 0.83 | 0.80 | 0.76 | 0.86 | 0.42 | 0.65 | 0.61 | 0.40 |
-| B3 rules ⊕ CE | 0.48 | 0.99 | 0.79 | 0.89 | 0.88 | 0.78 | 0.40 | 0.58 | 0.76 | 0.94 | 0.82 | 0.61 | 0.85 | 0.92 | 0.70 | 0.66 | 0.58 | 0.49 |
-| B3 8-axis ⊕ CE [hybrid] | 0.86 | 0.99 | 0.84 | 0.95 | 0.91 | 0.78 | 0.59 | 0.74 | 0.84 | 0.82 | 0.77 | 0.66 | 0.84 | 0.87 | 0.71 | 0.66 | 0.59 | 0.63 |
+| R structural + CE | 0.89 | 0.99 | 0.79 | 0.97 | 0.68 | 0.56 | 0.57 | 0.28 | 0.62 | 0.81 | 0.83 | 0.80 | 0.76 | 0.86 | 0.42 | 0.65 | 0.61 | 0.39 |
+| B3 rules ⊕ CE | 0.48 | 0.99 | 0.79 | 0.89 | 0.88 | 0.78 | 0.40 | 0.58 | 0.76 | 0.94 | 0.82 | 0.61 | 0.85 | 0.92 | 0.70 | 0.67 | 0.58 | 0.49 |
+| B3 8-axis ⊕ CE [hybrid] | 0.86 | 0.99 | 0.84 | 0.95 | 0.91 | 0.78 | 0.59 | 0.83 | 0.84 | 0.82 | 0.77 | 0.66 | 0.84 | 0.87 | 0.71 | 0.66 | 0.59 | 0.63 |
 | B4 | 0.86 | 0.99 | 0.84 | 0.95 | 0.84 | 0.78 | 0.58 | 0.83 | 0.83 | 0.88 | 0.77 | 0.72 | 0.84 | 0.87 | 0.71 | 0.66 | 0.59 | 0.63 |
 | P6 | 0.86 | 0.99 | 0.86 | 0.97 | 0.84 | 0.78 | 0.68 | 0.83 | 0.83 | 0.87 | 0.76 | 0.72 | 0.65 | 0.87 | 0.71 | 0.66 | 0.59 | 0.60 |
 | B3 8-axis ⊕ CE-ft [hybrid] | 0.97 | 0.99 | 0.95 | 0.95 | 0.90 | 0.74 | 0.61 | 0.82 | 0.92 | 0.92 | 0.76 | 0.53 | 0.76 | 0.93 | 0.71 | 0.65 | 0.59 | 0.60 |
@@ -43,7 +43,7 @@ Per JD nDCG@10:
 |---|---|---|---|---|---|---|---|---|---|
 | B0 BM25 | keyword baseline, whole CV | 8 | 0.728 [0.603, 0.838] | 0.787 | 0.553 | — | 0.825 | 0.682 | 0.260 |
 | B2 hybrid | BM25 + dense (RRF), whole CV | 8 | 0.740 [0.621, 0.849] | 0.789 | 0.593 | — | 0.800 | 0.672 | 0.339 |
-| R structural + CE | requirement-wise retrieval over structural chunks + cross-encoder | 8 | 0.841 [0.784, 0.902] | 0.850 | 0.812 | — | 0.850 | 0.727 | 0.448 |
+| R structural + CE | requirement-wise retrieval over structural chunks + cross-encoder | 8 | 0.835 [0.778, 0.900] | 0.850 | 0.792 | — | 0.850 | 0.727 | 0.450 |
 | B3 rules ⊕ CE | our v2 branch: 4 rule criteria fused with the cross-encoder | 8 | 0.805 [0.652, 0.923] | 0.829 | 0.733 | — | 0.875 | 0.656 | 0.494 |
 | B3 8-axis ⊕ CE [hybrid] | merged v3.1, deterministic: 8 rule criteria, hybrid JD parser | 8 | 0.873 [0.830, 0.919] | 0.871 | 0.878 | — | 0.950 | 0.739 | 0.524 |
 | B4 | merged v3.1, fixed pipeline: the agent with every loop off | 8 | 0.871 [0.828, 0.918] | 0.869 | 0.878 | — | 0.950 | 0.739 | 0.528 |
@@ -65,7 +65,7 @@ Per JD nDCG@10:
 |---|---|---|---|---|---|---|---|---|
 | B0 BM25 | 0.72 | 0.78 | 0.54 | 0.82 | 0.90 | 0.96 | 0.71 | 0.40 |
 | B2 hybrid | 0.79 | 0.62 | 0.59 | 0.87 | 0.92 | 0.94 | 0.75 | 0.43 |
-| R structural + CE | 0.71 | 0.99 | 0.80 | 0.90 | 0.93 | 0.77 | 0.81 | 0.81 |
+| R structural + CE | 0.71 | 0.99 | 0.80 | 0.90 | 0.93 | 0.77 | 0.77 | 0.81 |
 | B3 rules ⊕ CE | 0.91 | 0.96 | 0.87 | 0.93 | 0.98 | 0.33 | 0.72 | 0.75 |
 | B3 8-axis ⊕ CE [hybrid] | 0.80 | 0.98 | 0.86 | 0.86 | 0.95 | 0.78 | 0.92 | 0.84 |
 | B4 | 0.80 | 0.98 | 0.85 | 0.86 | 0.95 | 0.78 | 0.92 | 0.84 |

@@ -6,11 +6,11 @@ Gold: the `coding` branch generator's latent facts for 200 synthetic CVs and its
 
 | Slice | tool precision | tool recall | tool F1 | TP / FP / FN |
 |---|---|---|---|---|
-| all | 0.986 | 0.970 | 0.978 | 1308 / 18 / 40 |
-| en | 0.999 | 0.969 | 0.984 | 820 / 1 / 26 |
+| all | 0.986 | 0.970 | 0.978 | 1307 / 18 / 41 |
+| en | 0.999 | 0.968 | 0.983 | 819 / 1 / 27 |
 | vi | 0.966 | 0.972 | 0.969 | 488 / 17 / 14 |
 | clean | 0.988 | 1.000 | 0.994 | 1303 / 16 / 0 |
-| low_quality | 0.714 | 0.111 | 0.192 | 5 / 2 / 40 |
+| low_quality | 0.667 | 0.089 | 0.157 | 4 / 2 / 41 |
 
 | Fact | result |
 |---|---|
@@ -37,7 +37,6 @@ Gazetteer gaps (generator tools our taxonomy has no key for, with CV counts): no
 | Parser | must tools P / R / F1 | all tools P / R / F1 | languages P / R / F1 | min years | depth | ISTQB | Japanese |
 |---|---|---|---|---|---|---|---|
 | llm | 0.833 / 0.667 / 0.741 | 0.762 / 0.727 / 0.744 | 1.000 / 0.818 / 0.900 | 3/6 | 3/6 | 6/6 | 6/6 |
-| rules | 0.769 / 0.667 / 0.714 | 0.667 / 0.727 / 0.696 | 1.000 / 0.818 / 0.900 | 3/6 | 2/6 | 6/6 | 6/6 |
-| hybrid | 0.769 / 0.667 / 0.714 | 0.667 / 0.727 / 0.696 | 1.000 / 0.818 / 0.900 | 3/6 | 3/6 | 6/6 | 6/6 |
+| hybrid | 0.769 / 0.667 / 0.714 | 0.667 / 0.727 / 0.696 | 1.000 / 0.818 / 0.900 | 3/6 | 4/6 | 6/6 | 6/6 |
 
 `gold_spec` is the coding branch's own reading of each JD (for example it files "Java or Python" under nice-to-have where the JD lists it under Requirements), so JD numbers measure agreement with that reading, not absolute correctness.

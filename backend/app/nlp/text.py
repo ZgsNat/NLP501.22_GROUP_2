@@ -15,6 +15,19 @@ IMAGES = {".png", ".jpg", ".jpeg"}
 BULLET = re.compile(r"^[ \t]*(?:[•●▪◦■►▸✓✔∙·]|[*+\-–—](?=\s))[ \t]*", re.M)  # "*x*" emphasis is not a bullet
 LIGATURES = {"ﬁ": "fi", "ﬂ": "fl", "ﬀ": "ff", "ﬃ": "ffi", "ﬄ": "ffl"}
 INVISIBLE = re.compile("[\\u200b-\\u200d\\ufeff\\u00ad]")  # zero-width chars and soft hyphens
+# UTF-8 punctuation that was decoded as cp1252 on the way into a PDF ("â€¢" for "•"). Only these exact sequences: "â"
+# alone is a Vietnamese letter, but never followed by "€" in real text (measured on the Kaggle résumé PDFs, E23).
+MOJIBAKE = {"â€¢": "•", "â€“": "–", "â€”": "—", "â€™": "’", "â€˜": "‘", "â€œ": "“", "â€\x9d": "”", "â€¦": "…"}
+# A date range a PDF split over lines: "01/2010\n\nto\nCurrent", "September 2013 to\nNovember 2015"
+_DATE = r"(?:\d{1,2}/\d{4}|[A-Za-z]{3,9}\.? \d{4}|\d{4})"
+SPLIT_RANGE = re.compile(
+    rf"({_DATE})[ \t]*(?:\n[ \t]*){{0,2}}(to|until|till|-|–|—)[ \t]*(?:\n[ \t]*){{1,2}}({_DATE}|present|current|now)\b"
+    rf"|({_DATE})[ \t]+(to|until|till)[ \t]*\n[ \t]*({_DATE}|present|current|now)\b", re.I)
+
+
+def _join_range(m: re.Match) -> str:
+    a, sep, b = (m[1], m[2], m[3]) if m[1] else (m[4], m[5], m[6])
+    return f"{a} {sep} {b}"
 # Letters that exist in Vietnamese but not in English (base vowels + all tone-marked forms after NFC).
 VI_CHARS = re.compile(r"[ăâđêôơưàáảãạằắẳẵặầấẩẫậèéẻẽẹềếểễệìíỉĩịòóỏõọồốổỗộờớởỡợùúủũụừứửữựỳýỷỹỵ]", re.I)
 VI_STOPWORDS = {"và", "của", "các", "trong", "với", "được", "cho", "những", "tại", "năm", "làm", "việc", "kiểm", "thử"}
@@ -68,7 +81,10 @@ def normalize(text: str) -> str:
     text = INVISIBLE.sub("", text)
     for lig, plain in LIGATURES.items():
         text = text.replace(lig, plain)
+    for bad, good in MOJIBAKE.items():
+        text = text.replace(bad, good)
     text = text.replace("\r\n", "\n").replace("\r", "\n").replace("\t", " ").replace(" ", " ")
+    text = SPLIT_RANGE.sub(_join_range, text)
     text = BULLET.sub("- ", text)
     text = re.sub(r"(\w)-\n(\w)", r"\1\2", text)  # "automa-\ntion" → "automation" (PDF line-break hyphenation)
     lines: list[str] = []

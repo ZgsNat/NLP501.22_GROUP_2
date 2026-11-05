@@ -1,5 +1,6 @@
 from functools import lru_cache
 from pathlib import Path
+from datetime import date
 from typing import Literal
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -89,6 +90,9 @@ class Settings(BaseSettings):
     # stronger model turns alternatives and preferences into hard must-haves, while hybrid held at 0.881 / 0.792.
     # Hybrid is stable across models, so it is the default (docs/EVAL.md §8 rule; docs/FINAL_REPORT.md §5.2).
     jd_parser: Literal["llm", "rules", "hybrid"] = "hybrid"
+    # What "Present" / "đến nay" resolves to; None = today. Evaluations pin it (REFERENCE_DATE=2026-10-30, the v1
+    # freeze) so years of experience, and so the ranking, do not drift with the calendar.
+    reference_date: date | None = None
     near_tie_delta: float = 0.05
     max_arbiter_calls: int = 6  # LLM calls; each near-tie pair is judged in both orders (2 calls), so 3 pairs
     # v3: the LLM explains and arbitrates; the 8 rule criteria set Score. True = v2 (LLM scores 5 of 8 criteria).
