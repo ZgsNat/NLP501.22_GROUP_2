@@ -8,6 +8,10 @@ The official numbers come from **NLP501-bench v1**, the benchmark the team agree
 `docs/*_RESULTS*.md` file named next to it. Numbers from earlier runs, kept to explain a design change, are marked as
 such: v2, qwen3:8b, before a fix, or an uncached run.
 
+**v4 update (6 Nov 2026).** This report was first written for v3.1 (the P6 graph). Since then the system gained an
+agentic layer on top (P7, §3.1) and was measured on it (E15, §5.7); a second, larger test set with real CVs was frozen
+(NLP501-bench v2, §5.8); and further evaluations E18–E23 were run (§5.9). v1 numbers below are unchanged.
+
 ## Abstract
 
 We built an agent that ranks Automation Test Engineer CVs against a job description and explains every rank. We
@@ -35,7 +39,12 @@ locked test split of 10, and every input pinned by checksum. On that test split:
   - nine more defects in data processing, three of them found by reading scanned CVs through OCR.
 - **A stronger model needed more control, not less.** When Claude instead of qwen3:8b read the JDs, the LLM-only JD
   parser fell from 0.884 to 0.842 nDCG@10 on our JDs. The rules-first hybrid parser did not move.
-- **Every LLM output passes code checks at run time** (Q1–Q7 of 13 written criteria; the rest are offline
+- **v4: an LLM orchestrator over the same tools (P7).** The model chooses the next of 14 typed tools; a code harness
+  checks every call. Live on HR tasks (E15) it passed **40 of 42 behaviour checks** and exposed one real fault (an HR
+  rejection did not take the CV out of the ranking), now fixed (§3.1, §5.7).
+- **Real CVs (NLP501-bench v2).** Eight real QA Automation JDs from Djinni were added to the test split (18 test JDs).
+  The ladder holds on real text: BM25 0.441 → fixed pipeline 0.723 on Djinni; 0.582 → 0.787 over all 18 (§5.8).
+- **Every LLM output passes code checks at run time** (Q1–Q7 and Q14–Q18 of 18 written criteria; the rest are offline
   evaluations). **The ranking ignores the protected attributes we twinned** (name, gender, age, marital status): no
   score changed in 6 twin variants × 1,800 (CV, JD) pairs.
 
@@ -208,8 +217,32 @@ positive on all 6 coding JDs; `EVAL_RESULTS*.md`, all JDs).
 
 ## 3. Architecture: where the agent decides
 
-The system is a LangGraph state machine with 12 nodes and 6 bounded loops (`docs/architecture.html`). Its rule:
+The system has two layers (`docs/architecture.html`, `docs/agentic-architecture-workflow.md`). Their shared rule:
 **rules where facts exist, the LLM where judgement or reading is needed, humans where the decision is theirs.**
+
+### 3.1 P7: an LLM orchestrator inside a code harness (v4, the API default)
+
+`agent/orchestrator.py`. HR states a goal in their own words; the model then picks the next step from **14 typed
+tools** (`agent/tools.py`): `parse_jd`, `ask_hr`, `screen`, `investigate`, `propose_substitutes`, `explain`,
+`rank_shortlist`, `compare`, `get_candidate`, `search_cvs`, `update_requirements`, `set_weights`, `record_decisions`,
+`respond_to_hr`. `screen` is the P6 pipeline up to the ranking at 0 tokens, so the tools reuse the nodes below. It is a
+multi-turn conversation: HR can ask why, change a requirement, re-weight or reject a candidate, and the agent acts.
+
+A **guard** (the harness) runs before every tool and refuses with a reason the model reads (Q14):
+
+- schema-valid arguments and a known tool; each tool's precondition (`check_*`: no ranking before a screen, no
+  recommendation before `explain` has verified the evidence);
+- **HR authority:** requirements, weights and decisions change only if HR named the change in their own words, never
+  because a CV or a tool result says so (Q16 provenance);
+- what reaches HR is checked like any LLM output (Q15): real ids, verified candidates, supported claims, no protected
+  attributes;
+- budgets: `max_agent_steps`, `max_agent_tokens`, `max_hr_turns`; on a budget stop, code answers HR.
+
+The score stays with the rules: no tool can set S or a knock-out. P6 below is kept as the fixed baseline.
+
+### 3.2 P6: the fixed graph and its loops
+
+P6 is a LangGraph state machine with 12 nodes and 6 bounded loops (`agent/graph.py`).
 
 | Loop / node | Decision | Decided by |
 |---|---|---|
@@ -218,10 +251,11 @@ The system is a LangGraph state machine with 12 nodes and 6 bounded loops (`docs
 | **L6 investigate** | which tool to call next on an unreadable CV, and what it shows | **LLM** (typed actions); **code** verifies every claim |
 | L4 verify | retry a review whose quotes or claims fail the checks | code (Q2–Q5) |
 | L3 arbiter | swap a *near-tie* (|Δ| < 0.05) | LLM judging in **both orders**; only an order-stable verdict counts |
-| L5 HR review | approve, re-weight, or approve/reject candidates | **HR**; weights re-learned from decisions (pairwise logistic regression, audit log) |
+| L5 HR review | approve, re-weight, or approve/reject candidates | **HR**; weights re-learned from decisions (pairwise logistic regression, audit log); a rejected CV leaves the ranking (`rejected_by_hr`, since v4: E15 found that a reject only re-fitted the weights) |
 
-**Why this is agentic rather than a linear pipeline.** The path depends on what the agent observes. Across the 18
-benchmark JDs the agent took 8 distinct paths; its fixed twin took 1. The investigator (N12) is a tool-using
+**Why this is agentic rather than a linear pipeline.** In P7 the model plans the order of work itself (§5.7). In
+P6 the path still depends on what the agent observes: across the 18 benchmark JDs it took 8 distinct paths; its fixed
+twin took 1. The investigator (N12) is a tool-using
 ReAct loop in the strict sense: the model chooses its next action from what the previous one returned. Code then
 decides whether the result becomes a fact.
 
@@ -234,7 +268,8 @@ deterministic input. Since v3:
 
 ## 4. Controlling what the LLM produces
 
-`docs/AI_OUTPUT_CRITERIA.md` defines 13 criteria. Each has a code check, a target and an action on failure.
+`docs/AI_OUTPUT_CRITERIA.md` defines 18 criteria (Q1–Q13 for v3, Q14–Q18 added with P7). Each has a code check, a
+target and an action on failure.
 
 | | Criterion | Check | Action on failure |
 |---|---|---|---|
@@ -251,6 +286,11 @@ deterministic input. Since v3:
 | Q11 | ranking ignores protected attributes | counterfactual twins | release blocker |
 | Q12 | bounded cost | calls, tokens, latency | loop limits |
 | Q13 | an LLM judge is validated before use | κ vs humans | not used as ground truth |
+| Q14 | orchestrator calls valid and allowed | known tool, schema, per-tool precondition | refused with the reason; budget stop → code answers |
+| Q15 | what the agent tells HR is faithful | ranked and explained ids only; per-CV Q4; Q5 | refused with the failing claims |
+| Q16 | untrusted text cannot steer the system | injection lexicon (+ optional decision model); HR provenance of every change | sentence removed and CV flagged; change refused |
+| Q17 | LLM ranking read, unbiased, bounded | shortlisted ids only; two passes in opposite orders | repaired at the boundary; agreement reported |
+| Q18 | UI language never changes a result | requirement extraction never localized; translations keep numbers and tools | English original shown |
 
 ![What the agent's controls change](figures/controls.svg)
 
@@ -277,6 +317,10 @@ acted (filled), across all benchmark JDs. Numbers: the AI-output scorecards in `
     models are not compared case by case, because the requirements changed between the runs.
 - **Q11 fairness:** no score changed in 6 twin variants × 1,800 (CV, JD) pairs. Religion, ethnicity, nationality and
   disability are masked but were not twinned.
+- **Q14–Q16 in E15 (§5.7):** the guard refused 0–2 calls per run and the model adapted every time, for example
+  rewriting a reply that named a tool the CV does not show, and declining HR's request to filter on age and gender.
+  **Q16 layer 1b:** a decision model caught 10/10 paraphrased injection attacks with 0/150 clean CVs flagged at
+  threshold 0.9 (`INJECTION_RESULTS.md`); the attack set is small and not held out.
 
 **Three properties make this control rather than hope:**
 
@@ -301,8 +345,10 @@ misses rose from 9 to 17. The hybrid parser, where the deterministic parser deci
 **Setup:**
 - **LLM:** Claude Sonnet 5.5 (reasoning) and Haiku 5.5 (fast gates), served through the Claude Code CLI as a stand-in
   for the Anthropic API.
-- **Reproducibility:** JD requirements are extracted once and shared by every system, LLM responses are cached, and
-  `PYTHONHASHSEED=0` is pinned.
+- **Reproducibility:** JD requirements are extracted once and shared by every system, LLM responses are cached,
+  `PYTHONHASHSEED=0` is pinned, and since v4.1 `REFERENCE_DATE=2026-10-30` pins "Present" in a CV (the extraction
+  MAE had drifted 0.79 → 0.89 with the calendar alone) and query terms keep their declared order (they depended on
+  the hash seed and swapped near-ties).
 - **Statistics:** means over JDs with 95% bootstrap CIs; paired one-sided bootstrap p for "A > B".
 
 ### 5.1 The official benchmark (RQ1, RQ3, RQ5): `docs/BENCHMARK_RESULTS.md`
@@ -446,6 +492,72 @@ says. Every condition is ranked by the agent's own deterministic scorer.
 - **Kept:** a stricter verify check found along the way. A multi-word name must now match word for word, so "standard
   WebDriver" no longer counts as naming Selenium WebDriver.
 
+### 5.7 The P7 agent on HR tasks (E15, `docs/AGENTIC_RESULTS.md`)
+
+Eleven live runs (Claude Sonnet 5.5 / Haiku 5.5): HR's plain goal on each of the 6 dev JDs of `ours`, and five HR
+conversations with a known right behaviour. Each run is checked in code.
+
+| Task | Right behaviour | Result |
+|---|---|---|
+| shortlist (6 dev JDs) | screen before answering; explain every recommended CV; stay in budget; ask HR only on a vague JD; investigate flagged knock-outs | 28/29 |
+| vague (JD-003) | ask HR before ranking (L1) | 4/4 |
+| why (#1 over #2) | answer with `compare` or `get_candidate`, change nothing | 2/3 |
+| require ("make Docker a must-have") | `update_requirements`; every ranked CV shows Docker | 2/2 |
+| decide (reject #1 with a reason) | `record_decisions`; the CV leaves the ranking | 2/2 |
+| protected ("under 30, prefer men") | change nothing; reply free of protected attributes | 2/2 |
+
+**40 of 42 checks pass.** The two misses: on "why", the agent answered from a `compare` it had run before the
+question instead of checking again; on JD-012 it asked HR although the JD is clear. An earlier run of the same suite
+missed a different check (JD-008 named five CVs in its reply but left the structured shortlist empty), so the pass
+rate varies by one or two checks from run to run. Cost: 105k–264k tokens per run.
+
+**Ranking.** P7's dev nDCG@10 is 0.941 against 0.867 for P6. The gain comes from `rank_shortlist`, an LLM reordering
+of the rule top 15 in two passes (Q17). It raised `ours` from 0.871 to 0.955 but left Đán's rubric set unchanged
+(0.861 → 0.859, `LLM_RANK_RESULTS.md`): it helps only where the labels are LLM-made, so it may be circular, and it is
+not counted as a ranking result.
+
+**What the run found.** (1) A reject recorded at L5 only re-fitted the weights, so the rejected #1 stayed #1; it now
+leaves the ranking with HR's reason, with a regression test. (2) The `claude_code` provider ran the CLI in a folder
+inside the repository, so the CLI loaded the developer's own Claude memory and the agent replied in Vietnamese; the
+CLI now runs outside any repository, and the contaminated run and its cache entries were discarded.
+
+**A single agent without the harness (S1, `SINGLE_AGENT_RESULTS.md`)** reached 0.942 on the same dev JDs, but used
+127k–230k tokens per JD and ranked CVs it never read. That is the case for the harness, not for fewer controls.
+
+### 5.8 Real CVs: NLP501-bench v2 (`docs/BENCHMARK_V2_RESULTS.md`)
+
+v2 = v1 unchanged + 8 real QA Automation JDs from the Djinni dataset (anonymised, MIT; 250 real CVs each) in the
+test split only: 18 test JDs. Labels are pooled (424 pairs: four rankers' top 20 plus 10 random per JD), graded by two
+blind LLM annotators (Opus and Sonnet, κ 0.778); metrics are condensed to judged CVs.
+
+| System | test nDCG@10 (18 JDs) | ours | coding | Djinni |
+|---|---|---|---|---|
+| B0 BM25 | 0.582 | 0.800 | 0.536 | 0.441 |
+| B2 hybrid | 0.618 | 0.859 | 0.413 | 0.539 |
+| B3 rules ⊕ CE (our v2) | 0.729 | 0.801 | 0.669 | 0.704 |
+| B3 8-axis ⊕ CE | 0.785 | 0.888 | 0.770 | 0.715 |
+| **B4 fixed pipeline** | **0.787** | 0.877 | 0.781 | **0.723** |
+| P6 full agent | 0.782 | 0.882 | 0.805 | 0.696 |
+
+- **The ladder holds on real text:** 8-axis rules beat our v2 by +0.056 (p = 0.011) and hybrid retrieval by +0.167
+  (p < 0.001). The 95% CI narrows to about ±0.055.
+- **P6 ≈ B4 again** (−0.005), as on v1: rules set the score in both.
+- **Human labels on Djinni.** One team member graded all 424 pairs with Opus's grade shown (review mode): κ 0.820
+  against the silver mean, every system 0.05–0.09 lower, system order kept (Kendall τ 0.86). The grading took a median
+  of 1.4 s per pair, so these labels are anchored on the model and are weak human evidence. A blind second set failed
+  the annotator quality check (κ ≈ 0 with every annotator, 4.3 s per pair) and was set aside. There is no adjudicated
+  human gold yet (§9).
+
+### 5.9 Further v4 evaluations
+
+| | What | Result |
+|---|---|---|
+| E19 `NLP_ABLATION_RESULTS.md` | switch off hedge scope, used/listed, depth cue, dated years | nDCG moves +0.001 to +0.013 (all off +0.021, p = 0.99): **negative on nDCG**. The hedge scope keeps trap CVs out of the top 10 (traps@10 0.00 vs 0.17) |
+| E20 `FINETUNE_RESULTS.md` | cross-encoder fine-tuned on dev JDs (Colab) | v1 test +0.046 (p = 0.003); Djinni −0.027; v2 all +0.010 (p = 0.26). On held-out CVs the fused gain disappears: **does not transfer to real CVs** |
+| E21 `TOKEN_COST_RESULTS.md` | selective LLM vs the LLM on every candidate (E-every), dev | P6 −47.4%, B4 −66.9% tokens; E-every +0.015 nDCG, p = 0.34. Selectivity halves the cost at no significant accuracy loss; below the −78% the deck predicted |
+| E23 `KAGGLE_RESUME_RESULTS.md` | the NLP pipeline on 2,484 real résumé PDFs (24 trades) | 100% read; three faults synthetic data never showed were fixed: dated roles 41.9% → 97.7%, "testing tool" false positives in other trades 17.2% → 1.6% |
+| v4.2 `EXTRACTION_RESULTS.md` | Vietnamese CVs typed without diacritics | depth-cue accuracy 0.0% → 87.5% (= accented); no ranking change on the 502 benchmark CVs |
+
 ## 6. Case studies
 
 ### 6.1 A vague JD: the agent stops to ask, and its controls fire
@@ -530,7 +642,7 @@ are, against what we measured.
 | Hypothesis (midterm) | Predicted | Measured | Verdict |
 |---|---|---|---|
 | H1: the agent beats the fixed pipeline on ranking | P6 86.8 vs B4 83.2 nDCG@10 | test: 0.847 vs 0.848 | **Not supported.** Rules score both, so ranking is equal by design. The agent's value moved to control (§4) and to vague JDs (§5.5) |
-| H2: the selective arbiter cuts token cost | −78% tokens; 7.2 s, $0.09 per JD vs 18.4 s, $0.42 | P6 uses about 2.1× the calls and tokens of our B4 (1.6× on ours, 3.1× on coding) | **Refuted as stated.** The −78% compared against an LLM that reranks every candidate. Our fixed pipeline already calls the LLM only for a shortlist of 8, so the agent's loops add cost |
+| H2: the selective arbiter cuts token cost | −78% tokens; 7.2 s, $0.09 per JD vs 18.4 s, $0.42 | P6 uses about 2.1× the calls and tokens of our B4 (1.6× on ours, 3.1× on coding). Against the LLM on every candidate (E21): P6 −47.4%, B4 −66.9% | **Partly supported.** Selectivity does cut tokens against the deck's baseline, by less than −78%; against our own fixed pipeline the agent's loops add cost |
 | H3: verification keeps explanations grounded | 97.6% grounded (A1 72.2%) | 100% grounded with and without verify | **Met, for a different reason.** Claude rarely invents quotes; verify's measurable effect is on contradicted *claims* (2.8% without it vs 0.9% with it) |
 | H4: company profiles align with HR | τ 0.81 vs 0.52 generic | τ 0.554 vs 0.542 (A2) | **Not supported** on labels written without company context |
 | H6 (team deck): asking HR helps on vague JDs | τ improves with clarification | 18 vague twins: τ +0.056 (p = 0.012), nDCG@10 +0.129 (p < 0.001) | **Supported** in a controlled test with scripted HR answers (§5.5) |
@@ -566,6 +678,10 @@ We count only the errors that cost HR something:
 
 ## 9. Limitations and ethics
 
+- **Human labels are still missing.** On v1 no human grading is in yet. On Djinni the only human set was graded with
+  the model's grade shown, at a median of 1.4 s per pair, and the first blind set failed the quality check. An
+  80-pair stratified blind subset with a 20-second read lock is ready for the next annotator
+  (`review.html?blind=1&subset=1`). Until then every ranking number rests on LLM-made labels.
 - **Silver labels.** Our labels come from two Claude models, which agree too readily (κ 0.919). Two teammates are
   grading a blind 120-pair sample (`docs/labeling/`). If human–silver κ ≥ 0.8 the set stays; otherwise the human
   labels replace it as benchmark v1.1. A third, blind Claude annotator (recruiter persona, graded from the labelling
@@ -579,7 +695,11 @@ We count only the errors that cost HR something:
   baselines. Differences under about 0.03 are not significant, and neither is the 0.037 gap between the agent and
   Đán's core (p = 0.22).
 - **The served LLM.** Claude ran through the Claude Code CLI as a stand-in for an API. Calls, tokens and behaviour
-  carry over; latency and cost do not. The labels and the agent are both Claude, but rules set the score, so this
+  carry over; latency and cost do not. The CLI also reads the user's own Claude configuration: run from a folder inside
+  this repository it loaded the developer's memory into the system under test (§5.7). It now runs from an empty folder
+  outside any repository, with a test.
+- **E15 is small.** Eleven runs, one model, scripted HR turns; the pass rate moves by one or two checks between runs.
+  Repeated runs per check are needed before quoting a rate. The labels and the agent are both Claude, but rules set the score, so this
   cannot inflate ranking metrics directly.
 - **Ethics.**
   - Protected attributes are deleted before indexing. The twin test shows the ranking ignores the four we twinned
@@ -595,11 +715,13 @@ Measured on one frozen benchmark, the merged system is the best version of the p
 that unit tests never would.
 
 **Next:**
-- human labels (benchmark v1.1);
+- human labels: the blind 80-pair Djinni subset, then benchmark v1.1 / v2.1;
+- repeated E15 runs for a pass rate per check, and a guard that refuses a final reply that recommends CVs but leaves
+  the shortlist empty;
 - consented real CVs;
 - a larger test split, enough to separate the merged system from Đán's core with confidence;
-- a gate rule that does not count a test type ("API testing") as a concrete tool: the cause of the 3 missed asks in
-  §5.5, to be tuned on dev.
+- the gate rule that no longer counts a test type ("API testing") as a concrete tool (the cause of the 3 missed asks
+  in §5.5) has landed; `docs/CLARIFY_RESULTS.md` must be regenerated before its effect is cited.
 
 ## 11. Contributions and reproduction
 
@@ -614,9 +736,12 @@ that unit tests never would.
 ```bash
 uv sync && docker compose up -d && (cd backend && uv run python -m app.rag.ingest)
 cd backend && export PYTHONHASHSEED=0 LLM_PROVIDER=claude_code
-uv run pytest                                    # 123 tests, no LLM or Docker needed
+uv run pytest                                    # 229 tests, no LLM or Docker needed
+export REFERENCE_DATE=2026-10-30                 # pins "Present" in CVs (v4.1)
 uv run python -m app.eval.benchmark verify       # the frozen benchmark is intact
 # full benchmark run: docs/BENCHMARK.md › Reproduce;  official table: python -m app.eval.benchmark report
+uv run python -m app.eval.benchmark_v2 report    # NLP501-bench v2 (+ Djinni); `verify` checks its inputs
+uv run python -m app.eval.agentic                # E15: the P7 agent on HR tasks (live LLM)
 uv run python -m app.eval.figures                # figures in docs/figures/
 uv run python -m app.eval.extraction && uv run python -m app.eval.robustness && uv run python -m app.eval.scenarios
 uv run python -m app.eval.errors P6 "Đán core (coding branch)" --bench test
