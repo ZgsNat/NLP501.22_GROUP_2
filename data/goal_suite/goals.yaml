@@ -1,0 +1,28 @@
+# E23 goal suite: complex HR goals with the behaviour a controlled agent should show. Pool = data/cvs + goal_suite/cvs
+# (CV-101..106 mention AI at different levels: used in a role, listed, hedged, without Selenium, testing an AI product).
+# `hr` answers any clarification; `expect` keys are checked by app/eval/goals.py.
+- id: ai_goal
+  jd: JD-001
+  goal: "5 CV, trong đó yêu cầu selenium là bắt buộc, playwright là có nhưng có thể dùng các tiêu chí khác để đánh giá, AI là bắt buộc, nếu biết xử dụng AI trong automation thì là điểm cộng lớn"
+  hr: "AI nghĩa là dùng công cụ AI để làm automation (Copilot, ChatGPT, LLM, self-healing). Nếu không đủ 5 người thì lấy ít hơn cũng được."
+  expect: {formalized: true, concept: true, asked_hr_before_screen: true, musts: [selenium], max_shortlist: 5, limits_iff_shortfall: true}
+- id: feasible
+  jd: JD-001
+  goal: "Top 3 candidates; Selenium and Java are required."
+  hr: "Use the JD as written."
+  expect: {formalized: true, asked_hr_before_screen: false, musts: [selenium, java], max_shortlist: 3, limits_iff_shortfall: true}
+- id: impossible_skills
+  jd: JD-002
+  goal: "I need 5 candidates who must know both Cypress and Appium."
+  hr: "Keep both as must-haves; fewer candidates is fine."
+  expect: {formalized: true, asked_hr_before_screen: true, musts: [cypress, appium], max_shortlist: 5, limits_iff_shortfall: true}
+- id: vague_ai
+  jd: JD-002
+  goal: "Find me people who are good with AI."
+  hr: "I mean using AI tools inside test automation, as a strong plus; Playwright stays required."
+  expect: {formalized: true, asked_hr_before_screen: true, concept: true, max_shortlist: 10, limits_iff_shortfall: true}
+- id: exclude
+  jd: JD-001
+  goal: "Shortlist 4 Selenium candidates, but exclude anyone whose experience is mostly manual testing."
+  hr: "Mostly manual means their roles describe executing manual test cases rather than writing automation."
+  expect: {formalized: true, musts: [selenium], max_shortlist: 4, limits_iff_shortfall: true}

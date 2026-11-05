@@ -114,7 +114,7 @@ TASKS = [
 ]
 
 
-async def run(task: Task, jd, model: str | None) -> Trace:
+async def run(task: Task, jd, model: str | None, clarify: str | None = None) -> Trace:
     graph = build_agent_graph(InMemorySaver())
     usage = observability.UsageCounter()
     cfg = {"configurable": {"thread_id": f"agentic-{task.id}-{jd.id}-{time.time()}"}, "callbacks": [usage]}
@@ -138,7 +138,7 @@ async def run(task: Task, jd, model: str | None) -> Trace:
             break
         pending = st.tasks[0].interrupts[0].value
         if pending["kind"] == "clarification":
-            answer = jd.meta.get("hr_answer") or HR_ANSWERS.get(jd.id, "Use the JD as written; be strict on the named tools.")
+            answer = clarify or jd.meta.get("hr_answer") or HR_ANSWERS.get(jd.id, "Use the JD as written; be strict on the named tools.")
             inp = Command(resume={"answers": {q: answer for q in pending["payload"]["questions"]}})
         elif pending["kind"] == "substitutes":
             inp = Command(resume={"accept": {p["must_have"]: p["related"] for p in pending["payload"]["proposals"]}})
