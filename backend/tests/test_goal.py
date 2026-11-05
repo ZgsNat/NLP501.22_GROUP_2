@@ -71,3 +71,10 @@ def test_goal_report_lists_what_the_answer_must_declare():
     assert any(u.startswith("count: 2 of the 5") for u in rep["unmet"])
     assert {"constraint": "bonus ai_in_testing", "met_by": 1, "of": 2} in rep["items"]
     assert not goal.goal_report(spec, ["D"], POOL, CONCEPTS, {})["items"][1]["met_by"]
+
+
+def test_the_jds_own_must_haves_count_in_feasibility_and_are_labelled():
+    spec = GoalSpec(count=2, constraints=[Constraint(kind="must", target="selenium", hr_quote="selenium")])
+    assert goal.feasibility(spec, POOL, CONCEPTS, {})["meet_all_musts"] == 3
+    f = goal.feasibility(spec, POOL, CONCEPTS, {}, jd_musts=["java"])
+    assert f["per_must"] == {"selenium": 3, "java (JD)": 2} and f["meet_all_musts"] == 2  # A and D: Selenium + Java

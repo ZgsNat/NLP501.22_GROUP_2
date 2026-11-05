@@ -308,3 +308,13 @@ def test_a_complex_goal_is_planned_checked_confirmed_with_hr_and_its_limits_decl
     assert len(v["shortlist"]) == 5 and "Goal check (by code)" in v["reply"] and v["report"]["goal"]["limits"]
     sel = {r["cv_id"] for r in v["ranking"] if r["status"] == "ranked"}
     assert set(v["shortlist"]) <= sel  # every recommended CV passed the Selenium knock-out
+
+
+def test_when_the_budget_stops_the_agent_code_declares_the_unmet_goal(agent):
+    """Q19 holds for the harness's own answer: a budget stop on a goal says what was not delivered."""
+    c = {"kind": "must", "target": "selenium", "hr_quote": "selenium là bắt buộc"}
+    v, _, _ = agent([lambda m: call("parse_jd"), lambda m: call("formalize_goal", count=5, constraints=[c])]
+                    + [lambda m: call("get_candidate", cv_id=f"CV-0{i:02d}") for i in range(10, 40)],
+                    goal=HR_GOAL, max_agent_steps=4)
+    assert "Goal check (by code)" in v["reply"] and v["report"]["goal"]["limits"]
+    assert any("count: 0 of the 5" in u for u in v["report"]["goal"]["unmet"])

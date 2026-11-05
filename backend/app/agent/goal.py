@@ -105,8 +105,12 @@ def meets(p, c: Constraint, concepts: dict, subs: dict) -> bool:
 
 
 # ── feasibility: what the pool can deliver, before any ranking ────────────────────────────────────────
-def feasibility(spec: GoalSpec, profiles: dict, concepts: dict, subs: dict) -> dict:
+def feasibility(spec: GoalSpec, profiles: dict, concepts: dict, subs: dict, jd_musts: list[str] = ()) -> dict:
+    """jd_musts: the JD's own must-haves that HR's goal did not touch. They knock out too, so they count here, marked
+    "(JD)": a goal that looks feasible on HR's constraints alone may not be once the JD's are applied."""
     musts = [c for c in spec.constraints if c.kind == "must"]
+    named = {tkey(c.target) for c in spec.constraints}
+    musts += [Constraint(kind="must", target=m, hr_quote="(JD)") for m in jd_musts if m not in named]
     excl = [c for c in spec.constraints if c.kind == "exclude"]
     unknown = sorted({c.target for c in spec.constraints if target_kind(c.target, concepts) == "unknown"})
     known = [c for c in musts if c.target not in unknown]
@@ -115,9 +119,10 @@ def feasibility(spec: GoalSpec, profiles: dict, concepts: dict, subs: dict) -> d
     alive = lambda drop=None: [cv for cv in profiles if cv not in out  # noqa: E731
                                and all(c.target in ok[cv] for c in known if c.target != drop)]
     joint = alive()
-    per = {c.target: sum(c.target in ok[cv] for cv in profiles) for c in known}
+    label = lambda c: f"{c.target} (JD)" if c.hr_quote == "(JD)" else c.target  # noqa: E731
+    per = {label(c): sum(c.target in ok[cv] for cv in profiles) for c in known}
     want = spec.count or 1
-    relax = {c.target: len(alive(c.target)) for c in known} if len(joint) < want else {}
+    relax = {label(c): len(alive(c.target)) for c in known} if len(joint) < want else {}
     bottleneck = min(per, key=per.get) if per else None
     status = "unknown_targets" if unknown else "ok" if len(joint) >= want else "infeasible"
     return {"status": status, "requested": spec.count, "pool": len(profiles), "per_must": per,

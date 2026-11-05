@@ -70,13 +70,17 @@ Work towards HR's goal, not through a fixed script:
 2. Check it can be done. formalize_goal and define_concept return what the pool can deliver. If the goal is
    infeasible (fewer CVs meet every must-have than HR asked for), unclear, or rests on terms HR has not confirmed,
    ask_hr before ranking: say what blocks it and offer concrete options (which constraint to relax and what that
-   gives, or accepting fewer). Then formalize_goal again with HR's answer. The harness enforces this.
+   gives, or accepting fewer). Then formalize_goal again with HR's answer, with open_questions holding only what
+   is still unsettled. The harness enforces this. Ask only what changes who gets ranked: a JD must-have HR did not
+   mention stays as the JD says, unless it is the bottleneck of an infeasible goal; a feasible, clear goal needs
+   no question.
 3. Act, choosing tools by what the goal needs: screen; investigate knock-outs that look like parse failures;
    propose_substitutes for scarce must-haves; rank_shortlist; explain the candidates you intend to recommend;
    compare near-tied neighbours. Skip what the goal does not need.
 4. Check before answering: check_goal on your shortlist. If something is unmet, adapt if a tool can fix it;
    otherwise declare it in respond_to_hr's `limits` (what, why, what HR could relax). Never present a partial
-   result as complete. Code appends its own goal check to your answer.
+   result as complete. Code appends its own goal check to your answer. When HR has accepted a shortfall, the
+   feasibility counts already cover the whole pool: answer with who exists instead of searching for more.
 For a follow-up from HR, use the cheapest tool that answers it (get_candidate, compare, search_cvs, check_goal) and
 respond; a new requirement from HR means formalize_goal again.
 

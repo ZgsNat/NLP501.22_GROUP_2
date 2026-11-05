@@ -163,7 +163,9 @@ async def ask_hr(state: AgentState) -> dict:
     r = Run(state)
     r.add(update)
     r.add({"calls": [], "loops": {"version": 1}})
-    return {**r.update, "messages": [_result(c, obs)]}
+    msg = _result(c, obs)
+    get_stream_writer()({"type": "tool", "name": c["name"], "args": c["args"], "result": msg.content[:300]})
+    return {**r.update, "messages": [msg]}
 
 
 @traced("finalize")
@@ -173,8 +175,12 @@ async def finalize(state: AgentState) -> dict:
     msg = (f"I stopped before finishing: {state['halt']}. "
            + (f"The current rule-based ranking is {', '.join(f'{r['cv_id']} ({r['total']:.2f})' for r in top)}; "
               "these candidates are not yet explained or checked by me." if top else "No candidate is ranked yet."))
+    rep = tools.goal_check(state, [])  # Q19 holds for code's answer too: nothing recommended, say what is unmet
+    limits = [f"stopped before finishing ({state['halt']}): nothing recommended yet"] if state.get("goal_spec") else []
+    msg += tools.goal_footer(rep, limits)
     emit("finalize", msg, "warn")
-    report = {"summary": msg, "candidates": [], "top_ids": sorted(r["cv_id"] for r in top), "checks": {}}
+    report = {"summary": msg, "candidates": [], "top_ids": sorted(r["cv_id"] for r in top), "checks": {},
+              **({"goal": {**rep, "limits": limits}} if state.get("goal_spec") else {})}
     return {"messages": [AIMessage(msg)], "reply": msg, "shortlist": [], "report": report, "halt": "",
             "responded": True}
 

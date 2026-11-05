@@ -117,7 +117,7 @@ class Settings(BaseSettings):
 
     # P7 orchestrator (agent/orchestrator.py, loop L7): an LLM picks the next tool; these bound what it may spend.
     agent_role: Literal["fast", "reasoning"] = "fast"  # who orchestrates; judgement inside tools stays on reasoning
-    max_agent_steps: int = 12  # orchestrator decisions per HR turn; then code answers HR with the current ranking
+    max_agent_steps: int = 16  # decisions per HR turn, then code answers HR; 16 (was 12): the goal loop (define_concept, formalize_goal, ask_hr) costs ~3 steps (E23)
     # Orchestrator tokens (input + output) per HR turn, same fallback. Each decision re-reads the conversation, so a
     # first turn with explain + three arbiter calls used ~110k on claude_code (Sonnet 5.5, its CLI adds ~1.4k a call).
     max_agent_tokens: int = 150_000
