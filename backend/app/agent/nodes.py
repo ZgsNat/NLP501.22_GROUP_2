@@ -259,6 +259,16 @@ TYPE_GROUPS = {"web_e2e": "web", "mobile": "mobile", "api": "api", "performance"
 FOREIGN_WORDS = re.compile(r"\benglish\b|tiếng\s*anh|toeic|ielts|toefl|\bjapanese\b|tiếng\s*nhật|jlpt", re.I)
 LANG_HEDGE = re.compile(r"\b(?:maybe|may\s+be|might|depend(?:s|ing)?|or\s+(?:maybe\s+)?required)\b|tùy|có\s*thể", re.I)
 MANY_MUST_HAVES = 6  # a "must-have" list longer than this cannot realistically be all knock-outs (fix D)
+# Taxonomy keys that name a test TYPE ("API testing"), not a concrete tool/framework. They reveal the kind of
+# testing (so vagueness_questions needn't ask "which type?"), but they are NOT a named knock-out tool: a JD whose
+# only must-have is an umbrella phrase still hasn't named a required tool, so L1 must ask for one (fix #1; see the
+# false-negative noted in docs/CLARIFY_RESULTS.md where a vague twin collapsed to ['api_testing'] and nobody asked).
+TYPE_UMBRELLA = {"api_testing"}
+
+
+def concrete_must_have(must_have: list[str]) -> list[str]:
+    """must-have entries that actually name a tool/framework — a test-type umbrella ("api testing") is not one."""
+    return [m for m in must_have if m not in TYPE_UMBRELLA]
 
 
 def seniority_conflict(title: str, min_years: int | None) -> str | None:
@@ -321,9 +331,10 @@ async def ask_hr_gate(model: BaseChatModel, jd: str, req: JDRequirements) -> tup
                 ordered.append(q)
         req.ambiguities = ordered[:4]
 
-    if not req.must_have:
-        # Rule before model: with zero must-have tools there is no knock-out and no fair ranking — always ask.
-        enrich(["Which tools/frameworks are must-have for this role?"])
+    if not concrete_must_have(req.must_have):
+        # Rule before model: with no named tool (or only a test-type umbrella like "API testing") there is no
+        # knock-out and no fair ranking — always ask.
+        enrich(["Which specific tools or frameworks are must-have for this role?"])
         return True, "Rule: no concrete must-have tools → ask HR (no LLM needed)"
     if conflict := seniority_conflict(req.title, req.min_years):
         enrich([conflict])
