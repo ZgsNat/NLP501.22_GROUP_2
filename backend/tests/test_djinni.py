@@ -107,3 +107,22 @@ def test_review_page_embeds_every_pair_and_a_cv_cannot_close_the_script(tmp_path
     html = djinni.review(tmp_path / "review.html").read_text(encoding="utf-8")
     assert "__DATA__" not in html and html.count("</script>") == 1  # only the page's own closing tag
     assert '"c1"' in html and '"c2"' in html and "not pooled" not in html
+
+
+def test_slug_is_ascii_for_vietnamese_names():
+    assert djinni.slug("Đán") == "dan" and djinni.slug("Trần Việt Hoa") == "tran_viet_hoa"
+
+
+def test_human_gold_uses_one_complete_annotator_and_says_how(tmp_path, monkeypatch):
+    import json
+
+    monkeypatch.setattr(djinni, "pairs", lambda: {"J": ["a", "b"]})
+    monkeypatch.setattr(djinni, "LABELS", tmp_path)
+    (tmp_path / "djinni_silver_a.json").write_text(json.dumps({"annotator": "s", "labels": [
+        {"jd": "J", "cv": "a", "grade": 3}, {"jd": "J", "cv": "b", "grade": 0}]}))
+    assert djinni.human_gold() is None  # silver only
+    (tmp_path / "human_djinni_dan.json").write_text(json.dumps({"annotator": "human dan", "labels": [
+        {"jd": "J", "cv": "a", "grade": 2, "saw_model": True}, {"jd": "J", "cv": "b", "grade": 1, "saw_model": True}]}))
+    g, source = djinni.human_gold()
+    assert g == {"J": {"a": 2.0, "b": 1.0}} and "1 annotator" in source and "2/2" in source
+    assert djinni.gold()[1].startswith("silver")  # one person is not the frozen gold: that needs two, adjudicated

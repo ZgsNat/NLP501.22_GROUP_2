@@ -122,6 +122,23 @@ def gold() -> tuple[dict[str, dict[str, float]], str]:
     return _nest(mean), f"silver (mean of {len(sil)} LLM annotators; not human)"
 
 
+def human_gold() -> tuple[dict[str, dict[str, float]], str] | None:
+    """The best complete human label set, or None: two annotators adjudicated, else one annotator who labelled every
+    pair. The description says whether that person saw the model's grade (review mode anchors on it)."""
+    want = {(j, c) for j, cs in pairs().items() for c in cs}
+    g, source = gold()
+    if source.startswith("human"):
+        return g, source
+    for p in human_files():
+        d = json.loads(p.read_text(encoding="utf-8"))
+        labels = {(x["jd"], x["cv"]): x for x in d["labels"]}
+        if want <= set(labels):
+            seen = sum(bool(labels[k].get("saw_model")) for k in want)
+            how = "blind" if not seen else f"reviewing Opus 5.5's grade on {seen}/{len(want)} pairs"
+            return _nest({k: float(labels[k]["grade"]) for k in want}), f"human (1 annotator, {how})"
+    return None
+
+
 def _nest(flat: dict[tuple[str, str], float]) -> dict[str, dict[str, float]]:
     out: dict[str, dict[str, float]] = {}
     for (j, c), v in flat.items():
@@ -216,12 +233,19 @@ def labels_from_page(path: Path) -> tuple[str, list[dict]]:
                              "saw_model": bool(x.get("saw_model"))} for x in d["labels"]]
 
 
+def slug(name: str) -> str:
+    """A file-safe ASCII name: "Đán" → "dan" (no diacritics in committed file names)."""
+    from app.nlp.text import fold
+
+    return re.sub(r"[^a-z0-9]+", "_", fold(name)).strip("_")
+
+
 def import_labels(files: list[Path], adjudicated: Path | None = None) -> None:
     want = {(j, c) for j, cs in pairs().items() for c in cs}
     for f in files:
         if f.suffix.lower() == ".json":  # from the review page
             annotator, labels = labels_from_page(f)
-            who = re.sub(r"\W+", "_", annotator.removeprefix("human ")).strip("_").lower() or f.stem
+            who = slug(annotator.removeprefix("human ")) or f.stem
             seen = sum(x["saw_model"] for x in labels)
             (LABELS / f"human_djinni_{who}.json").write_text(json.dumps(
                 {"annotator": f"human {who}" + (f" (saw the model's grade on {seen} pairs)" if seen else ""),
@@ -229,7 +253,7 @@ def import_labels(files: list[Path], adjudicated: Path | None = None) -> None:
             print(f"{f.name}: {len(labels)}/{len(want)} pairs labelled ({seen} in review mode) → human_djinni_{who}.json")
             continue
         labels = labels_from_xlsx(f)
-        who = re.sub(r"\W+", "_", f.stem.removeprefix("labels_")).strip("_") or f.stem
+        who = slug(f.stem.removeprefix("labels_")) or f.stem
         (LABELS / f"human_djinni_{who}.json").write_text(json.dumps(
             {"annotator": f"human {who}", "source": f.name, "labels": labels}, indent=1, ensure_ascii=False),
             encoding="utf-8")

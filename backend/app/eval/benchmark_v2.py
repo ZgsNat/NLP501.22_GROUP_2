@@ -17,7 +17,10 @@ import json
 
 from app.config import ROOT
 from app.eval import djinni
+from app.eval import metrics
+from app.eval.bench import load
 from app.eval.benchmark import DAN, MANIFEST, SYSTEMS, _sha, split_tables
+from app.eval.run import result_path, score_system
 from app.eval.benchmark import verify as verify_v1
 
 MANIFEST_V2 = ROOT / "data" / "eval" / "benchmark_v2.json"
@@ -69,8 +72,41 @@ def report() -> str:
              "> second”. Đán core is not run on Djinni and is left out here (see the v1 report). LLM: Claude Sonnet "
              "5.5 / Haiku 5.5; PYTHONHASHSEED=0.", ""]
     lines += split_tables(m, V2_SYSTEMS, SOURCES, PAIRS)
+    lines += human_section()
     DOC.write_text("\n".join(lines), encoding="utf-8")
     return str(DOC)
+
+
+def human_section() -> list[str]:
+    """v2.1 preview: Djinni scored with the human labels next to the silver ones. Do the systems keep their order?"""
+    found = djinni.human_gold()
+    if not found:
+        return []
+    human, source = found
+    silver = djinni.gold()[1] if not djinni.gold()[1].startswith("human") else None
+    b = load("djinni")
+    rows = []
+    for s in V2_SYSTEMS:
+        path = result_path(s, "djinni")
+        if not path.exists():
+            continue
+        per_jd = json.loads(path.read_text())["jds"]
+        a, h = score_system(per_jd, b.gold, b.traps), score_system(per_jd, human, b.traps)
+        rows.append((s, sum(a["ndcg@10"]) / len(a["ndcg@10"]), sum(h["ndcg@10"]) / len(h["ndcg@10"]),
+                     sum(h["p@5"]) / len(h["p@5"]), h["ndcg@10"]))
+    if not rows:
+        return []
+    order_s = [r[0] for r in sorted(rows, key=lambda r: -r[1])]
+    order_h = [r[0] for r in sorted(rows, key=lambda r: -r[2])]
+    tau = metrics.kendall_tau_b([order_s.index(r[0]) for r in rows], [order_h.index(r[0]) for r in rows])
+    lines = ["## Djinni with human labels (v2.1 preview, not the frozen v2 number)", "",
+             f"Human labels: **{source}**. Silver: {silver or 'n/a'}. Same rankings, same 8 JDs, condensed metrics; "
+             f"only the labels differ. Kendall τ between the two orders of systems: **{tau:.2f}**.", "",
+             "| System | nDCG@10 silver | nDCG@10 human [95% CI] | Δ | P@5 human |", "|---|---|---|---|---|"]
+    for s, ns, nh, p5, per in sorted(rows, key=lambda r: -r[2]):
+        lines.append(f"| {s} | {ns:.3f} | " + "{:.3f} [{:.3f}, {:.3f}]".format(*metrics.bootstrap_ci(per))
+                     + f" | {nh - ns:+.3f} | {p5:.3f} |")
+    return lines + [""]
 
 
 if __name__ == "__main__":

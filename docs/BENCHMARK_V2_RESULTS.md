@@ -72,3 +72,18 @@ Per JD nDCG@10:
 | P6 | 0.80 | 0.98 | 0.84 | 0.86 | 0.95 | 0.78 | 0.96 | 0.84 |
 | B3 8-axis ⊕ CE-ft [hybrid] | 0.91 | 0.98 | 0.90 | 0.87 | 0.96 | 0.78 | 0.96 | 0.77 |
 | E-every | 0.80 | 0.98 | 0.84 | 0.86 | 0.94 | 0.92 | 0.96 | 0.84 |
+
+## Djinni with human labels (v2.1 preview, not the frozen v2 number)
+
+Human labels: **human (1 annotator, reviewing Opus 5.5's grade on 424/424 pairs)**. Silver: silver (mean of 2 LLM annotators; not human). Same rankings, same 8 JDs, condensed metrics; only the labels differ. Kendall τ between the two orders of systems: **0.86**.
+
+| System | nDCG@10 silver | nDCG@10 human [95% CI] | Δ | P@5 human |
+|---|---|---|---|---|
+| B3 rules ⊕ CE | 0.704 | 0.646 [0.569, 0.724] | -0.058 | 0.800 |
+| B4 | 0.723 | 0.637 [0.589, 0.686] | -0.085 | 0.825 |
+| B3 8-axis ⊕ CE [hybrid] | 0.715 | 0.623 [0.572, 0.678] | -0.092 | 0.825 |
+| P6 | 0.696 | 0.602 [0.553, 0.647] | -0.094 | 0.775 |
+| B3 8-axis ⊕ CE-ft [hybrid] | 0.692 | 0.602 [0.536, 0.661] | -0.090 | 0.775 |
+| R structural + CE | 0.665 | 0.599 [0.498, 0.693] | -0.066 | 0.700 |
+| B2 hybrid | 0.539 | 0.487 [0.413, 0.569] | -0.052 | 0.625 |
+| B0 BM25 | 0.441 | 0.445 [0.356, 0.535] | +0.004 | 0.475 |

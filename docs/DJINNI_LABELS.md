@@ -7,17 +7,20 @@ Quadratic-weighted Cohen's κ on the pairs both sides graded. Decision rule (EVA
 
 | Annotator | pairs labelled |
 |---|---|
+| human dan (saw the model's grade on 424 pairs) | 424/424 |
 | silver a (claude-opus-5-5, LLM, blind, rubric; not human) | 424/424 |
 | silver b (claude-sonnet-5-5, LLM, blind, rubric; not human) | 424/424 |
 | silver mean (rounded down) | 424/424 |
 | Opus 5.5 close read (8 CVs a call; LLM, not human) | 424/424 |
 
-No human labels yet: fill `labels_A.xlsx` / `labels_B.xlsx` (team members who did not write the criteria) and run `python -m app.eval.djinni import`.
-
 ## Agreement
 
 | Pair | pairs | exact agreement | weighted κ |
 |---|---|---|---|
+| human dan (saw the model's grade on 424 pairs) vs silver a (claude-opus-5-5, LLM, blind, rubric; not human) | 424 | 71.0% | 0.821 |
+| human dan (saw the model's grade on 424 pairs) vs silver b (claude-sonnet-5-5, LLM, blind, rubric; not human) | 424 | 52.8% | 0.738 |
+| human dan (saw the model's grade on 424 pairs) vs silver mean (rounded down) | 424 | 70.8% | 0.820 |
+| human dan (saw the model's grade on 424 pairs) vs Opus 5.5 close read (8 CVs a call; LLM, not human) | 424 | 82.8% | 0.887 |
 | silver a (claude-opus-5-5, LLM, blind, rubric; not human) vs silver b (claude-sonnet-5-5, LLM, blind, rubric; not human) | 424 | 56.8% | 0.778 |
 | silver a (claude-opus-5-5, LLM, blind, rubric; not human) vs silver mean (rounded down) | 424 | 93.2% | 0.965 |
 | silver a (claude-opus-5-5, LLM, blind, rubric; not human) vs Opus 5.5 close read (8 CVs a call; LLM, not human) | 424 | 79.2% | 0.895 |
