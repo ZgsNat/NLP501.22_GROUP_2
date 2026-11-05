@@ -14,7 +14,7 @@ from langgraph.config import get_config, get_stream_writer
 from langgraph.types import interrupt
 from qdrant_client import models
 
-from app.agent import checks, prompts
+from app.agent import checks, hr_memory, prompts
 from app.agent import investigate as inv
 from app.agent.schemas import (
     CRITERIA,
@@ -138,6 +138,22 @@ async def extract_requirements(model: BaseChatModel, jd: str, mode: str | None =
 
 
 # ── 1. Ingest: JD → structured criteria (+ policy RAG + company weights) ──────────────────────────────
+def profile_weights(company: str) -> dict[str, float]:
+    return load_yaml("criteria_profiles.yaml")["profiles"][company]["weights"]
+
+
+def start_weights(company: str) -> dict[str, float]:
+    """The company profile's weights, or (HR_MEMORY on) what HR taught for this profile in earlier sessions."""
+    base = profile_weights(company)
+    if not get_settings().hr_memory:
+        return base
+    w, entry = hr_memory.prior(company, base)
+    if entry:
+        emit("ingest", f"Starting from the weights HR taught for '{company}' over {entry['sessions']} session(s) "
+                       f"({entry['pairs']} preference pairs): {w}", "loop")
+    return w
+
+
 @traced("ingest")
 async def ingest(state: AgentState) -> dict:
     s = get_settings()
@@ -166,7 +182,7 @@ async def ingest(state: AgentState) -> dict:
     return {
         "requirements": req.model_dump(),
         "needs_clarification": needs,
-        "weights": state.get("weights") or load_yaml("criteria_profiles.yaml")["profiles"][company]["weights"],
+        "weights": state.get("weights") or start_weights(company),
         "policy_context": [{"source": h.id, "text": h.payload["text"]} for h in hits],
         "query_terms": state.get("query_terms") or list(dict.fromkeys(req.must_have + req.nice_to_have + req.languages)),
         "substitutes": subs,
@@ -777,6 +793,9 @@ def _decide(state: AgentState, decisions: list[dict]) -> dict:
     moved = {k: round(w[k] - state["weights"][k], 3) for k in w if abs(w[k] - state["weights"][k]) >= 0.01}
     emit("hr_review", f"HR recorded {len(ok)} decision(s) → {len(pairs)} preference pair(s) → weights moved "
                       f"{moved or 'not at all'} (audit: .runtime/hr_audit.jsonl)", "loop")
+    company = state.get("company_profile", "default")
+    if get_settings().hr_memory and not off(state, "profile") and hr_memory.remember(company, w, profile_weights(company), len(pairs)):
+        emit("hr_review", f"Remembered for the next '{company}' run (.runtime/hr_memory.json)", "info")
     return {"hr_action": "adjust", "weights": w, "loops": {"review": 1}}
 
 

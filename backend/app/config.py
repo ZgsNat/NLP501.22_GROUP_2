@@ -104,6 +104,8 @@ class Settings(BaseSettings):
     # nDCG@10 was unchanged (0.867 -> 0.867); the rule needs a gain on one source. Off by default.
     implied_evidence: bool = False
     max_reviews: int = 5  # L5: HR re-weight rounds before the ranking is final
+    hr_memory: bool = False  # start each run from the weights HR taught for its company profile (agent/hr_memory.py)
+    max_memory_drift: float = 0.4  # cap on Σ|w − profile weights| that cross-session learning may reach
     ask_hr_substitutes: bool = True  # L2 proposes related tools and HR approves (False = accept silently, v1)
     tier_strong: float = 0.75  # HR-facing tiers on the weighted total; provisional until calibrated on gold labels
     tier_possible: float = 0.55
