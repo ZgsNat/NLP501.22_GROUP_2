@@ -1,0 +1,610 @@
+{
+ "annotator": "Phuc",
+ "sample": "v2-all-disagreements-seed13",
+ "labels": [
+  {
+   "jd": "JD-009",
+   "cv": "CV-008",
+   "grade": 0
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-035",
+   "grade": 0
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-029",
+   "grade": 0,
+   "note": "Strict pass: Appium evidence is Android-only, while JD requires both Android and iOS."
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-048",
+   "grade": 0
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-011",
+   "grade": 0
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-009",
+   "grade": 0
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-008",
+   "grade": 0
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-013",
+   "grade": 0
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-032",
+   "grade": 2
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-022",
+   "grade": 0
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-050",
+   "grade": 2
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-016",
+   "grade": 0
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-026",
+   "grade": 0,
+   "note": "Strict pass: JD bắt buộc cả Android và iOS; CV chỉ có Appium trên Android."
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-015",
+   "grade": 0
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-008",
+   "grade": 3
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-038",
+   "grade": 0
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-010",
+   "grade": 0
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-009",
+   "grade": 0
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-001",
+   "grade": 3
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-024",
+   "grade": 0
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-026",
+   "grade": 0
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-023",
+   "grade": 0
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-041",
+   "grade": 3
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-013",
+   "grade": 0
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-018",
+   "grade": 0
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-017",
+   "grade": 0
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-033",
+   "grade": 0
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-039",
+   "grade": 3
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-030",
+   "grade": 0
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-045",
+   "grade": 0
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-008",
+   "grade": 0,
+   "note": "Strict pass: mobile specialist 5 năm, không có shared platform hay phạm vi architect đa đội."
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-007",
+   "grade": 0
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-012",
+   "grade": 0
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-031",
+   "grade": 0
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-032",
+   "grade": 0
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-010",
+   "grade": 0
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-039",
+   "grade": 1
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-041",
+   "grade": 0
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-022",
+   "grade": 2
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-029",
+   "grade": 2
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-050",
+   "grade": 0
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-009",
+   "grade": 0
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-008",
+   "grade": 0
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-028",
+   "grade": 2
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-040",
+   "grade": 0
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-048",
+   "grade": 0
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-026",
+   "grade": 0
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-049",
+   "grade": 0
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-023",
+   "grade": 0
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-028",
+   "grade": 3
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-026",
+   "grade": 2
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-011",
+   "grade": 0
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-030",
+   "grade": 3
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-036",
+   "grade": 0
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-003",
+   "grade": 3
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-045",
+   "grade": 0
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-042",
+   "grade": 3
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-016",
+   "grade": 0
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-011",
+   "grade": 0
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-001",
+   "grade": 0
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-011",
+   "grade": 0
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-038",
+   "grade": 2
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-016",
+   "grade": 0
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-025",
+   "grade": 2
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-049",
+   "grade": 0
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-026",
+   "grade": 2
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-008",
+   "grade": 0
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-025",
+   "grade": 0
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-046",
+   "grade": 0
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-043",
+   "grade": 0
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-014",
+   "grade": 1
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-039",
+   "grade": 0
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-018",
+   "grade": 3
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-030",
+   "grade": 2
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-046",
+   "grade": 0
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-003",
+   "grade": 3
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-021",
+   "grade": 0
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-018",
+   "grade": 3
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-046",
+   "grade": 0
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-040",
+   "grade": 3
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-014",
+   "grade": 0
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-013",
+   "grade": 0
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-012",
+   "grade": 0
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-017",
+   "grade": 0
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-047",
+   "grade": 0
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-002",
+   "grade": 3
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-040",
+   "grade": 0
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-014",
+   "grade": 0
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-011",
+   "grade": 0
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-009",
+   "grade": 0
+  },
+  {
+   "jd": "JD-001",
+   "cv": "CV-025",
+   "grade": 0
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-025",
+   "grade": 0
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-020",
+   "grade": 0
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-027",
+   "grade": 0
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-011",
+   "grade": 0
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-025",
+   "grade": 0
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-014",
+   "grade": 0
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-010",
+   "grade": 3
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-028",
+   "grade": 3
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-049",
+   "grade": 0
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-050",
+   "grade": 0,
+   "note": "Strict pass: chỉ 5 năm API automation, không đạt 8+ năm hay architect/lead đa đội."
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-032",
+   "grade": 0
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-046",
+   "grade": 0
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-026",
+   "grade": 0
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-038",
+   "grade": 1
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-015",
+   "grade": 0
+  },
+  {
+   "jd": "JD-007",
+   "cv": "CV-035",
+   "grade": 0
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-021",
+   "grade": 0
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-043",
+   "grade": 0
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-009",
+   "grade": 3
+  },
+  {
+   "jd": "JD-005",
+   "cv": "CV-039",
+   "grade": 3
+  },
+  {
+   "jd": "JD-008",
+   "cv": "CV-024",
+   "grade": 0
+  },
+  {
+   "jd": "JD-012",
+   "cv": "CV-018",
+   "grade": 0
+  },
+  {
+   "jd": "JD-003",
+   "cv": "CV-039",
+   "grade": 3
+  },
+  {
+   "jd": "JD-004",
+   "cv": "CV-029",
+   "grade": 0
+  },
+  {
+   "jd": "JD-010",
+   "cv": "CV-028",
+   "grade": 0
+  },
+  {
+   "jd": "JD-009",
+   "cv": "CV-001",
+   "grade": 0
+  },
+  {
+   "jd": "JD-002",
+   "cv": "CV-043",
+   "grade": 0
+  },
+  {
+   "jd": "JD-011",
+   "cv": "CV-036",
+   "grade": 1
+  },
+  {
+   "jd": "JD-006",
+   "cv": "CV-038",
+   "grade": 0
+  }
+ ]
+}

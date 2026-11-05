@@ -25,7 +25,9 @@ against the CV, and they keep the final decision.
 **Scope.** Automation Test roles only; CVs in English and Vietnamese; synthetic, anonymised data; the system
 recommends, it does not hire.
 
-**Assumptions.** Labels are silver (LLM-made) and rubric-based; human labels are not in yet (see §Open work).
+**Assumptions.** Ranking labels are silver (LLM-made) and rubric-based. Two humans graded 120 pairs of `ours` blind
+and one human graded Djinni while seeing the model's grade (`docs/DATA_EVAL_SUMMARY.md`); no human-adjudicated gold
+replaces silver yet.
 
 ---
 
@@ -96,7 +98,8 @@ CV ─ NLP pipeline (backend/app/nlp, docs/NLP_PIPELINE.md) ──────�
 JD ─ rule parser, no LLM (nlp/jd.py) ─▶ must-have / nice-to-have / substitutes / years / domain / languages
 
 P7 agent (agent/orchestrator.py): the LLM picks the next tool; the guard checks every call
-  parse_jd → [ask_hr if the JD is vague] → screen (hybrid search → knock-out H → 8 rule criteria, 0 tokens)
+  parse_jd → [HR wrote a goal: formalize_goal (each constraint quotes HR) → define_concept for what no taxonomy
+  holds → feasibility over the pool → ask_hr if it is infeasible or unclear] → [ask_hr if the JD is vague] → screen (hybrid search → knock-out H → 8 rule criteria, 0 tokens)
   → [investigate CVs that look like parse failures] → [rank_shortlist: controlled LLM ranking, two passes]
   → explain + verify_evidence → [compare near-ties, both orders] → respond_to_hr ⇄ HR replies / re-weights / approves
 ```
@@ -110,8 +113,11 @@ P7 agent (agent/orchestrator.py): the LLM picks the next tool; the guard checks 
 - The trace: tools run, guard refusals, tokens (Langfuse session per run).
 
 ### Where it is agentic
-The LLM chooses the next step among 14 typed tools (`agent/tools.py`) toward HR's goal. It can skip steps, ask HR,
-or investigate a suspicious CV. The harness keeps it safe: schema, per-tool preconditions, HR authority (only what HR
+The LLM chooses the next step among 17 typed tools (`agent/tools.py`) toward HR's goal. It can skip steps, ask HR,
+or investigate a suspicious CV. A complex goal ("5 CVs, Selenium a must, Playwright nice, AI a must, AI in
+automation a big plus") becomes a typed plan: code checks that every constraint quotes HR (Q19), counts what the
+pool can deliver before ranking, and the agent must go back to HR when the goal cannot be met and declare in its
+answer what it could not deliver (Q20, H31/H32; `agent/goal.py`). The harness keeps it safe: schema, per-tool preconditions, HR authority (only what HR
 said can change requirements), budgets (`max_agent_steps`, `max_agent_tokens`, `max_hr_turns`). Argument from the
 business problem: `docs/why-agentic.md`. Architecture: `docs/agentic-architecture-workflow.md`,
 `docs/architecture.html`.
@@ -144,7 +150,8 @@ prompt-injection detection, quote grounding.
 | Token cost of selectivity, E21 (`TOKEN_COST_RESULTS.md`) | vs E-every (LLM on every eligible candidate), 8 dev JDs: P6 −47.4%, B4 −66.9% tokens; E-every +0.015 nDCG over P6, p = 0.34 | ✅ selectivity halves tokens at no significant accuracy cost; ⚠ below the −78% target |
 | Djinni labels (`DJINNI_LABELS.md`) | 424 pooled pairs, Opus vs Sonnet κ = 0.778. **Human labels (Đán, all 424 pairs, review mode: Opus's grade shown):** changed 73/424 Opus grades (82.8% kept, mostly 0 → 1); κ(human, silver mean) = **0.820** | ✅ κ ≥ 0.8: silver stays the main Djinni set (EVAL §2). ⚠ one annotator who saw the model's grade, so κ is an upper bound; a second, blind annotator is still needed for adjudicated gold (v2.1) |
 | Djinni scored with the human labels (`BENCHMARK_V2_RESULTS.md`, v2.1 preview) | every system 0.05-0.09 lower than on silver; system order kept (Kendall τ 0.86): B3 rules ⊕ CE 0.646, B4 0.637, 8-axis ⊕ CE 0.623, P6 0.602, BM25 0.445 | ✅ conclusions hold under human labels (B4 ≥ P6; the ladder over BM25 / hybrid). ⚠ under human labels the 4-criteria ranker edges the 8-criteria one on real CVs |
-| Annotator quality check (`DJINNI_LABELS.md`) | Human labels count towards gold only with weighted κ ≥ 0.4 against another annotator and, when blind, ≥ 10 s per pair (the page stamps every grade). A first blind attempt failed it and was set aside. Đán's review-mode labels: median 1.4 s per pair, i.e. mostly Opus's grade accepted | ⚠ the only human set is anchored on Opus, so the κ 0.820 and the human-label preview are weak human validation, not independent evidence; no adjudicated v2.1 gold |
+| Annotator quality check (`DJINNI_LABELS.md`) | Human labels count towards gold only with weighted κ ≥ 0.4 against another annotator and, when blind, ≥ 10 s per pair (the page stamps every grade). A first blind attempt failed it and was set aside. Vũ's blind 80-pair subset (29.5 s per pair, 51 notes) failed it too: κ 0.164 with Đán, 0.17–0.26 with the LLM annotators. Đán's review-mode labels: median 1.4 s per pair, i.e. mostly Opus's grade accepted | ⚠ the only human set is anchored on Opus, so the κ 0.820 and the human-label preview are weak human validation, not independent evidence; no adjudicated v2.1 gold. A careful blind reader disagreeing with everyone says the Djinni rubric needs one adjudication session before more labelling |
+| Human labels on `ours` (`HUMAN_LABELS.md`, Hoa + Phúc, blind, 120 pairs = all 94 Opus/Sonnet disagreements + 26 controls) | human–human κ **0.965**; vs Opus 0.87–0.88, vs Sonnet 0.65–0.69; vs the silver mean 0.66–0.70 rounded half up, 0.87–0.88 rounded down. Controls: silver grade on 20/26. Disagreements: Opus stricter on 90/94; humans side with Opus 65 / 74, Sonnet 25 / 16 | ✅ first human check of the silver labels: right where the two models agree. ⚠ independence to confirm: the silver grades sat next to the guideline, and the page stamps no time per grade (`DATA_EVAL_SUMMARY.md`). ⚠ where they differ the gold mean is ~½ grade too generous; the sample is disagreement-heavy, so κ is not over all 600 pairs. Next: re-score v1 with these 120 pairs as adjudicated gold |
 | Real résumé PDFs, E23 (`KAGGLE_RESUME_RESULTS.md`) | 2,484 PDFs, 24 trades: 100% read, token F1 1.000 vs the dataset text; v4.1 fixes: dated roles 41.9% → 97.7%, "testing tool" false positives in other trades 17.2% → 1.6%, knock-out false passes 0.3% → 0.0% | ✅ found and fixed three faults synthetic data never showed; ranking on ours / coding / Djinni unchanged (±0.002) |
 | Reproducibility (v4.1) | query text depended on PYTHONHASHSEED (aliases from a set): two runs of JD-002 swapped near-ties. Fixed; v1 test B3 8-axis ⊕ CE 0.831 → 0.841, dev Δ ≤ 0.005. "Present" now pinned by REFERENCE_DATE in evaluations (extraction MAE had drifted 0.79 → 0.89 with no code change) | ✅ the same JD now gives the same ranking on every run |
 
@@ -165,10 +172,11 @@ keyword-only and dense-only, and the LLM adds on top at a cost. Both match the l
 
 | # | Item | Why it matters | Suggested owner | Entry point |
 |---|---|---|---|---|
-| 1 | **A blind human annotator who reads each pair (Djinni)** | Next: the stratified 80-pair subset (10 per JD) at `review.html?blind=1&subset=1` (grading unlocks after 20 s, a note required for 1 or 2); about 40–60 minutes; enough for a human–human κ. Then `djinni import` (the check runs in `djinni score`) | another member (label) + Hoa (analysis) | `docs/DJINNI_LABELS.md` |
+| 1 | **Djinni human gold**: Vũ's blind 80-pair run is in but fails the check (κ 0.164 with Đán) | Before more labelling: one session where Đán and Vũ go through ~10 of their disagreements and fix how the rubric reads short real profiles; then re-grade the subset blind | Đán + Vũ (label), Hoa (analysis) | `docs/DJINNI_LABELS.md`, `docs/DATA_EVAL_SUMMARY.md` |
+| 1b | Re-score v1 with the 120 human-graded pairs (Hoa + Phúc) as adjudicated gold | Does the system order hold when the silver mean is replaced where the models disagreed? | Hoa | `app.eval.human`, `app.eval.benchmark` |
 | 2 | Learned component: done as a fine-tuned cross-encoder (E20); contrastive bi-encoder still open | E20 gains on synthetic data, not on Djinni | Vũ / Đán | `app.eval.finetune`, `notebooks/finetune_ce_colab.ipynb` |
 | 3 | ~~Public dataset layer~~ done: Djinni in NLP501-bench v2 | | Hoa | `docs/BENCHMARK.md` §v2 |
-| 4 | Learning from HR feedback across sessions | Lecturer feedback | Sơn / Thịnh | `scoring` weight calibration |
+| 4 | ~~Learning from HR feedback across sessions~~ built (H30, off by default) and measured (E24): with a simulated, perfectly consistent HR, learned weights vs static Δ −0.008 nDCG@10 (p = 0.78) | Negative result: re-weighting from HR decisions does not raise nDCG; HR rejections are kept as hard decisions instead (`rejected_by_hr`) | Sơn / Thịnh | `agent/hr_memory.py`, `HR_LEARNING_RESULTS.md` |
 | 5 | ~~Live E15 run of P7~~ done: 40/42 checks (`AGENTIC_RESULTS.md`). Next: repeat runs for a pass rate per check, and a guard that refuses a final answer whose message recommends CVs but whose shortlist is empty | | Thịnh | `app.eval.agentic` |
 | 6 | Held-out injection attack set | Current 10/10 is on a small set | anyone | `app.eval.injection` |
 | 7 | ~~Token-saving comparison~~ done (E21): −47% (P6) / −67% (B4) | | Thịnh | `app.eval.token_cost` |

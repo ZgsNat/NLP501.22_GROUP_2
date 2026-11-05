@@ -29,7 +29,12 @@ to the final evaluation.
 
 ## What the sample is
 
-The page holds 10 pairs per JD across all 12 JDs. In each JD, 3 pairs are ones where the two silver annotators
-disagreed, and the rest spread across every silver grade (seed 13, `app/eval/human.py › sample`). You never see the silver
-grades or any system's ranking. Because disagreements are over-represented, κ on this sample is a conservative
-(lower) estimate of agreement over all 600 pairs.
+The page holds 120 pairs across all 12 JDs: **all 94 pairs where the two silver annotators disagreed**, plus 26
+agreeing controls selected to balance JD and silver-grade coverage (seed 13, `app/eval/human.py › sample`). You never
+see the silver grades, disagreement status or any system's ranking. Because disagreements are deliberately
+over-represented, κ on this sample is a conservative (lower) estimate of agreement over all 600 pairs. The same two
+human label files therefore both validate the silver set and adjudicate every A/B disagreement; no second labelling
+page is required.
+
+The current sample id is `v2-all-disagreements-seed13`. Labels downloaded from the older `v1-seed13` page are not
+interchangeable with this sample and the scoring command rejects them.

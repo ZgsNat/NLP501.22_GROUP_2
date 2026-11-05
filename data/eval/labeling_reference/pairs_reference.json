@@ -1,0 +1,1082 @@
+[
+  {
+    "index": 1,
+    "jd": "JD-001",
+    "cv": "CV-019",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 2,
+    "jd": "JD-012",
+    "cv": "CV-050",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 3,
+    "jd": "JD-011",
+    "cv": "CV-017",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 4,
+    "jd": "JD-007",
+    "cv": "CV-035",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 5,
+    "jd": "JD-010",
+    "cv": "CV-049",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 6,
+    "jd": "JD-003",
+    "cv": "CV-018",
+    "silver_a": 2,
+    "silver_b": 3,
+    "silver_consensus": 2,
+    "status": "disagree (Opus: 2, Sonnet: 3)"
+  },
+  {
+    "index": 7,
+    "jd": "JD-006",
+    "cv": "CV-036",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 8,
+    "jd": "JD-012",
+    "cv": "CV-011",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 9,
+    "jd": "JD-011",
+    "cv": "CV-015",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 10,
+    "jd": "JD-006",
+    "cv": "CV-011",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 11,
+    "jd": "JD-012",
+    "cv": "CV-045",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 12,
+    "jd": "JD-003",
+    "cv": "CV-035",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 13,
+    "jd": "JD-009",
+    "cv": "CV-046",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 14,
+    "jd": "JD-010",
+    "cv": "CV-022",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 15,
+    "jd": "JD-010",
+    "cv": "CV-046",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 16,
+    "jd": "JD-009",
+    "cv": "CV-014",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 17,
+    "jd": "JD-005",
+    "cv": "CV-039",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 18,
+    "jd": "JD-007",
+    "cv": "CV-017",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 19,
+    "jd": "JD-006",
+    "cv": "CV-026",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 20,
+    "jd": "JD-002",
+    "cv": "CV-036",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 21,
+    "jd": "JD-012",
+    "cv": "CV-028",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 22,
+    "jd": "JD-001",
+    "cv": "CV-049",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 23,
+    "jd": "JD-008",
+    "cv": "CV-030",
+    "silver_a": 1,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "disagree (Opus: 1, Sonnet: 2)"
+  },
+  {
+    "index": 24,
+    "jd": "JD-012",
+    "cv": "CV-009",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 25,
+    "jd": "JD-004",
+    "cv": "CV-029",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 26,
+    "jd": "JD-002",
+    "cv": "CV-002",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 27,
+    "jd": "JD-011",
+    "cv": "CV-011",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 28,
+    "jd": "JD-010",
+    "cv": "CV-018",
+    "silver_a": 2,
+    "silver_b": 3,
+    "silver_consensus": 2,
+    "status": "disagree (Opus: 2, Sonnet: 3)"
+  },
+  {
+    "index": 29,
+    "jd": "JD-009",
+    "cv": "CV-045",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 30,
+    "jd": "JD-012",
+    "cv": "CV-040",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 31,
+    "jd": "JD-012",
+    "cv": "CV-041",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 32,
+    "jd": "JD-006",
+    "cv": "CV-020",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 33,
+    "jd": "JD-011",
+    "cv": "CV-028",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 34,
+    "jd": "JD-006",
+    "cv": "CV-034",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 35,
+    "jd": "JD-011",
+    "cv": "CV-008",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 36,
+    "jd": "JD-006",
+    "cv": "CV-035",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 37,
+    "jd": "JD-002",
+    "cv": "CV-026",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 38,
+    "jd": "JD-002",
+    "cv": "CV-010",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 39,
+    "jd": "JD-003",
+    "cv": "CV-021",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 40,
+    "jd": "JD-001",
+    "cv": "CV-021",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 41,
+    "jd": "JD-010",
+    "cv": "CV-045",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 42,
+    "jd": "JD-011",
+    "cv": "CV-036",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 43,
+    "jd": "JD-001",
+    "cv": "CV-017",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 44,
+    "jd": "JD-011",
+    "cv": "CV-018",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 45,
+    "jd": "JD-008",
+    "cv": "CV-018",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 46,
+    "jd": "JD-008",
+    "cv": "CV-008",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 47,
+    "jd": "JD-001",
+    "cv": "CV-033",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 48,
+    "jd": "JD-003",
+    "cv": "CV-026",
+    "silver_a": 3,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "disagree (Opus: 3, Sonnet: 2)"
+  },
+  {
+    "index": 49,
+    "jd": "JD-003",
+    "cv": "CV-032",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 50,
+    "jd": "JD-004",
+    "cv": "CV-028",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 51,
+    "jd": "JD-008",
+    "cv": "CV-038",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 52,
+    "jd": "JD-009",
+    "cv": "CV-044",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 53,
+    "jd": "JD-002",
+    "cv": "CV-050",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 54,
+    "jd": "JD-010",
+    "cv": "CV-033",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 55,
+    "jd": "JD-005",
+    "cv": "CV-020",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 56,
+    "jd": "JD-005",
+    "cv": "CV-042",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 57,
+    "jd": "JD-010",
+    "cv": "CV-038",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 58,
+    "jd": "JD-011",
+    "cv": "CV-030",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 59,
+    "jd": "JD-001",
+    "cv": "CV-011",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 60,
+    "jd": "JD-012",
+    "cv": "CV-024",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 61,
+    "jd": "JD-007",
+    "cv": "CV-003",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 62,
+    "jd": "JD-001",
+    "cv": "CV-038",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 63,
+    "jd": "JD-003",
+    "cv": "CV-005",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 64,
+    "jd": "JD-006",
+    "cv": "CV-013",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 65,
+    "jd": "JD-010",
+    "cv": "CV-039",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 66,
+    "jd": "JD-009",
+    "cv": "CV-021",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 67,
+    "jd": "JD-007",
+    "cv": "CV-005",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 68,
+    "jd": "JD-005",
+    "cv": "CV-028",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 69,
+    "jd": "JD-009",
+    "cv": "CV-020",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 70,
+    "jd": "JD-008",
+    "cv": "CV-050",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 71,
+    "jd": "JD-004",
+    "cv": "CV-033",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 72,
+    "jd": "JD-004",
+    "cv": "CV-026",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 73,
+    "jd": "JD-005",
+    "cv": "CV-047",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 74,
+    "jd": "JD-004",
+    "cv": "CV-025",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 75,
+    "jd": "JD-008",
+    "cv": "CV-003",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 76,
+    "jd": "JD-008",
+    "cv": "CV-021",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 77,
+    "jd": "JD-003",
+    "cv": "CV-017",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 78,
+    "jd": "JD-006",
+    "cv": "CV-023",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 79,
+    "jd": "JD-004",
+    "cv": "CV-010",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 80,
+    "jd": "JD-002",
+    "cv": "CV-033",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 81,
+    "jd": "JD-003",
+    "cv": "CV-029",
+    "silver_a": 3,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "disagree (Opus: 3, Sonnet: 2)"
+  },
+  {
+    "index": 82,
+    "jd": "JD-007",
+    "cv": "CV-025",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 83,
+    "jd": "JD-005",
+    "cv": "CV-013",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 84,
+    "jd": "JD-010",
+    "cv": "CV-021",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 85,
+    "jd": "JD-004",
+    "cv": "CV-022",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 86,
+    "jd": "JD-003",
+    "cv": "CV-010",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 87,
+    "jd": "JD-009",
+    "cv": "CV-029",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 88,
+    "jd": "JD-003",
+    "cv": "CV-046",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 89,
+    "jd": "JD-011",
+    "cv": "CV-050",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 90,
+    "jd": "JD-010",
+    "cv": "CV-010",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 91,
+    "jd": "JD-007",
+    "cv": "CV-018",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 92,
+    "jd": "JD-008",
+    "cv": "CV-028",
+    "silver_a": 1,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "disagree (Opus: 1, Sonnet: 2)"
+  },
+  {
+    "index": 93,
+    "jd": "JD-007",
+    "cv": "CV-013",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 94,
+    "jd": "JD-002",
+    "cv": "CV-004",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 95,
+    "jd": "JD-005",
+    "cv": "CV-026",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 96,
+    "jd": "JD-005",
+    "cv": "CV-037",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 97,
+    "jd": "JD-012",
+    "cv": "CV-018",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 98,
+    "jd": "JD-012",
+    "cv": "CV-042",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 99,
+    "jd": "JD-005",
+    "cv": "CV-043",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 100,
+    "jd": "JD-007",
+    "cv": "CV-042",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 101,
+    "jd": "JD-007",
+    "cv": "CV-011",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 102,
+    "jd": "JD-001",
+    "cv": "CV-006",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 103,
+    "jd": "JD-009",
+    "cv": "CV-013",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 104,
+    "jd": "JD-008",
+    "cv": "CV-039",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 105,
+    "jd": "JD-008",
+    "cv": "CV-032",
+    "silver_a": 1,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "disagree (Opus: 1, Sonnet: 2)"
+  },
+  {
+    "index": 106,
+    "jd": "JD-004",
+    "cv": "CV-039",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 107,
+    "jd": "JD-004",
+    "cv": "CV-007",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  },
+  {
+    "index": 108,
+    "jd": "JD-006",
+    "cv": "CV-049",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 109,
+    "jd": "JD-002",
+    "cv": "CV-023",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 110,
+    "jd": "JD-004",
+    "cv": "CV-030",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 111,
+    "jd": "JD-002",
+    "cv": "CV-012",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 112,
+    "jd": "JD-001",
+    "cv": "CV-014",
+    "silver_a": 1,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "disagree (Opus: 1, Sonnet: 2)"
+  },
+  {
+    "index": 113,
+    "jd": "JD-007",
+    "cv": "CV-027",
+    "silver_a": 1,
+    "silver_b": 1,
+    "silver_consensus": 1,
+    "status": "agree"
+  },
+  {
+    "index": 114,
+    "jd": "JD-002",
+    "cv": "CV-038",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 115,
+    "jd": "JD-009",
+    "cv": "CV-032",
+    "silver_a": 0,
+    "silver_b": 1,
+    "silver_consensus": 0,
+    "status": "disagree (Opus: 0, Sonnet: 1)"
+  },
+  {
+    "index": 116,
+    "jd": "JD-005",
+    "cv": "CV-012",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 117,
+    "jd": "JD-011",
+    "cv": "CV-047",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 118,
+    "jd": "JD-006",
+    "cv": "CV-029",
+    "silver_a": 2,
+    "silver_b": 2,
+    "silver_consensus": 2,
+    "status": "agree"
+  },
+  {
+    "index": 119,
+    "jd": "JD-001",
+    "cv": "CV-018",
+    "silver_a": 3,
+    "silver_b": 3,
+    "silver_consensus": 3,
+    "status": "agree"
+  },
+  {
+    "index": 120,
+    "jd": "JD-009",
+    "cv": "CV-026",
+    "silver_a": 0,
+    "silver_b": 0,
+    "silver_consensus": 0,
+    "status": "agree"
+  }
+]

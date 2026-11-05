@@ -8,6 +8,7 @@ Quadratic-weighted Cohen's κ on the pairs both sides graded. Decision rule (EVA
 | Annotator | pairs labelled |
 |---|---|
 | human dan (saw the model's grade on 424 pairs) | 424/424 |
+| human vu | 80/424 |
 | silver a (claude-opus-5-5, LLM, blind, rubric; not human) | 424/424 |
 | silver b (claude-sonnet-5-5, LLM, blind, rubric; not human) | 424/424 |
 | silver mean (rounded down) | 424/424 |
@@ -20,15 +21,23 @@ Gold uses only annotators who pass: weighted κ ≥ 0.4 with at least one other 
 | Annotator | mode | median s / pair | notes written | verdict |
 |---|---|---|---|---|
 | human dan (saw the model's grade on 424 pairs) | review (saw Opus's grade) | 1.4 | 0 | ✅ usable |
+| human vu | blind | 29.5 | 51 | ❌ excluded: best κ with any other annotator 0.25 < 0.4 |
+
+Adjudicated human gold (v2.1) needs two annotators who pass the check; 1 do.
 
 ## Agreement
 
 | Pair | pairs | exact agreement | weighted κ |
 |---|---|---|---|
+| human dan (saw the model's grade on 424 pairs) vs human vu | 80 | 32.5% | 0.164 |
 | human dan (saw the model's grade on 424 pairs) vs silver a (claude-opus-5-5, LLM, blind, rubric; not human) | 424 | 71.0% | 0.821 |
 | human dan (saw the model's grade on 424 pairs) vs silver b (claude-sonnet-5-5, LLM, blind, rubric; not human) | 424 | 52.8% | 0.738 |
 | human dan (saw the model's grade on 424 pairs) vs silver mean (rounded down) | 424 | 70.8% | 0.820 |
 | human dan (saw the model's grade on 424 pairs) vs Opus 5.5 close read (8 CVs a call; LLM, not human) | 424 | 82.8% | 0.887 |
+| human vu vs silver a (claude-opus-5-5, LLM, blind, rubric; not human) | 80 | 28.7% | 0.170 |
+| human vu vs silver b (claude-sonnet-5-5, LLM, blind, rubric; not human) | 80 | 31.2% | 0.255 |
+| human vu vs silver mean (rounded down) | 80 | 25.0% | 0.117 |
+| human vu vs Opus 5.5 close read (8 CVs a call; LLM, not human) | 80 | 28.7% | 0.188 |
 | silver a (claude-opus-5-5, LLM, blind, rubric; not human) vs silver b (claude-sonnet-5-5, LLM, blind, rubric; not human) | 424 | 56.8% | 0.778 |
 | silver a (claude-opus-5-5, LLM, blind, rubric; not human) vs silver mean (rounded down) | 424 | 93.2% | 0.965 |
 | silver a (claude-opus-5-5, LLM, blind, rubric; not human) vs Opus 5.5 close read (8 CVs a call; LLM, not human) | 424 | 79.2% | 0.895 |

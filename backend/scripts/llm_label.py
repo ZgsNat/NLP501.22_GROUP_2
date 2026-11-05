@@ -18,6 +18,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from pydantic import BaseModel, Field
 
 from app.config import ROOT
+from app.eval.human import SAMPLE_ID
 from app.nlp.injection import neutralize
 from app.providers.llm import create_llm
 from app.rag.corpus import get_doc
@@ -60,7 +61,7 @@ async def main(spec: str) -> None:
         labels += [{"jd": jd, "cv": c, "grade": got[c].grade, "note": got[c].note} for c in cvs if c in got]
         print(f"{jd}: graded {len(got)}/{len(cvs)}")
     OUT.write_text(json.dumps({"annotator": f"llm-annotator-d ({spec.split(':', 1)[1]}, LLM, blind, rubric; not human)",
-                               "sample": "v1-seed13", "labels": labels}, indent=1, ensure_ascii=False))
+                               "sample": SAMPLE_ID, "labels": labels}, indent=1, ensure_ascii=False))
     print(f"→ {OUT} ({len(labels)}/{len(pairs)} pairs)")
 
 

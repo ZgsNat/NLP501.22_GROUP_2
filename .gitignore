@@ -15,3 +15,7 @@ frontend/dist/
 # fine-tuned weights (app.eval.finetune): rebuilt by `train`, never committed
 models/ce-ft-dev/
 models/ce-ft-dev-cvdisjoint/
+
+# OS artifacts
+.DS_Store
+*/.DS_Store
