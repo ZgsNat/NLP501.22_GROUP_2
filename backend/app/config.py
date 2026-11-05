@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     llm_provider: str = "ollama"
     llm_reasoning: str = ""  # optional "<provider>:<model>" override, e.g. mix providers per role
     llm_fast: str = ""
+    llm_fallback: str = ""  # "<provider>:<model>" tried when the main model errors or returns an invalid output
 
     openai_api_key: str = ""
     openai_model: str = "gpt-5"

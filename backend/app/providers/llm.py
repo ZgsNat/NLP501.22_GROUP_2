@@ -7,11 +7,14 @@ own default "reasoning" and "fast" model (also overridable in .env). Nodes only 
 To add a provider: subclass LLMProvider, decorate with @register. Nothing else changes.
 """
 
+import json
 import shutil
 from abc import ABC, abstractmethod
 from typing import Literal
 
 from langchain_core.language_models import BaseChatModel
+from langchain_core.runnables import Runnable, RunnableLambda
+from pydantic import BaseModel
 
 from app.config import Settings, get_settings
 
@@ -119,10 +122,64 @@ class ProxyChatOpenAI:
     @staticmethod
     def wrap(base_cls):
         class _Wrapped(base_cls):
-            def with_structured_output(self, schema, **kwargs):
+            def with_structured_output(self, schema, **kwargs) -> Runnable:
                 kwargs.setdefault("method", "function_calling")
-                return super().with_structured_output(schema, **kwargs)
+                if kwargs.get("include_raw"):
+                    return super().with_structured_output(schema, **kwargs)
+                runnable = super().with_structured_output(schema, include_raw=True, **kwargs)
+                return runnable | RunnableLambda(lambda r: structured_or_prose(r, schema))
+
+            def bind_tools(self, tools, *, tool_choice=None, **kwargs) -> Runnable:
+                # Claude behind an OpenAI-compatible proxy rejects a forced tool_choice (400); ask for "auto" and let
+                # structured_or_prose read a JSON answer written as text.
+                if tool_choice not in (None, "auto", "none") and not unforced_ok(self.model_name):
+                    tool_choice = "auto"
+                return super().bind_tools(tools, tool_choice=tool_choice, **kwargs)
         return _Wrapped
+
+
+def unforced_ok(model: str) -> bool:
+    """False for models a proxy only serves with tool_choice auto/none (Claude with thinking)."""
+    return not model.lower().startswith("claude")
+
+
+def proxy_sampling(model: str) -> dict:
+    """temperature=0 where the proxy allows it; Claude with thinking behind a proxy only takes the default (400)."""
+    return {"temperature": 0} if unforced_ok(model) else {}
+
+
+def structured_or_prose(result: dict, schema):
+    """A proxied model may answer in text instead of calling the schema tool (LangChain then parses None). Accept that
+    text only when it holds JSON that validates against the schema; otherwise raise, so every caller's Q1 path
+    (invalid output → safe default) runs instead of an AttributeError further down."""
+    if result.get("parsed") is not None:
+        return result["parsed"]
+    raw = result.get("raw")
+    data = json_in(text_of(raw.content)) if raw is not None else None
+    if data is not None and isinstance(schema, type) and issubclass(schema, BaseModel):
+        if isinstance(data, dict) and set(data) == {schema.__name__}:
+            data = data[schema.__name__]  # {"InvestigatorAction": {...}}
+        return schema.model_validate(data)  # ValidationError → the caller's Q1 path
+    raise ValueError(f"the model returned no structured output: {result.get('parsing_error') or 'no tool call, no JSON'}")
+
+
+def text_of(content) -> str:
+    """Message content as text: a string, or the text blocks of a list (Responses-style content)."""
+    if isinstance(content, str):
+        return content
+    return "".join(b.get("text", "") if isinstance(b, dict) else str(b) for b in content or [])
+
+
+def json_in(text: str):
+    """The first JSON object in a text answer (bare, or inside a ``` fence) → dict, or None."""
+    i = text.find("{")
+    if i < 0:
+        return None
+    try:
+        obj, _ = json.JSONDecoder().raw_decode(text[i:])
+    except ValueError:
+        return None
+    return obj if isinstance(obj, dict) else None
 
 
 @register
@@ -138,7 +195,7 @@ class GatewayProvider(LLMProvider):
         from langchain_openai import ChatOpenAI
 
         cls = ProxyChatOpenAI.wrap(ChatOpenAI)
-        return cls(model=model, base_url=self.s.gateway_base_url, api_key=self.s.gateway_api_key, temperature=0)
+        return cls(model=model, base_url=self.s.gateway_base_url, api_key=self.s.gateway_api_key, **proxy_sampling(model))
 
     def default_model(self, role: Role) -> str:
         return self.s.gateway_model if role == "reasoning" else self.s.gateway_fast_model
@@ -158,7 +215,7 @@ class WokuShopProvider(LLMProvider):
 
         base_url = self.s.woku_base_url.strip() or "https://llm.wokushop.com/v1"
         cls = ProxyChatOpenAI.wrap(ChatOpenAI)
-        return cls(model=model, base_url=base_url, api_key=self.s.woku_api_key, temperature=0)
+        return cls(model=model, base_url=base_url, api_key=self.s.woku_api_key, **proxy_sampling(model))
 
     def default_model(self, role: Role) -> str:
         return self.s.woku_model if role == "reasoning" else self.s.woku_fast_model
@@ -207,6 +264,16 @@ def default_spec(role: Role, s: Settings | None = None) -> str:
 
 
 def create_llm(spec: str, s: Settings | None = None) -> BaseChatModel:
+    """The model for a spec; with LLM_FALLBACK set, a call that errors (timeout, 5xx, a structured output that does not
+    validate) is retried once on the fallback. bind_tools / with_structured_output apply to both models."""
+    s = s or get_settings()
+    primary = _create(spec, s)
+    if not s.llm_fallback or s.llm_fallback == spec:
+        return primary
+    return primary.with_fallbacks([_create(s.llm_fallback, s)])
+
+
+def _create(spec: str, s: Settings) -> BaseChatModel:
     name, model = parse_spec(spec)
     provider = get_provider(name, s)
     if not provider.is_configured():
