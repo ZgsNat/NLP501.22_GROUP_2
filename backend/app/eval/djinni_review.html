@@ -54,7 +54,8 @@ textarea{width:100%;min-height:44px;margin-top:8px}
 <header>
   <b>Djinni · gán nhãn CV–JD</b>
   <label class="mut">Người gán nhãn <input id="who" placeholder="tên của bạn" size="12"></label>
-  <label class="mut">Chế độ
+  <span class="mut" id="blindtag" hidden>Chế độ mù: gợi ý của mô hình bị khoá</span>
+  <label class="mut" id="modebox">Chế độ
     <select id="mode">
       <option value="blind">Mù: không hiện gợi ý của Opus</option>
       <option value="review">Duyệt: hiện gợi ý của Opus</option>
@@ -63,7 +64,7 @@ textarea{width:100%;min-height:44px;margin-top:8px}
     <select id="filter">
       <option value="all">Tất cả cặp</option>
       <option value="todo">Chưa gán nhãn</option>
-      <option value="diff">Lệch với Opus (sau khi gán)</option>
+      <option value="diff" id="diffopt">Lệch với Opus (sau khi gán)</option>
     </select></label>
   <span class="sp"></span>
   <span class="mut" id="prog"></span><span class="bar"><i id="barfill"></i></span>
@@ -167,6 +168,11 @@ $("resume").onchange = async (e) => {
     st.labels = Object.fromEntries(d.labels.map((l) => [l.jd + "|" + l.cv, l])); save(); show();
   } catch (err) { alert("File không đọc được: " + err.message); }
 };
+// ?blind=1: the page for a blind annotator. No way to see the model's grade, so every label counts as independent.
+if (new URLSearchParams(location.search).get("blind") === "1") {
+  $("mode").value = "blind"; $("modebox").hidden = true; $("blindtag").hidden = false; $("diffopt").remove();
+  DATA.model = {};
+}
 $("rubric").textContent = DATA.rubric;
 show();
 </script>
