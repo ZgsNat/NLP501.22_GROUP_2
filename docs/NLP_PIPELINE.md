@@ -157,6 +157,7 @@ An ungrounded quote sends the assessment back to the LLM (L4). A grounded but un
     passes 0.3% → 0.0%. The cost on the labelled sets: one garbled CV loses "postman" (low-quality slice).
   "requests" still fires 27 times on lines with words like "API"; the dataset has no QA category, so it cannot measure
   recall on real QA CVs (Djinni does that).
+- **Vietnamese typed without diacritics** (v4.2). Many Vietnamese CVs are typed without accents ("Xay dung framework"). The depth cue and its hedge / manual / automation guards now match folded clauses against a folded lexicon, with the Vietnamese verbs anchored at a word boundary ("Viettel" is not "viết"). On the 72 clean Vietnamese CVs with diacritics stripped (`extraction.strip_accents`): depth accuracy 0.0% → 87.5%, the same as the accented text; depth and years are unchanged on all 502 CVs of the three benchmarks, so no ranking moves.
 - **OCR reads Vietnamese without stacked diacritics.** PaddleOCR has no Vietnamese model; its latin model drops letters
   such as "ệ" or "ữ" (CER ≈ 6% on Vietnamese, < 1% on English). Headings and PII labels are therefore matched after
   folding diacritics, and tool names are ASCII, so extraction holds (§ Scanned CVs); prose quoted from an OCR'd CV

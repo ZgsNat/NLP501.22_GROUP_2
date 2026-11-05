@@ -171,7 +171,7 @@ keyword-only and dense-only, and the LLM adds on top at a cost. Both match the l
 | 5 | Live E15 run of P7 | End-to-end agentic evidence | Thịnh | `app.eval.agentic` |
 | 6 | Held-out injection attack set | Current 10/10 is on a small set | anyone | `app.eval.injection` |
 | 7 | ~~Token-saving comparison~~ done (E21): −47% (P6) / −67% (B4) | | Thịnh | `app.eval.token_cost` |
-| 8 | Depth cues without diacritics | Unaccented Vietnamese CVs miss L1–L4 | anyone | `nlp/extract.py` |
+| 8 | ~~Depth cues without diacritics~~ done (v4.2): unaccented Vietnamese CVs 0.0% → 87.5% depth accuracy, = accented; no ranking change | | anyone | `nlp/extract.py`, `EXTRACTION_RESULTS.md` |
 | 9 | Low-quality CV extraction (F1 0.19) | Weakest NLP slice | anyone | `app.eval.extraction` |
 
 Rules when contributing: tune on dev JDs only, report test once; a change is "better" only when the eval says so,

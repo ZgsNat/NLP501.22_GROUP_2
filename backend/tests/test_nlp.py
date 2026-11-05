@@ -411,3 +411,24 @@ def test_present_resolves_to_the_reference_date(monkeypatch):
         assert date_range("Jan 2020 – Present", today=date(2021, 1, 1))[1] == 2021 * 12 + 1  # explicit today wins
     finally:
         get_settings.cache_clear()
+
+
+@pytest.mark.parametrize("line, level", [
+    ("- Xây dựng framework kiểm thử tự động với Selenium", 3),
+    ("- Xay dung framework kiem thu tu dong voi Selenium", 3),  # the same CV typed without diacritics
+    ("- Viet test script tu dong bang Cypress", 2),
+    ("- Chay regression suite tu dong tren Jenkins", 1),
+    ("- Thiet ke chien luoc kiem thu cho 3 teams", 4),
+    ("- Dang hoc Cypress, viet test script", 0),  # an unaccented hedge still hedges
+    ("- Viettel automation tests team", 0),  # a company name is not the verb "viết"
+])
+def test_depth_cue_reads_vietnamese_with_or_without_diacritics(line, level):
+    from app.nlp.extract import _deepest
+
+    assert _deepest([line])[0] == level
+
+
+def test_strip_accents_keeps_case_and_length_of_words():
+    from app.eval.extraction import strip_accents
+
+    assert strip_accents("Xây dựng ở Đà Nẵng") == "Xay dung o Da Nang"

@@ -20,6 +20,8 @@ Gold: the `coding` branch generator's latent facts for 200 synthetic CVs and its
 | foreign languages (English, Japanese) | exact set 98.0% |
 | quality flag (X10) raised | 7/7 low-quality CVs, 17/193 clean CVs |
 
+Vietnamese CVs typed without diacritics (72 clean vi CVs, `strip_accents`): automation depth 87.5% accented → **87.5%** without diacritics; years within 1 year 63/72 → 63/72; same tool set 72/72.
+
 Gazetteer gaps (generator tools our taxonomy has no key for, with CV counts): none
 
 ## Redaction (masking before anything is indexed or shown to an LLM)
