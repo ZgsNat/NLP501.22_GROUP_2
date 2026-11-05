@@ -10,6 +10,7 @@
                         Gold: recover exactly the skills the CV has; never recover a skill it lacks.
 
     python -m app.eval.scenarios [--model claude_code:claude-sonnet-5-5] [--only investigator]
+    python -m app.eval.scenarios --model woku:gpt-6.1-sol --only investigator --per-kind 3   # quick screen (~12 cases)
         → docs/SCENARIO_RESULTS.md, or docs/SCENARIO_RESULTS_<model>.md with --model (LLM cache on)
 """
 
@@ -18,6 +19,7 @@ import asyncio
 import json
 import re
 import time
+from collections import Counter
 
 import yaml
 
@@ -43,6 +45,8 @@ async def gate(reasoning, fast) -> list[dict]:
             req, _, _ = await extract_requirements(reasoning, jd.text, "llm")
             ask, why = await ask_hr_gate(fast, jd.text, req)
             out.append({"jd": jd.id, "gold": jd.id in ASK, "ask": ask, "why": why or "no open questions"})
+            progress(f"gate {len(out)}/18 {jd.id}: {'ask' if ask else 'proceed'}"
+                     f"{'' if ask == (jd.id in ASK) else '  ✗ WRONG'}")
     return out
 
 
@@ -86,7 +90,9 @@ def investigator_cases() -> list[dict]:
 
 async def investigator(model, per_kind: int | None = None) -> list[dict]:
     s, out, seen = get_settings(), [], {}
-    for c in investigator_cases():
+    cases = investigator_cases()
+    total = sum(min(n, per_kind or n) for n in Counter(c["kind"] for c in cases).values())
+    for c in cases:
         seen[c["kind"]] = seen.get(c["kind"], 0) + 1
         if per_kind and seen[c["kind"]] > per_kind:
             continue  # a capped run (a subscription model) takes the first cases of each kind
@@ -103,7 +109,13 @@ async def investigator(model, per_kind: int | None = None) -> list[dict]:
                     "invalid": res["invalid"], "kept_out": knockout_reason(p, c["missing"], c["subs"]) is not None,
                     "trace": [f"{t['tool']}({t['arg'][:30]}) → {t['observation'].splitlines()[0][:70] if t['observation'] else ''}"
                               for t in res["trace"]]})
+        progress(f"investigator {len(out)}/{total} {c['kind']} {c['id']}: found {sorted(f['skill'] for f in res['facts'])}"
+                 f" of {sorted(c['truth'])} · {res['calls']} calls{'  ✗ INVALID OUTPUT' if res['invalid'] else ''}")
     return out
+
+
+def progress(line: str) -> None:
+    print(f"[{time.strftime('%H:%M:%S')}] {line}", flush=True)
 
 
 def render(spec: str, g: list[dict], iv: list[dict], secs: float) -> str:
@@ -143,6 +155,13 @@ def render(spec: str, g: list[dict], iv: list[dict], secs: float) -> str:
     return "\n".join(lines) + "\n"
 
 
+def result_name(spec: str) -> str:
+    """File suffix for a model spec: the model, plus the provider when it is a proxy, so "woku:claude-sonnet-5-5" never
+    overwrites the "claude_code:claude-sonnet-5-5" results."""
+    provider, model = spec.split(":", 1)
+    return model.replace(":", "-") + ("" if provider in {"claude_code", "ollama"} else f"_{provider}")
+
+
 async def main(spec: str | None, only: str | None, per_kind: int | None = None) -> None:
     cache.enable(get_settings().runtime_dir / "llm_cache.sqlite")
     reasoning = create_llm(spec or default_spec("reasoning"))
@@ -150,7 +169,7 @@ async def main(spec: str | None, only: str | None, per_kind: int | None = None) 
     t0 = time.perf_counter()
     g = await gate(reasoning, fast) if only != "investigator" else []
     iv = await investigator(reasoning, per_kind) if only != "gate" else []
-    out = OUT.with_name(f"SCENARIO_RESULTS_{spec.split(':', 1)[1].replace(':', '-')}.md") if spec else OUT
+    out = OUT.with_name(f"SCENARIO_RESULTS_{result_name(spec)}{f'_screen{per_kind}' if per_kind else ''}.md") if spec else OUT
     out.write_text(render(spec or default_spec("reasoning"), g, iv, time.perf_counter() - t0))
     print(out.read_text())
 
