@@ -167,3 +167,18 @@ def test_gold_ignores_a_second_annotator_who_fails_qc(tmp_path, monkeypatch):
     assert djinni.qualified_humans() == [tmp_path / "human_djinni_a.json"]
     assert djinni.gold()[1].startswith("silver")  # one usable human is not adjudicated gold
     assert "1 annotator, blind" in djinni.human_gold()[1]
+
+
+def test_subset_takes_ten_per_jd_across_the_whole_grade_range(tmp_path, monkeypatch):
+    import json
+
+    cvs = [f"c{i:02d}" for i in range(50)]
+    monkeypatch.setattr(djinni, "pairs", lambda: {"J1": cvs, "J2": cvs[:7]})
+    monkeypatch.setattr(djinni, "LABELS", tmp_path)
+    (tmp_path / "djinni_silver_a.json").write_text(json.dumps({"annotator": "s", "labels": [
+        {"jd": j, "cv": c, "grade": int(c[1:]) // 13} for j in ("J1", "J2") for c in cvs]}))
+    picked = djinni.subset()
+    j1 = [c for j, c in picked if j == "J1"]
+    assert len(j1) == 10 and len([c for j, c in picked if j == "J2"]) == 7  # a small JD gives all it has
+    assert {int(c[1:]) // 13 for c in j1} == {0, 1, 2, 3}  # every silver grade level is sampled
+    assert picked == djinni.subset()  # deterministic

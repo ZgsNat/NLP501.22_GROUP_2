@@ -55,6 +55,7 @@ textarea{width:100%;min-height:44px;margin-top:8px}
   <b>Djinni · gán nhãn CV–JD</b>
   <label class="mut">Người gán nhãn <input id="who" placeholder="tên của bạn" size="12"></label>
   <span class="mut" id="blindtag" hidden>Chế độ mù: gợi ý của mô hình bị khoá</span>
+  <span class="mut" id="subsettag" hidden>· Bộ rút gọn: 80 cặp (10 mỗi JD)</span>
   <label class="mut" id="modebox">Chế độ
     <select id="mode">
       <option value="blind">Mù: không hiện gợi ý của Opus</option>
@@ -87,6 +88,7 @@ textarea{width:100%;min-height:44px;margin-top:8px}
 <div class="panel gradebar">
   <div class="grades" id="grades"></div>
   <div id="hint"></div>
+  <div class="mut" id="wait" hidden></div>
   <textarea id="note" placeholder="Ghi chú ngắn (bắt buộc nên có khi chọn 1 hoặc 2): bằng chứng trong CV"></textarea>
 </div>
 
@@ -97,6 +99,9 @@ const GRADES = [["0", "Không phù hợp", "Thiếu kỹ năng bắt buộc, ho�
                 ["3", "Rất phù hợp", "Rất phù hợp, có bằng chứng làm thật"]];
 const $ = (id) => document.getElementById(id);
 const key = (p) => p.jd + "|" + p.cv;
+const Q = new URLSearchParams(location.search), BLIND = Q.get("blind") === "1";
+let opened = {key: null, at: 0}, timer = null;  // when the pair on screen was first shown
+function waitLeft(p){ return BLIND && !st.labels[key(p)] ? Math.max(0, DATA.min_read - (Date.now() - opened.at) / 1000) : 0; }
 const store = {get(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}},
                set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 let st = {who: store.get("djinni.who") || "", labels: {}, i: 0};
@@ -114,7 +119,7 @@ function chip(g){ return `<span class="chip c${g}">${g}</span>`; }
 function esc(s){ const d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
 function show(){
   const list = order();
-  const done = DATA.pairs.filter((p) => st.labels[key(p)]).length;
+  const done = DATA.pairs.filter((p) => st.labels[key(p)]).length;  // DATA.pairs is the subset under ?subset=1
   $("prog").textContent = `${done}/${DATA.pairs.length} đã gán`;
   $("barfill").style.width = (100 * done / DATA.pairs.length) + "%";
   if (!list.length){ $("pairhead").textContent = "Không còn cặp nào theo bộ lọc này."; return; }
@@ -125,15 +130,27 @@ function show(){
   $("grades").innerHTML = GRADES.map(([g, short, full]) =>
     `<button data-g="${g}" title="${full}" class="${l && String(l.grade) === g ? "on" : ""}">${chip(g)} ${short}</button>`).join("");
   $("note").value = l ? (l.note || "") : "";
+  if (opened.key !== key(p)) opened = {key: key(p), at: Date.now()};
+  clearInterval(timer); tick(p); if (waitLeft(p) > 0) timer = setInterval(() => tick(p), 500);
   const m = DATA.model[key(p)];
   $("hint").innerHTML = ($("mode").value === "review" && m)
     ? `<div class="hint"><b>Gợi ý của Opus 5.5:</b> ${chip(m.grade)} ${esc(m.note || "")}<br><span class="mut">Đây là nhãn của LLM. Chỉ giữ nếu bạn đồng ý sau khi tự đọc CV.</span></div>`
     : "";
   $("grades").querySelectorAll("button").forEach((b) => b.onclick = () => grade(Number(b.dataset.g)));
 }
+function tick(p){
+  const left = waitLeft(p);
+  $("grades").querySelectorAll("button").forEach((b) => b.disabled = left > 0);
+  $("wait").hidden = left <= 0;
+  $("wait").textContent = `Hãy đọc kỹ JD và CV: mở khoá chấm điểm sau ${Math.ceil(left)} giây.`;
+  if (left <= 0) clearInterval(timer);
+}
 function grade(g){
   const p = order()[st.i]; if (!p) return;
   if (!st.who){ alert("Nhập tên người gán nhãn trước."); $("who").focus(); return; }
+  if (waitLeft(p) > 0) return;
+  if (BLIND && (g === 1 || g === 2) && !$("note").value.trim()){
+    alert("Điểm 1 hoặc 2 cần một ghi chú ngắn: bằng chứng nào trong CV?"); $("note").focus(); return; }
   st.labels[key(p)] = {jd: p.jd, cv: p.cv, grade: g, note: $("note").value.trim(),
                        saw_model: $("mode").value === "review", at: new Date().toISOString()};
   save();
@@ -154,7 +171,8 @@ document.addEventListener("keydown", (e) => {
 });
 $("export").onclick = () => {
   if (!st.who){ alert("Nhập tên người gán nhãn trước."); return; }
-  const labels = Object.values(st.labels);
+  const inPage = new Set(DATA.pairs.map(key));
+  const labels = Object.values(st.labels).filter((l) => inPage.has(key(l)));
   const out = {annotator: "human " + st.who, source: "review.html", pool: DATA.pool,
                saw_model: labels.filter((l) => l.saw_model).length, labels};
   const a = document.createElement("a");
@@ -169,9 +187,14 @@ $("resume").onchange = async (e) => {
   } catch (err) { alert("File không đọc được: " + err.message); }
 };
 // ?blind=1: the page for a blind annotator. No way to see the model's grade, so every label counts as independent.
-if (new URLSearchParams(location.search).get("blind") === "1") {
+if (BLIND) {
   $("mode").value = "blind"; $("modebox").hidden = true; $("blindtag").hidden = false; $("diffopt").remove();
   DATA.model = {};
+}
+// ?subset=1: the stratified 80-pair sample (djinni.subset), for a careful read at ≥ 20 s per pair.
+if (Q.get("subset") === "1") {
+  const keep = new Set(DATA.subset); DATA.pairs = DATA.pairs.filter((p) => keep.has(key(p)));
+  $("subsettag").hidden = false;
 }
 $("rubric").textContent = DATA.rubric;
 show();

@@ -93,6 +93,7 @@ v1 had two weaknesses a reviewer named: 10 test JDs give wide intervals, and eve
   (`saw_model`): **blind** (the annotator's own judgement; what counts as human validation) and **review** (Opus 5.5's
   grade and evidence from `data/eval/djinni_gold_opus.json` shown; anchored, so reported as such). The Opus close read
   (8 CVs a call) is a model annotator: it is never mixed into the silver mean that v2 pins.
+- **Blind page and subset.** `review.html?blind=1` hides the mode switch and Opus's grades, unlocks grading 20 s after a pair opens and asks for a note on every 1 or 2. `&subset=1` shows the stratified 80-pair sample (`djinni.subset`: 10 per JD at even steps of the silver mean, so every grade level is in it; the annotator is not told which). 80 pairs are enough for a human–human κ; they are not a full gold.
 - **Annotator quality check** (`djinni.qc_problems`, run by `djinni score`). Human labels count towards gold only if the annotator reaches weighted κ ≥ 0.4 with at least one other annotator and, for blind labels, a median of ≥ 10 s per pair (the page stamps every grade). A set that fails stays in `data/eval/` and in the agreement table, marked excluded.
 - **Real CVs stay out of `data/`** (repo rule): `python -m app.eval.djinni fetch` copies them from git into
   `.runtime/bench/djinni`; only labels are committed.

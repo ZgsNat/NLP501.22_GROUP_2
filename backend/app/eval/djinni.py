@@ -15,7 +15,8 @@ Labels follow TREC pooling: per JD, the union of four rankers' top 20 plus 10 ra
     python -m app.eval.djinni score                          → docs/DJINNI_LABELS.md (κ human–human, human–silver)
     python -m app.eval.djinni review                         → .runtime/bench/djinni/labeling/review.html: label in a
                                                              browser, blind or with Opus's grade shown; its exported
-                                                             JSON goes to `import` like the xlsx files
+                                                             JSON goes to `import` like the xlsx files;
+                                                             ?blind=1 locks blind mode, &subset=1 = 80 pairs (subset())
 
 Gold (`gold()`): the adjudicated human labels once two annotators who pass the quality check (`qc_problems`) finished every pair and no pair is left ≥ 2 grades
 apart; until then the mean of the two silver annotators. Which one is in use is stated in every report.
@@ -23,6 +24,7 @@ apart; until then the mean of the two silver annotators. Which one is in use is 
 
 import argparse
 import asyncio
+import hashlib
 import html
 import json
 import random
@@ -44,6 +46,8 @@ LABELS = ROOT / "data" / "eval"
 DOC = ROOT / "docs" / "DJINNI_LABELS.md"
 BATCH = 20  # CVs per silver-label call
 QC_MIN_KAPPA = 0.4  # an annotator must reach "moderate" weighted κ with at least one other annotator (Landis & Koch)
+SUBSET_PER_JD = 10  # ?subset=1 on the page: 80 pairs, enough for a human–human κ
+MIN_READ_SECONDS = 20  # ?blind=1: grading unlocks this long after a new pair opens
 QC_MIN_SECONDS = 10.0  # blind labels: median seconds between grades; below this nobody read a JD and a CV
 
 
@@ -248,6 +252,20 @@ REVIEW_PAGE = Path(__file__).with_name("djinni_review.html")
 MODEL_GOLD = LABELS / "djinni_gold_opus.json"  # Opus 5.5, 8 CVs a call: the suggestion the review page shows
 
 
+def subset(per_jd: int = SUBSET_PER_JD) -> list[tuple[str, str]]:
+    """A stratified sample for a careful blind read: per JD, pairs ordered by the silver mean (ties by a hash) and
+    taken at even steps, so every grade level is in it without the annotator being told which is which."""
+    sil = [_load(p) for p in silver_files()]
+    out = []
+    for jd, cv_ids in sorted(pairs().items()):
+        mean = lambda c: sum(s.get((jd, c), 0) for s in sil) / max(len(sil), 1)  # noqa: E731
+        ranked = sorted(cv_ids, key=lambda c: (mean(c), hashlib.sha1(f"{jd}|{c}".encode()).hexdigest()))
+        k = min(per_jd, len(ranked))
+        steps = sorted({round(i * (len(ranked) - 1) / max(k - 1, 1)) for i in range(k)})
+        out += [(jd, ranked[i]) for i in steps]
+    return out
+
+
 def review(out: Path | None = None) -> Path:
     """One self-contained page to label every pooled pair: blind (no model grade shown) or review (Opus's grade and
     evidence shown). Real CVs are inside, so it is written under .runtime, never to docs/ or data/."""
@@ -258,7 +276,8 @@ def review(out: Path | None = None) -> Path:
               for x in json.loads(MODEL_GOLD.read_text(encoding="utf-8"))["labels"]} if MODEL_GOLD.exists() else {})
     from scripts.llm_label import RUBRIC
 
-    data = {"pool": REF, "pairs": flat, "rubric": RUBRIC, "model": model,
+    data = {"pool": REF, "pairs": flat, "rubric": RUBRIC, "model": model, "min_read": MIN_READ_SECONDS,
+            "subset": [f"{j}|{c}" for j, c in subset()],
             "jds": {d.id: {"title": d.meta["title"], "text": d.text} for d in jds()},
             "cvs": {d.id: d.text for d in cvs() if any(p["cv"] == d.id for p in flat)}}
     out.parent.mkdir(parents=True, exist_ok=True)

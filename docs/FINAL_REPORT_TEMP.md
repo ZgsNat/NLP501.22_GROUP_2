@@ -164,7 +164,7 @@ keyword-only and dense-only, and the LLM adds on top at a cost. Both match the l
 
 | # | Item | Why it matters | Suggested owner | Entry point |
 |---|---|---|---|---|
-| 1 | **A blind human annotator who reads each pair (Djinni)** | The first blind set (Nhung) failed the quality check (κ ≈ 0, 4.3 s per pair). Suggested: a stratified 80-pair subset (10 per JD), blind, ≥ 30 s per pair, a note for every 1 or 2; that is enough for a human–human κ. `?blind=1` page, then `djinni import` (the check runs in `djinni score`) | another member (label) + Hoa (analysis) | `docs/DJINNI_LABELS.md` |
+| 1 | **A blind human annotator who reads each pair (Djinni)** | The first blind set (Nhung) failed the quality check (κ ≈ 0, 4.3 s per pair). Next: the stratified 80-pair subset (10 per JD) at `review.html?blind=1&subset=1` (grading unlocks after 20 s, a note required for 1 or 2); about 40–60 minutes; enough for a human–human κ. Then `djinni import` (the check runs in `djinni score`) | another member (label) + Hoa (analysis) | `docs/DJINNI_LABELS.md` |
 | 2 | Learned component: done as a fine-tuned cross-encoder (E20); contrastive bi-encoder still open | E20 gains on synthetic data, not on Djinni | Vũ / Đán | `app.eval.finetune`, `notebooks/finetune_ce_colab.ipynb` |
 | 3 | ~~Public dataset layer~~ done: Djinni in NLP501-bench v2 | | Hoa | `docs/BENCHMARK.md` §v2 |
 | 4 | Learning from HR feedback across sessions | Lecturer feedback | Sơn / Thịnh | `scoring` weight calibration |
