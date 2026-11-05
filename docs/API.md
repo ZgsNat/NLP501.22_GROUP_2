@@ -36,6 +36,10 @@ Base URL: `http://localhost:8000/api`. All bodies are JSON. Streaming endpoints 
 `models` is optional; each value is `"<provider>:<model>"`.
 `mode` is `"agent"` (default: the P7 orchestrator, `agent/orchestrator.py`) or `"pipeline"` (the fixed P6 graph);
 `goal` (agent mode) is HR's request in their own words, e.g. `"Shortlist 5 senior Playwright testers; ISTQB is a plus"`.
+`lang` is `"en"` (default) or `"vi"`: the language of every LLM text HR reads (explanations, report, arbiter reasons,
+clarification questions, agent replies). In `"vi"` technical terms stay in English with a Vietnamese gloss; evidence
+quotes are always verbatim from the CV. Stored in the run state, so resumes keep it. Deterministic texts (statuses,
+reasons, rule rationales, the event log) stay English in the API; the UI translates their templates (`frontend/src/i18n.tsx`).
 
 ### `POST /runs/{run_id}/resume`
 Body depends on the pending interrupt `kind`:

@@ -353,7 +353,7 @@ async def rank_shortlist(state: AgentState, _: NoArgs) -> tuple[dict, dict]:
     top = [x["cv_id"] for x in state["ranking"] if x["status"] in ("ranked", "not_shortlisted")][: s.llm_rank_size]
     r.add({"assessments": {c: rule_assessment(state, c, None) for c in top if c not in state.get("assessments", {})}})
     res = await llm_rank.rank(nodes.llm(state, "reasoning"), sanitize(state["jd_text"], "job description")[0],
-                              state["requirements"], top, {c: nodes.prof(state, c) for c in top})
+                              state["requirements"], top, {c: nodes.prof(state, c) for c in top}, lang=state.get("lang"))
     r.add({"llm_order": res["order"], "llm_reasons": res["reasons"]})
     r.add(await nodes.score(r.state))
     nodes.emit("rank_shortlist", f"LLM ranked the top {len(top)} in both input orders (agreement@5 "

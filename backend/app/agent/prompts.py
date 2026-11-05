@@ -1,3 +1,22 @@
+# Appended to every prompt whose output HR reads, when the UI language is Vietnamese (state["lang"] == "vi").
+VIETNAMESE = """Language: write every human-facing text field (rationales, reasons, summaries, explanations,
+strengths, gaps, questions to HR, replies to HR) in Vietnamese. Keep technical terms in English (tool and framework
+names, CI/CD, API, L1-L4, must-have, shortlist, knock-out, ...) and add a short Vietnamese gloss in parentheses the first
+time each one appears, e.g. "knock-out (loại trừ)". Never translate evidence quotes: copy them verbatim from the CV, in
+the CV's own language. Keep CV ids, criterion keys, JSON keys and enum values exactly as they are."""
+
+
+TO_VIETNAMESE = """Translate each item of the JSON list into Vietnamese for an HR recruiter. Return the same number of
+items, in the same order. Translate only: do not add, drop or answer anything. Keep tool and framework names, numbers,
+CV ids and technical terms (must-have, CI/CD, API, L1-L4, ...) in English, with a short Vietnamese gloss in parentheses
+the first time a technical term appears."""
+
+
+def localized(prompt: str, lang: str | None) -> str:
+    """The prompt as is in English; with the Vietnamese output rule appended for lang == "vi"."""
+    return f"{prompt}\n\n{VIETNAMESE}" if lang == "vi" else prompt
+
+
 INGEST = """You extract structured hiring requirements from a job description for an Automation Test role.
 Be literal: only list what the JD actually says. Use lowercase canonical tool names.
 If HR has answered clarification questions, treat those answers as authoritative and do not ask them again."""

@@ -3,6 +3,7 @@ import { Fragment, useState } from 'react'
 import { api } from './api'
 import CompareModal from './CompareModal'
 import { SecTag } from './CvPreview'
+import { backendText, useT, type T } from './i18n'
 import {
   CRITERIA,
   type Assessment,
@@ -17,13 +18,21 @@ import {
 
 const pct = (x: number) => `${Math.round(x * 100)}%`
 const TIER_BADGE = { strong: 'green', possible: 'sky', weak: 'amber' } as const
-const TIER_NAME = { strong: 'Xuất sắc', possible: 'Tiềm năng', weak: 'Cần xem xét' } as const
 
-const GROUPS: { status: Exclude<RankStatus, 'ranked'>; title: string; hint: string; open?: boolean }[] = [
-  { status: 'needs_review', title: 'Cần HR rà soát thủ công', hint: 'Agent gặp điểm mơ hồ; khuyến nghị con người đọc lại', open: true },
-  { status: 'not_shortlisted', title: 'Không lọt danh sách ngắn', hint: 'Vượt qua vòng loại trừ nhưng điểm tổng chưa đủ cao' },
-  { status: 'knocked_out', title: 'Bị loại trừ (Knocked out)', hint: 'Thiếu công cụ bắt buộc hoặc chỉ liệt kê mơ hồ' },
-]
+function tierName(t: T['t'], tier: 'strong' | 'possible' | 'weak'): string {
+  return { strong: t('Strong', 'Xuất sắc'), possible: t('Possible', 'Tiềm năng'), weak: t('Weak', 'Cần xem xét') }[tier]
+}
+
+function groups({ t, term }: T): { status: Exclude<RankStatus, 'ranked'>; title: string; hint: string; open?: boolean }[] {
+  return [
+    { status: 'needs_review', title: t('Needs manual HR review', 'Cần HR rà soát thủ công'),
+      hint: t('The agent hit an ambiguity; a person should read these', 'Agent gặp điểm mơ hồ; nên để người đọc lại'), open: true },
+    { status: 'not_shortlisted', title: t('Not shortlisted', `Không vào ${term('Shortlist')}`),
+      hint: t('Passed the knock-out, but the total is not high enough', 'Đã qua vòng loại trừ nhưng điểm tổng chưa đủ cao') },
+    { status: 'knocked_out', title: t('Knocked out', term('Knock-out')),
+      hint: t('A must-have tool is missing or only vaguely listed', 'Thiếu công cụ bắt buộc hoặc chỉ liệt kê mơ hồ') },
+  ]
+}
 
 export default function Results({
   run,
@@ -34,6 +43,8 @@ export default function Results({
   config: Config | null
   onOpenCv: (id: string) => void
 }) {
+  const tr = useT()
+  const { t, term, lang } = tr
   const [sel, setSel] = useState<string | null>(null)
   const [selectedForCompare, setSelectedForCompare] = useState<string[]>([])
   const [isCompareOpen, setIsCompareOpen] = useState(false)
@@ -43,7 +54,7 @@ export default function Results({
   const { ranking, report, assessments, weights } = run.values
   if (!ranking?.length) return null
 
-  const labels = Object.fromEntries((config?.criteria ?? []).map((c) => [c.key, c.label]))
+  const labels = Object.fromEntries((config?.criteria ?? []).map((c) => [c.key, tr.crit(c.key, c.label)]))
   const entry = report?.candidates.find((c) => c.cv_id === sel)
 
   const statusOf = (r: RankRow): RankStatus => r.status ?? (r.knocked_out ? 'knocked_out' : 'ranked')
@@ -59,7 +70,7 @@ export default function Results({
     setSelectedForCompare((prev) => {
       if (prev.includes(id)) return prev.filter((x) => x !== id)
       if (prev.length >= 3) {
-        alert('Bạn chỉ có thể chọn tối đa 3 ứng viên để so sánh trực diện.')
+        alert(t('You can compare at most 3 candidates side by side.', 'Bạn chỉ có thể chọn tối đa 3 ứng viên để so sánh trực diện.'))
         return prev
       }
       return [...prev, id]
@@ -77,7 +88,8 @@ export default function Results({
   }
 
   const cvLink = (id: string) => (
-    <button className="link mono" title="Xem bóc tách trích xuất" onClick={(e) => { e.stopPropagation(); onOpenCv(id) }}>
+    <button className="link mono" title={t('Open the parsed CV', 'Xem kết quả bóc tách CV')}
+      onClick={(e) => { e.stopPropagation(); onOpenCv(id) }}>
       {id}
     </button>
   )
@@ -89,8 +101,8 @@ export default function Results({
       <div className="results-top-bar">
         <div>
           <h2>
-            Bảng xếp hạng & Đánh giá ứng viên{' '}
-            {run.done && <span className="badge green">Đã hoàn tất</span>}
+            {t('Ranking & candidate assessment', 'Bảng xếp hạng & đánh giá ứng viên')}{' '}
+            {run.done && <span className="badge green">{t('Done', 'Đã hoàn tất')}</span>}
           </h2>
           {report && !(run.mode === 'agent' && run.values.reply) && <p className="results-summary">{report.summary}</p>}
         </div>
@@ -98,12 +110,13 @@ export default function Results({
         <div className="results-actions">
           {selectedForCompare.length >= 2 && (
             <button className="primary" onClick={() => setIsCompareOpen(true)}>
-              ⚖️ So sánh đối đầu ({selectedForCompare.length})
+              ⚖️ {t('Compare side by side', 'So sánh đối đầu')} ({selectedForCompare.length})
             </button>
           )}
           {run.runId && (
-            <button className="ghost" onClick={exportCsv} title="Tải file CSV có tiếng Việt mở bằng Excel">
-              📥 Xuất file CSV (Excel)
+            <button className="ghost" onClick={exportCsv}
+              title={t('Download a CSV that opens in Excel', 'Tải file CSV (mở được bằng Excel, giữ dấu tiếng Việt)')}>
+              📥 {t('Export CSV (Excel)', 'Xuất file CSV (Excel)')}
             </button>
           )}
         </div>
@@ -114,40 +127,28 @@ export default function Results({
 
       {/* Filter Tabs */}
       <div className="tab-pills">
-        <button
-          className={`pill-btn ${activeTab === 'all' ? 'active' : ''}`}
-          onClick={() => setActiveTab('all')}
-        >
-          Tất cả ({ranking.length})
+        <button className={`pill-btn ${activeTab === 'all' ? 'active' : ''}`} onClick={() => setActiveTab('all')}>
+          {t('All', 'Tất cả')} ({ranking.length})
         </button>
-        <button
-          className={`pill-btn ${activeTab === 'ranked' ? 'active' : ''}`}
-          onClick={() => setActiveTab('ranked')}
-        >
-          Đạt tiêu chuẩn ({ranked.length})
+        <button className={`pill-btn ${activeTab === 'ranked' ? 'active' : ''}`} onClick={() => setActiveTab('ranked')}>
+          {t('Ranked', 'Đạt tiêu chuẩn')} ({ranked.length})
         </button>
         {needsReview.length > 0 && (
-          <button
-            className={`pill-btn ${activeTab === 'needs_review' ? 'active' : ''}`}
-            onClick={() => setActiveTab('needs_review')}
-          >
-            Cần rà soát ({needsReview.length})
+          <button className={`pill-btn ${activeTab === 'needs_review' ? 'active' : ''}`}
+            onClick={() => setActiveTab('needs_review')}>
+            {t('Needs review', 'Cần rà soát')} ({needsReview.length})
           </button>
         )}
         {notShortlisted.length > 0 && (
-          <button
-            className={`pill-btn ${activeTab === 'not_shortlisted' ? 'active' : ''}`}
-            onClick={() => setActiveTab('not_shortlisted')}
-          >
-            Chưa vào top ({notShortlisted.length})
+          <button className={`pill-btn ${activeTab === 'not_shortlisted' ? 'active' : ''}`}
+            onClick={() => setActiveTab('not_shortlisted')}>
+            {t('Not shortlisted', 'Chưa vào top')} ({notShortlisted.length})
           </button>
         )}
         {knockedOut.length > 0 && (
-          <button
-            className={`pill-btn ${activeTab === 'knocked_out' ? 'active' : ''}`}
-            onClick={() => setActiveTab('knocked_out')}
-          >
-            Bị loại ({knockedOut.length})
+          <button className={`pill-btn ${activeTab === 'knocked_out' ? 'active' : ''}`}
+            onClick={() => setActiveTab('knocked_out')}>
+            {t('Knocked out', 'Bị loại')} ({knockedOut.length})
           </button>
         )}
       </div>
@@ -158,13 +159,13 @@ export default function Results({
           <table className="rank modern-rank-table">
             <thead>
               <tr>
-                <th style={{ width: '40px' }}>So sánh</th>
-                <th style={{ width: '50px' }}>Hạng</th>
-                <th style={{ width: '100px' }}>Mã CV</th>
-                <th>Tiêu đề / Chức danh</th>
-                <th style={{ width: '160px' }}>Điểm phù hợp</th>
-                <th>Căn cứ thẩm định (AI Arbiter)</th>
-                <th style={{ width: '140px' }} className="text-right">Quyết định HR</th>
+                <th style={{ width: '40px' }}>{t('Compare', 'So sánh')}</th>
+                <th style={{ width: '50px' }}>{t('Rank', 'Hạng')}</th>
+                <th style={{ width: '100px' }}>{t('CV id', 'Mã CV')}</th>
+                <th>{t('Headline / title', 'Tiêu đề / chức danh')}</th>
+                <th style={{ width: '160px' }}>{t('Fit score', 'Điểm phù hợp')}</th>
+                <th>{t('Grounds (AI arbiter)', `Căn cứ thẩm định (${term('Arbiter')})`)}</th>
+                <th style={{ width: '140px' }} className="text-right">{t('HR decision', 'Quyết định của HR')}</th>
               </tr>
             </thead>
             <tbody>
@@ -182,7 +183,7 @@ export default function Results({
                         type="checkbox"
                         checked={isSelected}
                         onChange={(e) => toggleSelectCompare(r.cv_id, e as any)}
-                        title="Chọn để so sánh trực diện (tối đa 3 ứng viên)"
+                        title={t('Select to compare (up to 3 candidates)', 'Chọn để so sánh trực diện (tối đa 3 ứng viên)')}
                       />
                     </td>
                     <td><span className="rank-badge">#{r.rank}</span></td>
@@ -195,11 +196,7 @@ export default function Results({
                       <div className="score-meter">
                         <div className="score-text">
                           <b className="mono">{pct(r.total)}</b>
-                          {r.tier && (
-                            <span className={`badge ${TIER_BADGE[r.tier]}`}>
-                              {TIER_NAME[r.tier] || r.tier}
-                            </span>
-                          )}
+                          {r.tier && <span className={`badge ${TIER_BADGE[r.tier]}`}>{tierName(t, r.tier)}</span>}
                         </div>
                         <div className="meter-track">
                           <div className={`meter-fill tone-${r.tier || 'sky'}`} style={{ width: `${r.total * 100}%` }} />
@@ -207,23 +204,23 @@ export default function Results({
                       </div>
                     </td>
                     <td className="small arbiter-cell">
-                      {[r.reason, r.arbiter_note].filter(Boolean).join(' · ')}
+                      {[r.reason, r.arbiter_note].filter(Boolean).map((x) => backendText(lang, x)).join(' · ')}
                     </td>
                     <td className="text-right nowrap" onClick={(e) => e.stopPropagation()}>
                       <div className="decision-btn-group">
                         <button
                           className={`dec-btn shortlist ${dec === 'shortlist' ? 'active' : ''}`}
-                          title="Đưa vào danh sách phỏng vấn"
+                          title={t('Move to the interview list', 'Đưa vào danh sách phỏng vấn')}
                           onClick={(e) => setDecision(r.cv_id, 'shortlist', e)}
                         >
-                          ✓ Duyệt
+                          ✓ {t('Approve', 'Duyệt')}
                         </button>
                         <button
                           className={`dec-btn hold ${dec === 'hold' ? 'active' : ''}`}
-                          title="Cân nhắc thêm"
+                          title={t('Think it over', 'Cân nhắc thêm')}
                           onClick={(e) => setDecision(r.cv_id, 'hold', e)}
                         >
-                          ? Giữ
+                          ? {t('Hold', 'Giữ')}
                         </button>
                       </div>
                     </td>
@@ -233,7 +230,7 @@ export default function Results({
               {ranked.length === 0 && (
                 <tr>
                   <td colSpan={7} className="muted text-center empty-cell">
-                    Không có ứng viên nào vượt qua ngưỡng yêu cầu tối thiểu.
+                    {t('No candidate meets the minimum requirements.', 'Không có ứng viên nào vượt qua ngưỡng yêu cầu tối thiểu.')}
                   </td>
                 </tr>
               )}
@@ -243,7 +240,7 @@ export default function Results({
       )}
 
       {/* Subgroups (needs_review, not_shortlisted, knocked_out) */}
-      {GROUPS.map((g) => {
+      {groups(tr).map((g) => {
         if (activeTab !== 'all' && activeTab !== g.status) return null
         const rows = ranking.filter((r) => statusOf(r) === g.status)
         if (!rows.length) return null
@@ -265,7 +262,7 @@ export default function Results({
                     </td>
                     <td className="nowrap" style={{ width: '100px' }}>{cvLink(r.cv_id)}</td>
                     <td>{r.headline} <Flags f={r.flags} /></td>
-                    <td className="small why">{r.reason ?? '-'}</td>
+                    <td className="small why">{r.reason ? backendText(lang, r.reason) : '-'}</td>
                   </tr>
                 ))}
               </tbody>
@@ -275,7 +272,9 @@ export default function Results({
       })}
 
       <p className="muted small note-line">
-        💡 <b>Mẹo:</b> Bấm vào một dòng ứng viên để xem phân tích chi tiết, hoặc đánh dấu checkbox để so sánh đối đầu 2-3 hồ sơ.
+        💡 <b>{t('Tip:', 'Mẹo:')}</b>{' '}
+        {t('Click a row for the detailed analysis, or tick 2–3 boxes to compare candidates side by side.',
+          'Bấm vào một dòng ứng viên để xem phân tích chi tiết, hoặc đánh dấu 2–3 ô để so sánh đối đầu.')}
       </p>
 
       {/* Expanded Candidate Detail Card */}
@@ -332,8 +331,9 @@ function Detail({
   strengths?: string[]
   gaps?: string[]
 }) {
+  const { t, term, lang, crit } = useT()
   const [cv, setCv] = useState<{ text: string } | 'loading' | string | null>(null)
-  const label = (k: string) => labels[k] ?? k.replace(/_/g, ' ')
+  const label = (k: string) => labels[k] ?? crit(k)
 
   const showCv = async () => {
     if (cv) return setCv(null)
@@ -356,24 +356,25 @@ function Detail({
     <div className="detail modern-detail">
       <div className="detail-header">
         <div>
-          <h3>Hồ sơ chi tiết: <span className="mono strong">{id}</span></h3>
+          <h3>{t('Candidate detail:', 'Hồ sơ chi tiết:')} <span className="mono strong">{id}</span></h3>
         </div>
         <div className="detail-header-actions">
           <button className="ghost small-btn" onClick={showCv}>
-            {cv ? 'Ẩn nội dung CV' : 'Xem nội dung CV'}
+            {cv ? t('Hide CV text', 'Ẩn nội dung CV') : t('Show CV text', 'Xem nội dung CV')}
           </button>
           <button className="primary small-btn" onClick={() => onOpenCv(id)}>
-            Bóc tách NLP
+            {t('NLP parse', `Bóc tách ${term('NLP')}`)}
           </button>
         </div>
       </div>
 
       {a?.knocked_out && (
         <div className="banner rose">
-          <b>Bị loại trừ (Knock-out):</b> {a.knockout_reason ?? reason ?? 'Không đáp ứng điều kiện tiên quyết'}
+          <b>{t('Knocked out:', `${term('Knock-out')}:`)}</b>{' '}
+          {backendText(lang, a.knockout_reason ?? reason) || t('Does not meet a prerequisite', 'Không đáp ứng điều kiện tiên quyết')}
         </div>
       )}
-      {!a?.knocked_out && reason && <p className="muted small">{reason}</p>}
+      {!a?.knocked_out && reason && <p className="muted small">{backendText(lang, reason)}</p>}
       {a?.facts && <Facts f={a.facts} />}
       {explanation && <p className="lead-explanation">{explanation}</p>}
 
@@ -382,7 +383,7 @@ function Detail({
       <div className="two strengths-gaps-row">
         {strengths && strengths.length > 0 && (
           <div className="card-box green-tint">
-            <h4 className="text-emerald">✓ Điểm mạnh nổi bật</h4>
+            <h4 className="text-emerald">✓ {t('Key strengths', 'Điểm mạnh nổi bật')}</h4>
             <ul className="good">
               {strengths.map((s) => (
                 <li key={s}>{s}</li>
@@ -392,7 +393,7 @@ function Detail({
         )}
         {gaps && gaps.length > 0 && (
           <div className="card-box amber-tint">
-            <h4 className="text-amber">⚠ Điểm cần lưu ý / Còn thiếu</h4>
+            <h4 className="text-amber">⚠ {t('Gaps to probe', 'Điểm cần lưu ý / còn thiếu')}</h4>
             <ul className="bad">
               {gaps.map((s) => (
                 <li key={s}>{s}</li>
@@ -403,12 +404,12 @@ function Detail({
       </div>
 
       {!a ? (
-        <p className="muted">Chưa có dữ liệu đánh giá cho ứng viên này.</p>
+        <p className="muted">{t('No assessment for this candidate yet.', 'Chưa có dữ liệu đánh giá cho ứng viên này.')}</p>
       ) : (
         <div className="two radar-wrap">
           <Radar a={a} weights={weights} label={label} />
           <div>
-            <h4 className="mb-2">Chi tiết từng tiêu chí tuyển dụng</h4>
+            <h4 className="mb-2">{t('Criterion by criterion', 'Chi tiết từng tiêu chí tuyển dụng')}</h4>
             {CRITERIA.map((c) => {
               const s = a.criteria[c]
               return (
@@ -420,14 +421,14 @@ function Detail({
                     </span>
                     <span className="mono strong">{Math.round(s.score)}/100</span>
                   </div>
-                  <p className="small">{s.rationale}</p>
+                  <p className="small">{backendText(lang, s.rationale)}</p>
                   {s.evidence.map((e, i) => (
                     <Quote key={i} e={e} />
                   ))}
                   {review[c] && (
                     <div className="review-llm">
                       <p className="small">
-                        <b>Thẩm định mở rộng (LLM review):</b> {review[c]!.rationale}
+                        <b>{t('LLM review:', `Thẩm định bổ sung (${term('LLM')} review):`)}</b> {backendText(lang, review[c]!.rationale)}
                       </p>
                       {review[c]!.evidence.map((e, i) => (
                         <Quote key={i} e={e} />
@@ -441,11 +442,12 @@ function Detail({
         </div>
       )}
 
-      {cv === 'loading' && <p className="muted">Đang nạp văn bản hồ sơ...</p>}
+      {cv === 'loading' && <p className="muted">{t('Loading the CV text…', 'Đang nạp văn bản hồ sơ…')}</p>}
       {typeof cv === 'string' && cv !== 'loading' && <p className="err">{cv}</p>}
       {cv && typeof cv === 'object' && (
         <div className="cv-preview-box">
-          <h4>Văn bản hồ sơ đã che PII (Trích dẫn kiểm chứng được làm nổi bật)</h4>
+          <h4>{t('Redacted CV text (verified quotes highlighted)',
+            'Văn bản CV đã che thông tin cá nhân (các trích dẫn đã kiểm chứng được làm nổi bật)')}</h4>
           <pre className="cv">{highlight(cv.text, quotes)}</pre>
         </div>
       )}
@@ -454,6 +456,7 @@ function Detail({
 }
 
 function Quote({ e }: { e: Evidence }) {
+  const { t } = useT()
   const kind =
     e.grounded === false
       ? 'u'
@@ -463,30 +466,32 @@ function Quote({ e }: { e: Evidence }) {
       ? 'g'
       : 'x'
   const hint = {
-    u: 'Không tìm thấy trích dẫn trong văn bản CV',
-    l: 'Chỉ liệt kê kỹ năng, không có mô tả dự án thực tế',
-    g: 'Được kiểm chứng chính xác từ kinh nghiệm thực chiến',
-    x: 'Chưa kiểm chứng',
+    u: t('Quote not found in the CV text', 'Không tìm thấy trích dẫn trong văn bản CV'),
+    l: t('Only listed as a skill, no project shows it', 'Chỉ liệt kê kỹ năng, không có dự án thực tế chứng minh'),
+    g: t('Verified against real work in the CV', 'Đã kiểm chứng với kinh nghiệm làm việc thực tế trong CV'),
+    x: t('Not verified', 'Chưa kiểm chứng'),
   }[kind]
   return (
     <blockquote className={`ev ${kind}`}>
       <b title={hint}>{{ u: '✗', l: '≈', g: '✓', x: '?' }[kind]}</b>
       <span className="q">{e.quote}</span> <SecTag section={e.section} />
-      {kind === 'l' && <span className="ev-note">Chỉ liệt kê, thiếu chứng cứ dự án</span>}
+      {kind === 'l' && <span className="ev-note">{t('Listed only, no project evidence', 'Chỉ liệt kê, thiếu bằng chứng dự án')}</span>}
     </blockquote>
   )
 }
 
 function Flags({ f }: { f?: string[] }) {
+  const { t, flag } = useT()
   if (!f?.length) return null
   return (
-    <span className="badge amber" title="Cờ chất lượng dữ liệu">
-      ⚠ {f.join(', ').replace(/_/g, ' ')}
+    <span className="badge amber" title={t('Data-quality flags', 'Cờ chất lượng dữ liệu')}>
+      ⚠ {f.map(flag).join(', ')}
     </span>
   )
 }
 
 function CardView({ card, label }: { card: Card; label: (k: string) => string }) {
+  const { t, term } = useT()
   const name = (k: string) => label(k).split(' (')[0]
   return (
     <div className="card-x">
@@ -494,10 +499,10 @@ function CardView({ card, label }: { card: Card; label: (k: string) => string })
         <table className="decomp">
           <thead>
             <tr>
-              <th>Tiêu chí</th>
-              <th>Trọng số</th>
-              <th>Điểm</th>
-              <th>Đóng góp điểm</th>
+              <th>{t('Criterion', 'Tiêu chí')}</th>
+              <th>{t('Weight', term('Weight'))}</th>
+              <th>{t('Score', 'Điểm')}</th>
+              <th>{t('Contribution', 'Đóng góp vào điểm tổng')}</th>
             </tr>
           </thead>
           <tbody>
@@ -514,14 +519,14 @@ function CardView({ card, label }: { card: Card; label: (k: string) => string })
       )}
       {card.versus_next && (
         <p className="small">
-          <b>Đứng trên {card.versus_next.vs} nhờ:</b>{' '}
+          <b>{t(`Above ${card.versus_next.vs} thanks to:`, `Đứng trên ${card.versus_next.vs} nhờ:`)}</b>{' '}
           {card.versus_next.advantages
             .map((x) => `${name(x.criterion)} (+${(x.delta * 100).toFixed(1)})`)
-            .join(', ') || 'độ tương đồng ngữ nghĩa'}
+            .join(', ') || t('passage relevance', 'độ liên quan ngữ nghĩa của các đoạn CV')}
           {card.versus_next.disadvantages.length > 0 && (
             <>
               {' '}
-              · <b>Kém hơn ở:</b>{' '}
+              · <b>{t('Weaker on:', 'Kém hơn ở:')}</b>{' '}
               {card.versus_next.disadvantages
                 .map((x) => `${name(x.criterion)} (${(x.delta * 100).toFixed(1)})`)
                 .join(', ')}
@@ -533,16 +538,17 @@ function CardView({ card, label }: { card: Card; label: (k: string) => string })
         <ul className="small what-if">
           {card.what_if.map((w) => (
             <li key={w.if_used.join()}>
-              Nếu CV có thêm <b>{w.if_used.join(' + ')}</b> trong dự án thực tế:{' '}
+              {t('If the CV showed ', `${term('What-if')}: nếu CV có thêm `)}<b>{w.if_used.join(' + ')}</b>
+              {t(' in real project work: ', ' trong dự án thực tế: ')}
               {w.passes_knockout ? (
                 <>
-                  điểm số đạt <b>{pct(w.total)}</b> ({w.delta >= 0 ? '+' : ''}
-                  {(w.delta * 100).toFixed(1)} điểm)
+                  {t('the score would be ', 'điểm sẽ đạt ')}<b>{pct(w.total)}</b> ({w.delta >= 0 ? '+' : ''}
+                  {(w.delta * 100).toFixed(1)} {t('points', 'điểm')})
                 </>
               ) : (
-                'vẫn bị loại'
+                t('still knocked out', 'vẫn bị loại')
               )}
-              {w.must_have && w.passes_knockout && ' và sẽ vượt qua vòng knock-out'}
+              {w.must_have && w.passes_knockout && t(' and it would pass the knock-out', ' và sẽ vượt qua vòng knock-out (loại trừ)')}
             </li>
           ))}
         </ul>
@@ -552,10 +558,11 @@ function CardView({ card, label }: { card: Card; label: (k: string) => string })
 }
 
 function Facts({ f }: { f: NonNullable<Assessment['facts']> }) {
+  const { t } = useT()
   return (
     <p className="small facts-line">
-      <b>Dữ liệu thực tế:</b> Cấp độ L{f.depth_level ?? '-'} · {f.years ?? '-'} năm tổng ·{' '}
-      {f.years_automation ?? '-'} năm tự động hóa
+      <b>{t('Parsed facts:', 'Dữ liệu trích xuất từ CV:')}</b> {t('Depth', 'Mức độ')} L{f.depth_level ?? '-'} ·{' '}
+      {f.years ?? '-'} {t('years total', 'năm kinh nghiệm')} · {f.years_automation ?? '-'} {t('years in automation', 'năm làm tự động hoá')}
     </p>
   )
 }
@@ -598,18 +605,19 @@ function Radar({
   weights: Values['weights'] | undefined
   label: (k: string) => string
 }) {
+  const { t } = useT()
   const C = 170,
     R = 105,
     n = CRITERIA.length
   const pt = (i: number, f: number, r = R) => {
-    const t = (-90 + (360 / n) * i) * (Math.PI / 180)
-    return [C + Math.cos(t) * r * f, C + Math.sin(t) * r * f] as const
+    const th = (-90 + (360 / n) * i) * (Math.PI / 180)
+    return [C + Math.cos(th) * r * f, C + Math.sin(th) * r * f] as const
   }
   const poly = (fs: number[]) =>
     fs.map((f, i) => pt(i, f).map((v) => v.toFixed(1)).join(',')).join(' ')
   const maxW = weights ? Math.max(...CRITERIA.map((c) => weights[c] ?? 0)) : 0
   return (
-    <svg viewBox="0 0 340 340" className="radar" role="img" aria-label="Criterion scores radar">
+    <svg viewBox="0 0 340 340" className="radar" role="img" aria-label={t('Criterion scores radar', 'Biểu đồ radar điểm theo tiêu chí')}>
       {[0.25, 0.5, 0.75, 1].map((f) => (
         <polygon key={f} points={poly(CRITERIA.map(() => f))} className="ring" />
       ))}
@@ -646,9 +654,9 @@ function Radar({
       })}
       <g transform="translate(8 326)" className="rlabel">
         <rect width="10" height="3" y="-3" className="key-s" />
-        <text x="14">Điểm số</text>
+        <text x="14">{t('Score', 'Điểm số')}</text>
         <rect x="60" width="10" height="3" y="-3" className="key-w" />
-        <text x="74">Trọng số JD</text>
+        <text x="74">{t('JD weight', 'Trọng số JD')}</text>
       </g>
     </svg>
   )

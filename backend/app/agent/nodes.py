@@ -19,6 +19,7 @@ from app.agent import investigate as inv
 from app.agent.schemas import (
     CRITERIA,
     CandidateAssessment,
+    HrTexts,
     JDRequirements,
     RankingReport,
     WeightInstruction,
@@ -92,6 +93,23 @@ def llm(state: AgentState, role: str) -> BaseChatModel:
     return _llm(state.get("models", {}).get(role) or default_spec(role))
 
 
+async def for_hr(state: AgentState, texts: list[str]) -> list[str]:
+    """LLM free text HR reads, in the UI language (Q18). English or nothing to do: unchanged. A translation that
+    drops an item, a number or a tool is not used: HR then reads the English original."""
+    if state.get("lang") != "vi" or not texts:
+        return texts
+    try:
+        out: HrTexts = await llm(state, "fast").with_structured_output(HrTexts).ainvoke(
+            [SystemMessage(prompts.TO_VIETNAMESE), HumanMessage(json.dumps(texts, ensure_ascii=False))])
+    except Exception as e:  # a translation never costs the run
+        emit("ingest", f"Translation for HR failed ({type(e).__name__}) → English kept", "warn")
+        return texts
+    if issues := checks.translation_issues(texts, out.items):
+        emit("ingest", f"Translation for HR rejected {issues} → English kept", "warn")
+        return texts
+    return out.items
+
+
 def prof(state: AgentState, cv_id: str):
     """The parsed CV plus any facts the investigator verified (N12): what every rule below reads."""
     return inv.with_facts(profile(cv_id), state.get("recovered", {}).get(cv_id, []))
@@ -116,6 +134,7 @@ async def extract_requirements(model: BaseChatModel, jd: str, mode: str | None =
                              foreign_languages=parsed["foreign_languages"], domains=parsed["domains"])
         return req, parsed["substitutes"], parsed["must_have"]
     req: JDRequirements = await model.with_structured_output(JDRequirements).ainvoke(
+        # Never localized: its title and lists feed retrieval and scoring, and the UI language must not move a rank
         [SystemMessage(prompts.INGEST), HumanMessage(jd)]
     )
     # Harness boundary: LLM free text never drives deterministic logic directly — canonicalize to taxonomy keys.
@@ -148,6 +167,7 @@ async def ingest(state: AgentState) -> dict:
         jd += "\n\nHR clarifications (authoritative):\n" + "\n".join(f"- Q: {q}\n  A: {a}" for q, a in answers.items())
 
     req, subs, raw = await extract_requirements(llm(state, "reasoning"), jd)
+    req.ambiguities = await for_hr(state, req.ambiguities)  # HR reads these questions; the requirements stay English
     if raw != req.must_have:
         emit("ingest", f"Canonicalized must-have {raw} → {req.must_have}", "warn")
     emit("ingest", f"Must-have: {req.must_have or '—'} · min years: {req.min_years} · depth: L{req.depth_level}")
@@ -477,7 +497,7 @@ async def _assess_call(state: AgentState, cv_id: str, prev: dict | None, sem: as
     req, p = state["requirements"], prof(state, cv_id)
     policy = "\n\n".join(x["text"] for x in state.get("policy_context", []))
     msgs = [
-        SystemMessage(prompts.ASSESS + "\n\nCompany hiring policy:\n" + policy),
+        SystemMessage(prompts.localized(prompts.ASSESS, state.get("lang")) + "\n\nCompany hiring policy:\n" + policy),
         HumanMessage(f"JD requirements:\n{json.dumps(req, indent=1)}\n\n{p.facts_for_llm()}\n\n"
                      f"CV {cv_id} (each passage is labelled with the section the parser found it in):\n{p.for_llm()}"),
     ]
@@ -660,7 +680,7 @@ async def judge_pair(state: AgentState, a: str, b: str) -> list:
                   for k, v in x.get("llm_review", {}).items()]
         return "\n".join(rules + review)
 
-    return [await decide(llm(state, "reasoning"), prompts.ARBITER, [first, second],
+    return [await decide(llm(state, "reasoning"), prompts.localized(prompts.ARBITER, state.get("lang")), [first, second],
                          f"JD: {json.dumps(state['requirements'])}\n\n{first}:\n{evidence(first)}"
                          f"\n\n{second}:\n{evidence(second)}") for first, second in ((a, b), (b, a))]
 
@@ -729,7 +749,7 @@ async def report(state: AgentState) -> dict:
                        for k, v in a.get("llm_review", {}).items()},
             "what_if": (r.get("card") or {}).get("what_if"),
         })
-    msgs = [SystemMessage(prompts.REPORT),
+    msgs = [SystemMessage(prompts.localized(prompts.REPORT, state.get("lang"))),
             HumanMessage(f"JD: {json.dumps(state['requirements'])}\nWeights: {state['weights']}\n\n"
                          f"Ranked candidates:\n{json.dumps(facts, indent=1)}")]
     profiles = {i: prof(state, i) for i in top_ids}

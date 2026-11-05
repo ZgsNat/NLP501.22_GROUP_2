@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { api, type ParsedJd } from './api'
+import { useT } from './i18n'
 import type { Config, Mode, RunRequest } from './types'
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 }
 
 export default function RunPanel({ config, running, onStart }: Props) {
+  const { t, term, lang } = useT()
   const [jd, setJd] = useState('')
   const [profile, setProfile] = useState('default')
   const [reasoning, setReasoning] = useState('')
@@ -24,8 +26,8 @@ export default function RunPanel({ config, running, onStart }: Props) {
   if (!config) {
     return (
       <section className="card">
-        <h3>Thiết lập vị trí tuyển dụng</h3>
-        <p className="muted small">Đang nạp cấu hình hệ thống...</p>
+        <h3>{t('New hiring campaign', 'Chiến dịch tuyển dụng mới')}</h3>
+        <p className="muted small">{t('Loading the configuration…', 'Đang nạp cấu hình hệ thống…')}</p>
       </section>
     )
   }
@@ -48,10 +50,12 @@ export default function RunPanel({ config, running, onStart }: Props) {
       setJd(res.raw_text)
       setParsedJd(res)
       if (!goal.trim() && res.must_have.length > 0) {
-        setGoal(`Cần ứng viên đáp ứng: ${res.must_have.join(', ')}; tối thiểu ${res.min_years || 2} năm kinh nghiệm.`)
+        const years = res.min_years || 2
+        setGoal(t(`Candidates who meet: ${res.must_have.join(', ')}; at least ${years} years of experience.`,
+          `Cần ứng viên đáp ứng: ${res.must_have.join(', ')}; tối thiểu ${years} năm kinh nghiệm.`))
       }
     } catch (e) {
-      setJdUploadErr(`Lỗi đọc tệp JD: ${(e as Error).message}`)
+      setJdUploadErr(`${t('Cannot read the JD file', 'Lỗi đọc tệp JD')}: ${(e as Error).message}`)
     } finally {
       setParsingJd(false)
       if (jdFileInputRef.current) jdFileInputRef.current.value = ''
@@ -67,6 +71,7 @@ export default function RunPanel({ config, running, onStart }: Props) {
       jd_text: jd,
       company_profile: profile,
       mode,
+      lang, // the language the LLM writes its explanations, report and replies in
       ...(mode === 'agent' && { goal: goal.trim() }),
       ...(Object.keys(models).length && { models }),
     })
@@ -76,17 +81,18 @@ export default function RunPanel({ config, running, onStart }: Props) {
     <section className="card run-panel-card">
       <div className="card-header-clean">
         <div>
-          <h3>Chiến dịch tuyển dụng mới</h3>
-          <p className="muted small">Nhập yêu cầu từ file Word/PDF hoặc chọn mẫu tiêu chuẩn</p>
+          <h3>{t('New hiring campaign', 'Chiến dịch tuyển dụng mới')}</h3>
+          <p className="muted small">{t('Load the requirements from a Word/PDF file or pick a sample',
+            'Nhập yêu cầu từ file Word/PDF hoặc chọn mẫu có sẵn')}</p>
         </div>
-        <span className="badge slate">Bước 1: JD</span>
+        <span className="badge slate">{t('Step 1: JD', 'Bước 1: JD')}</span>
       </div>
 
       <div className="jd-source-toolbar">
         <div className="form-group flex-1">
-          <label className="field-label">Mẫu JD chuẩn có sẵn</label>
+          <label className="field-label">{t('Sample JDs', `Mẫu ${term('JD')} có sẵn`)}</label>
           <select defaultValue="" onChange={(e) => pickSample(e.target.value)} className="select-input">
-            <option value="" disabled>Chọn mẫu JD Automation QA...</option>
+            <option value="" disabled>{t('Pick an Automation QA JD…', 'Chọn mẫu JD Automation QA…')}</option>
             {config.sample_jds.map((j) => (
               <option key={j.id} value={j.id}>
                 {j.title || j.id}
@@ -109,7 +115,7 @@ export default function RunPanel({ config, running, onStart }: Props) {
             disabled={parsingJd || running}
             onClick={() => jdFileInputRef.current?.click()}
           >
-            {parsingJd ? 'Đang bóc tách NLP...' : '📄 Tải lên tệp JD (.docx, .pdf, .txt)'}
+            {parsingJd ? t('Parsing (NLP)…', 'Đang bóc tách (NLP)…') : `📄 ${t('Upload a JD file (.docx, .pdf, .txt)', 'Tải lên tệp JD (.docx, .pdf, .txt)')}`}
           </button>
         </div>
       </div>
@@ -120,7 +126,7 @@ export default function RunPanel({ config, running, onStart }: Props) {
       {parsedJd && (
         <div className="nlp-preview-card">
           <div className="flex-between">
-            <span className="nlp-tag">🧠 Bóc tách NLP (NLP Information Extraction)</span>
+            <span className="nlp-tag">🧠 {t('NLP information extraction', 'Bóc tách thông tin (NLP information extraction)')}</span>
             {parsedJd.filename && <span className="muted small mono">{parsedJd.filename}</span>}
           </div>
           <h4 className="nlp-title">{parsedJd.title}</h4>
@@ -128,7 +134,7 @@ export default function RunPanel({ config, running, onStart }: Props) {
           <div className="nlp-fields">
             {parsedJd.must_have.length > 0 && (
               <div className="nlp-field">
-                <span className="small strong text-rose">Bắt buộc (Must-have):</span>
+                <span className="small strong text-rose">{t('Must-have:', `${term('Must-have')}:`)}</span>
                 <div className="chips">
                   {parsedJd.must_have.map((s) => (
                     <span key={s} className="badge rose">{s}</span>
@@ -139,7 +145,7 @@ export default function RunPanel({ config, running, onStart }: Props) {
 
             {parsedJd.nice_to_have.length > 0 && (
               <div className="nlp-field">
-                <span className="small strong text-sky">Ưu tiên (Nice-to-have):</span>
+                <span className="small strong text-sky">{t('Nice-to-have:', `${term('Nice-to-have')}:`)}</span>
                 <div className="chips">
                   {parsedJd.nice_to_have.map((s) => (
                     <span key={s} className="badge sky">{s}</span>
@@ -150,16 +156,16 @@ export default function RunPanel({ config, running, onStart }: Props) {
 
             <div className="nlp-metrics-row">
               {parsedJd.min_years != null && (
-                <span className="metric-chip">Kinh nghiệm: <b>{parsedJd.min_years}+ năm</b></span>
+                <span className="metric-chip">{t('Experience', 'Kinh nghiệm')}: <b>{parsedJd.min_years}+ {t('years', 'năm')}</b></span>
               )}
               {parsedJd.depth_level != null && (
-                <span className="metric-chip">Cấp độ: <b>L{parsedJd.depth_level}</b></span>
+                <span className="metric-chip">{t('Depth', 'Mức độ')}: <b>L{parsedJd.depth_level}</b></span>
               )}
               {parsedJd.test_types.length > 0 && (
-                <span className="metric-chip">Loại kiểm thử: <b>{parsedJd.test_types.join(', ')}</b></span>
+                <span className="metric-chip">{t('Test types', 'Loại kiểm thử')}: <b>{parsedJd.test_types.join(', ')}</b></span>
               )}
               {parsedJd.domains.length > 0 && (
-                <span className="metric-chip">Lĩnh vực: <b>{parsedJd.domains.join(', ')}</b></span>
+                <span className="metric-chip">{t('Domains', 'Lĩnh vực')}: <b>{parsedJd.domains.join(', ')}</b></span>
               )}
             </div>
           </div>
@@ -168,7 +174,7 @@ export default function RunPanel({ config, running, onStart }: Props) {
 
       <div className="form-group">
         <label className="field-label">
-          Nội dung bản mô tả công việc (JD Text) <span className="req">*</span>
+          {t('Job description text', 'Nội dung bản mô tả công việc (JD)')} <span className="req">*</span>
         </label>
         <textarea
           rows={8}
@@ -177,68 +183,70 @@ export default function RunPanel({ config, running, onStart }: Props) {
             setJd(e.target.value)
             setParsedJd(null)
           }}
-          placeholder="Dán hoặc tải lên nội dung JD (yêu cầu kỹ năng, công cụ, số năm kinh nghiệm)..."
+          placeholder={t('Paste or upload the JD (skills, tools, years of experience)…',
+            'Dán hoặc tải lên nội dung JD (yêu cầu kỹ năng, công cụ, số năm kinh nghiệm)…')}
           className="textarea-input"
         />
         {jd.trim() && (
           <span className="char-count muted small">
-            Đã nhập {jd.trim().split(/\s+/).length} từ ({jd.length} ký tự)
+            {t(`${jd.trim().split(/\s+/).length} words (${jd.length} characters)`,
+              `Đã nhập ${jd.trim().split(/\s+/).length} từ (${jd.length} ký tự)`)}
           </span>
         )}
       </div>
 
       <div className="form-group">
-        <label className="field-label">Chế độ phân tích & Đánh giá</label>
+        <label className="field-label">{t('Analysis mode', 'Chế độ phân tích & đánh giá')}</label>
         <div className="mode-toggle-group">
           <button
             type="button"
             className={`mode-btn ${mode === 'agent' ? 'active' : ''}`}
             onClick={() => setMode('agent')}
           >
-            <div className="mode-title">🤖 Trợ lý Agentic (Khuyên dùng)</div>
-            <div className="mode-desc">Tự động lập kế hoạch đa bước, tương tác hỏi HR khi JD có điểm mơ hồ</div>
+            <div className="mode-title">🤖 {t('Agentic assistant (recommended)', `Trợ lý ${term('Agentic')} · khuyên dùng`)}</div>
+            <div className="mode-desc">{t('Plans its own steps and asks HR when the JD is ambiguous',
+              'Tự lập kế hoạch nhiều bước, hỏi lại HR khi JD có điểm mơ hồ')}</div>
           </button>
           <button
             type="button"
             className={`mode-btn ${mode === 'pipeline' ? 'active' : ''}`}
             onClick={() => setMode('pipeline')}
           >
-            <div className="mode-title">⚡ Quy trình chuẩn (Pipeline)</div>
-            <div className="mode-desc">Luồng lọc cố định, tối ưu tốc độ và chi phí</div>
+            <div className="mode-title">⚡ {t('Fixed pipeline', term('Pipeline'))}</div>
+            <div className="mode-desc">{t('A fixed screening flow, fastest and cheapest',
+              'Luồng lọc cố định, nhanh nhất và tốn ít chi phí nhất')}</div>
           </button>
         </div>
       </div>
 
       {mode === 'agent' && (
         <div className="form-group">
-          <label className="field-label">
-            Mục tiêu ưu tiên của bạn (Hiring Goal)
-          </label>
+          <label className="field-label">{t('Your hiring goal', `${term('Hiring goal')} của bạn`)}</label>
           <input
             type="text"
             value={goal}
             onChange={(e) => setGoal(e.target.value)}
-            placeholder="VD: Cần 5 ứng viên giỏi Playwright và có kinh nghiệm CI/CD; ưu tiên có ISTQB"
+            placeholder={t('e.g. 5 strong Playwright testers with CI/CD; ISTQB is a plus',
+              'VD: Cần 5 ứng viên giỏi Playwright và có kinh nghiệm CI/CD; ưu tiên có ISTQB')}
             className="text-input"
           />
-          <p className="muted small">Agent sẽ bám sát mục tiêu này trong các bước kiểm chứng và so sánh đối đầu.</p>
+          <p className="muted small">{t('The agent keeps to this goal when it verifies and compares candidates.',
+            'Agent sẽ bám sát mục tiêu này khi kiểm chứng và so sánh đối đầu các ứng viên.')}</p>
         </div>
       )}
 
       {/* Advanced configuration collapsible */}
       <div className="advanced-section">
-        <button
-          type="button"
-          className="advanced-toggle"
-          onClick={() => setShowAdvanced(!showAdvanced)}
-        >
-          <span>{showAdvanced ? '▾ Thu gọn cấu hình kỹ thuật' : '▸ Cấu hình mô hình AI & Hồ sơ công ty'}</span>
+        <button type="button" className="advanced-toggle" onClick={() => setShowAdvanced(!showAdvanced)}>
+          <span>{showAdvanced
+            ? `▾ ${t('Hide technical settings', 'Thu gọn cấu hình kỹ thuật')}`
+            : `▸ ${t('AI models & company profile', 'Cấu hình mô hình AI & hồ sơ công ty')}`}</span>
         </button>
 
         {showAdvanced && (
           <div className="advanced-content">
             <div className="form-group">
-              <label className="field-label">Hồ sơ công ty (Company Culture / Profile)</label>
+              <label className="field-label">{t('Company profile', term('Company profile'))}</label>
               <select value={profile} onChange={(e) => setProfile(e.target.value)} className="select-input">
                 {config.company_profiles.map((p) => (
                   <option key={p.key} value={p.key}>{p.label}</option>
@@ -247,7 +255,7 @@ export default function RunPanel({ config, running, onStart }: Props) {
             </div>
 
             <div className="form-group">
-              <label className="field-label">Mô hình suy luận chính (Reasoning Model)</label>
+              <label className="field-label">{t('Reasoning model', term('Reasoning model'))}</label>
               <input
                 list="providers"
                 value={reasoning}
@@ -258,7 +266,7 @@ export default function RunPanel({ config, running, onStart }: Props) {
             </div>
 
             <div className="form-group">
-              <label className="field-label">Mô hình bóc tách nhanh (Fast Model)</label>
+              <label className="field-label">{t('Fast model', term('Fast model'))}</label>
               <input
                 list="providers"
                 value={fast}
@@ -275,11 +283,11 @@ export default function RunPanel({ config, running, onStart }: Props) {
             </datalist>
 
             <div className="provider-status-chips">
-              <span className="small muted">Trạng thái cổng kết nối:</span>
+              <span className="small muted">{t('Provider status:', 'Trạng thái cổng kết nối:')}</span>
               <div className="chips mt-1">
                 {config.providers.map((p) => (
                   <span key={p.name} className={`badge ${p.configured ? 'green' : 'gray'}`}>
-                    {p.name}: {p.configured ? 'Sẵn sàng' : 'Chưa có key'}
+                    {p.name}: {p.configured ? t('ready', 'sẵn sàng') : t('no key', 'chưa có key')}
                   </span>
                 ))}
               </div>
@@ -288,13 +296,8 @@ export default function RunPanel({ config, running, onStart }: Props) {
         )}
       </div>
 
-      <button
-        type="button"
-        className="primary full-width-btn"
-        disabled={running || !jd.trim()}
-        onClick={submit}
-      >
-        {running ? 'Đang thực hiện sàng lọc & xếp hạng...' : '🚀 Bắt đầu sàng lọc hồ sơ'}
+      <button type="button" className="primary full-width-btn" disabled={running || !jd.trim()} onClick={submit}>
+        {running ? t('Screening and ranking…', 'Đang sàng lọc & xếp hạng…') : `🚀 ${t('Start screening', 'Bắt đầu sàng lọc hồ sơ')}`}
       </button>
     </section>
   )

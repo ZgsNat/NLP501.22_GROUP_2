@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useT } from './i18n'
 
 export interface HistoryItem {
   id: string
@@ -25,6 +26,7 @@ export default function RunHistoryModal({
   onSelectRun,
   onClearHistory,
 }: Props) {
+  const { t, lang } = useT()
   const [manualId, setManualId] = useState('')
 
   if (!isOpen) return null
@@ -42,21 +44,21 @@ export default function RunHistoryModal({
       <div className="modal-card history-modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <div>
-            <h3>Lịch sử các đợt sàng lọc (Run History)</h3>
-            <p className="muted small">Xem lại hoặc mở lại các phiên làm việc trước đó.</p>
+            <h3>{t('Run history', 'Lịch sử các đợt sàng lọc (run history)')}</h3>
+            <p className="muted small">{t('Review or reopen earlier runs.', 'Xem lại hoặc mở lại các phiên làm việc trước đó.')}</p>
           </div>
-          <button className="icon-btn" onClick={onClose} aria-label="Close">✕</button>
+          <button className="icon-btn" onClick={onClose} aria-label={t('Close', 'Đóng')}>✕</button>
         </div>
 
         <form className="manual-load-box" onSubmit={handleManualSubmit}>
           <input
             type="text"
-            placeholder="Nhập mã phiên (Run ID) cụ thể..."
+            placeholder={t('Enter a run id…', 'Nhập mã phiên (run id) cụ thể…')}
             value={manualId}
             onChange={(e) => setManualId(e.target.value)}
           />
           <button type="submit" className="primary" disabled={!manualId.trim()}>
-            Mở phiên
+            {t('Open', 'Mở phiên')}
           </button>
         </form>
 
@@ -65,11 +67,11 @@ export default function RunHistoryModal({
             <table className="history-table">
               <thead>
                 <tr>
-                  <th>Mã phiên</th>
-                  <th>Thời gian</th>
-                  <th>Vị trí tuyển dụng</th>
-                  <th>Ứng viên dẫn đầu</th>
-                  <th className="text-right">Hành động</th>
+                  <th>{t('Run id', 'Mã phiên')}</th>
+                  <th>{t('Time', 'Thời gian')}</th>
+                  <th>{t('Position', 'Vị trí tuyển dụng')}</th>
+                  <th>{t('Top candidate', 'Ứng viên dẫn đầu')}</th>
+                  <th className="text-right">{t('Action', 'Thao tác')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -77,12 +79,12 @@ export default function RunHistoryModal({
                   <tr key={item.id} className={currentRunId === item.id ? 'current-row' : ''}>
                     <td>
                       <span className="mono strong">{item.id}</span>
-                      {currentRunId === item.id && <span className="badge sky ml-1">Đang xem</span>}
+                      {currentRunId === item.id && <span className="badge sky ml-1">{t('Viewing', 'Đang xem')}</span>}
                     </td>
                     <td className="muted small nowrap">
-                      {new Date(item.timestamp).toLocaleString('vi-VN')}
+                      {new Date(item.timestamp).toLocaleString(lang === 'vi' ? 'vi-VN' : 'en-GB')}
                     </td>
-                    <td>{item.title || 'Chiến dịch tuyển dụng'}</td>
+                    <td>{item.title || t('Hiring campaign', 'Chiến dịch tuyển dụng')}</td>
                     <td>
                       {item.topCandidate ? (
                         <span className="badge green">{item.topCandidate}</span>
@@ -98,7 +100,7 @@ export default function RunHistoryModal({
                           onClose()
                         }}
                       >
-                        Tải lại
+                        {t('Reload', 'Tải lại')}
                       </button>
                     </td>
                   </tr>
@@ -107,7 +109,7 @@ export default function RunHistoryModal({
             </table>
           ) : (
             <div className="empty-box muted text-center">
-              Chưa có lịch sử phiên làm việc nào được lưu trên trình duyệt này.
+              {t('No runs saved in this browser yet.', 'Chưa có lịch sử phiên làm việc nào được lưu trên trình duyệt này.')}
             </div>
           )}
         </div>
@@ -115,10 +117,10 @@ export default function RunHistoryModal({
         <div className="modal-footer flex-between">
           {history.length > 0 ? (
             <button className="ghost danger-text" onClick={onClearHistory}>
-              Xóa toàn bộ lịch sử
+              {t('Clear all history', 'Xoá toàn bộ lịch sử')}
             </button>
           ) : <div />}
-          <button className="primary" onClick={onClose}>Đóng</button>
+          <button className="primary" onClick={onClose}>{t('Close', 'Đóng')}</button>
         </div>
       </div>
     </div>

@@ -68,7 +68,7 @@ async def start(state: AgentState) -> dict:
 async def agent(state: AgentState) -> dict:
     model = nodes.llm(state, get_settings().agent_role).bind_tools(tools.schemas())
     try:
-        msg = await model.ainvoke([SystemMessage(prompts.AGENT), *state["messages"]])
+        msg = await model.ainvoke([SystemMessage(prompts.localized(prompts.AGENT, state.get("lang"))), *state["messages"]])
     except Exception as e:  # a provider hiccup or unparseable output costs a step, never the run
         emit("agent", f"Model output unusable ({type(e).__name__}: {str(e)[:120]}) → retrying", "warn")
         return {"loops": {"agent": 1, "agent_errors": 1}}

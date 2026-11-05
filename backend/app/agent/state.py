@@ -22,6 +22,7 @@ class AgentState(TypedDict, total=False):
     jd_text: str
     company_profile: str
     models: dict[str, str]  # {"reasoning": "...", "fast": "..."} — persisted so resumes use the same brain
+    lang: str  # "en" | "vi": the language of every LLM text HR reads (prompts.localized); quotes stay verbatim
     ablate: list[str]  # evaluation only: switch off parts ("clarify", "expand", "verify", "arbiter", "profile")
 
     # criteria

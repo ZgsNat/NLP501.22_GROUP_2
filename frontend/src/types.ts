@@ -34,6 +34,7 @@ export interface RunRequest {
   models?: { reasoning?: string; fast?: string }
   mode?: Mode // default agent (P7)
   goal?: string // agent mode: what HR wants, in their words
+  lang?: 'en' | 'vi' // language of the LLM's explanations, report and replies (default en)
 }
 
 export type ResumeBody =
