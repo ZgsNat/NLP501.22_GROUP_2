@@ -104,6 +104,10 @@ class Settings(BaseSettings):
     # nDCG@10 was unchanged (0.867 -> 0.867); the rule needs a gain on one source. Off by default.
     implied_evidence: bool = False
     max_reviews: int = 5  # L5: HR re-weight rounds before the ranking is final
+    max_goal_revisions: int = 4  # goal loop: formalize_goal calls per run (HR's answers revise the spec)
+    max_concepts: int = 3  # open-vocabulary criteria (define_concept) per run
+    goal_bonus: float = 0.05  # added to the weighted total × evidence credit, for a "plus" HR named
+    goal_bonus_strong: float = 0.10  # … and for a "big plus"
     hr_memory: bool = False  # start each run from the weights HR taught for its company profile (agent/hr_memory.py)
     max_memory_drift: float = 0.4  # cap on Σ|w − profile weights| that cross-session learning may reach
     ask_hr_substitutes: bool = True  # L2 proposes related tools and HR approves (False = accept silently, v1)

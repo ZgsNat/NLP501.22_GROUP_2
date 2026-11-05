@@ -14,7 +14,7 @@ from langgraph.config import get_config, get_stream_writer
 from langgraph.types import interrupt
 from qdrant_client import models
 
-from app.agent import checks, hr_memory, prompts
+from app.agent import checks, goal, hr_memory, prompts
 from app.agent import investigate as inv
 from app.agent.schemas import (
     CRITERIA,
@@ -594,6 +594,25 @@ def tier(total: float) -> str:
     return "strong" if total >= s.tier_strong else "possible" if total >= s.tier_possible else "weak"
 
 
+def apply_goal(state: AgentState, ranked: list[dict], row) -> tuple[list[dict], list[dict]]:
+    """HR's goal on top of the rule score (P7, agent/goal.py): concept must-haves and excludes leave the ranking with a
+    reason; bonuses HR named ("AI in automation is a big plus") add points × evidence credit. Deterministic."""
+    if not state.get("goal_spec"):
+        return ranked, []
+    spec, concepts, subs = goal.GoalSpec.model_validate(state["goal_spec"]), state.get("concepts", {}), state.get("substitutes", {})
+    keep, out = [], []
+    for r in ranked:
+        p = prof(state, r["cv_id"])
+        if why := goal.goal_filter(p, spec, concepts, subs):
+            out.append(row(r["cv_id"], "knocked_out", reason=why))
+            continue
+        if b := goal.bonus(p, spec, concepts):
+            r["total"] = round(min(1.0, r["total"] + sum(b.values())), 4)
+            r["tier"], r["goal_bonus"] = tier(r["total"]), b
+        keep.append(r)
+    return keep, out
+
+
 @traced("score")
 async def score(state: AgentState) -> dict:
     cands = {c["cv_id"]: c for c in state["candidates"]}
@@ -604,6 +623,7 @@ async def score(state: AgentState) -> dict:
         "card": None, "flags": []}
     ranked = [row(cid, "ranked", weighted_total(a, state["weights"], False))
               for cid, a in state["assessments"].items() if cid in cands]
+    ranked, goal_out = apply_goal(state, ranked, row)
     rerank = {c["cv_id"]: c.get("rerank_score") for c in state["candidates"]}
     req, subs = state["requirements"], state.get("substitutes", {})
     for r in ranked:
@@ -622,7 +642,7 @@ async def score(state: AgentState) -> dict:
     pre = lambda cid: rule_total(prof(state, cid), req, subs, w, state.get("fallbacks", {}))  # noqa: E731
     review = [row(cid, "needs_review", reason=r) for cid, r in state["knocked_out"].items() if r == NEEDS_REVIEW]
     knocked = sorted((row(cid, "knocked_out", reason=r) for cid, r in state["knocked_out"].items() if r != NEEDS_REVIEW),
-                     key=lambda r: pre(r["cv_id"]), reverse=True)
+                     key=lambda r: pre(r["cv_id"]), reverse=True) + goal_out
     rest = [row(cid, "not_shortlisted", reason=r) for cid, r in state.get("screened", {}).items()
             if cid not in state["assessments"] and cid not in state["knocked_out"]]
     reranked = sorted((r for r in rest if rerank.get(r["cv_id"]) is not None), key=lambda r: fused[r["cv_id"]])
@@ -634,7 +654,8 @@ async def score(state: AgentState) -> dict:
     fb = state.get("fallbacks", {})
     for r in ranked:  # explanation cards: they explain the rule score, so the decomposition always adds up
         r["card"] = {"decomposition": decomposition(state["assessments"][r["cv_id"]]["criteria"], w),
-                     "what_if": counterfactuals(prof(state, r["cv_id"]), req, subs, w, fb)}
+                     "what_if": counterfactuals(prof(state, r["cv_id"]), req, subs, w, fb),
+                     **({"goal_bonus": r["goal_bonus"]} if r.get("goal_bonus") else {})}
     for r in knocked:  # how close was it: the score with every missing must-have present
         r["card"] = {"what_if": counterfactuals(prof(state, r["cv_id"]), req, subs, w, fb, limit=1)}
     _versus_next(rows, state)

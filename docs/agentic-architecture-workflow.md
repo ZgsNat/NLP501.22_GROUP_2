@@ -162,6 +162,28 @@ request to call `set_weights`. The chat adds a second surface: CV text reaches t
 - A decision model cannot improve the ranking itself (nDCG): scores are rules. Its value is only at gates, here
   injection recall at almost no false-alarm cost.
 
+## 5c. Goal-driven control (v5): complex goals, feasibility, declared limits
+
+HR goals are no longer "N CVs with tools X, Y". A real one: *"5 CVs; Selenium is required; Playwright is a plus
+but other criteria can count; AI is required; using AI in automation is a big plus."* It mixes hard and soft
+constraints, names something no taxonomy holds ("AI"), and may be impossible on the pool at hand. The v4 prompt
+walked a fixed script (parse → screen → … → respond), so the agent behaved like the P6 pipeline. v5 makes the
+plan depend on the goal, and makes the agent say what it cannot do.
+
+| Step | Tool (0 tokens unless noted) | Control |
+|---|---|---|
+| Understand | `formalize_goal` (the LLM writes a GoalSpec as the call's arguments) | every constraint quotes HR's words (Q18); skill constraints rewrite the requirements, HR wins over the JD |
+| Name the unknown | `define_concept` (LLM proposes terms) | HR must have named it (Q18); code finds and grades evidence per CV: used in a role > listed > hedged |
+| Can it be done? | feasibility, returned by both tools | per must-have and joint counts over the whole pool, bottleneck, what relaxing each gives |
+| Confirm | `ask_hr` | **goal gate (H31)**: `screen` is refused while targets are unknown, questions are open, or the goal is infeasible and HR has not accepted fewer |
+| Act | `screen`, `investigate`, `rank_shortlist`, `explain`, `compare` … chosen by the agent | concept musts filter and (big) plusses add `goal_bonus(_strong) × credit` at scoring, shown on the card |
+| Check | `check_goal` | the shortlist against the GoalSpec, by code |
+| Answer | `respond_to_hr` | **H32 / Q19**: refused while part of the goal is unmet and `limits` is empty; code appends its own goal check |
+
+StateGraph keeps its role as the runtime (state, interrupts, checkpoints, loop limits); the plan is the agent's,
+per goal. P6 stays as the fixed baseline and as the `screen` tool. Evaluated by E23 (`app.eval.goals`,
+data/goal_suite): five goals, including the one above, an infeasible skill pair and a vague "good with AI".
+
 ## 6. A real run, step by step (from `demo/`)
 
 JD-002, goal *"Shortlist the 5 strongest candidates; ISTQB is a plus"*, Claude Sonnet 5.5 on high effort:

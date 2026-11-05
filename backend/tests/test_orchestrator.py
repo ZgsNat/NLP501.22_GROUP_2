@@ -87,7 +87,7 @@ def agent(monkeypatch):
     monkeypatch.setattr(tools, "get_store", lambda: store)
     monkeypatch.setattr(nodes, "_decide", lambda state, d: {"weights": state["weights"]})  # no audit file in tests
 
-    def run(steps, answers=(), **settings):
+    def run(steps, answers=(), goal=None, **settings):
         for k, v in settings.items():
             monkeypatch.setattr(s, k, v)
         model = Scripted(steps)
@@ -95,7 +95,7 @@ def agent(monkeypatch):
         g = orchestrator.build_agent_graph(InMemorySaver())
         cfg = {"configurable": {"thread_id": "t"}}
         jd = get_doc("jds", "JD-002")
-        inp, pauses = {"jd_text": jd.text, "company_profile": jd.meta["company_profile"]}, []
+        inp, pauses = {"jd_text": jd.text, "company_profile": jd.meta["company_profile"], **({"goal": goal} if goal else {})}, []
         answers = list(answers) + [{"action": "approve"}] * 3
         while True:
             asyncio.run(g.ainvoke(inp, cfg))
@@ -260,3 +260,51 @@ def test_rank_shortlist_reorders_and_the_order_survives_explain(agent):
     assert order == sorted(order, reverse=True) and order == v["llm_order"][:len(order)]  # explain kept the LLM order
     refused = [m.content for m in v["messages"] if isinstance(m, ToolMessage) and m.content.startswith("REJECTED")]
     assert v["loops"]["llm_rank"] == 2 and any("ranking budget used" in w for w in refused)
+
+
+HR_GOAL = ("5 CV, trong đó yêu cầu selenium là bắt buộc, playwright là có nhưng có thể dùng các tiêu chí khác để đánh "
+           "giá, AI là bắt buộc, nếu biết xử dụng AI trong automation thì là điểm cộng lớn")
+AI_TERMS = ["copilot", "chatgpt", "llm", "self-healing", "healenium", "applitools"]
+
+
+def test_a_complex_goal_is_planned_checked_confirmed_with_hr_and_its_limits_declared(agent):
+    """The goal-driven loop on the real pool (no CV mentions AI): understand → feasibility → confirm with HR →
+    act → check the goal → declare what could not be met. Each skipped step is refused by the harness."""
+    c = lambda kind, target, quote, **kw: {"kind": kind, "target": target, "hr_quote": quote, **kw}  # noqa: E731
+    first = [c("must", "selenium", "selenium là bắt buộc"), c("nice", "playwright", "playwright là có"),
+             c("must", "ai_in_testing", "AI là bắt buộc"),
+             c("bonus", "ai_in_testing", "AI trong automation thì là điểm cộng lớn", strength="strong")]
+    revised = [first[0], first[1], first[3]]
+    top5 = lambda m: [r["cv_id"] for r in last_result(m, "screen")["top"][:5]]  # noqa: E731
+    v, pauses, _ = agent([
+        lambda m: call("parse_jd"),
+        lambda m: call("screen"),  # refused: HR wrote a goal, plan first
+        lambda m: call("formalize_goal", count=5, constraints=[c("must", "selenium", "Cypress là bắt buộc")]),  # not HR's words
+        lambda m: call("formalize_goal", count=5, constraints=first),
+        lambda m: call("screen"),  # refused: 'ai_in_testing' is not defined yet
+        lambda m: AIMessage("", tool_calls=[{"name": "define_concept", "id": "dc", "type": "tool_call", "args": {
+            "name": "ai_in_testing", "description": "Uses AI tools in test automation", "terms": AI_TERMS,
+            "hr_quote": "AI trong automation"}}]),
+        lambda m: call("screen"),  # refused: no CV meets every must-have, HR must decide
+        lambda m: call("ask_hr", questions=["No CV in the pool mentions AI. Make AI a big plus instead of a must, "
+                                            "and accept fewer than 5?"]),
+        lambda m: call("formalize_goal", count=5, constraints=revised, accept_shortfall="ít hơn 5 người cũng được"),
+        lambda m: call("screen"),
+        lambda m: call("explain", cv_ids=top5(m)),
+        lambda m: call("respond_to_hr", message="Here are the five strongest.", shortlist=top5(m)),  # hides the gap
+        lambda m: call("respond_to_hr", message="Five Selenium candidates; none shows AI in automation.",
+                       shortlist=top5(m), limits=["No CV mentions AI tools, so the AI bonus could not be applied; "
+                                                  "widen the pool or relax AI."]),
+    ], answers=[{"answers": {"q": "AI chuyển thành điểm cộng lớn thôi, ít hơn 5 người cũng được"}}], goal=HR_GOAL)
+    why = [m.content for m in v["messages"] if isinstance(m, ToolMessage) and m.content.startswith("REJECTED")]
+    assert any("formalize_goal first" in w for w in why)
+    assert any("not HR's words" in w for w in why)
+    assert any("neither taxonomy skills nor defined concepts" in w for w in why)
+    assert any("cannot be met as stated" in w for w in why)
+    assert any("does not meet HR's goal" in w for w in why)
+    assert pauses[0]["kind"] == "clarification" and pauses[-1]["kind"] == "chat"
+    assert "selenium" in v["requirements"]["must_have"] and "playwright" not in v["requirements"]["must_have"]
+    assert v["concepts"]["ai_in_testing"]["evidence"] == {}  # code found no AI evidence: none is invented
+    assert len(v["shortlist"]) == 5 and "Goal check (by code)" in v["reply"] and v["report"]["goal"]["limits"]
+    sel = {r["cv_id"] for r in v["ranking"] if r["status"] == "ranked"}
+    assert set(v["shortlist"]) <= sel  # every recommended CV passed the Selenium knock-out

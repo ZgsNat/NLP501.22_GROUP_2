@@ -64,6 +64,9 @@ class AgentState(TypedDict, total=False):
     halt: str  # why the harness stopped the agent this turn (budget, repeated errors); code answers HR instead
     llm_order: list[str]  # rank_shortlist's controlled LLM order of the shortlist (agent/llm_rank.py); [] = rule order
     llm_reasons: dict[str, str]  # cv_id → the LLM's one-sentence reason for its place (shown to HR)
+    goal_spec: dict  # agent/goal.py GoalSpec: HR's goal as constraints, each quoting HR's words
+    goal_feasibility: dict  # what the pool can deliver against goal_spec (0 tokens)
+    concepts: dict  # slug → {description, terms, evidence: cv_id → graded quote}: open-vocabulary criteria
 
 
 def public_view(update: dict[str, Any]) -> dict[str, Any]:
