@@ -84,6 +84,16 @@ def ranked(state: AgentState) -> list[dict]:
     return [r for r in state.get("ranking", []) if r["status"] == "ranked"]
 
 
+def delivered(state: AgentState) -> list[str]:
+    """The shortlist HR already has from an earlier answer in this run, minus CVs no longer ranked (HR rejected,
+    re-screened out). A follow-up answer without a shortlist keeps it: answering "why is A above B?" must not take the
+    recommendation away, nor count as recommending nobody against HR's goal."""
+    if not state.get("reply"):
+        return []
+    live = {r["cv_id"] for r in ranked(state)}
+    return [c for c in state.get("shortlist", []) if c in live]
+
+
 def explained(state: AgentState, cv_id: str) -> bool:
     return bool(state.get("assessments", {}).get(cv_id, {}).get("llm_review"))
 
@@ -565,7 +575,7 @@ def check_respond(state: AgentState, args: RespondArgs) -> str | None:
         return (f"the message names ranked candidates {named} but the shortlist is empty, so HR would get no "
                 "recommendation: put the CVs you recommend in `shortlist`, best first (explained first); if you "
                 "recommend none, say so and why")
-    if (unmet := goal_unmet(state, args.shortlist)) and not args.limits:
+    if (unmet := goal_unmet(state, args.shortlist or delivered(state))) and not args.limits:
         return (f"the shortlist does not meet HR's goal: {unmet}. Declare it in `limits` (what, why, what HR could "
                 "relax); never present a partial result as complete")
     issues = []
@@ -577,18 +587,19 @@ def check_respond(state: AgentState, args: RespondArgs) -> str | None:
 
 
 async def respond_to_hr(state: AgentState, args: RespondArgs) -> tuple[dict, dict]:
+    shortlist = args.shortlist or delivered(state)
     cands = []
-    for c in args.shortlist:
+    for c in shortlist:
         rev = state["assessments"][c].get("llm_review", {})
         row = next(r for r in state["ranking"] if r["cv_id"] == c)
         gaps = [f"no {', '.join(w['if_used'])} in a role" for w in (row.get("card") or {}).get("what_if") or []]
         cands.append({"cv_id": c, "explanation": " ".join(v["rationale"] for v in rev.values())[:600],
                       "strengths": [k for k, v in rev.items() if v.get("score", 0) >= 75], "gaps": gaps})
-    rep = goal_check(state, args.shortlist)
+    rep = goal_check(state, shortlist)
     reply = args.message + goal_footer(rep, args.limits)
-    report = {"summary": reply, "candidates": cands, "top_ids": sorted(args.shortlist), "checks": {},
+    report = {"summary": reply, "candidates": cands, "top_ids": sorted(shortlist), "checks": {},
               **({"goal": {**rep, "limits": args.limits}} if state.get("goal_spec") else {})}
-    return {"delivered": True}, {"reply": reply, "shortlist": args.shortlist, "report": report}
+    return {"delivered": True, "shortlist": shortlist}, {"reply": reply, "shortlist": shortlist, "report": report}
 
 
 def goal_footer(rep: dict, limits: list[str]) -> str:

@@ -377,3 +377,17 @@ def test_a_first_answer_that_names_candidates_must_recommend_them(agent):
     why = [m.content for m in v["messages"] if isinstance(m, ToolMessage) and m.content.startswith("REJECTED")]
     assert len(why) == 1 and "shortlist is empty" in why[0]
     assert "leads on automation depth" in v["reply"]
+    assert len(v["shortlist"]) == 1 and v["report"]["top_ids"] == v["shortlist"]  # the follow-up kept the shortlist
+
+
+def test_a_follow_up_that_runs_out_of_steps_keeps_the_shortlist_hr_already_has(agent):
+    top = lambda m: last_result(m, "screen")["top"][0]["cv_id"]  # noqa: E731
+    v, pauses, _ = agent([  # after the answer, the scripted model loops on get_candidate until the turn's budget ends
+        lambda m: call("parse_jd"),
+        lambda m: call("screen"),
+        lambda m: call("explain", cv_ids=[top(m)]),
+        lambda m: call("respond_to_hr", message=f"I recommend {top(m)}.", shortlist=[top(m)]),
+    ], answers=[{"message": "Compare it with everyone else in detail."}], max_agent_steps=4)
+    first = pauses[0]["payload"]["shortlist"][0]["cv_id"]
+    assert v["loops"]["budget_stops"] == 1 and v["shortlist"] == [first]
+    assert "the shortlist from my last answer stands" in v["reply"]

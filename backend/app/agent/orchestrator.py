@@ -171,17 +171,24 @@ async def ask_hr(state: AgentState) -> dict:
 @traced("finalize")
 async def finalize(state: AgentState) -> dict:
     """The harness's fallback answer: the current rule-based ranking, labelled as not verified by the agent."""
-    top = ranked(state)[:5]
-    msg = (f"I stopped before finishing: {state['halt']}. "
-           + (f"The current rule-based ranking is {', '.join(f'{r['cv_id']} ({r['total']:.2f})' for r in top)}; "
-              "these candidates are not yet explained or checked by me." if top else "No candidate is ranked yet."))
-    rep = tools.goal_check(state, [])  # Q20 holds for code's answer too: nothing recommended, say what is unmet
-    limits = [f"stopped before finishing ({state['halt']}): nothing recommended yet"] if state.get("goal_spec") else []
+    top, kept = ranked(state)[:5], tools.delivered(state)
+    if kept:  # a follow-up ran out: the shortlist HR already has stands, only the latest request is unanswered
+        msg = (f"I stopped before finishing: {state['halt']}. Your latest request is not handled; the shortlist from "
+               f"my last answer stands: {', '.join(kept)}.")
+        unmet = f"stopped before finishing ({state['halt']}): the latest request is not handled"
+    else:
+        msg = (f"I stopped before finishing: {state['halt']}. "
+               + (f"The current rule-based ranking is {', '.join(f'{r['cv_id']} ({r['total']:.2f})' for r in top)}; "
+                  "these candidates are not yet explained or checked by me." if top else "No candidate is ranked yet."))
+        unmet = f"stopped before finishing ({state['halt']}): nothing recommended yet"
+    rep = tools.goal_check(state, kept)  # Q20 holds for code's answer too: say what is unmet
+    limits = [unmet] if state.get("goal_spec") else []
     msg += tools.goal_footer(rep, limits)
     emit("finalize", msg, "warn")
-    report = {"summary": msg, "candidates": [], "top_ids": sorted(r["cv_id"] for r in top), "checks": {},
+    report = {**(state.get("report") or {} if kept else {}), "summary": msg,
+              **({} if kept else {"candidates": [], "top_ids": sorted(r["cv_id"] for r in top), "checks": {}}),
               **({"goal": {**rep, "limits": limits}} if state.get("goal_spec") else {})}
-    return {"messages": [AIMessage(msg)], "reply": msg, "shortlist": [], "report": report, "halt": "",
+    return {"messages": [AIMessage(msg)], "reply": msg, "shortlist": kept, "report": report, "halt": "",
             "responded": True}
 
 
