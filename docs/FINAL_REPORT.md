@@ -51,7 +51,8 @@ and every input pinned by checksum. On that test split:
 - **Every LLM output passes code checks at run time** (Q1–Q7 and Q14–Q20 of 20 written criteria; the rest are offline
   evaluations).
 - **First blind human labels.** Two teammates graded 120 pairs of `ours` blind and agreed at κ 0.965; they side with
-  the stricter model where the two silver annotators disagree (§9).
+  the stricter model where the two silver annotators disagree. Re-scoring v1 with them (v1.1) leaves the order of the
+  eight systems unchanged (Kendall τ 1.00 on test and dev), so the silver labels hold for comparing systems (§9).
 - **The ranking ignores the protected attributes we twinned** (name, gender, age, marital status): no score changed in
   6 twin variants × 1,800 (CV, JD) pairs.
 
@@ -758,12 +759,16 @@ We count only the errors that cost HR something:
   `DATA_EVAL_SUMMARY.md`). They agree with Opus at 0.87–0.88 and with Sonnet at 0.65–0.69; on the disagreements they
   side with the stricter Opus on 65 and 74 of the 94 (Sonnet on 25 and 16), so the silver mean is about half a grade
   too generous there. Both graded blind, without silver grades or model suggestions (confirmed by the team). The
-  sample is disagreement-heavy, so this κ does not describe all 600 pairs. Re-scoring v1 with these 120 pairs as
-  adjudicated gold is the next step. On Djinni no blind set has passed the quality check (§5.8).
+  sample is disagreement-heavy, so this κ does not describe all 600 pairs. On Djinni no blind set has passed the
+  quality check (§5.8).
 - **Silver labels.** Our ranking labels come from two Claude models (κ_w 0.919 with each other). A third, blind
   Claude annotator agreed with them at κ_w 0.889. The human check above says they hold where the two models agree and
-  are about half a grade generous where they differ. Whether that changes the system order is the open step: re-score
-  v1 with the 120 human pairs (v1.1). Until then, ranking numbers are on silver labels.
+  are about half a grade generous where they differ. **It does not change the system order (v1.1, E27,
+  `BENCHMARK_V1_1_RESULTS.md`):** the 120 human pairs, merged with the Djinni rule, replace the silver grade and every
+  system's stored ranking is scored again, with no LLM. The order of the eight systems is identical on test and on
+  dev (Kendall τ 1.00), no test nDCG@10 moves by more than 0.007, and the rubric ranker gains most (+0.007), so the
+  deterministic system's lead over it narrows from +0.031 to +0.024 (p = 0.28). The silver labels are a sound basis
+  for comparing systems; only `ours` was checked, and the absolute numbers stay those of synthetic data.
 - **Synthetic ranking data.** Real text was used only to check the NLP. Consented real CVs are being collected.
   Comparisons between systems are the result; the absolute numbers will not transfer.
 - **Small test split.** With 10 test JDs, CIs are ±0.05–0.08 for the stronger systems and up to ±0.15 for the
@@ -791,8 +796,8 @@ Measured on one frozen benchmark, the final system is the best version of the pr
 that unit tests never would.
 
 **Next:**
-- human labels: re-score v1 with the 120 blind human pairs (v1.1); one adjudication session on how the rubric reads
-  short real profiles, then re-grade the Djinni subset blind (v2.1);
+- human labels on Djinni: one adjudication session on how the rubric reads short real profiles, then re-grade the
+  subset blind (v2.1); v1.1 is done and kept the system order;
 - E15 with repeated runs, as E26 already does, and a real HR in the loop instead of a script;
 - consented real CVs;
 - a larger test split, enough to separate the final system from the rubric ranker with confidence;
@@ -816,6 +821,7 @@ cd backend && export PYTHONHASHSEED=0 LLM_PROVIDER=claude_code
 uv run pytest                                    # 257 tests, no LLM or Docker needed
 export REFERENCE_DATE=2026-10-30                 # pins "Present" in CVs (v4.1)
 uv run python -m app.eval.benchmark verify       # the frozen benchmark is intact
+uv run python -m app.eval.benchmark_v1_1          # v1.1: v1 re-scored with the 120 blind human pairs (no LLM)
 # full benchmark run: docs/BENCHMARK.md › Reproduce;  official table: python -m app.eval.benchmark report
 uv run python -m app.eval.benchmark_v2 report    # NLP501-bench v2 (+ Djinni); `verify` checks its inputs
 uv run python -m app.eval.agentic                # E15: the P7 agent on HR tasks (live LLM)

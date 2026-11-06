@@ -38,6 +38,7 @@ cd backend && uv run python -m app.eval.run retrieval    # B0–B3 + chunking ab
 # the hash seed (taxonomy.aliases keeps the declared order)
 cd backend && uv run python -m app.eval.benchmark report    # THE official table: NLP501-bench v1 (docs/BENCHMARK.md); `verify` checks the frozen inputs
 cd backend && uv run python -m app.eval.benchmark_v2 report # v2 = v1 + 8 real Djinni JDs in test (18 test JDs); `freeze`, `verify`
+cd backend && uv run python -m app.eval.benchmark_v1_1     # E27: v1 re-scored with the 120 blind human pairs (no LLM; order held, τ 1.00)
 cd backend && uv run python -m app.eval.djinni fetch     # real-data layer to .runtime; `silver`, `import labels_A.xlsx labels_B.xlsx`, `score` (κ)
 cd backend && uv run python -m app.eval.nlp_ablation     # E19: nDCG cost of switching off hedge scope / evidence / depth cue / dated years
 cd backend && uv run --group ml python -m app.eval.finetune train   # E20: cross-encoder fine-tuned on dev JDs; `score` = test + Djinni
