@@ -4,17 +4,18 @@ Misses = relevant CVs (gold ≥ 2) ranked below 10 although every CV graded at l
 
 ## P6 on `ours`
 
-5 avoidable misses, 1 false alarms over 6 JDs.
+6 avoidable misses, 1 false alarms over 6 JDs.
 
 | Error | cause | count |
 |---|---|---|
+| miss | low rule scores | 3 |
 | miss | knocked out | 3 |
-| miss | low rule scores | 2 |
 | false alarm | must-have only listed, never used | 1 |
 
 | JD | CV | error | gold | rank | diagnosis |
 |---|---|---|---|---|---|
 | JD-009 | CV-038 | false alarm | 0 | 4 | must-have only listed, never used: ['python'] |
+| JD-010 | CV-032 | miss | 3 | 12 | low rule scores on automation_depth 35, domain_language 50 |
 | JD-010 | CV-047 | miss | 3 | 39 | knocked out: Missing must-have: selenium |
 | JD-011 | CV-030 | miss | 2 | 20 | low rule scores on domain_language 50, automation_depth 60 |
 | JD-011 | CV-001 | miss | 2 | 22 | low rule scores on domain_language 50, automation_depth 60 |
@@ -23,21 +24,20 @@ Misses = relevant CVs (gold ≥ 2) ranked below 10 although every CV graded at l
 
 ## P6 on `coding`
 
-5 avoidable misses, 1 false alarms over 4 JDs.
+4 avoidable misses, 1 false alarms over 4 JDs.
 
 | Error | cause | count |
 |---|---|---|
-| miss | low rule scores | 5 |
+| miss | low rule scores | 4 |
 | false alarm | high rule scores | 1 |
 
 | JD | CV | error | gold | rank | diagnosis |
 |---|---|---|---|---|---|
-| ambiguous_senior | syn_011 | false alarm | 0 | 1 | high rule scores on test_types 100, cicd_infra 80 (gold disagrees) |
-| ambiguous_senior | syn_039 | miss | 3 | 11 | low rule scores on tools 50, programming_language 70 |
-| ambiguous_senior | syn_153 | miss | 3 | 14 | low rule scores on istqb 0, tools 50 |
-| ambiguous_senior | syn_071 | miss | 3 | 20 | low rule scores on istqb 0, tools 50 |
-| ambiguous_senior | syn_107 | miss | 3 | 25 | low rule scores on istqb 0, tools 50 |
-| ambiguous_senior | syn_191 | miss | 3 | 39 | low rule scores on istqb 0, automation_depth 25 |
+| ambiguous_senior | syn_035 | false alarm | 0 | 5 | high rule scores on test_types 100, cicd_infra 100 (gold disagrees) |
+| ambiguous_senior | syn_071 | miss | 3 | 23 | low rule scores on istqb 0, tools 50 |
+| ambiguous_senior | syn_042 | miss | 3 | 32 | low rule scores on tools 50, programming_language 70 |
+| ambiguous_senior | syn_107 | miss | 3 | 52 | low rule scores on istqb 0, tools 50 |
+| ambiguous_senior | syn_191 | miss | 3 | 68 | low rule scores on istqb 0, automation_depth 25 |
 
 ## Đán core (coding branch) on `ours`
 

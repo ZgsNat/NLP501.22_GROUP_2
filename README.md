@@ -224,17 +224,21 @@ CV-031–050 (v2) stress the NLP pipeline:
 | Test split, nDCG@10 | 10 JDs | ours (6) | coding (4) |
 |---|---|---|---|
 | B0 BM25 | 0.695 | 0.800 | 0.536 |
-| Structural chunks + cross-encoder | 0.726 | 0.830 | 0.570 |
+| Structural chunks + cross-encoder | 0.715 | 0.813 | 0.568 |
 | Đán's core (`coding` branch, unchanged) | 0.810 | 0.773 | **0.866** |
-| Our v2 (4 rule criteria ⊕ CE) | 0.751 | 0.806 | 0.669 |
-| Merged v3.1, deterministic (B3) | 0.837 | 0.890 | 0.758 |
-| Merged v3.1, fixed pipeline (B4) | **0.848** | 0.890 | 0.784 |
-| **Merged v3.1, full agent (P6)** | 0.847 | **0.897** | 0.772 |
+| Our v2 (4 rule criteria ⊕ CE) | 0.748 | 0.801 | 0.669 |
+| Merged v3.1, deterministic (B3) | 0.841 | **0.888** | 0.770 |
+| Merged v3.1, fixed pipeline (B4) | 0.839 | 0.877 | 0.781 |
+| **Merged v3.1, full agent (P6)** | **0.851** | 0.882 | 0.805 |
+
+Re-run after the v4.1 fixes; the table of 31 Oct read B3 0.837, B4 0.848, P6 0.847. Re-scored with the 120 blind
+human pairs (v1.1, [`docs/BENCHMARK_V1_1_RESULTS.md`](docs/BENCHMARK_V1_1_RESULTS.md)) the order is the same.
 
 **What the numbers say:**
-- **The merge is the best version measured:** +0.086 over our v2 (p = 0.004) and +0.037 over Đán's core (p = 0.22,
+- **The merge is the best version measured:** +0.093 over our v2 (p = 0.009) and +0.041 over Đán's core (p = 0.12,
   not yet significant).
-- **Rules score, so the agent and its fixed twin rank alike.** The agent's value is control:
+- **Rules score, so the agent and its fixed twin rank almost alike** (+0.012, p = 0.064; mostly the one vague JD,
+  where the agent asks HR). The agent's value is control:
   - 8 distinct paths over 18 JDs against 1;
   - contradicted LLM claims cut from 2.1% to 0.6%;
   - 100% grounded quotes;

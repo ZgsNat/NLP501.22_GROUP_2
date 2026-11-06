@@ -2260,17 +2260,17 @@
                         <tbody>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5">B0 · BM25</td><td class="p-1.5">0.695</td><td class="p-1.5">0.800</td><td class="p-1.5">0.536</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5">B2 · Truy hồi lai (BM25 + dense)</td><td class="p-1.5">0.681</td><td class="p-1.5">0.859</td><td class="p-1.5">0.413</td></tr>
-<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Chunk cấu trúc + Cross-encoder</td><td class="p-1.5">0.726</td><td class="p-1.5">0.830</td><td class="p-1.5">0.570</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Chunk cấu trúc + Cross-encoder</td><td class="p-1.5">0.715</td><td class="p-1.5">0.813</td><td class="p-1.5">0.568</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5">Ranker theo rubric (tất định)</td><td class="p-1.5">0.810</td><td class="p-1.5">0.773</td><td class="p-1.5"><strong>0.866</strong></td></tr>
-<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Phiên bản đầu (4 tiêu chí luật ⊕ CE)</td><td class="p-1.5">0.751</td><td class="p-1.5">0.806</td><td class="p-1.5">0.669</td></tr>
-<tr class="border-b border-slate-100 align-top"><td class="p-1.5">B3 · 8 tiêu chí luật ⊕ CE (tất định)</td><td class="p-1.5">0.837</td><td class="p-1.5">0.890</td><td class="p-1.5">0.758</td></tr>
-<tr class="border-b border-slate-100 align-top bg-emerald-50 font-semibold"><td class="p-1.5">B4 · quy trình cố định</td><td class="p-1.5"><strong>0.848</strong></td><td class="p-1.5">0.890</td><td class="p-1.5">0.784</td></tr>
-<tr class="border-b border-slate-100 align-top bg-emerald-50 font-semibold"><td class="p-1.5">P6 · agent đầy đủ</td><td class="p-1.5">0.847</td><td class="p-1.5"><strong>0.897</strong></td><td class="p-1.5">0.772</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Phiên bản đầu (4 tiêu chí luật ⊕ CE)</td><td class="p-1.5">0.748</td><td class="p-1.5">0.801</td><td class="p-1.5">0.669</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">B3 · 8 tiêu chí luật ⊕ CE (tất định)</td><td class="p-1.5">0.841</td><td class="p-1.5"><strong>0.888</strong></td><td class="p-1.5">0.770</td></tr>
+<tr class="border-b border-slate-100 align-top bg-emerald-50 font-semibold"><td class="p-1.5">B4 · quy trình cố định</td><td class="p-1.5">0.839</td><td class="p-1.5">0.877</td><td class="p-1.5">0.781</td></tr>
+<tr class="border-b border-slate-100 align-top bg-emerald-50 font-semibold"><td class="p-1.5">P6 · agent đầy đủ</td><td class="p-1.5"><strong>0.851</strong></td><td class="p-1.5">0.882</td><td class="p-1.5">0.805</td></tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="grid grid-cols-12 gap-2.5 text-[11px]">
-                    <div class="col-span-5 p-2.5 rounded-xl card-emerald text-emerald-950"><strong>8 tiêu chí luật là bước nhảy chính:</strong> +0.086 so với phiên bản đầu (p = 0.004); P6 +0.037 so với ranker theo rubric (p = 0.22, <em>chưa có ý nghĩa thống kê</em>).</div>
+                    <div class="col-span-5 p-2.5 rounded-xl card-emerald text-emerald-950"><strong>8 tiêu chí luật là bước nhảy chính:</strong> +0.093 so với phiên bản đầu (p = 0.009); P6 +0.041 so với ranker theo rubric (p = 0.12, <em>chưa có ý nghĩa thống kê</em>).</div>
                     <div class="col-span-4 p-2.5 rounded-xl card-blue text-blue-950"><strong>Mỗi hệ thắng trên bộ nhãn gần với nó:</strong> ranker theo rubric 0.866 trên bộ rubric; chỉ 8 tiêu chí luật mạnh trên cả hai.</div>
                     <div class="col-span-3 p-2.5 rounded-xl card-blue text-blue-950"><strong>Dữ kiện thắng văn bản:</strong> +0.11 so với hệ chỉ truy hồi tốt nhất.</div>
                 </div>
@@ -2292,7 +2292,7 @@
                     <table class="w-full text-[10.5px] border-collapse">
                         <thead><tr class="bg-slate-100 border-b border-slate-300 text-slate-800"><th class="p-1.5 text-left font-bold">Giả thuyết (slide 26)</th><th class="p-1.5 text-left font-bold">Đo được</th><th class="p-1.5 text-left font-bold">Kết luận</th></tr></thead>
                         <tbody>
-<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H0</strong> · P6 tốt hơn B4 về nDCG@10 hoặc độ trung thực, chi phí trong ngân sách</td><td class="p-1.5">nDCG@10 0.847 vs 0.848 (p = 0.47); nhận định mâu thuẫn CV 0.6% vs 2.9%; ≈ 2.1× lượt gọi LLM; JD mơ hồ: 0.704 vs 0.626 (H6)</td><td class="p-1.5"><span class="text-amber-700 font-bold">Ủng hộ một phần:</span> hơn về độ trung thực và trên JD mơ hồ; trên JD rõ thì xếp hạng ngang nhau</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H0</strong> · P6 tốt hơn B4 về nDCG@10 hoặc độ trung thực, chi phí trong ngân sách</td><td class="p-1.5">nDCG@10 0.851 vs 0.839 (p = 0.064); nhận định mâu thuẫn CV 0.6% vs 2.9%; ≈ 2.1× lượt gọi LLM; JD mơ hồ: 0.704 vs 0.626 (H6)</td><td class="p-1.5"><span class="text-amber-700 font-bold">Ủng hộ một phần:</span> hơn về độ trung thực và trên JD mơ hồ; trên JD rõ thì xếp hạng gần như ngang nhau</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H1</strong> · B2 ≥ max(B0, B1) và cao hơn ít nhất một</td><td class="p-1.5">Bộ silver: B2 0.824 > B0 0.794 > B1 0.741 · bộ rubric: B2 0.473 < B0 0.542 · test: 0.681 < 0.695</td><td class="p-1.5"><span class="text-rose-700 font-bold">Không được ủng hộ</span> trên benchmark chung (đúng trên bộ silver)</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H2</strong> · Kendall τ: P6 > A2 (bỏ Criteria Profile)</td><td class="p-1.5">τ 0.554 vs 0.542 (12 JD bộ silver)</td><td class="p-1.5"><span class="text-amber-700 font-bold">Chưa đủ bằng chứng:</span> đúng hướng nhưng rất nhỏ; nhãn không có bối cảnh công ty</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H3</strong> · P6 không kém "LLM xếp lại toàn bộ top 20" quá ε, ít lượt gọi hơn</td><td class="p-1.5">Chưa xây LLM-all. Gần nhất: LLM xếp lại shortlist 15 CV (rank_shortlist, ~34k token/JD): bộ silver 0.871 → 0.955, bộ rubric 0.861 → 0.859. Khi LLM tự chấm điểm tiêu chí, nDCG@10 giảm 0.033</td><td class="p-1.5"><span class="text-slate-600 font-bold">Chưa kiểm định trực tiếp;</span> bằng chứng gián tiếp nghiêng về "LLM giúp ở bước cuối, không ở chấm điểm"</td></tr>
@@ -3054,7 +3054,7 @@
             ]},
             { title: "Slide 28 · Benchmark chung & so sánh ba phiên bản (Nguyễn Thái Thịnh)", notes: [
                 "<strong>Benchmark chung:</strong> 18 JD từ bộ silver và bộ rubric, 10 JD test khoá, 268 tệp ghim SHA-256.",
-                "<strong>Kết luận:</strong> P6 tốt nhất (0.847) nhưng chưa vượt ranker theo rubric có ý nghĩa thống kê (p = 0.22); mỗi hệ thắng trên bộ nhãn gần với nó."
+                "<strong>Kết luận:</strong> P6 tốt nhất (0.851) nhưng chưa vượt ranker theo rubric có ý nghĩa thống kê (p = 0.12); mỗi hệ thắng trên bộ nhãn gần với nó."
             ]},
             { title: "Slide 29 · Kiểm định H0–H6 (Nguyễn Thái Thịnh)", notes: [
                 "<strong>Báo cáo đầy đủ:</strong> H4, H5, H6 được ủng hộ; H0 một phần; H2 chưa đủ bằng chứng; H1 không được ủng hộ; H3 chưa kiểm định trực tiếp (rank_shortlist là bằng chứng gián tiếp, slide 33).",

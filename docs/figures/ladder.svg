@@ -25,27 +25,27 @@
 <circle cx='477.9' cy='101.0' r='5' fill='#8a8983' stroke='#fcfcfb' stroke-width='2'/>
 <text x='575.7' y='105.0' font-size='12' fill='#0b0b0b'>0.681</text>
 <text x='288' y='135.0' font-size='13' fill='#0b0b0b' text-anchor='end'>Structural chunks + CE</text>
-<line x1='423.2' x2='578.0' y1='131.0' y2='131.0' stroke='#8a8983' stroke-width='2' stroke-linecap='round'/>
-<circle cx='506.5' cy='131.0' r='5' fill='#8a8983' stroke='#fcfcfb' stroke-width='2'/>
-<text x='586.0' y='135.0' font-size='12' fill='#0b0b0b'>0.726</text>
+<line x1='416.6' x2='574.2' y1='131.0' y2='131.0' stroke='#8a8983' stroke-width='2' stroke-linecap='round'/>
+<circle cx='499.2' cy='131.0' r='5' fill='#8a8983' stroke='#fcfcfb' stroke-width='2'/>
+<text x='582.2' y='135.0' font-size='12' fill='#0b0b0b'>0.715</text>
 <text x='288' y='165.0' font-size='13' fill='#0b0b0b' text-anchor='end'>Đán&#x27;s core (coding branch)</text>
 <line x1='503.9' x2='608.8' y1='161.0' y2='161.0' stroke='#8a8983' stroke-width='2' stroke-linecap='round'/>
 <circle cx='559.7' cy='161.0' r='5' fill='#8a8983' stroke='#fcfcfb' stroke-width='2'/>
 <text x='616.8' y='165.0' font-size='12' fill='#0b0b0b'>0.810</text>
 <text x='288' y='195.0' font-size='13' fill='#0b0b0b' text-anchor='end'>Our v2 (4 rule criteria ⊕ CE)</text>
-<line x1='445.5' x2='592.0' y1='191.0' y2='191.0' stroke='#8a8983' stroke-width='2' stroke-linecap='round'/>
-<circle cx='522.4' cy='191.0' r='5' fill='#8a8983' stroke='#fcfcfb' stroke-width='2'/>
-<text x='600.0' y='195.0' font-size='12' fill='#0b0b0b'>0.751</text>
+<line x1='443.6' x2='589.0' y1='191.0' y2='191.0' stroke='#8a8983' stroke-width='2' stroke-linecap='round'/>
+<circle cx='520.4' cy='191.0' r='5' fill='#8a8983' stroke='#fcfcfb' stroke-width='2'/>
+<text x='597.0' y='195.0' font-size='12' fill='#0b0b0b'>0.748</text>
 <text x='288' y='225.0' font-size='13' fill='#0b0b0b' text-anchor='end'>Merged v3.1, deterministic</text>
-<line x1='531.5' x2='616.2' y1='221.0' y2='221.0' stroke='#2a78d6' stroke-width='2' stroke-linecap='round'/>
-<circle cx='576.8' cy='221.0' r='5' fill='#2a78d6' stroke='#fcfcfb' stroke-width='2'/>
-<text x='624.2' y='225.0' font-size='12' fill='#0b0b0b'>0.837</text>
+<line x1='535.2' x2='616.2' y1='221.0' y2='221.0' stroke='#2a78d6' stroke-width='2' stroke-linecap='round'/>
+<circle cx='579.2' cy='221.0' r='5' fill='#2a78d6' stroke='#fcfcfb' stroke-width='2'/>
+<text x='624.2' y='225.0' font-size='12' fill='#0b0b0b'>0.841</text>
 <text x='288' y='255.0' font-size='13' fill='#0b0b0b' text-anchor='end'>Merged v3.1, fixed pipeline (B4)</text>
-<line x1='538.0' x2='620.7' y1='251.0' y2='251.0' stroke='#2a78d6' stroke-width='2' stroke-linecap='round'/>
-<circle cx='583.4' cy='251.0' r='5' fill='#2a78d6' stroke='#fcfcfb' stroke-width='2'/>
-<text x='628.7' y='255.0' font-size='12' fill='#0b0b0b'>0.848</text>
+<line x1='532.9' x2='615.2' y1='251.0' y2='251.0' stroke='#2a78d6' stroke-width='2' stroke-linecap='round'/>
+<circle cx='577.9' cy='251.0' r='5' fill='#2a78d6' stroke='#fcfcfb' stroke-width='2'/>
+<text x='623.2' y='255.0' font-size='12' fill='#0b0b0b'>0.839</text>
 <text x='288' y='285.0' font-size='13' fill='#0b0b0b' text-anchor='end'>Merged v3.1, full agent (P6)</text>
-<line x1='526.4' x2='624.9' y1='281.0' y2='281.0' stroke='#2a78d6' stroke-width='2' stroke-linecap='round'/>
-<circle cx='583.3' cy='281.0' r='5' fill='#2a78d6' stroke='#fcfcfb' stroke-width='2'/>
-<text x='632.9' y='285.0' font-size='12' fill='#0b0b0b'>0.847</text>
+<line x1='553.0' x2='617.6' y1='281.0' y2='281.0' stroke='#2a78d6' stroke-width='2' stroke-linecap='round'/>
+<circle cx='585.7' cy='281.0' r='5' fill='#2a78d6' stroke='#fcfcfb' stroke-width='2'/>
+<text x='625.6' y='285.0' font-size='12' fill='#0b0b0b'>0.851</text>
 </svg>

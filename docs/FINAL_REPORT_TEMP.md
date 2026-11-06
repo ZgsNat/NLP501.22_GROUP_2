@@ -132,8 +132,8 @@ prompt-injection detection, quote grounding.
 
 | Area | Result | Verdict |
 |---|---|---|
-| Ranking, official test (10 JDs) | BM25 0.695 · hybrid 0.681 · 8-axis rules ⊕ CE 0.837 · B4 fixed pipeline 0.848 · **P6 0.847** (P@5 0.88, τ 0.51) | ✅ clearly above baselines. ⚠ P6 ≈ B4 (Δ −0.000): the loops add little nDCG |
-| P6 vs the rubric ranker | +0.037, p = 0.22 | ⚠ not significant with 10 JDs |
+| Ranking, official test (10 JDs) | BM25 0.695 · hybrid 0.681 · 8-axis rules ⊕ CE 0.841 · B4 fixed pipeline 0.839 · **P6 0.851** (P@5 0.88, τ 0.51); re-run after v4.1 (31 Oct table: 0.837 / 0.848 / 0.847) | ✅ clearly above baselines. ⚠ P6 ≈ B4 (+0.012, p = 0.064): the gap is the vague `ambiguous_senior`, where the agent asks HR (0.68 vs 0.58) |
+| P6 vs the rubric ranker | +0.041, p = 0.12 | ⚠ not significant with 10 JDs |
 | Tool extraction | F1 0.978 (EN 0.984, VI 0.969) | ✅. ❌ low-quality CVs: F1 0.19 |
 | Scanned CVs (OCR) | tool F1 0.997, CER 0.031 | ✅ |
 | Evidence grounding | 100% quotes found in the CV; 92–94% supported | ✅ |
@@ -160,7 +160,7 @@ prompt-injection detection, quote grounding.
 ### Against the deck's targets
 | Target in the deck | Measured | |
 |---|---|---|
-| nDCG@10 0.868 | 0.847 (test) | close, not reached |
+| nDCG@10 0.868 | 0.851 (test) | close, not reached |
 | 97.6% grounded | 100% | reached |
 | Kendall τ 0.81 | ~0.51 | far below |
 | −78% tokens | −47.4% (P6), −66.9% (B4) vs the LLM on every candidate (E21) | not reached |

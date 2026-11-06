@@ -7,20 +7,20 @@ Protocol: docs/BENCHMARK.md. Manifest: data/eval/benchmark_v1.json (all inputs m
 | System | what it is | JDs | nDCG@10 (all) | ours | coding | P@5 | R@20 | τ |
 |---|---|---|---|---|---|---|---|---|
 | B0 BM25 | keyword baseline, whole CV | 10 | 0.695 [0.576, 0.804] | 0.800 | 0.536 | 0.680 | 0.627 | 0.291 |
-| B2 hybrid | BM25 + dense (RRF), whole CV | 10 | 0.681 [0.523, 0.823] | 0.859 | 0.413 | 0.600 | 0.653 | 0.340 |
-| R structural + CE | requirement-wise retrieval over structural chunks + cross-encoder | 10 | 0.726 [0.594, 0.839] | 0.830 | 0.570 | 0.720 | 0.624 | 0.389 |
+| B2 hybrid | BM25 + dense (RRF), whole CV | 10 | 0.681 [0.523, 0.823] | 0.859 | 0.413 | 0.600 | 0.653 | 0.341 |
+| R structural + CE | requirement-wise retrieval over structural chunks + cross-encoder | 10 | 0.715 [0.584, 0.833] | 0.813 | 0.568 | 0.700 | 0.622 | 0.377 |
 | Đán core (coding branch) | the coding branch's deterministic ranker, unchanged | 10 | 0.810 [0.722, 0.888] | 0.773 | 0.866 | 0.800 | 0.709 | 0.475 |
-| B3 rules ⊕ CE | our v2 branch: 4 rule criteria fused with the cross-encoder | 10 | 0.751 [0.630, 0.861] | 0.806 | 0.669 | 0.700 | 0.653 | 0.489 |
-| B3 8-axis ⊕ CE [hybrid] | merged v3.1, deterministic: 8 rule criteria, hybrid JD parser | 10 | 0.837 [0.766, 0.899] | 0.890 | 0.758 | 0.880 | 0.677 | 0.504 |
-| B4 | merged v3.1, fixed pipeline: the agent with every loop off | 10 | 0.848 [0.776, 0.906] | 0.890 | 0.784 | 0.880 | 0.685 | 0.507 |
-| P6 | merged v3.1, full agent | 10 | 0.847 [0.758, 0.913] | 0.897 | 0.772 | 0.880 | 0.696 | 0.514 |
+| B3 rules ⊕ CE | our v2 branch: 4 rule criteria fused with the cross-encoder | 10 | 0.748 [0.627, 0.856] | 0.801 | 0.669 | 0.700 | 0.651 | 0.487 |
+| B3 8-axis ⊕ CE [hybrid] | merged v3.1, deterministic: 8 rule criteria, hybrid JD parser | 10 | 0.841 [0.771, 0.899] | 0.888 | 0.770 | 0.880 | 0.681 | 0.504 |
+| B4 | merged v3.1, fixed pipeline: the agent with every loop off | 10 | 0.839 [0.768, 0.898] | 0.877 | 0.781 | 0.880 | 0.681 | 0.505 |
+| P6 | merged v3.1, full agent | 10 | 0.851 [0.799, 0.902] | 0.882 | 0.805 | 0.880 | 0.689 | 0.512 |
 
 | First | second | JDs in common | ΔnDCG@10 | p |
 |---|---|---|---|---|
-| B3 8-axis ⊕ CE [hybrid] | Đán core (coding branch) | 10 | +0.027 | 0.271 |
-| B3 8-axis ⊕ CE [hybrid] | B3 rules ⊕ CE | 10 | +0.086 | 0.004 |
-| P6 | Đán core (coding branch) | 10 | +0.037 | 0.218 |
-| P6 | B4 | 10 | -0.000 | 0.469 |
+| B3 8-axis ⊕ CE [hybrid] | Đán core (coding branch) | 10 | +0.031 | 0.243 |
+| B3 8-axis ⊕ CE [hybrid] | B3 rules ⊕ CE | 10 | +0.093 | 0.009 |
+| P6 | Đán core (coding branch) | 10 | +0.041 | 0.119 |
+| P6 | B4 | 10 | +0.012 | 0.064 |
 
 Per JD nDCG@10:
 
@@ -28,12 +28,12 @@ Per JD nDCG@10:
 |---|---|---|---|---|---|---|---|---|---|---|
 | B0 BM25 | 0.77 | 0.93 | 0.61 | 0.85 | 0.74 | 0.90 | 0.40 | 0.38 | 0.61 | 0.76 |
 | B2 hybrid | 0.86 | 0.99 | 0.88 | 0.87 | 0.71 | 0.85 | 0.41 | 0.19 | 0.52 | 0.53 |
-| R structural + CE | 0.89 | 0.99 | 0.83 | 0.90 | 0.82 | 0.56 | 0.57 | 0.28 | 0.62 | 0.82 |
+| R structural + CE | 0.89 | 0.99 | 0.79 | 0.97 | 0.68 | 0.56 | 0.57 | 0.28 | 0.62 | 0.81 |
 | Đán core (coding branch) | 0.76 | 0.99 | 0.80 | 0.90 | 0.65 | 0.54 | 0.77 | 0.82 | 0.91 | 0.96 |
-| B3 rules ⊕ CE | 0.48 | 0.99 | 0.79 | 0.89 | 0.92 | 0.78 | 0.40 | 0.58 | 0.76 | 0.94 |
-| B3 8-axis ⊕ CE [hybrid] | 0.86 | 0.99 | 0.84 | 0.95 | 0.92 | 0.78 | 0.59 | 0.74 | 0.84 | 0.87 |
-| B4 | 0.86 | 0.99 | 0.84 | 0.95 | 0.92 | 0.78 | 0.58 | 0.84 | 0.84 | 0.88 |
-| P6 | 0.86 | 0.99 | 0.86 | 0.97 | 0.92 | 0.79 | 0.50 | 0.88 | 0.84 | 0.87 |
+| B3 rules ⊕ CE | 0.48 | 0.99 | 0.79 | 0.89 | 0.88 | 0.78 | 0.40 | 0.58 | 0.76 | 0.94 |
+| B3 8-axis ⊕ CE [hybrid] | 0.86 | 0.99 | 0.84 | 0.95 | 0.91 | 0.78 | 0.59 | 0.83 | 0.84 | 0.82 |
+| B4 | 0.86 | 0.99 | 0.84 | 0.95 | 0.84 | 0.78 | 0.58 | 0.83 | 0.83 | 0.88 |
+| P6 | 0.86 | 0.99 | 0.86 | 0.97 | 0.84 | 0.78 | 0.68 | 0.83 | 0.83 | 0.87 |
 
 ## Dev split: 6 JDs from ours + 2 from coding (tuning allowed)
 
@@ -41,19 +41,19 @@ Per JD nDCG@10:
 |---|---|---|---|---|---|---|---|---|
 | B0 BM25 | keyword baseline, whole CV | 8 | 0.728 [0.603, 0.838] | 0.787 | 0.553 | 0.825 | 0.682 | 0.260 |
 | B2 hybrid | BM25 + dense (RRF), whole CV | 8 | 0.740 [0.621, 0.849] | 0.789 | 0.593 | 0.800 | 0.672 | 0.339 |
-| R structural + CE | requirement-wise retrieval over structural chunks + cross-encoder | 8 | 0.807 [0.743, 0.881] | 0.828 | 0.744 | 0.850 | 0.726 | 0.432 |
+| R structural + CE | requirement-wise retrieval over structural chunks + cross-encoder | 8 | 0.835 [0.778, 0.900] | 0.850 | 0.792 | 0.850 | 0.727 | 0.450 |
 | Đán core (coding branch) | the coding branch's deterministic ranker, unchanged | 8 | 0.846 [0.748, 0.922] | 0.848 | 0.841 | 0.850 | 0.707 | 0.477 |
-| B3 rules ⊕ CE | our v2 branch: 4 rule criteria fused with the cross-encoder | 8 | 0.805 [0.649, 0.922] | 0.796 | 0.832 | 0.850 | 0.600 | 0.457 |
-| B3 8-axis ⊕ CE [hybrid] | merged v3.1, deterministic: 8 rule criteria, hybrid JD parser | 8 | 0.869 [0.828, 0.916] | 0.871 | 0.861 | 0.950 | 0.739 | 0.524 |
-| B4 | merged v3.1, fixed pipeline: the agent with every loop off | 8 | 0.872 [0.828, 0.919] | 0.869 | 0.880 | 0.950 | 0.739 | 0.528 |
-| P6 | merged v3.1, full agent | 8 | 0.866 [0.824, 0.913] | 0.867 | 0.862 | 0.950 | 0.725 | 0.531 |
+| B3 rules ⊕ CE | our v2 branch: 4 rule criteria fused with the cross-encoder | 8 | 0.805 [0.652, 0.923] | 0.829 | 0.733 | 0.875 | 0.656 | 0.494 |
+| B3 8-axis ⊕ CE [hybrid] | merged v3.1, deterministic: 8 rule criteria, hybrid JD parser | 8 | 0.873 [0.830, 0.919] | 0.871 | 0.878 | 0.950 | 0.739 | 0.524 |
+| B4 | merged v3.1, fixed pipeline: the agent with every loop off | 8 | 0.871 [0.828, 0.918] | 0.869 | 0.878 | 0.950 | 0.739 | 0.528 |
+| P6 | merged v3.1, full agent | 8 | 0.875 [0.828, 0.926] | 0.867 | 0.898 | 0.950 | 0.725 | 0.538 |
 
 | First | second | JDs in common | ΔnDCG@10 | p |
 |---|---|---|---|---|
-| B3 8-axis ⊕ CE [hybrid] | Đán core (coding branch) | 8 | +0.023 | 0.308 |
-| B3 8-axis ⊕ CE [hybrid] | B3 rules ⊕ CE | 8 | +0.064 | 0.135 |
-| P6 | Đán core (coding branch) | 8 | +0.020 | 0.335 |
-| P6 | B4 | 8 | -0.006 | 1.000 |
+| B3 8-axis ⊕ CE [hybrid] | Đán core (coding branch) | 8 | +0.027 | 0.269 |
+| B3 8-axis ⊕ CE [hybrid] | B3 rules ⊕ CE | 8 | +0.068 | 0.128 |
+| P6 | Đán core (coding branch) | 8 | +0.029 | 0.259 |
+| P6 | B4 | 8 | +0.004 | 0.352 |
 
 Per JD nDCG@10:
 
@@ -61,9 +61,9 @@ Per JD nDCG@10:
 |---|---|---|---|---|---|---|---|---|
 | B0 BM25 | 0.72 | 0.78 | 0.54 | 0.82 | 0.90 | 0.96 | 0.71 | 0.40 |
 | B2 hybrid | 0.79 | 0.62 | 0.59 | 0.87 | 0.92 | 0.94 | 0.75 | 0.43 |
-| R structural + CE | 0.71 | 0.99 | 0.80 | 0.77 | 0.93 | 0.77 | 0.67 | 0.81 |
+| R structural + CE | 0.71 | 0.99 | 0.80 | 0.90 | 0.93 | 0.77 | 0.77 | 0.81 |
 | Đán core (coding branch) | 0.55 | 0.95 | 0.93 | 0.85 | 0.83 | 0.98 | 0.91 | 0.77 |
-| B3 rules ⊕ CE | 0.91 | 0.96 | 0.87 | 0.73 | 0.98 | 0.33 | 0.92 | 0.75 |
-| B3 8-axis ⊕ CE [hybrid] | 0.80 | 0.98 | 0.86 | 0.86 | 0.95 | 0.78 | 0.88 | 0.84 |
+| B3 rules ⊕ CE | 0.91 | 0.96 | 0.87 | 0.93 | 0.98 | 0.33 | 0.72 | 0.75 |
+| B3 8-axis ⊕ CE [hybrid] | 0.80 | 0.98 | 0.86 | 0.86 | 0.95 | 0.78 | 0.92 | 0.84 |
 | B4 | 0.80 | 0.98 | 0.85 | 0.86 | 0.95 | 0.78 | 0.92 | 0.84 |
-| P6 | 0.80 | 0.98 | 0.84 | 0.86 | 0.95 | 0.78 | 0.89 | 0.84 |
+| P6 | 0.80 | 0.98 | 0.84 | 0.86 | 0.95 | 0.78 | 0.96 | 0.84 |

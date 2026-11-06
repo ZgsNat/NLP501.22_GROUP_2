@@ -25,13 +25,14 @@ evaluated it against the three questions that matter most for an agentic NLP sys
 The team froze one benchmark, NLP501-bench v1: 250 synthetic, anonymised CVs and 18 JDs, a locked test split of 10,
 and every input pinned by checksum. On that test split:
 
-- **The final system is the best version of the project:** 0.847 nDCG@10 for the full agent and 0.848 for its
-  fixed pipeline. That is ahead of the rubric-only ranker it grew from (0.810), our v2 (0.751, p = 0.004 for the
-  deterministic system) and every retrieval baseline (0.68–0.73). Its lead over the rubric ranker is not yet
-  significant (p = 0.22–0.27).
-- **Rules score; the LLM controls and explains.** The agent and its fixed twin rank alike (0.847 vs 0.848, p = 0.47). The agent's
-  value is the work rules cannot do: asking HR on a vague JD, reading CVs the parser cannot, catching contradicted
-  claims (2.1% → 0.6%) and keeping the arbiter to true near-ties.
+- **The final system is the best version of the project:** 0.851 nDCG@10 for the full agent and 0.839 for its
+  fixed pipeline. That is ahead of the rubric-only ranker it grew from (0.810), our v2 (0.748, p = 0.009 for the
+  deterministic system) and every retrieval baseline (0.68–0.72). Its lead over the rubric ranker is not yet
+  significant (p = 0.12–0.24).
+- **Rules score; the LLM controls and explains.** The agent and its fixed twin rank almost alike (0.851 vs 0.839,
+  +0.012, p = 0.064, not significant), and most of the gap is the one vague test JD, where the agent asks HR. The
+  agent's value is the work rules cannot do: asking HR on a vague JD, reading CVs the parser cannot, catching
+  contradicted claims (2.1% → 0.6%) and keeping the arbiter to true near-ties.
 - **Where the agent decides, the ranking shows it.** On vague twins of all 18 JDs, a pipeline that cannot ask scores
   0.626 nDCG@10. Asking HR recovers 57% of the loss (+0.129, p < 0.001); the agent as it runs scores 0.704 (§5.5).
 - **Evaluation found and fixed real faults:**
@@ -411,21 +412,25 @@ misses rose from 9 to 17. The hybrid parser, where the deterministic parser deci
 |---|---|---|---|---|---|
 | B0 BM25 | 0.695 | 0.800 | 0.536 | 0.680 | — |
 | B2 hybrid (BM25 + dense) | 0.681 | 0.859 | 0.413 | 0.600 | — |
-| Structural chunks + cross-encoder | 0.726 | 0.830 | 0.570 | 0.720 | — |
+| Structural chunks + cross-encoder | 0.715 | 0.813 | 0.568 | 0.700 | — |
 | **Rubric ranker** (8-axis rules, before our NLP and retrieval) | 0.810 | 0.773 | **0.866** | 0.800 | 0.846 |
-| **Our v2** (4 rule criteria ⊕ CE) | 0.751 | 0.806 | 0.669 | 0.700 | 0.805 |
-| v3.1, deterministic (B3) | 0.837 | 0.890 | 0.758 | 0.880 | 0.869 |
-| v3.1, fixed pipeline (B4) | **0.848** | 0.890 | 0.784 | 0.880 | 0.872 |
-| **v3.1, full agent (P6)** | 0.847 | **0.897** | 0.772 | 0.880 | 0.866 |
+| **Our v2** (4 rule criteria ⊕ CE) | 0.748 | 0.801 | 0.669 | 0.700 | 0.805 |
+| v3.1, deterministic (B3) | 0.841 | **0.888** | 0.770 | 0.880 | 0.873 |
+| v3.1, fixed pipeline (B4) | 0.839 | 0.877 | 0.781 | 0.880 | 0.871 |
+| **v3.1, full agent (P6)** | **0.851** | 0.882 | 0.805 | 0.880 | **0.875** |
+
+*Re-run after the v4.1 fixes (query terms in declared order instead of hash order; "Present" pinned by
+`REFERENCE_DATE`; the tool-name context rule and range-date parsing from E23). The table first published on 31 Oct
+read B3 0.837, B4 0.848, P6 0.847: the fixes moved every v3.1 system by ≤ 0.009 and swapped B4 and P6.*
 
 **Which version is best.** v3.1 leads overall:
 
-- **Over our v2:** +0.086, p = 0.004.
-- **Over the rubric ranker:** +0.027 (p = 0.27) for the deterministic system and +0.037 (p = 0.22) for the agent.
+- **Over our v2:** +0.093, p = 0.009.
+- **Over the rubric ranker:** +0.031 (p = 0.24) for the deterministic system and +0.041 (p = 0.12) for the agent.
 
 So it is the best version measured, but its lead over the rubric ranker is not yet significant on 10 JDs. **The
-rubric ranker still wins on the coding JDs,** the set its rubric was written for: 0.866 against 0.772 for the agent.
-On ours v3.1 leads (0.897), against 0.773 for the rubric ranker and 0.806 for our v2. v3.1 puts the 8-axis rules on
+rubric ranker still wins on the coding JDs,** the set its rubric was written for: 0.866 against 0.805 for the agent.
+On ours v3.1 leads (0.888), against 0.773 for the rubric ranker and 0.801 for our v2. v3.1 puts the 8-axis rules on
 top of our NLP and retrieval, which makes it the only version strong on both.
 
 **RQ3, retrieval.**
@@ -434,7 +439,7 @@ top of our NLP and retrieval, which makes it the only version strong on both.
   wins.
 - The cross-encoder over requirement-wise passages is the largest retrieval gain.
 
-**RQ1, structure.** Structured facts beat text by a wide margin: 0.837 against 0.726 for the best retrieval-only
+**RQ1, structure.** Structured facts beat text by a wide margin: 0.841 against 0.715 for the best retrieval-only
 system on test.
 
 **RQ5, by JD.** The hardest JDs differ by system:
@@ -447,8 +452,9 @@ test a remedy for each.
 
 ### 5.2 Agent vs fixed pipeline, and ablations (RQ4)
 
-On the 10 test JDs the full agent and its fixed twin rank alike (0.847 vs 0.848, p = 0.47). That is by design: rules set the score
-in both. Across all 12 of our JDs (`EVAL_RESULTS.md`):
+On the 10 test JDs the full agent and its fixed twin rank almost alike (0.851 vs 0.839, +0.012, p = 0.064). That is
+by design: rules set the score in both. The gap is mostly one JD, the vague `ambiguous_senior` (0.68 against 0.58),
+where the agent asks HR and the fixed pipeline cannot; on the other nine they are within 0.02. Across all 12 of our JDs (`EVAL_RESULTS.md`):
 
 | System | nDCG@10 | contradicted claims (final) | distinct paths | LLM calls |
 |---|---|---|---|---|
@@ -483,7 +489,8 @@ dev JDs, and P6 moved from 0.883 to 0.882 after both fixes, well inside the nois
   200-CV pool, and retrieval is weak on template CVs. CVs that belong in the top 10 ended up at ranks 12–99 (P6 on `bank_api_qa` and three other test JDs, before the fix).
 - **Fix:** rules cost nothing, so the top 40 CVs **by rule score** now also enter screening (`Settings.rule_recall`).
 - **Decision, on dev only:** B4 ours 0.871 → 0.869 (within tolerance), coding 0.857 → 0.880.
-- **Re-reported on test:** B4 on the coding JDs **0.608 → 0.784**; `bank_api_qa` alone 0.43 → 0.84.
+- **Re-reported on test:** B4 on the coding JDs **0.608 → 0.784** (0.781 after the v4.1 fixes); `bank_api_qa` alone
+  0.43 → 0.84.
 
 **2. An arbiter beyond its mandate.**
 
@@ -528,7 +535,7 @@ says. Every condition is ranked by the agent's own deterministic scorer.
 
 ### 5.6 A negative result: tools a CV describes but does not name
 
-- **Problem:** 3 of the agent's 5 misses on ours (§8) are CV-047 and CV-048. They describe "a harness on the WebDriver
+- **Problem:** 3 of the agent's 6 misses on ours (§8) are CV-047 and CV-048. They describe "a harness on the WebDriver
   protocol" or "build servers" instead of naming Selenium or GitLab CI.
 - **Change tried:** the investigator may accept such a line as *implied* evidence. The line needs a skill-specific
   cue, must sit in the experience of a strong CV (depth L3+) and must not be hedged. It earns credit 0.5 instead of
@@ -717,7 +724,7 @@ are, against what we measured.
 
 | Hypothesis (midterm) | Predicted | Measured | Verdict |
 |---|---|---|---|
-| H1: the agent beats the fixed pipeline on ranking | P6 86.8 vs B4 83.2 nDCG@10 | test: 0.847 vs 0.848 | **Not supported.** Rules score both, so ranking is equal by design. The agent's value moved to control (§4) and to vague JDs (§5.5) |
+| H1: the agent beats the fixed pipeline on ranking | P6 86.8 vs B4 83.2 nDCG@10 | test: 0.851 vs 0.839 (+0.012, p = 0.064) | **Not supported** (not significant). Rules score both, so ranking is nearly equal by design; the gap is the one vague JD where the agent asks HR. The agent's value moved to control (§4) and to vague JDs (§5.5) |
 | H2: the selective arbiter cuts token cost | −78% tokens; 7.2 s, $0.09 per JD vs 18.4 s, $0.42 | P6 uses about 2.1× the calls and tokens of our B4 (1.6× on ours, 3.1× on coding). Against the LLM on every candidate (E21): P6 −47.4%, B4 −66.9% | **Partly supported.** Selectivity does cut tokens against the deck's baseline, by less than −78%; against our own fixed pipeline the agent's loops add cost |
 | H3: verification keeps explanations grounded | 97.6% grounded (A1 72.2%) | 100% grounded with and without verify | **Met, for a different reason.** Claude rarely invents quotes; verify's measurable effect is on contradicted *claims* (2.8% without it vs 0.9% with it) |
 | H4: company profiles align with HR | τ 0.81 vs 0.52 generic | τ 0.554 vs 0.542 (A2) | **Not supported** on labels written without company context |
@@ -736,15 +743,15 @@ We count only the errors that cost HR something:
 
 | | ours (6 test JDs) | coding (4 test JDs) |
 |---|---|---|
-| P6 full agent | 5 misses, 1 false alarm | 5 misses, 1 false alarm |
+| P6 full agent | 6 misses, 1 false alarm | 4 misses, 1 false alarm |
 | Rubric ranker | 10 misses, 1 false alarm | 4 misses, 0 false alarms |
 
 **Patterns:**
-- **On ours, 3 of the agent's 5 misses are vocabulary failures.** CV-047 and CV-048 are our deliberately
+- **On ours, 3 of the agent's 6 misses are vocabulary failures.** CV-047 and CV-048 are our deliberately
   plain-language strong CVs: they describe a WebDriver harness and "build servers" or "release gates" without naming
-  Selenium or GitLab CI, and are knocked out on a must-have they effectively have. The other 2 misses are weighting,
-  on the architect JD.
-- **On the coding set, every error is on one JD, the vague `ambiguous_senior`:** all 5 misses and the false alarm. Four of
+  Selenium or GitLab CI, and are knocked out on a must-have they effectively have. The other 3 misses are weighting
+  (low depth or domain scores), on JD-010 and JD-011.
+- **On the coding set, every error is on one JD, the vague `ambiguous_senior`:** all 4 misses and the false alarm. Three of
   the misses are shared with the rubric ranker, which has no HR step (diagnosis "ISTQB 0, tools 50"), so they come from how
   the rules and the rubric weigh this vague JD. Only one miss and the false alarm are specific to the agent.
 - **Two failure modes remain:** vague JDs, and CVs that describe tools without naming them. For vague JDs, asking HR
@@ -772,8 +779,8 @@ We count only the errors that cost HR something:
 - **Synthetic ranking data.** Real text was used only to check the NLP. Consented real CVs are being collected.
   Comparisons between systems are the result; the absolute numbers will not transfer.
 - **Small test split.** With 10 test JDs, CIs are ±0.05–0.08 for the stronger systems and up to ±0.15 for the
-  baselines. Differences under about 0.03 are not significant, and neither is the 0.037 gap between the agent and
-  the rubric ranker (p = 0.22).
+  baselines. Differences under about 0.03 are not significant, and neither is the 0.041 gap between the agent and
+  the rubric ranker (p = 0.12).
 - **The served LLM.** Claude ran through the Claude Code CLI as a stand-in for an API. Calls, tokens and behaviour
   carry over; latency and cost do not. The CLI also reads the user's own Claude configuration: run from a folder inside
   this repository it loaded the developer's memory into the system under test (§5.7). It now runs from an empty folder
