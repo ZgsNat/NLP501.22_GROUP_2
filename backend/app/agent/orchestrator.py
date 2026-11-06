@@ -170,25 +170,38 @@ async def ask_hr(state: AgentState) -> dict:
 
 @traced("finalize")
 async def finalize(state: AgentState) -> dict:
-    """The harness's fallback answer: the current rule-based ranking, labelled as not verified by the agent."""
-    top, kept = ranked(state)[:5], tools.delivered(state)
+    """The harness's fallback answer. A shortlist HR already has stands; otherwise the rule ranking's top candidates
+    that `explain` has verified are recommended (the same precondition respond_to_hr holds the model to), and the rest
+    are labelled as not checked. E26 round 5b: three runs explained the top 5 and then ran out of tokens; the old
+    fallback told HR nothing was checked and recommended no one."""
+    top, kept = ranked(state)[:(state.get("goal_spec") or {}).get("count") or 5], tools.delivered(state)
+    ready = [] if kept else [r["cv_id"] for r in top if tools.explained(state, r["cv_id"])]
     if kept:  # a follow-up ran out: the shortlist HR already has stands, only the latest request is unanswered
         msg = (f"I stopped before finishing: {state['halt']}. Your latest request is not handled; the shortlist from "
                f"my last answer stands: {', '.join(kept)}.")
         unmet = f"stopped before finishing ({state['halt']}): the latest request is not handled"
+    elif ready:
+        rest = [r["cv_id"] for r in top if r["cv_id"] not in ready]
+        msg = (f"I stopped before finishing: {state['halt']}. From the current ranking, these candidates are explained "
+               f"and their evidence checked, best first: {', '.join(ready)}."
+               + (f" Not yet explained: {', '.join(rest)}." if rest else ""))
+        unmet = (f"stopped before finishing ({state['halt']}): the shortlist is the ranking's verified candidates, "
+                 "without my final review")
     else:
         msg = (f"I stopped before finishing: {state['halt']}. "
                + (f"The current rule-based ranking is {', '.join(f'{r['cv_id']} ({r['total']:.2f})' for r in top)}; "
                   "these candidates are not yet explained or checked by me." if top else "No candidate is ranked yet."))
         unmet = f"stopped before finishing ({state['halt']}): nothing recommended yet"
-    rep = tools.goal_check(state, kept)  # Q20 holds for code's answer too: say what is unmet
+    shortlist = kept or ready
+    rep = tools.goal_check(state, shortlist)  # Q20 holds for code's answer too: say what is unmet
     limits = [unmet] if state.get("goal_spec") else []
     msg += tools.goal_footer(rep, limits)
     emit("finalize", msg, "warn")
-    report = {**(state.get("report") or {} if kept else {}), "summary": msg,
-              **({} if kept else {"candidates": [], "top_ids": sorted(r["cv_id"] for r in top), "checks": {}}),
+    own = ({"candidates": tools.candidate_cards(state, ready), "top_ids": sorted(ready), "checks": {}} if ready
+           else {} if kept else {"candidates": [], "top_ids": sorted(r["cv_id"] for r in top), "checks": {}})
+    report = {**(state.get("report") or {} if kept else {}), "summary": msg, **own,
               **({"goal": {**rep, "limits": limits}} if state.get("goal_spec") else {})}
-    return {"messages": [AIMessage(msg)], "reply": msg, "shortlist": kept, "report": report, "halt": "",
+    return {"messages": [AIMessage(msg)], "reply": msg, "shortlist": shortlist, "report": report, "halt": "",
             "responded": True}
 
 

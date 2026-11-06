@@ -391,3 +391,19 @@ def test_a_follow_up_that_runs_out_of_steps_keeps_the_shortlist_hr_already_has(a
     first = pauses[0]["payload"]["shortlist"][0]["cv_id"]
     assert v["loops"]["budget_stops"] == 1 and v["shortlist"] == [first]
     assert "the shortlist from my last answer stands" in v["reply"]
+
+
+def test_a_budget_stop_after_explain_recommends_the_verified_candidates(agent):
+    """E26 round 5b: the agent explained the top candidates, then ran out of tokens; the fallback said nothing was
+    checked and recommended no one. Code now hands HR the explained ones (respond_to_hr's own precondition)."""
+    two = lambda m: [r["cv_id"] for r in last_result(m, "screen")["top"][:2]]  # noqa: E731
+    v, pauses, _ = agent([
+        lambda m: call("parse_jd"),
+        lambda m: call("screen"),
+        lambda m: call("explain", cv_ids=two(m)),
+    ], max_agent_steps=4)  # then the scripted model loops on get_candidate until the step budget ends
+    ranked_ids = [r["cv_id"] for r in v["ranking"] if r["status"] == "ranked"]
+    assert v["loops"]["budget_stops"] == 1 and v["shortlist"] == ranked_ids[:2]
+    assert "explained and their evidence checked" in v["reply"] and "Not yet explained" in v["reply"]
+    assert [c["cv_id"] for c in v["report"]["candidates"]] == v["shortlist"]
+    assert pauses[0]["payload"]["shortlist"]  # HR sees the recommendation

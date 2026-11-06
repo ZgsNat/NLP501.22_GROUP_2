@@ -590,8 +590,8 @@ def check_respond(state: AgentState, args: RespondArgs) -> str | None:
     return f"claims not supported by the CVs: {issues}; rewrite them" if issues else None
 
 
-async def respond_to_hr(state: AgentState, args: RespondArgs) -> tuple[dict, dict]:
-    shortlist = args.shortlist or delivered(state)
+def candidate_cards(state: AgentState, shortlist: list[str]) -> list[dict]:
+    """The report's per-candidate entries, from the verified review and the rule card."""
     cands = []
     for c in shortlist:
         rev = state["assessments"][c].get("llm_review", {})
@@ -599,6 +599,12 @@ async def respond_to_hr(state: AgentState, args: RespondArgs) -> tuple[dict, dic
         gaps = [f"no {', '.join(w['if_used'])} in a role" for w in (row.get("card") or {}).get("what_if") or []]
         cands.append({"cv_id": c, "explanation": " ".join(v["rationale"] for v in rev.values())[:600],
                       "strengths": [k for k, v in rev.items() if v.get("score", 0) >= 75], "gaps": gaps})
+    return cands
+
+
+async def respond_to_hr(state: AgentState, args: RespondArgs) -> tuple[dict, dict]:
+    shortlist = args.shortlist or delivered(state)
+    cands = candidate_cards(state, shortlist)
     rep = goal_check(state, shortlist)
     reply = args.message + goal_footer(rep, args.limits)
     report = {"summary": reply, "candidates": cands, "top_ids": sorted(shortlist), "checks": {},
