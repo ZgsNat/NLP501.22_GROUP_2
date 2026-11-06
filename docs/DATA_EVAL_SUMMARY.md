@@ -32,13 +32,10 @@ Under EVAL.md §2, κ against the half-up mean (0.66–0.70) would make silver a
 rounded-down mean or against Opus (≥ 0.87) would keep it as the main set. The sample is built from disagreements, so
 neither κ estimates agreement over all 600 pairs.
 
-**To confirm with the annotators before the report calls this independent:**
-- `data/eval/labeling_reference/pairs_reference.json` holds the silver grades and the agree/disagree status of all
-  120 pairs, in the same folder as the labelling guideline (`GUIDELINES.md`). The labels are blind only if neither
-  annotator opened it while grading.
-- The guideline names the trap CVs (CV-004–006), which primes the graders towards the rubric.
-- This page, unlike the Djinni page, does not stamp a time per grade, so independence and reading time cannot be
-  checked from the files. κ 0.965 between two humans (109/120 identical) is high enough to be worth asking about.
+**Blind, confirmed by the team (2026-11-06).** Neither annotator saw the silver grades or a model suggestion while
+grading. `data/eval/labeling_reference/pairs_reference.json` (silver grades per pair) is for the analysis after
+grading, not for the graders. The labelling guideline names the trap CVs (CV-004–006); that aligns the graders with
+the rubric the silver labels follow, which is what this check validates.
 
 **Open:** re-score v1 with the 120 human-graded pairs in place of the silver mean (an adjudicated v1.1 gold) and check
 whether the system order holds.
