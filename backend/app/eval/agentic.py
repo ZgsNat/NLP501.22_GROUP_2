@@ -29,7 +29,7 @@ from app import observability
 from app.agent import checks
 from app.agent.orchestrator import build_agent_graph
 from app.config import ROOT, get_settings
-from app.eval import metrics
+from app.eval import metrics, repeats
 from app.eval.bench import load
 from app.eval.run import HR_ANSWERS, result_path
 from app.nlp.pipeline import profile
@@ -215,7 +215,7 @@ def render(rows: list[dict], model: str) -> str:
     return "\n".join(lines)
 
 
-async def main(model: str | None, only: set[str] | None, jds: list[str] | None) -> None:
+async def main(model: str | None, only: set[str] | None, jds: list[str] | None, repeat: int = 0) -> None:
     s = get_settings()
     cache.enable(s.runtime_dir / "llm_cache.sqlite")
     if s.qdrant_url == ":memory:":  # no Qdrant server: this process holds the index (as `run agent` does)
@@ -226,6 +226,26 @@ async def main(model: str | None, only: set[str] | None, jds: list[str] | None) 
     by_id = {j.id: j for j in b.jds}
     p6_path = result_path("P6")
     p6 = json.loads(p6_path.read_text(encoding="utf-8"))["jds"] if p6_path.exists() else {}
+    rows = await suite(model, only, jds, b, by_id, p6) if not repeat else []
+    if repeat:  # independent repeats, each with its own LLM cache; finished repeats are kept (resumable)
+        for k in range(1, repeat + 1):
+            if repeats.result_path("agentic", k).exists():
+                continue
+            cache.enable(repeats.cache_path("agentic", k))
+            print(f"── repeat {k}/{repeat}", flush=True)
+            repeats.save("agentic", k, await suite(model, only, jds, b, by_id, p6))
+        rows = json.loads(repeats.result_path("agentic", 1).read_text(encoding="utf-8"))
+    else:
+        (s.runtime_dir / "eval").mkdir(parents=True, exist_ok=True)
+        (s.runtime_dir / "eval" / "agentic.json").write_text(json.dumps(rows, indent=1, default=str), encoding="utf-8")
+    doc = render(rows, model or f"{s.llm_provider} defaults")
+    if repeat:
+        doc += "\n" + "\n".join(repeats.section(repeats.load("agentic"), "E15"))
+    OUT.write_text(doc, encoding="utf-8")
+    print(f"→ {OUT}")
+
+
+async def suite(model, only, jds, b, by_id, p6) -> list[dict]:
     rows = []
     for task in TASKS:
         if only and task.id not in only:
@@ -236,10 +256,7 @@ async def main(model: str | None, only: set[str] | None, jds: list[str] | None) 
             r = rows[-1]
             print(f"{task.id:<10} {jd_id}  checks {sum(v is True for v in r['checks'].values())}/"
                   f"{sum(v is not None for v in r['checks'].values())}  {' → '.join(r['tools'])}", flush=True)
-    (s.runtime_dir / "eval").mkdir(parents=True, exist_ok=True)
-    (s.runtime_dir / "eval" / "agentic.json").write_text(json.dumps(rows, indent=1, default=str), encoding="utf-8")
-    OUT.write_text(render(rows, model or f"{s.llm_provider} defaults"), encoding="utf-8")
-    print(f"→ {OUT}")
+    return rows
 
 
 if __name__ == "__main__":
@@ -247,5 +264,7 @@ if __name__ == "__main__":
     p.add_argument("--model")
     p.add_argument("--only", help="comma-separated task ids")
     p.add_argument("--jds", help="comma-separated dev JDs for the shortlist task")
+    p.add_argument("--repeat", type=int, default=0, help="N independent repeats (own LLM cache each) → pass rates")
     a = p.parse_args()
-    asyncio.run(main(a.model, set(a.only.split(",")) if a.only else None, a.jds.split(",") if a.jds else None))
+    asyncio.run(main(a.model, set(a.only.split(",")) if a.only else None, a.jds.split(",") if a.jds else None,
+                     a.repeat))

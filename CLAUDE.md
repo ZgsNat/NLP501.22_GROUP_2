@@ -44,7 +44,7 @@ cd backend && uv run --group ml python -m app.eval.finetune train   # E20: cross
 cd backend && uv run python -m app.eval.token_cost       # E21: tokens of B4 / P6 vs E-every (LLM on every candidate), after `run agent --systems B4,P6,E-every`
 cd backend && uv run python -m app.eval.kaggle_resume    # E23: pipeline on 2,484 real résumé PDFs (reading, structure, tool false positives); `fetch cv2.zip` first
 cd backend && uv run python -m app.eval.extraction       # RQ1: CV/JD extraction F1 + redaction leaks vs the coding branch's generator truth
-cd backend && uv run python -m app.eval.agentic          # E15: P7 on HR tasks (behaviour checks, refusals, tokens, nDCG vs P6; dev JDs)
+cd backend && uv run python -m app.eval.agentic          # E15: P7 on HR tasks (behaviour checks, refusals, tokens, nDCG vs P6; dev JDs); --repeat N = N independent repeats, own LLM cache each → pass rate per check with a Wilson CI (eval/repeats.py)
 cd backend && uv run python -m app.eval.llm_rank         # E18: controlled LLM ranking of the shortlist, dev JDs, both benchmarks
 cd backend && uv run python -m app.eval.single_agent     # S1: one agent on its own vs P6 (dev JDs; --inject JD-002,JD-003)
 cd backend && uv run python -m app.eval.injection        # Q16 layer 1b: System One model (ollama pull nimble) vs paraphrased injection
