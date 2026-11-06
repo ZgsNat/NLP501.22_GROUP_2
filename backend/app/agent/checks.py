@@ -7,7 +7,7 @@ A check only ever flags or removes LLM text; it never adds facts and never touch
 import re
 
 from app.nlp.pipeline import CVProfile
-from app.nlp.taxonomy import mentions, skills
+from app.nlp.taxonomy import aliases, mentions, skills
 
 # Q5: protected attributes and personal circumstances must never appear in a judgement about a candidate.
 # Words with common technical meanings ("single sign-on", "race condition", "healthcare") are deliberately left out.
@@ -37,7 +37,18 @@ def protected(text: str) -> list[str]:
 
 def unsupported_tools(text: str, p: CVProfile) -> list[str]:
     """Q4a: tools a sentence credits to the candidate that the parsed CV never mentions (entity hallucination)."""
-    return sorted({k for s in _claims(text) for k in skills() if k not in p.skills and mentions(s, k)})
+    named = {k for s in _claims(text) for k in skills() if k not in p.skills and mentions(s, k)}
+    return sorted(k for k in named if not inflected_in_cv(k, p))
+
+
+def inflected_in_cv(k: str, p: CVProfile) -> bool:
+    """The CV says the skill in another inflection of its alias ("API tests" for "api testing"). The taxonomy and the
+    extraction stay as they are (the frozen benchmark depends on them); only Q4 stops calling a true claim invented."""
+    forms = [re.sub(r"testing\b", "test(?:s|ing)?", re.escape(a.lower())) for a in aliases(k) if "testing" in a.lower()]
+    if not forms:
+        return False
+    rx = re.compile(rf"(?<![a-z0-9])(?:{'|'.join(forms)})(?![a-z0-9])")
+    return any(rx.search(c.text.lower()) for c in p.chunks)
 
 
 def overstated_years(text: str, p: CVProfile, slack: float = 1.0) -> float | None:

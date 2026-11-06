@@ -69,3 +69,11 @@ def test_assess_retry_prompt_lists_what_failed(monkeypatch):
         asyncio.run(nodes._assess_call({"requirements": {}, "policy_context": []}, "CV-C", prev, asyncio.Semaphore(1)))
     retry = seen[0][-1].content
     assert "Deployed on Kubernetes" in retry and "names cypress" in retry
+
+
+def test_a_skill_said_in_another_inflection_is_not_called_invented():
+    """E26: the CV says "Wrote API tests", the answer says "API testing"; the taxonomy only knows "api testing"."""
+    p = process("CV-I", "## Experience\n### QA — Shop (2020–2024)\n- Wrote API tests with Playwright's request context.\n")
+    assert "api_testing" not in p.skills  # extraction unchanged (the frozen benchmark depends on it)
+    assert checks.claim_issues("CV-I has solid API testing experience.", p) == []
+    assert checks.claim_issues("CV-I has solid Cypress experience.", p)  # a tool the CV never names is still flagged
