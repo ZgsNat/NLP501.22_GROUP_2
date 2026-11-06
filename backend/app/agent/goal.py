@@ -130,6 +130,17 @@ def feasibility(spec: GoalSpec, profiles: dict, concepts: dict, subs: dict, jd_m
             "excluded": len(out)}
 
 
+def blocking_questions(spec: GoalSpec, f: dict, concepts: dict) -> list[str]:
+    """The open questions that must go to HR before ranking. They block only when the answer can change who meets
+    HR's goal: the goal is not feasible as stated, or it rests on a concept whose terms the LLM proposed. A feasible
+    goal on skills alone is met as HR wrote it; its open questions are assumptions the answer states, not reasons to
+    stop and ask (E26 `feasible`: "is GitLab CI fine instead of Jenkins?" changed nothing HR asked for)."""
+    if not spec.open_questions:
+        return []
+    on_concept = any(target_kind(c.target, concepts) == "concept" for c in spec.constraints)
+    return list(spec.open_questions) if f.get("status") != "ok" or on_concept else []
+
+
 # ── scoring: bonuses on top of the weighted total, deterministic and shown on the card ────────────────
 def bonus(p, spec: GoalSpec | None, concepts: dict) -> dict[str, float]:
     """{target: points} for nice/bonus constraints on concepts and bonus constraints on skills."""
@@ -170,10 +181,12 @@ def goal_filter(p, spec: GoalSpec | None, concepts: dict, subs: dict) -> str | N
 
 
 # ── the shortlist against the goal ────────────────────────────────────────────────────────────────────
-def goal_report(spec: GoalSpec | None, shortlist: list[str], profiles: dict, concepts: dict, subs: dict) -> dict:
-    """What HR asked vs what the shortlist delivers. `unmet` lists what the answer must declare."""
+def goal_report(spec: GoalSpec | None, shortlist: list[str], profiles: dict, concepts: dict, subs: dict,
+                feasibility: dict | None = None) -> dict:
+    """What HR asked vs what the shortlist delivers. `unmet` lists what the answer must declare; `assumed` the open
+    questions that did not block (shown to HR as assumptions)."""
     if not spec:
-        return {"unmet": [], "items": []}
+        return {"unmet": [], "items": [], "assumed": []}
     items, unmet = [], []
     if spec.count and len(shortlist) < spec.count:
         unmet.append(f"count: {len(shortlist)} of the {spec.count} candidates HR asked for")
@@ -189,6 +202,7 @@ def goal_report(spec: GoalSpec | None, shortlist: list[str], profiles: dict, con
             items.append({"constraint": f"{c.kind} {c.target}", "met_by": len(has), "of": len(shortlist)})
             if shortlist and not has:
                 unmet.append(f"{c.kind} {c.target}: no shortlisted candidate shows it")
-    if spec.open_questions:
-        unmet.append(f"open questions not settled with HR: {spec.open_questions}")
-    return {"unmet": unmet, "items": items}
+    blocking = blocking_questions(spec, feasibility or {}, concepts)
+    if blocking:
+        unmet.append(f"open questions not settled with HR: {blocking}")
+    return {"unmet": unmet, "items": items, "assumed": [q for q in spec.open_questions if q not in blocking]}

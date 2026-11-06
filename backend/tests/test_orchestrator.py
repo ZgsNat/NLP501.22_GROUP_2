@@ -339,3 +339,41 @@ def test_hr_rejection_takes_the_cv_out_of_the_ranking_for_good(agent, monkeypatc
     assert row["status"] == "rejected_by_hr" and "test-architecture" in row["reason"]
     assert "CV-002" not in [r["cv_id"] for r in v["ranking"] if r["status"] == "ranked"]
     assert (tmp_path / "hr_audit.jsonl").exists()
+
+
+def test_a_goal_met_as_written_is_not_held_up_by_questions_and_states_its_assumptions(agent):
+    """E26 `feasible`: open questions about JD details HR never mentioned do not stop the run. Asking is refused
+    before ranking, screen is allowed, and the answer shows them to HR as assumptions."""
+    q = "Is GitHub Actions fine instead of GitLab CI?"
+    top = lambda m: [r["cv_id"] for r in last_result(m, "screen")["top"][:2]]  # noqa: E731
+    v, pauses, _ = agent([
+        lambda m: call("parse_jd"),
+        lambda m: call("formalize_goal", count=2, open_questions=[q], constraints=[
+            {"kind": "must", "target": "playwright", "hr_quote": "Playwright is required"}]),
+        lambda m: call("ask_hr", questions=[q]),  # refused: nothing HR asked for depends on it
+        lambda m: call("screen"),
+        lambda m: call("explain", cv_ids=top(m)),
+        lambda m: call("respond_to_hr", message="Two Playwright candidates.", shortlist=top(m)),
+    ], goal="Top 2 candidates; Playwright is required.")
+    why = [m.content for m in v["messages"] if isinstance(m, ToolMessage) and m.content.startswith("REJECTED")]
+    assert len(why) == 1 and "can be met as written" in why[0]
+    assert [p["kind"] for p in pauses] == ["chat"]  # HR was not interrupted before the answer
+    assert len(v["shortlist"]) == 2 and f"assumed, not asked (the goal is met as written): {q}" in v["reply"]
+    assert v["report"]["goal"]["unmet"] == [] and v["report"]["goal"]["assumed"] == [q]
+
+
+def test_a_first_answer_that_names_candidates_must_recommend_them(agent):
+    """E15: an answer listed five CVs with an empty shortlist, so HR got no recommendation. The first answer of a run
+    may not do that; a follow-up that discusses ranked CVs without re-recommending them is fine."""
+    top = lambda m: last_result(m, "screen")["top"][0]["cv_id"]  # noqa: E731
+    v, _, _ = agent([
+        lambda m: call("parse_jd"),
+        lambda m: call("screen"),
+        lambda m: call("explain", cv_ids=[top(m)]),
+        lambda m: call("respond_to_hr", message=f"I recommend {top(m)}."),  # refused: empty shortlist
+        lambda m: call("respond_to_hr", message=f"I recommend {top(m)}.", shortlist=[top(m)]),
+        lambda m: call("respond_to_hr", message=f"{top(m)} leads on automation depth."),  # follow-up: allowed
+    ], answers=[{"message": "Why is it first?"}])
+    why = [m.content for m in v["messages"] if isinstance(m, ToolMessage) and m.content.startswith("REJECTED")]
+    assert len(why) == 1 and "shortlist is empty" in why[0]
+    assert "leads on automation depth" in v["reply"]

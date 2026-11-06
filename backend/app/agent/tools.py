@@ -192,7 +192,22 @@ def check_ask_hr(state: AgentState, _: AskHRArgs) -> str | None:
         return "call parse_jd first"
     if nodes.off(state, "clarify") or state.get("loops", {}).get("clarify", 0) >= get_settings().max_clarifications:
         return f"clarification budget used ({get_settings().max_clarifications}); proceed with your best reading"
-    return None
+    return needless_ask(state)
+
+
+def needless_ask(state: AgentState) -> str | None:
+    """Before ranking, a goal HR formalized that can be met as written needs no question: asking only delays HR.
+    Open questions that do not block are stated in the answer as assumptions (goal_footer)."""
+    if not state.get("goal_spec") or state.get("ranking"):
+        return None
+    spec, f = goal.GoalSpec.model_validate(state["goal_spec"]), state.get("goal_feasibility", {})
+    concepts = state.get("concepts", {})
+    if f.get("status") != "ok" or goal.blocking_questions(spec, f, concepts) \
+            or any(goal.target_kind(c.target, concepts) == "concept" for c in spec.constraints):
+        return None
+    return (f"HR's goal can be met as written ({f['meet_all_musts']} CVs meet every must-have, "
+            f"{f['requested'] or 'no count'} asked) and needs no concept confirmed: screen and answer. A JD detail HR "
+            "did not mention stays as the JD says; open questions are shown to HR as assumptions")
 
 
 async def ask_hr(state: AgentState, args: AskHRArgs) -> tuple[dict, dict]:
@@ -226,8 +241,8 @@ def goal_gate(state: AgentState) -> str | None:
     if f.get("unknown_targets"):
         return (f"{f['unknown_targets']} are neither taxonomy skills nor defined concepts: define_concept with terms "
                 "(and confirm them with HR), or drop them from the spec")
-    if spec.open_questions and asks_left:
-        return f"settle the open questions with HR first (ask_hr): {spec.open_questions}"
+    if (blocking := goal.blocking_questions(spec, f, state.get("concepts", {}))) and asks_left:
+        return f"settle the open questions with HR first (ask_hr): {blocking}"
     if f.get("status") == "infeasible" and not spec.accept_shortfall and asks_left:
         return (f"HR's goal cannot be met as stated: {f['meet_all_musts']} CVs meet every must-have, "
                 f"{f['requested']} asked; bottleneck {f['bottleneck']}, relaxing gives {f['if_relaxed']}. "
@@ -546,6 +561,10 @@ def check_respond(state: AgentState, args: RespondArgs) -> str | None:
         return f"the message mentions protected attributes {words}; remove them"
     if bad := sorted(set(re.findall(CV_ID, args.message)) - pool_ids()):
         return f"the message mentions CVs that do not exist: {bad}"
+    if not args.shortlist and not state.get("reply") and (named := [c for c in sorted(top) if c in args.message]):
+        return (f"the message names ranked candidates {named} but the shortlist is empty, so HR would get no "
+                "recommendation: put the CVs you recommend in `shortlist`, best first (explained first); if you "
+                "recommend none, say so and why")
     if (unmet := goal_unmet(state, args.shortlist)) and not args.limits:
         return (f"the shortlist does not meet HR's goal: {unmet}. Declare it in `limits` (what, why, what HR could "
                 "relax); never present a partial result as complete")
@@ -574,10 +593,11 @@ async def respond_to_hr(state: AgentState, args: RespondArgs) -> tuple[dict, dic
 
 def goal_footer(rep: dict, limits: list[str]) -> str:
     """The goal check appended by code to the answer, so HR always sees what was and was not met."""
-    if not rep["items"] and not rep["unmet"]:
+    if not rep["items"] and not rep["unmet"] and not rep.get("assumed"):
         return ""
     lines = [f"- {i['constraint']}: {i['met_by']}/{i['of']}" for i in rep["items"]]
     lines += [f"- not met: {u}" for u in rep["unmet"]] + [f"- limit: {x}" for x in limits]
+    lines += [f"- assumed, not asked (the goal is met as written): {q}" for q in rep.get("assumed", [])]
     return "\n\nGoal check (by code):\n" + "\n".join(lines)
 
 
@@ -588,10 +608,10 @@ def pool_profiles(state: AgentState) -> dict:
 
 def goal_check(state: AgentState, shortlist: list[str]) -> dict:
     if not state.get("goal_spec"):
-        return {"unmet": [], "items": []}
+        return {"unmet": [], "items": [], "assumed": []}
     return goal.goal_report(goal.GoalSpec.model_validate(state["goal_spec"]), shortlist,
                             {c: nodes.prof(state, c) for c in shortlist}, state.get("concepts", {}),
-                            state.get("substitutes", {}))
+                            state.get("substitutes", {}), state.get("goal_feasibility"))
 
 
 def goal_unmet(state: AgentState, shortlist: list[str]) -> list[str]:
@@ -632,7 +652,7 @@ async def formalize_goal(state: AgentState, spec: goal.GoalSpec) -> tuple[dict, 
                               + f" ← “{c.hr_quote}”" for c in spec.constraints],
            "count": spec.count, "open_questions": spec.open_questions, "requirements_now":
            {"must_have": req["must_have"], "nice_to_have": req["nice_to_have"]}, "feasibility": f,
-           "next": goal_next(spec, f)}
+           "next": goal_next(spec, f, concepts)}
     if state.get("ranking"):
         obs["screen"] = await screen_into(r)
     return obs, r.update
@@ -655,14 +675,16 @@ def jd_musts(state: AgentState, spec: goal.GoalSpec) -> list[str]:
     return [m for m in state.get("requirements", {}).get("must_have", []) if m not in named]
 
 
-def goal_next(spec: goal.GoalSpec, f: dict) -> str:
+def goal_next(spec: goal.GoalSpec, f: dict, concepts: dict) -> str:
     if f["unknown_targets"]:
         return f"define_concept for {f['unknown_targets']} (propose search terms), then confirm them with HR"
-    if spec.open_questions:
+    if goal.blocking_questions(spec, f, concepts):
         return "ask_hr the open questions"
     if f["status"] == "infeasible" and not spec.accept_shortfall:
         return ("ask_hr: show the bottleneck and the relax options (a '(JD)' must-have comes from the JD, not HR: ask "
                 "whether it still holds), or ask whether fewer candidates are acceptable")
+    if spec.open_questions:
+        return "screen: the goal can be met as written; your open questions are shown to HR as assumptions, not asked"
     return "screen"
 
 
@@ -706,7 +728,7 @@ async def define_concept(state: AgentState, args: ConceptArgs) -> tuple[dict, di
         spec = goal.GoalSpec.model_validate(state["goal_spec"])
         f = goal.feasibility(spec, profiles, concepts, state.get("substitutes", {}), jd_musts(state, spec))
         r.add({"goal_feasibility": f})
-        obs["feasibility"], obs["next"] = f, goal_next(spec, f)
+        obs["feasibility"], obs["next"] = f, goal_next(spec, f, concepts)
     if state.get("ranking"):
         obs["screen"] = await screen_into(r)
     return obs, r.update

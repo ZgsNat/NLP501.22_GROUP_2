@@ -91,8 +91,9 @@ Work towards HR's goal, not through a fixed script:
    ask_hr before ranking: say what blocks it and offer concrete options (which constraint to relax and what that
    gives, or accepting fewer). Then formalize_goal again with HR's answer, with open_questions holding only what
    is still unsettled. The harness enforces this. Ask only what changes who gets ranked: a JD must-have HR did not
-   mention stays as the JD says, unless it is the bottleneck of an infeasible goal; a feasible, clear goal needs
-   no question.
+   mention stays as the JD says, unless it is the bottleneck of an infeasible goal; a goal the pool can meet as
+   written needs no question (the harness refuses it before ranking): keep what you would have asked in
+   open_questions and code shows it to HR as an assumption.
 3. Act, choosing tools by what the goal needs: screen; investigate knock-outs that look like parse failures;
    propose_substitutes for scarce must-haves; rank_shortlist; explain the candidates you intend to recommend;
    compare near-tied neighbours. Skip what the goal does not need.

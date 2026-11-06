@@ -80,3 +80,16 @@ def test_the_jds_own_must_haves_count_in_feasibility_and_are_labelled():
     assert goal.feasibility(spec, POOL, CONCEPTS, {})["meet_all_musts"] == 3
     f = goal.feasibility(spec, POOL, CONCEPTS, {}, jd_musts=["java"])
     assert f["per_must"] == {"selenium": 3, "java (JD)": 2} and f["meet_all_musts"] == 2  # A and D: Selenium + Java
+
+
+def test_open_questions_block_only_when_the_answer_can_change_who_meets_the_goal():
+    skills = GoalSpec(count=2, constraints=[Constraint(kind="must", target="selenium", hr_quote="selenium là bắt buộc")],
+                      open_questions=["Is GitLab CI fine instead of Jenkins?"])
+    concept = skills.model_copy(update={"constraints": [*skills.constraints, Constraint(
+        kind="bonus", target="ai_in_testing", hr_quote="AI trong automation")]})
+    assert goal.blocking_questions(skills, {"status": "ok"}, CONCEPTS) == []  # met as written: an assumption
+    assert goal.blocking_questions(skills, {"status": "infeasible"}, CONCEPTS) == skills.open_questions
+    assert goal.blocking_questions(concept, {"status": "ok"}, CONCEPTS) == skills.open_questions  # terms to confirm
+    rep = goal.goal_report(skills, ["A", "B"], POOL, CONCEPTS, {}, {"status": "ok"})
+    assert rep["unmet"] == [] and rep["assumed"] == skills.open_questions
+    assert goal.goal_report(skills, ["A", "B"], POOL, CONCEPTS, {})["unmet"]  # no feasibility known: still blocks
