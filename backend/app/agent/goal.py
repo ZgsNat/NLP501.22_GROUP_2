@@ -130,12 +130,14 @@ def feasibility(spec: GoalSpec, profiles: dict, concepts: dict, subs: dict, jd_m
             "excluded": len(out)}
 
 
-def blocking_questions(spec: GoalSpec, f: dict, concepts: dict) -> list[str]:
+def blocking_questions(spec: GoalSpec, f: dict, concepts: dict, can_ask: bool = True) -> list[str]:
     """The open questions that must go to HR before ranking. They block only when the answer can change who meets
     HR's goal: the goal is not feasible as stated, or it rests on a concept whose terms the LLM proposed. A feasible
     goal on skills alone is met as HR wrote it; its open questions are assumptions the answer states, not reasons to
-    stop and ask (E26 `feasible`: "is GitLab CI fine instead of Jenkins?" changed nothing HR asked for)."""
-    if not spec.open_questions:
+    stop and ask (E26 `feasible`: "is GitLab CI fine instead of Jenkins?" changed nothing HR asked for). Once HR can
+    no longer be asked (clarification budget used), nothing blocks: what is left is stated as an assumption (E26
+    round 5: holding the answer for a question the harness forbids asking ran two runs into the token budget)."""
+    if not spec.open_questions or not can_ask:
         return []
     on_concept = any(target_kind(c.target, concepts) == "concept" for c in spec.constraints)
     return list(spec.open_questions) if f.get("status") != "ok" or on_concept else []
@@ -182,7 +184,7 @@ def goal_filter(p, spec: GoalSpec | None, concepts: dict, subs: dict) -> str | N
 
 # ── the shortlist against the goal ────────────────────────────────────────────────────────────────────
 def goal_report(spec: GoalSpec | None, shortlist: list[str], profiles: dict, concepts: dict, subs: dict,
-                feasibility: dict | None = None) -> dict:
+                feasibility: dict | None = None, can_ask: bool = True) -> dict:
     """What HR asked vs what the shortlist delivers. `unmet` lists what the answer must declare; `assumed` the open
     questions that did not block (shown to HR as assumptions)."""
     if not spec:
@@ -202,7 +204,7 @@ def goal_report(spec: GoalSpec | None, shortlist: list[str], profiles: dict, con
             items.append({"constraint": f"{c.kind} {c.target}", "met_by": len(has), "of": len(shortlist)})
             if shortlist and not has:
                 unmet.append(f"{c.kind} {c.target}: no shortlisted candidate shows it")
-    blocking = blocking_questions(spec, feasibility or {}, concepts)
+    blocking = blocking_questions(spec, feasibility or {}, concepts, can_ask)
     if blocking:
         unmet.append(f"open questions not settled with HR: {blocking}")
     return {"unmet": unmet, "items": items, "assumed": [q for q in spec.open_questions if q not in blocking]}

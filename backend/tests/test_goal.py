@@ -93,3 +93,12 @@ def test_open_questions_block_only_when_the_answer_can_change_who_meets_the_goal
     rep = goal.goal_report(skills, ["A", "B"], POOL, CONCEPTS, {}, {"status": "ok"})
     assert rep["unmet"] == [] and rep["assumed"] == skills.open_questions
     assert goal.goal_report(skills, ["A", "B"], POOL, CONCEPTS, {})["unmet"]  # no feasibility known: still blocks
+
+
+def test_once_hr_cannot_be_asked_open_questions_become_assumptions():
+    spec = GoalSpec(count=2, open_questions=["How many candidates?"], constraints=[
+        Constraint(kind="must", target="ai_in_testing", hr_quote="AI là bắt buộc")])
+    assert goal.blocking_questions(spec, {"status": "ok"}, CONCEPTS) == spec.open_questions
+    assert goal.blocking_questions(spec, {"status": "ok"}, CONCEPTS, can_ask=False) == []
+    rep = goal.goal_report(spec, ["A"], POOL, CONCEPTS, {}, {"status": "ok"}, can_ask=False)
+    assert not any("open questions" in u for u in rep["unmet"]) and rep["assumed"] == spec.open_questions

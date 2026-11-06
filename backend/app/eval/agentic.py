@@ -108,8 +108,12 @@ TASKS = [
         "changed nothing": lambda tr: not any(n in MUTATE for t, n, _ in tr.tools if t == 1),
         "answered without re-screening": lambda tr: not tr.called("screen", 1)}),
     Task("require", ["JD-002"], [lambda v: "Make Docker a must-have for this role."], {
+        # either authorised path: update_requirements, or formalize_goal with a Docker must-have (the goal loop's way
+        # to take a new requirement; E15 live run after the goal loop took this one)
         "updated the requirements": lambda tr: any("docker" in [s.lower() for s in a.get("add_must_have", [])]
-                                                   for a in tr.called("update_requirements", 1)),
+                                                   for a in tr.called("update_requirements", 1))
+        or any(c.get("kind") == "must" and str(c.get("target", "")).lower() == "docker"
+               for a in tr.called("formalize_goal", 1) for c in a.get("constraints", [])),
         "every ranked CV shows Docker": lambda tr: all("docker" in profile(c).skills for c in _ranked(tr.values))}),
     Task("decide", ["JD-002"], [lambda v: f"Reject {_ranked(v)[0]}: the client needs more test-architecture experience."], {
         "recorded the decision": lambda tr: any(d["action"] == "reject" for a in tr.called("record_decisions", 1)

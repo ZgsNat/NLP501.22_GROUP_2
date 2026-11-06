@@ -205,6 +205,11 @@ def check_ask_hr(state: AgentState, _: AskHRArgs) -> str | None:
     return needless_ask(state)
 
 
+def can_ask(state: AgentState) -> bool:
+    """HR may still be asked a clarification in this run (L1 budget max_clarifications)."""
+    return state.get("loops", {}).get("clarify", 0) < get_settings().max_clarifications and not nodes.off(state, "clarify")
+
+
 def needless_ask(state: AgentState) -> str | None:
     """Before ranking, a goal HR formalized that can be met as written needs no question: asking only delays HR.
     Open questions that do not block are stated in the answer as assumptions (goal_footer)."""
@@ -246,12 +251,11 @@ def goal_gate(state: AgentState) -> str | None:
     if not state.get("goal_spec"):
         return None
     spec, f = goal.GoalSpec.model_validate(state["goal_spec"]), state.get("goal_feasibility", {})
-    asks_left = (state.get("loops", {}).get("clarify", 0) < get_settings().max_clarifications
-                 and not nodes.off(state, "clarify"))
+    asks_left = can_ask(state)
     if f.get("unknown_targets"):
         return (f"{f['unknown_targets']} are neither taxonomy skills nor defined concepts: define_concept with terms "
                 "(and confirm them with HR), or drop them from the spec")
-    if (blocking := goal.blocking_questions(spec, f, state.get("concepts", {}))) and asks_left:
+    if blocking := goal.blocking_questions(spec, f, state.get("concepts", {}), asks_left):
         return f"settle the open questions with HR first (ask_hr): {blocking}"
     if f.get("status") == "infeasible" and not spec.accept_shortfall and asks_left:
         return (f"HR's goal cannot be met as stated: {f['meet_all_musts']} CVs meet every must-have, "
@@ -622,7 +626,7 @@ def goal_check(state: AgentState, shortlist: list[str]) -> dict:
         return {"unmet": [], "items": [], "assumed": []}
     return goal.goal_report(goal.GoalSpec.model_validate(state["goal_spec"]), shortlist,
                             {c: nodes.prof(state, c) for c in shortlist}, state.get("concepts", {}),
-                            state.get("substitutes", {}), state.get("goal_feasibility"))
+                            state.get("substitutes", {}), state.get("goal_feasibility"), can_ask(state))
 
 
 def goal_unmet(state: AgentState, shortlist: list[str]) -> list[str]:
@@ -663,7 +667,7 @@ async def formalize_goal(state: AgentState, spec: goal.GoalSpec) -> tuple[dict, 
                               + f" ← “{c.hr_quote}”" for c in spec.constraints],
            "count": spec.count, "open_questions": spec.open_questions, "requirements_now":
            {"must_have": req["must_have"], "nice_to_have": req["nice_to_have"]}, "feasibility": f,
-           "next": goal_next(spec, f, concepts)}
+           "next": goal_next(spec, f, concepts, can_ask(r.state))}
     if state.get("ranking"):
         obs["screen"] = await screen_into(r)
     return obs, r.update
@@ -686,11 +690,14 @@ def jd_musts(state: AgentState, spec: goal.GoalSpec) -> list[str]:
     return [m for m in state.get("requirements", {}).get("must_have", []) if m not in named]
 
 
-def goal_next(spec: goal.GoalSpec, f: dict, concepts: dict) -> str:
+def goal_next(spec: goal.GoalSpec, f: dict, concepts: dict, asks_left: bool = True) -> str:
     if f["unknown_targets"]:
         return f"define_concept for {f['unknown_targets']} (propose search terms), then confirm them with HR"
-    if goal.blocking_questions(spec, f, concepts):
+    if goal.blocking_questions(spec, f, concepts, asks_left):
         return "ask_hr the open questions"
+    if not asks_left:
+        return ("screen: HR can no longer be asked in this run; answer with what the pool gives, state what is still "
+                "open as assumptions and declare any shortfall in `limits`")
     if f["status"] == "infeasible" and not spec.accept_shortfall:
         return ("ask_hr: show the bottleneck and the relax options (a '(JD)' must-have comes from the JD, not HR: ask "
                 "whether it still holds), or ask whether fewer candidates are acceptable")
@@ -739,7 +746,7 @@ async def define_concept(state: AgentState, args: ConceptArgs) -> tuple[dict, di
         spec = goal.GoalSpec.model_validate(state["goal_spec"])
         f = goal.feasibility(spec, profiles, concepts, state.get("substitutes", {}), jd_musts(state, spec))
         r.add({"goal_feasibility": f})
-        obs["feasibility"], obs["next"] = f, goal_next(spec, f, concepts)
+        obs["feasibility"], obs["next"] = f, goal_next(spec, f, concepts, can_ask(state))
     if state.get("ranking"):
         obs["screen"] = await screen_into(r)
     return obs, r.update
