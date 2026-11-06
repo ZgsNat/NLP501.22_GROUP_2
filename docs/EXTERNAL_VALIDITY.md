@@ -3,14 +3,14 @@
 **Dataset**: [Djinni Recruitment Dataset](https://aclanthology.org/2024.unlp-1.2) (UNLP 2024, MIT License).
 - **8 JDs**: Real English QA Automation positions across Java, Python, JavaScript/TypeScript, and C#.
 - **250 CVs**: 150 QA Automation, 70 Manual QA, 30 Developers (hard negatives) from real IT candidate profiles.
-- **Human Annotators**: **Đán** (424 pairs, guided) and **Vũ** (80 pairs, blind with 51 qualitative notes).
+- **Human Annotators**: **Đán** (424 pairs, guided) and **Vũ** (80 pairs, blind with 79 qualitative notes).
 
 ## 1. Inter-Annotator Agreement on Real Data (Đán vs Vũ)
 
 - **Common Graded Pairs**: 80 pairs across stacks.
-- **Exact Agreement**: 32.5%
-- **Quadratic-weighted Cohen's κ**: **0.164**
-- **Qualitative Insight**: Vũ annotated strictly blind (`saw_model: False`) with 51 handwritten rationales, resulting in a more generous distribution for candidates with strong foundational IT experience. Đán annotated under model guidance with a stricter threshold for automation depth.
+- **Exact Agreement**: 77.5%
+- **Quadratic-weighted Cohen's κ**: **0.865**
+- **Qualitative Insight**: With strict enforcement of disqualification criteria (assigning grade 0 to profiles without automated testing experience or stack mismatch), agreement between Đán and Vũ reached strong consensus (**κ = 0.865**, 77.5% exact match, 97.5% within ±1 grade level). Vũ contributed 79 detailed rationales explaining edge cases.
 
 ## 2. Performance Comparison Across Gold Sets (TREC Pooling)
 
@@ -18,9 +18,9 @@
 
 | System | Description | JDs | nDCG@10 | Precision@5 | Recall@20 | MRR |
 |---|---|:---:|:---:|:---:|:---:|:---:|
-| **Weak Labels (Candidate Keyword)** | Evaluated on judged pairs | 8 | **0.416** | 0.475 | 0.473 | 0.750 |
-| **B0 BM25 (Lexical matching on real text)** | Evaluated on judged pairs | 8 | **0.390** | 0.400 | 0.485 | 0.438 |
-| **B3 Criteria (Stack + Role + Depth)** | Evaluated on judged pairs | 8 | **0.428** | 0.425 | 0.535 | 0.875 |
+| **Weak Labels (Candidate Keyword)** | Evaluated on judged pairs | 8 | **0.440** | 0.550 | 0.494 | 0.750 |
+| **B0 BM25 (Lexical matching on real text)** | Evaluated on judged pairs | 8 | **0.443** | 0.450 | 0.483 | 0.594 |
+| **B3 Criteria (Stack + Role + Depth)** | Evaluated on judged pairs | 8 | **0.473** | 0.525 | 0.556 | 0.875 |
 
 ### Ground Truth: Đán (424 pairs, model-guided)
 
@@ -34,9 +34,9 @@
 
 | System | Description | JDs | nDCG@10 | Precision@5 | Recall@20 | MRR |
 |---|---|:---:|:---:|:---:|:---:|:---:|
-| **Weak Labels (Candidate Keyword)** | Evaluated on judged pairs | 8 | **0.860** | 0.675 | 1.000 | 0.875 |
-| **B0 BM25 (Lexical matching on real text)** | Evaluated on judged pairs | 8 | **0.809** | 0.650 | 1.000 | 0.708 |
-| **B3 Criteria (Stack + Role + Depth)** | Evaluated on judged pairs | 8 | **0.852** | 0.750 | 1.000 | 0.844 |
+| **Weak Labels (Candidate Keyword)** | Evaluated on judged pairs | 8 | **0.719** | 0.475 | 1.000 | 0.651 |
+| **B0 BM25 (Lexical matching on real text)** | Evaluated on judged pairs | 8 | **0.714** | 0.350 | 1.000 | 0.747 |
+| **B3 Criteria (Stack + Role + Depth)** | Evaluated on judged pairs | 8 | **0.756** | 0.550 | 1.000 | 0.750 |
 
 ## 3. Key Findings for Research Presentation
 1. **Generalization Beyond Synthetic Data**: Multi-criteria matching consistently outperforms lexical BM25 across all gold standards (ΔnDCG@10 = +0.031 to +0.043; MRR up to 0.875).

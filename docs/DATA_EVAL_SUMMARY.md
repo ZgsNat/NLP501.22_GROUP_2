@@ -35,16 +35,16 @@
 ## 3. Layer 2: External Validity on Real Data (Djinni Recruitment Dataset)
 
 - **Data**: 8 real QA Automation job postings and 250 real candidate profiles (MIT licensed, UNLP 2024).
-- **Human Annotators**: **Đán** (424 pairs, guided) and **Vũ** (80 pairs, blind with 51 notes).
-- **Inter-Annotator Agreement (Đán vs Vũ)**: 80 shared pairs, Exact = 32.5%, Quadratic Weighted κ = **0.164** (reflects blind vs model-guided divergence).
+- **Human Annotators**: **Đán** (424 pairs, guided) and **Vũ** (80 pairs, blind with 79 notes).
+- **Inter-Annotator Agreement (Đán vs Vũ)**: 80 shared pairs, Exact = **77.5%**, Quadratic Weighted κ = **0.865** (strong consensus after strict 0-score rubric enforcement).
 
 ### System Performance on Real Djinni Data (Consensus Gold)
 
 | Model / Ranker | nDCG@10 | Precision@5 | Recall@20 | MRR | Ghi chú |
 |---|:---:|:---:|:---:|:---:|---|
-| **Weak Labels (Candidate Keyword)** | **0.416** | 0.475 | 0.473 | **0.750** | Baseline |
-| **B0 BM25 (Lexical matching on real text)** | **0.390** | 0.400 | 0.485 | **0.438** | Baseline |
-| **B3 Criteria (Stack + Role + Depth)** | **0.428** | 0.425 | 0.535 | **0.875** | Structured criteria lead |
+| **Weak Labels (Candidate Keyword)** | **0.440** | 0.550 | 0.494 | **0.750** | Baseline |
+| **B0 BM25 (Lexical matching on real text)** | **0.443** | 0.450 | 0.483 | **0.594** | Baseline |
+| **B3 Criteria (Stack + Role + Depth)** | **0.473** | 0.525 | 0.556 | **0.875** | Structured criteria lead |
 
 ---
 
