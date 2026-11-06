@@ -100,7 +100,11 @@ TASKS = [
                                    or _first(tr, "hr_clarification", "screen"),
                                    **COMMON}),
     Task("why", ["JD-002"], [lambda v: "Why is {} ranked above {}?".format(*_ranked(v)[:2])], {
-        "answered with compare or get_candidate": lambda tr: bool(tr.called("compare", 1) or tr.called("get_candidate", 1)),
+        # a compare of the very pair HR asks about, run earlier (near-tie check), already answers it: re-running it
+        # would only cost tokens (E15 live run: the answer quoted that compare correctly and failed this check)
+        "answered with compare or get_candidate": lambda tr: bool(
+            tr.called("compare", 1) or tr.called("get_candidate", 1)
+            or any({a.get("cv_a"), a.get("cv_b")} == set(tr.top(2)) for a in tr.called("compare"))),
         "changed nothing": lambda tr: not any(n in MUTATE for t, n, _ in tr.tools if t == 1),
         "answered without re-screening": lambda tr: not tr.called("screen", 1)}),
     Task("require", ["JD-002"], [lambda v: "Make Docker a must-have for this role."], {

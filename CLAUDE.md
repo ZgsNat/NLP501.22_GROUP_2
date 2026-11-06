@@ -52,7 +52,7 @@ cd backend && uv run python -m app.eval.robustness       # Q11: counterfactual f
 cd backend && uv run python -m app.eval.clarify          # H6: vague twins of all 18 JDs, asking HR vs not (`report` re-renders)
 cd backend && uv run python -m app.eval.hr_learning    # E24: HR learning across sessions, simulated HR, zero LLM (HR_MEMORY / H30)
 cd backend && uv run python -m scripts.preflight         # E25: before a demo, are models, Ollama, Qdrant, index, API ready?
-DATA_DIR=$(cd backend && uv run python -m app.eval.goals materialize) uv run --directory backend python -m app.eval.goals   # E26: complex HR goals, scripted HR, in-memory index
+DATA_DIR=$(cd backend && uv run python -m app.eval.goals materialize) uv run --directory backend python -m app.eval.goals [--repeat 3]   # E26: complex HR goals, scripted HR, in-memory index; --repeat = pass rate per check (cache off)
 cd backend && uv run --group ocr python -m app.eval.ocr  # scanned CVs: PaddleOCR (optional group `ocr`, ~1 GB) → pipeline; `rescore` = no OCR
 uv run uvicorn app.main:app --app-dir backend --reload   # API :8000
 cd frontend && npm run dev                               # UI :5173
