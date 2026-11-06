@@ -2443,7 +2443,8 @@
                     <div class="col-span-5 p-2.5 rounded-xl card-blue text-blue-950 space-y-1.5">
                         <div class="font-bold">P7: hội thoại với HR, LLM chọn bước tiếp theo</div>
                         <div><strong>Input:</strong> JD + mục tiêu của HR bằng lời ("5 người mạnh Playwright, ưu tiên banking") + kho CV.</div>
-                        <div><strong>14 công cụ có kiểu:</strong> screen (P6 tới bước xếp hạng, 0 token) · ask_hr · investigate · rank_shortlist · explain · compare · respond_to_hr …</div>
+                        <div><strong>17 công cụ có kiểu:</strong> formalize_goal · check_goal · define_concept · screen (P6 tới bước xếp hạng, 0 token) · ask_hr · investigate · rank_shortlist · explain · compare · respond_to_hr …</div>
+                        <div><strong>Goal-driven:</strong> mục tiêu HR thành ràng buộc trích nguyên lời HR; code đếm kho CV đáp ứng được không <em>trước</em> khi xếp hạng; không đạt thì hỏi lại HR và câu trả lời phải nêu phần chưa đạt.</div>
                         <div><strong>Harness (guard):</strong> kiểm schema, điều kiện trước của từng công cụ, chỉ điều HR nói mới đổi được yêu cầu, ngân sách bước / token / lượt HR mỗi lượt hội thoại.</div>
                         <div><strong>Output:</strong> N ứng viên theo thứ tự, mỗi người có lý do với trích dẫn đã kiểm chứng, điểm mạnh, câu hỏi phỏng vấn; mọi CV khác có trạng thái + lý do.</div>
                     </div>
@@ -2464,7 +2465,7 @@
                 <div class="grid grid-cols-3 gap-2.5 text-[11px]">
                     <div class="p-2.5 rounded-xl card-emerald text-emerald-950"><strong>Agent đơn mạnh nhưng không kiểm soát được:</strong> ~5× token so với LLM xếp shortlist, và xếp hạng cả CV nó chưa đọc.</div>
                     <div class="p-2.5 rounded-xl card-emerald text-emerald-950"><strong>Agentic = agent + harness:</strong> cùng mức nDCG@10 với ~1/5 token, mọi bước có điều kiện trước và lý do.</div>
-                    <div class="p-2.5 rounded-xl card-amber text-amber-950"><strong>Chưa có:</strong> số đo P7 chạy live trên HR task (E15); cần nhãn người để tách hiệu ứng LLM-chấm-LLM.</div>
+                    <div class="p-2.5 rounded-xl card-amber text-amber-950"><strong>Đo live (Claude):</strong> HR task E15 <strong>40/42</strong> kiểm tra hành vi; mục tiêu phức tạp E26 <strong>81/83</strong> (3 lần/goal). HR theo kịch bản; mức tăng nDCG của rank_shortlist có thể là LLM-chấm-LLM.</div>
                 </div>
                 <div class="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-950 text-xs flex justify-between items-center font-medium">
                     <span><strong>TIẾP THEO:</strong> Giới hạn và bước tiếp theo.</span>
@@ -2483,19 +2484,18 @@
                 <div class="grid grid-cols-2 gap-2.5 text-[11px]">
                     <div class="p-2.5 rounded-xl card-amber text-amber-950 space-y-1.5">
                         <div class="font-bold">Giới hạn</div>
-                        <div><strong>Nhãn bạc từ LLM</strong> (2 annotator Claude, κ<sub>w</sub> 0.919). Annotator Claude thứ ba chấm mù đồng thuận κ<sub>w</sub> 0.889: ổn định trong cùng họ mô hình, <em>chưa phải</em> kiểm chứng của con người.</div>
-                        <div><strong>Dữ liệu xếp hạng là dữ liệu tổng hợp;</strong> CV thật chỉ dùng để kiểm tra NLP.</div>
-                        <div><strong>Tập test 10 JD:</strong> khoảng tin cậy ±0.05–0.08; chênh lệch dưới ~0.03 không có ý nghĩa.</div>
-                        <div><strong>LLM chạy qua Claude Code CLI</strong> thay cho API: hành vi giữ nguyên, độ trễ và chi phí thì không.</div>
+                        <div><strong>Nhãn:</strong> nhãn bạc do 2 annotator Claude gán. Hai thành viên chấm mù 120 cặp: người–người κ 0.965; khớp Opus 0.87–0.88, Sonnet 0.65–0.69. Chỗ hai mô hình bất đồng, trung bình bạc rộng tay khoảng ½ bậc. Djinni: chưa có nhãn người đạt kiểm tra chất lượng.</div>
+                        <div><strong>Dữ liệu:</strong> v1 là CV tổng hợp; v2 thêm 8 JD thật (Djinni): thang hệ thống vẫn giữ (BM25 0.441 → B4 0.723).</div>
+                        <div><strong>Tập test nhỏ:</strong> 10 JD (v1), 18 JD (v2); chênh lệch dưới ~0.03 không có ý nghĩa.</div>
+                        <div><strong>Hành vi agent đo với HR theo kịch bản,</strong> một mô hình (Claude qua CLI thay cho API: hành vi giữ nguyên, độ trễ và chi phí thì không).</div>
                     </div>
                     <div class="p-2.5 rounded-xl card-blue text-blue-950 space-y-1.5">
                         <div class="font-bold">Bước tiếp theo</div>
-                        <div>1. Hai thành viên chấm mù 120 cặp; κ ≥ 0.8 giữ nhãn bạc, nếu thấp hơn nhãn người thay thế (benchmark v1.1).</div>
+                        <div>1. Chấm lại v1 bằng 120 cặp nhãn người (v1.1); một buổi thống nhất rubric cho hồ sơ thật ngắn, rồi chấm mù lại Djinni (v2.1).</div>
                         <div>2. Thu thập 5–10 CV thật có sự đồng ý (che PII, chỉ lưu bản ẩn danh).</div>
-                        <div>3. Luật hỏi HR không coi loại kiểm thử ("API testing") là công cụ cụ thể (3 lần không hỏi ở H6). Đã thử nhận công cụ chỉ được mô tả: nDCG@10 dev không đổi (0.867) → không áp dụng.</div>
+                        <div>3. Bộ tấn công prompt injection giữ riêng (10/10 hiện tại là trên bộ nhỏ).</div>
                         <div>4. Mở rộng tập test để tách P6 khỏi ranker theo rubric một cách có ý nghĩa.</div>
-                        <div>5. HR học qua nhiều phiên: hiện chỉ hiệu chỉnh trọng số trong một phiên (hồi quy logistic theo cặp HR chọn), chưa lưu và chưa đo.</div>
-                        <div>6. Học tương phản kiểu ConFit (fine-tune bge-small): chưa làm. Dữ liệu công khai (Djinni QA): chưa làm.</div>
+                        <div>5. Đã đo, kết quả âm (giữ nguyên): học trọng số từ HR qua nhiều phiên Δ −0.008 nDCG@10 (E24); cross-encoder fine-tune tăng trên dữ liệu tổng hợp, không chuyển sang CV thật (E20).</div>
                     </div>
                 </div>
                 <div class="grid grid-cols-3 gap-2.5 text-[11px]">
