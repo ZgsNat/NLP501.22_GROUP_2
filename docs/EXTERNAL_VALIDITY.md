@@ -32,7 +32,7 @@ Mean and 95% bootstrap CI over 8 JDs. Evaluation is judged-only because the 424-
 
 - **Resolved:** the project now has human relevance judgements on real recruitment text, a versioned Aggregate Human Gold artifact, agreement statistics, and a reproducible external pilot.
 - **Production rerun completed for B0–B3:** on the same frozen inputs, B0/B1/B2/B3 score 0.422/0.464/0.482/**0.636** nDCG@10. B3 improves +0.214 over B0; see `DJINNI_PRODUCTION_RESULTS.md` for CIs, conservative P@5, τ and order hashes.
-- **P6 remains pending:** two Gemini attempts failed before the first completed JD because the provider returned HTTP 503 high-demand. No partial result is promoted and no model is silently substituted.
+- **Production run completed including P6:** on the same frozen inputs, B0/B1/B2/B3/P6 score 0.422/0.464/0.482/0.636/**0.643** nDCG@10. P6 (Gemini 3.8 Flash) achieves P@5 of 0.725 and improves +0.221 over B0 (p < 0.001); see `DJINNI_PRODUCTION_RESULTS.md` for CIs, conservative P@5, τ and order hashes.
 - **A virgin holdout is now locked, not yet measured:** `djinni_holdout_v1.json` fixes 6 disjoint JDs × 40 disjoint CVs before any system run. The evaluation gate stays closed until two independent blind human files cover all 240 pairs and pass κ/adjudication checks (`DJINNI_HOLDOUT.md`).
 - **Pooling limitation:** unjudged pairs are ignored, not treated as grade 0. Pooling was built from B0–B3, so it is suitable for a pilot but may miss candidates uniquely promoted by a new system.
 - **Sample size:** eight JDs give wide intervals. Report per-source results separately from the 10-JD synthetic test split.

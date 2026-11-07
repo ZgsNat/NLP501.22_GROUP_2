@@ -2509,7 +2509,7 @@
                         </div>
                         <div class="p-2.5 rounded-xl card-emerald text-emerald-950 space-y-1 text-[10.5px]">
                             <div class="font-bold">Chạy thật, đo được</div>
-                            <div>• Dữ liệu thật Djinni (nhãn người): <strong>B3 0.636</strong> nDCG@10, +0.214 so với BM25 (p&lt;0.001); P6 đang chờ (lỗi 503).</div>
+                            <div>• Dữ liệu thật Djinni (nhãn người): <strong>B3 0.636</strong> → <strong>P6 0.643</strong> nDCG@10 (P@5 0.725, +0.221 vs BM25, p&lt;0.001, Gemini 3.8 Flash).</div>
                             <div>• HR-task <strong>E15 40/42</strong> · mục tiêu phức tạp <strong>E26 81/83</strong> (3 lần/goal).</div>
                             <div>• Hỏi HR trên JD mơ hồ <strong>+0.078</strong> nDCG@10; investigator phục hồi 10/36 kỹ năng, <strong>0 sai</strong>.</div>
                         </div>
@@ -2585,7 +2585,7 @@
                     </div>
                     <div class="p-2.5 rounded-xl card-blue text-blue-950 space-y-1.5">
                         <div class="font-bold">Bước tiếp theo</div>
-                        <div>1. Djinni production B0–B3 đã chạy: nDCG@10 0.422 → 0.464 → 0.482 → <strong>0.636</strong>; P6 còn pending.</div>
+                        <div>1. Djinni production hoàn tất đến P6: nDCG@10 0.422 → 0.464 → 0.482 → 0.636 → <strong>P6 0.643</strong> (P@5 0.725).</div>
                         <div>2. Holdout đã khóa trước khi chạy: 6 JD × 40 CV, 240 cặp/người; chỉ mở khi đủ 2 bộ nhãn người mù, độc lập.</div>
                         <div>3. Thu thập 5–10 CV thật có sự đồng ý (che PII, chỉ lưu bản ẩn danh).</div>
                         <div>4. Bộ tấn công prompt injection giữ riêng (10/10 hiện tại là trên bộ nhỏ).</div>
@@ -3176,7 +3176,7 @@
             { title: "Slide 34 · Sản phẩm hoàn thiện — có phải Agentic AI (Nguyễn Thái Thịnh)", notes: [
                 "<strong>Thông điệp:</strong> đã có sản phẩm chạy được đầu-cuối (FastAPI + P6 + P7, Qdrant hybrid, frontend React ?mock, Docker/Langfuse) — không còn là thiết kế.",
                 "<strong>Có phải Agentic AI?</strong> theo why-agentic §3: hệ là tổ chức nhiều thành phần có vai trò (orchestrator, investigator, arbiter, decision model, retrieval/scoring tất định, guard, HR) — bounded autonomy đặt đúng chỗ ngoại lệ; mục tiêu mở + bước kế phụ thuộc quan sát + tự kiểm chứng → agentic, không phải 'để LLM làm tất'.",
-                "<strong>Chạy thật, firewall-safe:</strong> Djinni thật nhãn người B3 0.636 (+0.214 vs BM25, p<0.001), P6 pending; E15 40/42; E26 81/83; hỏi HR vague-JD +0.078; investigator 10/36 phục hồi, 0 sai. KHÔNG dùng số 0.955 (đã rút)."
+                "<strong>Chạy thật, firewall-safe:</strong> Djinni thật nhãn người B3 0.636 → P6 0.643 (+0.221 vs BM25, p<0.001, P@5 0.725); E15 40/42; E26 81/83; hỏi HR vague-JD +0.078; investigator 10/36 phục hồi, 0 sai. KHÔNG dùng số 0.955 (đã rút)."
             ]},
             { title: "Slide 35 · Kết quả nhóm vs các bài báo (Nguyễn Thái Thịnh)", notes: [
                 "<strong>Trung thực:</strong> các bài báo đo trên dữ liệu/độ đo khác (AliYun, Recruiting, TREC) — KHÔNG so trực tiếp con số; bảng so năng lực và thứ được đo.",

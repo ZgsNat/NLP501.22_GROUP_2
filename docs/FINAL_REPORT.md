@@ -44,7 +44,7 @@ and every input pinned by checksum. On that test split:
   to HR when it cannot (§3.1, §5.7).
 - **Real CVs (NLP501-bench v2).** Eight real QA Automation JDs from Djinni were added to the test split (18 test JDs).
   The ladder holds on real text: BM25 0.441 → fixed pipeline 0.723 on Djinni; 0.582 → 0.787 over all 18 (§5.8). On
-  Djinni with human labels (424 pairs, two graders each), BM25 0.422 → 8-axis rules 0.636 (§2.3).
+  Djinni with human labels (424 pairs, two graders each), BM25 0.422 → 8-axis rules 0.636 → P6 full agent **0.643** (+0.221 over B0, p < 0.001, P@5 = 0.725) (§2.3).
 - **Every LLM output passes code checks at run time** (Q1–Q7 and Q14–Q20 of 20 written criteria; the rest are offline
   evaluations).
 - **Human labels.** Two teammates graded 120 pairs of `ours` blind (κ 0.965 with each other). Against the silver mean
@@ -196,8 +196,8 @@ For external validity, Vũ and Đán graded the same 424 pooled Djinni pairs (Đ
 visible). Aggregate Human Gold keeps
 their unrounded mean and both source grades: exact agreement 67.0%, quadratic-weighted κ = 0.696; 284 labels have
 the same grade, 111 differ by one and 29 differ by at least two. In the frozen production run, B0/B1/B2/B3 score
-0.422/0.464/0.482/**0.636** nDCG@10; B3 is +0.214 over B0. P6 has no Djinni score: Gemini returned HTTP 503
-before completing its first JD, and no partial output was promoted (`DJINNI_PRODUCTION_RESULTS.md`).
+0.422/0.464/0.482/**0.636** nDCG@10; P6 (Gemini 3.8 Flash) achieves **0.643 [0.563, 0.725]** (+0.221 over B0, p < 0.001)
+and conservative P@5 of **0.725 [0.575, 0.875]** with τ-b of **0.415** (`DJINNI_PRODUCTION_RESULTS.md`).
 
 A fixed-seed holdout of 6 new JDs and 40 new CVs, never seen during development, is locked by source and content
 hashes before any run. Code refuses to materialize or score it until two independent blind human files
@@ -640,9 +640,9 @@ blind LLM annotators (Opus and Sonnet, κ 0.778); metrics are condensed to judge
 - **P6 ≈ B4 again** (−0.005), as on v1: rules set the score in both.
 - **Human labels on Djinni (E28, `EXTERNAL_VALIDITY.md`, `DJINNI_PRODUCTION_RESULTS.md`).** Vũ and Đán graded all
   424 pooled pairs (κ 0.696 with each other; Đán's set with the model's grade visible); the gold is their mean, with
-  the disagreement kept. On it the frozen production run scores B0 BM25 0.422, B1 dense 0.464, B2 hybrid 0.482 and
-  B3 8-axis rules ⊕ CE **0.636** (+0.214 over BM25); P6 is pending. The rules ladder that holds on silver labels holds
-  on human ones. A locked holdout (6 new JDs × 40 new CVs) waits for two blind label files (`DJINNI_HOLDOUT.md`).
+  the disagreement kept. On it the frozen production run scores B0 BM25 0.422, B1 dense 0.464, B2 hybrid 0.482,
+  B3 8-axis rules ⊕ CE **0.636** (+0.214 over BM25), and P6 full agent **0.643** (+0.221 over BM25, p < 0.001; P@5 = 0.725).
+  The rules ladder that holds on silver labels transfers directly to real text and human labels. A locked holdout (6 new JDs × 40 new CVs) waits for two blind label files (`DJINNI_HOLDOUT.md`).
 
 ### 5.9 Further v4 evaluations
 
@@ -819,7 +819,7 @@ that unit tests never would.
 
 **Next:**
 - the locked Djinni holdout (6 JDs × 40 CVs): two blind human label files, then the pre-registered systems once;
-- P6 on Djinni human gold (B0–B3 done), without changing the frozen experiment;
+- P6 on Djinni human gold is complete: 0.643 nDCG@10, P@5 0.725 (+0.221 over B0);
 - E15 with repeated runs, as E26 already does, and a real HR in the loop instead of a script;
 - consented real CVs;
 - a larger test split, enough to separate the final system from the rubric ranker with confidence;
