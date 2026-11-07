@@ -196,8 +196,7 @@ For external validity, Vũ and Đán graded the same 424 pooled Djinni pairs (Đ
 visible). Aggregate Human Gold keeps
 their unrounded mean and both source grades: exact agreement 67.0%, quadratic-weighted κ = 0.696; 284 labels have
 the same grade, 111 differ by one and 29 differ by at least two. In the frozen production run, B0/B1/B2/B3 score
-0.422/0.464/0.482/**0.636** nDCG@10; P6 (Gemini 3.8 Flash) achieves **0.643 [0.563, 0.725]** (+0.221 over B0, p < 0.001)
-and conservative P@5 of **0.725 [0.575, 0.875]** with τ-b of **0.415** (`DJINNI_PRODUCTION_RESULTS.md`).
+0.422/0.464/0.482/**0.636** nDCG@10 and the full agent P6 **0.643 [0.563, 0.725]** (+0.221 over B0, p < 0.001; conservative P@5 of **0.725 [0.575, 0.875]**, τ-b of **0.415**; `DJINNI_PRODUCTION_RESULTS.md`). P6 ran on Gemini 3.8 Flash in this run; rules set its score, as everywhere else.
 
 A fixed-seed holdout of 6 new JDs and 40 new CVs, never seen during development, is locked by source and content
 hashes before any run. Code refuses to materialize or score it until two independent blind human files
@@ -280,7 +279,7 @@ The system has two layers (`docs/architecture.html`, `docs/agentic-architecture-
 
 `agent/orchestrator.py`. HR states a goal in their own words; the model then picks the next step from **17 typed
 tools** (`agent/tools.py`): `parse_jd`, `formalize_goal`, `define_concept`, `check_goal`, `ask_hr`, `screen`,
-`investigate`, `propose_substitutes`, `explain`, `rank_shortlist`, `compare`, `get_candidate`, `search_cvs`,
+`investigate`, `propose_substitutes`, `explain`, `rank_shortlist` (off by default, §9), `compare`, `get_candidate`, `search_cvs`,
 `update_requirements`, `set_weights`, `record_decisions`, `respond_to_hr`. `screen` is the P6 pipeline up to the
 ranking at 0 tokens, so the tools reuse the nodes below. It is a multi-turn conversation: HR can ask why, change a
 requirement, re-weight or reject a candidate, and the agent acts.
@@ -641,8 +640,8 @@ blind LLM annotators (Opus and Sonnet, κ 0.778); metrics are condensed to judge
 - **Human labels on Djinni (E28, `EXTERNAL_VALIDITY.md`, `DJINNI_PRODUCTION_RESULTS.md`).** Vũ and Đán graded all
   424 pooled pairs (κ 0.696 with each other; Đán's set with the model's grade visible); the gold is their mean, with
   the disagreement kept. On it the frozen production run scores B0 BM25 0.422, B1 dense 0.464, B2 hybrid 0.482,
-  B3 8-axis rules ⊕ CE **0.636** (+0.214 over BM25), and P6 full agent **0.643** (+0.221 over BM25, p < 0.001; P@5 = 0.725).
-  The rules ladder that holds on silver labels transfers directly to real text and human labels. A locked holdout (6 new JDs × 40 new CVs) waits for two blind label files (`DJINNI_HOLDOUT.md`).
+  B3 8-axis rules ⊕ CE **0.636** (+0.214 over BM25) and P6 full agent **0.643** (+0.221 over BM25, p < 0.001; P@5 = 0.725).
+  The rules ladder that holds on silver labels holds on human ones, and P6 ≈ B3 as on every other set: rules set the score. A locked holdout (6 new JDs × 40 new CVs) waits for two blind label files (`DJINNI_HOLDOUT.md`).
 
 ### 5.9 Further v4 evaluations
 
@@ -812,14 +811,22 @@ We count only the errors that cost HR something:
 
 ## 10. Conclusion
 
-An agentic CV ranker earns trust by being agentic where rules cannot reach: asking, reading noisy text and judging true
-ties. It keeps the score in deterministic rules over well-processed data and checks every LLM output in code.
-Measured on one frozen benchmark, the final system is the best version of the project. Its evaluation found faults
-that unit tests never would.
+An agentic CV ranker earns trust by being agentic where rules cannot reach: understanding HR's goal, checking it can
+be met, asking, reading noisy text and judging true ties. It keeps the score in deterministic rules over
+well-processed data and checks every LLM output in code.
+
+- **Ranking:** on the frozen benchmark the final system is the best version of the project (P6 0.851 nDCG@10), and the
+  order of systems holds when people, not models, grade (v1.1). On real CVs with human labels the rules ladder holds
+  too: BM25 0.422 → 8-axis rules 0.636 → P6 0.643.
+- **Agentic behaviour:** the goal-driven agent (P7) passes 40 of 42 checks on HR tasks and 81 of 83 on complex goals
+  over three runs each, including going back to HR when a goal cannot be met and declaring what it could not deliver.
+- **Control:** where an LLM ordering could only be graded by labels from the same model family, the result is not
+  claimed and the feature stays off.
+
+Its evaluation found faults that unit tests never would.
 
 **Next:**
 - the locked Djinni holdout (6 JDs × 40 CVs): two blind human label files, then the pre-registered systems once;
-- P6 on Djinni human gold is complete: 0.643 nDCG@10, P@5 0.725 (+0.221 over B0);
 - E15 with repeated runs, as E26 already does, and a real HR in the loop instead of a script;
 - consented real CVs;
 - a larger test split, enough to separate the final system from the rubric ranker with confidence;
@@ -840,7 +847,7 @@ that unit tests never would.
 ```bash
 uv sync && docker compose up -d && (cd backend && uv run python -m app.rag.ingest)
 cd backend && export PYTHONHASHSEED=0 LLM_PROVIDER=claude_code
-uv run pytest                                    # 257 tests, no LLM or Docker needed
+uv run pytest                                    # 275 tests, no LLM or Docker needed
 export REFERENCE_DATE=2026-10-30                 # pins "Present" in CVs (v4.1)
 uv run python -m app.eval.benchmark verify       # the frozen benchmark is intact
 uv run python -m app.eval.benchmark_v1_1          # v1.1: v1 re-scored with the 120 blind human pairs (no LLM)

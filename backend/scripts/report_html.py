@@ -5,7 +5,20 @@
 """
 import sys, markdown, re, pathlib
 src = pathlib.Path(sys.argv[1]); out = pathlib.Path(sys.argv[2])
-body = markdown.markdown(src.read_text(encoding="utf-8"), extensions=["tables", "fenced_code"])
+
+
+def nested_lists(md: str) -> str:
+    """Python-Markdown nests a list only at 4-space indents; the report uses 2 (under "- ") and 3 (under "1. "), which
+    it would flatten into the parent list. Re-indent list items, outside code fences, to 4 spaces per level."""
+    out, fence = [], False
+    for line in md.splitlines():
+        fence ^= line.lstrip().startswith("```")
+        m = None if fence else re.match(r"^( +)([-*+]|\d+\.) ", line)
+        out.append(" " * 4 * ((len(m.group(1)) + 3) // 4) + line.lstrip() if m else line)
+    return "\n".join(out)
+
+
+body = markdown.markdown(nested_lists(src.read_text(encoding="utf-8")), extensions=["tables", "fenced_code"])
 body = re.sub(r'<img alt="[^"]*" src="figures/([^"]+\.svg)" */?>',
               lambda m: (src.parent / "figures" / m.group(1)).read_text(encoding="utf-8").replace("<svg ", "<svg style='max-width:100%;height:auto' ", 1), body)
 css = """
