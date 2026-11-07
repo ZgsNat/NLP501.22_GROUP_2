@@ -276,7 +276,7 @@ The other results each have their own generated file:
 - **Human labels.** Hoa and Phúc graded 120 pairs blind, κ 0.965 with each other; against the silver mean κ 0.695 /
   0.661, so silver is the secondary set ([`docs/HUMAN_LABELS.md`](docs/HUMAN_LABELS.md)).
 - **Real text with human labels.** Djinni-QA: 8 real JDs × 250 anonymised CVs, 424 judged pairs with two human grades
-  (κ 0.696). BM25 0.422 → 8-axis rules 0.636 nDCG@10; P6 pending
+  (κ 0.696). BM25 0.422 → 8-axis rules 0.636 → P6 0.643 nDCG@10
   ([`docs/EXTERNAL_VALIDITY.md`](docs/EXTERNAL_VALIDITY.md), [`docs/DJINNI_PRODUCTION_RESULTS.md`](docs/DJINNI_PRODUCTION_RESULTS.md)).
   A 6-JD × 40-CV holdout is locked until two blind label files exist ([`docs/DJINNI_HOLDOUT.md`](docs/DJINNI_HOLDOUT.md)).
 - **The agent (P7), live on Claude.** HR tasks: 40/42 behaviour checks ([`docs/AGENTIC_RESULTS.md`](docs/AGENTIC_RESULTS.md));
