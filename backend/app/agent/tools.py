@@ -398,6 +398,8 @@ def check_rank(state: AgentState, _: NoArgs) -> str | None:
     s = get_settings()
     if why := needs_ranking(state):
         return why
+    if s.max_llm_ranks == 0:
+        return "LLM shortlist ranking is experimental and disabled until the independent human-Gold release gate passes"
     if state.get("loops", {}).get("llm_rank", 0) >= s.max_llm_ranks:
         return f"LLM ranking budget used ({s.max_llm_ranks} per run)"
     return None if len(ranked(state)) >= 2 else "fewer than two ranked candidates: nothing to order"

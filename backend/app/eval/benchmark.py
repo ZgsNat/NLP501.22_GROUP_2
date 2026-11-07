@@ -73,7 +73,7 @@ def freeze() -> dict:
                     "dev": {"ours": ours["dev"], "coding": sorted(j for j, v in gold.items() if v["split"] != "test")}},
          "labels": {"ours": "silver: mean of two LLM annotators, 0–3 (to be replaced by human-adjudicated labels = v1.1)",
                     "coding": "gold from the coding branch's annotation rubric, 0–3"},
-         "sha256": {p.relative_to(ROOT).as_posix(): _sha(p) for p in _inputs()}}
+         "sha256": {str(p.relative_to(ROOT)): _sha(p) for p in _inputs()}}
     MANIFEST.write_text(json.dumps(m, indent=1, ensure_ascii=False))
     return m
 
@@ -82,7 +82,7 @@ def verify() -> list[str]:
     """Inputs that differ from the manifest (empty = the benchmark is intact)."""
     m = json.loads(MANIFEST.read_text())
     bad = [p for p, h in m["sha256"].items() if not (ROOT / p).exists() or _sha(ROOT / p) != h]
-    extra = [p.relative_to(ROOT).as_posix() for p in _inputs() if p.relative_to(ROOT).as_posix() not in m["sha256"]]
+    extra = [str(p.relative_to(ROOT)) for p in _inputs() if str(p.relative_to(ROOT)) not in m["sha256"]]
     return bad + [f"{p} (not in manifest)" for p in extra]
 
 

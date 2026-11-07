@@ -1,30 +1,136 @@
 {
- "annotator": "human vu",
- "source": "human_djinni_vu_review.json",
+ "annotator": "human Vũ",
+ "source": "review.html",
+ "pool": "a0a4c1a8aa205cea97e0d343f85ce440ee7ea6b5",
+ "saw_model": 0,
  "labels": [
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_f0ddeda8bc",
+   "grade": 1,
+   "note": " but no Python, no BDD, and API testing only through Postman.",
+   "saw_model": false,
+   "at": "2026-11-06T16:45:35.638Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_4d8c0ebbb2",
+   "grade": 0,
+   "note": "No commercial experience; only freelance uTest manual testing and pet projects.",
+   "saw_model": false,
+   "at": "2026-11-06T16:45:56.685Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_0ad3ef06b8",
+   "grade": 0,
+   "note": "Has SoapUI, MS SQL and Docker but automates in JavaScript/Cypress; no C#.",
+   "saw_model": false,
+   "at": "2026-11-06T16:46:22.417Z"
+  },
   {
    "jd": "dj_jd_cda40acb53",
    "cv": "dj_eb53548434",
-   "grade": 3,
-   "note": "",
+   "grade": 1,
+   "note": "but has no Java/Selenium and says outright  they don't want Java automation.",
    "saw_model": false,
-   "at": "2026-11-05T15:34:20.986Z"
+   "at": "2026-11-06T16:46:55.370Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_d5df5453a7",
+   "grade": 1,
+   "note": "skills list with no project evidence.",
+   "saw_model": false,
+   "at": "2026-11-06T16:47:25.788Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_009bdade06",
+   "grade": 0,
+   "note": "Java/REST Assured backend testing only, 2 years, no C#, intermediate English.",
+   "saw_model": false,
+   "at": "2026-11-06T16:47:46.926Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_da3e534c8f",
+   "grade": 2,
+   "note": "Linux and networking are not shown.",
+   "saw_model": false,
+   "at": "2026-11-06T16:48:11.411Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_c3223a50b7",
+   "grade": 1,
+   "note": "no project or framework evidence and no TestNG, Maven or SQL.",
+   "saw_model": false,
+   "at": "2026-11-06T16:48:51.306Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_01f05d1b51",
+   "grade": 0,
+   "note": "No matching",
+   "saw_model": false,
+   "at": "2026-11-06T16:49:04.045Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_452a18b38a",
+   "grade": 0,
+   "note": "but automation is in JS/TS (Cypress, WDIO) and Python, with no C#.",
+   "saw_model": false,
+   "at": "2026-11-06T16:49:31.839Z"
   },
   {
    "jd": "dj_jd_6e1339ed62",
    "cv": "dj_166fc2fac6",
-   "grade": 3,
-   "note": "",
+   "grade": 2,
+   "note": "Built Cypress E2E and RestAssured API frameworks with CI and has Angular (a nice-to-have), but no Python, uses GitLab CI not Jenkins, and English is only intermediate.",
    "saw_model": false,
-   "at": "2026-11-05T15:38:42.472Z"
+   "at": "2026-11-06T16:50:06.745Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_3ce185c178",
+   "grade": 0,
+   "note": "Not match",
+   "saw_model": false,
+   "at": "2026-11-06T16:50:14.407Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_452a18b38a",
+   "grade": 1,
+   "note": " no Selenium, REST API or BDD work shown; mostly JS/Cypress/WDIO over 3 years.",
+   "saw_model": false,
+   "at": "2026-11-06T16:51:01.347Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_1e732649f9",
+   "grade": 0,
+   "note": "Only skills-list claims with no project evidence, and Selenium is not mentioned at all.",
+   "saw_model": false,
+   "at": "2026-11-06T16:51:27.350Z"
   },
   {
    "jd": "dj_jd_85e7c1f8dd",
    "cv": "dj_22d744861d",
-   "grade": 1,
-   "note": "Có nhiều năm kinh nghiệm, nhưng CV hơi sơ sài.",
+   "grade": 2,
+   "note": "Có nhiều năm kinh nghiệm, nhưng CV hơi sơ sài.4 years writing and maintaining backend, DB and frontend autotests, with Python in the title; detail is thin and Linux isn't mentioned.",
    "saw_model": false,
-   "at": "2026-11-05T15:42:34.944Z"
+   "at": "2026-11-06T16:52:07.762Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_c6601f1183",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T16:52:28.713Z"
   },
   {
    "jd": "dj_jd_0b373e855d",
@@ -32,31 +138,159 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T15:44:10.159Z"
+   "at": "2026-11-06T16:53:16.844Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_06f7856906",
+   "grade": 0,
+   "note": " no C#, and pre-intermediate English, which misses the fluent-English must-have.",
+   "saw_model": false,
+   "at": "2026-11-06T16:53:41.511Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_d5df5453a7",
+   "grade": 0,
+   "note": "no Python.",
+   "saw_model": false,
+   "at": "2026-11-06T16:53:48.773Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_711d6d444d",
+   "grade": 0,
+   "note": "No match",
+   "saw_model": false,
+   "at": "2026-11-06T16:55:37.936Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_173a06b684",
+   "grade": 0,
+   "note": "No match",
+   "saw_model": false,
+   "at": "2026-11-06T16:55:52.456Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_f873540014",
+   "grade": 2,
+   "note": "Good. but Behave appears only as general 'BDD knowledge' and Jira is not mentioned.",
+   "saw_model": false,
+   "at": "2026-11-06T16:56:24.166Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_15308e2e4b",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T16:56:58.612Z"
   },
   {
    "jd": "dj_jd_ef1d547a0b",
    "cv": "dj_009bdade06",
    "grade": 1,
-   "note": "CV hơi sơ sài. Phần Requirement chưa mô tả rõ CV khớp với JD",
+   "note": "CV hơi sơ sài. Phần Requirement chưa mô tả rõ CV khớp với JD2 years of back-end testing with Java/REST Assured is close, but there's no C#, SQL or SoapUI, and Docker is listed as something they haven't done.",
    "saw_model": false,
-   "at": "2026-11-05T15:46:27.303Z"
+   "at": "2026-11-06T16:57:20.776Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_daeeef3dfc",
+   "grade": 2,
+   "note": "Chưa đạt. About 2 years of commercial Java AQA work with Selenide, TestNG, RestAssured, API tests and Jenkins/GitLab CI, but no plain Selenium WebDriver, Postman or direct SQL shown",
+   "saw_model": false,
+   "at": "2026-11-06T16:57:59.160Z"
   },
   {
    "jd": "dj_jd_5ead23acd4",
    "cv": "dj_d78cf190ad",
-   "grade": 2,
+   "grade": 0,
    "note": "Chưa thấy mô tả ngôn ngữ java khớp với JD",
    "saw_model": false,
-   "at": "2026-11-05T15:47:59.695Z"
+   "at": "2026-11-06T16:58:19.360Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_e1e543ed30",
+   "grade": 0,
+   "note": "Manual QA with only basic Java and 'basic knowledge of automation'; no Selenium experience.",
+   "saw_model": false,
+   "at": "2026-11-06T16:58:43.382Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_e03dcd86cd",
+   "grade": 2,
+   "note": "but doesn't name Selenium, TestNG, SQL or Postman, and English is only intermediate.",
+   "saw_model": false,
+   "at": "2026-11-06T16:59:19.019Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_a493942bc5",
+   "grade": 2,
+   "note": "Python is the main language over 10 years, Selenium UI tests, Git and Jenkins, but no Behave/BDD or Jira and little project detail.",
+   "saw_model": false,
+   "at": "2026-11-06T17:00:07.721Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_2447114acb",
+   "grade": 0,
+   "note": "No match",
+   "saw_model": false,
+   "at": "2026-11-06T17:00:14.935Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_1daaad6cfd",
+   "grade": 0,
+   "note": "Automation is in Python/Swift; no C#.",
+   "saw_model": false,
+   "at": "2026-11-06T17:01:12.232Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_534d40a1b2",
+   "grade": 0,
+   "note": " no C# and short of 3 years of automation.",
+   "saw_model": false,
+   "at": "2026-11-06T17:01:27.156Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_f0ddeda8bc",
+   "grade": 0,
+   "note": "Not matching",
+   "saw_model": false,
+   "at": "2026-11-06T17:01:42.884Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_0ad3ef06b8",
+   "grade": 2,
+   "note": "Real work automating UI tests in Cypress/JS and API tests with Postman/Newman, plus about 4 years of manual testing; Jenkins appears only in the skills list and Python is missing.",
+   "saw_model": false,
+   "at": "2026-11-06T17:02:41.597Z"
   },
   {
    "jd": "dj_jd_5ead23acd4",
    "cv": "dj_22ba97f26f",
-   "grade": 1,
+   "grade": 2,
    "note": "Kinh nghiệm chưa khớp JD",
    "saw_model": false,
-   "at": "2026-11-05T15:48:25.558Z"
+   "at": "2026-11-06T17:03:07.052Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_f873540014",
+   "grade": 1,
+   "note": "Chưa khớp hết",
+   "saw_model": false,
+   "at": "2026-11-06T17:03:32.755Z"
   },
   {
    "jd": "dj_jd_cda40acb53",
@@ -64,15 +298,111 @@
    "grade": 1,
    "note": "Số năm kinh nghiệm đủ. Nhưng CV chưa mô tả đủ thông tin, chưa đối chiếu được với JD.",
    "saw_model": false,
-   "at": "2026-11-05T15:49:55.463Z"
+   "at": "2026-11-06T17:04:09.925Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_711d6d444d",
+   "grade": 2,
+   "note": " Java automation with Selenium, RestAssured, TestNG, Jenkins and Maven, plus XML/REST from 12 years of 1C dev/QA work, but the automation is described as a list of tools rather than projects.",
+   "saw_model": false,
+   "at": "2026-11-06T17:05:04.396Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_0575c7a9ed",
+   "grade": 1,
+   "note": "Thiếu tool",
+   "saw_model": false,
+   "at": "2026-11-06T17:05:30.277Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_9d986d6fd9",
+   "grade": 2,
+   "note": "Entry level, claiming hands-on Java/TestNG, Page Object, functional and regression testing, and SDLC/bug life cycle knowledge from a mentored team project; fits a trainee profile but has little concrete detail.",
+   "saw_model": false,
+   "at": "2026-11-06T17:06:08.707Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_166fc2fac6",
+   "grade": 2,
+   "note": "Thêm thông tin",
+   "saw_model": false,
+   "at": "2026-11-06T17:08:08.885Z"
   },
   {
    "jd": "dj_jd_85e7c1f8dd",
    "cv": "dj_d7f5fc8de2",
+   "grade": 2,
+   "note": "Thêm thông tin",
+   "saw_model": false,
+   "at": "2026-11-06T17:08:44.452Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_8accc54ec7",
+   "grade": 0,
+   "note": "Not match",
+   "saw_model": false,
+   "at": "2026-11-06T17:09:03.750Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_1d6c1abff0",
+   "grade": 1,
+   "note": "1 year, but no Python and nowhere near 3 years of manual testing.",
+   "saw_model": false,
+   "at": "2026-11-06T17:09:45.961Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_737cabb8bf",
+   "grade": 1,
+   "note": "no C# and English is pre-intermediate.",
+   "saw_model": false,
+   "at": "2026-11-06T17:10:25.246Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_0ad3ef06b8",
+   "grade": 0,
+   "note": "Not matching",
+   "saw_model": false,
+   "at": "2026-11-06T17:10:35.784Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_69a19b824d",
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T15:50:26.582Z"
+   "at": "2026-11-06T17:11:21.145Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_57eaa16610",
+   "grade": 0,
+   "note": "Not ok",
+   "saw_model": false,
+   "at": "2026-11-06T17:11:36.707Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_d5df5453a7",
+   "grade": 0,
+   "note": "Not ok",
+   "saw_model": false,
+   "at": "2026-11-06T17:11:47.080Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_8accc54ec7",
+   "grade": 0,
+   "note": "Mainly manual desktop testing; automation is only a 3-month Java course, no C#, and pre-intermediate English.",
+   "saw_model": false,
+   "at": "2026-11-06T17:12:02.047Z"
   },
   {
    "jd": "dj_jd_ef1d547a0b",
@@ -80,15 +410,79 @@
    "grade": 0,
    "note": "Chưa đủ số năm kinh nghiệm",
    "saw_model": false,
-   "at": "2026-11-05T15:50:59.670Z"
+   "at": "2026-11-06T17:12:23.181Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_9d776682e0",
+   "grade": 1,
+   "note": "2 years of solid manual QA with test documentation and Postman, but only 'basic automatic testing' with no Selenium or Java shown.",
+   "saw_model": false,
+   "at": "2026-11-06T17:13:02.829Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_97054335dd",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T17:13:46.639Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_ef40096a4d",
+   "grade": 0,
+   "note": "Student with a three-month manual QA internship and no automation or C# experience.",
+   "saw_model": false,
+   "at": "2026-11-06T17:14:12.709Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_1e732649f9",
+   "grade": 1,
+   "note": "C# is self-rated as only 'basic' and the main automation stack is Java, though JMeter, Postman and MSSQL are listed.",
+   "saw_model": false,
+   "at": "2026-11-06T17:14:42.414Z"
   },
   {
    "jd": "dj_jd_85e7c1f8dd",
    "cv": "dj_3108d0ae9f",
    "grade": 0,
-   "note": "",
+   "note": "Says they have no experience and only took courses; Python and Linux are not mentioned.",
    "saw_model": false,
-   "at": "2026-11-05T15:51:56.109Z"
+   "at": "2026-11-06T17:15:07.918Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_ad45253c7e",
+   "grade": 1,
+   "note": "but no Python, Selenium or Behave.",
+   "saw_model": false,
+   "at": "2026-11-06T17:15:40.665Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_3efde2f542",
+   "grade": 0,
+   "note": "no described work or testing-methodology evidence.",
+   "saw_model": false,
+   "at": "2026-11-06T17:16:02.385Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_16a829535f",
+   "grade": 1,
+   "note": " no Java, TestNG/JUnit or Maven.",
+   "saw_model": false,
+   "at": "2026-11-06T17:16:33.500Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_4de7c0f8f6",
+   "grade": 2,
+   "note": "4 years of Java automation with Selenide (built on Selenium), Cucumber and Rest Assured, plus defect tracking across the SDLC, but little manual testing and no XPath/DOM mentioned.",
+   "saw_model": false,
+   "at": "2026-11-06T17:17:15.304Z"
   },
   {
    "jd": "dj_jd_ae34bfa9d9",
@@ -96,7 +490,15 @@
    "grade": 0,
    "note": "Chưa khớp kỹ năng test",
    "saw_model": false,
-   "at": "2026-11-05T15:52:29.656Z"
+   "at": "2026-11-06T17:17:39.884Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_4124aac16f",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T17:18:14.621Z"
   },
   {
    "jd": "dj_jd_ae34bfa9d9",
@@ -104,7 +506,71 @@
    "grade": 0,
    "note": "CV đang nói không muốn test manual, chưa khớp JD",
    "saw_model": false,
-   "at": "2026-11-05T15:53:20.261Z"
+   "at": "2026-11-06T17:18:29.865Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_a8a575ae36",
+   "grade": 0,
+   "note": "Lists only basic Python; their work was manual testing of lighting hardware, with no test automation.",
+   "saw_model": false,
+   "at": "2026-11-06T17:18:48.545Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_97054335dd",
+   "grade": 2,
+   "note": "Thiếu thông tin về manual test",
+   "saw_model": false,
+   "at": "2026-11-06T17:19:23.588Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_f873540014",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T17:20:15.852Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_1da1c1b859",
+   "grade": 0,
+   "note": "Automation is in Java; no C#, which the job requires.",
+   "saw_model": false,
+   "at": "2026-11-06T17:20:37.686Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_d5df5453a7",
+   "grade": 0,
+   "note": "Automation is in TypeScript/JS/Java with no C#; REST, Docker, JMeter and Azure DevOps are mostly skills-list claims.",
+   "saw_model": false,
+   "at": "2026-11-06T17:21:01.064Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_404601dabd",
+   "grade": 0,
+   "note": "they want to avoid manual testing.",
+   "saw_model": false,
+   "at": "2026-11-06T17:21:18.040Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_496c0147cb",
+   "grade": 2,
+   "note": "Wrote manual and automated test cases; Java core, JUnit and Selenide are listed with little project evidence.",
+   "saw_model": false,
+   "at": "2026-11-06T17:22:17.612Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_128252a092",
+   "grade": 0,
+   "note": "ut only 1 year of Python and explicitly not interested in Python, manual or data/ETL testing, which are central to this role.",
+   "saw_model": false,
+   "at": "2026-11-06T17:22:30.611Z"
   },
   {
    "jd": "dj_jd_6e1339ed62",
@@ -112,7 +578,47 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T15:53:43.782Z"
+   "at": "2026-11-06T17:23:13.540Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_ec2fc7ec68",
+   "grade": 2,
+   "note": "2 years , but written as a skills summary without project evidence.",
+   "saw_model": false,
+   "at": "2026-11-06T17:23:50.031Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_e03dcd86cd",
+   "grade": 0,
+   "note": "Java UI/API automation, Jenkins CI setup, manual and mobile testing, but no Python, which is a required skill.",
+   "saw_model": false,
+   "at": "2026-11-06T17:24:18.531Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_2447114acb",
+   "grade": 0,
+   "note": "Manual QA only; no Selenium or programming experience.",
+   "saw_model": false,
+   "at": "2026-11-06T17:24:39.259Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_b88c787b3f",
+   "grade": 0,
+   "note": "Automation is Java-based, and there is no C#, API, SQL or tool evidence.",
+   "saw_model": false,
+   "at": "2026-11-06T17:24:51.101Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_3d30a94f2d",
+   "grade": 1,
+   "note": "Their automation stack is all C#, with no sign of Java, which is a core must-have.",
+   "saw_model": false,
+   "at": "2026-11-06T17:25:16.640Z"
   },
   {
    "jd": "dj_jd_ef1d547a0b",
@@ -120,7 +626,23 @@
    "grade": 1,
    "note": "Không có kiến thức C#",
    "saw_model": false,
-   "at": "2026-11-05T15:54:18.702Z"
+   "at": "2026-11-06T17:27:00.227Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_42bd71417c",
+   "grade": 1,
+   "note": "a core must-have, is not mentioned.",
+   "saw_model": false,
+   "at": "2026-11-06T17:27:46.529Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_c6c1f4b08a",
+   "grade": 2,
+   "note": "Python is missing.",
+   "saw_model": false,
+   "at": "2026-11-06T17:28:20.735Z"
   },
   {
    "jd": "dj_jd_ef1d547a0b",
@@ -128,7 +650,7 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T15:54:42.077Z"
+   "at": "2026-11-06T17:28:57.151Z"
   },
   {
    "jd": "dj_jd_ae34bfa9d9",
@@ -136,7 +658,15 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T15:55:17.030Z"
+   "at": "2026-11-06T17:29:41.490Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_2def5612b8",
+   "grade": 1,
+   "note": "but no C# test automation, no SOAP, no SQL.",
+   "saw_model": false,
+   "at": "2026-11-06T17:30:04.453Z"
   },
   {
    "jd": "dj_jd_ae34bfa9d9",
@@ -144,23 +674,79 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T15:55:47.077Z"
+   "at": "2026-11-06T17:30:39.175Z"
   },
   {
    "jd": "dj_jd_6e1339ed62",
    "cv": "dj_c0ba26ab77",
-   "grade": 2,
+   "grade": 3,
    "note": "Có năm kinh nghiệm hơn nhiều với JD nên cần phỏng vấn xem có gắn bó được lâu dài.",
    "saw_model": false,
-   "at": "2026-11-05T15:57:00.445Z"
+   "at": "2026-11-06T17:31:15.126Z"
   },
   {
    "jd": "dj_jd_5ead23acd4",
    "cv": "dj_19965ebe12",
-   "grade": 1,
+   "grade": 0,
    "note": "Không có kinh nghiệm Automation test",
    "saw_model": false,
-   "at": "2026-11-05T15:57:31.772Z"
+   "at": "2026-11-06T17:31:44.829Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_0e91364a48",
+   "grade": 1,
+   "note": "Long manual QA background and Selenium/SpecFlow automation in C#, but no Python, Jenkins or API automation shown.",
+   "saw_model": false,
+   "at": "2026-11-06T17:32:26.060Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_1daaad6cfd",
+   "grade": 0,
+   "note": " core Java and Testng/JUnit are absent.",
+   "saw_model": false,
+   "at": "2026-11-06T17:32:48.380Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_1023b9e6d2",
+   "grade": 2,
+   "note": " but the described work is mostly mobile and backend dev, with little specific Python test evidence.",
+   "saw_model": false,
+   "at": "2026-11-06T17:33:52.742Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_71fff1cf1d",
+   "grade": 1,
+   "note": "Manual QA with test cases and Postman; Java is 'basic knowledge' and Selenide appears only in a skills list.",
+   "saw_model": false,
+   "at": "2026-11-06T17:34:26.281Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_2744fd7f2c",
+   "grade": 0,
+   "note": "Manual QA with course training; Java Selenium appears only as a bare skill line with no project evidence.",
+   "saw_model": false,
+   "at": "2026-11-06T17:34:36.424Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_3efde2f542",
+   "grade": 0,
+   "note": "Bare tool list of Java/Groovy tools with no C# and no demonstrated project work.",
+   "saw_model": false,
+   "at": "2026-11-06T17:34:47.077Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_aa89e318fb",
+   "grade": 2,
+   "note": "no project detail, and no mention of SQL",
+   "saw_model": false,
+   "at": "2026-11-06T17:35:33.536Z"
   },
   {
    "jd": "dj_jd_85e7c1f8dd",
@@ -168,15 +754,23 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T15:57:53.564Z"
+   "at": "2026-11-06T17:36:19.858Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_0044b992cd",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T17:37:07.832Z"
   },
   {
    "jd": "dj_jd_ae34bfa9d9",
    "cv": "dj_3db90b31e3",
-   "grade": 1,
+   "grade": 0,
    "note": "Chỉ có kinh nghiệm automation, không khớp JD",
    "saw_model": false,
-   "at": "2026-11-05T15:58:24.086Z"
+   "at": "2026-11-06T17:37:33.673Z"
   },
   {
    "jd": "dj_jd_cda40acb53",
@@ -184,7 +778,55 @@
    "grade": 2,
    "note": "Chưa có đủ thông tin theo JD cần",
    "saw_model": false,
-   "at": "2026-11-05T15:59:23.812Z"
+   "at": "2026-11-06T17:37:57.678Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_9d776682e0",
+   "grade": 0,
+   "note": " no Python or automation project shown.",
+   "saw_model": false,
+   "at": "2026-11-06T17:38:46.229Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_be81de5fc6",
+   "grade": 0,
+   "note": " but English is pre-intermediate, so the English must-have is not met.",
+   "saw_model": false,
+   "at": "2026-11-06T17:39:12.089Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_06f7856906",
+   "grade": 0,
+   "note": "Has strong Java automation, JMeter and MS SQL, but C# is absent and English is only pre-intermediate.",
+   "saw_model": false,
+   "at": "2026-11-06T17:39:28.328Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_3e79248027",
+   "grade": 1,
+   "note": "Manual QA only, with no automation, Python or Jenkins experience.",
+   "saw_model": false,
+   "at": "2026-11-06T17:41:00.480Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_3e595418dc",
+   "grade": 1,
+   "note": "Only 0.5 years in automation",
+   "saw_model": false,
+   "at": "2026-11-06T17:41:22.538Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_1da1c1b859",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T17:41:49.630Z"
   },
   {
    "jd": "dj_jd_26b849e026",
@@ -192,15 +834,175 @@
    "grade": 1,
    "note": "Chưa có kinh nghiệm automation test theo JD",
    "saw_model": false,
-   "at": "2026-11-05T16:00:27.539Z"
+   "at": "2026-11-06T17:42:15.828Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_19bd96550f",
+   "grade": 1,
+   "note": " but gives no manual QA experience and no project detail.",
+   "saw_model": false,
+   "at": "2026-11-06T17:42:47.259Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_1b3a2e00bb",
+   "grade": 0,
+   "note": "C# or API testing, and English is below the required level.",
+   "saw_model": false,
+   "at": "2026-11-06T17:43:15.706Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_534fe8b887",
+   "grade": 1,
+   "note": "H but C# only appears in a skills list and the automation is Java.",
+   "saw_model": false,
+   "at": "2026-11-06T17:43:38.994Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_eac2b113da",
+   "grade": 2,
+   "note": "CV is thin and shows no manual testing or Jenkins.",
+   "saw_model": false,
+   "at": "2026-11-06T17:44:14.098Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_3e595418dc",
+   "grade": 2,
+   "note": "CV is thin and shows no manual testing or Jenkins.",
+   "saw_model": false,
+   "at": "2026-11-06T17:44:41.413Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_eb53548434",
+   "grade": 0,
+   "note": "Solid JS/TS Cypress/SuperTest automation, but no Python, Selenium or Behave.",
+   "saw_model": false,
+   "at": "2026-11-06T17:45:00.918Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_19bd96550f",
+   "grade": 2,
+   "note": "gives no project detail.",
+   "saw_model": false,
+   "at": "2026-11-06T17:45:38.626Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_88978c4b56",
+   "grade": 0,
+   "note": "Not matching",
+   "saw_model": false,
+   "at": "2026-11-06T17:45:44.361Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_5a38d160ad",
+   "grade": 1,
+   "note": "the core requirement, is missing.",
+   "saw_model": false,
+   "at": "2026-11-06T17:46:15.039Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_aa50f38d38",
+   "grade": 2,
+   "note": "only 0.5 years of manual QA against the 1+ year requirement, and few project details.",
+   "saw_model": false,
+   "at": "2026-11-06T17:47:17.632Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_36edc90c19",
+   "grade": 0,
+   "note": "Java backend developer with no test automation or Python experience",
+   "saw_model": false,
+   "at": "2026-11-06T17:47:39.543Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_b88c787b3f",
+   "grade": 0,
+   "note": "but the CV gives no project detail and has no Python, Jenkins or demonstrated UI/API automation.",
+   "saw_model": false,
+   "at": "2026-11-06T17:48:04.392Z"
   },
   {
    "jd": "dj_jd_0b373e855d",
    "cv": "dj_749f7fdd66",
-   "grade": 2,
-   "note": "Chưa có kinh nghiệm dự án payment system yêu cầu trong JD",
+   "grade": 1,
+   "note": "Chưa có kinh nghiệm dự án payment system yêu cầu trong JDut no C# (a must-have) and no CI or manual testing shown.",
    "saw_model": false,
-   "at": "2026-11-05T16:02:10.251Z"
+   "at": "2026-11-06T17:48:28.199Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_9f3e6022dc",
+   "grade": 2,
+   "note": "no Linux or networking shown.",
+   "saw_model": false,
+   "at": "2026-11-06T17:49:01.215Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_06f7856906",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T17:49:43.287Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_e80cc482a2",
+   "grade": 0,
+   "note": "no QA, manual testing or test automation experience.",
+   "saw_model": false,
+   "at": "2026-11-06T17:50:12.670Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_b88c787b3f",
+   "grade": 1,
+   "note": "Linux or networking evidence.",
+   "saw_model": false,
+   "at": "2026-11-06T17:50:42.381Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_3e595418dc",
+   "grade": 0,
+   "note": "not enough year of automation in basic Java/Selenium; SoapUI and SQL appear only in a skills list, and there is no C#.",
+   "saw_model": false,
+   "at": "2026-11-06T17:50:53.191Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_496c0147cb",
+   "grade": 1,
+   "note": "Java/C# Selenium framework experience, but no Python, no API testing shown, and Jenkins only in a tools list.",
+   "saw_model": false,
+   "at": "2026-11-06T17:51:21.768Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_173a06b684",
+   "grade": 2,
+   "note": "but Python and Jenkins appear only in the skills list.",
+   "saw_model": false,
+   "at": "2026-11-06T17:52:08.591Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_ec2fc7ec68",
+   "grade": 0,
+   "note": "no C# and below the 3+ years required.",
+   "saw_model": false,
+   "at": "2026-11-06T17:52:33.798Z"
   },
   {
    "jd": "dj_jd_5ead23acd4",
@@ -208,7 +1010,23 @@
    "grade": 0,
    "note": "Kinh nghiệm chưa đủ",
    "saw_model": false,
-   "at": "2026-11-05T16:02:40.155Z"
+   "at": "2026-11-06T17:52:49.792Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_1da1c1b859",
+   "grade": 2,
+   "note": "creating QA documentation; manual depth isn't spelled out, and they want a senior/lead role.",
+   "saw_model": false,
+   "at": "2026-11-06T17:53:22.829Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_173a06b684",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T17:54:09.170Z"
   },
   {
    "jd": "dj_jd_6e1339ed62",
@@ -216,7 +1034,55 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T16:03:09.243Z"
+   "at": "2026-11-06T17:54:57.424Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_8d2aa74275",
+   "grade": 2,
+   "note": " no Behave mentioned and the CV is very brief.",
+   "saw_model": false,
+   "at": "2026-11-06T17:56:35.574Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_19bd96550f",
+   "grade": 0,
+   "note": "Automation work is all in Java, Swift and Kotlin; Python, a core requirement, is absent.",
+   "saw_model": false,
+   "at": "2026-11-06T17:56:57.875Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_8accc54ec7",
+   "grade": 0,
+   "note": "good, but Selenium/Java comes only from a 3-month course and English is pre-intermediate, below the required level.",
+   "saw_model": false,
+   "at": "2026-11-06T17:57:17.452Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_f873540014",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T17:59:06.581Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_711d6d444d",
+   "grade": 1,
+   "note": "Only about 1 yr of QA automation (RestAssured, Selenium, TestNG); the rest is 1C development, short of the 2+ yrs required.",
+   "saw_model": false,
+   "at": "2026-11-06T17:59:40.753Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_d47488a06a",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T18:01:38.385Z"
   },
   {
    "jd": "dj_jd_0b373e855d",
@@ -224,23 +1090,167 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T16:03:33.371Z"
+   "at": "2026-11-06T18:02:22.390Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_3213646762",
+   "grade": 1,
+   "note": "About 1 year of JavaScript/Jest API automation; no Python or Linux.",
+   "saw_model": false,
+   "at": "2026-11-06T18:02:47.934Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_16a829535f",
+   "grade": 0,
+   "note": "Ruby/Python automation with CI and Git, but no C#.",
+   "saw_model": false,
+   "at": "2026-11-06T18:03:14.155Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_8accc54ec7",
+   "grade": 0,
+   "note": " no Python, and pre-intermediate English.",
+   "saw_model": false,
+   "at": "2026-11-06T18:03:33.515Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_251e6a0ca9",
+   "grade": 0,
+   "note": " no C#, and wants a JS project.",
+   "saw_model": false,
+   "at": "2026-11-06T18:03:51.210Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_f5c02d58dc",
+   "grade": 2,
+   "note": "but all web-focused, wants web roles, and no Linux or networking shown.",
+   "saw_model": false,
+   "at": "2026-11-06T18:04:36.417Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_1daaad6cfd",
+   "grade": 2,
+   "note": "but the work is web/UI-focused and Linux is not mentioned.",
+   "saw_model": false,
+   "at": "2026-11-06T18:05:13.158Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_5a13c0f19f",
+   "grade": 2,
+   "note": "Has years of C# Selenium WebDriver automation across jobs, plus BDD scripts and step definitions (close to Specflow), but REST API testing, Git and CI are never shown.",
+   "saw_model": false,
+   "at": "2026-11-06T18:06:16.085Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_711d6d444d",
+   "grade": 1,
+   "note": "About 1 year of Java/JS API automation plus MSSQL integration work from a long 1C career; no C#, and short QA experience.",
+   "saw_model": false,
+   "at": "2026-11-06T18:06:54.868Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_e03dcd86cd",
+   "grade": 1,
+   "note": "Ok. but no C# test automation.",
+   "saw_model": false,
+   "at": "2026-11-06T18:07:17.408Z"
   },
   {
    "jd": "dj_jd_0b373e855d",
    "cv": "dj_4e7d52c59c",
-   "grade": 1,
-   "note": "Chưa đủ kinh nghiệm",
+   "grade": 0,
+   "note": " no C#, and intermediate English.",
    "saw_model": false,
-   "at": "2026-11-05T16:03:55.483Z"
+   "at": "2026-11-06T18:07:35.638Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_1d6c1abff0",
+   "grade": 0,
+   "note": "no C# and short of 3 years.",
+   "saw_model": false,
+   "at": "2026-11-06T18:07:51.041Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_534fe8b887",
+   "grade": 1,
+   "note": "Mostly performance testing (Gatling/Scala, SOASTA); Selenium/JUnit and Java appear only in skills lists, and OOP is hedged as 'familiarity'.",
+   "saw_model": false,
+   "at": "2026-11-06T18:08:22.716Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_51d605036f",
+   "grade": 0,
+   "note": "Manual QA only, with no test automation or C#.",
+   "saw_model": false,
+   "at": "2026-11-06T18:08:38.099Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_6ede4972c8",
+   "grade": 0,
+   "note": "Python full-stack web developer with no test automation experience, which is the core requirement.",
+   "saw_model": false,
+   "at": "2026-11-06T18:08:54.209Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_749f7fdd66",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T18:09:39.771Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_0d52f97bb3",
+   "grade": 1,
+   "note": "Java/Selenium/XPath framework work demonstrated but only 0.5 years total and no manual QA experience.",
+   "saw_model": false,
+   "at": "2026-11-06T18:10:17.238Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_a493942bc5",
+   "grade": 2,
+   "note": "10 years with Java, TestNG, Selenium, Maven, Git, Jenkins and REST API/DB automation, but Python is the main language and the CV gives few project details.",
+   "saw_model": false,
+   "at": "2026-11-06T18:11:10.987Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_ec2fc7ec68",
+   "grade": 1,
+   "note": " only as self-rated skill claims with no project evidence, and there's no Python",
+   "saw_model": false,
+   "at": "2026-11-06T18:12:38.510Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_3efde2f542",
+   "grade": 1,
+   "note": "Tool list closely matches the job (Java, Selenium, Maven, REST Assured, Mocha, Node, MySQL), but it is only a list with no demonstrated project work.",
+   "saw_model": false,
+   "at": "2026-11-06T18:13:16.100Z"
   },
   {
    "jd": "dj_jd_6e1339ed62",
    "cv": "dj_7e3877c75f",
    "grade": 2,
-   "note": "CV chưa mô tả đủ các tool khớp JD",
+   "note": "Solid Java UI/API/mobile automation, but no Python, no Jenkins and no manual testing experience shown.",
    "saw_model": false,
-   "at": "2026-11-05T16:04:46.540Z"
+   "at": "2026-11-06T18:14:19.017Z"
   },
   {
    "jd": "dj_jd_26b849e026",
@@ -248,7 +1258,87 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T16:06:03.562Z"
+   "at": "2026-11-06T18:14:41.261Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_452a18b38a",
+   "grade": 1,
+   "note": "3 years including a project using Python with Robot Framework; Python depth, Linux and networking are not clear.",
+   "saw_model": false,
+   "at": "2026-11-06T18:14:59.190Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_48bd18fb97",
+   "grade": 0,
+   "note": "Knows the .NET/C# stack as a developer, but shows no QA or test automation experience.",
+   "saw_model": false,
+   "at": "2026-11-06T18:15:28.030Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_3db90b31e3",
+   "grade": 0,
+   "note": "Explicitly Cypress/Playwright/JS/TS only for web; no Python or Linux, the core requirements.",
+   "saw_model": false,
+   "at": "2026-11-06T18:15:43.244Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_404601dabd",
+   "grade": 1,
+   "note": "10 years with demonstrated UI/API frameworks, Jenkins pipelines and a jQuery-to-React migration, but no Python and wants to avoid manual testing.",
+   "saw_model": false,
+   "at": "2026-11-06T18:16:09.448Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_f65208fb14",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T18:16:32.915Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_c5814f3a84",
+   "grade": 1,
+   "note": "but it is Java-based with no Python or Jenkins, and Selenium is only 'familiar'.",
+   "saw_model": false,
+   "at": "2026-11-06T18:17:02.360Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_15308e2e4b",
+   "grade": 2,
+   "note": "Wrote UI and API automation tests in C# and Java with NUnit/Selenium, plus manual testing and Git; but only 2.5 years, CI not explicit, and prefers Java.",
+   "saw_model": false,
+   "at": "2026-11-06T18:18:04.122Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_5541e45ae5",
+   "grade": 1,
+   "note": "Solid C# UI/API framework work with TeamCity CI, but only 1.5 years, little manual testing, and no Python or Jenkins.",
+   "saw_model": false,
+   "at": "2026-11-06T18:18:24.968Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_0aa520e5b9",
+   "grade": 0,
+   "note": "No Java at all: automation was in Python, and the tools are only 'familiar with'.",
+   "saw_model": false,
+   "at": "2026-11-06T18:18:47.204Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_7d780d3df4",
+   "grade": 0,
+   "note": " but English is pre-intermediate, below the required intermediate-or-higher level.",
+   "saw_model": false,
+   "at": "2026-11-06T18:19:05.765Z"
   },
   {
    "jd": "dj_jd_6e1339ed62",
@@ -256,39 +1346,255 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T16:06:53.594Z"
+   "at": "2026-11-06T18:19:30.038Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_36edc90c19",
+   "grade": 0,
+   "note": "Java backend developer with no QA automation, Python, Selenium or BDD experience.",
+   "saw_model": false,
+   "at": "2026-11-06T18:19:45.629Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_01f05d1b51",
+   "grade": 0,
+   "note": "Has testing-methodology and automation claims, but Java, a core must-have, is never mentioned.",
+   "saw_model": false,
+   "at": "2026-11-06T18:20:04.636Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_3d5f39acec",
+   "grade": 0,
+   "note": "Banking domain and Java WebDriver, but no C#, CI or Git, and English is intermediate.",
+   "saw_model": false,
+   "at": "2026-11-06T18:20:20.319Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_534d40a1b2",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T18:21:08.804Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_404601dabd",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T18:21:53.904Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_251e6a0ca9",
+   "grade": 0,
+   "note": "Python, the core must-have, is absent.",
+   "saw_model": false,
+   "at": "2026-11-06T18:22:09.338Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_3d30a94f2d",
+   "grade": 0,
+   "note": "Long experience with C# Selenium UI/API automation and claims Jenkins, but the CV is thin, gives no project evidence and has no Python.",
+   "saw_model": false,
+   "at": "2026-11-06T18:22:28.247Z"
   },
   {
    "jd": "dj_jd_ef1d547a0b",
    "cv": "dj_828238b17a",
    "grade": 2,
-   "note": "Thiếu tool",
+   "note": "Strong JS/TS, JMeter and Postman API frameworks, but the core C# automation requirement is absent and there's no SQL.",
    "saw_model": false,
-   "at": "2026-11-05T16:07:21.106Z"
+   "at": "2026-11-06T18:23:01.366Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_04f7d1f5b7",
+   "grade": 1,
+   "note": "but no Python and no Jenkins (CI work was on Azure/GitLab).",
+   "saw_model": false,
+   "at": "2026-11-06T18:24:58.063Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_4124aac16f",
+   "grade": 0,
+   "note": "but no Python, a core must-have.",
+   "saw_model": false,
+   "at": "2026-11-06T18:25:17.950Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_1d5ea8a2f3",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T18:26:01.197Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_711d6d444d",
+   "grade": 0,
+   "note": "1+ year  (RestAssured, Cypress, Selenium), but Python, a must-have, is absent and Linux isn't mentioned.",
+   "saw_model": false,
+   "at": "2026-11-06T18:26:17.038Z"
   },
   {
    "jd": "dj_jd_ae34bfa9d9",
    "cv": "dj_1d5ea8a2f3",
-   "grade": 1,
-   "note": "Chưa khớp kỹ năng",
+   "grade": 2,
+   "note": "Chưa khớp số kỹ năng",
    "saw_model": false,
-   "at": "2026-11-05T16:07:41.219Z"
+   "at": "2026-11-06T18:26:44.929Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_93771f55e7",
+   "grade": 1,
+   "note": " but no C#, no SQL, SoapUI, Docker or JMeter, and says they prefer Java roles.",
+   "saw_model": false,
+   "at": "2026-11-06T18:27:28.049Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_0d52f97bb3",
+   "grade": 2,
+   "note": "Half a year of automation, including building a Java/Selenium Page Object framework from scratch and running it on Jenkins with Selenium Grid; meets the Java requirement, but testing-methodology and manual QA evidence is thin",
+   "saw_model": false,
+   "at": "2026-11-06T18:28:25.186Z"
   },
   {
    "jd": "dj_jd_85e7c1f8dd",
    "cv": "dj_a6f51396ad",
-   "grade": 3,
-   "note": "",
+   "grade": 0,
+   "note": "0.5 years, pre-intermediate English, Python+Selenium only listed as basic knowledge; fails experience and English requirements.",
    "saw_model": false,
-   "at": "2026-11-05T16:09:15.010Z"
+   "at": "2026-11-06T18:28:45.696Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_eb53548434",
+   "grade": 1,
+   "note": "JS/TS automation; explicitly does not want C# automation.",
+   "saw_model": false,
+   "at": "2026-11-06T18:29:20.425Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_22ba97f26f",
+   "grade": 2,
+   "note": "2.5 years manual testing plus practical Java/Selenium automation, TestRail, Postman, Jenkins, Git, though automation details are thin.",
+   "saw_model": false,
+   "at": "2026-11-06T18:30:24.859Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_c5814f3a84",
+   "grade": 1,
+   "note": "Real BDD work with Cucumber, but all automation is Java/Android; no Python.",
+   "saw_model": false,
+   "at": "2026-11-06T18:30:55.877Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_4560d1840d",
+   "grade": 0,
+   "note": "React front-end developer with no test automation, Python or Linux experience.",
+   "saw_model": false,
+   "at": "2026-11-06T18:31:15.342Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_c3225a945c",
+   "grade": 2,
+   "note": "7 years including 3 years of Python and 4 of JS, building UI/API frameworks, CI work and manual testing, but tools are vague and Jenkins isn't named.",
+   "saw_model": false,
+   "at": "2026-11-06T18:32:22.834Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_8d2aa74275",
+   "grade": 2,
+   "note": "8 years, with Python Selenium UI tests, Pytest API tests and Allure reports on Jenkins, plus real Pytest plugin details; but the CV is very thin and manual testing isn't described.",
+   "saw_model": false,
+   "at": "2026-11-06T18:32:59.366Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_b88c787b3f",
+   "grade": 2,
+   "note": "good, but gives no project detail.",
+   "saw_model": false,
+   "at": "2026-11-06T18:33:39.502Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_e4bedb3d56",
+   "grade": 0,
+   "note": "0.5 years in manual testing with Selenium IDE only: no C#, no API automation, and intermediate English.",
+   "saw_model": false,
+   "at": "2026-11-06T18:33:53.730Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_a6f51396ad",
+   "grade": 0,
+   "note": "Junior with 0.5 years; Python and Selenium are only claimed as 'basic knowledge', far short of the 3+ years required.",
+   "saw_model": false,
+   "at": "2026-11-06T18:34:06.650Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_93771f55e7",
+   "grade": 1,
+   "note": "4 years of Java automation (RestAssured, Selenium) but no C#, prefers Java roles, and English is intermediate.",
+   "saw_model": false,
+   "at": "2026-11-06T18:34:52.461Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_6f5e6c9d80",
+   "grade": 0,
+   "note": "Strong lead with Java frameworks, CI, Docker, PostgreSQL and finance-domain work, but nothing in C#.",
+   "saw_model": false,
+   "at": "2026-11-06T18:35:12.342Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_8d5066d046",
+   "grade": 2,
+   "note": "Has 6 years building C# API/UI automation solutions from scratch, but SQL, SoapUI, Docker and JMeter are not mentioned.",
+   "saw_model": false,
+   "at": "2026-11-06T18:35:51.050Z"
   },
   {
    "jd": "dj_jd_5ead23acd4",
    "cv": "dj_749f7fdd66",
    "grade": 2,
-   "note": "Cần cấp thêm thông tin kỹ năng",
+   "note": "Cần cấp thêm thông tin kỹ năngStates 5 years of Java among several languages and Selenium automation, but gives only summary-level evidence and is well above trainee level.",
    "saw_model": false,
-   "at": "2026-11-05T16:09:55.676Z"
+   "at": "2026-11-06T18:36:57.755Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_d5df5453a7",
+   "grade": 1,
+   "note": " (Playwright, Cypress, Java Selenium) with Ubuntu listed, but no Python and only a skills list as evidence.",
+   "saw_model": false,
+   "at": "2026-11-06T18:37:37.564Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_7779121a8b",
+   "grade": 0,
+   "note": "Automation stack is C#/Selenium with no Python or Linux experience.",
+   "saw_model": false,
+   "at": "2026-11-06T18:37:59.846Z"
   },
   {
    "jd": "dj_jd_85e7c1f8dd",
@@ -296,31 +1602,223 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T16:10:17.593Z"
+   "at": "2026-11-06T18:38:41.647Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_97054335dd",
+   "grade": 1,
+   "note": "3 years of manual testing, but has no Python, lists Jenkins only as a skill, and asks for zero manual testing, which this role requires.",
+   "saw_model": false,
+   "at": "2026-11-06T18:39:16.942Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_c6c1f4b08a",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T18:39:53.811Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_173a06b684",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T18:40:19.852Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_c6601f1183",
+   "grade": 0,
+   "note": "Experienced but only in Python; no Java at all, which is a core must-have.",
+   "saw_model": false,
+   "at": "2026-11-06T18:42:11.721Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_4de7c0f8f6",
+   "grade": 0,
+   "note": "Java automation with Selenide, Cucumber BDD and Rest Assured, but no Python, which is the core must-have",
+   "saw_model": false,
+   "at": "2026-11-06T18:42:32.400Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_67873b8178",
+   "grade": 0,
+   "note": "Fintech/banking background, but the automation stack is Cypress JS/TS with no C# experience.",
+   "saw_model": false,
+   "at": "2026-11-06T18:42:58.476Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_f873540014",
+   "grade": 1,
+   "note": "Strong automation background, but in Python and JS only; there is no C#, which is a core must-have.",
+   "saw_model": false,
+   "at": "2026-11-06T18:43:30.114Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_1ada623556",
+   "grade": 1,
+   "note": "No commercial experience and no automation, Python or Selenium; only freelance manual testing.",
+   "saw_model": false,
+   "at": "2026-11-06T18:45:31.039Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_97054335dd",
+   "grade": 0,
+   "note": "Good Java Selenium and REST Assured frameworks plus manual experience, but no C#, and they want little or no manual testing.",
+   "saw_model": false,
+   "at": "2026-11-06T18:50:47.641Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_128252a092",
+   "grade": 1,
+   "note": "Strong senior SDET but Python only 1yr in a list and explicitly not interested in Python or backend testing.",
+   "saw_model": false,
+   "at": "2026-11-06T18:51:31.199Z"
   },
   {
    "jd": "dj_jd_cda40acb53",
    "cv": "dj_2447114acb",
    "grade": 1,
-   "note": "Chưa khớp kỹ năng",
+   "note": "Chưa khớp kỹ năng. Manual QA with 1 year of experience; no Java or Selenium automation at all.",
    "saw_model": false,
-   "at": "2026-11-05T16:11:22.010Z"
+   "at": "2026-11-06T18:52:10.149Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_128252a092",
+   "grade": 2,
+   "note": "list-only and dislikes pure backend/SQL testing.",
+   "saw_model": false,
+   "at": "2026-11-06T18:52:37.220Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_0044b992cd",
+   "grade": 0,
+   "note": "Ano Python or Behave experience.",
+   "saw_model": false,
+   "at": "2026-11-06T18:53:03.043Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_1876f6f091",
+   "grade": 0,
+   "note": "only 6 months of Java automation and no Python.",
+   "saw_model": false,
+   "at": "2026-11-06T18:53:29.495Z"
   },
   {
    "jd": "dj_jd_26b849e026",
    "cv": "dj_67ccfec12a",
    "grade": 2,
-   "note": "Cần thêm thông tin CV",
+   "note": "Pbut no API testing and only a thin, generic description.",
    "saw_model": false,
-   "at": "2026-11-05T16:12:15.017Z"
+   "at": "2026-11-06T18:54:01.559Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_2def5612b8",
+   "grade": 0,
+   "note": "Has manual and automation experience plus Jenkins and Git, but automation is JavaScript/Protractor only and C# is missing.",
+   "saw_model": false,
+   "at": "2026-11-06T18:54:21.842Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_749f7fdd66",
+   "grade": 2,
+   "note": "5 years automation including Python and Robot Framework scripting; lacks Linux/networking evidence but worth a screen.",
+   "saw_model": false,
+   "at": "2026-11-06T19:00:56.887Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_009bdade06",
+   "grade": 0,
+   "note": "Java REST Assured/Cucumber backend testing only; no Python, and Selenium/UI testing is described as new scope",
+   "saw_model": false,
+   "at": "2026-11-06T19:01:22.528Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_6cd6fe5244",
+   "grade": 2,
+   "note": "Real C# work (Selenium/Seleno, BDDfy, NUnit, RestSharp API tests, TeamCity/Azure DevOps) and manual testing, but now on TypeScript/Cypress, looking for lead roles, and calls C# automation 'out of priority'.",
+   "saw_model": false,
+   "at": "2026-11-06T19:02:27.760Z"
   },
   {
    "jd": "dj_jd_0b373e855d",
    "cv": "dj_4124aac16f",
+   "grade": 0,
+   "note": "Solid API and UI automation work, but in Java with RestAssured and TestNG; no C#.",
+   "saw_model": false,
+   "at": "2026-11-06T19:02:51.139Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_85e2de8b6b",
+   "grade": 1,
+   "note": "but only 1.5 years of part-time automation, below the 2+ years required.",
+   "saw_model": false,
+   "at": "2026-11-06T19:03:11.319Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_5a13c0f19f",
+   "grade": 1,
+   "note": " but it's all UI/CRM; no SOAP/REST, SQL or HTTP-level testing is shown.",
+   "saw_model": false,
+   "at": "2026-11-06T19:03:32.899Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_daeeef3dfc",
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T16:12:44.482Z"
+   "at": "2026-11-06T19:03:55.504Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_ec2fc7ec68",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T19:04:26.613Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_737cabb8bf",
+   "grade": 1,
+   "note": "Technically strong (3 years of Java with Selenide/TestNG/REST Assured/Jenkins frameworks, manual testing, TestRail), but English is listed as 'pre', below the required Intermediate-or-higher must-have.",
+   "saw_model": false,
+   "at": "2026-11-06T19:05:44.327Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_6f5e6c9d80",
+   "grade": 1,
+   "note": "Strong back-end automation (Java + REST, Docker, MS SQL integration frameworks), but no C# at all, so only an adjacent fit.",
+   "saw_model": false,
+   "at": "2026-11-06T19:06:24.643Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_8accc54ec7",
+   "grade": 0,
+   "note": "A manual tester whose only Java/Selenium/TestNG is a 3-month course; no commercial automation experience.",
+   "saw_model": false,
+   "at": "2026-11-06T19:06:37.094Z"
   },
   {
    "jd": "dj_jd_cda40acb53",
@@ -328,15 +1826,31 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T16:13:09.745Z"
+   "at": "2026-11-06T19:07:05.327Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_496c0147cb",
+   "grade": 1,
+   "note": "C#/NUnit/CodedUI only listed as knowledge; no evidence of REST/SOAP API automation.",
+   "saw_model": false,
+   "at": "2026-11-06T19:07:46.107Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_166fc2fac6",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T19:08:20.312Z"
   },
   {
    "jd": "dj_jd_ae34bfa9d9",
    "cv": "dj_2755166a56",
    "grade": 1,
-   "note": "Chưa có kinh nghiệm test",
+   "note": "Chưa có kinh nghiệm testJava developer with no QA, manual testing or Selenium experience.",
    "saw_model": false,
-   "at": "2026-11-05T16:13:58.689Z"
+   "at": "2026-11-06T19:08:51.146Z"
   },
   {
    "jd": "dj_jd_0b373e855d",
@@ -344,7 +1858,31 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T16:14:37.889Z"
+   "at": "2026-11-06T19:09:15.088Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_4560d1840d",
+   "grade": 0,
+   "note": "Front-end React developer with no test automation, Python or Selenium experience.",
+   "saw_model": false,
+   "at": "2026-11-06T19:10:25.873Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_38dd4ee655",
+   "grade": 0,
+   "note": "Trainee with no commercial QA or automation experience and pre-intermediate English.",
+   "saw_model": false,
+   "at": "2026-11-06T19:10:51.755Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_7779121a8b",
+   "grade": 1,
+   "note": "8 years QA with UI/API automation and Jenkins, but C# only with no Python, and English is intermediate.",
+   "saw_model": false,
+   "at": "2026-11-06T19:11:33.756Z"
   },
   {
    "jd": "dj_jd_ef1d547a0b",
@@ -352,23 +1890,207 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T16:15:00.601Z"
+   "at": "2026-11-06T19:12:13.745Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_404601dabd",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T19:12:50.123Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_1e732649f9",
+   "grade": 2,
+   "note": "QA courses and 2.5 years of manual plus 2 years of automation suit a trainee role, but Java appears only in a skills list with no project evidence.",
+   "saw_model": false,
+   "at": "2026-11-06T19:13:28.309Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_d5df5453a7",
+   "grade": 0,
+   "note": "Strong TS/Java automation, patterns and CI, but no C# at all.",
+   "saw_model": false,
+   "at": "2026-11-06T19:14:39.567Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_dca700455a",
+   "grade": 1,
+   "note": "Lists Selenium, Robot Framework and API test automation over 3 years, but it's a bare list with no projects, no Jenkins and no explicit Python.",
+   "saw_model": false,
+   "at": "2026-11-06T19:15:09.595Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_5541e45ae5",
+   "grade": 1,
+   "note": "Real C# UI+API framework work with TeamCity CI and manual testing, but only 1.5 years and intermediate English.",
+   "saw_model": false,
+   "at": "2026-11-06T19:15:32.298Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_e1e543ed30",
+   "grade": 0,
+   "note": "Manual QA with only basic Java/OOP and 'basic knowledge of automation'; no hands-on automation experience.",
+   "saw_model": false,
+   "at": "2026-11-06T19:15:45.441Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_be81de5fc6",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T19:17:35.736Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_0aa520e5b9",
+   "grade": 0,
+   "note": "Says only 'familiar with' Selenium; Python scripting is vague, there is 1.5 years of total experience, and no BDD or REST API.",
+   "saw_model": false,
+   "at": "2026-11-06T19:17:51.102Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_6f5e6c9d80",
+   "grade": 1,
+   "note": "Strong Java/TestNG/Maven/Selenoid/REST/Jenkins framework work across several projects, but an 11-year lead is well above this middle-level role.",
+   "saw_model": false,
+   "at": "2026-11-06T19:18:29.894Z"
   },
   {
    "jd": "dj_jd_0b373e855d",
    "cv": "dj_496c0147cb",
-   "grade": 3,
-   "note": "",
+   "grade": 1,
+   "note": "3 years of automation and manual testing with fluent English, but C#/NUnit/CodedUI appear only in a knowledge list, with no project showing C# or REST API work.",
    "saw_model": false,
-   "at": "2026-11-05T16:15:25.113Z"
+   "at": "2026-11-06T19:18:52.284Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_c88333c1e3",
+   "grade": 0,
+   "note": "Experienced manual QA lead but no Selenium, XPath or programming evidence.",
+   "saw_model": false,
+   "at": "2026-11-06T19:19:04.682Z"
   },
   {
    "jd": "dj_jd_26b849e026",
    "cv": "dj_ec2fc7ec68",
-   "grade": 1,
+   "grade": 0,
    "note": "Chưa đủ kinh nghiệm",
    "saw_model": false,
-   "at": "2026-11-05T16:15:46.290Z"
+   "at": "2026-11-06T19:20:56.473Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_16a829535f",
+   "grade": 1,
+   "note": "Python, Jenkins and API testing are only claimed in a skills list.",
+   "saw_model": false,
+   "at": "2026-11-06T19:21:39.588Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_964e6f7c93",
+   "grade": 0,
+   "note": "Senior QA with Selenium in Java only; no Python, Behave or BDD.",
+   "saw_model": false,
+   "at": "2026-11-06T19:22:04.486Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_2447114acb",
+   "grade": 0,
+   "note": "Manual QA with about 1 year of experience and only Postman API checks; no C# or automation.",
+   "saw_model": false,
+   "at": "2026-11-06T19:22:18.163Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_c0ba26ab77",
+   "grade": 1,
+   "note": "Python appears only in a list of past stacks with no project behind it, recent work is JS/Cypress and they want JS tools; Behave/BDD is not mentioned.",
+   "saw_model": false,
+   "at": "2026-11-06T19:22:41.348Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_534d40a1b2",
+   "grade": 2,
+   "note": "5+ years manual plus 1+ year Java/Selenium/TestNG automation with upper English, but the tools are mostly listed rather than shown in project work, and XPath/DOM is not mentioned.",
+   "saw_model": false,
+   "at": "2026-11-06T19:23:49.898Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_0e72c88085",
+   "grade": 0,
+   "note": "No commercial experience, pre-intermediate English, and no Selenium, XPath or programming work.",
+   "saw_model": false,
+   "at": "2026-11-06T19:24:10.911Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_3e595418dc",
+   "grade": 0,
+   "note": "Only 0.5 years of automation with 'basic' Selenium, no Python, and too little experience overall.",
+   "saw_model": false,
+   "at": "2026-11-06T19:24:25.085Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_0ad3ef06b8",
+   "grade": 1,
+   "note": "Only about 1 year of Cypress/JS automation plus Postman/SQL; no Java, Selenium or TestNG, and below the 2-year automation requirement.",
+   "saw_model": false,
+   "at": "2026-11-06T19:24:57.552Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_be81de5fc6",
+   "grade": 1,
+   "note": "Builds Java automation frameworks including API tests, but there's no C#, Docker/JMeter only appear in a skills list, and English is pre-intermediate.",
+   "saw_model": false,
+   "at": "2026-11-06T19:25:23.341Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_ed2dded99e",
+   "grade": 0,
+   "note": "Generic summary with no tools, projects or Selenium evidence, and pre-intermediate English is below the required level.",
+   "saw_model": false,
+   "at": "2026-11-06T19:25:48.726Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_85e2de8b6b",
+   "grade": 2,
+   "note": "1.5 years manual and 1.5 years automation with Java/Selenium/TestNG/Maven/REST Assured, which matches the 50/50 split, but it is mostly a stack list with little project evidence and the candidate wants part-time",
+   "saw_model": false,
+   "at": "2026-11-06T19:26:35.123Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_14207e5fa4",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T19:27:23.126Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_128252a092",
+   "grade": 1,
+   "note": "Senior TS/JS SDET with only 1 year of Java listed as a skill, and says they're not interested in Java or SQL work.",
+   "saw_model": false,
+   "at": "2026-11-06T19:27:58.025Z"
   },
   {
    "jd": "dj_jd_ef1d547a0b",
@@ -376,7 +2098,7 @@
    "grade": 1,
    "note": "Chưa khớp tool",
    "saw_model": false,
-   "at": "2026-11-05T16:16:08.168Z"
+   "at": "2026-11-06T19:28:12.750Z"
   },
   {
    "jd": "dj_jd_26b849e026",
@@ -384,7 +2106,7 @@
    "grade": 2,
    "note": "CV chưa đủ thông tin",
    "saw_model": false,
-   "at": "2026-11-05T16:17:06.137Z"
+   "at": "2026-11-06T19:28:47.811Z"
   },
   {
    "jd": "dj_jd_26b849e026",
@@ -392,7 +2114,7 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T16:17:26.992Z"
+   "at": "2026-11-06T19:29:17.163Z"
   },
   {
    "jd": "dj_jd_85e7c1f8dd",
@@ -400,31 +2122,279 @@
    "grade": 2,
    "note": "CV chưa đủ thông tin",
    "saw_model": false,
-   "at": "2026-11-05T16:18:10.385Z"
+   "at": "2026-11-06T19:30:09.583Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_ceb40f3ba4",
+   "grade": 1,
+   "note": "Deep Selenium/Cucumber Java experience and set up Jenkins CI, but no Python at all, which is a must-have",
+   "saw_model": false,
+   "at": "2026-11-06T19:30:42.275Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_0c4999985f",
+   "grade": 0,
+   "note": "Java/Serenity automation with REST/SoapUI, but no C#, intermediate English, and no CI or Git mentioned.",
+   "saw_model": false,
+   "at": "2026-11-06T19:30:58.513Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_1d6c1abff0",
+   "grade": 0,
+   "note": "Has 1 year of Java/REST Assured automation; C# is absent and experience is below 2 years.",
+   "saw_model": false,
+   "at": "2026-11-06T19:31:19.898Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_4124aac16f",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T19:32:03.066Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_6f5e6c9d80",
+   "grade": 2,
+   "note": "Strong match on Java/TestNG/Kafka/Postgres/Docker, but an 11-year test lead is heavily overqualified for a trainee post.",
+   "saw_model": false,
+   "at": "2026-11-06T19:33:13.757Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_1e931c1642",
+   "grade": 0,
+   "note": "DevOps junior with no commercial test automation and no Python experience.",
+   "saw_model": false,
+   "at": "2026-11-06T19:40:08.905Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_ecc5cb0118",
+   "grade": 0,
+   "note": "Manual web/mobile tester with no Selenium or programming language experience.",
+   "saw_model": false,
+   "at": "2026-11-06T19:40:28.055Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_eb53548434",
+   "grade": 0,
+   "note": "Automates with JS/TS and Cypress, has no Selenium, and explicitly rejects Java automation, so the core must-have is missing.",
+   "saw_model": false,
+   "at": "2026-11-06T19:40:57.651Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_982b2890ed",
+   "grade": 0,
+   "note": "Has Selenium, Cucumber and REST API automation, but in JS/C#; Python is absent.",
+   "saw_model": false,
+   "at": "2026-11-06T19:41:09.965Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_67873b8178",
+   "grade": 1,
+   "note": "Current Cypress+BDD JS work with Postman API testing fits, but no Python or Jenkins is evidenced.",
+   "saw_model": false,
+   "at": "2026-11-06T19:41:44.401Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_aa89e318fb",
+   "grade": 1,
+   "note": "About 1.5 years of Java automation with Cucumber/Selenium/Rest Assured using CircleCI, but no Python or Jenkins and limited depth.",
+   "saw_model": false,
+   "at": "2026-11-06T19:42:10.654Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_3d30a94f2d",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T19:42:53.476Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_0ff0905ccf",
+   "grade": 0,
+   "note": "2 years of automation in Java (Cucumber, Rest Assured), only basic Selenium, and no C# at all.",
+   "saw_model": false,
+   "at": "2026-11-06T19:43:09.102Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_3e79248027",
+   "grade": 0,
+   "note": "Four years of manual QA with no test automation at all, so the C# automation must-have is missing.",
+   "saw_model": false,
+   "at": "2026-11-06T19:43:32.685Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_0d52f97bb3",
+   "grade": 0,
+   "note": "Only 0.5 yrs of automation experience, far below the 2+ year commercial requirement,",
+   "saw_model": false,
+   "at": "2026-11-06T19:43:58.583Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_f9c0c28914",
+   "grade": 0,
+   "note": "Python appears only in the title; the CV describes manual, JMeter and Postman testing with no Python or automation work.",
+   "saw_model": false,
+   "at": "2026-11-06T19:44:23.533Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_964e6f7c93",
+   "grade": 0,
+   "note": "Fluent English, mobile payment domain and manual/automated testing, but automation is Java Selenium only, with no C#.",
+   "saw_model": false,
+   "at": "2026-11-06T19:44:42.869Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_251e6a0ca9",
+   "grade": 0,
+   "note": "Has strong QA process knowledge, but the languages are JS/SQL only and they want a JS project; no Java.",
+   "saw_model": false,
+   "at": "2026-11-06T19:45:04.280Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_d5df5453a7",
+   "grade": 0,
+   "note": "Lists Playwright/Cypress/Selenium in a skills inventory with no project evidence, and has no Python or Jenkins.",
+   "saw_model": false,
+   "at": "2026-11-06T19:46:07.771Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_964e6f7c93",
+   "grade": 1,
+   "note": "Experienced in Java Selenium automation but shows no Python or Linux.",
+   "saw_model": false,
+   "at": "2026-11-06T19:46:25.204Z"
   },
   {
    "jd": "dj_jd_26b849e026",
    "cv": "dj_dca700455a",
    "grade": 2,
-   "note": "Cần thêm thông tin",
+   "note": "3 years of Selenium WebDriver, RobotFramework and API automation suggests Python, but Python is never stated, and there is no Behave, Git/CI or Jira.",
    "saw_model": false,
-   "at": "2026-11-05T16:18:33.856Z"
+   "at": "2026-11-06T19:47:57.568Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_eb53548434",
+   "grade": 1,
+   "note": "Strong JS/TS Cypress/SuperTest work with Jenkins, but no Python and explicitly rejects mobile projects, which the role requires.",
+   "saw_model": false,
+   "at": "2026-11-06T19:48:30.813Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_3d30a94f2d",
+   "grade": 1,
+   "note": "7 years of C# automation with UI/API frameworks and CI, but very brief and no mention of SQL, SOAP, SoapUI/Docker/JMeter.",
+   "saw_model": false,
+   "at": "2026-11-06T19:48:58.023Z"
   },
   {
    "jd": "dj_jd_cda40acb53",
    "cv": "dj_1da1c1b859",
+   "grade": 2,
+   "note": "8 years, built Java Selenium/TestNG web and REST API automation from scratch with CI, Git and Postman; uses Gradle rather than Maven, no SQL, and wants a senior role.",
+   "saw_model": false,
+   "at": "2026-11-06T19:49:50.905Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_173a06b684",
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T16:18:54.913Z"
+   "at": "2026-11-06T19:50:29.908Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_0e91364a48",
+   "grade": 2,
+   "note": "Only CV with C#, Selenium and SpecFlow (matches the stack), plus long manual experience and fluent English; but Git and CI aren't shown, and REST appears only in the skills list.",
+   "saw_model": false,
+   "at": "2026-11-06T19:51:33.459Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_9d986d6fd9",
+   "grade": 0,
+   "note": "Zero commercial experience, only mentored project work, no Jenkins, nowhere near the 3+ years of manual testing required.",
+   "saw_model": false,
+   "at": "2026-11-06T19:51:47.625Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_c94298531b",
+   "grade": 0,
+   "note": "Student front-end trainee with no testing or C# experience.",
+   "saw_model": false,
+   "at": "2026-11-06T19:52:11.652Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_04f7d1f5b7",
+   "grade": 1,
+   "note": "Claims 5 years of Java automation, REST and Postman, but gives no evidence of Selenium, TestNG or SQL and no project details.",
+   "saw_model": false,
+   "at": "2026-11-06T19:54:12.702Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_166fc2fac6",
+   "grade": 0,
+   "note": "Strong Java/RestAssured/Cypress automation history, but Selenium, a core must-have, never appears.",
+   "saw_model": false,
+   "at": "2026-11-06T19:54:30.876Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_a493942bc5",
+   "grade": 2,
+   "note": "10 years of QA with Selenium UI automation, TestNG, Java alongside Python, Jenkins/Maven/Git and performance testing; manual QA work and XPath/DOM are not stated directly.",
+   "saw_model": false,
+   "at": "2026-11-06T19:55:24.662Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_e1e543ed30",
+   "grade": 0,
+   "note": "Manual QA with only basic automation knowledge and no C#.",
+   "saw_model": false,
+   "at": "2026-11-06T19:55:35.284Z"
   },
   {
    "jd": "dj_jd_0b373e855d",
    "cv": "dj_1e732649f9",
    "grade": 1,
-   "note": "Chưa đủ kinh nghiệm",
+   "note": "Chưa đủ kinh nghiệm: Junior-level profile: C# listed only as 'basic', and no automation projects are described.",
    "saw_model": false,
-   "at": "2026-11-05T16:19:24.664Z"
+   "at": "2026-11-06T19:56:06.682Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_22d744861d",
+   "grade": 1,
+   "note": "4 years of Python/JS automation, but the CV is vague and shows no Selenium, Behave/BDD, REST API or CI/CD work.",
+   "saw_model": false,
+   "at": "2026-11-06T20:04:34.576Z"
   },
   {
    "jd": "dj_jd_cda40acb53",
@@ -432,23 +2402,151 @@
    "grade": 2,
    "note": "Cần thêm thông tin",
    "saw_model": false,
-   "at": "2026-11-05T16:19:52.224Z"
+   "at": "2026-11-06T20:05:05.129Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_6cd6fe5244",
+   "grade": 1,
+   "note": "Strong QA lead background in C#/TypeScript/Cypress with some BDD and Selenium via C#, but no Python at all, which is a core must-have.",
+   "saw_model": false,
+   "at": "2026-11-06T20:05:48.188Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_ed599af3b4",
+   "grade": 0,
+   "note": "No commercial experience, only pet projects; no Selenium or programming skills.",
+   "saw_model": false,
+   "at": "2026-11-06T20:06:11.922Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_9d986d6fd9",
+   "grade": 0,
+   "note": "No commercial experience; Python, pytest and Selenium come only from training, well short of the 3+ years required.",
+   "saw_model": false,
+   "at": "2026-11-06T20:06:28.467Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_128252a092",
+   "grade": 0,
+   "note": "Lists only 1 year of Python, short of the 3+ years required, and says outright they are not interested in Python work.",
+   "saw_model": false,
+   "at": "2026-11-06T20:06:43.632Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_aa50f38d38",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T20:07:15.853Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_e1e543ed30",
+   "grade": 0,
+   "note": "Manual QA with only basic automation knowledge; no Python, Selenium or Behave.",
+   "saw_model": false,
+   "at": "2026-11-06T20:07:38.105Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_0ff0905ccf",
+   "grade": 0,
+   "note": "2 years of Java API/BDD automation, only basic Selenium; no Python, no Jenkins and far short of 3+ years of manual testing.",
+   "saw_model": false,
+   "at": "2026-11-06T20:07:54.193Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_69a19b824d",
+   "grade": 0,
+   "note": "Only 0.5 years, mostly from a training course, with no Selenium; under the 1+ year manual QA must-have.",
+   "saw_model": false,
+   "at": "2026-11-06T20:08:23.842Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_77364fea0d",
+   "grade": 0,
+   "note": "Manual web/mobile/API testing only; no Selenium, Java or automation evidence.",
+   "saw_model": false,
+   "at": "2026-11-06T20:08:48.792Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_88978c4b56",
+   "grade": 1,
+   "note": "Has 1 year of Cypress/Cucumber and Jenkins, but no Python, no API testing, short of the 3 years of manual testing, and only intermediate English.",
+   "saw_model": false,
+   "at": "2026-11-06T20:09:23.806Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_0d52f97bb3",
+   "grade": 0,
+   "note": "Only 0.5 years of automation, all in Java with no C#, and intermediate English; misses the 3+ years, C# and fluent English requirements.",
+   "saw_model": false,
+   "at": "2026-11-06T20:09:42.656Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_04f7d1f5b7",
+   "grade": 1,
+   "note": "Long manual and Java automation background with REST/Postman, but Selenium, a must-have, is never mentioned.",
+   "saw_model": false,
+   "at": "2026-11-06T20:10:26.628Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_ef40096a4d",
+   "grade": 0,
+   "note": "Student with a manual QA internship only; no Selenium or Java experience.",
+   "saw_model": false,
+   "at": "2026-11-06T20:10:52.970Z"
   },
   {
    "jd": "dj_jd_0b373e855d",
    "cv": "dj_173a06b684",
    "grade": 1,
-   "note": "Chưa khớp tool",
+   "note": "Chưa khớp toolManual QA with 2 years of automation in Java/Selenide and JS/Cypress; no C#.",
    "saw_model": false,
-   "at": "2026-11-05T16:20:17.160Z"
+   "at": "2026-11-06T20:11:21.454Z"
   },
   {
    "jd": "dj_jd_5ead23acd4",
    "cv": "dj_97054335dd",
    "grade": 2,
-   "note": "Cần thêm thông tin",
+   "note": "Cần thêm thông tin: Built Java Selenium, Rest Assured and Appium frameworks for a logistics company and has 3 years of manual testing, but wants zero or minimal manual testing",
    "saw_model": false,
-   "at": "2026-11-05T16:20:40.576Z"
+   "at": "2026-11-06T20:11:59.675Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_781a1da890",
+   "grade": 0,
+   "note": "Manual QA with no test automation and no C#.",
+   "saw_model": false,
+   "at": "2026-11-06T20:12:53.876Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_128252a092",
+   "grade": 1,
+   "note": "Senior SDET who lists only 1 year of Java and says he does not want Java or manual testing, and this role is built on both.",
+   "saw_model": false,
+   "at": "2026-11-06T20:13:36.186Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_0c4999985f",
+   "grade": 2,
+   "note": "Five years of QA, including solo QA on two projects and building a test automation environment, but Selenium and Java appear only in the skills list.",
+   "saw_model": false,
+   "at": "2026-11-06T20:14:37.048Z"
   },
   {
    "jd": "dj_jd_26b849e026",
@@ -456,15 +2554,23 @@
    "grade": 1,
    "note": "Chưa đủ kinh nghiệm",
    "saw_model": false,
-   "at": "2026-11-05T16:21:03.040Z"
+   "at": "2026-11-06T20:15:09.626Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_8cda2be5bc",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T20:16:45.983Z"
   },
   {
    "jd": "dj_jd_6e1339ed62",
    "cv": "dj_3db90b31e3",
    "grade": 2,
-   "note": "Cần thêm thông tin",
+   "note": "Cần thêm thông tin: Gives only a short summary with no projects to back up any automation, and has no Python or Jenkins.",
    "saw_model": false,
-   "at": "2026-11-05T16:21:40.816Z"
+   "at": "2026-11-06T20:17:22.825Z"
   },
   {
    "jd": "dj_jd_cda40acb53",
@@ -472,7 +2578,7 @@
    "grade": 2,
    "note": "Cần thêm thông tin",
    "saw_model": false,
-   "at": "2026-11-05T16:22:11.695Z"
+   "at": "2026-11-06T20:18:29.975Z"
   },
   {
    "jd": "dj_jd_6e1339ed62",
@@ -480,7 +2586,55 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T16:22:53.649Z"
+   "at": "2026-11-06T20:18:56.017Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_964e6f7c93",
+   "grade": 1,
+   "note": "Has Selenium WebDriver (Java) experience but is a senior who wants remote-only or lead roles, a poor fit for an office-based trainee job in Kharkiv.",
+   "saw_model": false,
+   "at": "2026-11-06T20:19:38.022Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_84a81f2c26",
+   "grade": 1,
+   "note": "Python is only one item in a list of many languages, with no concrete Python or Pytest project described.",
+   "saw_model": false,
+   "at": "2026-11-06T20:19:59.361Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_749f7fdd66",
+   "grade": 2,
+   "note": "5 years of automation listing Python, Selenium, Robot Framework and API testing; no Behave and no project evidence, so worth a phone screen to check.",
+   "saw_model": false,
+   "at": "2026-11-06T20:21:11.017Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_3bec104245",
+   "grade": 0,
+   "note": "Frontend React/Angular developer with no QA automation experience at all.",
+   "saw_model": false,
+   "at": "2026-11-06T20:21:31.737Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_4cbb961ff5",
+   "grade": 0,
+   "note": "Mainly a manual QA; automation, Java and SQL are all self-described as beginner or basic.",
+   "saw_model": false,
+   "at": "2026-11-06T20:21:44.383Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_f0ddeda8bc",
+   "grade": 0,
+   "note": "Automation is in Java/Selenium and Appium; no Python or Linux.",
+   "saw_model": false,
+   "at": "2026-11-06T20:21:58.034Z"
   },
   {
    "jd": "dj_jd_26b849e026",
@@ -488,15 +2642,103 @@
    "grade": 0,
    "note": "Không đủ kinh nghiệm",
    "saw_model": false,
-   "at": "2026-11-05T16:23:17.367Z"
+   "at": "2026-11-06T20:22:18.419Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_2b22a86e06",
+   "grade": 0,
+   "note": "Mainly manual QA; automation only Java under supervision, no C#.",
+   "saw_model": false,
+   "at": "2026-11-06T20:24:18.660Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_c5317648c4",
+   "grade": 0,
+   "note": "Strong Java framework and Jenkins pipeline work, but no C# experience at all.",
+   "saw_model": false,
+   "at": "2026-11-06T20:24:29.739Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_8d2aa74275",
+   "grade": 2,
+   "note": "the CV is very sparse and does not mention Linux.",
+   "saw_model": false,
+   "at": "2026-11-06T20:25:06.608Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_5a38d160ad",
+   "grade": 2,
+   "note": "no C#.",
+   "saw_model": false,
+   "at": "2026-11-06T20:25:57.250Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_0d52f97bb3",
+   "grade": 0,
+   "note": "Only 0.5 years of automation",
+   "saw_model": false,
+   "at": "2026-11-06T20:26:08.657Z"
   },
   {
    "jd": "dj_jd_85e7c1f8dd",
    "cv": "dj_a493942bc5",
    "grade": 2,
-   "note": "Có quá nhiều kinh nghiệm cần hỏi thêm",
+   "note": "Có quá nhiều kinh nghiệm nên cần hỏi thêm. Python is the main language, with Pytest backend, CLI and DB automation over many years; senior, so may be overqualified for a junior role.",
    "saw_model": false,
-   "at": "2026-11-05T16:23:45.399Z"
+   "at": "2026-11-06T20:31:24.251Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_5a38d160ad",
+   "grade": 2,
+   "note": "About 3 yrs at EPAM automating tests with Selenium, REST Assured, JUnit, Postman and SQL, but task descriptions are thin and some wording is hedged.",
+   "saw_model": false,
+   "at": "2026-11-06T20:32:26.688Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_03a165a19b",
+   "grade": 0,
+   "note": "Back-end Java automation with SQL and JMeter, but no C# and no REST/SOAP automation is described.",
+   "saw_model": false,
+   "at": "2026-11-06T20:32:38.027Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_e80cc482a2",
+   "grade": 0,
+   "note": "A game designer with no QA or test automation experience.",
+   "saw_model": false,
+   "at": "2026-11-06T20:32:50.596Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_1d5ea8a2f3",
+   "grade": 0,
+   "note": "All automation is in Java (Selenium, Rest Assured, Cucumber); there is no C#, which is a core must-have.",
+   "saw_model": false,
+   "at": "2026-11-06T20:33:15.741Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_0d52f97bb3",
+   "grade": 0,
+   "note": "0.5 years of Java/Selenium framework work; no Python and far short of the experience required.",
+   "saw_model": false,
+   "at": "2026-11-06T20:33:28.982Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_982b2890ed",
+   "grade": 1,
+   "note": "Strong JS/Protractor/Cucumber and API automation background, but no Python and Jenkins only appears in a list.",
+   "saw_model": false,
+   "at": "2026-11-06T20:33:58.015Z"
   },
   {
    "jd": "dj_jd_26b849e026",
@@ -504,39 +2746,87 @@
    "grade": 0,
    "note": "Chưa đủ kinh nghiệm",
    "saw_model": false,
-   "at": "2026-11-05T16:24:08.186Z"
+   "at": "2026-11-06T20:40:37.294Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_19bd96550f",
+   "grade": 2,
+   "note": "Lists automation areas built with Java + TestNG + Selenium/Selenide and REST Assured, but nothing on SQL, Postman, Maven or Linux, and English is intermediate.",
+   "saw_model": false,
+   "at": "2026-11-06T20:41:21.478Z"
   },
   {
    "jd": "dj_jd_ae34bfa9d9",
    "cv": "dj_0e91364a48",
    "grade": 2,
-   "note": "Quá nhiều kinh nghiệm",
+   "note": "Quá nhiều kinh nghiệm nên cần hỏi thêm",
    "saw_model": false,
-   "at": "2026-11-05T16:24:35.719Z"
+   "at": "2026-11-06T20:41:45.384Z"
   },
   {
-   "jd": "dj_jd_6e1339ed62",
-   "cv": "dj_d834eb99e1",
-   "grade": 3,
-   "note": "",
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_8cda2be5bc",
+   "grade": 2,
+   "note": "but is a team lead, far above trainee level.",
    "saw_model": false,
-   "at": "2026-11-05T16:25:00.161Z"
-  },
-  {
-   "jd": "dj_jd_6e1339ed62",
-   "cv": "dj_23de22b664",
-   "grade": 0,
-   "note": "không đạt",
-   "saw_model": false,
-   "at": "2026-11-05T16:25:22.041Z"
+   "at": "2026-11-06T20:42:19.201Z"
   },
   {
    "jd": "dj_jd_ef1d547a0b",
-   "cv": "dj_c0ba26ab77",
-   "grade": 3,
-   "note": "",
+   "cv": "dj_3efde2f542",
+   "grade": 0,
+   "note": "ava/Groovy automation stack listed; no C#.",
    "saw_model": false,
-   "at": "2026-11-05T16:25:44.055Z"
+   "at": "2026-11-06T20:42:33.758Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_0c4999985f",
+   "grade": 2,
+   "note": "but no Python or Linux evidence and few details.",
+   "saw_model": false,
+   "at": "2026-11-06T20:43:20.791Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_3efde2f542",
+   "grade": 1,
+   "note": "Strong stack (Selenium, Java, Maven, Git, REST Assured, Jenkins, Docker), but it is only a bare tool list, with no manual QA experience or project evidence shown.",
+   "saw_model": false,
+   "at": "2026-11-06T20:43:48.547Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_8accc54ec7",
+   "grade": 0,
+   "note": "Manual tester with only a basic Java automation course and pre-intermediate English; MSSMS experience alone is not enough.",
+   "saw_model": false,
+   "at": "2026-11-06T20:44:03.402Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_6173001c4b",
+   "grade": 1,
+   "note": "Senior Java/TestNG API test automation engineer who explicitly turns down manual testing, which this role requires, and is well above trainee level.",
+   "saw_model": false,
+   "at": "2026-11-06T20:44:32.350Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_f9c0c28914",
+   "grade": 0,
+   "note": "No C# and no automation work shown; JMeter, Postman and MS SQL are only listed as skills.",
+   "saw_model": false,
+   "at": "2026-11-06T20:44:54.729Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_c6601f1183",
+   "grade": 2,
+   "note": "11 years of Python AQA work, including building REST API and UI automation frameworks, code review, Jenkins, Jira and Scrum; Selenium and Behave/BDD aren't named explicitly.",
+   "saw_model": false,
+   "at": "2026-11-06T20:45:43.974Z"
   },
   {
    "jd": "dj_jd_ae34bfa9d9",
@@ -544,31 +2834,183 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T16:26:11.390Z"
+   "at": "2026-11-06T20:46:11.828Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_173a06b684",
+   "grade": 1,
+   "note": "2 years of demonstrated Java/JS UI and API automation, but Python appears only in a skills list and Linux only in a tools list.",
+   "saw_model": false,
+   "at": "2026-11-06T20:46:48.667Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_6cd6fe5244",
+   "grade": 1,
+   "note": "QA manager whose stack is C#/TypeScript/Cypress rather than Java/Selenium, and who says 100% test automation is not a priority.",
+   "saw_model": false,
+   "at": "2026-11-06T20:47:19.799Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_c3223a50b7",
+   "grade": 1,
+   "note": "Senior generalist with Python only claimed in a summary; no Linux, embedded or networking evidence.",
+   "saw_model": false,
+   "at": "2026-11-06T20:47:59.071Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_16a829535f",
+   "grade": 1,
+   "note": "Senior QA lead with real Ruby/Cucumber/Selenium framework work; Python appears only in the skills list, and Behave is not mentioned.",
+   "saw_model": false,
+   "at": "2026-11-06T20:48:29.662Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_11ef315be4",
+   "grade": 0,
+   "note": "No commercial experience, no Selenium and no programming language; tools are listed at elementary or beginner level.",
+   "saw_model": false,
+   "at": "2026-11-06T20:49:28.324Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_daeeef3dfc",
+   "grade": 2,
+   "note": "Two years of Java automation with Selenide (a Selenium wrapper), RestAssured, TestNG and Jenkins, but manual testing was only occasional, which is weak against the 50% manual share of the role.",
+   "saw_model": false,
+   "at": "2026-11-06T20:50:28.842Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_38dd4ee655",
+   "grade": 0,
+   "note": "No commercial experience, and Python knowledge comes only from university courses.",
+   "saw_model": false,
+   "at": "2026-11-06T20:50:53.395Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_c6c1f4b08a",
+   "grade": 2,
+   "note": "Postman, Maven, Git and SQL not evidenced.",
+   "saw_model": false,
+   "at": "2026-11-06T20:51:26.488Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_0e91364a48",
+   "grade": 2,
+   "note": "Has long experience writing C# Selenium/SpecFlow automation scripts and MSSQL, but REST is only listed in skills, with no evidence of API automation.",
+   "saw_model": false,
+   "at": "2026-11-06T20:52:02.573Z"
   },
   {
    "jd": "dj_jd_cda40acb53",
    "cv": "dj_d47488a06a",
    "grade": 1,
-   "note": "CHưa đủ",
+   "note": "CHưa đủ: Only 1 year of Python automation with no Java, Selenium or TestNG, so it misses the core stack and the 2+ year requirement.",
    "saw_model": false,
-   "at": "2026-11-05T16:26:34.830Z"
+   "at": "2026-11-06T21:05:06.457Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_964e6f7c93",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T21:05:39.461Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_1023b9e6d2",
+   "grade": 2,
+   "note": "8 years of QA including web/mobile automation and building a mobile automation setup; Python, Selenium and Jenkins are listed but not tied to specific projects.",
+   "saw_model": false,
+   "at": "2026-11-06T21:06:41.592Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_84a81f2c26",
+   "grade": 1,
+   "note": "Senior with ISTQB, REST API, CI/CD and GitHub Actions, but Python is one of many languages listed, and there is no Selenium or Behave evidence.",
+   "saw_model": false,
+   "at": "2026-11-06T21:07:15.082Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_15308e2e4b",
+   "grade": 2,
+   "note": "2.5 yrs commercial automation of UI/API/integration tests in Java with Selenium, TestNG, Maven, Git, Postman and Linux; SQL not shown.",
+   "saw_model": false,
+   "at": "2026-11-06T21:07:52.329Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_452a18b38a",
+   "grade": 2,
+   "note": "3 years of Cypress/WDIO automation plus Python/Robot and manual web/mobile testing with CI, though API testing and Jenkins aren't explicitly shown.",
+   "saw_model": false,
+   "at": "2026-11-06T21:08:44.820Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_1d6c1abff0",
+   "grade": 1,
+   "note": "Good project evidence (Java, Maven, Selenium, JUnit, DDT, Postman, REST Assured, JDBC/SQL, Jenkins), but only 1 year of experience against the 2+ year requirement.",
+   "saw_model": false,
+   "at": "2026-11-06T21:09:07.547Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_452a18b38a",
+   "grade": 0,
+   "note": "Only UI automation in JS/TS with Cypress and WDIO; no C#, no SOAP/REST service testing and no SQL shown.",
+   "saw_model": false,
+   "at": "2026-11-06T21:09:34.163Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_534d40a1b2",
+   "grade": 1,
+   "note": "5+ years manual and 1+ year Java Selenium/Cucumber/Jenkins automation fits the experience profile, but Python is absent.",
+   "saw_model": false,
+   "at": "2026-11-06T21:10:12.957Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_1ae9314ee1",
+   "grade": 2,
+   "note": "Java, Selenium and TestNG are never shown.",
+   "saw_model": false,
+   "at": "2026-11-06T21:10:37.880Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_9d986d6fd9",
+   "grade": 1,
+   "note": "Python/PyTest practice limited to a mentored training project; 0 years of commercial automation experience.",
+   "saw_model": false,
+   "at": "2026-11-06T21:10:59.117Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_128252a092",
+   "grade": 0,
+   "note": "Broad SDET skills list, but says they are not interested in Java or manual testing, and manual testing is about half of this role.",
+   "saw_model": false,
+   "at": "2026-11-06T21:11:25.724Z"
   },
   {
    "jd": "dj_jd_ae34bfa9d9",
    "cv": "dj_1d6c1abff0",
    "grade": 1,
-   "note": "Chưa khớp JD",
+   "note": "Chưa khớp JD: Built a Java/Selenium/JUnit POM framework from scratch, plus RestAssured, Jenkins, AWS Selenium Grid, Postman and regression testing; upper-intermediate English",
    "saw_model": false,
-   "at": "2026-11-05T16:26:58.214Z"
-  },
-  {
-   "jd": "dj_jd_5ead23acd4",
-   "cv": "dj_0c4999985f",
-   "grade": 2,
-   "note": "Cần thêm thông tin",
-   "saw_model": false,
-   "at": "2026-11-05T16:27:20.750Z"
+   "at": "2026-11-06T21:11:48.105Z"
   },
   {
    "jd": "dj_jd_85e7c1f8dd",
@@ -576,31 +3018,159 @@
    "grade": 1,
    "note": "Chưa khớp tool",
    "saw_model": false,
-   "at": "2026-11-05T16:27:58.254Z"
+   "at": "2026-11-06T21:12:04.139Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_69a19b824d",
+   "grade": 0,
+   "note": "Junior with a training course and a short Java-based project; no C# and far short of 2+ years.",
+   "saw_model": false,
+   "at": "2026-11-06T21:12:31.555Z"
   },
   {
    "jd": "dj_jd_85e7c1f8dd",
-   "cv": "dj_e03dcd86cd",
+   "cv": "dj_be45abb318",
+   "grade": 1,
+   "note": "Builds test frameworks and CI in the Microsoft/C# stack; no Python or Linux experience.",
+   "saw_model": false,
+   "at": "2026-11-06T21:13:07.193Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_8accc54ec7",
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T16:28:19.390Z"
+   "at": "2026-11-06T21:13:51.258Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_03b4bd8836",
+   "grade": 0,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T21:14:02.657Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_251e6a0ca9",
+   "grade": 1,
+   "note": "5 years of QA with REST and MS SQL, but automation is JS only (no C#), they explicitly want a JS project, and most tools are just listed.",
+   "saw_model": false,
+   "at": "2026-11-06T21:14:32.879Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_d5df5453a7",
+   "grade": 0,
+   "note": "Strong QA methodology, but Java only appears in a skills list (Selenium/Selenide), and all the frameworks they rank highest are TypeScript or JavaScript.",
+   "saw_model": false,
+   "at": "2026-11-06T21:14:46.766Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_128252a092",
+   "grade": 2,
+   "note": "Claims 4 years of C# with SpecFlow, Selenium, RestSharp and CI tools, but it is a skills list with no projects shown, and he says he isn't interested in manual testing.",
+   "saw_model": false,
+   "at": "2026-11-06T21:15:39.418Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_aa89e318fb",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T21:17:33.914Z"
+  },
+  {
+   "jd": "dj_jd_0b373e855d",
+   "cv": "dj_e6bb174482",
+   "grade": 0,
+   "note": "Manual QA only, no automation or C#.",
+   "saw_model": false,
+   "at": "2026-11-06T21:17:52.140Z"
   },
   {
    "jd": "dj_jd_5ead23acd4",
    "cv": "dj_0e31cb8668",
    "grade": 0,
-   "note": "Chưa đạt",
+   "note": "Chưa đạt. Basic Java, runs and maintains automated tests, does regression testing and has intermediate English: a good fit for the trainee level.",
    "saw_model": false,
-   "at": "2026-11-05T16:28:42.383Z"
+   "at": "2026-11-06T21:18:12.344Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_5541e45ae5",
+   "grade": 2,
+   "note": "Built and maintained a C# UI+API test suite with CI, but has only 1.5 years and no SQL, SOAP, SoapUI or JMeter.",
+   "saw_model": false,
+   "at": "2026-11-06T21:18:51.668Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_a493942bc5",
+   "grade": 2,
+   "note": "Senior QA whose main language is Python; Java is secondary but used on Big Data projects with Postgres, Jenkins and TestNG.",
+   "saw_model": false,
+   "at": "2026-11-06T21:19:56.512Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_5a38d160ad",
+   "grade": 2,
+   "note": "Gradle and Jenkins, and they did years of manual GUI testing with XML before that, but the duties are described only in general terms.",
+   "saw_model": false,
+   "at": "2026-11-06T21:20:51.982Z"
   },
   {
    "jd": "dj_jd_0b373e855d",
    "cv": "dj_c5814f3a84",
    "grade": 2,
-   "note": "Cần thêm thông tin",
+   "note": "Cần thêm thông tin 7 years of automation, but all in the Java stack; no C#.",
    "saw_model": false,
-   "at": "2026-11-05T16:29:15.118Z"
+   "at": "2026-11-06T21:35:12.393Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_6cd6fe5244",
+   "grade": 2,
+   "note": "Real C# API automation (RestSharp, Visual Studio), JMeter, Azure DevOps, MS SQL, Docker and Scrum; but wants Lead/Manager roles and marks C#/100% automation as out of priority.",
+   "saw_model": false,
+   "at": "2026-11-06T21:35:48.573Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_166fc2fac6",
+   "grade": 0,
+   "note": "Strong back-end/API automation with SoapUI, RestAssured and Docker, but it is all in Java/JS, with no C#.",
+   "saw_model": false,
+   "at": "2026-11-06T21:36:11.443Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_be81de5fc6",
+   "grade": 2,
+   "note": "Built Java/Selenium(Selenide)/TestNG UI and API frameworks with Rest Assured, Postman, MySQL, Linux and CI, but uses Gradle rather than Maven and English is pre-intermediate.",
+   "saw_model": false,
+   "at": "2026-11-06T21:37:30.313Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_eac2b113da",
+   "grade": 0,
+   "note": "Automation work is in JS/Python tools (webdriverIO, seleniumbase) with no Java mentioned.",
+   "saw_model": false,
+   "at": "2026-11-06T21:37:46.044Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_1b3a2e00bb",
+   "grade": 1,
+   "note": "Mostly manual; claims 2 years of Python test automation with no project evidence, below the 3+ years required.",
+   "saw_model": false,
+   "at": "2026-11-06T21:38:24.296Z"
   },
   {
    "jd": "dj_jd_cda40acb53",
@@ -608,15 +3178,31 @@
    "grade": 3,
    "note": "",
    "saw_model": false,
-   "at": "2026-11-05T16:29:38.374Z"
+   "at": "2026-11-06T21:52:10.720Z"
   },
   {
    "jd": "dj_jd_5ead23acd4",
    "cv": "dj_eb53548434",
    "grade": 2,
-   "note": "Cần thêm thông tin",
+   "note": "Cần thêm thông tinWorks in JS/TS and explicitly rules out automation in Java.",
    "saw_model": false,
-   "at": "2026-11-05T16:30:00.422Z"
+   "at": "2026-11-06T21:53:11.238Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_737cabb8bf",
+   "grade": 2,
+   "note": "Strong hands-on Java/TestNG/Selenide/REST Assured/Postman/SQL/Jenkins work with Linux exposure, but pre-intermediate English falls short of the good-English requirement.",
+   "saw_model": false,
+   "at": "2026-11-06T21:53:51.568Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_06f7856906",
+   "grade": 0,
+   "note": "6+ years of Java Selenium/REST automation with frameworks built from scratch, but no Python and no BDD/Behave.",
+   "saw_model": false,
+   "at": "2026-11-06T21:54:09.310Z"
   },
   {
    "jd": "dj_jd_ef1d547a0b",
@@ -624,7 +3210,7 @@
    "grade": 0,
    "note": "Chưa khớp",
    "saw_model": false,
-   "at": "2026-11-05T16:30:21.576Z"
+   "at": "2026-11-06T21:54:26.711Z"
   },
   {
    "jd": "dj_jd_ef1d547a0b",
@@ -632,15 +3218,183 @@
    "grade": 0,
    "note": "Chưa đủ kinh nghiệm",
    "saw_model": false,
-   "at": "2026-11-05T16:30:44.046Z"
+   "at": "2026-11-06T21:54:42.856Z"
+  },
+  {
+   "jd": "dj_jd_cda40acb53",
+   "cv": "dj_22d744861d",
+   "grade": 0,
+   "note": "Vague Python/JS claims with no tools or stack named; no evidence of Java, Selenium or TestNG.",
+   "saw_model": false,
+   "at": "2026-11-06T21:55:08.174Z"
   },
   {
    "jd": "dj_jd_5ead23acd4",
    "cv": "dj_7e3877c75f",
    "grade": 2,
-   "note": "Cần thêm thông tin",
+   "note": "Cần thêm thông tin. 4 years of automation with TestNG and RestAssured/Jackson (Java libraries), frameworks built from scratch; upper English.",
    "saw_model": false,
-   "at": "2026-11-05T16:31:20.389Z"
+   "at": "2026-11-06T21:55:45.089Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_737cabb8bf",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T21:56:18.206Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_e4bedb3d56",
+   "grade": 1,
+   "note": "Mostly manual tester with 0.5 years; only Selenium IDE, with no Python, API automation or BDD.",
+   "saw_model": false,
+   "at": "2026-11-06T21:56:53.893Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_0c4999985f",
+   "grade": 0,
+   "note": "Lists SoapUI, JMeter and SOAP/REST but automates in Java; no C#, and the tools are only claimed in a skills list.",
+   "saw_model": false,
+   "at": "2026-11-06T22:02:04.964Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_3d30a94f2d",
+   "grade": 0,
+   "note": "C#/Selenium/NUnit stack only; no Python or BDD.",
+   "saw_model": false,
+   "at": "2026-11-06T22:02:30.835Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_e03dcd86cd",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T22:02:52.558Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_69a19b824d",
+   "grade": 0,
+   "note": "Only 0.5 years from a training course using Java, with no Python and not the required 1+ years of commercial automation",
+   "saw_model": false,
+   "at": "2026-11-06T22:03:16.794Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_0c4999985f",
+   "grade": 1,
+   "note": "Cần thêm thông tinSolid general QA work, but Java appears only in a skills list, and they want a middle or senior role, not a trainee one.",
+   "saw_model": false,
+   "at": "2026-11-06T22:03:48.072Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_1d5ea8a2f3",
+   "grade": 2,
+   "note": "Built a Java/Cucumber/Jenkins framework from scratch with Selenium and Rest Assured, with strong documentation and English, but no Python.",
+   "saw_model": false,
+   "at": "2026-11-06T22:04:44.086Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_4e7d52c59c",
+   "grade": 2,
+   "note": "Current automation QA job after 3+ years of manual QA and a Selenium WebDriver with Java course suit a trainee role, but none of the work is described.",
+   "saw_model": false,
+   "at": "2026-11-06T22:05:26.565Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_aa89e318fb",
+   "grade": 1,
+   "note": "Has done BDD (Cucumber), Selenium, Rest Assured and Circle CI/Jira work, but all in Java with no Python, and only about 1.5 years of automation.",
+   "saw_model": false,
+   "at": "2026-11-06T22:05:49.700Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_d834eb99e1",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T22:06:34.810Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_2def5612b8",
+   "grade": 0,
+   "note": "Good manual QA and test-case background, but the automation is JavaScript/Protractor and Java, a must-have, never appears.",
+   "saw_model": false,
+   "at": "2026-11-06T22:06:51.592Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_7af463bc16",
+   "grade": 0,
+   "note": "Manual QA with TestRail/Postman only; no Selenium or programming experience, and they say they want to learn automation.",
+   "saw_model": false,
+   "at": "2026-11-06T22:07:08.445Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_7779121a8b",
+   "grade": 2,
+   "note": "Lists C#, MSTest/NUnit, 2+ years of API automation, SQL and JMeter, but gives no project detail to show this work.",
+   "saw_model": false,
+   "at": "2026-11-06T22:07:41.339Z"
+  },
+  {
+   "jd": "dj_jd_85e7c1f8dd",
+   "cv": "dj_01f05d1b51",
+   "grade": 1,
+   "note": "Wrote automated tests in Unix/Linux environments with CI, but no programming language or Python mentioned.",
+   "saw_model": false,
+   "at": "2026-11-06T22:08:18.524Z"
+  },
+  {
+   "jd": "dj_jd_6e1339ed62",
+   "cv": "dj_23de22b664",
+   "grade": 0,
+   "note": "không đạt",
+   "saw_model": false,
+   "at": "2026-11-06T22:08:31.284Z"
+  },
+  {
+   "jd": "dj_jd_5ead23acd4",
+   "cv": "dj_711d6d444d",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T22:09:08.835Z"
+  },
+  {
+   "jd": "dj_jd_ef1d547a0b",
+   "cv": "dj_c0ba26ab77",
+   "grade": 3,
+   "note": "",
+   "saw_model": false,
+   "at": "2026-11-06T22:09:41.372Z"
+  },
+  {
+   "jd": "dj_jd_ae34bfa9d9",
+   "cv": "dj_2b22a86e06",
+   "grade": 1,
+   "note": "Strong senior manual QA, but Selenium appears only in a skills list, Java is 'basics', and automation was done only under supervision.",
+   "saw_model": false,
+   "at": "2026-11-06T22:10:21.469Z"
+  },
+  {
+   "jd": "dj_jd_26b849e026",
+   "cv": "dj_534d40a1b2",
+   "grade": 0,
+   "note": "No Python; only about 1 year of Java/Selenium/Cucumber automation, listed as skills without any project evidence.",
+   "saw_model": false,
+   "at": "2026-11-06T22:10:36.655Z"
   }
  ]
 }

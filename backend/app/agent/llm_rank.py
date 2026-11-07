@@ -1,13 +1,15 @@
 """Controlled LLM ranking (v4): the judgement of an agent on its own, inside the system's controls.
 
-S1 (eval/single_agent.py) showed that LLM judgement carries ranking signal, and also what it does unchecked: ranks CVs
-it never read, reads raw text, gives no reasons for what it leaves out. Here the same judgement runs under controls:
+S1 (eval/single_agent.py) historically appeared strong on same-family Claude labels, a result now blocked as
+circular. It also showed what an unchecked agent does: ranks CVs it never read, reads raw text, and gives no reasons
+for what it leaves out. Here the same judgement can be studied under controls:
   - only over the screened shortlist (rules and knock-out already applied), and the model sees every candidate's
     sanitised, sectioned passages: nothing can be ranked unread;
   - judged twice, in opposite input orders; positions are averaged, so a position-biased answer cannot decide alone;
   - ids are canonicalized at the boundary: only shortlisted ids, each once; a missing one keeps its rule position;
   - the rule scores S and the knock-out do not change; only the order inside the shortlist does, with a reason each.
-Adopted only if app.eval.llm_rank says so on dev (docs/LLM_RANK_RESULTS.md)."""
+Experimental only. Disabled by default until app.eval.provenance accepts a frozen run on independent human labels
+(docs/CIRCULARITY_AUDIT.md)."""
 
 import json
 

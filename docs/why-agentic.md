@@ -94,24 +94,25 @@ is the design point, not a weakness to hide: what can be deterministic is left t
 narrower question: what does one agent do when it is the whole system, with none of the parts around it (rule scores,
 knock-out, verification, guard, input sanitising, HR in the loop)? Each gap S1 shows is a job one of those parts does.
 
-**Measured** (`docs/SINGLE_AGENT_RESULTS.md`; 6 dev JDs of `ours`; Claude Sonnet 5.5, the same model as P6):
+**Historical diagnostic** (`docs/SINGLE_AGENT_RESULTS.md`; 6 dev JDs of `ours-silver`; Claude Sonnet 5.5):
 
 | | S1, an agent on its own | P6 | B3 ⊕ CE (no LLM) |
 |---|---|---|---|
-| nDCG@10, mean | **0.942** | 0.867 | 0.871 |
+| nDCG@10, mean | 0.942† | 0.867 | 0.871 |
 | P@5, mean | 0.93 | 0.93 | — |
 | traps in the top 10 (sum) | 1 | 0 | — |
 | ids invented | 0 | — | — |
 | ranked without reading the CV | **11 of 60** | 0 | 0 |
 | tokens | 1.07M | ≈ 0.7M | 0 |
 
-**This is a negative result for "the agentic pipeline ranks better", and it is reported as one.** S1 beats P6 by
-+0.075 nDCG@10, most on JD-001 (0.95 vs 0.80) and JD-012 (1.00 vs 0.78). Three things limit what it shows:
+† **Blocked as ranking evidence.** S1 appears +0.075 above P6 on the historical silver scores, most on JD-001
+(0.95 vs 0.80) and JD-012 (1.00 vs 0.78), but same-family circularity means this is not a measured effectiveness
+advantage. The run still exposes three control failures:
 
-1. **Possible circularity.** The `ours` silver labels were made by Claude annotators (Opus, Sonnet) judging pairs
-   holistically, and S1 is Sonnet judging holistically. Agreement with same-family labels is expected. Until human
-   labels exist (planned benchmark v1.1, κ on about 120 pairs), "S1 ranks better" cannot be told apart from
-   "S1 agrees with its own model family".
+1. **Confirmed claim-level circularity.** The `ours-silver` labels were made by Claude annotators (Opus, Sonnet)
+   judging pairs holistically, and S1 is Sonnet judging holistically. The completed audit finds human–human κ 0.965
+   but human–silver κ 0.695/0.661. S1 has not been rerun on Djinni Aggregate Human Gold, so its apparent lead is
+   withdrawn rather than presented with a soft caveat.
 2. **The injection test is inconclusive.** The two planted trap CVs did not rise, but the first run did not record
    whether S1 ever read them. The harness now records exposure; the test must be re-run.
 3. **What S1 does not give:**
@@ -120,42 +121,45 @@ knock-out, verification, guard, input sanitising, HR in the loop)? Each gap S1 s
    - no reproducible score;
    - nothing that learns from HR's decisions.
 
-**What follows for the design, which fits "agentic includes agents".** LLM judgement carries ranking signal on these
-labels, and P6 keeps the LLM out of the score on purpose (v2: −0.033 with the LLM scoring criteria). The next step is
+**What follows for the design, which fits "agentic includes agents".** LLM judgement may carry ranking signal, but
+the current labels cannot establish it. P6 keeps the LLM out of the score on purpose. The experiment to test next is
 not to pick S1 or P7, but to **bring that judgement inside P7 as a controlled tool**:
 - an LLM rerank of the screened shortlist, allowed only over CVs it has read;
 - run on sanitised text;
 - judged in both orders, as the arbiter is;
 - with a reason for every CV.
 
-It is decided on dev, and confirmed against human labels before any claim.
+It was explored on dev; it is not adopted and cannot support a claim before independent human-labelled evaluation.
 
 **Built and measured** (`rank_shortlist`, `agent/llm_rank.py`; `docs/LLM_RANK_RESULTS.md`; dev JDs):
 
 | | B3 ⊕ CE | + controlled LLM ranking | P6 | S1 |
 |---|---|---|---|---|
-| `ours` (Claude-made labels), 6 JDs | 0.871 | **0.955** | 0.867 | 0.942 |
-| `coding` (rubric labels), 2 JDs | 0.861 | **0.859** | 0.862 | — |
+| `ours-silver` (Claude-made labels), 6 JDs | 0.871 | 0.955† | 0.867 | 0.942 |
+| `coding-rubric`, 2 JDs | 0.861 | 0.859 | 0.862 | — |
 | tokens per JD | 0 | ≈ 34k | ≈ 120k | ≈ 179k |
 
-- **Same judgement as S1, under the system's controls.** It matches S1's ranking at about a fifth of the tokens.
+- † **Withdrawn from the effectiveness claim.** Claude ranked against Claude-made labels, so the evidence firewall
+  marks this row `blocked`; the feature is now disabled by default. It is retained only as a historical diagnostic.
+- **Same judgement as S1, under the system's controls.** Historically it matched S1's silver-label score at about a fifth of the tokens.
   Every candidate is read; two passes are averaged; rules and knock-out stay; every CV gets a reason.
-- **Passes the §8 rule** (not lower than 0.01 on either benchmark, higher on one), so P7's playbook now calls it after
-  `screen`.
-- **But the gain appears only on LLM-made labels.** On the rubric labels it ties, with a +0.095 / −0.098 swing between
-  the two JDs (the drop is on a vague JD). Circularity is not ruled out. Human labels decide whether it is a real
-  improvement.
+- **It no longer passes the release gate.** The old §8 point-estimate rule did not encode label provenance. The new
+  gate requires independent human Gold, and P7 does not call it by default (`MAX_LLM_RANKS=0`).
+- **The gain appears only on LLM-made labels.** On the rubric labels it ties, with a +0.095 / −0.098 swing between
+  the two JDs (the drop is on a vague JD). Same-family circularity is therefore treated as present for claim
+  purposes, not as a soft caveat. Human labels decide whether any real improvement exists.
 - **LLM labels move with the labeller.** A fourth annotator, explicitly an LLM (Claude Opus 5.5, blind, the written
   rubric; `data/eval/llm_annotator_d.json`), agrees with the silver set at weighted κ **0.79**, against 0.89 for the
   earlier model annotator. It is also stricter: mean grade 1.04 vs 1.28; 35 pairs lower, 8 higher. It reads "a tool
   only in the skills list" as 0, as the rubric says. So "relevant" already shifts between two Claude labellers, which
-  is one more reason human labels decide.
+  is one more reason a controlled rerun on the new human Djinni Gold is required.
 
 
 ## 7. Still to prove
 
-1. **Human labels** (κ on about 120 pairs): now the first priority, because S1's lead may be label circularity.
-2. **LLM judgement inside P7** as a controlled rerank tool (§6), decided on dev against S1 and P6.
+1. **Controlled P6/P7 run on Djinni Aggregate Human Gold:** human labels now exist, but the LLM-rank claim has not
+   been tested against them; until then the claim is withdrawn rather than merely caveated.
+2. **A new pre-registered JD hold-out:** both the historical test and the Djinni pilot have already been viewed.
 3. **S1 injection re-run**, with exposure recorded.
 4. **E15** on a live model: does P7 pick the right behaviour per situation?
 5. **P7 vs P6 on the exception subsets** (vague JDs, garbled CVs), not only on mean nDCG.
@@ -167,5 +171,5 @@ It is decided on dev, and confirmed against human labels before any claim.
 > own can, but nothing checks it. An agentic system puts agents exactly at the exceptions, keeps scoring
 > deterministic, and checks every action. Measured: +0.078 nDCG@10 from asking HR on vague JDs, 0 false recoveries
 > when investigating, 0 rank changes from protected attributes or planted injection. An agent on its own ranked
-> higher on our LLM-made labels (+0.075), so its judgement belongs inside the system, under the same controls, and
-> must be confirmed against human labels.
+> higher on our LLM-made labels (+0.075), but that result is circular and withdrawn. Controlled LLM judgement remains
+> an experimental hypothesis, disabled until an independent human-Gold run supports it.

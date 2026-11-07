@@ -94,16 +94,13 @@ def full_order(ranked: list[str], pool: list[str]) -> list[str]:
 
 
 # ── retrieval-level systems (no LLM judgement) ────────────────────────────────────────────────────────
-def b3_systems(store: KnowledgeStore, pool: list[str], prof: dict, r: dict, w: dict,
-               ce: dict[str, float] | None = None) -> dict[str, list[str]]:
+def b3_systems(store: KnowledgeStore, pool: list[str], prof: dict, r: dict, w: dict) -> dict[str, list[str]]:
     """B3 family on one JD: hedge-aware knock-out + rule criteria (CORE4 = v2, or all 8), alone or fused with the
-    cross-encoder over the same requirement-wise retrieval the agent uses. No LLM judgement. `ce` replaces the
-    zero-shot cross-encoder's CV scores (the fine-tuned reranker, app.eval.finetune)."""
+    cross-encoder over the same requirement-wise retrieval the agent uses. No LLM judgement."""
     req, subs = r["req"], r["subs"]
     qs = retrieve.queries(req, r["terms"], subs)
-    if ce is None:
-        hits = retrieve.rank_cvs(store, "chunks_structural", qs, limit=max(200, 2 * len(pool)))
-        ce = retrieve.rerank_cvs(store, qs, [h for h in hits if h.cv_id in prof], prof)
+    hits = retrieve.rank_cvs(store, "chunks_structural", qs, limit=max(200, 2 * len(pool)))
+    ce = retrieve.rerank_cvs(store, qs, [h for h in hits if h.cv_id in prof], prof)
     ko = {c for c in pool if knockout_reason(prof[c], req["must_have"], subs)}
     out = {}
     for crit_name, crit in (("core4", CORE4), ("8-axis", None)):
@@ -120,51 +117,63 @@ def b3_systems(store: KnowledgeStore, pool: list[str], prof: dict, r: dict, w: d
     return out
 
 
-LEAN = ("B0 BM25", "B1 dense", "B2 hybrid", "R structural", "R structural + CE", "B3 +criteria (rules)",
-        "B3 rules ⊕ CE", "B3 8-axis [hybrid]", "B3 8-axis ⊕ CE [hybrid]")
+def retrieval_systems(dense_model: str, b: Bench, only: set[str] | None = None) -> dict[str, dict[str, list[str]]]:
+    """Run retrieval systems, optionally restricted to exact result names.
 
-
-def retrieval_systems(dense_model: str, b: Bench, lean: bool = False) -> dict[str, dict[str, list[str]]]:
-    """lean: only the systems the benchmark reports compare (LEAN), on structural chunks: 3 cross-encoder passes per
-    JD instead of 7, same code per system, so the numbers match a full run."""
+    ``only`` is primarily for the frozen external-validity run: loading the three
+    chunking ablations and every cross-encoder variant at once needlessly raises
+    peak RAM, while each requested system is still computed by the same code path.
+    An omitted/empty set preserves the historical all-systems run.
+    """
+    only = only or set()
+    wanted = lambda name: not only or name in only  # noqa: E731
+    base_names = {"B0 BM25", "B1 dense", "B2 hybrid"}
+    need_whole = any(wanted(name) for name in base_names)
+    need_b3 = not only or any(name.startswith("B3 ") for name in only)
+    need_ablation = not only
     s = Settings(qdrant_url=":memory:", embed_dense_model=dense_model)
     store = KnowledgeStore(s)
     pool = [d.id for d in b.cvs]
-    strategies = ("structural",) if lean else ("structural", "window", "whole")
-    profiles = {st: {d.id: process(d.id, d.text, d.meta.get("headline", ""), st) for d in b.cvs} for st in strategies}
-    store.index(retrieve.WHOLE, b.cvs)
+    styles = ("structural", "window", "whole") if need_ablation else (("structural",) if need_b3 else ())
+    profiles = {st: {d.id: process(d.id, d.text, d.meta.get("headline", ""), st) for d in b.cvs} for st in styles}
+    if need_whole:
+        store.index(retrieve.WHOLE, b.cvs)
     for st, ps in profiles.items():
         store.index_items(f"chunks_{st}", retrieve.chunk_items(list(ps.values())))
     weights_of = load_yaml("criteria_profiles.yaml")["profiles"]
 
     out: dict[str, dict[str, list[str]]] = {}
     for jd in b.jds:
-        r = asyncio.run(requirements(jd, "llm", b.name))
-        req, subs = r["req"], r["subs"]
         add = lambda name, ids: out.setdefault(name, {}).__setitem__(jd.id, full_order(ids, pool))  # noqa: E731
         for mode, name in (("bm25", "B0 BM25"), ("dense", "B1 dense"), ("hybrid", "B2 hybrid")):
-            add(name, [h.id for h in store.hybrid_search(retrieve.WHOLE, jd.text, limit=len(pool), mode=mode)])
-        qs = retrieve.queries(req, r["terms"], subs)
-        chunkings = (("structural", False),) if lean else (("whole", False), ("window", False), ("structural", False),
-                                                           ("structural", True))
-        for st, weighted in chunkings:
-            hits = retrieve.rank_cvs(store, f"chunks_{st}", qs, limit=max(200, 2 * len(pool)), section_weighted=weighted)
-            name = f"R {st}" + (" (section-weighted)" if weighted else "")
-            add(name, [h.cv_id for h in hits])
-            ce = retrieve.rerank_cvs(store, qs, hits, profiles[st])
-            add(f"{name} + CE", sorted(ce, key=ce.get, reverse=True))
-        w = weights_of[jd.meta.get("company_profile", "default")]["weights"]
-        # B3 family per JD-requirements mode. "B3 +criteria (rules)" / "B3 rules ⊕ CE" keep their v2 names (llm, core4).
-        for mode in (("llm", "hybrid") if lean else ("llm", "rules", "hybrid")):
-            rm = r if mode == "llm" else asyncio.run(requirements(jd, mode, b.name))
-            for variant, ids in b3_systems(store, pool, profiles["structural"], rm, w).items():
-                if (mode, variant) == ("llm", "core4"):
-                    add("B3 +criteria (rules)", ids)
-                elif (mode, variant) == ("llm", "core4 ⊕ CE"):
-                    add("B3 rules ⊕ CE", ids)
-                else:
-                    add(f"B3 {variant} [{mode}]", ids)
-        print(f"{b.name} {jd.id}: retrieval systems ranked", flush=True)
+            if wanted(name):
+                add(name, [h.id for h in store.hybrid_search(retrieve.WHOLE, jd.text, limit=len(pool), mode=mode)])
+        if need_ablation:
+            r = asyncio.run(requirements(jd, "llm", b.name))
+            req, subs = r["req"], r["subs"]
+            qs = retrieve.queries(req, r["terms"], subs)
+            for st, weighted in (("whole", False), ("window", False), ("structural", False), ("structural", True)):
+                hits = retrieve.rank_cvs(store, f"chunks_{st}", qs, limit=max(200, 2 * len(pool)), section_weighted=weighted)
+                name = f"R {st}" + (" (section-weighted)" if weighted else "")
+                add(name, [h.cv_id for h in hits])
+                ce = retrieve.rerank_cvs(store, qs, hits, profiles[st])
+                add(f"{name} + CE", sorted(ce, key=ce.get, reverse=True))
+        if need_b3:
+            w = weights_of[jd.meta.get("company_profile", "default")]["weights"]
+            modes = ("llm", "rules", "hybrid") if need_ablation else tuple(
+                mode for mode in ("llm", "rules", "hybrid") if any(name.endswith(f"[{mode}]") for name in only)
+            )
+            for mode in modes:
+                rm = asyncio.run(requirements(jd, mode, b.name))
+                for variant, ids in b3_systems(store, pool, profiles["structural"], rm, w).items():
+                    if (mode, variant) == ("llm", "core4"):
+                        name = "B3 +criteria (rules)"
+                    elif (mode, variant) == ("llm", "core4 ⊕ CE"):
+                        name = "B3 rules ⊕ CE"
+                    else:
+                        name = f"B3 {variant} [{mode}]"
+                    if wanted(name):
+                        add(name, ids)
     return out
 
 
@@ -200,8 +209,7 @@ async def run_agent(jd, ablate: list[str], model: str | None = None) -> dict:
             "calls": u["calls"], "tokens": u["total_tokens"], "loops": {k: n for k, n in v.get("loops", {}).items() if n},
             "first_verify": first_verify, "evidence": len(ev),
             "grounded": sum(bool(e["grounded"]) for e in ev), "supported": sum(bool(e["supported"]) for e in ev),
-            "tiers": {r["cv_id"]: r["tier"] for r in v["ranking"] if r.get("tier")}, "quality": quality(events),
-            "needs_review": sum(r["status"] == "needs_review" for r in v["ranking"])}
+            "tiers": {r["cv_id"]: r["tier"] for r in v["ranking"] if r.get("tier")}, "quality": quality(events)}
 
 
 def quality(events: list[dict]) -> dict:
@@ -235,9 +243,7 @@ def save(name: str, per_jd: dict, bench: str = "ours") -> None:
 # ── report ────────────────────────────────────────────────────────────────────────────────────────────
 def score_system(per_jd: dict, g: dict, traps: frozenset[str] = OUR_TRAPS) -> dict:
     jds = sorted(per_jd)
-    # Condensed lists: only judged CVs count (a no-op on ours/coding, where every CV is judged; djinni is pooled)
-    order = lambda jd: [c for c in (per_jd[jd] if isinstance(per_jd[jd], list) else per_jd[jd]["ranking"])  # noqa: E731
-                        if c in g[jd]]
+    order = lambda jd: per_jd[jd] if isinstance(per_jd[jd], list) else per_jd[jd]["ranking"]  # noqa: E731
     m = {"ndcg@10": [metrics.ndcg(order(j), g[j], 10) for j in jds],
          "ndcg@5": [metrics.ndcg(order(j), g[j], 5) for j in jds],
          "p@5": [metrics.precision(order(j), g[j], 5) for j in jds],
@@ -376,10 +382,6 @@ async def run_agents(systems: list[str], jds: list, model: str | None = None, be
             if claude_code.QUOTA_HIT:  # the run degraded silently (CVs → needs review): never save it
                 raise SystemExit(f"Subscription limit reached during {name} {jd.id}: not saved. Rerun the same "
                                  "command after the limit resets; finished JDs are kept.")
-            if result.get("needs_review"):  # an LLM call failed and CVs fell back to manual review: a degraded run
-                print(f"{name} {jd.id}: {result['needs_review']} CV(s) need review after an LLM failure: not saved, "
-                      "rerun to retry", flush=True)
-                continue
             per_jd[jd.id] = result
             save(name, per_jd, bench)
             r = per_jd[jd.id]
@@ -390,25 +392,26 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("what", choices=["retrieval", "agent", "report"])
     ap.add_argument("--dense", default=get_settings().embed_dense_model)
-    ap.add_argument("--lean", action="store_true", help="retrieval only: just the systems the benchmark reports compare")
     ap.add_argument("--systems", default="P6,B4,A1,A2,A3,A4")
+    ap.add_argument("--only", default="", help="retrieval only: comma-separated exact system names")
     ap.add_argument("--jds", default="")
-    ap.add_argument("--bench", default="ours", choices=["ours", "coding", "djinni"])
+    ap.add_argument("--bench", default="ours", choices=["ours", "coding", "djinni", "djinni_holdout"])
     ap.add_argument("--model", help='agent only: "<provider>:<model>" for both roles, e.g. claude_code:claude-sonnet-5-5')
     a = ap.parse_args()
     cache.enable(get_settings().runtime_dir / "llm_cache.sqlite")
     if a.what == "retrieval":
         suffix = "" if a.dense == get_settings().embed_dense_model else f" [{a.dense.split('/')[-1]}]"
-        for name, per_jd in retrieval_systems(a.dense, load_bench(a.bench), a.lean).items():
+        only = {name.strip() for name in a.only.split(",") if name.strip()}
+        for name, per_jd in retrieval_systems(a.dense, load_bench(a.bench), only).items():
             save(name + suffix, per_jd, a.bench)
             print(f"saved {name + suffix}")
     elif a.what == "agent":
-        if (a.bench != "ours") != (get_settings().data_dir != ROOT / "data"):
-            raise SystemExit(f"--bench {a.bench} runs on the materialized corpus: DATA_DIR=$(python -m app.eval.bench "
-                             f"materialize {a.bench}), re-ingest, then rerun; --bench ours needs the default data/")
-        if get_settings().qdrant_url == ":memory:":  # no Qdrant server: this process holds the index
-            from app.rag.ingest import ingest
-            print("indexed:", ingest(), flush=True)
+        expected = {"ours": ROOT / "data", "coding": get_settings().runtime_dir / "bench" / "coding_corpus",
+                    "djinni": get_settings().runtime_dir / "bench" / "djinni_corpus",
+                    "djinni_holdout": get_settings().runtime_dir / "bench" / "djinni_holdout_corpus"}[a.bench]
+        if get_settings().data_dir.resolve() != expected.resolve():
+            raise SystemExit(f"--bench {a.bench} needs DATA_DIR={expected}; materialize external corpora with "
+                             f"`python -m app.eval.bench materialize {a.bench}`")
         asyncio.run(run_agents(a.systems.split(","), [d for d in load_dir("jds") if not a.jds or d.id in a.jds.split(",")],
                                a.model, a.bench))
     else:

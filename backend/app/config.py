@@ -66,6 +66,11 @@ class Settings(BaseSettings):
     embed_dense_model: str = "BAAI/bge-small-en-v1.5"
     embed_sparse_model: str = "Qdrant/bm25"
     rerank_model: str = "Xenova/ms-marco-MiniLM-L-6-v2"
+    # Bound ONNX peak memory. Batching changes throughput only; model weights,
+    # inputs and ranking scores are unchanged. This also makes the frozen
+    # external run feasible on the 8 GB reference Docker runtime.
+    embedding_batch_size: int = 16
+    rerank_batch_size: int = 16
 
     langfuse_base_url: str = "http://localhost:3000"
     langfuse_public_key: str = ""
@@ -131,7 +136,9 @@ class Settings(BaseSettings):
     max_hr_turns: int = 3
     max_explain: int = 10  # CVs one explain call may assess (each is one reasoning-model call)
     llm_rank_size: int = 15  # controlled LLM ranking (agent/llm_rank.py): shortlist size it may reorder (2 calls)
-    max_llm_ranks: int = 2  # LLM ranking calls per HR turn in P7 (each is two passes)
+    # Disabled until a frozen no-tuning run passes the human-Gold gate in docs/CIRCULARITY_AUDIT.md.  A research
+    # run may opt in with MAX_LLM_RANKS=2; the old Claude-on-Claude silver result is not adoption evidence.
+    max_llm_ranks: int = 0  # LLM ranking calls per HR turn in P7 (each is two passes)
     max_single_agent_steps: int = 30  # S1 baseline (eval/single_agent.py): one LLM, tools, no harness; its only limit
 
 

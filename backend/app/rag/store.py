@@ -68,8 +68,8 @@ class KnowledgeStore:
     def upsert_items(self, collection: str, items: list[tuple[str, str, dict]], recreate: bool = False) -> None:
         """Add or replace points; `recreate` drops the collection first (full re-index)."""
         texts = [t for _, t, _ in items]
-        dense = list(self.dense.embed(texts))
-        sparse = list(self.sparse.embed(texts))
+        dense = list(self.dense.embed(texts, batch_size=self.s.embedding_batch_size))
+        sparse = list(self.sparse.embed(texts, batch_size=self.s.embedding_batch_size))
         if recreate and self.client.collection_exists(collection):
             self.client.delete_collection(collection)
         if not self.client.collection_exists(collection):
@@ -115,10 +115,10 @@ class KnowledgeStore:
         return [Hit(id=p.payload["doc_id"], score=p.score, payload=p.payload) for p in res.points]
 
     def rerank(self, query: str, texts: list[str]) -> list[float]:
-        return [float(x) for x in self.reranker.rerank(query, texts)]
+        return [float(x) for x in self.reranker.rerank(query, texts, batch_size=self.s.rerank_batch_size)]
 
     def rerank_pairs(self, pairs: list[tuple[str, str]]) -> list[float]:
-        return [float(x) for x in self.reranker.rerank_pairs(pairs)] if pairs else []
+        return [float(x) for x in self.reranker.rerank_pairs(pairs, batch_size=self.s.rerank_batch_size)] if pairs else []
 
 
 @lru_cache

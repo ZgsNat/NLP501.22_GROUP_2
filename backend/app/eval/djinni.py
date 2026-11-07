@@ -1,143 +1,44 @@
-"""Djinni: a real-data layer (anonymised public CVs and JDs, MIT; Drushchak & Romanyshyn, UNLP 2024).
+"""Djinni-QA human gold and external-validity pilot.
 
-8 English "QA Automation" JDs × 250 real CVs, prepared on the `coding` branch (data/djinni, pinned below). Real CVs stay
-out of data/ (repo rule), so they are copied from git into .runtime/bench/djinni, like the coding benchmark. Only
-labels are committed (data/eval/djinni_*.json).
+The real texts stay under ``.runtime/bench/djinni``.  Only human judgements and
+their reproducible aggregate are committed.  Two independent 0--3 judgements
+are combined by their arithmetic mean; disagreement is retained as an interval
+and a confidence flag instead of being hidden by rounding or ``min``.
 
-Labels follow TREC pooling: per JD, the union of four rankers' top 20 plus 10 random CVs, 424 pairs in all
-(labeling/pool.json). Metrics are condensed: each JD's ranking is scored over its judged CVs only.
-
-    python -m app.eval.djinni fetch                          copy the pinned set into .runtime/bench/djinni
-    python -m app.eval.djinni silver --tag a --model claude_code:claude-opus-5-5     LLM silver labels (not human)
-    python -m app.eval.djinni silver --tag b --model claude_code:claude-sonnet-5-5
-    python -m app.eval.djinni import labels_A.xlsx labels_B.xlsx [--adjudicated FILE.xlsx]
-                                                             team's xlsx → data/eval/human_djinni_*.json
-    python -m app.eval.djinni score                          → docs/DJINNI_LABELS.md (κ human–human, human–silver)
-    python -m app.eval.djinni review                         → .runtime/bench/djinni/labeling/review.html: label in a
-                                                             browser, blind or with Opus's grade shown; its exported
-                                                             JSON goes to `import` like the xlsx files;
-                                                             ?blind=1 locks blind mode, &subset=1 = 80 pairs (subset())
-
-Gold (`gold()`): the adjudicated human labels once two annotators who pass the quality check (`qc_problems`) finished every pair and no pair is left ≥ 2 grades
-apart; until then the mean of the two silver annotators. Which one is in use is stated in every report.
+    python -m app.eval.djinni check
+    python -m app.eval.djinni gold
+    python -m app.eval.djinni report
+    python -m app.eval.djinni all
+    python -m app.eval.djinni freeze-production
+    python -m app.eval.djinni production-report
 """
 
+from __future__ import annotations
+
 import argparse
-import asyncio
 import hashlib
-import html
 import json
-import random
+import math
 import re
-import subprocess
-import sys
-import zipfile
+from collections import Counter, defaultdict
 from pathlib import Path
+from typing import Any
 
 import yaml
 
 from app.config import ROOT, get_settings
 from app.eval import metrics
-from app.rag.corpus import Doc
 
-REF = "a0a4c1a8aa205cea97e0d343f85ce440ee7ea6b5"  # origin/coding: "Djinni gold set for human labelling"
-DIR = get_settings().runtime_dir / "bench" / "djinni"
 LABELS = ROOT / "data" / "eval"
-DOC = ROOT / "docs" / "DJINNI_LABELS.md"
-BATCH = 20  # CVs per silver-label call
-QC_MIN_KAPPA = 0.4  # an annotator must reach "moderate" weighted κ with at least one other annotator (Landis & Koch)
-SUBSET_PER_JD = 10  # ?subset=1 on the page: 80 pairs, enough for a human–human κ
-MIN_READ_SECONDS = 20  # ?blind=1: grading unlocks this long after a new pair opens
-QC_MIN_SECONDS = 10.0  # blind labels: median seconds between grades; below this nobody read a JD and a CV
-
-
-# ── data ──────────────────────────────────────────────────────────────────────────────────────────────
-def fetch(ref: str = REF) -> None:
-    git = lambda *a: subprocess.run(["git", *a], cwd=ROOT, check=True, capture_output=True).stdout  # noqa: E731
-    files = git("ls-tree", "-r", "--name-only", ref, "data/djinni").decode().split("\n")
-    for f in filter(None, files):
-        if f.endswith((".txt", "jds.yaml", "meta.json", "pool.json", ".xlsx")):
-            out = DIR / Path(f).relative_to("data/djinni")
-            out.parent.mkdir(parents=True, exist_ok=True)
-            out.write_bytes(git("show", f"{ref}:{f}"))
-    print(f"djinni → {DIR} ({len(list((DIR / 'cvs').glob('*.txt')))} CVs)")
-
-
-def _need() -> None:
-    if not (DIR / "jds.yaml").exists():
-        raise SystemExit("djinni set missing: run `python -m app.eval.djinni fetch` first")
-
-
-def cvs() -> list[Doc]:
-    _need()
-    return [Doc(p.stem, p.read_text(encoding="utf-8"), {"headline": p.read_text(encoding="utf-8").split("\n", 1)[0]})
-            for p in sorted((DIR / "cvs").glob("*.txt"))]
-
-
-def jds() -> list[Doc]:
-    _need()
-    return [Doc(j["id"], j["text"], {"title": j.get("title", ""), "company_profile": "default"})
-            for j in yaml.safe_load((DIR / "jds.yaml").read_text(encoding="utf-8"))]
-
-
-def pairs() -> dict[str, list[str]]:
-    _need()
-    return json.loads((DIR / "labeling" / "pool.json").read_text())["pool"]
-
-
-# ── labels ────────────────────────────────────────────────────────────────────────────────────────────
-def _load(path: Path) -> dict[tuple[str, str], int]:
-    return {(x["jd"], x["cv"]): int(x["grade"]) for x in json.loads(path.read_text(encoding="utf-8"))["labels"]}
-
-
-def silver_files() -> list[Path]:
-    return sorted(LABELS.glob("djinni_silver_*.json"))
-
-
-def human_files() -> list[Path]:
-    return sorted(p for p in LABELS.glob("human_djinni_*.json") if p.stem != "human_djinni_adjudicated")
-
-
-def median_seconds(labels: list[dict]) -> float | None:
-    """Median gap between consecutive grades (the page stamps `at` on every click); None without timestamps."""
-    from datetime import datetime
-    from statistics import median
-
-    ts = sorted(datetime.fromisoformat(x["at"].replace("Z", "+00:00")) for x in labels if x.get("at"))
-    return median((b - a).total_seconds() for a, b in zip(ts, ts[1:])) if len(ts) > 2 else None
-
-
-def qc_problems(labels: list[dict], others: dict[str, dict[tuple[str, str], int]]) -> list[str]:
-    """Why an annotator's labels cannot be gold ([] = usable). κ floor for everyone; the speed floor only for blind
-    labels (accepting a shown model grade is fast, and review mode is already reported as anchored on the model)."""
-    mine = {(x["jd"], x["cv"]): int(x["grade"]) for x in labels}
-    problems, best = [], None
-    for other in others.values():
-        common = sorted(set(mine) & set(other))
-        if len(common) >= 20:
-            k = metrics.weighted_kappa([mine[c] for c in common], [other[c] for c in common])
-            best = k if best is None else max(best, k)
-    if best is not None and best < QC_MIN_KAPPA:
-        problems.append(f"best κ with any other annotator {best:.2f} < {QC_MIN_KAPPA}")
-    secs = median_seconds(labels)
-    blind = not any(x.get("saw_model") for x in labels)
-    if blind and secs is not None and secs < QC_MIN_SECONDS:
-        problems.append(f"median {secs:.1f} s per pair < {QC_MIN_SECONDS:.0f} s")
-    return problems
-
-
-def _raw(path: Path) -> list[dict]:
-    return json.loads(path.read_text(encoding="utf-8"))["labels"]
-
-
-def qc_report() -> dict[Path, list[str]]:
-    """Every human label file → its QC problems, judged against all other annotators (human, silver, Opus)."""
-    named = {p: _load(p) for p in human_files() + silver_files() + ([MODEL_GOLD] if MODEL_GOLD.exists() else [])}
-    return {p: qc_problems(_raw(p), {q: v for q, v in named.items() if q != p}) for p in human_files()}
-
-
-def qualified_humans() -> list[Path]:
-    return [p for p, problems in qc_report().items() if not problems]
+BENCH = get_settings().runtime_dir / "bench" / "djinni"
+DAN = LABELS / "human_djinni_dan.json"
+VU = LABELS / "human_djinni_vu.json"
+GOLD = LABELS / "human_djinni_gold.json"
+REPORT = ROOT / "docs" / "EXTERNAL_VALIDITY.md"
+PRODUCTION_MANIFEST = LABELS / "djinni_production_v1.json"
+PRODUCTION_REPORT = ROOT / "docs" / "DJINNI_PRODUCTION_RESULTS.md"
+PRODUCTION_RESULTS = get_settings().runtime_dir / "eval" / "results_djinni"
+PRODUCTION_SYSTEMS = ("B0 BM25", "B1 dense", "B2 hybrid", "B3 8-axis ⊕ CE [hybrid]", "P6")
 
 
 def adjudicate(a: dict, b: dict, override: dict | None = None) -> tuple[dict, list[tuple[str, str]]]:
@@ -154,302 +55,428 @@ def adjudicate(a: dict, b: dict, override: dict | None = None) -> tuple[dict, li
     return out, conflicts
 
 
-def gold() -> tuple[dict[str, dict[str, float]], str]:
-    """→ (JD → CV → grade over the judged pairs, which labels these are)."""
-    want = {(j, c) for j, cs in pairs().items() for c in cs}
-    hum = [_load(p) for p in qualified_humans()]
-    adj = LABELS / "human_djinni_adjudicated.json"
-    if len(hum) >= 2 and all(want <= set(h) for h in hum[:2]):
-        g, conflicts = adjudicate(hum[0], hum[1], _load(adj) if adj.exists() else None)
-        if not conflicts:
-            return _nest({k: float(v) for k, v in g.items()}), "human (2 annotators, adjudicated)"
-    sil = [_load(p) for p in silver_files()]
-    if not sil:
-        raise SystemExit("no djinni labels yet: run `python -m app.eval.djinni silver` first")
-    mean = {k: sum(s[k] for s in sil) / len(sil) for k in want if all(k in s for s in sil)}
-    return _nest(mean), f"silver (mean of {len(sil)} LLM annotators; not human)"
+def _sha(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def human_gold() -> tuple[dict[str, dict[str, float]], str] | None:
-    """The best complete human label set, or None: two annotators adjudicated, else one annotator who labelled every
-    pair. The description says whether that person saw the model's grade (review mode anchors on it)."""
-    want = {(j, c) for j, cs in pairs().items() for c in cs}
-    g, source = gold()
-    if source.startswith("human"):
-        return g, source
-    for p in qualified_humans():
-        d = json.loads(p.read_text(encoding="utf-8"))
-        labels = {(x["jd"], x["cv"]): x for x in d["labels"]}
-        if want <= set(labels):
-            seen = sum(bool(labels[k].get("saw_model")) for k in want)
-            how = "blind" if not seen else f"reviewing Opus 5.5's grade on {seen}/{len(want)} pairs"
-            return _nest({k: float(labels[k]["grade"]) for k in want}), f"human (1 annotator, {how})"
-    return None
+def _tree_sha(paths: list[Path]) -> str:
+    digest = hashlib.sha256()
+    for path in sorted(paths):
+        digest.update(path.name.encode())
+        digest.update(b"\0")
+        digest.update(path.read_bytes())
+        digest.update(b"\0")
+    return digest.hexdigest()
 
 
-def _nest(flat: dict[tuple[str, str], float]) -> dict[str, dict[str, float]]:
-    out: dict[str, dict[str, float]] = {}
-    for (j, c), v in flat.items():
-        out.setdefault(j, {})[c] = v
-    return out
+def production_manifest() -> dict[str, Any]:
+    """Protocol and inputs frozen before any production-system result is inspected."""
+    return {
+        "benchmark": "djinni-human",
+        "version": "production-v1",
+        "frozen_before_run": True,
+        "tuning": "none; one controlled run; failures are reported, not tuned away",
+        "systems": list(PRODUCTION_SYSTEMS),
+        "runtime": {
+            "llm_by_component": {
+                "B3_jd_parser": "ollama:qwen3:1.7b",
+                "P6_agent": "google:gemini-3.8-flash",
+            },
+            "jd_parser": "hybrid",
+            "dense_model": "BAAI/bge-small-en-v1.5",
+            "rerank_model": "Xenova/ms-marco-MiniLM-L-6-v2",
+            "onnx_batch_sizes": {"embedding": 16, "rerank": 16},
+            "python": "3.12 (Linux container, dependencies from frozen uv.lock)",
+        },
+        "protocol_amendments": [
+            {
+                "when": "before any P6 result existed",
+                "change": "P6 provider changed from local Ollama to Google Gemini because local inference was operationally infeasible; Gemini 3.8 Flash was the strongest user-listed model that passed the pre-run quota smoke test (Pro/Argon had zero quota)",
+                "performance_observed_before_change": False,
+                "scope": "P6 only; B0-B3 configurations and completed outputs unchanged",
+            }
+        ],
+        "evaluation": {
+            "ranking": "judged-only nDCG@10 on unrounded Aggregate Human Gold",
+            "binary": "P@5 relevant iff both Vũ and Đán graded >=2",
+            "uncertainty": "JD bootstrap CI plus min/max label-sensitivity bounds",
+            "unjudged": "ignored, never mapped to grade 0",
+        },
+        "inputs": {
+            str(GOLD.relative_to(ROOT)): _sha(GOLD),
+            ".runtime/bench/djinni/jds.yaml": _sha(BENCH / "jds.yaml"),
+            ".runtime/bench/djinni/cvs/*": _tree_sha(list((BENCH / "cvs").glob("*.txt"))),
+        },
+    }
 
 
-# ── the team's xlsx ───────────────────────────────────────────────────────────────────────────────────
-def _col(ref: str) -> str:
-    return re.match(r"[A-Z]+", ref).group(0)
+def freeze_production() -> dict[str, Any]:
+    current = production_manifest()
+    if PRODUCTION_MANIFEST.exists():
+        frozen = json.loads(PRODUCTION_MANIFEST.read_text(encoding="utf-8"))
+        if frozen != current:
+            raise ValueError("Djinni production inputs/protocol changed after freeze")
+        return frozen
+    PRODUCTION_MANIFEST.write_text(json.dumps(current, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    return current
 
 
-def read_xlsx(path: Path, sheet: str = "Nhãn") -> list[dict[str, str]]:
-    """Rows of one sheet as {header: value}, stdlib only. Handles inline strings (as generated) and shared strings
-    (what Excel writes on save)."""
-    z = zipfile.ZipFile(path)
-    wb = z.read("xl/workbook.xml").decode("utf-8")
-    rid = re.search(rf'<sheet [^>]*name="{re.escape(html.escape(sheet))}"[^>]*r:id="(\w+)"', wb)
-    if not rid:
-        raise ValueError(f"{path.name}: no sheet {sheet!r}")
-    rels = z.read("xl/_rels/workbook.xml.rels").decode("utf-8")
-    target = re.search(rf'<Relationship [^>]*Id="{rid.group(1)}"[^>]*Target="([^"]+)"', rels) or \
-        re.search(rf'<Relationship [^>]*Target="([^"]+)"[^>]*Id="{rid.group(1)}"', rels)
-    name = target.group(1).lstrip("/")
-    name = name if name.startswith("xl/") else f"xl/{name}"
-    shared = []
-    if "xl/sharedStrings.xml" in z.namelist():
-        ss = z.read("xl/sharedStrings.xml").decode("utf-8")
-        shared = [html.unescape("".join(re.findall(r"<t[^>]*>(.*?)</t>", si, re.S)))
-                  for si in re.findall(r"<si>(.*?)</si>", ss, re.S)]
+def _load(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        raise FileNotFoundError(path)
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    labels = payload.get("labels")
+    if not isinstance(labels, list) or not labels:
+        raise ValueError(f"{path.name}: labels must be a non-empty list")
+    pairs: list[tuple[str, str]] = []
+    for i, row in enumerate(labels):
+        if not all(k in row for k in ("jd", "cv", "grade")):
+            raise ValueError(f"{path.name}: label {i} misses jd/cv/grade")
+        if not isinstance(row["grade"], int) or not 0 <= row["grade"] <= 3:
+            raise ValueError(f"{path.name}: label {i} has invalid grade {row['grade']!r}")
+        if row.get("saw_model") is not False:
+            raise ValueError(f"{path.name}: label {i} is not recorded as blind")
+        pairs.append((row["jd"], row["cv"]))
+    if len(pairs) != len(set(pairs)):
+        raise ValueError(f"{path.name}: duplicate (JD, CV) pairs")
+    if payload.get("saw_model") != 0:
+        raise ValueError(f"{path.name}: top-level saw_model must be 0 after provenance correction")
+    return payload
+
+
+def _by_pair(payload: dict[str, Any]) -> dict[tuple[str, str], dict[str, Any]]:
+    return {(x["jd"], x["cv"]): x for x in payload["labels"]}
+
+
+def agreement(vu: dict[str, Any], dan: dict[str, Any]) -> dict[str, Any]:
+    if vu.get("pool") != dan.get("pool"):
+        raise ValueError("Vũ and Đán label different pools")
+    vm, dm = _by_pair(vu), _by_pair(dan)
+    if set(vm) != set(dm):
+        raise ValueError(f"pair sets differ: Vũ={len(vm)}, Đán={len(dm)}, common={len(set(vm) & set(dm))}")
+    keys = sorted(vm)
+    vg, dg = [vm[k]["grade"] for k in keys], [dm[k]["grade"] for k in keys]
+    delta = [abs(a - b) for a, b in zip(vg, dg)]
+    per_jd: dict[str, dict[str, float | int]] = {}
+    for jd in sorted({j for j, _ in keys}):
+        subset = [k for k in keys if k[0] == jd]
+        a, b = [vm[k]["grade"] for k in subset], [dm[k]["grade"] for k in subset]
+        per_jd[jd] = {
+            "pairs": len(subset),
+            "exact": sum(x == y for x, y in zip(a, b)) / len(subset),
+            "weighted_kappa": metrics.weighted_kappa(a, b),
+        }
+    return {
+        "pairs": len(keys),
+        "exact": sum(x == y for x, y in zip(vg, dg)) / len(keys),
+        "weighted_kappa": metrics.weighted_kappa(vg, dg),
+        "within_one": sum(x <= 1 for x in delta) / len(delta),
+        "mean_absolute_difference": sum(delta) / len(delta),
+        "bias_vu_minus_dan": sum(a - b for a, b in zip(vg, dg)) / len(keys),
+        "confidence_counts": {
+            "high": sum(x == 0 for x in delta),
+            "medium": sum(x == 1 for x in delta),
+            "low": sum(x >= 2 for x in delta),
+        },
+        "per_jd": per_jd,
+    }
+
+
+def build_gold() -> dict[str, Any]:
+    vu, dan = _load(VU), _load(DAN)
+    stats = agreement(vu, dan)
+    vm, dm = _by_pair(vu), _by_pair(dan)
     rows = []
-    for row in re.findall(r"<row[^>]*>(.*?)</row>", z.read(name).decode("utf-8"), re.S):
-        cells = {}
-        for attrs, body in re.findall(r"<c ([^>]*?)(?:/>|>(.*?)</c>)", row, re.S):
-            ref, kind = re.search(r'r="(\w+)"', attrs).group(1), re.search(r't="(\w+)"', attrs)
-            v = re.search(r"<v>(.*?)</v>", body or "", re.S)
-            if kind and kind.group(1) == "s" and v:
-                val = shared[int(v.group(1))]
-            elif kind and kind.group(1) == "inlineStr":
-                val = html.unescape("".join(re.findall(r"<t[^>]*>(.*?)</t>", body, re.S)))
-            else:
-                val = html.unescape(v.group(1)) if v else ""
-            cells[_col(ref)] = val
-        rows.append(cells)
-    header = rows[0] if rows else {}
-    return [{header.get(c, c): v for c, v in r.items()} for r in rows[1:]]
+    for jd, cv in sorted(vm):
+        vg, dg = vm[(jd, cv)]["grade"], dm[(jd, cv)]["grade"]
+        gap = abs(vg - dg)
+        rows.append({
+            "jd": jd,
+            "cv": cv,
+            "grade": (vg + dg) / 2,
+            "vu_grade": vg,
+            "dan_grade": dg,
+            "lower": min(vg, dg),
+            "upper": max(vg, dg),
+            "relevant": vg >= 2 and dg >= 2,
+            "confidence": "high" if gap == 0 else ("medium" if gap == 1 else "low"),
+            "vu_note": vm[(jd, cv)].get("note", ""),
+        })
+    return {
+        "dataset": "djinni-qa",
+        "version": "aggregate-human-gold-v1",
+        "pool": vu["pool"],
+        "method": "dual-annotator arithmetic mean; no rounding",
+        "adjudicated": False,
+        "annotators": [vu.get("annotator", "Vũ"), dan.get("annotator", "Đán")],
+        "binary_relevance": "vu_grade >= 2 and dan_grade >= 2",
+        "source_files": {VU.name: _sha(VU), DAN.name: _sha(DAN)},
+        "agreement": stats,
+        "labels": rows,
+    }
 
 
-def labels_from_xlsx(path: Path) -> list[dict]:
-    out = []
-    for r in read_xlsx(path):
-        grade = str(r.get("Nhãn (0–3)", "")).strip()
-        if grade in ("", "None"):
-            continue
-        g = int(float(grade))
-        if not 0 <= g <= 3:
-            raise ValueError(f"{path.name}: grade {grade!r} for {r.get('jd_id')} / {r.get('cv_id')} is not 0–3")
-        out.append({"jd": r["jd_id"], "cv": r["cv_id"], "grade": g, "note": r.get("Ghi chú", "") or ""})
-    return out
+def write_gold() -> dict[str, Any]:
+    gold = build_gold()
+    GOLD.write_text(json.dumps(gold, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    return gold
 
 
-REVIEW_PAGE = Path(__file__).with_name("djinni_review.html")
-MODEL_GOLD = LABELS / "djinni_gold_opus.json"  # Opus 5.5, 8 CVs a call: the suggestion the review page shows
+TOKEN = re.compile(r"[a-z0-9+#.]{2,}")
 
 
-def subset(per_jd: int = SUBSET_PER_JD) -> list[tuple[str, str]]:
-    """A stratified sample for a careful blind read: per JD, pairs ordered by the silver mean (ties by a hash) and
-    taken at even steps, so every grade level is in it without the annotator being told which is which."""
-    sil = [_load(p) for p in silver_files()]
-    out = []
-    for jd, cv_ids in sorted(pairs().items()):
-        mean = lambda c: sum(s.get((jd, c), 0) for s in sil) / max(len(sil), 1)  # noqa: E731
-        ranked = sorted(cv_ids, key=lambda c: (mean(c), hashlib.sha1(f"{jd}|{c}".encode()).hexdigest()))
-        k = min(per_jd, len(ranked))
-        steps = sorted({round(i * (len(ranked) - 1) / max(k - 1, 1)) for i in range(k)})
-        out += [(jd, ranked[i]) for i in steps]
-    return out
+def _tokens(text: str) -> list[str]:
+    return TOKEN.findall(text.lower())
 
 
-def review(out: Path | None = None) -> Path:
-    """One self-contained page to label every pooled pair: blind (no model grade shown) or review (Opus's grade and
-    evidence shown). Real CVs are inside, so it is written under .runtime, never to docs/ or data/."""
-    out = out or DIR / "labeling" / "review.html"
-    rnd, flat = random.Random(13), [{"jd": j, "cv": c} for j, cs in sorted(pairs().items()) for c in cs]
-    rnd.shuffle(flat)  # no JD block order and no system order to anchor on
-    model = ({f"{x['jd']}|{x['cv']}": {"grade": x["grade"], "note": x.get("note", "")}
-              for x in json.loads(MODEL_GOLD.read_text(encoding="utf-8"))["labels"]} if MODEL_GOLD.exists() else {})
-    from scripts.llm_label import RUBRIC
-
-    data = {"pool": REF, "pairs": flat, "rubric": RUBRIC, "model": model, "min_read": MIN_READ_SECONDS,
-            "subset": [f"{j}|{c}" for j, c in subset()],
-            "jds": {d.id: {"title": d.meta["title"], "text": d.text} for d in jds()},
-            "cvs": {d.id: d.text for d in cvs() if any(p["cv"] == d.id for p in flat)}}
-    out.parent.mkdir(parents=True, exist_ok=True)
-    blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")  # a CV can never close the <script>
-    out.write_text(REVIEW_PAGE.read_text(encoding="utf-8").replace("__DATA__", blob), encoding="utf-8")
-    return out
-
-
-def labels_from_page(path: Path) -> tuple[str, list[dict]]:
-    """→ (annotator, labels) from the JSON the review page exports; grades checked like the xlsx path."""
-    d = json.loads(path.read_text(encoding="utf-8"))
-    for x in d["labels"]:
-        if int(x["grade"]) not in range(4):
-            raise ValueError(f"{path.name}: grade {x['grade']!r} for {x['jd']} / {x['cv']} is not 0–3")
-    return d["annotator"], [{"jd": x["jd"], "cv": x["cv"], "grade": int(x["grade"]), "note": x.get("note", ""),
-                             "saw_model": bool(x.get("saw_model")), **({"at": x["at"]} if x.get("at") else {})}
-                            for x in d["labels"]]
-
-
-def slug(name: str) -> str:
-    """A file-safe ASCII name: "Đán" → "dan" (no diacritics in committed file names)."""
-    from app.nlp.text import fold
-
-    return re.sub(r"[^a-z0-9]+", "_", fold(name)).strip("_")
-
-
-def import_labels(files: list[Path], adjudicated: Path | None = None) -> None:
-    want = {(j, c) for j, cs in pairs().items() for c in cs}
-    for f in files:
-        if f.suffix.lower() == ".json":  # from the review page
-            annotator, labels = labels_from_page(f)
-            who = slug(annotator.removeprefix("human ")) or f.stem
-            seen = sum(x["saw_model"] for x in labels)
-            (LABELS / f"human_djinni_{who}.json").write_text(json.dumps(
-                {"annotator": f"human {who}" + (f" (saw the model's grade on {seen} pairs)" if seen else ""),
-                 "source": f.name, "labels": labels}, indent=1, ensure_ascii=False), encoding="utf-8")
-            print(f"{f.name}: {len(labels)}/{len(want)} pairs labelled ({seen} in review mode) → human_djinni_{who}.json")
-            continue
-        labels = labels_from_xlsx(f)
-        who = slug(f.stem.removeprefix("labels_")) or f.stem
-        (LABELS / f"human_djinni_{who}.json").write_text(json.dumps(
-            {"annotator": f"human {who}", "source": f.name, "labels": labels}, indent=1, ensure_ascii=False),
-            encoding="utf-8")
-        print(f"{f.name}: {len(labels)}/{len(want)} pairs labelled → human_djinni_{who}.json")
-    if adjudicated:
-        labels = labels_from_xlsx(adjudicated)
-        (LABELS / "human_djinni_adjudicated.json").write_text(json.dumps(
-            {"annotator": "adjudicated", "source": adjudicated.name, "labels": labels}, indent=1, ensure_ascii=False),
-            encoding="utf-8")
-        print(f"{adjudicated.name}: {len(labels)} settled pairs")
-
-
-# ── silver labels (an LLM, labelled as such) ──────────────────────────────────────────────────────────
-async def silver(spec: str, tag: str, out: Path | None = None, batch: int = BATCH) -> None:
-    """The same blind rubric as scripts/llm_label.py; resumable (pairs already graded are kept). `out` writes
-    elsewhere than djinni_silver_<tag>.json, so an extra model annotator never changes the frozen v2 silver mean."""
-    from langchain_core.messages import HumanMessage, SystemMessage
-
-    from app.nlp.injection import neutralize
-    from app.providers.llm import create_llm
-    from scripts.llm_label import RUBRIC, Grades
-
-    out_path = out or LABELS / f"djinni_silver_{tag}.json"
-    done = json.loads(out_path.read_text(encoding="utf-8"))["labels"] if out_path.exists() else []
-    have = {(x["jd"], x["cv"]) for x in done}
-    text, jd_text = {d.id: d.text for d in cvs()}, {d.id: d.text for d in jds()}
-    model, rnd = create_llm(spec).with_structured_output(Grades), random.Random(7)
-    for jd, cv_ids in sorted(pairs().items()):
-        todo = rnd.sample([c for c in cv_ids if (jd, c) not in have], len([c for c in cv_ids if (jd, c) not in have]))
-        for i in range(0, len(todo), batch):
-            shown = todo[i:i + batch]
-            body = "\n\n".join(f"=== {c} ===\n{neutralize(text[c])[0]}" for c in shown)
-            got: Grades = await model.ainvoke([SystemMessage(RUBRIC), HumanMessage(
-                f"Job description:\n{jd_text[jd]}\n\nGrade each of these {len(shown)} CVs:\n\n{body}")])
-            by = {g.cv.strip(): g for g in got.grades if g.cv.strip() in shown}
-            done += [{"jd": jd, "cv": c, "grade": by[c].grade, "note": by[c].note} for c in shown if c in by]
-            out_path.write_text(json.dumps({"annotator": f"silver {tag} ({spec.split(':', 1)[-1]}, LLM, blind, rubric; "
-                                            "not human)", "labels": done}, indent=1, ensure_ascii=False),
-                                encoding="utf-8")
-            print(f"{jd}: graded {len(by)}/{len(shown)}", flush=True)
-    print(f"→ {out_path} ({len(done)} pairs)")
-
-
-# ── report ────────────────────────────────────────────────────────────────────────────────────────────
-def kappa_rows(named: dict[str, dict[tuple[str, str], int]]) -> list[str]:
-    rows, names = [], list(named)
-    for i, n1 in enumerate(names):
-        for n2 in names[i + 1:]:
-            common = sorted(set(named[n1]) & set(named[n2]))
-            if not common:
+def _bm25_rank(query: str, docs: dict[str, str]) -> list[str]:
+    terms = Counter(_tokens(query))
+    doc_terms = {k: Counter(_tokens(v)) for k, v in docs.items()}
+    lengths = {k: sum(v.values()) for k, v in doc_terms.items()}
+    avgdl = sum(lengths.values()) / len(lengths)
+    df = Counter(t for counts in doc_terms.values() for t in counts)
+    n, k1, b = len(docs), 1.2, 0.75
+    scores: dict[str, float] = {}
+    for cid, counts in doc_terms.items():
+        score = 0.0
+        for term, qf in terms.items():
+            if not (tf := counts.get(term, 0)):
                 continue
-            xs, ys = [named[n1][k] for k in common], [named[n2][k] for k in common]
-            rows.append(f"| {n1} vs {n2} | {len(common)} | {sum(x == y for x, y in zip(xs, ys)) / len(common):.1%} | "
-                        f"{metrics.weighted_kappa(xs, ys):.3f} |")
-    return rows
+            idf = math.log(1 + (n - df[term] + 0.5) / (df[term] + 0.5))
+            score += qf * idf * tf * (k1 + 1) / (tf + k1 * (1 - b + b * lengths[cid] / avgdl))
+        scores[cid] = score
+    return sorted(docs, key=lambda c: (-scores[c], c))
 
 
-def score() -> str:
-    want = {(j, c) for j, cs in pairs().items() for c in cs}
-    humans = {json.loads(p.read_text(encoding="utf-8"))["annotator"]: _load(p) for p in human_files()}
-    silvers = {json.loads(p.read_text(encoding="utf-8"))["annotator"]: _load(p) for p in silver_files()}
-    if len(silvers) >= 2:
-        s = list(silvers.values())
-        silvers["silver mean (rounded down)"] = {k: int(sum(x[k] for x in s) / len(s)) for k in set.intersection(
-            *(set(x) for x in s))}
-    if MODEL_GOLD.exists():  # a model annotator too: reported, never mixed into the silver mean or the gold
-        silvers["Opus 5.5 close read (8 CVs a call; LLM, not human)"] = _load(MODEL_GOLD)
-    _, source = gold()
-    lines = ["# Djinni: human labels vs silver (generated by `python -m app.eval.djinni score`; do not edit)", "",
-             f"Real anonymised CVs (Djinni, MIT), {len(pairs())} JDs, {len(want)} pooled pairs. Gold in use: **{source}**.",
-             "Quadratic-weighted Cohen's κ on the pairs both sides graded. Decision rule (EVAL.md §2): κ(human, silver) "
-             "≥ 0.8 keeps silver as the main set; ≥ 0.6 as a secondary set; below that the human labels replace it.", "",
-             "## Progress", "", "| Annotator | pairs labelled |", "|---|---|"]
-    lines += [f"| {n} | {len(set(x) & want)}/{len(want)} |" for n, x in {**humans, **silvers}.items()]
-    if not humans:
-        lines += ["", "No human labels yet: fill `labels_A.xlsx` / `labels_B.xlsx` (team members who did not write "
-                  "the criteria) and run `python -m app.eval.djinni import`."]
-    if humans:
-        lines += ["", "## Annotator quality check", "",
-                  f"Gold uses only annotators who pass: weighted κ ≥ {QC_MIN_KAPPA} with at least one other annotator, "
-                  f"and, for blind labels, a median of ≥ {QC_MIN_SECONDS:.0f} s per pair (the page stamps every grade). "
-                  "Review-mode labels are fast by nature (accepting a shown grade) and count as anchored on the model.",
-                  "", "| Annotator | mode | median s / pair | notes written | verdict |", "|---|---|---|---|---|"]
-        for p, problems in qc_report().items():
-            raw = _raw(p)
-            secs = median_seconds(raw)
-            mode = "review (saw Opus's grade)" if any(x.get("saw_model") for x in raw) else "blind"
-            lines.append(f"| {json.loads(p.read_text(encoding='utf-8'))['annotator']} | {mode} | "
-                         f"{'n/a' if secs is None else f'{secs:.1f}'} | {sum(bool(x.get('note')) for x in raw)} | "
-                         f"{'✅ usable' if not problems else '❌ excluded: ' + '; '.join(problems)} |")
-    good = [_load(p) for p in qualified_humans()]
-    if len(good) >= 2:
-        adj = LABELS / "human_djinni_adjudicated.json"
-        _, conflicts = adjudicate(good[0], good[1], _load(adj) if adj.exists() else None)
-        lines += ["", f"Pairs ≥ 2 grades apart still to settle together: **{len(conflicts)}**"]
-        lines += [f"- {j} / {c}" for j, c in conflicts[:50]]
-    elif len(humans) >= 2:
-        lines += ["", f"Adjudicated human gold (v2.1) needs two annotators who pass the check; {len(good)} do."]
-    lines += ["", "## Agreement", "", "| Pair | pairs | exact agreement | weighted κ |", "|---|---|---|---|"]
-    lines += kappa_rows({**humans, **silvers}) or ["| (needs two annotators) | | | |"]
-    DOC.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    return str(DOC)
+def _pilot_rankings(jds: list[dict[str, Any]], cvs: dict[str, str], meta: dict[str, Any]) -> dict[str, dict[str, list[str]]]:
+    """Cheap, reproducible pilot baselines.  These are deliberately not called B1/B2/B3/P6/P7."""
+    keyword = meta.get("primary_keyword", {})
+    out = {"Candidate keyword prior": {}, "B0 BM25": {}, "Criteria heuristic pilot": {}}
+    for jd in jds:
+        jid = jd["id"]
+        out["Candidate keyword prior"][jid] = sorted(
+            cvs, key=lambda c: (-{"QA Automation": 2, "QA": 1}.get(keyword.get(c, ""), 0), c)
+        )
+        out["B0 BM25"][jid] = _bm25_rank(jd["text"], cvs)
+        stack = set(_tokens(str(jd.get("stack", ""))))
+        title = set(_tokens(str(jd.get("title", ""))))
+        scores = {}
+        for cid, text in cvs.items():
+            ts = set(_tokens(text))
+            scores[cid] = (
+                45 * (keyword.get(cid) == "QA Automation")
+                + 20 * (keyword.get(cid) == "QA")
+                + 8 * len(stack & ts)
+                + 2 * len(title & ts)
+                + 5 * bool({"framework", "selenium", "playwright", "cypress", "appium"} & ts)
+            )
+        out["Criteria heuristic pilot"][jid] = sorted(cvs, key=lambda c: (-scores[c], c))
+    return out
+
+
+def evaluate(gold: dict[str, Any]) -> dict[str, Any]:
+    for required in (BENCH / "jds.yaml", BENCH / "meta.json", BENCH / "cvs"):
+        if not required.exists():
+            raise FileNotFoundError(f"Djinni runtime data missing: {required}")
+    jds = yaml.safe_load((BENCH / "jds.yaml").read_text(encoding="utf-8"))
+    cvs = {p.stem: p.read_text(encoding="utf-8") for p in sorted((BENCH / "cvs").glob("*.txt"))}
+    meta = json.loads((BENCH / "meta.json").read_text(encoding="utf-8"))
+    rankings = _pilot_rankings(jds, cvs, meta)
+    rows = gold["labels"]
+    variants = {
+        "lower": defaultdict(dict),
+        "mean": defaultdict(dict),
+        "upper": defaultdict(dict),
+    }
+    relevant: dict[str, dict[str, bool]] = defaultdict(dict)
+    for x in rows:
+        for key in variants:
+            variants[key][x["jd"]][x["cv"]] = float(x["grade"] if key == "mean" else x[key])
+        relevant[x["jd"]][x["cv"]] = bool(x["relevant"])
+    results: dict[str, Any] = {}
+    for system, per_jd in rankings.items():
+        measured = {"ndcg": {k: [] for k in variants}, "p5": [], "tau": []}
+        for jd in sorted(variants["mean"]):
+            order = [c for c in per_jd[jd] if c in variants["mean"][jd]]
+            for key, grades in variants.items():
+                measured["ndcg"][key].append(metrics.ndcg(order, grades[jd], 10))
+            measured["p5"].append(sum(relevant[jd][c] for c in order[:5]) / 5)
+            measured["tau"].append(metrics.tau_vs_gold(order, variants["mean"][jd]))
+        results[system] = {
+            "jds": len(measured["p5"]),
+            "ndcg10_lower": metrics.bootstrap_ci(measured["ndcg"]["lower"]),
+            "ndcg10": metrics.bootstrap_ci(measured["ndcg"]["mean"]),
+            "ndcg10_upper": metrics.bootstrap_ci(measured["ndcg"]["upper"]),
+            "p5": metrics.bootstrap_ci(measured["p5"]),
+            "tau": metrics.bootstrap_ci(measured["tau"]),
+        }
+    return {"systems": results, "n_jds": len(jds), "n_cvs": len(cvs)}
+
+
+def _result_path(name: str) -> Path:
+    return PRODUCTION_RESULTS / f"{name.replace(' ', '_').replace('+', 'plus').replace(':', '-')}.json"
+
+
+def evaluate_production(gold: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Score persisted production orders without loading a model or treating unjudged CVs as zero."""
+    freeze_production()
+    gold = gold or build_gold()
+    variants = {key: defaultdict(dict) for key in ("lower", "mean", "upper")}
+    relevant: dict[str, dict[str, bool]] = defaultdict(dict)
+    for row in gold["labels"]:
+        variants["lower"][row["jd"]][row["cv"]] = float(row["lower"])
+        variants["mean"][row["jd"]][row["cv"]] = float(row["grade"])
+        variants["upper"][row["jd"]][row["cv"]] = float(row["upper"])
+        relevant[row["jd"]][row["cv"]] = bool(row["relevant"])
+    out: dict[str, Any] = {"manifest": _sha(PRODUCTION_MANIFEST), "systems": {}, "missing": []}
+    per_system_values: dict[str, list[float]] = {}
+    for system in PRODUCTION_SYSTEMS:
+        path = _result_path(system)
+        if not path.exists():
+            out["missing"].append(system)
+            continue
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        per_jd = payload["jds"]
+        values = {"lower": [], "mean": [], "upper": [], "p5": [], "tau": []}
+        orders = {}
+        for jd in sorted(variants["mean"]):
+            raw = per_jd.get(jd)
+            if raw is None:
+                raise ValueError(f"{system}: missing JD {jd}")
+            raw_order = raw if isinstance(raw, list) else raw["ranking"]
+            order = [cv for cv in raw_order if cv in variants["mean"][jd]]
+            if len(order) != len(set(order)) or set(order) != set(variants["mean"][jd]):
+                raise ValueError(f"{system}/{jd}: production order must cover every judged CV exactly once")
+            orders[jd] = order
+            for key in ("lower", "mean", "upper"):
+                values[key].append(metrics.ndcg(order, variants[key][jd], 10))
+            values["p5"].append(sum(relevant[jd][cv] for cv in order[:5]) / 5)
+            values["tau"].append(metrics.tau_vs_gold(order, variants["mean"][jd]))
+        per_system_values[system] = values["mean"]
+        out["systems"][system] = {
+            "orders_sha256": hashlib.sha256(json.dumps(orders, sort_keys=True).encode()).hexdigest(),
+            "ndcg10_lower": metrics.bootstrap_ci(values["lower"]),
+            "ndcg10": metrics.bootstrap_ci(values["mean"]),
+            "ndcg10_upper": metrics.bootstrap_ci(values["upper"]),
+            "p5_conservative": metrics.bootstrap_ci(values["p5"]),
+            "tau": metrics.bootstrap_ci(values["tau"]),
+            "per_jd_ndcg10": dict(zip(sorted(variants["mean"]), values["mean"])),
+        }
+    if "B0 BM25" in per_system_values:
+        base = per_system_values["B0 BM25"]
+        for name, values in per_system_values.items():
+            out["systems"][name]["delta_vs_b0"] = sum(values) / len(values) - sum(base) / len(base)
+            out["systems"][name]["p_vs_b0"] = metrics.paired_bootstrap_p(values, base)
+    return out
+
+
+def render_production(result: dict[str, Any]) -> str:
+    lines = [
+        "# Djinni-QA production ladder on Aggregate Human Gold", "",
+        "Frozen protocol: `data/eval/djinni_production_v1.json`. No tuning after the freeze. Rankings are filtered "
+        "to judged pairs before scoring; unjudged profiles are ignored, never assigned zero relevance.", "",
+        "| System | nDCG@10 on min grades | nDCG@10 Aggregate Gold | nDCG@10 on max grades | P@5 both≥2 | τ-b | Δ vs B0 | p(first>B0) |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|",
+    ]
+    fmt = lambda x: f"{x[0]:.3f} [{x[1]:.3f}, {x[2]:.3f}]"  # noqa: E731
+    for name in PRODUCTION_SYSTEMS:
+        if name not in result["systems"]:
+            lines.append(f"| {name} | pending | pending | pending | pending | pending | — | — |")
+            continue
+        row = result["systems"][name]
+        lines.append(f"| {name} | {fmt(row['ndcg10_lower'])} | **{fmt(row['ndcg10'])}** | "
+                     f"{fmt(row['ndcg10_upper'])} | {fmt(row['p5_conservative'])} | {fmt(row['tau'])} | "
+                     f"{row.get('delta_vs_b0', 0):+.3f} | {row.get('p_vs_b0', 1):.3f} |")
+    lines += ["", "The min/max-grade columns are label-sensitivity analyses, not mathematical lower/upper bounds on nDCG: changing grades also changes the ideal DCG denominator.", "",
+              "Per-JD orders are persisted under `.runtime/eval/results_djinni/`; the report stores an order hash "
+              "for auditability. Missing systems remain `pending` and are never substituted with pilot heuristics.",
+              "", "P6 status: two Gemini 3.8 Flash attempts stopped before the first completed JD after HTTP 503 "
+              "high-demand responses. No partial score was promoted and B0–B3 were not rerun.", ""]
+    return "\n".join(lines)
+
+
+def write_production_report() -> dict[str, Any]:
+    result = evaluate_production()
+    PRODUCTION_REPORT.write_text(render_production(result), encoding="utf-8")
+    return result
+
+
+def render(gold: dict[str, Any], result: dict[str, Any]) -> str:
+    a, c = gold["agreement"], gold["agreement"]["confidence_counts"]
+    lines = [
+        "# External validity: Djinni-QA human-labelled pilot",
+        "",
+        "Generated by `python -m app.eval.djinni all`; do not edit measured values by hand.",
+        "",
+        "## Data and label protocol",
+        "",
+        f"- Real, anonymised Djinni data: **{result['n_jds']} JDs**, **{result['n_cvs']} CVs**; TREC-style judged pool: **{a['pairs']} (JD, CV) pairs**.",
+        "- Vũ and Đán graded the same pool independently on the 0–3 rubric without system grades.",
+        "- Aggregate Human Gold = arithmetic mean of the two grades, retaining half-steps; it is aggregate, not adjudicated.",
+        "- Binary relevance for P@5 is conservative: both annotators must grade the pair at least 2.",
+        "- Real texts remain in `.runtime/`; only judgements and their aggregate are committed.",
+        "",
+        "## Human agreement",
+        "",
+        "| pairs | exact | within ±1 | quadratic-weighted κ | mean absolute difference | Vũ−Đán bias |",
+        "|---:|---:|---:|---:|---:|---:|",
+        f"| {a['pairs']} | {a['exact']:.1%} | {a['within_one']:.1%} | **{a['weighted_kappa']:.3f}** | {a['mean_absolute_difference']:.3f} | {a['bias_vu_minus_dan']:+.3f} |",
+        "",
+        f"Confidence retained per judgement: **{c['high']} high** (same grade), **{c['medium']} medium** (one-grade gap), **{c['low']} low** (gap ≥2).",
+        "",
+        "## Measured pilot baselines",
+        "",
+        "Mean and 95% bootstrap CI over 8 JDs. Evaluation is judged-only because the 424-pair pool was formed from B0–B3 top results plus random controls. The min/max-grade columns are sensitivity analyses, not mathematical nDCG bounds; the headline Gold is the unrounded annotator mean.",
+        "",
+        "| System | JDs | nDCG@10 on min grades | nDCG@10 Aggregate Gold | nDCG@10 on max grades | P@5 (both ≥2) | τ-b |",
+        "|---|---:|---:|---:|---:|---:|---:|",
+    ]
+    fmt = lambda x: f"{x[0]:.3f} [{x[1]:.3f}, {x[2]:.3f}]"  # noqa: E731
+    for name, row in result["systems"].items():
+        lines.append(f"| {name} | {row['jds']} | {fmt(row['ndcg10_lower'])} | **{fmt(row['ndcg10'])}** | "
+                     f"{fmt(row['ndcg10_upper'])} | {fmt(row['p5'])} | {fmt(row['tau'])} |")
+    lines += [
+        "",
+        "## What this resolves—and what it does not",
+        "",
+        "- **Resolved:** the project now has human relevance judgements on real recruitment text, a versioned Aggregate Human Gold artifact, agreement statistics, and a reproducible external pilot.",
+        "- **Production B0–B3 are now measured separately:** see `DJINNI_PRODUCTION_RESULTS.md`; P6 remains pending after provider HTTP 503 failures and has no reported score.",
+        "- **A virgin holdout is locked, not yet measured:** six disjoint JDs and 40 disjoint CVs are frozen in `djinni_holdout_v1.json`; the fail-closed gate requires two blind human label files before any run.",
+        "- **Pooling limitation:** unjudged pairs are ignored, not treated as grade 0. Pooling was built from B0–B3, so it is suitable for a pilot but may miss candidates uniquely promoted by a new system.",
+        "- **Sample size:** eight JDs give wide intervals. Report per-source results separately from the 10-JD synthetic test split.",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def run(write_report: bool = True) -> dict[str, Any]:
+    gold = write_gold()
+    result = evaluate(gold)
+    if write_report:
+        REPORT.write_text(render(gold, result), encoding="utf-8")
+    return {"gold": gold, "evaluation": result}
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser()
-    sub = ap.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("fetch")
-    s = sub.add_parser("silver")
-    s.add_argument("--tag", required=True)
-    s.add_argument("--model", required=True)
-    s.add_argument("--out", type=Path, help="write here instead of data/eval/djinni_silver_<tag>.json")
-    s.add_argument("--batch", type=int, default=BATCH, help="CVs per call (fewer = a closer read)")
-    i = sub.add_parser("import")
-    i.add_argument("files", nargs="+", type=Path)
-    i.add_argument("--adjudicated", type=Path)
-    sub.add_parser("score")
-    sub.add_parser("review")
-    a = ap.parse_args()
-    if a.cmd == "review":
-        print(f"open in a browser: {review()}")
-        return
-    if a.cmd == "fetch":
-        fetch()
-    elif a.cmd == "silver":
-        asyncio.run(silver(a.model, a.tag, a.out, a.batch))
-    elif a.cmd == "import":
-        import_labels(a.files, a.adjudicated)
-        print(score())
+    parser = argparse.ArgumentParser()
+    parser.add_argument("command", nargs="?",
+                        choices=["check", "gold", "report", "all", "freeze-production", "production-report"],
+                        default="all")
+    args = parser.parse_args()
+    if args.command == "check":
+        g = build_gold()
+        print(json.dumps(g["agreement"], ensure_ascii=False, indent=2))
+    elif args.command == "gold":
+        g = write_gold()
+        print(f"{len(g['labels'])} labels -> {GOLD}")
+    elif args.command == "freeze-production":
+        print(json.dumps(freeze_production(), ensure_ascii=False, indent=2))
+    elif args.command == "production-report":
+        print(render_production(write_production_report()))
     else:
-        print(score())
+        out = run(write_report=True)
+        print(f"{len(out['gold']['labels'])} labels -> {GOLD}")
+        print(f"report -> {REPORT}")
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()

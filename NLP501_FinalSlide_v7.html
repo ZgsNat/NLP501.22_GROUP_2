@@ -2260,17 +2260,17 @@
                         <tbody>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5">B0 · BM25</td><td class="p-1.5">0.695</td><td class="p-1.5">0.800</td><td class="p-1.5">0.536</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5">B2 · Truy hồi lai (BM25 + dense)</td><td class="p-1.5">0.681</td><td class="p-1.5">0.859</td><td class="p-1.5">0.413</td></tr>
-<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Chunk cấu trúc + Cross-encoder</td><td class="p-1.5">0.715</td><td class="p-1.5">0.813</td><td class="p-1.5">0.568</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Chunk cấu trúc + Cross-encoder</td><td class="p-1.5">0.726</td><td class="p-1.5">0.830</td><td class="p-1.5">0.570</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5">Ranker theo rubric (tất định)</td><td class="p-1.5">0.810</td><td class="p-1.5">0.773</td><td class="p-1.5"><strong>0.866</strong></td></tr>
-<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Phiên bản đầu (4 tiêu chí luật ⊕ CE)</td><td class="p-1.5">0.748</td><td class="p-1.5">0.801</td><td class="p-1.5">0.669</td></tr>
-<tr class="border-b border-slate-100 align-top"><td class="p-1.5">B3 · 8 tiêu chí luật ⊕ CE (tất định)</td><td class="p-1.5">0.841</td><td class="p-1.5"><strong>0.888</strong></td><td class="p-1.5">0.770</td></tr>
-<tr class="border-b border-slate-100 align-top bg-emerald-50 font-semibold"><td class="p-1.5">B4 · quy trình cố định</td><td class="p-1.5">0.839</td><td class="p-1.5">0.877</td><td class="p-1.5">0.781</td></tr>
-<tr class="border-b border-slate-100 align-top bg-emerald-50 font-semibold"><td class="p-1.5">P6 · agent đầy đủ</td><td class="p-1.5"><strong>0.851</strong></td><td class="p-1.5">0.882</td><td class="p-1.5">0.805</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">Phiên bản đầu (4 tiêu chí luật ⊕ CE)</td><td class="p-1.5">0.751</td><td class="p-1.5">0.806</td><td class="p-1.5">0.669</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5">B3 · 8 tiêu chí luật ⊕ CE (tất định)</td><td class="p-1.5">0.837</td><td class="p-1.5">0.890</td><td class="p-1.5">0.758</td></tr>
+<tr class="border-b border-slate-100 align-top bg-emerald-50 font-semibold"><td class="p-1.5">B4 · quy trình cố định</td><td class="p-1.5"><strong>0.848</strong></td><td class="p-1.5">0.890</td><td class="p-1.5">0.784</td></tr>
+<tr class="border-b border-slate-100 align-top bg-emerald-50 font-semibold"><td class="p-1.5">P6 · agent đầy đủ</td><td class="p-1.5">0.847</td><td class="p-1.5"><strong>0.897</strong></td><td class="p-1.5">0.772</td></tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="grid grid-cols-12 gap-2.5 text-[11px]">
-                    <div class="col-span-5 p-2.5 rounded-xl card-emerald text-emerald-950"><strong>8 tiêu chí luật là bước nhảy chính:</strong> +0.093 so với phiên bản đầu (p = 0.009); P6 +0.041 so với ranker theo rubric (p = 0.12, <em>chưa có ý nghĩa thống kê</em>).</div>
+                    <div class="col-span-5 p-2.5 rounded-xl card-emerald text-emerald-950"><strong>8 tiêu chí luật là bước nhảy chính:</strong> +0.086 so với phiên bản đầu (p = 0.004); P6 +0.037 so với ranker theo rubric (p = 0.22, <em>chưa có ý nghĩa thống kê</em>).</div>
                     <div class="col-span-4 p-2.5 rounded-xl card-blue text-blue-950"><strong>Mỗi hệ thắng trên bộ nhãn gần với nó:</strong> ranker theo rubric 0.866 trên bộ rubric; chỉ 8 tiêu chí luật mạnh trên cả hai.</div>
                     <div class="col-span-3 p-2.5 rounded-xl card-blue text-blue-950"><strong>Dữ kiện thắng văn bản:</strong> +0.11 so với hệ chỉ truy hồi tốt nhất.</div>
                 </div>
@@ -2292,10 +2292,10 @@
                     <table class="w-full text-[10.5px] border-collapse">
                         <thead><tr class="bg-slate-100 border-b border-slate-300 text-slate-800"><th class="p-1.5 text-left font-bold">Giả thuyết (slide 26)</th><th class="p-1.5 text-left font-bold">Đo được</th><th class="p-1.5 text-left font-bold">Kết luận</th></tr></thead>
                         <tbody>
-<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H0</strong> · P6 tốt hơn B4 về nDCG@10 hoặc độ trung thực, chi phí trong ngân sách</td><td class="p-1.5">nDCG@10 0.851 vs 0.839 (p = 0.064); nhận định mâu thuẫn CV 0.6% vs 2.9%; ≈ 2.1× lượt gọi LLM; JD mơ hồ: 0.704 vs 0.626 (H6)</td><td class="p-1.5"><span class="text-amber-700 font-bold">Ủng hộ một phần:</span> hơn về độ trung thực và trên JD mơ hồ; trên JD rõ thì xếp hạng gần như ngang nhau</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H0</strong> · P6 tốt hơn B4 về nDCG@10 hoặc độ trung thực, chi phí trong ngân sách</td><td class="p-1.5">nDCG@10 0.847 vs 0.848 (p = 0.47); nhận định mâu thuẫn CV 0.6% vs 2.9%; ≈ 2.1× lượt gọi LLM; JD mơ hồ: 0.704 vs 0.626 (H6)</td><td class="p-1.5"><span class="text-amber-700 font-bold">Ủng hộ một phần:</span> hơn về độ trung thực và trên JD mơ hồ; trên JD rõ thì xếp hạng ngang nhau</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H1</strong> · B2 ≥ max(B0, B1) và cao hơn ít nhất một</td><td class="p-1.5">Bộ silver: B2 0.824 > B0 0.794 > B1 0.741 · bộ rubric: B2 0.473 < B0 0.542 · test: 0.681 < 0.695</td><td class="p-1.5"><span class="text-rose-700 font-bold">Không được ủng hộ</span> trên benchmark chung (đúng trên bộ silver)</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H2</strong> · Kendall τ: P6 > A2 (bỏ Criteria Profile)</td><td class="p-1.5">τ 0.554 vs 0.542 (12 JD bộ silver)</td><td class="p-1.5"><span class="text-amber-700 font-bold">Chưa đủ bằng chứng:</span> đúng hướng nhưng rất nhỏ; nhãn không có bối cảnh công ty</td></tr>
-<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H3</strong> · P6 không kém "LLM xếp lại toàn bộ top 20" quá ε, ít lượt gọi hơn</td><td class="p-1.5">Chưa xây LLM-all. Gần nhất: LLM xếp lại shortlist 15 CV (rank_shortlist, ~34k token/JD): bộ silver 0.871 → 0.955, bộ rubric 0.861 → 0.859. Khi LLM tự chấm điểm tiêu chí, nDCG@10 giảm 0.033</td><td class="p-1.5"><span class="text-slate-600 font-bold">Chưa kiểm định trực tiếp;</span> bằng chứng gián tiếp nghiêng về "LLM giúp ở bước cuối, không ở chấm điểm"</td></tr>
+<tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H3</strong> · P6 không kém "LLM xếp lại toàn bộ top 20" quá ε, ít lượt gọi hơn</td><td class="p-1.5">Chưa xây LLM-all. Kết quả lịch sử rank_shortlist trên <strong>ours-silver</strong> 0.871 → 0.955 đã bị rút khỏi kết luận vì Claude chấm Claude; bộ coding-rubric 0.861 → 0.859 không cho thấy cải thiện</td><td class="p-1.5"><span class="text-rose-700 font-bold">Chưa được ủng hộ;</span> rank_shortlist bị tắt mặc định cho đến khi qua cổng Djinni-human</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H4</strong> · Tỷ lệ nhận định thiếu bằng chứng: P6 < A1 (bỏ verify)</td><td class="p-1.5">100% trích dẫn có căn cứ ở cả hai; nhận định mâu thuẫn CV 0.9% vs 2.8%</td><td class="p-1.5"><span class="text-emerald-700 font-bold">Được ủng hộ</span></td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H5</strong> · impact ratio ≥ 0.8; Δ thứ hạng ≈ 0 khi đổi tên</td><td class="p-1.5">0 thay đổi điểm trong 6 biến thể × 1.800 cặp (CV, JD): đổi tên, giới tính, tuổi, hôn nhân</td><td class="p-1.5"><span class="text-emerald-700 font-bold">Được ủng hộ</span> (impact ratio = 1 theo cấu tạo)</td></tr>
 <tr class="border-b border-slate-100 align-top"><td class="p-1.5"><strong>H6</strong> · τ cải thiện trên JD mơ hồ khi bật hỏi lại HR</td><td class="p-1.5">18 JD → bản sinh đôi mơ hồ (tên công cụ → nhóm công cụ). Hỏi HR: τ +0.056 (p = 0.012), nDCG@10 +0.129 (p &lt; 0.001), lấy lại 57% phần mất; agent khi chạy thật 0.704 vs 0.626 khi không hỏi</td><td class="p-1.5"><span class="text-emerald-700 font-bold">Được ủng hộ</span> (thí nghiệm có kiểm soát, câu trả lời HR dựng sẵn từ JD gốc)</td></tr>
@@ -2443,8 +2443,7 @@
                     <div class="col-span-5 p-2.5 rounded-xl card-blue text-blue-950 space-y-1.5">
                         <div class="font-bold">P7: hội thoại với HR, LLM chọn bước tiếp theo</div>
                         <div><strong>Input:</strong> JD + mục tiêu của HR bằng lời ("5 người mạnh Playwright, ưu tiên banking") + kho CV.</div>
-                        <div><strong>17 công cụ có kiểu:</strong> formalize_goal · check_goal · define_concept · screen (P6 tới bước xếp hạng, 0 token) · ask_hr · investigate · rank_shortlist · explain · compare · respond_to_hr …</div>
-                        <div><strong>Goal-driven:</strong> mục tiêu HR thành ràng buộc trích nguyên lời HR; code đếm kho CV đáp ứng được không <em>trước</em> khi xếp hạng; không đạt thì hỏi lại HR và câu trả lời phải nêu phần chưa đạt.</div>
+                        <div><strong>14 công cụ có kiểu:</strong> screen (P6 tới bước xếp hạng, 0 token) · ask_hr · investigate · rank_shortlist · explain · compare · respond_to_hr …</div>
                         <div><strong>Harness (guard):</strong> kiểm schema, điều kiện trước của từng công cụ, chỉ điều HR nói mới đổi được yêu cầu, ngân sách bước / token / lượt HR mỗi lượt hội thoại.</div>
                         <div><strong>Output:</strong> N ứng viên theo thứ tự, mỗi người có lý do với trích dẫn đã kiểm chứng, điểm mạnh, câu hỏi phỏng vấn; mọi CV khác có trạng thái + lý do.</div>
                     </div>
@@ -2455,17 +2454,17 @@
                             <tbody>
                                 <tr class="border-b border-slate-100"><td class="p-1.5">B3 · 8 tiêu chí luật ⊕ CE</td><td class="p-1.5">0.871</td><td class="p-1.5">0</td><td class="p-1.5">tất định</td></tr>
                                 <tr class="border-b border-slate-100"><td class="p-1.5">P6 · pipeline cố định</td><td class="p-1.5">0.867</td><td class="p-1.5">—</td><td class="p-1.5">LLM giải thích, phân xử sát điểm</td></tr>
-                                <tr class="border-b border-slate-100 bg-emerald-50 font-semibold"><td class="p-1.5">+ rank_shortlist (LLM xếp lại shortlist, hai lượt đảo thứ tự)</td><td class="p-1.5">0.955</td><td class="p-1.5">~34k</td><td class="p-1.5">bộ rubric: 0.861 → 0.859 (không đổi)</td></tr>
-                                <tr><td class="p-1.5">S1 · một agent tự làm, không harness</td><td class="p-1.5">0.942</td><td class="p-1.5 text-rose-700 font-bold">~179k</td><td class="p-1.5">xếp 11 CV chưa đọc; 1 CV bẫy vào top 10</td></tr>
+                                <tr class="border-b border-slate-100 bg-rose-50"><td class="p-1.5">+ rank_shortlist (kết quả lịch sử; <strong>không dùng làm bằng chứng</strong>)</td><td class="p-1.5 text-rose-700">0.955†</td><td class="p-1.5">~34k</td><td class="p-1.5">† blocked: Claude rank + Claude labels; coding-rubric 0.859</td></tr>
+                                <tr class="bg-rose-50"><td class="p-1.5">S1 · một agent tự làm (lịch sử; không dùng làm bằng chứng)</td><td class="p-1.5 text-rose-700">0.942†</td><td class="p-1.5 text-rose-700 font-bold">~179k</td><td class="p-1.5">† blocked: Claude system + Claude labels; trace vẫn cho thấy 11 CV chưa đọc</td></tr>
                             </tbody>
                         </table>
-                        <div class="px-2.5 pb-2 text-[10.5px] text-slate-600 mt-1">Nhãn bộ silver do Claude gán, nên mức tăng khi LLM xếp hạng có thể là <em>LLM chấm bài LLM</em>: chỉ tăng trên bộ silver, không tăng trên bộ rubric.</div>
+                        <div class="px-2.5 pb-2 text-[10.5px] text-rose-700 mt-1"><strong>Quyết định:</strong> rút mức tăng 0.955 khỏi kết luận hiệu quả; tắt rank_shortlist mặc định (<code>MAX_LLM_RANKS=0</code>). Chỉ mở lại nếu chạy mù, không tune trên Djinni Aggregate Human Gold và qua ngưỡng đã đăng ký trước.</div>
                     </div>
                 </div>
                 <div class="grid grid-cols-3 gap-2.5 text-[11px]">
-                    <div class="p-2.5 rounded-xl card-emerald text-emerald-950"><strong>Agent đơn mạnh nhưng không kiểm soát được:</strong> ~5× token so với LLM xếp shortlist, và xếp hạng cả CV nó chưa đọc.</div>
-                    <div class="p-2.5 rounded-xl card-emerald text-emerald-950"><strong>Agentic = agent + harness:</strong> cùng mức nDCG@10 với ~1/5 token, mọi bước có điều kiện trước và lý do.</div>
-                    <div class="p-2.5 rounded-xl card-amber text-amber-950"><strong>Đo live (Claude):</strong> HR task E15 <strong>40/42</strong> kiểm tra hành vi; mục tiêu phức tạp E26 <strong>81/83</strong> (3 lần/goal). HR theo kịch bản; mức tăng nDCG của rank_shortlist có thể là LLM-chấm-LLM.</div>
+                    <div class="p-2.5 rounded-xl card-amber text-amber-950"><strong>Không claim agent đơn “mạnh”:</strong> 0.942 bị blocked; chỉ giữ kết luận quan sát được là tốn token và xếp cả CV chưa đọc.</div>
+                    <div class="p-2.5 rounded-xl card-amber text-amber-950"><strong>Không còn claim “cùng mức nDCG”:</strong> con số đó đến từ nhãn silver cùng họ Claude và đã bị evidence firewall chặn.</div>
+                    <div class="p-2.5 rounded-xl card-amber text-amber-950"><strong>Chưa có:</strong> số đo rank_shortlist/P7 trên Djinni-human; vì vậy feature ở trạng thái experimental-off.</div>
                 </div>
                 <div class="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-950 text-xs flex justify-between items-center font-medium">
                     <span><strong>TIẾP THEO:</strong> Giới hạn và bước tiếp theo.</span>
@@ -2484,18 +2483,19 @@
                 <div class="grid grid-cols-2 gap-2.5 text-[11px]">
                     <div class="p-2.5 rounded-xl card-amber text-amber-950 space-y-1.5">
                         <div class="font-bold">Giới hạn</div>
-                        <div><strong>Nhãn:</strong> nhãn bạc do 2 annotator Claude gán. Hai thành viên chấm mù 120 cặp: người–người κ 0.965; khớp Opus 0.87–0.88, Sonnet 0.65–0.69. Chỗ hai mô hình bất đồng, trung bình bạc rộng tay khoảng ½ bậc. Djinni: chưa có nhãn người đạt kiểm tra chất lượng.</div>
-                        <div><strong>Dữ liệu:</strong> v1 là CV tổng hợp; v2 thêm 8 JD thật (Djinni): thang hệ thống vẫn giữ (BM25 0.441 → B4 0.723).</div>
-                        <div><strong>Tập test nhỏ:</strong> 10 JD (v1), 18 JD (v2); chênh lệch dưới ~0.03 không có ý nghĩa.</div>
-                        <div><strong>Hành vi agent đo với HR theo kịch bản,</strong> một mô hình (Claude qua CLI thay cho API: hành vi giữ nguyên, độ trễ và chi phí thì không).</div>
+                        <div><strong>Kiểm chứng người thật đã hoàn tất:</strong> Hoa–Phúc κ<sub>w</sub> 0.965; so với silver mean là 0.695/0.661 → silver chỉ là bộ phụ theo ngưỡng đăng ký trước.</div>
+                        <div><strong>Djinni-QA:</strong> 424 cặp dữ liệu thật, Vũ–Đán κ<sub>w</sub> 0.696; Aggregate Human Gold giữ cả điểm gốc và độ bất định.</div>
+                        <div><strong>Tập test 10 JD:</strong> khoảng tin cậy ±0.05–0.08; chênh lệch dưới ~0.03 không có ý nghĩa.</div>
+                        <div><strong>LLM chạy qua Claude Code CLI</strong> thay cho API: hành vi giữ nguyên, độ trễ và chi phí thì không.</div>
                     </div>
                     <div class="p-2.5 rounded-xl card-blue text-blue-950 space-y-1.5">
                         <div class="font-bold">Bước tiếp theo</div>
-                        <div>1. Chấm lại v1 bằng 120 cặp nhãn người (v1.1); một buổi thống nhất rubric cho hồ sơ thật ngắn, rồi chấm mù lại Djinni (v2.1).</div>
+                        <div>1. Djinni production B0–B3 đã chạy: nDCG@10 0.422 → 0.464 → 0.482 → <strong>0.636</strong>; P6 pending do Gemini HTTP 503, không dùng kết quả dở dang.</div>
                         <div>2. Thu thập 5–10 CV thật có sự đồng ý (che PII, chỉ lưu bản ẩn danh).</div>
-                        <div>3. Bộ tấn công prompt injection giữ riêng (10/10 hiện tại là trên bộ nhỏ).</div>
-                        <div>4. Mở rộng tập test để tách P6 khỏi ranker theo rubric một cách có ý nghĩa.</div>
-                        <div>5. Đã đo, kết quả âm (giữ nguyên): học trọng số từ HR qua nhiều phiên Δ −0.008 nDCG@10 (E24); cross-encoder fine-tune tăng trên dữ liệu tổng hợp, không chuyển sang CV thật (E20).</div>
+                        <div>3. Luật hỏi HR không coi loại kiểm thử ("API testing") là công cụ cụ thể (3 lần không hỏi ở H6). Đã thử nhận công cụ chỉ được mô tả: nDCG@10 dev không đổi (0.867) → không áp dụng.</div>
+                        <div>4. Holdout mới đã khóa trước khi chạy: 6 JD × 40 CV, 240 cặp/người; cổng đánh giá đóng đến khi đủ 2 nhãn người mù và độc lập.</div>
+                        <div>5. HR học qua nhiều phiên: hiện chỉ hiệu chỉnh trọng số trong một phiên (hồi quy logistic theo cặp HR chọn), chưa lưu và chưa đo.</div>
+                        <div>6. Học tương phản kiểu ConFit: chưa làm. Djinni Human Gold đã có B0–B3; P6/P7 và nhãn holdout vẫn pending.</div>
                     </div>
                 </div>
                 <div class="grid grid-cols-3 gap-2.5 text-[11px]">
@@ -3054,7 +3054,7 @@
             ]},
             { title: "Slide 28 · Benchmark chung & so sánh ba phiên bản (Nguyễn Thái Thịnh)", notes: [
                 "<strong>Benchmark chung:</strong> 18 JD từ bộ silver và bộ rubric, 10 JD test khoá, 268 tệp ghim SHA-256.",
-                "<strong>Kết luận:</strong> P6 tốt nhất (0.851) nhưng chưa vượt ranker theo rubric có ý nghĩa thống kê (p = 0.12); mỗi hệ thắng trên bộ nhãn gần với nó."
+                "<strong>Kết luận:</strong> P6 tốt nhất (0.847) nhưng chưa vượt ranker theo rubric có ý nghĩa thống kê (p = 0.22); mỗi hệ thắng trên bộ nhãn gần với nó."
             ]},
             { title: "Slide 29 · Kiểm định H0–H6 (Nguyễn Thái Thịnh)", notes: [
                 "<strong>Báo cáo đầy đủ:</strong> H4, H5, H6 được ủng hộ; H0 một phần; H2 chưa đủ bằng chứng; H1 không được ủng hộ; H3 chưa kiểm định trực tiếp (rank_shortlist là bằng chứng gián tiếp, slide 33).",
@@ -3075,8 +3075,8 @@
             ]},
             { title: "Slide 33 · P7 agentic có kiểm soát vs agent đơn (Nguyễn Thái Thịnh)", notes: [
                 "<strong>P7:</strong> LLM chọn bước tiếp theo trong 14 công cụ theo mục tiêu HR; guard kiểm schema, điều kiện trước, quyền HR, ngân sách.",
-                "<strong>Số đo (dev, bộ silver):</strong> rank_shortlist 0.955 với ~34k token/JD; agent đơn S1 0.942 với ~179k token/JD, xếp 11 CV chưa đọc. Bộ rubric: rank_shortlist không đổi (0.859).",
-                "<strong>Trung thực:</strong> mức tăng chỉ có trên nhãn do LLM gán; chưa có số đo P7 chạy live (E15)."
+                "<strong>Số đo lịch sử (dev, ours-silver):</strong> rank_shortlist 0.955 với ~34k token/JD; agent đơn S1 0.942 với ~179k token/JD. Hai số này không còn là bằng chứng hiệu quả vì cùng họ Claude với người gán nhãn.",
+                "<strong>Quyết định:</strong> evidence firewall đánh dấu blocked, tắt rank_shortlist mặc định; chỉ mở lại sau phép thử không tune trên Djinni-human."
             ]},
             { title: "Slide 34 · Giới hạn & bước tiếp theo (Nguyễn Thái Thịnh)", notes: [
                 "<strong>Trung thực:</strong> nhãn bạc từ LLM, dữ liệu tổng hợp, tập test nhỏ.",
