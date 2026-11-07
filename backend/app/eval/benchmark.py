@@ -73,7 +73,7 @@ def freeze() -> dict:
                     "dev": {"ours": ours["dev"], "coding": sorted(j for j, v in gold.items() if v["split"] != "test")}},
          "labels": {"ours": "silver: mean of two LLM annotators, 0–3 (to be replaced by human-adjudicated labels = v1.1)",
                     "coding": "gold from the coding branch's annotation rubric, 0–3"},
-         "sha256": {str(p.relative_to(ROOT)): _sha(p) for p in _inputs()}}
+         "sha256": {p.relative_to(ROOT).as_posix(): _sha(p) for p in _inputs()}}
     MANIFEST.write_text(json.dumps(m, indent=1, ensure_ascii=False))
     return m
 
@@ -82,7 +82,7 @@ def verify() -> list[str]:
     """Inputs that differ from the manifest (empty = the benchmark is intact)."""
     m = json.loads(MANIFEST.read_text())
     bad = [p for p, h in m["sha256"].items() if not (ROOT / p).exists() or _sha(ROOT / p) != h]
-    extra = [str(p.relative_to(ROOT)) for p in _inputs() if str(p.relative_to(ROOT)) not in m["sha256"]]
+    extra = [p.relative_to(ROOT).as_posix() for p in _inputs() if p.relative_to(ROOT).as_posix() not in m["sha256"]]
     return bad + [f"{p} (not in manifest)" for p in extra]
 
 
@@ -136,11 +136,12 @@ def split_tables(m: dict, systems: dict[str, str], sources: tuple[str, ...], pai
     for split in ("test", "dev"):
         ids = {src: m["splits"][split].get(src, []) for src in sources}
         every = [j for src in sources for j in ids[src]]
-        lines += [f"## {split.capitalize()} split: " + " + ".join(f"{len(ids[src])} JDs from {src}" if i == 0 else
-                                                                  f"{len(ids[src])} from {src}"
+        label = {"ours": "ours-silver", "coding": "coding-rubric"}  # the label source, not a team name
+        lines += [f"## {split.capitalize()} split: " + " + ".join(f"{len(ids[src])} JDs from {label.get(src, src)}" if i == 0 else
+                                                                  f"{len(ids[src])} from {label.get(src, src)}"
                                                                   for i, src in enumerate(sources))
                   + (" (official)" if split == "test" else " (tuning allowed)"), "",
-                  "| System | what it is | JDs | nDCG@10 (all) | " + " | ".join(sources) + " | P@5 | R@20 | τ |",
+                  "| System | what it is | JDs | nDCG@10 (all) | " + " | ".join(label.get(src, src) for src in sources) + " | P@5 | R@20 | τ |",
                   "|---|---|---|---|" + "---|" * len(sources) + "---|---|---|"]
         rows = {}
         for s, what in systems.items():

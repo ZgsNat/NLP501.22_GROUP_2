@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "backend"))
 
-from app.eval import djinni, human, provenance  # noqa: E402
+from app.eval import djinni_gold as djinni, human, provenance  # noqa: E402
 
 MANIFEST = ROOT / "data" / "eval" / "benchmark_v1.json"
 CODING = ROOT / ".runtime" / "bench" / "coding"
