@@ -55,8 +55,13 @@ def adjudicate(a: dict, b: dict, override: dict | None = None) -> tuple[dict, li
     return out, conflicts
 
 
+def _bytes(path: Path) -> bytes:
+    """File bytes with CRLF read as LF: a Windows checkout (core.autocrlf) must hash like the committed file."""
+    return path.read_bytes().replace(b"\r\n", b"\n")
+
+
 def _sha(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashlib.sha256(_bytes(path)).hexdigest()
 
 
 def _tree_sha(paths: list[Path]) -> str:
@@ -64,7 +69,7 @@ def _tree_sha(paths: list[Path]) -> str:
     for path in sorted(paths):
         digest.update(path.name.encode())
         digest.update(b"\0")
-        digest.update(path.read_bytes())
+        digest.update(_bytes(path))
         digest.update(b"\0")
     return digest.hexdigest()
 
