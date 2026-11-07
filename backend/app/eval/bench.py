@@ -108,28 +108,31 @@ HR_OPTIONS = {
 }
 
 
-def materialize() -> Path:
-    """Lay the coding benchmark out like data/ so the whole agent can run on it: DATA_DIR=<this dir>."""
+def materialize(name: str = "coding") -> Path:
+    """Lay a benchmark (coding or djinni) out like data/ so the whole agent can run on it: DATA_DIR=<this dir>."""
     import shutil
 
-    b = load("coding")
-    meta = {j["id"]: j for j in yaml.safe_load((CODING_DIR / "jds.yaml").read_text())}
+    b, out = load(name), get_settings().runtime_dir / "bench" / f"{name}_corpus"
+    meta = {j["id"]: j for j in yaml.safe_load((CODING_DIR / "jds.yaml").read_text())} if name == "coding" else {}
     for sub in ("cvs", "jds"):
-        (CORPUS_DIR / sub).mkdir(parents=True, exist_ok=True)
+        (out / sub).mkdir(parents=True, exist_ok=True)
     for d in b.cvs:
-        (CORPUS_DIR / "cvs" / f"{d.id}.md").write_text(f"---\nid: {d.id}\nheadline: ''\n---\n{d.text}\n", encoding="utf-8")
+        front = {"id": d.id, "headline": d.meta.get("headline", "") if name != "coding" else ""}
+        (out / "cvs" / f"{d.id}.md").write_text(
+            f"---\n{yaml.safe_dump(front, allow_unicode=True)}---\n{d.text}\n", encoding="utf-8")
     for d in b.jds:
-        answers = " ".join(HR_OPTIONS[q][i] for q, i in (meta[d.id].get("hr_answers") or {}).items() if q in HR_OPTIONS)
+        answers = " ".join(HR_OPTIONS[q][i] for q, i in (meta.get(d.id, {}).get("hr_answers") or {}).items()
+                           if q in HR_OPTIONS)
         front = {"id": d.id, "title": d.meta["title"], "company_profile": d.meta["company_profile"]}
         if answers:
             front["hr_answer"] = answers
-        (CORPUS_DIR / "jds" / f"{d.id}.md").write_text(
+        (out / "jds" / f"{d.id}.md").write_text(
             f"---\n{yaml.safe_dump(front, allow_unicode=True)}---\n{d.text}\n", encoding="utf-8")
     data = ROOT / "data"
     for f in ("criteria_profiles.yaml", "skills_taxonomy.yaml"):
-        shutil.copy(data / f, CORPUS_DIR / f)
-    shutil.copytree(data / "policies", CORPUS_DIR / "policies", dirs_exist_ok=True)
-    return CORPUS_DIR
+        shutil.copy(data / f, out / f)
+    shutil.copytree(data / "policies", out / "policies", dirs_exist_ok=True)
+    return out
 
 
 def materialize_djinni() -> Path:

@@ -22,6 +22,11 @@ Screening Automation Test candidates is a 4-stage funnel (10 000 CVs → 200 →
 - **Depth matters more than keywords.** A candidate who *runs* Selenium scripts (L1) is not one who *architects* a test platform (L4).
 - **Every company weighs criteria differently.** A bank values ISTQB and stability; a mobile startup values Playwright and speed.
 
+HR also brings goals no JD states: *"5 CVs, Selenium a must, Playwright nice, AI used in automation a big plus."* The
+system must turn that into checkable constraints, find out whether the pool can meet them before ranking, ask HR when
+it cannot, and say which parts of the goal its shortlist does not meet. Full problem statement:
+[`docs/FINAL_REPORT.md`](docs/FINAL_REPORT.md) §1.
+
 ### Scoring model
 ```
 Score(CV, JD) = 1[H(c)] × Σ_k  w(c,k) · S(c,k)
@@ -36,6 +41,17 @@ The 8 criteria are: tools/frameworks · automation depth (L1–L4) · programmin
 
 ## 2. Architecture
 
+Two layers ([`docs/agentic-architecture-workflow.md`](docs/agentic-architecture-workflow.md)):
+
+- **P7, the agent (API default).** An LLM works towards HR's goal by choosing among 17 typed tools
+  ([`agent/tools.py`](backend/app/agent/tools.py)): `formalize_goal`, `check_goal`, `define_concept`, `screen`,
+  `ask_hr`, `explain`, `compare`, `respond_to_hr` … A code harness (`guard`) checks every call: schema, per-tool
+  preconditions, HR authority, budgets. HR's goal becomes a typed spec whose every constraint quotes HR; feasibility is
+  counted before ranking; the answer must declare what it could not meet
+  ([`agent/goal.py`](backend/app/agent/goal.py), [`agent/orchestrator.py`](backend/app/agent/orchestrator.py)).
+- **P6, the fixed graph** below, which P7 runs as its `screen` tool and which stays as the baseline. Rules set every
+  score in both; the LLM explains, asks and judges true near-ties.
+
 ```
             ┌──────────── L1: ask HR to clarify (interrupt) ───────────┐
             ▼                                                          │
@@ -48,10 +64,10 @@ The 8 criteria are: tools/frameworks · automation depth (L1–L4) · programmin
 
 | Layer | Tech | Where |
 |---|---|---|
-| Agent orchestration | **LangGraph** StateGraph: 11 nodes, 5 bounded loops, interrupts, SQLite checkpoints | [`backend/app/agent/`](backend/app/agent) |
+| Agent orchestration | **LangGraph**: P7 orchestrator (LLM ⇄ guard, 17 typed tools, multi-turn with HR) over the P6 StateGraph (12 nodes, 6 bounded loops), interrupts, SQLite checkpoints | [`backend/app/agent/`](backend/app/agent) |
 | CV language processing | **Deterministic NLP pipeline**: PDF/DOCX parsing, Unicode normalisation, PII and protected-attribute redaction, EN/VN section and date parsing, structural chunking with contextual headers, gazetteer skill NER with NegEx-style hedge scoping, clause-initial depth cues | [`backend/app/nlp/`](backend/app/nlp), explained in [`docs/NLP_PIPELINE.md`](docs/NLP_PIPELINE.md) |
-| Evaluation | B0 → P6 ladder, chunking ablation, A1–A3 against 600 graded (JD, CV) labels; nDCG, Kendall's τ, bootstrap CIs | [`backend/app/eval/`](backend/app/eval), [`docs/EVAL.md`](docs/EVAL.md) → [`docs/EVAL_RESULTS.md`](docs/EVAL_RESULTS.md) |
-| LLM brain | **Provider factory**: OpenAI, Anthropic, Google Gemini, Ollama (local), any OpenAI-compatible gateway | [`backend/app/providers/llm.py`](backend/app/providers/llm.py) |
+| Evaluation | NLP501-bench v1 / v1.1 / v2 (B0 → P6 ladder, ablations A1–A4), human labels, agent behaviour suites (E15 HR tasks, E26 complex goals); nDCG, Kendall's τ, bootstrap CIs | [`backend/app/eval/`](backend/app/eval), [`docs/EVAL.md`](docs/EVAL.md) → [`docs/EVAL_RESULTS.md`](docs/EVAL_RESULTS.md) |
+| LLM brain | **Provider factory**: OpenAI, Anthropic, Google Gemini, Ollama (local), any OpenAI-compatible gateway, the local Claude Code CLI (`claude_code`, dev) | [`backend/app/providers/llm.py`](backend/app/providers/llm.py) |
 | Retrieval | **Qdrant** hybrid search over **CV chunks**, one query per requirement (BM25 sparse + `bge-small-en-v1.5` dense, RRF), max-pooled per CV, then a `ms-marco-MiniLM` cross-encoder on (requirement, evidence passage) pairs. All open-source HF models via fastembed/ONNX | [`backend/app/rag/`](backend/app/rag) |
 | API | **FastAPI**, NDJSON streaming of node events | [`backend/app/main.py`](backend/app/main.py), contract in [`docs/API.md`](docs/API.md) |
 | Observability | **Langfuse v4** (self-hosted); one session per run, one trace per resume | [`backend/app/observability.py`](backend/app/observability.py) |
@@ -59,7 +75,7 @@ The 8 criteria are: tools/frameworks · automation depth (L1–L4) · programmin
 
 > 🗺️ **Interactive architecture map:** open [`docs/architecture.html`](docs/architecture.html) in a browser. Every component has an ID (e.g. `N6` = assess node, `H1` = loop budgets); click any box to see its file, state reads/writes and knobs.
 
-### The five loops (the "agentic" part)
+### The six loops of P6
 | Loop | Trigger | What happens | Limit |
 |---|---|---|---|
 | **L1** Clarify | JD has no concrete must-have tools (rule), or a fast model judges ambiguities blocking | Graph **pauses**, HR answers, criteria are re-extracted | `max_clarifications` |
@@ -67,6 +83,7 @@ The 8 criteria are: tools/frameworks · automation depth (L1–L4) · programmin
 | **L3** Arbiter | Two adjacent top-5 candidates within Δ < 0.05 | One LLM pairwise decision with verified evidence. Otherwise no LLM call at all. Each candidate is judged at most once (no cascades) | `max_arbiter_calls` |
 | **L4** Verify | An evidence quote doesn't exist in the CV (ungrounded) | That candidate is re-assessed with feedback; after the budget, ungrounded criteria are capped at 20. Quotes that exist but come from the wrong section or name the wrong thing (*listed, not demonstrated*) cap the criterion at 50 | `max_verify_retries` |
 | **L5** Review | HR re-weights criteria with sliders **or in plain words** ("certification matters more") | Deterministic re-score, **no new LLM assessment**; the report is reused if the top 5 are the same people | `max_reviews` |
+| **L6** Investigate | A knock-out looks like a parse failure (garbled text) | A tool-using LLM loop reads and searches the CV; code verifies every proposed fact before it counts | `max_investigations` |
 
 ### Design principles (harness engineering)
 1. **Bounded autonomy.** Every cycle has a limit in [`config.py`](backend/app/config.py).
@@ -214,28 +231,28 @@ CV-031–050 (v2) stress the NLP pipeline:
 
 **Read first:**
 - [`docs/FINAL_REPORT.md`](docs/FINAL_REPORT.md): the final report;
-- [`final_presentation_group_2.html`](final_presentation_group_2.html): the deck;
+- [`NLP501_FinalSlide_v7.html`](NLP501_FinalSlide_v7.html): the deck;
 - [`docs/BENCHMARK.md`](docs/BENCHMARK.md): **NLP501-bench v1**, the team's one frozen benchmark. It holds 18 JDs from
   both datasets, 10 of them locked for test, with every input pinned by checksum.
 
 **Official numbers:** `cd backend && uv run python -m app.eval.benchmark report` →
 [`docs/BENCHMARK_RESULTS.md`](docs/BENCHMARK_RESULTS.md).
 
-| Test split, nDCG@10 | 10 JDs | ours (6) | coding (4) |
+| Test split, nDCG@10 | 10 JDs | ours-silver (6) | coding-rubric (4) |
 |---|---|---|---|
 | B0 BM25 | 0.695 | 0.800 | 0.536 |
 | Structural chunks + cross-encoder | 0.715 | 0.813 | 0.568 |
-| Đán's core (`coding` branch, unchanged) | 0.810 | 0.773 | **0.866** |
+| Rubric ranker (8-axis rules, before our NLP and retrieval) | 0.810 | 0.773 | **0.866** |
 | Our v2 (4 rule criteria ⊕ CE) | 0.748 | 0.801 | 0.669 |
-| Merged v3.1, deterministic (B3) | 0.841 | **0.888** | 0.770 |
-| Merged v3.1, fixed pipeline (B4) | 0.839 | 0.877 | 0.781 |
-| **Merged v3.1, full agent (P6)** | **0.851** | 0.882 | 0.805 |
+| v3.1, deterministic (B3) | 0.841 | **0.888** | 0.770 |
+| v3.1, fixed pipeline (B4) | 0.839 | 0.877 | 0.781 |
+| **v3.1, full agent (P6)** | **0.851** | 0.882 | 0.805 |
 
-Re-run after the v4.1 fixes; the table of 31 Oct read B3 0.837, B4 0.848, P6 0.847. Re-scored with the 120 blind
-human pairs (v1.1, [`docs/BENCHMARK_V1_1_RESULTS.md`](docs/BENCHMARK_V1_1_RESULTS.md)) the order is the same.
+Re-scored with the 120 blind human pairs (v1.1, [`docs/BENCHMARK_V1_1_RESULTS.md`](docs/BENCHMARK_V1_1_RESULTS.md)),
+the order of the systems is the same.
 
 **What the numbers say:**
-- **The merge is the best version measured:** +0.093 over our v2 (p = 0.009) and +0.041 over Đán's core (p = 0.12,
+- **v3.1 is the best version measured:** +0.093 over our v2 (p = 0.009) and +0.041 over the rubric ranker (p = 0.12,
   not yet significant).
 - **Rules score, so the agent and its fixed twin rank almost alike** (+0.012, p = 0.064; mostly the one vague JD,
   where the agent asks HR). The agent's value is control:
@@ -255,18 +272,19 @@ The other results each have their own generated file:
 - decision scenarios: [`docs/SCENARIO_RESULTS.md`](docs/SCENARIO_RESULTS.md)
 - errors: [`docs/ERROR_ANALYSIS.md`](docs/ERROR_ANALYSIS.md)
 
-### Status: v3.1 (merged pipeline)
-- v3 merged Đán's `coding` branch.
-- v3.1 adds:
-  - the AI-output criteria and their checks;
-  - the investigator agent loop (L6);
-  - evaluation against external gold, real text and counterfactual twins;
-  - the fixes those found.
-- Earlier releases: [`docs/RELEASE_V2.md`](docs/RELEASE_V2.md), [`docs/RELEASE_V1.md`](docs/RELEASE_V1.md).
-- ⚠️ **Labels are still silver.** Two teammates should grade the blind 120-pair sample in
-  [`docs/labeling/`](docs/labeling/README.md) (about 2 h each).
-- ⚠️ **Consented real CVs are wanted.** Teammates should collect them using
-  [`docs/labeling/CONSENT.md`](docs/labeling/CONSENT.md).
+### Beyond the benchmark
+- **Human labels.** Hoa and Phúc graded 120 pairs blind, κ 0.965 with each other; against the silver mean κ 0.695 /
+  0.661, so silver is the secondary set ([`docs/HUMAN_LABELS.md`](docs/HUMAN_LABELS.md)).
+- **Real text with human labels.** Djinni-QA: 8 real JDs × 250 anonymised CVs, 424 judged pairs with two human grades
+  (κ 0.696). BM25 0.422 → 8-axis rules 0.636 nDCG@10; P6 pending
+  ([`docs/EXTERNAL_VALIDITY.md`](docs/EXTERNAL_VALIDITY.md), [`docs/DJINNI_PRODUCTION_RESULTS.md`](docs/DJINNI_PRODUCTION_RESULTS.md)).
+  A 6-JD × 40-CV holdout is locked until two blind label files exist ([`docs/DJINNI_HOLDOUT.md`](docs/DJINNI_HOLDOUT.md)).
+- **The agent (P7), live on Claude.** HR tasks: 40/42 behaviour checks ([`docs/AGENTIC_RESULTS.md`](docs/AGENTIC_RESULTS.md));
+  complex HR goals: 81/83 over three runs per goal ([`docs/GOAL_RESULTS.md`](docs/GOAL_RESULTS.md)).
+- **Circularity firewall.** An LLM ordering graded by labels from the same model family is not a ranking result, so
+  `rank_shortlist` is off by default ([`docs/CIRCULARITY_AUDIT.md`](docs/CIRCULARITY_AUDIT.md)).
+- **Open:** consented real CVs ([`docs/labeling/CONSENT.md`](docs/labeling/CONSENT.md)); the Djinni holdout labels;
+  a held-out prompt-injection set.
 
 ## 7. Contributing
 - Python uses **uv** (never pip); the frontend uses **npm**. Docker Desktop.

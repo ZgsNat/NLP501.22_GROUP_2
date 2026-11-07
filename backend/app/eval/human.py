@@ -228,6 +228,15 @@ def score() -> str:
               "The two humans cover every one of the 94 A/B disagreements. This is independent double annotation, "
               "not joint adjudication; disagreement-heavy sampling makes these κ values deliberately conservative "
               "relative to the full 600-pair corpus."]
+    if names:
+        lines += ["", "## Where the two silver annotators agree and disagree (no rounding)", "",
+                  "| Human | agreeing controls: same grade | disagreements: = A (Opus) | = B (Sonnet) | between A and B | "
+                  "A stricter than B |", "|---|---|---|---|---|---|"]
+        for h in names:
+            s = sides(humans[h], a, b)
+            lines.append(f"| {h} | {s['control_same']}/{s['controls']} | {s['as_a']}/{s['disagreements']} | "
+                         f"{s['as_b']}/{s['disagreements']} | {s['between']}/{s['disagreements']} | "
+                         f"{s['a_stricter']}/{s['disagreements']} |")
     # Model annotators are reported apart and never count as human validation (Q13). Ignore files from older sample
     # versions: comparing them with the current humans on an accidental subset would make the pair count misleading.
     llms = {}
