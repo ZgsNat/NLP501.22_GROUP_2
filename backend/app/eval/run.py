@@ -412,6 +412,9 @@ def main() -> None:
         if get_settings().data_dir.resolve() != expected.resolve():
             raise SystemExit(f"--bench {a.bench} needs DATA_DIR={expected}; materialize external corpora with "
                              f"`python -m app.eval.bench materialize {a.bench}`")
+        if get_settings().qdrant_url == ":memory:":
+            from app.rag.ingest import ingest
+            print("indexed:", ingest(), flush=True)
         asyncio.run(run_agents(a.systems.split(","), [d for d in load_dir("jds") if not a.jds or d.id in a.jds.split(",")],
                                a.model, a.bench))
     else:

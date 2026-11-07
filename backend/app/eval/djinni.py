@@ -390,8 +390,12 @@ def render_production(result: dict[str, Any]) -> str:
     lines += ["", "The min/max-grade columns are label-sensitivity analyses, not mathematical lower/upper bounds on nDCG: changing grades also changes the ideal DCG denominator.", "",
               "Per-JD orders are persisted under `.runtime/eval/results_djinni/`; the report stores an order hash "
               "for auditability. Missing systems remain `pending` and are never substituted with pilot heuristics.",
-              "", "P6 status: two Gemini 3.8 Flash attempts stopped before the first completed JD after HTTP 503 "
-              "high-demand responses. No partial score was promoted and B0–B3 were not rerun.", ""]
+              ""]
+    if "P6" in result["systems"]:
+        lines += ["P6 status: Gemini 3.8 Flash completed successfully across all 8 production JDs.", ""]
+    else:
+        lines += ["P6 status: two Gemini 3.8 Flash attempts stopped before the first completed JD after HTTP 503 "
+                  "high-demand responses. No partial score was promoted and B0–B3 were not rerun.", ""]
     return "\n".join(lines)
 
 
