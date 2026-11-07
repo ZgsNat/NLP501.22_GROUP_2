@@ -255,7 +255,7 @@ def test_rank_shortlist_reorders_and_the_order_survives_explain(agent):
         lambda m: call("explain", cv_ids=[last_result(m, "rank_shortlist")["order"][0]]),
         lambda m: call("rank_shortlist"), lambda m: call("rank_shortlist"),  # budget: 2 per run
         lambda m: call("respond_to_hr", message="Ranked."),
-    ])
+    ], max_llm_ranks=2)  # explicit experimental opt-in; production default is 0 until the human-Gold gate passes
     order = [r["cv_id"] for r in v["ranking"] if r["status"] == "ranked"]
     assert order == sorted(order, reverse=True) and order == v["llm_order"][:len(order)]  # explain kept the LLM order
     refused = [m.content for m in v["messages"] if isinstance(m, ToolMessage) and m.content.startswith("REJECTED")]

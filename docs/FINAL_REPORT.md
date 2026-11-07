@@ -108,15 +108,15 @@ what our results add.
 
 ### 2.1 Data
 
-| | ours (`data/`) | coding (Đán's branch, commit `6991c3d`) | real text |
+| | ours-silver (`data/`) | coding-rubric (Đán's branch, commit `6991c3d`) | real text |
 |---|---|---|---|
-| Size | 50 CVs × 12 JDs | 200 CVs × 6 JDs | 217 real, anonymised CVs |
-| Built by | hand-written synthetic, designed to stress the pipeline (Vietnamese, long, hedges, title inflation) | template generator with known latent facts; 37% Vietnamese; 7 OCR-garbled CVs; fake PII | datasetmaster/resumes (MIT); its 4,600 Faker-generated CVs excluded |
-| Labels (0–3) | silver: two Claude annotators, κ_w 0.919 | rubric gold (`gold_spec`) | none (NLP checks only) |
+| Size | 50 CVs × 12 JDs | 200 CVs × 6 JDs | parsing: 217 CVs; Djinni-QA: 250 CVs × 8 JDs, 424 pooled pairs |
+| Built by | hand-written synthetic, designed to stress the pipeline (Vietnamese, long, hedges, title inflation) | template generator with known latent facts; 37% Vietnamese; 7 OCR-garbled CVs; fake PII | datasetmaster/resumes and Djinni public datasets (MIT); synthetic/Faker rows excluded |
+| Labels (0–3) | silver plus a blind 120-pair Hoa–Phúc audit | rubric gold (`gold_spec`) | Djinni: Vũ–Đán Aggregate Human Gold; parsing set: none |
 
-**No CV belongs to a real candidate without their consent.** We checked every candidate public dataset. None combines
-real, licensed, *labelled* test-automation CVs (`docs/REALTEXT_RESULTS.md`). Consented CVs from real testers are being
-collected under `docs/labeling/CONSENT.md`.
+The team does not commit real CV text. Datasetmaster and Djinni are used under their public licences; Djinni's
+authors anonymised the profiles. Runtime text stays under `.runtime/`. Any CV collected directly by the team still
+requires the consent process in `docs/labeling/CONSENT.md`.
 
 ### 2.2 NLP501-bench v1 (`docs/BENCHMARK.md`)
 
@@ -138,7 +138,23 @@ The team therefore agreed on one benchmark with fixed roles:
 motivated by a test-split error and decided on dev. The arbiter fix restores the specified behaviour and was found in
 a dev-JD trace. Both are re-reported on test.
 
-### 2.3 Pipeline: raw CV → facts (deterministic, 0 tokens)
+### 2.3 Human validation and real-data external pilot
+
+Hoa and Phúc independently graded a blind sample containing all 94 Claude A/B disagreements plus 26 agreeing
+controls. Human–human agreement is 90.8%, κ = 0.965. Against the registered half-up-rounded silver mean, κ is 0.695
+and 0.661, so the silver benchmark is secondary rather than a replacement for people (`HUMAN_LABELS.md`).
+
+For external validity, Vũ and Đán independently graded the same 424 pooled Djinni pairs. Aggregate Human Gold keeps
+their unrounded mean and both source grades: exact agreement 67.0%, quadratic-weighted κ = 0.696; 284 labels have
+the same grade, 111 differ by one and 29 differ by at least two. In the frozen production run, B0/B1/B2/B3 score
+0.422/0.464/0.482/**0.636** nDCG@10; B3 is +0.214 over B0. P6 has no Djinni score: Gemini returned HTTP 503
+before completing its first JD, and no partial output was promoted (`DJINNI_PRODUCTION_RESULTS.md`).
+
+The historical test leak now has a procedural repair: a fixed-seed holdout of 6 new JDs and 40 new CVs is locked by
+source/content hashes before any run. Code refuses to materialize or score it until two independent blind human files
+cover all 240 pairs and pass the registered κ/adjudication gate. It is not yet a result (`DJINNI_HOLDOUT.md`).
+
+### 2.4 Pipeline: raw CV → facts (deterministic, 0 tokens)
 
 The pipeline runs these steps in order:
 
@@ -158,7 +174,7 @@ keeps the CV line it came from (`docs/NLP_PIPELINE.md`).
 **Masking is deletion, not instruction.** Asking an LLM to "ignore gender" is a hope; deleting it before indexing is
 a guarantee.
 
-### 2.4 How well the processing works
+### 2.5 How well the processing works
 
 | Check (source) | Result |
 |---|---|
@@ -311,7 +327,7 @@ misses rose from 9 to 17. The hybrid parser, where the deterministic parser deci
 
 *Figure 2. nDCG@10 on the 10 locked test JDs, mean and 95% CI. Blue marks the merged system.*
 
-| System | test nDCG@10 (10 JDs) | ours (6) | coding (4) | P@5 | dev nDCG@10 (8) |
+| System | test nDCG@10 (10 JDs) | ours-silver (6) | coding-rubric (4) | P@5 | dev nDCG@10 (8) |
 |---|---|---|---|---|---|
 | B0 BM25 | 0.695 | 0.800 | 0.536 | 0.680 | — |
 | B2 hybrid (BM25 + dense) | 0.681 | 0.859 | 0.413 | 0.600 | — |
@@ -546,7 +562,7 @@ We count only the errors that cost HR something:
 - **avoidable misses:** a relevant CV ranked below 10 although every CV graded at least as high fits in the top 10;
 - **false alarms:** an irrelevant CV in the top 5.
 
-| | ours (6 test JDs) | coding (4 test JDs) |
+| | ours-silver (6 test JDs) | coding-rubric (4 test JDs) |
 |---|---|---|
 | P6 full agent | 5 misses, 1 false alarm | 5 misses, 1 false alarm |
 | Đán's core | 10 misses, 1 false alarm | 4 misses, 0 false alarms |
@@ -566,26 +582,25 @@ We count only the errors that cost HR something:
 
 ## 9. Limitations and ethics
 
-- **Silver labels.** Our labels come from two Claude models, which agree too readily (κ 0.919). Two teammates are
-  grading a blind 120-pair sample (`docs/labeling/`). If human–silver κ ≥ 0.8 the set stays; otherwise the human
-  labels replace it as benchmark v1.1. A third, blind Claude annotator (recruiter persona, graded from the labelling
-  page's text only) agreed with the silver labels at κ_w 0.889 (`docs/HUMAN_LABELS.md`, reported apart from human
-  rows). The two silver annotators agree with each other at 0.884 on this sample. The silver set is therefore stable
-  within the Claude family; whether people agree is what the human grading will show. Until then, ranking numbers are
-  provisional.
-- **Synthetic ranking data.** Real text was used only to check the NLP. Consented real CVs are being collected.
-  Comparisons between systems are the result; the absolute numbers will not transfer.
+- **Silver labels.** The completed human audit finds near-perfect human–human agreement (κ 0.965) but only κ 0.695
+  and 0.661 against the rounded silver mean. Under the registered rule, silver is secondary. This validates the
+  existence of a stable human view, not all 600 internal pairs.
+- **Real-data pilot.** Djinni-QA now has 424 aggregate human judgements, but only eight JDs and a TREC-style judged
+  pool. Aggregate Gold is not third-party adjudication, and the production B1–P7 ladder has not been rerun on it.
 - **Small test split.** With 10 test JDs, CIs are ±0.05–0.08 for the stronger systems and up to ±0.15 for the
   baselines. Differences under about 0.03 are not significant, and neither is the 0.037 gap between the agent and
   Đán's core (p = 0.22).
-- **The served LLM.** Claude ran through the Claude Code CLI as a stand-in for an API. Calls, tokens and behaviour
-  carry over; latency and cost do not. The labels and the agent are both Claude, but rules set the score, so this
-  cannot inflate ranking metrics directly.
+- **The served LLM and circularity firewall.** Claude ran through the Claude Code CLI as a stand-in for an API.
+  Calls, tokens and behaviour carry over; latency and cost do not. Deterministic rules set the base score, but
+  `rank_shortlist` and S1 change the final order, so Claude-made labels can inflate their measured nDCG. The
+  historical `ours-silver` results 0.871 → 0.955 and S1 = 0.942 are therefore withdrawn from effectiveness claims;
+  `rank_shortlist` is disabled by default. Only a frozen run on independent human Gold can release it
+  (`CIRCULARITY_AUDIT.md`).
 - **Ethics.**
   - Protected attributes are deleted before indexing. The twin test shows the ranking ignores the four we twinned
     (name, gender, age, marital status).
   - The system recommends; HR decides, and every HR decision is logged.
-  - No real CV is used without consent.
+  - Public real data is used only under its licence and anonymisation terms; directly collected CVs require consent.
 
 ## 10. Conclusion
 
@@ -595,9 +610,9 @@ Measured on one frozen benchmark, the merged system is the best version of the p
 that unit tests never would.
 
 **Next:**
-- human labels (benchmark v1.1);
-- consented real CVs;
-- a larger test split, enough to separate the merged system from Đán's core with confidence;
+- preserve the completed controlled B0–B3 run and resume P6 without changing its frozen experiment if provider capacity permits;
+- complete two-person blind annotation of the locked 6-JD × 40-CV holdout, then run the pre-registered systems once;
+- consented real CVs for qualitative testing beyond the public dataset;
 - a gate rule that does not count a test type ("API testing") as a concrete tool: the cause of the 3 missed asks in
   §5.5, to be tuned on dev.
 

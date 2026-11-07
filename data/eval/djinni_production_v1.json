@@ -1,0 +1,46 @@
+{
+ "benchmark": "djinni-human",
+ "version": "production-v1",
+ "frozen_before_run": true,
+ "tuning": "none; one controlled run; failures are reported, not tuned away",
+ "systems": [
+  "B0 BM25",
+  "B1 dense",
+  "B2 hybrid",
+  "B3 8-axis ⊕ CE [hybrid]",
+  "P6"
+ ],
+ "runtime": {
+  "llm_by_component": {
+   "B3_jd_parser": "ollama:qwen3:1.7b",
+   "P6_agent": "google:gemini-3.8-flash"
+  },
+  "jd_parser": "hybrid",
+  "dense_model": "BAAI/bge-small-en-v1.5",
+  "rerank_model": "Xenova/ms-marco-MiniLM-L-6-v2",
+  "onnx_batch_sizes": {
+   "embedding": 16,
+   "rerank": 16
+  },
+  "python": "3.12 (Linux container, dependencies from frozen uv.lock)"
+ },
+ "protocol_amendments": [
+  {
+   "when": "before any P6 result existed",
+   "change": "P6 provider changed from local Ollama to Google Gemini because local inference was operationally infeasible; Gemini 3.8 Flash was the strongest user-listed model that passed the pre-run quota smoke test (Pro/Argon had zero quota)",
+   "performance_observed_before_change": false,
+   "scope": "P6 only; B0-B3 configurations and completed outputs unchanged"
+  }
+ ],
+ "evaluation": {
+  "ranking": "judged-only nDCG@10 on unrounded Aggregate Human Gold",
+  "binary": "P@5 relevant iff both Vũ and Đán graded >=2",
+  "uncertainty": "JD bootstrap CI plus min/max label-sensitivity bounds",
+  "unjudged": "ignored, never mapped to grade 0"
+ },
+ "inputs": {
+  "data/eval/human_djinni_gold.json": "19412d7dce2a6253af859d5a0d5aec3b546c851e787327328221406d38160ec3",
+  ".runtime/bench/djinni/jds.yaml": "3dd48d7a21099761b1a9d178d99bf010538974dee21badfe7636fbebeee783a1",
+  ".runtime/bench/djinni/cvs/*": "ef44a0008cdad5929481247ee08b3cca1750a9975eec0fff5fe125ba4288840b"
+ }
+}

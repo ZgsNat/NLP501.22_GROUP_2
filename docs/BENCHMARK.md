@@ -53,8 +53,11 @@ v1 fixes this. It keeps both datasets and gives the whole team **one split, one 
 - **The lock is new.** Results on these JDs were seen before the split existed, during v1–v3.1 development. From now on,
   test is locked.
 - **Two definitions of relevance remain:** silver labels and rubric gold. They are kept apart in the per-source
-  columns; the human labels will measure how far each agrees with people.
+  columns. The completed 120-pair human audit puts the rounded silver mean at κ = 0.695/0.661 against Hoa/Phúc, so
+  the silver set is secondary rather than a substitute for people (`docs/HUMAN_LABELS.md`).
 - **10 test JDs give wide intervals** (about ±0.05–0.08). Differences under about 0.03 are not significant.
+- **The Djinni pilot is separate.** Its 424-pair Aggregate Human Gold checks real text but does not repair the old
+  split or enlarge the official 10-JD test. Results must stay in a separate external-validity table.
 
 ## Reproduce
 

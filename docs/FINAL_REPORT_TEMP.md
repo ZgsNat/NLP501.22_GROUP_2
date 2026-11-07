@@ -25,7 +25,9 @@ against the CV, and they keep the final decision.
 **Scope.** Automation Test roles only; CVs in English and Vietnamese; synthetic, anonymised data; the system
 recommends, it does not hire.
 
-**Assumptions.** Labels are silver (LLM-made) and rubric-based; human labels are not in yet (see §Open work).
+**Assumptions.** The historical official ranking still uses silver/rubric labels. Human evidence now consists of a
+blind 120-pair audit and a separate 424-pair Djinni Aggregate Human Gold; neither retroactively creates a new
+unseen official test split.
 
 ---
 
@@ -134,8 +136,10 @@ prompt-injection detection, quote grounding.
 | Fairness twins | 0/600 CV×JD scores moved for name, gender, age, marital twins | ✅ but this shows masking works, not that the model is unbiased |
 | Prompt injection | 10/10 attacks caught, 0/150 clean CVs flagged (threshold 0.9) | ⚠ small attack set, no held-out set yet |
 | Asking HR | vague JD 0.626 → 0.756 when HR answers; agent as it runs 0.704 | ✅ the clarification loop has measurable value |
-| LLM shortlist ranking | ours 0.871 → 0.955; rubric set 0.861 → 0.859 | ⚠ gain only on LLM-made labels: possibly circular |
-| Single agent on its own (S1) | 0.942 vs P6 0.867 on dev, but 126k–230k tokens per JD and ranks CVs it never read | ⚠ negative result, reported as such |
+| LLM shortlist ranking | `ours-silver` 0.871 → 0.955; `coding-rubric` 0.861 → 0.859 | ❌ 0.955 withdrawn from effectiveness claims (same-family Claude circularity); feature disabled by default pending Djinni-human run |
+| Human audit | Hoa–Phúc κ 0.965; human–silver κ 0.695/0.661 | ✅ real people agree strongly; silver is secondary by the registered threshold |
+| Djinni-QA pilot | BM25 0.443; criteria heuristic 0.475 nDCG@10 on Aggregate Human Gold | ✅ real public text + human relevance; ⚠ full B1–P7 run pending |
+| Single agent on its own (S1) | historical `ours-silver` score 0.942 vs P6 0.867; 126k–230k tokens/JD and ranks unread CVs | ❌ ranking comparison blocked by same-family Claude circularity; trace supports only cost/control analysis |
 | Cost | B4 0.93M tokens / 12 dev JDs; ablations A1–A4 1.32–1.44M | measured, not yet compared against an all-LLM ranker |
 
 ### Against the deck's targets
@@ -146,8 +150,8 @@ prompt-injection detection, quote grounding.
 | Kendall τ 0.81 | ~0.51 | far below |
 | −78% tokens | not measured as that comparison | open |
 
-Absolute numbers are not comparable with papers (different data). What is comparable is the direction: hybrid beats
-keyword-only and dense-only, and the LLM adds on top at a cost. Both match the literature.
+Absolute numbers are not comparable with papers (different data). The deterministic hybrid direction is measured;
+whether an LLM adds ranking quality remains unproven until the frozen Djinni-human run.
 
 ---
 
@@ -155,9 +159,9 @@ keyword-only and dense-only, and the LLM adds on top at a cost. Both match the l
 
 | # | Item | Why it matters | Suggested owner | Entry point |
 |---|---|---|---|---|
-| 1 | **Human labels** (κ vs silver) | Every number rests on LLM or rubric labels; biggest weakness | everyone (label) + Hoa (analysis) | `docs/HUMAN_LABELS.md`, `docs/labeling/` |
+| 1 | **Controlled Djinni ladder rerun** | Aggregate Human Gold exists, but B1/B2/production B3/P6/P7 are not measured on it | Hoa + Thịnh | `app.eval.djinni`, `docs/EXTERNAL_VALIDITY.md` |
 | 2 | Contrastive learning (ConFit-style) | Lecturer feedback; gap vs §05 | Vũ / Đán | new retriever behind `rag/retrieve.py`, judged by `app.eval.run retrieval` |
-| 3 | Public dataset layer (e.g. Djinni QA) | Lecturer feedback: not only synthetic data | Hoa | `docs/data-select-strategy.md` |
+| 3 | New unseen JDs | Existing 10-JD test and Djinni pilot have both been viewed | Hoa | pre-register before any new run |
 | 4 | Learning from HR feedback across sessions | Lecturer feedback | Sơn / Thịnh | `scoring` weight calibration |
 | 5 | Live E15 run of P7 | End-to-end agentic evidence | Thịnh | `app.eval.agentic` |
 | 6 | Held-out injection attack set | Current 10/10 is on a small set | anyone | `app.eval.injection` |

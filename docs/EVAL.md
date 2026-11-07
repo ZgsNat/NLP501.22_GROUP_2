@@ -26,13 +26,17 @@ What CV-031–050 add:
 - **Annotators.** Two independent annotators graded all 600 pairs: Claude Opus and Claude Sonnet, each in a fresh context. Each saw **only** the JD and CV text: no authoring notes, no code, no system output. Files: `data/eval/annotator_a.yaml` and `annotator_b.yaml`.
 - **Agreement.** Exact agreement is 84.3% and quadratic-weighted Cohen's κ = 0.919. No pair differs by more than one grade.
 - **Gold.** The mean of the two annotators, so half grades occur.
-- **Status: SILVER.** Both annotators are LLMs from one model family, so their errors are correlated and κ is optimistic. Before the final report, two humans (Hoa plus one teammate) should:
-  1. re-grade a blind sample of 120 pairs containing all 94 A/B disagreements plus 26 agreeing controls;
-  2. report human–human and human–silver κ;
-  3. use those same labels to adjudicate all 94 pairs where A and B differ (`python -m app.eval.run report` writes
-     the audit copy to `.runtime/eval/to_adjudicate.yaml`).
+- **Status: SECONDARY SILVER after human validation.** Hoa and Phúc independently re-graded a blind 120-pair sample
+  containing all 94 A/B disagreements plus 26 agreeing controls. Human–human agreement is 90.8%, κ = 0.965.
+  Against the half-up-rounded silver mean, κ is 0.695 and 0.661. Under the rule registered above, silver therefore
+  remains useful only as a secondary benchmark; the human sample is the primary validation evidence. The sample
+  covers every disagreement but is independent double annotation, not joint adjudication. Full calculations and the
+  rounding rule are generated in `docs/HUMAN_LABELS.md`.
 
-  If human–silver κ ≥ 0.8, keep the silver set as the main test set.
+- **External human Gold.** Djinni-QA adds 424 real-data pairs graded independently by Vũ and Đán. Their exact
+  agreement is 67.0% and quadratic-weighted κ = 0.696. `data/eval/human_djinni_gold.json` keeps the unrounded mean,
+  both source grades and an uncertainty interval. This is Aggregate Human Gold, not adjudicated consensus; see
+  `docs/EXTERNAL_VALIDITY.md`.
 
 ## 3. Systems: the ladder
 
@@ -123,6 +127,12 @@ The baseline is the v2 deterministic ranker, `B3 rules ⊕ CE`: LLM requirements
 2. It is **higher on at least one** benchmark.
 
 Ties go to the simpler or zero-token option. With 6–12 JDs, CIs will overlap, so the rule uses point estimates and the report shows the CIs and paired p-values.
+
+**LLM-judge firewall (added after the human audit).** The rule above is not sufficient for a component that changes
+the final order using the same model family that created the labels. Such a result is `blocked`, not adopted. In
+particular, Claude `rank_shortlist` on `ours-silver` (0.871 → 0.955) and S1 = 0.942 are historical diagnostics only.
+The feature is disabled by default and requires the separate pre-registered Djinni Aggregate Human Gold gate in
+`docs/CIRCULARITY_AUDIT.md`. Annotators C and D remain model annotations and never enter the human-evidence column.
 
 **Candidates:**
 

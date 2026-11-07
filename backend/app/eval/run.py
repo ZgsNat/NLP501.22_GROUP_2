@@ -97,42 +97,63 @@ def b3_systems(store: KnowledgeStore, pool: list[str], prof: dict, r: dict, w: d
     return out
 
 
-def retrieval_systems(dense_model: str, b: Bench) -> dict[str, dict[str, list[str]]]:
+def retrieval_systems(dense_model: str, b: Bench, only: set[str] | None = None) -> dict[str, dict[str, list[str]]]:
+    """Run retrieval systems, optionally restricted to exact result names.
+
+    ``only`` is primarily for the frozen external-validity run: loading the three
+    chunking ablations and every cross-encoder variant at once needlessly raises
+    peak RAM, while each requested system is still computed by the same code path.
+    An omitted/empty set preserves the historical all-systems run.
+    """
+    only = only or set()
+    wanted = lambda name: not only or name in only  # noqa: E731
+    base_names = {"B0 BM25", "B1 dense", "B2 hybrid"}
+    need_whole = any(wanted(name) for name in base_names)
+    need_b3 = not only or any(name.startswith("B3 ") for name in only)
+    need_ablation = not only
     s = Settings(qdrant_url=":memory:", embed_dense_model=dense_model)
     store = KnowledgeStore(s)
     pool = [d.id for d in b.cvs]
-    profiles = {st: {d.id: process(d.id, d.text, d.meta.get("headline", ""), st) for d in b.cvs}
-                for st in ("structural", "window", "whole")}
-    store.index(retrieve.WHOLE, b.cvs)
+    styles = ("structural", "window", "whole") if need_ablation else (("structural",) if need_b3 else ())
+    profiles = {st: {d.id: process(d.id, d.text, d.meta.get("headline", ""), st) for d in b.cvs} for st in styles}
+    if need_whole:
+        store.index(retrieve.WHOLE, b.cvs)
     for st, ps in profiles.items():
         store.index_items(f"chunks_{st}", retrieve.chunk_items(list(ps.values())))
     weights_of = load_yaml("criteria_profiles.yaml")["profiles"]
 
     out: dict[str, dict[str, list[str]]] = {}
     for jd in b.jds:
-        r = asyncio.run(requirements(jd, "llm", b.name))
-        req, subs = r["req"], r["subs"]
         add = lambda name, ids: out.setdefault(name, {}).__setitem__(jd.id, full_order(ids, pool))  # noqa: E731
         for mode, name in (("bm25", "B0 BM25"), ("dense", "B1 dense"), ("hybrid", "B2 hybrid")):
-            add(name, [h.id for h in store.hybrid_search(retrieve.WHOLE, jd.text, limit=len(pool), mode=mode)])
-        qs = retrieve.queries(req, r["terms"], subs)
-        for st, weighted in (("whole", False), ("window", False), ("structural", False), ("structural", True)):
-            hits = retrieve.rank_cvs(store, f"chunks_{st}", qs, limit=max(200, 2 * len(pool)), section_weighted=weighted)
-            name = f"R {st}" + (" (section-weighted)" if weighted else "")
-            add(name, [h.cv_id for h in hits])
-            ce = retrieve.rerank_cvs(store, qs, hits, profiles[st])
-            add(f"{name} + CE", sorted(ce, key=ce.get, reverse=True))
-        w = weights_of[jd.meta.get("company_profile", "default")]["weights"]
-        # B3 family per JD-requirements mode. "B3 +criteria (rules)" / "B3 rules ⊕ CE" keep their v2 names (llm, core4).
-        for mode in ("llm", "rules", "hybrid"):
-            rm = r if mode == "llm" else asyncio.run(requirements(jd, mode, b.name))
-            for variant, ids in b3_systems(store, pool, profiles["structural"], rm, w).items():
-                if (mode, variant) == ("llm", "core4"):
-                    add("B3 +criteria (rules)", ids)
-                elif (mode, variant) == ("llm", "core4 ⊕ CE"):
-                    add("B3 rules ⊕ CE", ids)
-                else:
-                    add(f"B3 {variant} [{mode}]", ids)
+            if wanted(name):
+                add(name, [h.id for h in store.hybrid_search(retrieve.WHOLE, jd.text, limit=len(pool), mode=mode)])
+        if need_ablation:
+            r = asyncio.run(requirements(jd, "llm", b.name))
+            req, subs = r["req"], r["subs"]
+            qs = retrieve.queries(req, r["terms"], subs)
+            for st, weighted in (("whole", False), ("window", False), ("structural", False), ("structural", True)):
+                hits = retrieve.rank_cvs(store, f"chunks_{st}", qs, limit=max(200, 2 * len(pool)), section_weighted=weighted)
+                name = f"R {st}" + (" (section-weighted)" if weighted else "")
+                add(name, [h.cv_id for h in hits])
+                ce = retrieve.rerank_cvs(store, qs, hits, profiles[st])
+                add(f"{name} + CE", sorted(ce, key=ce.get, reverse=True))
+        if need_b3:
+            w = weights_of[jd.meta.get("company_profile", "default")]["weights"]
+            modes = ("llm", "rules", "hybrid") if need_ablation else tuple(
+                mode for mode in ("llm", "rules", "hybrid") if any(name.endswith(f"[{mode}]") for name in only)
+            )
+            for mode in modes:
+                rm = asyncio.run(requirements(jd, mode, b.name))
+                for variant, ids in b3_systems(store, pool, profiles["structural"], rm, w).items():
+                    if (mode, variant) == ("llm", "core4"):
+                        name = "B3 +criteria (rules)"
+                    elif (mode, variant) == ("llm", "core4 ⊕ CE"):
+                        name = "B3 rules ⊕ CE"
+                    else:
+                        name = f"B3 {variant} [{mode}]"
+                    if wanted(name):
+                        add(name, ids)
     return out
 
 
@@ -351,20 +372,25 @@ def main() -> None:
     ap.add_argument("what", choices=["retrieval", "agent", "report"])
     ap.add_argument("--dense", default=get_settings().embed_dense_model)
     ap.add_argument("--systems", default="P6,B4,A1,A2,A3,A4")
+    ap.add_argument("--only", default="", help="retrieval only: comma-separated exact system names")
     ap.add_argument("--jds", default="")
-    ap.add_argument("--bench", default="ours", choices=["ours", "coding"])
+    ap.add_argument("--bench", default="ours", choices=["ours", "coding", "djinni", "djinni_holdout"])
     ap.add_argument("--model", help='agent only: "<provider>:<model>" for both roles, e.g. claude_code:claude-sonnet-5-5')
     a = ap.parse_args()
     cache.enable(get_settings().runtime_dir / "llm_cache.sqlite")
     if a.what == "retrieval":
         suffix = "" if a.dense == get_settings().embed_dense_model else f" [{a.dense.split('/')[-1]}]"
-        for name, per_jd in retrieval_systems(a.dense, load_bench(a.bench)).items():
+        only = {name.strip() for name in a.only.split(",") if name.strip()}
+        for name, per_jd in retrieval_systems(a.dense, load_bench(a.bench), only).items():
             save(name + suffix, per_jd, a.bench)
             print(f"saved {name + suffix}")
     elif a.what == "agent":
-        if (a.bench == "coding") != (get_settings().data_dir != ROOT / "data"):
-            raise SystemExit("--bench coding runs on the materialized corpus: DATA_DIR=$(python -m app.eval.bench "
-                             "materialize), re-ingest, then rerun; --bench ours needs the default data/")
+        expected = {"ours": ROOT / "data", "coding": get_settings().runtime_dir / "bench" / "coding_corpus",
+                    "djinni": get_settings().runtime_dir / "bench" / "djinni_corpus",
+                    "djinni_holdout": get_settings().runtime_dir / "bench" / "djinni_holdout_corpus"}[a.bench]
+        if get_settings().data_dir.resolve() != expected.resolve():
+            raise SystemExit(f"--bench {a.bench} needs DATA_DIR={expected}; materialize external corpora with "
+                             f"`python -m app.eval.bench materialize {a.bench}`")
         asyncio.run(run_agents(a.systems.split(","), [d for d in load_dir("jds") if not a.jds or d.id in a.jds.split(",")],
                                a.model, a.bench))
     else:

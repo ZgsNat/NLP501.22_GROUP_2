@@ -1,0 +1,107 @@
+{
+ "benchmark": "djinni-unseen-human-holdout",
+ "version": "v1",
+ "status": "UNLABELLED_LOCKED",
+ "created_before_system_run": true,
+ "seed": 5012026,
+ "sampling": {
+  "jds": 6,
+  "shared_cv_pool": 40,
+  "pairs_per_annotator": 240,
+  "cv_quota": {
+   "QA Automation": 24,
+   "QA": 10,
+   "other": 6
+  },
+  "jd_length": [
+   800,
+   4000
+  ],
+  "cv_length": [
+   200,
+   4000
+  ],
+  "exclusion": "all 8 JD and 250 CV source IDs plus normalized texts from the measured Djinni pilot"
+ },
+ "sources": {
+  "jobs": {
+   "url": "https://huggingface.co/datasets/lang-uk/recruitment-dataset-job-descriptions-english",
+   "sha256": "71dddaf0d9660f34ddf946953b67f54f1e7d60e22dcf9a4b8139b6378b18aab9"
+  },
+  "profiles": {
+   "url": "https://huggingface.co/datasets/lang-uk/recruitment-dataset-candidate-profiles-english",
+   "sha256": "a7b1378e0b231507c377659bf2c80fa4ba60c4e31e1107b13425d103879ecc3b"
+  }
+ },
+ "ids": {
+  "jds": [
+   "djh_jd_2a0fca93eed7",
+   "djh_jd_614dc0e83a12",
+   "djh_jd_67ac2f80cd74",
+   "djh_jd_8af9b0256441",
+   "djh_jd_a70d4840c7db",
+   "djh_jd_e96061c37826"
+  ],
+  "cvs": [
+   "djh_cv_06074237f605",
+   "djh_cv_06d02762375f",
+   "djh_cv_09d10afa1845",
+   "djh_cv_0acb3010ed56",
+   "djh_cv_0ae66a0ea1a9",
+   "djh_cv_1d8f10a4a92f",
+   "djh_cv_20b3d3153ebb",
+   "djh_cv_2987a0fc309d",
+   "djh_cv_2d659bbeae47",
+   "djh_cv_3257f6d56099",
+   "djh_cv_371eae2d9203",
+   "djh_cv_3a088da24a42",
+   "djh_cv_3bf943ee0761",
+   "djh_cv_443f3e1b41e9",
+   "djh_cv_4b4c8944cd90",
+   "djh_cv_5667909d32ec",
+   "djh_cv_5a580ac045c8",
+   "djh_cv_619254dd11fe",
+   "djh_cv_7fc44ec2dbf1",
+   "djh_cv_880e6052520c",
+   "djh_cv_8b592029e064",
+   "djh_cv_8e6364934bc3",
+   "djh_cv_90fe830a294a",
+   "djh_cv_92f97734499a",
+   "djh_cv_9bf77e089dd4",
+   "djh_cv_9f384e282973",
+   "djh_cv_a17fab0581a2",
+   "djh_cv_a94dbe77a6bf",
+   "djh_cv_b0cf55bd74a1",
+   "djh_cv_bcbbb2a9b46b",
+   "djh_cv_bfd7aeb336c4",
+   "djh_cv_c4720d159be6",
+   "djh_cv_d3c058ef559c",
+   "djh_cv_d4636d9e0c8c",
+   "djh_cv_d7b15489c9b4",
+   "djh_cv_e0b6790a3ffb",
+   "djh_cv_f23338407b44",
+   "djh_cv_f27cd8b406ba",
+   "djh_cv_f8337e9d362b",
+   "djh_cv_fa1722e7a1c6"
+  ]
+ },
+ "inputs": {
+  "jds_tree_sha256": "185321f9820934ae8dd01ddaf2c66024a0cdee8d59240e75f75271d9e9a31d96",
+  "cvs_tree_sha256": "e74331a0079863d04c413e93aca6bf441457d586c176fdf7cbf50d5d9377e7e9"
+ },
+ "annotation": {
+  "annotators": 2,
+  "blind": true,
+  "independent": true,
+  "scale": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "minimum_weighted_kappa": 0.6,
+  "adjudicate_if_absolute_difference_at_least": 2,
+  "gold": "unrounded mean after required adjudication; conservative P@5 requires both >=2"
+ },
+ "gate": "Do not run or tune any system on these inputs until two human files pass import-labels and Gold exists."
+}

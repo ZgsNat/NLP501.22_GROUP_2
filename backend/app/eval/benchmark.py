@@ -137,9 +137,9 @@ def report() -> str:
     for split in ("test", "dev"):
         ids = {src: m["splits"][split][src] for src in ("ours", "coding")}
         every = ids["ours"] + ids["coding"]
-        lines += [f"## {split.capitalize()} split: {len(ids['ours'])} JDs from ours + {len(ids['coding'])} from coding"
+        lines += [f"## {split.capitalize()} split: {len(ids['ours'])} JDs from ours-silver + {len(ids['coding'])} from coding-rubric"
                   + (" (official)" if split == "test" else " (tuning allowed)"), "",
-                  "| System | what it is | JDs | nDCG@10 (all) | ours | coding | P@5 | R@20 | τ |", "|---|---|---|---|---|---|---|---|---|"]
+                  "| System | what it is | JDs | nDCG@10 (all) | ours-silver | coding-rubric | P@5 | R@20 | τ |", "|---|---|---|---|---|---|---|---|---|"]
         rows = {}
         for s, what in SYSTEMS.items():
             have = [j for j in every if j in scores[s]]
