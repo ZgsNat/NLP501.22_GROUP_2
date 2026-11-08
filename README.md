@@ -231,7 +231,8 @@ CV-031–050 (v2) stress the NLP pipeline:
 
 **Read first:**
 - [`docs/FINAL_REPORT.md`](docs/FINAL_REPORT.md): the final report;
-- [`NLP501_FinalSlide_v7.html`](NLP501_FinalSlide_v7.html): the deck;
+- [`NLP501_Nhom2_BaoCaoCuoiKy_v13.pptx`](NLP501_Nhom2_BaoCaoCuoiKy_v13.pptx): the defense deck, with its script
+  [`SCRIPT_THUYET_TRINH_v13.md`](SCRIPT_THUYET_TRINH_v13.md) (the submitted deck: `NLP501_FinalSlide_v10 (VN|EN).pdf`);
 - [`docs/BENCHMARK.md`](docs/BENCHMARK.md): **NLP501-bench v1**, the team's one frozen benchmark. It holds 18 JDs from
   both datasets, 10 of them locked for test, with every input pinned by checksum.
 
