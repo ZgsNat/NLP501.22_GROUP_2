@@ -1,20 +1,20 @@
 # Script thuyết trình · NLP501 Nhóm 2 · deck v13
 
-Deck: `NLP501_Nhom2_BaoCaoCuoiKy_v13.pptx` (23 slide trình bày + 2 slide phụ lục, khoảng 23 phút). Trọng tâm: giải pháp và kết quả thực nghiệm; bài toán được phát biểu lại ở slide 2 vì đã thay đổi để trở thành agentic. Số liệu khớp với slide và [`docs/FINAL_REPORT.md`](docs/FINAL_REPORT.md).
+Deck: `NLP501_Nhom2_BaoCaoCuoiKy_v13.pptx` (24 slide trình bày + 1 slide phụ lục, khoảng 23 phút). Mỗi người nói một khối slide liền nhau, theo mạch nội dung: bài toán → giải pháp → dữ liệu và kết quả → thảo luận. Bài toán được phát biểu lại ở slide 2 vì đã thay đổi để trở thành agentic. Số liệu khớp với slide và [`docs/FINAL_REPORT.md`](docs/FINAL_REPORT.md).
 
-| Người nói | Slide | Thời lượng |
-|---|---|---|
-| Hoàng Xuân Sơn | 1–2, 22–23 | 3:20 |
-| Nguyễn Đình Đán | 3, 10–13, 21 | 6:15 |
-| Trần Việt Hoa | 4, 14–18 | 7:00 |
-| Nguyễn Thái Thịnh | 5–9 | 4:45 |
-| Nguyễn Văn Vũ | 19–20 | 1:45 |
+| Thứ tự | Người nói | Slide | Nội dung | Thời lượng |
+|---|---|---|---|---|
+| 1 | Hoàng Xuân Sơn | 1–4 | bài toán, khoảng trống, tiêu chí chấm điểm | 3:35 |
+| 2 | Nguyễn Thái Thịnh | 5–9 | kiến trúc, NLP pipeline, retrieval | 4:45 |
+| 3 | Nguyễn Đình Đán | 10–12 | agent P7, P6, guardrails | 3:30 |
+| 4 | Trần Việt Hoa | 13–18 | dữ liệu, kết quả thực nghiệm | 7:00 |
+| 5 | Nguyễn Văn Vũ | 19–24 | nghiên cứu liên quan, giả thuyết, hạn chế, kết luận | 5:00 |
 
-Thứ tự lên nói giữ như cũ: Sơn → Đán → Hoa → Thịnh → Đán → Hoa → Vũ → Đán → Sơn. Thuật ngữ kỹ thuật giữ nguyên tiếng Anh như trên slide; mỗi đoạn kết thúc bằng câu chuyển lời.
+Thuật ngữ kỹ thuật giữ nguyên tiếng Anh như trên slide. Câu chuyển lời chỉ có ở cuối mỗi khối.
 
 ---
 
-## 01 · Bài toán
+## 01 · Bài toán và tiêu chí
 
 ### Slide 1 · Tiêu đề · Sơn · 0:20
 
@@ -39,39 +39,29 @@ tiêu chưa đạt được nêu rõ. Ràng buộc: không dùng thông tin đ�
 
 Điểm số vẫn tính bằng luật theo công thức dưới slide: H là knock-out theo công cụ bắt buộc, w là trọng số theo loại
 doanh nghiệp, S là điểm 0–100 của tám tiêu chí. Cái mới không nằm ở công thức mà ở chỗ agent chịu trách nhiệm về mục
-tiêu của HR. Mời bạn Đán.
+tiêu của HR.
 
-### Slide 3 · Khoảng trống nghiên cứu G1–G5 · Đán · 0:45
+### Slide 3 · Khoảng trống nghiên cứu G1–G5 · Sơn · 0:45
 
 Giải pháp nhắm vào năm khoảng trống rút ra từ tổng quan tài liệu: G1 đặc thù tiêu chí của từng doanh nghiệp; G2 nghịch
 lý từ vựng, với kiểm thử phần mềm keyword ATS vượt embedding (Resume2Vec); G3 LLM hallucination; G4 chi phí khi dùng
 LLM cho mọi ứng viên (RankGPT); G5 data leakage khi test split nhỏ và nhãn do chính LLM gán. Cuối bài nhóm đánh giá mức
-độ giải quyết từng khoảng trống. Mời bạn Hoa.
+độ giải quyết từng khoảng trống.
+
+### Slide 4 · Rule-based scoring và explanation card · Sơn · 1:00
+
+Ví dụ là JD-010 (ngân hàng) và CV-033. Mỗi dòng là một tiêu chí: trọng số, điểm, đóng góp và bằng chứng trích từ CV.
+Công cụ: 3/3 yêu cầu bắt buộc, đóng góp 0.184. Depth L3, xác định từ động từ của chính ứng viên. CI/CD đạt 90 vì
+Jenkins chỉ được liệt kê, tính 0.7. Tổng 0.924.
+
+Explanation card được tính từ chính các luật chấm điểm, nên luôn nhất quán với thứ hạng; LLM không thể giải thích lệch
+với điểm. Trọng số theo loại doanh nghiệp, tổng bằng 1: gia công phần mềm nâng lĩnh vực và tiếng Anh lên 0.20, ngân
+hàng tăng ISTQB, startup ưu tiên loại kiểm thử và CI/CD. Trọng số có thể hiệu chỉnh từ quyết định của HR bằng pairwise
+logistic regression. Với CV bị loại, what-if analysis cho HR thấy ứng viên còn cách ngưỡng bao xa. Mời bạn Thịnh trình bày các kỹ thuật NLP.
 
 ---
 
-## 02 · Dữ liệu và benchmark
-
-### Slide 4 · Dữ liệu và NLP501-bench · Hoa · 1:00
-
-Nhóm dùng bốn nguồn dữ liệu với vai trò cố định:
-
-- **ours:** 50 CV × 12 JD, nhãn silver do hai LLM gán, cùng 120 cặp do người chấm mù.
-- **coding:** 200 CV × 6 JD, nhãn rubric từ data generator.
-- **Djinni:** dữ liệu thực tế, 250 CV × 8 JD, 424 cặp có nhãn người (Vũ và Đán), dùng cho test v2 và external
-  validation.
-- **Kaggle:** 2.484 CV PDF thuộc 24 ngành, không có nhãn xếp hạng, chỉ dùng để kiểm tra NLP pipeline.
-
-NLP501-bench v1 gồm 250 CV tổng hợp ẩn danh và 18 JD; 10 JD test chỉ báo cáo một lần; 268 tệp đầu vào được cố định bằng
-SHA-256. Tập holdout Djinni gồm 6 JD × 40 CV mới, khoá trước mọi lần chạy và đang chờ hai bộ nhãn mù.
-
-Metric chính là nDCG@10, kèm P@5, R@20, MRR và Kendall τ; khoảng tin cậy 95% bằng bootstrap theo JD; so sánh bằng
-one-sided paired bootstrap; inter-annotator agreement bằng quadratic-weighted Cohen's κ. Chống leakage (G5): chỉ tune
-trên dev, TREC-style pooling, holdout chỉ mở khi có gold labels. Mời bạn Thịnh trình bày phương pháp.
-
----
-
-## 03 · Giải pháp
+## 02 · Giải pháp
 
 ### Slide 5 · Kiến trúc tổng thể · Thịnh · 1:00
 
@@ -137,20 +127,9 @@ Retrieval gồm năm bước:
 
 Hai kết quả đo: BM25 vượt dense retrieval trên CV kiểm thử, khớp với Resume2Vec; cross-encoder đóng góp lớn nhất,
 +0.05 đến +0.08 nDCG@10. Fine-tune cross-encoder (E20) tăng 0.046 trên dữ liệu tổng hợp nhưng giảm 0.027 trên CV thực tế,
-nên không dùng. Mời bạn Đán trình bày phần chấm điểm và agent.
+nên không dùng. Mời bạn Đán trình bày phần agent.
 
-### Slide 10 · Rule-based scoring và explanation card · Đán · 1:00
-
-Ví dụ là JD-010 (ngân hàng) và CV-033. Mỗi dòng là một tiêu chí: trọng số, điểm, đóng góp và bằng chứng trích từ CV.
-Công cụ: 3/3 yêu cầu bắt buộc, đóng góp 0.184. Depth L3, xác định từ động từ của chính ứng viên. CI/CD đạt 90 vì
-Jenkins chỉ được liệt kê, tính 0.7. Tổng 0.924.
-
-Explanation card được tính từ chính các luật chấm điểm, nên luôn nhất quán với thứ hạng; LLM không thể giải thích lệch
-với điểm. Trọng số theo loại doanh nghiệp, tổng bằng 1: gia công phần mềm nâng lĩnh vực và tiếng Anh lên 0.20, ngân
-hàng tăng ISTQB, startup ưu tiên loại kiểm thử và CI/CD. Trọng số có thể hiệu chỉnh từ quyết định của HR bằng pairwise
-logistic regression. Với CV bị loại, what-if analysis cho HR thấy ứng viên còn cách ngưỡng bao xa.
-
-### Slide 11 · P7: agent làm việc theo mục tiêu của HR · Đán · 1:30
+### Slide 10 · P7: agent làm việc theo mục tiêu của HR · Đán · 1:30
 
 Đây là phần làm hệ thống trở thành agentic. Khi HR đưa mục tiêu bằng lời, P7 chọn bước tiếp theo trong 17 typed tool,
 theo sáu bước trên slide:
@@ -171,7 +150,7 @@ Bao quanh mọi bước là guard: schema và precondition của từng tool, HR
 trả lời HR phải trung thực với CV (Q15), và budget bước, token, lượt hội thoại; hết budget thì code trả lời bằng các CV
 đã kiểm chứng. Luật vẫn chấm điểm; LLM quyết định thứ tự công việc; code quyết định điều gì là dữ kiện.
 
-### Slide 12 · P6: sáu bounded loop bên trong công cụ screen · Đán · 1:00
+### Slide 11 · P6: sáu bounded loop bên trong công cụ screen · Đán · 1:00
 
 Bên trong công cụ `screen` là P6, đồ thị cố định với sáu bounded loop, mỗi loop có giới hạn trong cấu hình:
 
@@ -186,7 +165,7 @@ Bên trong công cụ `screen` là P6, đồ thị cố định với sáu bound
 Ba số đo: trên 18 JD, P6 đi 8 execution path khác nhau, fixed pipeline chỉ 1; 17/17 verdict near-tie ổn định khi đảo
 thứ tự; investigator có 0 false recovery trên 42 ca thử.
 
-### Slide 13 · 20 tiêu chí guardrail · Đán · 1:00
+### Slide 12 · 20 tiêu chí guardrail · Đán · 1:00
 
 Mỗi loại output của LLM có một tiêu chí, một phép kiểm tra bằng code và một hành động khi vi phạm. Ví dụ: Q2, trích dẫn
 phải có trong CV, sai thì regenerate và nêu rõ trích dẫn sai; Q4, nhận định phải nhất quán với CV đã phân tích, sai thì
@@ -199,13 +178,28 @@ Kết quả đo:
 - Nhận định mâu thuẫn với CV ở P6 giảm từ 2.3% xuống 1.5%; fixed pipeline không regenerate giữ ở 3.5%.
 - Ứng viên trong báo cáo có nhận định không có căn cứ giảm từ 6.7% xuống 1.1%.
 - 10/10 tấn công prompt injection bị chặn, 0/150 báo nhầm trên CV sạch.
-- 0 điểm thay đổi khi đổi họ tên, giới tính, tuổi, hôn nhân (6 biến thể × 1.800 cặp).
-
-Mời bạn Hoa trình bày kết quả thực nghiệm.
+- 0 điểm thay đổi khi đổi họ tên, giới tính, tuổi, hôn nhân (6 biến thể × 1.800 cặp). Mời bạn Hoa trình bày dữ liệu và kết quả thực nghiệm.
 
 ---
 
-## 04 · Kết quả thực nghiệm
+## 03 · Dữ liệu và kết quả thực nghiệm
+
+### Slide 13 · Dữ liệu và NLP501-bench · Hoa · 1:00
+
+Nhóm dùng bốn nguồn dữ liệu với vai trò cố định:
+
+- **ours:** 50 CV × 12 JD, nhãn silver do hai LLM gán, cùng 120 cặp do người chấm mù.
+- **coding:** 200 CV × 6 JD, nhãn rubric từ data generator.
+- **Djinni:** dữ liệu thực tế, 250 CV × 8 JD, 424 cặp có nhãn người (Vũ và Đán), dùng cho test v2 và external
+  validation.
+- **Kaggle:** 2.484 CV PDF thuộc 24 ngành, không có nhãn xếp hạng, chỉ dùng để kiểm tra NLP pipeline.
+
+NLP501-bench v1 gồm 250 CV tổng hợp ẩn danh và 18 JD; 10 JD test chỉ báo cáo một lần; 268 tệp đầu vào được cố định bằng
+SHA-256. Tập holdout Djinni gồm 6 JD × 40 CV mới, khoá trước mọi lần chạy và đang chờ hai bộ nhãn mù.
+
+Metric chính là nDCG@10, kèm P@5, R@20, MRR và Kendall τ; khoảng tin cậy 95% bằng bootstrap theo JD; so sánh bằng
+one-sided paired bootstrap; inter-annotator agreement bằng quadratic-weighted Cohen's κ. Chống leakage (G5): chỉ tune
+trên dev, TREC-style pooling, holdout chỉ mở khi có gold labels.
 
 ### Slide 14 · Chất lượng NLP pipeline · Hoa · 0:45
 
@@ -260,13 +254,17 @@ Arbiter gặp cặp near-tie Δ 0.022 cho kết quả ngược khi đảo thứ 
 
 Bên phải là P7 với mục tiêu không khả thi: 5 CV phải biết cả Cypress và Appium. Feasibility check trước khi xếp hạng
 cho thấy chỉ 1/56 CV đáp ứng, agent hỏi lại HR; HR chấp nhận ít hơn, agent đề xuất đúng CV-026 và khai báo "1 of 5".
-Mô hình chọn hành động; code quyết định điều gì trở thành dữ kiện. Mời bạn Vũ trình bày phần thảo luận.
+Mô hình chọn hành động; code quyết định điều gì trở thành dữ kiện. Mời bạn Vũ trình bày phần thảo luận và kết luận.
 
 ---
 
-## 05 · Thảo luận và kết luận
+## 04 · Thảo luận và kết luận
 
-### Slide 19 · Giả thuyết và kết quả âm · Vũ · 1:15
+### Slide 19 · So sánh với nghiên cứu liên quan · Vũ · 0:45
+
+Đặt giải pháp cạnh ba nghiên cứu gần nhất. Resume2Vec cho thấy ATS tốt hơn embedding ở kiểm thử phần mềm; nhóm kiểm chứng lại: BM25 0.794 so với dense 0.741 trên ours, 0.542 so với 0.333 trên coding. ConFit v2 dùng bi-encoder contrastive, nDCG@10 82.20 trên AliYun; trên CV kiểm thử dense đơn thuần yếu, nên nhóm dùng hybrid retrieval, cross-encoder và luật, được +0.214 so với BM25 trên CV thực tế. RankGPT để LLM xếp hạng toàn bộ ứng viên; nhóm chỉ dùng LLM cho near-tie và giải thích, vì để LLM chấm điểm làm giảm 0.033, còn dùng LLM có chọn lọc tiết kiệm 47% token.
+
+### Slide 20 · Giả thuyết và kết quả âm · Vũ · 1:15
 
 - **H1, agent vượt fixed pipeline:** 0.851 so với 0.839, p = 0.064: không được ủng hộ.
 - **H2, selective arbiter giảm token:** −47% (P6), −67% (B4) so với dùng LLM cho mọi CV: ủng hộ một phần, chưa đạt mục
@@ -283,15 +281,14 @@ hedge giữ trap CV ngoài top 10; fine-tune cross-encoder không transfer sang 
 cải thiện (−0.008); single agent không có harness tốn 127k–230k token mỗi JD và xếp hạng cả CV chưa đọc; LLM shortlist
 ranking chỉ cải thiện trên nhãn do LLM tạo nên không được tính và bị tắt mặc định.
 
-### Slide 20 · Hạn chế và đạo đức · Vũ · 0:30
+### Slide 21 · Hạn chế và đạo đức · Vũ · 0:30
 
 Dữ liệu xếp hạng chủ yếu là tổng hợp, giá trị tuyệt đối không chuyển sang dữ liệu thật (0.85 so với 0.64); test split
 10 JD nên P6 so với rubric ranker chưa có ý nghĩa thống kê; nhãn Djinni là trung bình hai người, chưa adjudicate, một
 bộ được gán khi thấy điểm của mô hình; HR trong E15 và E26 là kịch bản. Về đạo đức: protected attribute bị xoá trước
-khi lập chỉ mục, hệ thống chỉ gợi ý, HR quyết định, và yêu cầu lọc theo tuổi hay giới tính bị harness từ chối. Mời bạn
-Đán tổng kết các khoảng trống.
+khi lập chỉ mục, hệ thống chỉ gợi ý, HR quyết định, và yêu cầu lọc theo tuổi hay giới tính bị harness từ chối.
 
-### Slide 21 · Mức độ giải quyết G1–G5 · Đán · 1:00
+### Slide 22 · Mức độ giải quyết G1–G5 · Vũ · 1:00
 
 - **G2 đã giải quyết:** luật kết hợp hybrid retrieval vượt BM25 +0.214 trên CV thực tế có nhãn người.
 - **G3 kiểm soát được:** 100% trích dẫn grounded, nhận định mâu thuẫn giảm còn 1.5% nhưng chưa về 0.
@@ -301,9 +298,7 @@ khi lập chỉ mục, hệ thống chỉ gợi ý, HR quyết định, và yêu
 - **G5 một phần:** benchmark cố định bằng SHA-256, test báo cáo một lần, v1.1 cho τ 1.00 với nhãn người; holdout đã khoá
   nhưng chưa có nhãn nên chưa đo.
 
-Mời bạn Sơn kết luận.
-
-### Slide 22 · Kết luận và hướng phát triển · Sơn · 1:15
+### Slide 23 · Kết luận và hướng phát triển · Vũ · 1:15
 
 Bốn kết quả chính:
 
@@ -319,7 +314,7 @@ Hướng phát triển: gán nhãn mù cho holdout Djinni và đánh giá một 
 lặp lại E15 với HR thật; thu thập CV thật có đồng ý và mở rộng test split; statistical NER cho CV mô tả công cụ mà không
 gọi tên.
 
-### Slide 23 · Hỏi đáp · Sơn · 0:15
+### Slide 24 · Hỏi đáp · Vũ · 0:15
 
 Nhóm xin cảm ơn Hội đồng đã lắng nghe. Mã nguồn, benchmark và toàn bộ kết quả có trong repository; báo cáo đầy đủ ở
 `docs/FINAL_REPORT.md`. Nhóm sẵn sàng nhận câu hỏi.
@@ -328,7 +323,7 @@ Nhóm xin cảm ơn Hội đồng đã lắng nghe. Mã nguồn, benchmark và t
 
 ## Phụ lục (chỉ mở khi có câu hỏi)
 
-### Slide 24 · Câu hỏi nghiên cứu và đóng góp
+### Slide 25 · Câu hỏi nghiên cứu và đóng góp
 
 Nhóm đặt năm câu hỏi nghiên cứu; cột phải là câu trả lời đo được:
 
@@ -342,20 +337,6 @@ Nhóm đặt năm câu hỏi nghiên cứu; cột phải là câu trả lời đ
 Bốn đóng góp: một NLP pipeline song ngữ tất định; một agent có kiểm soát gồm LangGraph StateGraph 12 node, 6 bounded
 loop (P6) và một goal-driven orchestrator với 17 tool (P7); bộ 20 tiêu chí cho output của LLM, mỗi tiêu chí có phép
 kiểm tra tự động; và benchmark NLP501-bench ở các phiên bản v1, v1.1, v2 cùng một tập holdout khoá trước.
-Mời bạn Đán trình bày các khoảng trống nghiên cứu.
-
-### Slide 25 · So sánh với nghiên cứu liên quan
-
-- **Resume2Vec:** ATS tốt hơn embedding ở kiểm thử phần mềm. Nhóm kiểm chứng lại: BM25 0.794 so với dense 0.741 trên
-  ours, 0.542 so với 0.333 trên coding.
-- **ConFit v2:** bi-encoder contrastive đạt nDCG@10 82.20 trên AliYun. Với CV kiểm thử, dense đơn thuần yếu, nên nhóm
-  dùng hybrid retrieval, cross-encoder và luật: +0.214 so với BM25 trên CV thực tế.
-- **RankGPT:** LLM listwise ranking trên toàn bộ ứng viên. Nhóm chỉ dùng LLM làm arbiter cho near-tie; để LLM chấm điểm
-  làm giảm 0.033; dùng LLM có chọn lọc tiết kiệm 47% token.
-- **Clavié và Soulié:** LLM so khớp kỹ năng ESCO. Nhóm dùng taxonomy và canonicalize output tại boundary; LLM càng mạnh
-  càng đọc dư yêu cầu JD (0.884 → 0.842), hybrid parser giữ 0.881.
-- **Wilson và Caliskan:** retrieval bằng LM ưu tiên tên người da trắng ở 85.1% trường hợp. Nhóm xoá protected attribute
-  trước khi lập chỉ mục và kiểm bằng counterfactual twins: không điểm nào thay đổi.
 
 ---
 
@@ -363,7 +344,7 @@ Mời bạn Đán trình bày các khoảng trống nghiên cứu.
 
 | Câu hỏi | Người trả lời | Câu trả lời ngắn |
 |---|---|---|
-| Hệ thống có thật sự agentic không, hay chỉ là pipeline? | Đán | P7: LLM chọn bước trong 17 tool theo mục tiêu HR, kiểm tra tính khả thi trước khi xếp hạng, hỏi lại khi cần, tự kiểm kết quả và khai phần chưa đạt (slide 18). P6 đi 8 path khác nhau trên 18 JD, fixed pipeline đi 1. |
+| Hệ thống có thật sự agentic không, hay chỉ là pipeline? | Đán | P7: LLM chọn bước trong 17 tool theo mục tiêu HR, kiểm tra tính khả thi trước khi xếp hạng, hỏi lại khi cần, tự kiểm kết quả và khai phần chưa đạt (slide 18, hai lượt chạy thật). P6 đi 8 path khác nhau trên 18 JD, fixed pipeline đi 1. |
 | Vì sao không để LLM chấm điểm? | Thịnh | Đã đo: ở v2 LLM chấm 5/8 tiêu chí làm nDCG giảm 0.033. LLM cũng có position bias (arbiter tự lật khi đảo thứ tự). Luật chấm, LLM giải thích và phân xử near-tie. |
 | Agent không hơn fixed pipeline về nDCG, vậy agent để làm gì? | Hoa | Đúng theo thiết kế, vì luật chấm cả hai. Giá trị nằm ở JD mơ hồ (+0.129), CV lỗi ký tự, kiểm soát hallucination và mục tiêu HR phức tạp. |
 | Nhãn do LLM gán thì đánh giá có vòng lặp không? | Hoa | Có rủi ro, nên: 120 cặp chấm mù bởi người cho v1.1 (thứ tự giữ nguyên, τ 1.00); Djinni dùng nhãn người; con số nào chỉ có nhãn cùng họ mô hình chấm thì không công bố và tính năng để tắt. |
