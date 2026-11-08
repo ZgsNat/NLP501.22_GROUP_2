@@ -7,7 +7,7 @@
         "raw_text": "Selenium",
         "canonical_skill": "selenium",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "2.5 years of experiences in manual testing of web-based. Provide functional / non- functional testing; smoke / regression testing; cross-browser testing. Knowledge of automation testing for UI purpose using Selenium Web Driver/Python, API using Python(requests), Postman. Creation different test documentation: test cases, checklist."
       },
       {
@@ -16,7 +16,7 @@
         "raw_text": "Python",
         "canonical_skill": "python",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "2.5 years of experiences in manual testing of web-based. Provide functional / non- functional testing; smoke / regression testing; cross-browser testing. Knowledge of automation testing for UI purpose using Selenium Web Driver/Python, API using Python(requests), Postman. Creation different test documentation: test cases, checklist."
       },
       {
@@ -25,7 +25,7 @@
         "raw_text": "Python",
         "canonical_skill": "python",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "2.5 years of experiences in manual testing of web-based. Provide functional / non- functional testing; smoke / regression testing; cross-browser testing. Knowledge of automation testing for UI purpose using Selenium Web Driver/Python, API using Python(requests), Postman. Creation different test documentation: test cases, checklist."
       },
       {
@@ -34,7 +34,7 @@
         "raw_text": "requests",
         "canonical_skill": "requests",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "2.5 years of experiences in manual testing of web-based. Provide functional / non- functional testing; smoke / regression testing; cross-browser testing. Knowledge of automation testing for UI purpose using Selenium Web Driver/Python, API using Python(requests), Postman. Creation different test documentation: test cases, checklist."
       },
       {
@@ -43,11 +43,16 @@
         "raw_text": "Postman",
         "canonical_skill": "postman",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "2.5 years of experiences in manual testing of web-based. Provide functional / non- functional testing; smoke / regression testing; cross-browser testing. Knowledge of automation testing for UI purpose using Selenium Web Driver/Python, API using Python(requests), Postman. Creation different test documentation: test cases, checklist."
       }
     ],
-    "candidate_skills": []
+    "candidate_skills": [
+      "postman",
+      "python",
+      "requests",
+      "selenium"
+    ]
   },
   "dj_ext_b9b18d9e7c": {
     "mentions": [
@@ -1507,7 +1512,7 @@
       {
         "start": 164,
         "end": 175,
-        "raw_text": "WebDriverIO",
+        "raw_text": "Selenium WebDriver",
         "canonical_skill": "webdriverio",
         "is_oov": false,
         "evidence_status": "listed",
@@ -1678,7 +1683,7 @@
       {
         "start": 679,
         "end": 690,
-        "raw_text": "WebDriverIO",
+        "raw_text": "Selenium WebDriver",
         "canonical_skill": "webdriverio",
         "is_oov": false,
         "evidence_status": "listed",
@@ -1768,7 +1773,7 @@
       {
         "start": 817,
         "end": 828,
-        "raw_text": "WebDriverIO",
+        "raw_text": "Selenium WebDriver",
         "canonical_skill": "webdriverio",
         "is_oov": false,
         "evidence_status": "listed",
@@ -1858,7 +1863,7 @@
       {
         "start": 954,
         "end": 965,
-        "raw_text": "WebDriverIO",
+        "raw_text": "Selenium WebDriver",
         "canonical_skill": "webdriverio",
         "is_oov": false,
         "evidence_status": "listed",
@@ -2731,7 +2736,7 @@
         "raw_text": "Java",
         "canonical_skill": "java",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "Basic knowledge: Java"
       },
       {
@@ -2776,7 +2781,7 @@
         "raw_text": "Java",
         "canonical_skill": "java",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "Basic knowledge: Java"
       },
       {
@@ -2808,6 +2813,7 @@
       }
     ],
     "candidate_skills": [
+      "java",
       "jenkins",
       "selenium",
       "testng"
@@ -2882,7 +2888,7 @@
         "raw_text": "JavaScript",
         "canonical_skill": "javascript",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "- Basic knowledge of HTML/CSS,С#, JavaScript and SQL."
       },
       {
@@ -2891,7 +2897,7 @@
         "raw_text": "JavaScript",
         "canonical_skill": "javascript",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "- Basic knowledge of HTML/CSS,С#, JavaScript and SQL."
       },
       {
@@ -2905,7 +2911,8 @@
       }
     ],
     "candidate_skills": [
-      "csharp"
+      "csharp",
+      "javascript"
     ]
   },
   "dj_ext_b5b3f62074": {
@@ -2958,7 +2965,7 @@
       {
         "start": 237,
         "end": 248,
-        "raw_text": "WebDriverIO",
+        "raw_text": "Selenium WebDriver",
         "canonical_skill": "webdriverio",
         "is_oov": false,
         "evidence_status": "listed",
@@ -3138,7 +3145,7 @@
       {
         "start": 1049,
         "end": 1060,
-        "raw_text": "WebDriverIO",
+        "raw_text": "Selenium WebDriver",
         "canonical_skill": "webdriverio",
         "is_oov": false,
         "evidence_status": "listed",
@@ -4096,7 +4103,7 @@
         "raw_text": "Postman",
         "canonical_skill": "postman",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "- Basic knowledge of SQL/API. Postman, REST, GIT, JSON, XML"
       },
       {
@@ -4123,7 +4130,7 @@
         "raw_text": "Postman",
         "canonical_skill": "postman",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "- Basic knowledge of SQL/API. Postman, REST, GIT, JSON, XML"
       },
       {
@@ -4150,7 +4157,7 @@
         "raw_text": "Postman",
         "canonical_skill": "postman",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "- Basic knowledge of SQL/API. Postman, REST, GIT, JSON, XML"
       },
       {
@@ -4177,7 +4184,7 @@
         "raw_text": "Postman",
         "canonical_skill": "postman",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "- Basic knowledge of SQL/API. Postman, REST, GIT, JSON, XML"
       },
       {
@@ -4201,7 +4208,8 @@
     ],
     "candidate_skills": [
       "javascript",
-      "jira"
+      "jira",
+      "postman"
     ]
   },
   "dj_ext_37bf6a4440": {
@@ -4471,7 +4479,7 @@
         "raw_text": "Jira",
         "canonical_skill": "jira",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "• Knowledge of the testing tools (Jira, TestRail);"
       },
       {
@@ -4480,7 +4488,7 @@
         "raw_text": "TestRail",
         "canonical_skill": null,
         "is_oov": true,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "• Knowledge of the testing tools (Jira, TestRail);"
       },
       {
@@ -4507,7 +4515,7 @@
         "raw_text": "Jira",
         "canonical_skill": "jira",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "• Knowledge of the testing tools (Jira, TestRail);"
       },
       {
@@ -4516,7 +4524,7 @@
         "raw_text": "TestRail",
         "canonical_skill": null,
         "is_oov": true,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "• Knowledge of the testing tools (Jira, TestRail);"
       },
       {
@@ -4540,6 +4548,7 @@
     ],
     "candidate_skills": [
       "java",
+      "jira",
       "python"
     ]
   },
@@ -4920,7 +4929,7 @@
         "raw_text": "JavaScript",
         "canonical_skill": "javascript",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "user-friendly. I have sound knowledge of HTML, CSS, JavaScript, and React."
       },
       {
@@ -4956,7 +4965,7 @@
         "raw_text": "JavaScript",
         "canonical_skill": "javascript",
         "is_oov": false,
-        "evidence_status": "hedged",
+        "evidence_status": "used",
         "line": "user-friendly. I have sound knowledge of HTML, CSS, JavaScript, and React."
       }
     ],

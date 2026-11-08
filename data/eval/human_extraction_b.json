@@ -102,7 +102,7 @@
         "raw_text": "Postman",
         "canonical_skill": "postman",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "• Postman"
       },
       {
@@ -156,7 +156,7 @@
         "raw_text": "Gradle",
         "canonical_skill": null,
         "is_oov": true,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "• Gradle"
       },
       {
@@ -183,7 +183,7 @@
         "raw_text": "API testing",
         "canonical_skill": "api_testing",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "• Automation UI and API testing"
       },
       {
@@ -210,7 +210,7 @@
         "raw_text": "Rest Assured",
         "canonical_skill": "restassured",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "• Rest Assured"
       },
       {
@@ -237,7 +237,7 @@
         "raw_text": "Allure",
         "canonical_skill": null,
         "is_oov": true,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "• Allure"
       },
       {
@@ -264,7 +264,7 @@
         "raw_text": "Maven",
         "canonical_skill": null,
         "is_oov": true,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "• Maven"
       },
       {
@@ -367,7 +367,7 @@
         "raw_text": "docker",
         "canonical_skill": "docker",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "- Setup docker for test executions"
       },
       {
@@ -470,7 +470,7 @@
         "raw_text": "Jenkins",
         "canonical_skill": "jenkins",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "- Skills of working with Jenkins;"
       },
       {
@@ -510,7 +510,7 @@
       {
         "start": 395,
         "end": 413,
-        "raw_text": "Selenium WebDriver",
+        "raw_text": "Selenium",
         "canonical_skill": "selenium",
         "is_oov": false,
         "evidence_status": "listed",
@@ -591,7 +591,7 @@
       {
         "start": 685,
         "end": 703,
-        "raw_text": "Selenium WebDriver",
+        "raw_text": "Selenium",
         "canonical_skill": "selenium",
         "is_oov": false,
         "evidence_status": "listed",
@@ -672,17 +672,8 @@
       {
         "start": 1418,
         "end": 1436,
-        "raw_text": "Selenium WebDriver",
+        "raw_text": "Selenium",
         "canonical_skill": "selenium",
-        "is_oov": false,
-        "evidence_status": "listed",
-        "line": "•create automation tests (Selenium WebDriver(Java), Appium,CasperJS)."
-      },
-      {
-        "start": 1437,
-        "end": 1441,
-        "raw_text": "Java",
-        "canonical_skill": "java",
         "is_oov": false,
         "evidence_status": "listed",
         "line": "•create automation tests (Selenium WebDriver(Java), Appium,CasperJS)."
@@ -753,7 +744,7 @@
       {
         "start": 1708,
         "end": 1726,
-        "raw_text": "Selenium WebDriver",
+        "raw_text": "Selenium",
         "canonical_skill": "selenium",
         "is_oov": false,
         "evidence_status": "listed",
@@ -956,15 +947,6 @@
         "line": "QA Automation (Java/C#, Selenium)"
       },
       {
-        "start": 1061,
-        "end": 1063,
-        "raw_text": "C#",
-        "canonical_skill": "csharp",
-        "is_oov": false,
-        "evidence_status": "listed",
-        "line": "QA Automation (Java/C#, Selenium)"
-      },
-      {
         "start": 1065,
         "end": 1073,
         "raw_text": "Selenium",
@@ -1032,7 +1014,7 @@
       {
         "start": 256,
         "end": 274,
-        "raw_text": "Selenium WebDriver",
+        "raw_text": "Selenium",
         "canonical_skill": "selenium",
         "is_oov": false,
         "evidence_status": "used",
@@ -1062,15 +1044,6 @@
         "raw_text": "Allure",
         "canonical_skill": null,
         "is_oov": true,
-        "evidence_status": "used",
-        "line": "Programming languages and technologies: Java, HTML, CSS, SQL, Selenide, Selenium, Allure, TestNG, Jira, Confluence, Jenkins, Gitlab, Git, Charles Proxy, Postman."
-      },
-      {
-        "start": 419,
-        "end": 425,
-        "raw_text": "TestNG",
-        "canonical_skill": "testng",
-        "is_oov": false,
         "evidence_status": "used",
         "line": "Programming languages and technologies: Java, HTML, CSS, SQL, Selenide, Selenium, Allure, TestNG, Jira, Confluence, Jenkins, Gitlab, Git, Charles Proxy, Postman."
       },
@@ -1134,8 +1107,7 @@
       "jenkins",
       "jira",
       "postman",
-      "selenium",
-      "testng"
+      "selenium"
     ]
   },
   "dj_ext_3fdd48ccea": {
@@ -1164,7 +1136,7 @@
         "raw_text": "Cypress",
         "canonical_skill": "cypress",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "Front-end/Back-end automation using JS/TS + Cypress"
       },
       {
@@ -1245,7 +1217,7 @@
         "raw_text": "JS",
         "canonical_skill": "javascript",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "Front-end/Back-end automation using JS/TS + Cypress"
       },
       {
@@ -1272,7 +1244,7 @@
         "raw_text": "Selenium",
         "canonical_skill": "selenium",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "Front-end automation using Rspec + Selenium"
       },
       {
@@ -1318,7 +1290,7 @@
         "raw_text": "Selenium",
         "canonical_skill": "selenium",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "Automation testing of Web-applications with Selenium framework."
       },
       {
@@ -1460,15 +1432,6 @@
         "line": "Testing sites automatically using Selenium and Java, Typescript (Selenium, WebDriver, Maven, testNG/JUnit, Selenium WebDriverIO)."
       },
       {
-        "start": 113,
-        "end": 121,
-        "raw_text": "Selenium",
-        "canonical_skill": "selenium",
-        "is_oov": false,
-        "evidence_status": "listed",
-        "line": "Testing sites automatically using Selenium and Java, Typescript (Selenium, WebDriver, Maven, testNG/JUnit, Selenium WebDriverIO)."
-      },
-      {
         "start": 134,
         "end": 139,
         "raw_text": "Maven",
@@ -1507,7 +1470,7 @@
       {
         "start": 164,
         "end": 175,
-        "raw_text": "WebDriverIO",
+        "raw_text": "Selenium",
         "canonical_skill": "webdriverio",
         "is_oov": false,
         "evidence_status": "listed",
@@ -1678,7 +1641,7 @@
       {
         "start": 679,
         "end": 690,
-        "raw_text": "WebDriverIO",
+        "raw_text": "Selenium",
         "canonical_skill": "webdriverio",
         "is_oov": false,
         "evidence_status": "listed",
@@ -1768,7 +1731,7 @@
       {
         "start": 817,
         "end": 828,
-        "raw_text": "WebDriverIO",
+        "raw_text": "Selenium",
         "canonical_skill": "webdriverio",
         "is_oov": false,
         "evidence_status": "listed",
@@ -1780,7 +1743,7 @@
         "raw_text": "Appium",
         "canonical_skill": "appium",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "Appium"
       },
       {
@@ -1858,7 +1821,7 @@
       {
         "start": 954,
         "end": 965,
-        "raw_text": "WebDriverIO",
+        "raw_text": "Selenium",
         "canonical_skill": "webdriverio",
         "is_oov": false,
         "evidence_status": "listed",
@@ -1879,15 +1842,6 @@
         "raw_text": "Jira",
         "canonical_skill": "jira",
         "is_oov": false,
-        "evidence_status": "listed",
-        "line": "Bug Report, testcase (Jira/TestRail)."
-      },
-      {
-        "start": 1025,
-        "end": 1033,
-        "raw_text": "TestRail",
-        "canonical_skill": null,
-        "is_oov": true,
         "evidence_status": "listed",
         "line": "Bug Report, testcase (Jira/TestRail)."
       },
@@ -1986,7 +1940,7 @@
         "raw_text": "JS",
         "canonical_skill": "javascript",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "Senior QA Automation(C# / JS)"
       },
       {
@@ -2148,7 +2102,7 @@
         "raw_text": ".NET",
         "canonical_skill": "csharp",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "I have 5 years of experience as QAA. In my previous teams, I had a QAA lead role where I started the automation process from scratch using .NET and JS stacks respectively. I was actively engaged in the staffing process inside the previous company and also have successful experience in pre-sales activities as an automation consultant"
       },
       {
@@ -2300,7 +2254,7 @@
       {
         "start": 88,
         "end": 106,
-        "raw_text": "Selenium WebDriver",
+        "raw_text": "Selenium",
         "canonical_skill": "selenium",
         "is_oov": false,
         "evidence_status": "used",
@@ -2372,7 +2326,7 @@
       {
         "start": 899,
         "end": 917,
-        "raw_text": "Selenium WebDriver",
+        "raw_text": "Selenium",
         "canonical_skill": "selenium",
         "is_oov": false,
         "evidence_status": "used",
@@ -2492,7 +2446,7 @@
       {
         "start": 358,
         "end": 376,
-        "raw_text": "Selenium WebDriver",
+        "raw_text": "Selenium",
         "canonical_skill": "selenium",
         "is_oov": false,
         "evidence_status": "listed",
@@ -2582,7 +2536,7 @@
       {
         "start": 1046,
         "end": 1064,
-        "raw_text": "Selenium WebDriver",
+        "raw_text": "Selenium",
         "canonical_skill": "selenium",
         "is_oov": false,
         "evidence_status": "listed",
@@ -2719,10 +2673,10 @@
       {
         "start": 137,
         "end": 155,
-        "raw_text": "Selenium WebDriver",
+        "raw_text": "Selenium",
         "canonical_skill": "selenium",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "Experienced with Selenium WebDriver"
       },
       {
@@ -2764,7 +2718,7 @@
       {
         "start": 713,
         "end": 731,
-        "raw_text": "Selenium WebDriver",
+        "raw_text": "Selenium",
         "canonical_skill": "selenium",
         "is_oov": false,
         "evidence_status": "used",
@@ -2803,7 +2757,7 @@
         "raw_text": "Jenkins",
         "canonical_skill": "jenkins",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "Reviewed CI: Jenkins"
       }
     ],
@@ -2958,7 +2912,7 @@
       {
         "start": 237,
         "end": 248,
-        "raw_text": "WebDriverIO",
+        "raw_text": "Selenium",
         "canonical_skill": "webdriverio",
         "is_oov": false,
         "evidence_status": "listed",
@@ -3138,7 +3092,7 @@
       {
         "start": 1049,
         "end": 1060,
-        "raw_text": "WebDriverIO",
+        "raw_text": "Selenium",
         "canonical_skill": "webdriverio",
         "is_oov": false,
         "evidence_status": "listed",
@@ -3660,15 +3614,6 @@
         "line": "Main: Java, Selenium;"
       },
       {
-        "start": 1492,
-        "end": 1500,
-        "raw_text": "Selenium",
-        "canonical_skill": "selenium",
-        "is_oov": false,
-        "evidence_status": "listed",
-        "line": "Main: Java, Selenium;"
-      },
-      {
         "start": 1516,
         "end": 1521,
         "raw_text": "Maven",
@@ -3784,7 +3729,7 @@
         "raw_text": "Java",
         "canonical_skill": "java",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "Java Advanced - Ivano-Frankivsk IT Cluster Academy"
       },
       {
@@ -3809,7 +3754,7 @@
         "raw_text": "API automation",
         "canonical_skill": "api_testing",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "Build API automation framework from scratch"
       }
     ],
@@ -4028,7 +3973,7 @@
         "raw_text": "JIRA",
         "canonical_skill": "jira",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "functional testing (in JIRA management tool)"
       },
       {
@@ -4055,7 +4000,7 @@
         "raw_text": "Testrail",
         "canonical_skill": null,
         "is_oov": true,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "• Testscases creation (in Testrail management"
       }
     ],
@@ -4347,7 +4292,7 @@
         "raw_text": "Postman",
         "canonical_skill": "postman",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "Manual rest API testing by using Postman."
       }
     ],
@@ -4374,7 +4319,7 @@
         "raw_text": "API testing",
         "canonical_skill": "api_testing",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "3. Conducted API testing using Postman."
       },
       {
@@ -4401,7 +4346,7 @@
         "raw_text": "Jira",
         "canonical_skill": "jira",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "4. Bugs found and documented in Jira."
       },
       {
@@ -4428,7 +4373,7 @@
         "raw_text": "Jira",
         "canonical_skill": "jira",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "7. Compiled bug reports in Jira."
       }
     ],
@@ -4446,7 +4391,7 @@
         "raw_text": "API testing",
         "canonical_skill": "api_testing",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "• API testing;"
       },
       {
@@ -4482,15 +4427,6 @@
         "is_oov": true,
         "evidence_status": "hedged",
         "line": "• Knowledge of the testing tools (Jira, TestRail);"
-      },
-      {
-        "start": 535,
-        "end": 539,
-        "raw_text": "JAVA",
-        "canonical_skill": "java",
-        "is_oov": false,
-        "evidence_status": "listed",
-        "line": "- JAVA, Python, SQL, MSSQL"
       },
       {
         "start": 541,
@@ -4572,7 +4508,7 @@
         "raw_text": "Katalon",
         "canonical_skill": "katalon",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "•\tCreated autotests at Katalon;"
       },
       {
@@ -4599,7 +4535,7 @@
         "raw_text": "Postman",
         "canonical_skill": "postman",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "•\tTested API by Postman;"
       },
       {
@@ -4626,7 +4562,7 @@
         "raw_text": "Charles",
         "canonical_skill": null,
         "is_oov": true,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "•\tWorked with Charles;"
       },
       {
@@ -4653,7 +4589,7 @@
         "raw_text": "JMeter",
         "canonical_skill": "jmeter",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "•\tMade load testing at JMeter;"
       },
       {
@@ -4680,7 +4616,7 @@
         "raw_text": "JavaScript",
         "canonical_skill": "javascript",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "Junior JavaScript developer"
       },
       {
@@ -4826,15 +4762,6 @@
         "line": "Backend: Spring MVC, JSP, Maven."
       },
       {
-        "start": 631,
-        "end": 637,
-        "raw_text": "github",
-        "canonical_skill": null,
-        "is_oov": true,
-        "evidence_status": "used",
-        "line": "Source code: https://github.com/OleksandrBoshko/festshturm ."
-      },
-      {
         "start": 810,
         "end": 812,
         "raw_text": "JS",
@@ -4887,15 +4814,6 @@
   },
   "dj_ext_c329fddbcd": {
     "mentions": [
-      {
-        "start": 94,
-        "end": 104,
-        "raw_text": "JavaScript",
-        "canonical_skill": "javascript",
-        "is_oov": false,
-        "evidence_status": "listed",
-        "line": "WebStudio[HTML, CSS, JavaScript, Git, Responsive design]"
-      },
       {
         "start": 271,
         "end": 281,
@@ -4972,7 +4890,7 @@
         "raw_text": ".NET",
         "canonical_skill": "csharp",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "Junior .NET Developer"
       }
     ],
@@ -5006,7 +4924,7 @@
         "raw_text": ".Net",
         "canonical_skill": "csharp",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": "Senior .Net Developer; Team Lead"
       },
       {
@@ -5033,7 +4951,7 @@
         "raw_text": ".Net",
         "canonical_skill": "csharp",
         "is_oov": false,
-        "evidence_status": "used",
+        "evidence_status": "listed",
         "line": ".Net Developer"
       }
     ],

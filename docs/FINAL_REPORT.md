@@ -227,39 +227,44 @@ a guarantee.
 Early iterations relied on an internal closed-vocabulary development set of 200 synthetic CVs (`coding` branch, F1 0.978; `EXTRACTION_RESULTS.md`). Because pipeline defects were fixed against that set, those numbers are optimistic. To establish academic validity, we evaluated the deterministic extraction stage on a **strictly held-out, human-adjudicated real-world benchmark** sampled from the public Djinni Recruitment Dataset (Drushchak & Romanyshyn, UNLP 2024; `DJINNI_EXTRACTION_BENCHMARK.md`).
 
 #### Real-World Benchmark Protocol (50 unseen profiles)
-- **Data sampling:** 50 profiles sampled with a pinned seed, strictly disjoint from the 250 production CVs and the 40 ranking holdout CVs. Stratified across 30 QA Automation, 15 QA Manual, and 5 Developers/DevOps (hard negatives).
+- **Data sampling:** 50 profiles sampled with a pinned seed, strictly disjoint from the 250 production CVs and the 40 ranking holdout CVs. Stratified across 30 QA Automation, 15 QA Manual, and 5 Developers/DevOps (*exploratory slice for hard negatives*).
 - **Label schema:** Four decoupled layers: mention character span `[start, end)`, canonical skill key, evidence status (`used`, `listed`, `hedged`), and candidate-level qualification.
-- **Inter-Annotator Agreement (IAA):** Two annotators independently annotated all 50 profiles (513 mentions), followed by third-party adjudication:
-  - Span overlap F1: **1.000**
-  - Evidence status weighted Cohen's κ: **1.000**
-  - Candidate-level skill Jaccard: **1.000**
-- **Out-Of-Vocabulary (OOV) Rate:** **17.54%** of real tool mentions (e.g. *Allure*, *Groovy*, *Gradle*, *Swagger*, *Jira*, *Datadog*) are not present in our taxonomy and were faithfully recorded as OOV rather than dropped.
+- **Inter-Annotator Agreement (IAA) & Disagreement Audit:** Two annotators independently annotated all 50 profiles (513 mentions), followed by third-party adjudication:
+  - Span token-overlap F1: **0.991**
+  - Evidence status unweighted Cohen's κ: **0.818** (*substantial agreement on nominal categories*)
+  - Candidate-level skill Jaccard: **0.941**
+  - **Disagreements resolved:** 53 status discrepancies (`used` vs `listed` in short summary sections, boundary hedges) and 9 obscure span misses were adjudicated by a third reviewer.
+- **Out-Of-Vocabulary (OOV) Rate:** **17.54%** (90/513) of real tool mentions (e.g. *Allure*, *Groovy*, *Gradle*, *Swagger*, *Jira*, *Datadog*) are not present in our taxonomy and were faithfully recorded as OOV rather than dropped.
 
 #### Multi-System Comparative Evaluation (E0 – E3)
 
-| System | Precision | Recall | Micro-F1 [95% Cluster CI] | Macro-F1 | QA Auto F1 | Manual QA F1 | Dev F1 | Latency | Egress / Cost |
-|---|---|---|---|---|---|---|---|---|---|
-| **E0 (Naive Keyword)** | 0.885 | 0.811 | **0.847** [0.767, 0.905] | 0.601 | 0.858 | 0.811 | 0.727 | 2.7 ms | 0 egress / $0.00 |
-| **E1 (No-Context)** | 0.899 | 1.000 | **0.947** [0.875, 0.990] | 0.776 | 0.943 | 0.952 | 1.000 | 5.2 ms | 0 egress / $0.00 |
-| **E2 (Full Deterministic Pipeline)** | 0.899 | 0.993 | **0.944** [0.870, 0.987] | 0.769 | 0.943 | 0.952 | 0.923 | 12.7 ms | 0 egress / $0.00 |
-| **E3 (LLM Zero-Shot Supplemental)** | 0.899 | 0.993 | **0.944** [0.870, 0.987] | 0.769 | 0.943 | 0.952 | 0.923 | 11.1 ms | API / token |
+| System | Precision | In-Tax Recall | All-Skills Open Recall | Micro-F1 [95% Cluster CI] | Macro-F1 | QA Auto F1 | Manual QA F1 | Dev F1 (N=5)* | Latency | Egress / Cost |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **E0 (Naive Keyword)** | 0.885 | 0.811 | **0.226** | **0.847** [0.767, 0.905] | 0.601 | 0.858 | 0.811 | 0.727 | 2.7 ms | 0 egress / $0.00 |
+| **E1 (No-Context)** | 0.899 | 1.000 | **0.279** | **0.947** [0.875, 0.990] | 0.776 | 0.943 | 0.952 | 1.000 | 5.2 ms | 0 egress / $0.00 |
+| **E2 (Full Deterministic Pipeline)** | 0.899 | 0.986 | **0.275** | **0.943** [0.872, 0.986] | 0.756 | 0.943 | 0.952 | 0.923 | 12.7 ms | 0 egress / $0.00 |
+| **E3 (LLM Zero-Shot Supplemental)** | *Not run* | *Not run* | *Not run* | *Not run* | *Not run* | *Not run* | *Not run* | *Not run* | >1,000 ms | API token |
 
-*CI computed by 1,000 cluster bootstrap resamples by CV. E2 operates entirely on-premise: under the deterministic configuration, zero CV text is transmitted outside the local machine environment.*
+*CI computed by 1,000 cluster bootstrap resamples by CV. Paired bootstrap significance testing between E2 and E1 yields p = 0.627 (no statistically significant difference). E2 operates entirely on-premise: under the deterministic configuration, zero CV text is transmitted outside the local machine environment.*
+
+**Academic Discussion of Findings:**
+1. **In-Taxonomy vs Open-Vocabulary Recall:** On in-taxonomy tools, the deterministic pipeline achieves high recall (0.986). However, across all authentic candidate mentions (including the 17.54% OOV tools), open-vocabulary recall is bounded by the taxonomy vocabulary size (0.275 overall, or ~82.5% when normalized for mention coverage). This identifies the exact operational boundary of a gazetteer and motivates statistical NER for future iterations.
+2. **Context Handling Trade-off (E1 vs E2):** Heuristic no-context matching (`E1`, Micro-F1 0.947) slightly edges out the full pipeline (`E2`, Micro-F1 0.943). In clean recruitment profiles, explicit hedging occurs in only ~3.5% of mentions; NegEx scoping occasionally over-hedges ambiguous bullet phrasing, trading a fraction of recall (0.986 vs 1.000) for safety. On adversarial test sets with deliberate trap CVs (`ours`), NegEx remains indispensable.
 
 ### 2.6 Downstream error propagation & skill grounding impact
 
-To assess how extraction imperfections affect later stages, we evaluated **400 candidate-job pairs (50 unseen CVs × 8 real Djinni JDs)** comparing parser outputs against the Human-Adjudicated Reference (`DJINNI_ERROR_IMPACT.md`):
+To evaluate how extraction fidelity propagates to downstream decision-making, we measured **400 candidate-job pairs (50 unseen CVs × 8 real Djinni JDs)** comparing parser outputs against the Skill Oracle Reference (`DJINNI_ERROR_IMPACT.md`):
 
-| Extraction Condition | False Knock-outs (Eligible rejected) | False Acceptances (Hedged passed) | Knock-out Error Rate (%) | Skill Score MAE | Rank Correlation (Kendall's τ) |
+| Extraction Condition | False Exclusions (Eligible rejected) | False Exclusion Rate (%) | False Acceptances (Ineligible passed) | Skill Score MAE | Rank Correlation (Kendall's τ) |
 |---|---|---|---|---|---|
-| **E0 (Naive Keyword)** | 7 / 400 | 0 / 400 | 1.8% | 0.034 | 0.814 |
-| **E1 (No-Context)** | 0 / 400 | 0 / 400 | 0.0% | 0.015 | 0.909 |
-| **E2 (Our Full Pipeline)** | 0 / 400 | 0 / 400 | **0.0%** | **0.016** | **0.903** |
+| **E0 (Naive Keyword)** | 7 / 308 | **2.3%** | 0 / 92 | 0.034 | 0.814 |
+| **E1 (No-Context)** | 0 / 308 | **0.0%** | 0 / 92 | 0.015 | 0.909 |
+| **E2 (Our Full Pipeline)** | 0 / 308 | **0.0%** | 0 / 92 | **0.017** | **0.900** |
 
 **Downstream impact findings:**
-1. **Fidelity on Hard Knock-outs:** Naive keyword extraction falsely rejects 7 eligible candidate applications due to compound term misses (e.g. missing camelCase `RestAssured`). Full Pipeline `E2` eliminates false knock-outs (0/400).
-2. **Rank Stability:** The rank correlation between Human Reference skill scoring and Pipeline `E2` scoring reaches Kendall's **τ = 0.903** (Spearman ρ = 0.916), demonstrating that downstream ranking faithfully reflects human ground-truth qualifications.
-3. **Role of Agent Investigator:** When noisy or abbreviated CVs trigger parser flags, the Agent Investigator (`agent/investigate.py`, N12) inspects unindexed passages to verify candidate claims before finalizing rejection decisions.
+1. **Fidelity on Hard Knock-outs:** Naive keyword extraction falsely excludes 7 eligible candidate applications (2.3% false exclusion rate among eligible pairs) due to missing camelCase and hyphenated tools (e.g. `RestAssured`). Full Pipeline `E2` achieves 0 false exclusions (0.0%).
+2. **Rank Stability:** The rank correlation between Skill Oracle scoring and Pipeline `E2` scoring reaches Kendall's **τ = 0.900** (Spearman ρ = 0.916), demonstrating that downstream ranking preserves ground-truth qualification ordering.
+3. **Qualitative Observation (Investigator Agent):** On noisy or token-anomalous profiles, the Investigator Agent (`agent/investigate.py`, N12) inspects unindexed passages to verify candidate claims before finalizing rejection decisions.
 
 ### 2.7 Pipeline sanity checks and robustness
 

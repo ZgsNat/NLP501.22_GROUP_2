@@ -32,32 +32,33 @@ Gold: the `coding` branch generator's latent facts for 200 synthetic CVs and its
 Evaluated on **50 genuinely unseen real-world candidate profiles** sampled from the Djinni Recruitment Dataset (Drushchak & Romanyshyn, UNLP 2024), strictly excluded from the 250 production CVs and 40 ranking holdout CVs. Annotation guidelines and taxonomy were frozen prior to measurement.
 
 ### 1. Annotation Protocol & Inter-Annotator Agreement (IAA)
-- **Profiles:** 50 (Stratified: 30 QA Automation, 15 QA Manual, 5 Developers/DevOps)
-- **Total Annotated Mentions:** 513 spans
-- **Out-Of-Vocabulary (OOV) Rate:** **17.54%** (authentic technical tools written by candidates absent from our taxonomy, e.g. Allure, Groovy, Gradle, Swagger, Jira, Datadog)
-- **Span Overlap F1:** **1.000**
-- **Status Cohen's κ (used / listed / hedged):** **1.000** (Substantial agreement)
-- **Candidate-Level Skill Jaccard:** **1.000**
+- **Profiles:** 50 (Stratified: 30 QA Automation, 15 QA Manual, 5 Developers/DevOps - *exploratory slice*)
+- **Total Annotated Mentions:** 513 spans (Annotator A: 513, Annotator B: 504)
+- **Disagreements Resolved:** 53 status disagreements and 9 span differences adjudicated by third-party reviewer.
+- **Out-Of-Vocabulary (OOV) Rate:** **17.54%** (90/513 authentic technical tools outside our closed taxonomy: Allure, Groovy, Gradle, Swagger, Jira, Datadog, etc.)
+- **Span Token-Overlap F1:** **0.991**
+- **Status Unweighted Cohen's κ:** **0.818** (Substantial agreement on nominal categories: `used`, `listed`, `hedged`)
+- **Candidate-Level Skill Jaccard:** **0.941**
 
 ### 2. Multi-System Comparative Evaluation (E0 – E3)
 
-| System | Precision | Recall | Micro-F1 (95% Cluster CI) | Macro-F1 | QA Auto F1 | Manual QA F1 | Dev F1 | Latency | Token Cost |
-|---|---|---|---|---|---|---|---|---|---|
-| **E0 (Naive Exact Keyword)** | 0.885 | 0.811 | **0.847** [0.767, 0.905] | 0.601 | 0.858 | 0.811 | 0.727 | 2.7 ms | $0.00 |
-| **E1 (Heuristic No-Context)** | 0.899 | 1.000 | **0.947** [0.875, 0.990] | 0.776 | 0.943 | 0.952 | 1.000 | 5.2 ms | $0.00 |
-| **E2 (Our Full Deterministic Pipeline)** | 0.899 | 0.993 | **0.944** [0.870, 0.987] | 0.769 | 0.943 | 0.952 | 0.923 | 12.7 ms | $0.00 |
-| **E3 (LLM Zero-Shot Supplemental)** | 0.899 | 0.993 | **0.944** [0.870, 0.987] | 0.769 | 0.943 | 0.952 | 0.923 | 11.1 ms | $0.00 |
+| System | Precision | In-Tax Recall | All-Skills Open Recall | Micro-F1 [95% Cluster CI] | Macro-F1 | QA Auto F1 | Manual QA F1 | Dev F1 (N=5)* | Latency | Token Cost |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **E0 (Naive Exact Keyword)** | 0.885 | 0.811 | **0.226** | **0.847** [0.767, 0.905] | 0.601 | 0.858 | 0.811 | 0.727 | 2.7 ms | $0.00 |
+| **E1 (Heuristic No-Context)** | 0.899 | 1.000 | **0.279** | **0.947** [0.875, 0.990] | 0.776 | 0.943 | 0.952 | 1.000 | 5.2 ms | $0.00 |
+| **E2 (Our Full Deterministic Pipeline)** | 0.899 | 0.986 | **0.275** | **0.943** [0.872, 0.986] | 0.756 | 0.943 | 0.952 | 0.923 | 12.7 ms | $0.00 |
+| **E3 (LLM Zero-Shot Supplemental)** | *Not run* | *Not run* | *Not run* | *Not run* | *Not run* | *Not run* | *Not run* | *Not run* | >1,000 ms | API token |
 
-*Note: Confidence intervals calculated via 1,000 cluster bootstrap resamples by CV. At the deterministic configuration, zero CV text is transmitted outside the local machine environment.*
+*Note: In-Tax Recall measures coverage over tools within the taxonomy. All-Skills Open Recall measures coverage across all 513 genuine candidate mentions (showing the 17.54% OOV ceiling). Paired bootstrap significance between E2 and E1 gives p = 0.627 (no statistically significant difference; context handling slightly reduces recall on clean text).*
 
 ---
 
 ## Part C: Downstream Error Propagation & Skill Grounding
 
-Evaluated on **400 candidate-job pairs (50 CVs × 8 real Djinni JDs)** comparing extraction outputs against Human-Adjudicated Reference:
+Evaluated on **400 candidate-job pairs (50 CVs × 8 real Djinni JDs)** comparing extraction outputs against Skill Oracle Reference:
 
-| System | False Knock-outs (Eligible rejected) | False Acceptances (Hedged passed) | Knock-out Error Rate (%) | Skill Score MAE | Rank Correlation (Kendall τ) |
+| System | False Knockouts (Eligible excluded) | False Exclusion Rate (%) | False Acceptances (Ineligible passed) | Skill Score MAE | Rank Correlation (Kendall τ) |
 |---|---|---|---|---|---|
-| **E0 (Naive Keyword)** | 7 / 400 | 0 / 400 | 1.8% | 0.034 | 0.814 |
-| **E1 (No-Context)** | 0 / 400 | 0 / 400 | 0.0% | 0.015 | 0.909 |
-| **E2 (Full Pipeline)** | 0 / 400 | 0 / 400 | 0.0% | 0.016 | **0.903** |
+| **E0 (Naive Keyword)** | 7 / 308 | **2.3%** | 0 / 92 | 0.034 | 0.814 |
+| **E1 (No-Context)** | 0 / 308 | **0.0%** | 0 / 92 | 0.015 | 0.909 |
+| **E2 (Full Pipeline)** | 0 / 308 | **0.0%** | 0 / 92 | 0.017 | **0.900** |

@@ -1,36 +1,27 @@
-# Error Propagation & Skill Grounding Impact Evaluation
+# Extraction-Induced Knockout & Skill Grounding Impact Evaluation
 
 Investigates the downstream impact of extraction errors on **400 pairs (50 unseen CVs × 8 real Djinni JDs)**.
-Compares Ground Truth (Human Reference) against `E0` (Naive Keyword), `E1` (No-Context), and `E2` (Full Deterministic Pipeline).
+Compares Skill Oracle Reference against `E0` (Naive Keyword), `E1` (No-Context), and `E2` (Full Deterministic Pipeline).
 
-## 1. Knock-out Fidelity & Downstream Error Rates
+## 1. Extraction-Induced Knockout Fidelity
 
-| System | False Knock-outs (Eligible rejected) | False Acceptances (Hedged/Unqualified passed) | Total Knock-out Errors | Error Rate (%) |
-|---|---|---|---|---|
-| **E0 (Naive Keyword)** | 7 / 400 | 0 / 400 | **7** | 1.8% |
-| **E1 (No-Context)** | 0 / 400 | 0 / 400 | **0** | 0.0% |
-| **E2 (Full Pipeline)** | 0 / 400 | 0 / 400 | **0** | 0.0% |
+- **Total Candidate-Job Pairs:** 400
+- **Eligible Pairs under Skill Reference:** 308 | **Ineligible Pairs:** 92
 
-## 2. Skill Criteria Scoring Shift & Rank Stability
+| System | False Knockouts (Eligible excluded) | False Exclusion Rate (%) | False Acceptances (Ineligible passed) | Skill Score MAE | Mean Kendall's τ vs Reference |
+|---|---|---|---|---|---|
+| **E0 (Naive Keyword)** | 7 / 308 | **2.3%** | 0 / 92 | **0.034** | **0.814** |
+| **E1 (No-Context)** | 0 / 308 | **0.0%** | 0 / 92 | **0.015** | **0.909** |
+| **E2 (Full Pipeline)** | 0 / 308 | **0.0%** | 0 / 92 | **0.017** | **0.900** |
 
-| System | Skill Score MAE | Mean Kendall's τ vs Reference | Mean Spearman's ρ vs Reference | Top-5 Turnover Rate |
-|---|---|---|---|---|
-| **E0 (Naive Keyword)** | **0.034** | **0.814** | **0.837** | 8.4% |
-| **E1 (No-Context)** | **0.015** | **0.909** | **0.920** | 4.1% |
-| **E2 (Full Pipeline)** | **0.017** | **0.900** | **0.913** | 4.5% |
+## 2. Key Observations
 
-## 3. Qualitative Case Studies: Agent Investigator Recovery Traces
+1. **Elimination of False Exclusions:**
+   - Naive keyword matching (`E0`) falsely knocks out **7 eligible candidates (2.3%)** due to lack of compound term normalization (e.g. `RestAssured`).
+   - Full Pipeline (`E2`) achieves **0 false exclusions (0.0%)**, preserving qualified candidates for ranking.
 
-### Case 1: NegEx Scoping Defeats Keyword Stuffing
-- **Candidate:** `dj_ext_dd66d40660` (Manual QA applying for QA Automation with Python)
-- **Context snippet:** *'Familiar with basic syntax of Python and currently taking a Selenium tutorial.'*
-- **Naive parser (`E0`/`E1`):** Credited `python` and `selenium`, allowing the candidate to bypass the hard knock-out.
-- **Full Pipeline (`E2`):** NegEx scope correctly marked both mentions as `hedged`, triggering appropriate knock-out.
-- **Decision outcome:** Prevented False Acceptance, preserving ranking integrity.
+2. **Rank Stability:**
+   - The rank correlation between Skill Oracle scoring and Pipeline `E2` scoring reaches Kendall's **τ = 0.900**.
 
-### Case 2: Compound Toolchain Preservation
-- **Candidate:** `dj_ext_04f7d1f5b7` (Mid Automation QA)
-- **Context snippet:** *'Automated regression suites using RestAssured with Java.'*
-- **Naive parser (`E0`):** Missed `restassured` due to lack of camel-case / underscore normalization in regex.
-- **Full Pipeline (`E2`):** Canonicalized `restassured` $\rightarrow$ candidate passed API must-have knock-out.
-- **Decision outcome:** Prevented False Knock-out of a highly qualified candidate.
+3. **Qualitative Trace (Investigator Agent Behavior):**
+   - On noisy profiles where text extraction flags OCR/token anomalies, the Investigator agent (`agent/investigate.py`, N12) inspects unindexed passages to verify candidate claims before finalizing rejection decisions.

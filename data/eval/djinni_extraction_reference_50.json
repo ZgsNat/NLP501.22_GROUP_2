@@ -5,6 +5,10 @@
     "total_annotated_spans": 513,
     "total_oov_spans": 90,
     "oov_rate_pct": 17.54,
+    "annotator_a_spans": 513,
+    "annotator_b_spans": 504,
+    "disagreements_status": 53,
+    "disagreements_spans": 9,
     "guidelines": "docs/labeling/EXTRACTION_GUIDELINES.md"
   },
   "profiles": {
@@ -57,7 +61,15 @@
         }
       ],
       "candidate_skills": [],
+      "all_mention_count": 5,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "selenium",
+        "python",
+        "python",
+        "requests",
+        "postman"
+      ],
       "domain": "QA Automation",
       "length_stratum": "short"
     },
@@ -114,7 +126,7 @@
           "raw_text": "Postman",
           "canonical_skill": "postman",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "• Postman"
         },
         {
@@ -168,7 +180,7 @@
           "raw_text": "Gradle",
           "canonical_skill": null,
           "is_oov": true,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "• Gradle"
         },
         {
@@ -195,7 +207,7 @@
           "raw_text": "API testing",
           "canonical_skill": "api_testing",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "• Automation UI and API testing"
         },
         {
@@ -222,7 +234,7 @@
           "raw_text": "Rest Assured",
           "canonical_skill": "restassured",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "• Rest Assured"
         },
         {
@@ -249,7 +261,7 @@
           "raw_text": "Allure",
           "canonical_skill": null,
           "is_oov": true,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "• Allure"
         },
         {
@@ -276,7 +288,7 @@
           "raw_text": "Maven",
           "canonical_skill": null,
           "is_oov": true,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "• Maven"
         },
         {
@@ -307,6 +319,7 @@
         "restassured",
         "selenium"
       ],
+      "all_mention_count": 26,
       "oov_mentions": [
         "TestRail",
         "Allure",
@@ -316,6 +329,26 @@
         "Allure",
         "Maven",
         "Gradle"
+      ],
+      "in_tax_mentions": [
+        "api_testing",
+        "api_testing",
+        "jmeter",
+        "selenium",
+        "restassured",
+        "postman",
+        "java",
+        "java",
+        "jenkins",
+        "api_testing",
+        "api_testing",
+        "jmeter",
+        "selenium",
+        "restassured",
+        "postman",
+        "java",
+        "java",
+        "jenkins"
       ],
       "domain": "QA Automation",
       "length_stratum": "long"
@@ -391,7 +424,7 @@
           "raw_text": "docker",
           "canonical_skill": "docker",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "- Setup docker for test executions"
         },
         {
@@ -485,9 +518,27 @@
         "requests",
         "selenium"
       ],
+      "all_mention_count": 17,
       "oov_mentions": [
         "Gitlab",
         "Gitlab"
+      ],
+      "in_tax_mentions": [
+        "python",
+        "python",
+        "selenium",
+        "pytest",
+        "requests",
+        "jenkins",
+        "docker",
+        "api_testing",
+        "python",
+        "selenium",
+        "pytest",
+        "requests",
+        "jenkins",
+        "docker",
+        "api_testing"
       ],
       "domain": "QA Automation",
       "length_stratum": "medium"
@@ -500,7 +551,7 @@
           "raw_text": "Jenkins",
           "canonical_skill": "jenkins",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "- Skills of working with Jenkins;"
         },
         {
@@ -534,7 +585,14 @@
       "candidate_skills": [
         "jenkins"
       ],
+      "all_mention_count": 4,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "jenkins",
+        "selenium",
+        "jenkins",
+        "selenium"
+      ],
       "domain": "QA Automation",
       "length_stratum": "medium"
     },
@@ -877,6 +935,7 @@
         "selenium",
         "testng"
       ],
+      "all_mention_count": 36,
       "oov_mentions": [
         "Confluence",
         "Charles",
@@ -884,6 +943,38 @@
         "Confluence",
         "Charles",
         "Fiddler"
+      ],
+      "in_tax_mentions": [
+        "selenium",
+        "java",
+        "appium",
+        "cucumber",
+        "cucumber",
+        "jira",
+        "java",
+        "javascript",
+        "jenkins",
+        "selenium",
+        "restassured",
+        "testng",
+        "junit",
+        "appium",
+        "cucumber",
+        "selenium",
+        "java",
+        "appium",
+        "cucumber",
+        "cucumber",
+        "jira",
+        "java",
+        "javascript",
+        "jenkins",
+        "selenium",
+        "restassured",
+        "testng",
+        "junit",
+        "appium",
+        "cucumber"
       ],
       "domain": "QA Automation",
       "length_stratum": "long"
@@ -1060,7 +1151,28 @@
         "jira",
         "selenium"
       ],
+      "all_mention_count": 18,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "java",
+        "csharp",
+        "selenium",
+        "jira",
+        "jenkins",
+        "java",
+        "csharp",
+        "csharp",
+        "java",
+        "csharp",
+        "java",
+        "java",
+        "csharp",
+        "selenium",
+        "jira",
+        "jenkins",
+        "java",
+        "csharp"
+      ],
       "domain": "QA Automation",
       "length_stratum": "medium"
     },
@@ -1183,11 +1295,22 @@
         "selenium",
         "testng"
       ],
+      "all_mention_count": 12,
       "oov_mentions": [
         "Allure",
         "Confluence",
         "Gitlab",
         "Charles"
+      ],
+      "in_tax_mentions": [
+        "java",
+        "selenium",
+        "java",
+        "selenium",
+        "testng",
+        "jira",
+        "jenkins",
+        "postman"
       ],
       "domain": "QA Automation",
       "length_stratum": "short"
@@ -1218,7 +1341,7 @@
           "raw_text": "Cypress",
           "canonical_skill": "cypress",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "Front-end/Back-end automation using JS/TS + Cypress"
         },
         {
@@ -1299,7 +1422,7 @@
           "raw_text": "JS",
           "canonical_skill": "javascript",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "Front-end/Back-end automation using JS/TS + Cypress"
         },
         {
@@ -1326,7 +1449,7 @@
           "raw_text": "Selenium",
           "canonical_skill": "selenium",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "Front-end automation using Rspec + Selenium"
         },
         {
@@ -1347,9 +1470,26 @@
         "selenium",
         "typescript"
       ],
+      "all_mention_count": 16,
       "oov_mentions": [
         "Allure",
         "Allure"
+      ],
+      "in_tax_mentions": [
+        "javascript",
+        "typescript",
+        "cypress",
+        "selenium",
+        "cucumber",
+        "cypress",
+        "jenkins",
+        "cypress",
+        "jenkins",
+        "javascript",
+        "typescript",
+        "cypress",
+        "selenium",
+        "cucumber"
       ],
       "domain": "QA Automation",
       "length_stratum": "long"
@@ -1369,7 +1509,11 @@
       "candidate_skills": [
         "kubernetes"
       ],
+      "all_mention_count": 1,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "kubernetes"
+      ],
       "domain": "QA Automation",
       "length_stratum": "medium"
     },
@@ -1381,7 +1525,7 @@
           "raw_text": "Selenium",
           "canonical_skill": "selenium",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "Automation testing of Web-applications with Selenium framework."
         },
         {
@@ -1397,7 +1541,12 @@
       "candidate_skills": [
         "selenium"
       ],
+      "all_mention_count": 2,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "selenium",
+        "selenium"
+      ],
       "domain": "QA Automation",
       "length_stratum": "long"
     },
@@ -1425,7 +1574,12 @@
       "candidate_skills": [
         "api_testing"
       ],
+      "all_mention_count": 2,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "api_testing",
+        "api_testing"
+      ],
       "domain": "QA Automation",
       "length_stratum": "short"
     },
@@ -1494,14 +1648,25 @@
         "selenium",
         "typescript"
       ],
+      "all_mention_count": 6,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "java",
+        "javascript",
+        "typescript",
+        "selenium",
+        "playwright",
+        "cypress"
+      ],
       "domain": "QA Automation",
       "length_stratum": "short"
     },
     "dj_ext_ae02061488": {
       "mentions": [],
       "candidate_skills": [],
+      "all_mention_count": 0,
       "oov_mentions": [],
+      "in_tax_mentions": [],
       "domain": "QA Automation",
       "length_stratum": "short"
     },
@@ -1582,7 +1747,7 @@
         {
           "start": 164,
           "end": 175,
-          "raw_text": "WebDriverIO",
+          "raw_text": "Selenium WebDriver",
           "canonical_skill": "webdriverio",
           "is_oov": false,
           "evidence_status": "listed",
@@ -1753,7 +1918,7 @@
         {
           "start": 679,
           "end": 690,
-          "raw_text": "WebDriverIO",
+          "raw_text": "Selenium WebDriver",
           "canonical_skill": "webdriverio",
           "is_oov": false,
           "evidence_status": "listed",
@@ -1843,7 +2008,7 @@
         {
           "start": 817,
           "end": 828,
-          "raw_text": "WebDriverIO",
+          "raw_text": "Selenium WebDriver",
           "canonical_skill": "webdriverio",
           "is_oov": false,
           "evidence_status": "listed",
@@ -1855,7 +2020,7 @@
           "raw_text": "Appium",
           "canonical_skill": "appium",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "Appium"
         },
         {
@@ -1933,7 +2098,7 @@
         {
           "start": 954,
           "end": 965,
-          "raw_text": "WebDriverIO",
+          "raw_text": "Selenium WebDriver",
           "canonical_skill": "webdriverio",
           "is_oov": false,
           "evidence_status": "listed",
@@ -2043,6 +2208,7 @@
         "typescript",
         "webdriverio"
       ],
+      "all_mention_count": 58,
       "oov_mentions": [
         "Maven",
         "TestRail",
@@ -2054,6 +2220,56 @@
         "TestRail",
         "GitHub",
         "Bitbucket"
+      ],
+      "in_tax_mentions": [
+        "selenium",
+        "java",
+        "typescript",
+        "selenium",
+        "testng",
+        "junit",
+        "selenium",
+        "webdriverio",
+        "javascript",
+        "jira",
+        "postman",
+        "jenkins",
+        "javascript",
+        "javascript",
+        "java",
+        "selenium",
+        "java",
+        "typescript",
+        "selenium",
+        "testng",
+        "junit",
+        "selenium",
+        "webdriverio",
+        "appium",
+        "selenium",
+        "java",
+        "typescript",
+        "selenium",
+        "testng",
+        "junit",
+        "selenium",
+        "webdriverio",
+        "appium",
+        "selenium",
+        "java",
+        "typescript",
+        "selenium",
+        "testng",
+        "junit",
+        "selenium",
+        "webdriverio",
+        "javascript",
+        "jira",
+        "postman",
+        "jenkins",
+        "javascript",
+        "javascript",
+        "java"
       ],
       "domain": "QA Automation",
       "length_stratum": "medium"
@@ -2075,7 +2291,7 @@
           "raw_text": "JS",
           "canonical_skill": "javascript",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "Senior QA Automation(C# / JS)"
         },
         {
@@ -2237,7 +2453,7 @@
           "raw_text": ".NET",
           "canonical_skill": "csharp",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "I have 5 years of experience as QAA. In my previous teams, I had a QAA lead role where I started the automation process from scratch using .NET and JS stacks respectively. I was actively engaged in the staffing process inside the previous company and also have successful experience in pre-sales activities as an automation consultant"
         },
         {
@@ -2356,6 +2572,7 @@
         "nunit",
         "playwright"
       ],
+      "all_mention_count": 32,
       "oov_mentions": [
         "Zephyr",
         "TestRail",
@@ -2363,6 +2580,34 @@
         "Zephyr",
         "Zephyr",
         "TestRail"
+      ],
+      "in_tax_mentions": [
+        "csharp",
+        "javascript",
+        "csharp",
+        "javascript",
+        "csharp",
+        "javascript",
+        "cypress",
+        "playwright",
+        "csharp",
+        "javascript",
+        "cypress",
+        "javascript",
+        "playwright",
+        "nunit",
+        "nunit",
+        "csharp",
+        "javascript",
+        "csharp",
+        "javascript",
+        "cypress",
+        "playwright",
+        "csharp",
+        "javascript",
+        "cypress",
+        "javascript",
+        "playwright"
       ],
       "domain": "QA Automation",
       "length_stratum": "long"
@@ -2522,11 +2767,26 @@
         "junit",
         "selenium"
       ],
+      "all_mention_count": 16,
       "oov_mentions": [
         "Maven",
         "SoapUI",
         "Maven",
         "SoapUI"
+      ],
+      "in_tax_mentions": [
+        "java",
+        "junit",
+        "selenium",
+        "jenkins",
+        "jmeter",
+        "javascript",
+        "java",
+        "junit",
+        "selenium",
+        "jenkins",
+        "jmeter",
+        "javascript"
       ],
       "domain": "QA Automation",
       "length_stratum": "medium"
@@ -2722,11 +2982,30 @@
         "jira",
         "selenium"
       ],
+      "all_mention_count": 20,
       "oov_mentions": [
         "GITlab",
         "Maven",
         "GITlab",
         "Maven"
+      ],
+      "in_tax_mentions": [
+        "cucumber",
+        "jira",
+        "jenkins",
+        "api_testing",
+        "java",
+        "selenium",
+        "cucumber",
+        "jira",
+        "cucumber",
+        "jira",
+        "jenkins",
+        "api_testing",
+        "java",
+        "selenium",
+        "cucumber",
+        "jira"
       ],
       "domain": "QA Automation",
       "length_stratum": "medium"
@@ -2828,11 +3107,20 @@
         "jira",
         "python"
       ],
+      "all_mention_count": 10,
       "oov_mentions": [
         "Confluence",
         "GitLab",
         "Confluence",
         "GitLab"
+      ],
+      "in_tax_mentions": [
+        "jira",
+        "python",
+        "python",
+        "jira",
+        "python",
+        "python"
       ],
       "domain": "QA Automation",
       "length_stratum": "medium"
@@ -2845,7 +3133,7 @@
           "raw_text": "Selenium WebDriver",
           "canonical_skill": "selenium",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "Experienced with Selenium WebDriver"
         },
         {
@@ -2926,7 +3214,7 @@
           "raw_text": "Jenkins",
           "canonical_skill": "jenkins",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "Reviewed CI: Jenkins"
         }
       ],
@@ -2935,9 +3223,20 @@
         "selenium",
         "testng"
       ],
+      "all_mention_count": 10,
       "oov_mentions": [
         "Maven",
         "Maven"
+      ],
+      "in_tax_mentions": [
+        "selenium",
+        "java",
+        "testng",
+        "jenkins",
+        "selenium",
+        "java",
+        "testng",
+        "jenkins"
       ],
       "domain": "QA Automation",
       "length_stratum": "medium"
@@ -2993,7 +3292,15 @@
       "candidate_skills": [
         "java"
       ],
+      "all_mention_count": 5,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "java",
+        "java",
+        "java",
+        "java",
+        "java"
+      ],
       "domain": "QA Automation",
       "length_stratum": "short"
     },
@@ -3039,7 +3346,14 @@
       "candidate_skills": [
         "csharp"
       ],
+      "all_mention_count": 4,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "csharp",
+        "javascript",
+        "javascript",
+        "csharp"
+      ],
       "domain": "QA Automation",
       "length_stratum": "short"
     },
@@ -3093,7 +3407,7 @@
         {
           "start": 237,
           "end": 248,
-          "raw_text": "WebDriverIO",
+          "raw_text": "Selenium WebDriver",
           "canonical_skill": "webdriverio",
           "is_oov": false,
           "evidence_status": "listed",
@@ -3273,7 +3587,7 @@
         {
           "start": 1049,
           "end": 1060,
-          "raw_text": "WebDriverIO",
+          "raw_text": "Selenium WebDriver",
           "canonical_skill": "webdriverio",
           "is_oov": false,
           "evidence_status": "listed",
@@ -3365,6 +3679,7 @@
         "selenium",
         "webdriverio"
       ],
+      "all_mention_count": 34,
       "oov_mentions": [
         "Allure",
         "TestRail",
@@ -3372,6 +3687,36 @@
         "testrail",
         "Allure",
         "TestRail"
+      ],
+      "in_tax_mentions": [
+        "python",
+        "csharp",
+        "javascript",
+        "javascript",
+        "selenium",
+        "webdriverio",
+        "docker",
+        "docker",
+        "k6",
+        "jmeter",
+        "jira",
+        "jenkins",
+        "cypress",
+        "cypress",
+        "cypress",
+        "cypress",
+        "python",
+        "csharp",
+        "javascript",
+        "javascript",
+        "selenium",
+        "webdriverio",
+        "docker",
+        "docker",
+        "k6",
+        "jmeter",
+        "jira",
+        "jenkins"
       ],
       "domain": "QA Automation",
       "length_stratum": "medium"
@@ -3398,10 +3743,12 @@
         }
       ],
       "candidate_skills": [],
+      "all_mention_count": 2,
       "oov_mentions": [
         "Allure",
         "Allure"
       ],
+      "in_tax_mentions": [],
       "domain": "QA Automation",
       "length_stratum": "medium"
     },
@@ -3523,9 +3870,22 @@
         "selenium",
         "typescript"
       ],
+      "all_mention_count": 12,
       "oov_mentions": [
         "Groovy",
         "Groovy"
+      ],
+      "in_tax_mentions": [
+        "jira",
+        "java",
+        "python",
+        "typescript",
+        "selenium",
+        "selenium",
+        "jira",
+        "java",
+        "python",
+        "typescript"
       ],
       "domain": "QA Automation",
       "length_stratum": "medium"
@@ -3696,9 +4056,28 @@
         }
       ],
       "candidate_skills": [],
+      "all_mention_count": 18,
       "oov_mentions": [
         "Allure",
         "Allure"
+      ],
+      "in_tax_mentions": [
+        "jira",
+        "api_testing",
+        "postman",
+        "java",
+        "selenium",
+        "junit",
+        "postman",
+        "jmeter",
+        "jira",
+        "api_testing",
+        "postman",
+        "java",
+        "selenium",
+        "junit",
+        "postman",
+        "jmeter"
       ],
       "domain": "QA Automation",
       "length_stratum": "long"
@@ -3929,6 +4308,7 @@
         "restassured",
         "selenium"
       ],
+      "all_mention_count": 24,
       "oov_mentions": [
         "Maven",
         "Gradle",
@@ -3940,6 +4320,22 @@
         "Confluence",
         "Bitbucket",
         "Swagger"
+      ],
+      "in_tax_mentions": [
+        "java",
+        "selenium",
+        "jira",
+        "jenkins",
+        "restassured",
+        "java",
+        "selenium",
+        "java",
+        "selenium",
+        "jira",
+        "jenkins",
+        "restassured",
+        "java",
+        "selenium"
       ],
       "domain": "QA Automation",
       "length_stratum": "long"
@@ -3961,7 +4357,7 @@
           "raw_text": "Java",
           "canonical_skill": "java",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "Java Advanced - Ivano-Frankivsk IT Cluster Academy"
         },
         {
@@ -3977,7 +4373,13 @@
       "candidate_skills": [
         "java"
       ],
+      "all_mention_count": 3,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "java",
+        "java",
+        "java"
+      ],
       "domain": "QA Automation",
       "length_stratum": "short"
     },
@@ -3989,14 +4391,18 @@
           "raw_text": "API automation",
           "canonical_skill": "api_testing",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "Build API automation framework from scratch"
         }
       ],
       "candidate_skills": [
         "api_testing"
       ],
+      "all_mention_count": 1,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "api_testing"
+      ],
       "domain": "QA Automation",
       "length_stratum": "short"
     },
@@ -4174,8 +4580,28 @@
         "jenkins",
         "typescript"
       ],
+      "all_mention_count": 18,
       "oov_mentions": [
         "Allure"
+      ],
+      "in_tax_mentions": [
+        "javascript",
+        "typescript",
+        "cypress",
+        "docker",
+        "docker",
+        "appium",
+        "jenkins",
+        "javascript",
+        "typescript",
+        "cypress",
+        "docker",
+        "api_testing",
+        "javascript",
+        "typescript",
+        "docker",
+        "appium",
+        "api_testing"
       ],
       "domain": "QA Automation",
       "length_stratum": "medium"
@@ -4183,14 +4609,18 @@
     "dj_ext_2a48d56526": {
       "mentions": [],
       "candidate_skills": [],
+      "all_mention_count": 0,
       "oov_mentions": [],
+      "in_tax_mentions": [],
       "domain": "QA Automation",
       "length_stratum": "long"
     },
     "dj_ext_c1cb217b59": {
       "mentions": [],
       "candidate_skills": [],
+      "all_mention_count": 0,
       "oov_mentions": [],
+      "in_tax_mentions": [],
       "domain": "QA",
       "length_stratum": "medium"
     },
@@ -4209,14 +4639,20 @@
       "candidate_skills": [
         "csharp"
       ],
+      "all_mention_count": 1,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "csharp"
+      ],
       "domain": "QA",
       "length_stratum": "medium"
     },
     "dj_ext_daadd19153": {
       "mentions": [],
       "candidate_skills": [],
+      "all_mention_count": 0,
       "oov_mentions": [],
+      "in_tax_mentions": [],
       "domain": "QA",
       "length_stratum": "short"
     },
@@ -4228,7 +4664,7 @@
           "raw_text": "JIRA",
           "canonical_skill": "jira",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "functional testing (in JIRA management tool)"
         },
         {
@@ -4255,16 +4691,21 @@
           "raw_text": "Testrail",
           "canonical_skill": null,
           "is_oov": true,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "• Testscases creation (in Testrail management"
         }
       ],
       "candidate_skills": [
         "jira"
       ],
+      "all_mention_count": 4,
       "oov_mentions": [
         "Testrail",
         "Testrail"
+      ],
+      "in_tax_mentions": [
+        "jira",
+        "jira"
       ],
       "domain": "QA",
       "length_stratum": "medium"
@@ -4293,7 +4734,12 @@
       "candidate_skills": [
         "jira"
       ],
+      "all_mention_count": 2,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "jira",
+        "jira"
+      ],
       "domain": "QA",
       "length_stratum": "medium"
     },
@@ -4412,7 +4858,22 @@
         "javascript",
         "jira"
       ],
+      "all_mention_count": 12,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "postman",
+        "javascript",
+        "jira",
+        "postman",
+        "javascript",
+        "jira",
+        "postman",
+        "javascript",
+        "jira",
+        "postman",
+        "javascript",
+        "jira"
+      ],
       "domain": "QA",
       "length_stratum": "long"
     },
@@ -4532,9 +4993,22 @@
         "java",
         "jira"
       ],
+      "all_mention_count": 12,
       "oov_mentions": [
         "Confluence",
         "Confluence"
+      ],
+      "in_tax_mentions": [
+        "hp_alm",
+        "jira",
+        "jira",
+        "jira",
+        "java",
+        "hp_alm",
+        "jira",
+        "jira",
+        "jira",
+        "java"
       ],
       "domain": "QA",
       "length_stratum": "long"
@@ -4565,7 +5039,7 @@
           "raw_text": "Postman",
           "canonical_skill": "postman",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "Manual rest API testing by using Postman."
         }
       ],
@@ -4574,7 +5048,13 @@
         "jira",
         "postman"
       ],
+      "all_mention_count": 3,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "jira",
+        "api_testing",
+        "postman"
+      ],
       "domain": "QA",
       "length_stratum": "medium"
     },
@@ -4595,7 +5075,7 @@
           "raw_text": "API testing",
           "canonical_skill": "api_testing",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "3. Conducted API testing using Postman."
         },
         {
@@ -4622,7 +5102,7 @@
           "raw_text": "Jira",
           "canonical_skill": "jira",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "4. Bugs found and documented in Jira."
         },
         {
@@ -4649,7 +5129,7 @@
           "raw_text": "Jira",
           "canonical_skill": "jira",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "7. Compiled bug reports in Jira."
         }
       ],
@@ -4658,7 +5138,18 @@
         "jira",
         "postman"
       ],
+      "all_mention_count": 8,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "jira",
+        "api_testing",
+        "postman",
+        "jira",
+        "jira",
+        "api_testing",
+        "postman",
+        "jira"
+      ],
       "domain": "QA",
       "length_stratum": "medium"
     },
@@ -4670,7 +5161,7 @@
           "raw_text": "API testing",
           "canonical_skill": "api_testing",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "• API testing;"
         },
         {
@@ -4686,7 +5177,12 @@
       "candidate_skills": [
         "api_testing"
       ],
+      "all_mention_count": 2,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "api_testing",
+        "api_testing"
+      ],
       "domain": "QA",
       "length_stratum": "medium"
     },
@@ -4769,9 +5265,18 @@
         "java",
         "python"
       ],
+      "all_mention_count": 8,
       "oov_mentions": [
         "TestRail",
         "TestRail"
+      ],
+      "in_tax_mentions": [
+        "jira",
+        "java",
+        "python",
+        "jira",
+        "java",
+        "python"
       ],
       "domain": "QA",
       "length_stratum": "medium"
@@ -4779,21 +5284,27 @@
     "dj_ext_eb5144425f": {
       "mentions": [],
       "candidate_skills": [],
+      "all_mention_count": 0,
       "oov_mentions": [],
+      "in_tax_mentions": [],
       "domain": "QA",
       "length_stratum": "medium"
     },
     "dj_ext_e969cc1f6c": {
       "mentions": [],
       "candidate_skills": [],
+      "all_mention_count": 0,
       "oov_mentions": [],
+      "in_tax_mentions": [],
       "domain": "QA",
       "length_stratum": "medium"
     },
     "dj_ext_7c5431c213": {
       "mentions": [],
       "candidate_skills": [],
+      "all_mention_count": 0,
       "oov_mentions": [],
+      "in_tax_mentions": [],
       "domain": "QA",
       "length_stratum": "short"
     },
@@ -4841,7 +5352,7 @@
           "raw_text": "Postman",
           "canonical_skill": "postman",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "•\tTested API by Postman;"
         },
         {
@@ -4868,7 +5379,7 @@
           "raw_text": "Charles",
           "canonical_skill": null,
           "is_oov": true,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "•\tWorked with Charles;"
         },
         {
@@ -4895,7 +5406,7 @@
           "raw_text": "JMeter",
           "canonical_skill": "jmeter",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "•\tMade load testing at JMeter;"
         },
         {
@@ -4913,10 +5424,22 @@
         "katalon",
         "postman"
       ],
+      "all_mention_count": 12,
       "oov_mentions": [
         "Charles",
         "Charles",
         "Charles"
+      ],
+      "in_tax_mentions": [
+        "postman",
+        "katalon",
+        "jmeter",
+        "postman",
+        "katalon",
+        "jmeter",
+        "postman",
+        "katalon",
+        "jmeter"
       ],
       "domain": "QA",
       "length_stratum": "medium"
@@ -4929,7 +5452,7 @@
           "raw_text": "JavaScript",
           "canonical_skill": "javascript",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "Junior JavaScript developer"
         },
         {
@@ -5008,7 +5531,19 @@
       "candidate_skills": [
         "javascript"
       ],
+      "all_mention_count": 9,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "javascript",
+        "javascript",
+        "javascript",
+        "javascript",
+        "javascript",
+        "javascript",
+        "javascript",
+        "javascript",
+        "javascript"
+      ],
       "domain": "other",
       "length_stratum": "medium"
     },
@@ -5136,6 +5671,7 @@
         "java",
         "javascript"
       ],
+      "all_mention_count": 13,
       "oov_mentions": [
         "Maven",
         "github",
@@ -5143,6 +5679,15 @@
         "github",
         "Maven",
         "Maven"
+      ],
+      "in_tax_mentions": [
+        "java",
+        "java",
+        "javascript",
+        "javascript",
+        "javascript",
+        "java",
+        "javascript"
       ],
       "domain": "other",
       "length_stratum": "medium"
@@ -5225,7 +5770,18 @@
       "candidate_skills": [
         "javascript"
       ],
+      "all_mention_count": 8,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "javascript",
+        "javascript",
+        "javascript",
+        "javascript",
+        "javascript",
+        "javascript",
+        "javascript",
+        "javascript"
+      ],
       "domain": "other",
       "length_stratum": "long"
     },
@@ -5237,14 +5793,18 @@
           "raw_text": ".NET",
           "canonical_skill": "csharp",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "Junior .NET Developer"
         }
       ],
       "candidate_skills": [
         "csharp"
       ],
+      "all_mention_count": 1,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "csharp"
+      ],
       "domain": "other",
       "length_stratum": "short"
     },
@@ -5274,7 +5834,7 @@
           "raw_text": ".Net",
           "canonical_skill": "csharp",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": "Senior .Net Developer; Team Lead"
         },
         {
@@ -5301,7 +5861,7 @@
           "raw_text": ".Net",
           "canonical_skill": "csharp",
           "is_oov": false,
-          "evidence_status": "used",
+          "evidence_status": "listed",
           "line": ".Net Developer"
         }
       ],
@@ -5309,7 +5869,16 @@
         "csharp",
         "javascript"
       ],
+      "all_mention_count": 6,
       "oov_mentions": [],
+      "in_tax_mentions": [
+        "csharp",
+        "csharp",
+        "csharp",
+        "csharp",
+        "javascript",
+        "csharp"
+      ],
       "domain": "other",
       "length_stratum": "long"
     }

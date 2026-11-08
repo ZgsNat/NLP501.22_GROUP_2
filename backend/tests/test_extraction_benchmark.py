@@ -5,9 +5,9 @@ from app.eval.djinni_error_impact import evaluate_error_propagation
 def test_iaa_returns_valid_metrics():
     res = compute_iaa()
     assert "span_overlap_f1" in res
-    assert "status_kappa" in res
+    assert "status_unweighted_kappa" in res
     assert 0.0 <= res["span_overlap_f1"] <= 1.0
-    assert -1.0 <= res["status_kappa"] <= 1.0
+    assert -1.0 <= res["status_unweighted_kappa"] <= 1.0
 
 
 def test_systems_e0_e1_e2_extract_skills():

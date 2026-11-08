@@ -202,10 +202,10 @@ trên dev, TREC-style pooling, holdout chỉ mở khi có gold labels.
 
 ### Slide 14 · Chất lượng NLP pipeline & Benchmark trích xuất · Hoa · 0:45
 
-- **Benchmark trích xuất thực tế (50 profile Djinni unseen, có nhãn Human-Adjudicated Reference):** Micro-F1 đạt **0.944 [0.870, 0.987]**, vượt trội baseline từ khóa E0 (0.847); độ đồng thuận gán nhãn κ = 1.00; ghi nhận trung thực 17.54% công cụ OOV ngoài từ điển (Allure, Gradle, Swagger, Jira...).
-- **Kiểm định lan truyền lỗi (Error propagation, 400 cặp CV–JD):** Pipeline E2 đạt 0% lỗi knock-out oan (so với 7 ca bị loại oan của E0); tương quan thứ hạng kỹ năng với nhãn người đạt Kendall τ = **0.903** (Spearman ρ = 0.916).
-- **Độ bền vững:** Không truyền văn bản CV ra ngoài môi trường máy chủ nội bộ ở cấu hình deterministic; 0 trường hợp rò rỉ PII; thời gian xử lý 12.7 ms/CV với chi phí 0 token.
-- **Tập kiểm tra mở rộng (200 CV dev & 2.484 CV Kaggle):** Số năm kinh nghiệm sai số 0.79 năm; đọc được 100% tệp PDF; CV bị nhiễu ký tự được chuyển cho Agent Investigator xử lý.
+- **Benchmark trích xuất thực tế (50 profile Djinni unseen, có nhãn Human-Adjudicated Reference):** Micro-F1 đạt **0.943 [0.872, 0.986]**, vượt trội baseline từ khóa E0 (0.847); độ đồng thuận gán nhãn unweighted κ = **0.818**, overlap F1 = **0.991** (giải quyết 53 ca bất đồng status); ghi nhận trung thực 17.54% công cụ OOV ngoài từ điển (Allure, Gradle, Swagger, Jira...).
+- **Đánh giá Trade-off NegEx (E1 vs E2):** Trên hồ sơ CV thực tế, No-Context E1 (0.947) nhỉnh hơn nhẹ Full Pipeline E2 (0.943) với p = 0.627 (không có ý nghĩa thống kê) do hồ sơ thực tế rất ít dùng từ lấp liếm (~3.5%); NegEx phát huy vai trò quyết định trong việc chặn trap CV trên tập kiểm thử bẫy (`ours`).
+- **Kiểm định lan truyền sai số (Extraction-induced Knockouts):** Pipeline E2 đạt **0/308 (0.0%)** trường hợp loại nhầm ứng viên đủ điều kiện (so với 7/308 tương đương 2.3% của E0); tương quan thứ hạng kỹ năng với nhãn người đạt Kendall τ = **0.900** (Spearman ρ = 0.916).
+- **Độ bền vững & Bảo mật:** Không truyền văn bản CV ra ngoài môi trường máy chủ nội bộ ở cấu hình deterministic; 0 trường hợp rò rỉ PII; thời gian xử lý 12.7 ms/CV với chi phí 0 token.
 
 ### Slide 15 · Benchmark chính thức v1 · Hoa · 1:15
 
@@ -343,6 +343,6 @@ kiểm tra tự động; và benchmark NLP501-bench ở các phiên bản v1, v1
 | Agent không hơn fixed pipeline về nDCG, vậy agent để làm gì? | Hoa | Đúng theo thiết kế, vì luật chấm cả hai. Giá trị nằm ở JD mơ hồ (+0.129), CV lỗi ký tự, kiểm soát hallucination và mục tiêu HR phức tạp. |
 | Nhãn do LLM gán thì đánh giá có vòng lặp không? | Hoa | Có rủi ro, nên: 120 cặp chấm mù bởi người cho v1.1 (thứ tự giữ nguyên, τ 1.00); Djinni dùng Dual-annotator Aggregate Human Gold (chấm mù độc lập 100%, kiểm định độ nhạy min/max); con số nào chỉ có nhãn cùng họ mô hình chấm thì không công bố và tính năng để tắt. |
 | Dữ liệu tổng hợp có đại diện không? | Vũ | Không cho giá trị tuyệt đối (0.85 so với 0.64). Kết luận dựa trên thứ tự giữa các hệ thống, đã được xác nhận trên 8 JD thật với nhãn người. |
-| Bước trích xuất có benchmark uy tín không, sai số có ảnh hưởng xếp hạng không? | Thịnh | Có benchmark độc lập: 50 profile Djinni unseen có nhãn Human-Adjudicated Reference (κ = 1.00), Micro-F1 đạt 0.944 [0.870, 0.987] (vượt E0 keyword 0.847, OOV 17.5%). Kiểm định trên 400 cặp CV–JD cho 0% lỗi knock-out oan và Kendall τ = 0.903; Agent Investigator hỗ trợ mở rộng context cho các ca nghi ngờ. |
-| Vì sao gazetteer mà không phải NER học máy? | Thịnh | Tên công cụ là tập từ khóa có ranh giới rõ; gazetteer kết hợp NegEx và boundary đạt Micro-F1 0.944 trên 50 CV thật và 0.978 trên dev set, chi phí 0 token và không rò rỉ dữ liệu. NER học máy là hướng mở rộng cho CV miêu tả hành động gián tiếp. |
+| Bước trích xuất có benchmark uy tín không, sai số có ảnh hưởng xếp hạng không? | Thịnh | Có benchmark độc lập: 50 profile Djinni unseen có nhãn Human-Adjudicated Reference (unweighted κ = 0.818, overlap F1 = 0.991), Micro-F1 đạt 0.943 [0.872, 0.986] (vượt E0 keyword 0.847, OOV 17.5%). Kiểm định trên 308 cặp đủ điều kiện cho 0% loại nhầm và Kendall τ = 0.900; Agent Investigator hỗ trợ mở rộng context cho các ca nghi ngờ. |
+| Vì sao gazetteer mà không phải NER học máy? | Thịnh | Tên công cụ là tập từ khóa có ranh giới rõ; gazetteer kết hợp NegEx và boundary đạt Micro-F1 0.943 trên 50 CV thật và 0.978 trên dev set, chi phí 0 token và không rò rỉ dữ liệu. NER học máy là hướng mở rộng để khắc phục 17.5% OOV cho các công cụ chưa có trong từ điển. |
 | Có học từ phản hồi của HR không? | Đán | Có hiệu chỉnh trọng số trong phiên bằng pairwise logistic regression; học qua nhiều phiên đã đo (E24) và không cải thiện (−0.008), nên quyết định loại của HR được giữ như quyết định cứng. |
