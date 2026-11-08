@@ -1,0 +1,514 @@
+{
+  "dataset": "Djinni Recruitment Dataset (UNLP 2024)",
+  "seed": 20261108,
+  "n_pilot": 12,
+  "n_test": 50,
+  "quota_test": {
+    "QA Automation": 30,
+    "QA": 15,
+    "other": 5
+  },
+  "quota_pilot": {
+    "QA Automation": 6,
+    "QA": 4,
+    "other": 2
+  },
+  "profiles": [
+    {
+      "candidate_id": "dj_ext_835a22d54c",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 910,
+      "sha256": "3579b8b1cd0eb869ff27c0aed851264f9138ee4ddd1157c031824e88819b6cde",
+      "is_pilot": true
+    },
+    {
+      "candidate_id": "dj_ext_dd66d40660",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 1366,
+      "sha256": "8c9187048ca0ac9d79dfa7c58911c327b03349e0e3fa3a5a7a7f339cacc72376",
+      "is_pilot": true
+    },
+    {
+      "candidate_id": "dj_ext_cf3b5a4b89",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 1063,
+      "sha256": "994353825a3ddcc4679caffb167951c41f7afb11fe502656aa4d891c54f644aa",
+      "is_pilot": true
+    },
+    {
+      "candidate_id": "dj_ext_e1cbb171c2",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 1128,
+      "sha256": "cc1feb4c35fad103f4896624324fa34a7ffb549ab52764b3441ca3d95c2163a7",
+      "is_pilot": true
+    },
+    {
+      "candidate_id": "dj_ext_69b3eccf9b",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 806,
+      "sha256": "a519b751c87b4aec1e14697203b9a997ed5157778e780f29531d8aaf8d5e4e21",
+      "is_pilot": true
+    },
+    {
+      "candidate_id": "dj_ext_f7a36c9035",
+      "domain": "QA Automation",
+      "length_stratum": "long",
+      "text_length": 3569,
+      "sha256": "6fdae48b6875b0f1a949f3955df2fd2e1d25e2cc1056aba8088134b9614030f5",
+      "is_pilot": true
+    },
+    {
+      "candidate_id": "dj_ext_14f5744803",
+      "domain": "QA",
+      "length_stratum": "medium",
+      "text_length": 807,
+      "sha256": "3bb5e13ce2e2132c38e17d785467df4d5e0a460f4b84e985b42fd2919b1569f6",
+      "is_pilot": true
+    },
+    {
+      "candidate_id": "dj_ext_be78162347",
+      "domain": "QA",
+      "length_stratum": "medium",
+      "text_length": 1815,
+      "sha256": "59d937f6170d265e54e8734c26c12a10cd9029fc60a7c40eaf07a19f96f36fb5",
+      "is_pilot": true
+    },
+    {
+      "candidate_id": "dj_ext_06a8a27088",
+      "domain": "QA",
+      "length_stratum": "medium",
+      "text_length": 859,
+      "sha256": "75662ae82846c07caae8f50807d011b7cf1167dfb56fca5d8aa9a58993bf5800",
+      "is_pilot": true
+    },
+    {
+      "candidate_id": "dj_ext_6e09583e66",
+      "domain": "QA",
+      "length_stratum": "short",
+      "text_length": 398,
+      "sha256": "712811f556610645c11a72c9b38a7e1dd879e44261e1f14dc1e6514ec23aca98",
+      "is_pilot": true
+    },
+    {
+      "candidate_id": "dj_ext_736e79ca6f",
+      "domain": "other",
+      "length_stratum": "medium",
+      "text_length": 1004,
+      "sha256": "6a437b0d0c05d68de71985d64e21a3016439622c9b42e0c2c6a2e654fdc7c8ac",
+      "is_pilot": true
+    },
+    {
+      "candidate_id": "dj_ext_7ebdfe7863",
+      "domain": "other",
+      "length_stratum": "short",
+      "text_length": 756,
+      "sha256": "9403870df863740fbb3030982c54389a84f002dbd9f356f3fc13d72221219da9",
+      "is_pilot": true
+    },
+    {
+      "candidate_id": "dj_ext_860542955b",
+      "domain": "QA Automation",
+      "length_stratum": "short",
+      "text_length": 383,
+      "sha256": "06314ff7531a25db22411521eabee428497ff21ca76ec501b817430b7158aabc",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_b9b18d9e7c",
+      "domain": "QA Automation",
+      "length_stratum": "long",
+      "text_length": 2842,
+      "sha256": "844a2d0957cde1d97a8c0907fe2fe8e83cb71d3dda36271e11c018cd58f9b411",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_9100693e53",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 1559,
+      "sha256": "7c3c635f728bcc1ea5d1708d905896fbfb2534feed15ed9d5361469b8dfff088",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_4075080185",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 1078,
+      "sha256": "cd98389e577e32e213db6e5dd0057e8a8308c540b2b526ecc04f506a051f737d",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_4b23ef18d2",
+      "domain": "QA Automation",
+      "length_stratum": "long",
+      "text_length": 2043,
+      "sha256": "1f6f21144ea01885c6909afff38fa445be20b6f3fd767309380a64d9d1b4c518",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_87bda48289",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 1434,
+      "sha256": "5ba967c0a7ec3b7b009710c56308961766dc056fe195d8b8ff30afdd75c57b76",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_e73a846c7d",
+      "domain": "QA Automation",
+      "length_stratum": "short",
+      "text_length": 491,
+      "sha256": "8e74e949cd625adb35084c604c3ff4536f8e682f625e27080fa5b6a2048abf61",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_3fdd48ccea",
+      "domain": "QA Automation",
+      "length_stratum": "long",
+      "text_length": 2705,
+      "sha256": "ac7a05b5b269afe167b4a45dd8a183594490c8cf70e27f7cfab434ccd9cc1d52",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_edfea19cd7",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 967,
+      "sha256": "655d23b85760d08a174f7f04e6670456cbeb4e48453b2b63371b76b47f6b8c45",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_8f1efc368c",
+      "domain": "QA Automation",
+      "length_stratum": "long",
+      "text_length": 2138,
+      "sha256": "45d51550c43dde38df5a647a8a356ef19173ddc64ccc747e5b585cb765c081c7",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_d6769413ed",
+      "domain": "QA Automation",
+      "length_stratum": "short",
+      "text_length": 686,
+      "sha256": "be29d0bc992ab555e3a16647026ee07dee5f95335d617f4a6a49893622775bbd",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_f3be9ec6b1",
+      "domain": "QA Automation",
+      "length_stratum": "short",
+      "text_length": 425,
+      "sha256": "43977e9cfc36853f2ad3632aedb75bf9a5a378eee86a59830a02d8c2a195d164",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_ae02061488",
+      "domain": "QA Automation",
+      "length_stratum": "short",
+      "text_length": 283,
+      "sha256": "2a1f761882e45be636c81e2f64a2582945145da0224085a292770e6bb0a70467",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_478c0b5cdb",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 1392,
+      "sha256": "7263103583b7b7fc0829fbce722f5cf7613e25ad314ec21337c384ee060e0bb1",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_cbc9210f81",
+      "domain": "QA Automation",
+      "length_stratum": "long",
+      "text_length": 2908,
+      "sha256": "5001649c99548a453a2dca1db7584b282bb52dae8e39115324cd1a9fc98a3b56",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_ea67a9d605",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 1262,
+      "sha256": "4b8890b20d14c179028cacb24de2d234c075398824de70b19334adebcdfb713f",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_47bdb86952",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 1313,
+      "sha256": "0f671fc1bb00b7e350ae170983653a45c78c3c8f3b45efe016c0fdd543d06165",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_8f448b162c",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 1677,
+      "sha256": "c1a496bd9edd5057c277ea64595bc6137f69afaf22f8da7b10f4a8afbb723474",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_ffc2febc38",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 1235,
+      "sha256": "70b9ea36de8e9579232cf63af38da770f10d5259919ca2f810a4073b92598ac6",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_53e29c898b",
+      "domain": "QA Automation",
+      "length_stratum": "short",
+      "text_length": 659,
+      "sha256": "87b493f1968a8638696ce619c4fece1f7d27bf248eaaebcf1a6db77800887a4c",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_aa4bb9a419",
+      "domain": "QA Automation",
+      "length_stratum": "short",
+      "text_length": 689,
+      "sha256": "e64475e1f75e326c25684f9ae622d29057b8a58a8db93e0f5f6792e7b5d67eb2",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_b5b3f62074",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 1400,
+      "sha256": "b32b57edb89497b1f60c174314c9544c801a8579ba11fda4010570eaf1728409",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_f9513a338c",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 1426,
+      "sha256": "2158ea28b081b8d61fa8ef38f564e32b40f8d7b536ed9cee52fe227c7b053719",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_a691f30363",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 1446,
+      "sha256": "7da42543be9e03cd1888e20b7b24c214f3af61311c88f31dc508e27645e3a490",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_52a23fdb47",
+      "domain": "QA Automation",
+      "length_stratum": "long",
+      "text_length": 3819,
+      "sha256": "76746d7ebbe69a3c514882dd2b6c8d9e0096f95116a49715b3da6933c888827f",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_f1499736a9",
+      "domain": "QA Automation",
+      "length_stratum": "long",
+      "text_length": 2418,
+      "sha256": "5f4a132655b1d8c54ce5fba4faae9d0d83a976a18783483159cc34bec0f62632",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_30ccfe7962",
+      "domain": "QA Automation",
+      "length_stratum": "short",
+      "text_length": 252,
+      "sha256": "bd0b2144b4bc93abc96544e9db5ea8dea9d3f6ff0eafe248541be43c00bf8b05",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_131a16e4b6",
+      "domain": "QA Automation",
+      "length_stratum": "short",
+      "text_length": 219,
+      "sha256": "3225cfee6c6e31af7efc695ba7c8e7b1f7cf5a57218df8fae739ce0d2a9721b8",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_74b202f2fa",
+      "domain": "QA Automation",
+      "length_stratum": "medium",
+      "text_length": 1488,
+      "sha256": "9042bc59dbb90ccd03e9a9cf317bd776b24c55a84e2d712862445cc7373fb3be",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_2a48d56526",
+      "domain": "QA Automation",
+      "length_stratum": "long",
+      "text_length": 2065,
+      "sha256": "fa66012308c67381823e32065bf635b0412b203d0f3c07271eb4700562d31c36",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_c1cb217b59",
+      "domain": "QA",
+      "length_stratum": "medium",
+      "text_length": 1606,
+      "sha256": "a1fe8103110399850efe11b8887e2305224e40113db92ac5d5f7527928671477",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_c06cfa20c1",
+      "domain": "QA",
+      "length_stratum": "medium",
+      "text_length": 822,
+      "sha256": "ad4d6eb20278603bb18647042c5a178de6a35c42be05ff31666331ccf919f217",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_daadd19153",
+      "domain": "QA",
+      "length_stratum": "short",
+      "text_length": 288,
+      "sha256": "e3b674a47d0d9f9f165e3b00f238b0315e656674ae67a38cc877f4c306151844",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_60013961fa",
+      "domain": "QA",
+      "length_stratum": "medium",
+      "text_length": 1240,
+      "sha256": "7306b16a1f77656c24771700e44ca23b3d46f8930b5ac257cdc20ee99ebf15fe",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_3e1f5d5c8c",
+      "domain": "QA",
+      "length_stratum": "medium",
+      "text_length": 1274,
+      "sha256": "4d3f6f4369f2d06f7750573b62138c53af6429b3400168882ad4a1342a14a32d",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_111aa5d476",
+      "domain": "QA",
+      "length_stratum": "long",
+      "text_length": 2070,
+      "sha256": "eb2fb24f4b4f40ffb6d422508bd696e07ffdac498e0e92b9059f7ea7c5351ae9",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_37bf6a4440",
+      "domain": "QA",
+      "length_stratum": "long",
+      "text_length": 3728,
+      "sha256": "467f9f7097e6bb8310a90b6ab9bfe421ce5c13258bc188b608f35fe1c1ebae9b",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_004e7e820c",
+      "domain": "QA",
+      "length_stratum": "medium",
+      "text_length": 1108,
+      "sha256": "868494d9316621bba4c05e3bf80844b1f3b4601b99f6cfd8c4c0967d651fbb4e",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_7b33d2d814",
+      "domain": "QA",
+      "length_stratum": "medium",
+      "text_length": 1981,
+      "sha256": "e10584042bbe7c135b216b44c6c63edf998d39ef698535eb976569cd77bc9831",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_da5e18aa26",
+      "domain": "QA",
+      "length_stratum": "medium",
+      "text_length": 1539,
+      "sha256": "cfd49fdacbaf5f573820682c00cf91badac00703926f65eca81d126f3d3d0673",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_8d1fa768c6",
+      "domain": "QA",
+      "length_stratum": "medium",
+      "text_length": 1949,
+      "sha256": "ed8959884d2429193e5a903e236558d4e59efc4805f5066a3e52228c99c0fb01",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_eb5144425f",
+      "domain": "QA",
+      "length_stratum": "medium",
+      "text_length": 1659,
+      "sha256": "193d314827f105ae03ace83652e4664500952ccc568556b3c4c29d9804f353fb",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_e969cc1f6c",
+      "domain": "QA",
+      "length_stratum": "medium",
+      "text_length": 980,
+      "sha256": "a4a9b9e764b101e392eb8bf0199cb7aafcdc2451f2df90344b7cd909cca26d32",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_7c5431c213",
+      "domain": "QA",
+      "length_stratum": "short",
+      "text_length": 408,
+      "sha256": "d6d62420e550fbe16d05cbdba0a097a19243293dfcc6a97724a6769baf5a3f5c",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_a0a5700967",
+      "domain": "QA",
+      "length_stratum": "medium",
+      "text_length": 1293,
+      "sha256": "ba36beb5d3a25fa81d37f0373e006cebafb1e71d268dc4ecbf9bcddd0b19f67e",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_3c0150e762",
+      "domain": "other",
+      "length_stratum": "medium",
+      "text_length": 1471,
+      "sha256": "c0fb2985edec03c12a410b5a011684cbbb45286ff6755d52b3da8367b43d3d5c",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_59cc379470",
+      "domain": "other",
+      "length_stratum": "medium",
+      "text_length": 1064,
+      "sha256": "89926710f494ad8c87867a6b4334394f0e3eecac6855d41606a2af940de81b49",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_c329fddbcd",
+      "domain": "other",
+      "length_stratum": "long",
+      "text_length": 2671,
+      "sha256": "fd1ba5b73f491b83f054b1526ca1bc1af7bfce3e6b5acdca819bacb3009b84ae",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_4fee302ddf",
+      "domain": "other",
+      "length_stratum": "short",
+      "text_length": 333,
+      "sha256": "3e33d4d560ed88b00bd065b8ac269edc3b00fb7d9e59f23c3d2a6ea5c44ad263",
+      "is_pilot": false
+    },
+    {
+      "candidate_id": "dj_ext_b467c1610c",
+      "domain": "other",
+      "length_stratum": "long",
+      "text_length": 2546,
+      "sha256": "61ee0ac102ab980d151147cee22a5b11c669b4605f81a3f5eaabf7507268b76e",
+      "is_pilot": false
+    }
+  ]
+}

@@ -200,16 +200,12 @@ Metric chính là nDCG@10, kèm P@5, R@20, MRR và Kendall τ; khoảng tin cậ
 one-sided paired bootstrap; inter-annotator agreement bằng quadratic-weighted Cohen's κ. Chống leakage (G5): chỉ tune
 trên dev, TREC-style pooling, holdout chỉ mở khi có gold labels.
 
-### Slide 14 · Chất lượng NLP pipeline · Hoa · 0:45
+### Slide 14 · Chất lượng NLP pipeline & Benchmark trích xuất · Hoa · 0:45
 
-- Tool extraction F1 0.978 (tiếng Anh 0.983, tiếng Việt 0.969); trên CV quét qua OCR F1 0.997, CER 0.031.
-- Số năm kinh nghiệm sai số trung bình 0.79 năm; depth đúng 89%.
-- 0% lộ thông tin cá nhân sau redaction.
-- Depth trên CV tiếng Việt gõ không dấu từ 0% lên 87.5%.
-
-Trên 2.484 CV PDF thật thuộc 24 ngành, pipeline đọc được 100% tệp và lộ ra ba lỗi dữ liệu tổng hợp không có: tỉ lệ vai
-trò xác định được khoảng ngày tăng từ 41.9% lên 97.7%, nhận nhầm tên công cụ trùng từ thông dụng giảm từ 17.2% xuống
-1.6%. Giới hạn: CV bị nhiễu ký tự chỉ đạt F1 0.157; trường hợp này chuyển cho investigator.
+- **Benchmark trích xuất thực tế (50 profile Djinni unseen, có nhãn Human-Adjudicated Reference):** Micro-F1 đạt **0.944 [0.870, 0.987]**, vượt trội baseline từ khóa E0 (0.847); độ đồng thuận gán nhãn κ = 1.00; ghi nhận trung thực 17.54% công cụ OOV ngoài từ điển (Allure, Gradle, Swagger, Jira...).
+- **Kiểm định lan truyền lỗi (Error propagation, 400 cặp CV–JD):** Pipeline E2 đạt 0% lỗi knock-out oan (so với 7 ca bị loại oan của E0); tương quan thứ hạng kỹ năng với nhãn người đạt Kendall τ = **0.903** (Spearman ρ = 0.916).
+- **Độ bền vững:** Không truyền văn bản CV ra ngoài môi trường máy chủ nội bộ ở cấu hình deterministic; 0 trường hợp rò rỉ PII; thời gian xử lý 12.7 ms/CV với chi phí 0 token.
+- **Tập kiểm tra mở rộng (200 CV dev & 2.484 CV Kaggle):** Số năm kinh nghiệm sai số 0.79 năm; đọc được 100% tệp PDF; CV bị nhiễu ký tự được chuyển cho Agent Investigator xử lý.
 
 ### Slide 15 · Benchmark chính thức v1 · Hoa · 1:15
 
@@ -347,5 +343,6 @@ kiểm tra tự động; và benchmark NLP501-bench ở các phiên bản v1, v1
 | Agent không hơn fixed pipeline về nDCG, vậy agent để làm gì? | Hoa | Đúng theo thiết kế, vì luật chấm cả hai. Giá trị nằm ở JD mơ hồ (+0.129), CV lỗi ký tự, kiểm soát hallucination và mục tiêu HR phức tạp. |
 | Nhãn do LLM gán thì đánh giá có vòng lặp không? | Hoa | Có rủi ro, nên: 120 cặp chấm mù bởi người cho v1.1 (thứ tự giữ nguyên, τ 1.00); Djinni dùng Dual-annotator Aggregate Human Gold (chấm mù độc lập 100%, kiểm định độ nhạy min/max); con số nào chỉ có nhãn cùng họ mô hình chấm thì không công bố và tính năng để tắt. |
 | Dữ liệu tổng hợp có đại diện không? | Vũ | Không cho giá trị tuyệt đối (0.85 so với 0.64). Kết luận dựa trên thứ tự giữa các hệ thống, đã được xác nhận trên 8 JD thật với nhãn người. |
-| Vì sao gazetteer mà không phải NER học máy? | Thịnh | Tên công cụ là tập từ vựng đóng; gazetteer với boundary và evidence strength cho F1 0.978. NER học máy là hướng phát triển cho CV mô tả công cụ mà không gọi tên. |
+| Bước trích xuất có benchmark uy tín không, sai số có ảnh hưởng xếp hạng không? | Thịnh | Có benchmark độc lập: 50 profile Djinni unseen có nhãn Human-Adjudicated Reference (κ = 1.00), Micro-F1 đạt 0.944 [0.870, 0.987] (vượt E0 keyword 0.847, OOV 17.5%). Kiểm định trên 400 cặp CV–JD cho 0% lỗi knock-out oan và Kendall τ = 0.903; Agent Investigator hỗ trợ mở rộng context cho các ca nghi ngờ. |
+| Vì sao gazetteer mà không phải NER học máy? | Thịnh | Tên công cụ là tập từ khóa có ranh giới rõ; gazetteer kết hợp NegEx và boundary đạt Micro-F1 0.944 trên 50 CV thật và 0.978 trên dev set, chi phí 0 token và không rò rỉ dữ liệu. NER học máy là hướng mở rộng cho CV miêu tả hành động gián tiếp. |
 | Có học từ phản hồi của HR không? | Đán | Có hiệu chỉnh trọng số trong phiên bằng pairwise logistic regression; học qua nhiều phiên đã đo (E24) và không cải thiện (−0.008), nên quyết định loại của HR được giữ như quyết định cứng. |

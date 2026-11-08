@@ -877,7 +877,7 @@ async def hr_review(state: AgentState) -> dict:
             [SystemMessage(prompts.REWEIGHT), HumanMessage(f"Criteria: {list(CRITERIA)}\nCurrent weights: {w}\n\n{text}")])
         changes = [c.model_dump() for c in out.changes]
         w = apply_instruction(w, changes)
-        emit("hr_review", f"HR said “{text}” → {', '.join(f'{c['criterion']} {c['direction']}' for c in changes) or 'no change'}",
+        emit("hr_review", f"HR said “{text}” → {', '.join(f\"{c['criterion']} {c['direction']}\" for c in changes) or 'no change'}",
              "loop")
     emit("hr_review", f"HR re-weighted criteria → re-scoring with {w} (0 new assessments)", "loop")
     return {"hr_action": "adjust", "weights": w, "loops": {"review": 1}}
