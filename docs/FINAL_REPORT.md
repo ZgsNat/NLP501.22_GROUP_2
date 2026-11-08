@@ -27,7 +27,7 @@ and every input pinned by checksum. On that test split:
 - **Rules score; the LLM controls and explains.** The agent and its fixed twin rank almost alike (0.851 vs 0.839,
   +0.012, p = 0.064, not significant), and most of the gap is the one vague test JD, where the agent asks HR. The
   agent's value is the work rules cannot do: asking HR on a vague JD, reading CVs the parser cannot, catching
-  contradicted claims (2.1% → 0.6%) and keeping the arbiter to true near-ties.
+  contradicted claims (2.3% → 1.5%) and keeping the arbiter to true near-ties.
 - **Where the agent decides, the ranking shows it.** On vague twins of all 18 JDs, a pipeline that cannot ask scores
   0.626 nDCG@10. Asking HR recovers 57% of the loss (+0.129, p < 0.001); the agent as it runs scores 0.704 (§5.5).
 - **Evaluation found and fixed real faults:**
@@ -364,8 +364,8 @@ acted (filled), across all benchmark JDs. Numbers: the AI-output scorecards in `
 **Measured on the full agent across the benchmark JDs:**
 - **Q1:** 0 invalid outputs.
 - **Q2:** 100% of quotes grounded.
-- **Q4:** contradicted rationales 2.1% → 0.6%, against 2.9% for the fixed pipeline, which has no retry.
-- **Q6:** report candidates with an unsupported claim 5.9% → 1.2% after one regeneration; those sentences dropped,
+- **Q4:** contradicted rationales 2.3% → 1.5%, against 3.5% for the fixed pipeline, which has no retry.
+- **Q6:** report candidates with an unsupported claim 6.7% → 1.1% after one regeneration; those sentences dropped,
   none reaching HR.
 - **Q7:** after the |Δ| fix (§5.3), 17 of 17 benchmark near-tie pairs gave the same verdict in both orders. The JD-003
   trace in §6.1 shows the check catching a flip. Before the fix, 90% were stable, when out-of-mandate pairs were also
