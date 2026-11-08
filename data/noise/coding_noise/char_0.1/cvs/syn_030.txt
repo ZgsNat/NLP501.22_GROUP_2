@@ -1,0 +1,21 @@
+Phạm Đ@c ~húc
+A~tom#tion Test Engineer
+Email: p~úc81@e#ample.c@~
+Điện thoại: 0965%%51%3
+#iới tí#h: ~am
+~gà# s~nh: 24/0%#1#99
+
+TÓ% T~T
+10 năm k#nh nghi@m kiểm t@ử phần mềm.
+
+KINH NGH~ỆM
+Company F (2016 - nay)
+- Trưởng nhóm %A 5 ng#@i, đ#nh hướng au~o~ation s@rate#y v@ mento# thàn# viên ~ới.
+% Sử dụng A#pium, k6@ JUnit cho ki%m thử manual %esting, mobile testing, performance testing.
+- Chạy test t~ên Docker, G@t@ab C~.
+
+KỸ NĂ%G
+Ngôn ngữ lập trìn%: C#
+Ngoại n~ữ: Eng#ish (TOEIC 750)
+
+Địa chỉ: 235 N%uyen Trai Street, District 12

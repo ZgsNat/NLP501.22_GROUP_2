@@ -1,0 +1,18 @@
+Hồ Minh Tuan
+QA/QC Engineer
+Email: tuấn20@example.com
+Dien thoại: 0983722452
+Gioi tinh: Nam
+Ngay sinh: 09/12/1992
+
+TOM TẮT
+Mới tot nghiep, dam mê kiem thu.
+
+KINH NGHIỆM
+- Thuc hiện kiem thu thu cong, viet test case va bao lỗi trên Jira.
+- Chạy test tren Docker.
+
+KY NANG
+Ngoai ngu: English (TOEIC 750)
+
+Địa chỉ: 210 Nguyen Trai Street, District 10

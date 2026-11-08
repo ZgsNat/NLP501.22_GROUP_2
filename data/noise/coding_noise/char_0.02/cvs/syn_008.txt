@@ -1,0 +1,21 @@
+Lê Min~ Hùng
+Automation Test Engineer
+Email: hùng91@example.com
+Điện thoại: 0971115104
+Giới tính: Nam
+Ngày sinh: 20/0@/1996
+
+TÓM TẮT
+7 năm kinh nghiệm kiểm @hử phần mềm.
+
+KINH NGHIỆM
+Company F (2019 - nay)
+- Xây dựng f~amework automation the@ Page O~jec@ Model, d#ta-driven, tích hợp Jenkins pipeline.
+- Sử dụng ~ebdriverIO, Postman, k6, Cucumber, Robot Framework cho kiểm thử api testing, performance testing, ui testing.
+- Chạy test #rên Azure DevOps.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Java, C#
+Ngoại ngữ: Japanese JLPT N2
+
+Địa chỉ: 252 Nguyen Trai Street, District 4

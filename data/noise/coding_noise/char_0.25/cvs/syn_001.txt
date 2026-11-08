@@ -1,0 +1,21 @@
+Bùi @hu Thảo
+Auto#at~o% Test Eng@neer
+Emai#: t#ảo66%exa%@le~%om
+Điện thoại~ %928%34#1@
+Giớ@ t@nh: Nữ
+#@à% s%#h# %3/09/199@
+
+TÓM ~ẮT
+1 năm ~inh ngh%## k%ể% #h% ph%n mềm.
+
+KI#H NGHIỆ#
+#o~~an# E %2@~5 - ~ay#
+@ Viế~ a#@oma%@on tes# sc~~#ts ch# ~ộ ~e%re%sion, kiểm #hử tự độ#g hằng ngày.
+- ~ử dụng Seleni%m ~%bDri##r% Webd#@v@rIO, R#st Assured, Postman, Cucumb~r %ho kiể@ @hử ap# te%#in## u% tes@ing.
+- Chạ% t#st t@ên Doc~er~
+
+KỸ NĂN#
+Ngôn ngữ lập t%ình~ C%
+N%o@~ n%#: #ng%is% @TOE~C 75~@
+
+Địa chỉ: 234 ~@uy#n Trai ~tre#t, Distr@@t 11

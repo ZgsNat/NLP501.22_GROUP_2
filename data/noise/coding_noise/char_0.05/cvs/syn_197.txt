@@ -1,0 +1,19 @@
+Hồ Đức Phúc
+Auto~ation Test %ngineer
+Email: phúc37@example.com
+Phone: 0923813714
+Gender: Male
+Date of birth: 18/05/1990
+
+SUMMARY
+3 years of expe@ience in software testing.
+
+EXPERIENCE
+Company E (2023 - Pres@nt)
+- Wrote and main~ained autom%ted test scripts for regressi#n suites.
+- Used C#press, k6, TestNG, Cucumber for per#ormance testin@, ui testing.
+
+SKI%LS
+Programming: TypeScript, P~thon
+
+Addre~s: 2%6 Nguyen Trai Street, ~istrict 11

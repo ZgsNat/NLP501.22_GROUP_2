@@ -1,0 +1,6865 @@
+[
+ {
+  "cv_id": "syn_000",
+  "gender": "M",
+  "years": 0,
+  "depth": 1,
+  "tools": [
+   "Selenium WebDriver",
+   "XCUITest"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Lê Đức Phúc",
+  "rationale": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Sử dụng Selenium WebDriver, XCUITest cho kiểm thử mobile testing, ui testing.",
+   "Chạy test trên Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_001",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "WebdriverIO",
+   "Rest Assured",
+   "Postman",
+   "Cucumber"
+  ],
+  "langs": [
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Bùi Thu Thảo",
+  "rationale": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, WebdriverIO, Rest Assured, Postman, Cucumber cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_002",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "Pytest",
+   "JUnit"
+  ],
+  "langs": [
+   "Java",
+   "Python"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Mai Thảo",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Pytest, JUnit for ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_003",
+  "gender": "F",
+  "years": 10,
+  "depth": 3,
+  "tools": [
+   "WebdriverIO",
+   "Playwright",
+   "XCUITest",
+   "Cucumber",
+   "Robot Framework"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Trần Mai Trang",
+  "rationale": [
+   "10 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Playwright, XCUITest, Cucumber, Robot Framework for mobile testing, ui testing.",
+   "Ran tests on GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_004",
+  "gender": "F",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "WebdriverIO",
+   "Rest Assured",
+   "Cucumber",
+   "Robot Framework"
+  ],
+  "langs": [
+   "C#",
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Thu Trang",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, WebdriverIO, Rest Assured, Cucumber, Robot Framework for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_005",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Cypress",
+   "Postman",
+   "Robot Framework",
+   "JUnit"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Nguyễn Mai Trang",
+  "rationale": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Cypress, Postman, Robot Framework, JUnit cho kiểm thử api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_006",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Espresso",
+   "Postman",
+   "k6",
+   "Robot Framework"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "mobile testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đặng Quốc Nam",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Espresso, Postman, k6, Robot Framework for api testing, manual testing, mobile testing, performance testing.",
+   "Ran tests on Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_007",
+  "gender": "M",
+  "years": 7,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "WebdriverIO",
+   "Appium",
+   "Postman",
+   "TestNG"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Phạm Minh Tuấn",
+  "rationale": [
+   "7 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, WebdriverIO, Appium, Postman, TestNG for api testing, mobile testing, ui testing.",
+   "Ran tests on Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_008",
+  "gender": "M",
+  "years": 7,
+  "depth": 3,
+  "tools": [
+   "WebdriverIO",
+   "Postman",
+   "k6",
+   "Cucumber",
+   "Robot Framework"
+  ],
+  "langs": [
+   "Java",
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": true,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Lê Minh Hùng",
+  "rationale": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng WebdriverIO, Postman, k6, Cucumber, Robot Framework cho kiểm thử api testing, performance testing, ui testing.",
+   "Chạy test trên Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_009",
+  "gender": "M",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Postman",
+   "TestNG"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "Docker"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": true,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Vũ Văn Nam",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Postman, TestNG for api testing, ui testing.",
+   "Ran tests on Azure DevOps, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_010",
+  "gender": "F",
+  "years": 8,
+  "depth": 3,
+  "tools": [
+   "Postman",
+   "Gatling",
+   "Pytest"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "GitLab CI",
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Bùi Thị Hương",
+  "rationale": [
+   "8 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Postman, Gatling, Pytest for api testing, manual testing, performance testing.",
+   "Ran tests on Azure DevOps, GitLab CI, Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_011",
+  "gender": "M",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Gatling",
+   "Pytest",
+   "JUnit"
+  ],
+  "langs": [
+   "Python",
+   "JavaScript"
+  ],
+  "test_types": [
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI",
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Bùi Minh Khoa",
+  "rationale": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Selenium WebDriver, Gatling, Pytest, JUnit cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên GitLab CI, GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_012",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Playwright",
+   "WebdriverIO",
+   "k6",
+   "JUnit",
+   "Cucumber"
+  ],
+  "langs": [
+   "C#",
+   "Java"
+  ],
+  "test_types": [
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": true,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Trần Quốc Nam",
+  "rationale": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Playwright, WebdriverIO, k6, JUnit, Cucumber cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_013",
+  "gender": "F",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Playwright",
+   "Cypress",
+   "Rest Assured",
+   "Postman",
+   "JMeter",
+   "Pytest",
+   "TestNG"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Bùi Ngọc Vy",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Playwright, Cypress, Rest Assured, Postman, JMeter, Pytest, TestNG for api testing, performance testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_014",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "JMeter",
+   "Pytest"
+  ],
+  "langs": [
+   "Java",
+   "JavaScript"
+  ],
+  "test_types": [
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đặng Minh Tuấn",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, JMeter, Pytest for performance testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_015",
+  "gender": "M",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "XCUITest",
+   "JUnit",
+   "Pytest"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hoàng Đức Tuấn",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, XCUITest, JUnit, Pytest for mobile testing, ui testing.",
+   "Ran tests on Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_016",
+  "gender": "M",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "Pytest",
+   "Cucumber"
+  ],
+  "langs": [
+   "Java",
+   "C#"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": true,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Nguyễn Đức Tuấn",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Pytest, Cucumber for ui testing.",
+   "Ran tests on GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_017",
+  "gender": "F",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Cypress",
+   "Espresso",
+   "Rest Assured",
+   "k6",
+   "Pytest"
+  ],
+  "langs": [
+   "Java",
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions",
+   "Azure DevOps",
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": true,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Bùi Ngọc Trang",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, Espresso, Rest Assured, k6, Pytest for api testing, mobile testing, performance testing, ui testing.",
+   "Ran tests on GitHub Actions, Azure DevOps, GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_018",
+  "gender": "M",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Cypress",
+   "Rest Assured",
+   "Postman",
+   "Robot Framework"
+  ],
+  "langs": [
+   "Python",
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker",
+   "GitHub Actions"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Nguyễn Văn Tuấn",
+  "rationale": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Cypress, Rest Assured, Postman, Robot Framework cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Docker, GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_019",
+  "gender": "M",
+  "years": 0,
+  "depth": 1,
+  "tools": [
+   "Cucumber"
+  ],
+  "langs": [],
+  "test_types": [
+   "manual testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Vũ Minh Khoa",
+  "rationale": [
+   "Executed manual test cases and reported defects in Jira.",
+   "Used Cucumber for manual testing."
+  ]
+ },
+ {
+  "cv_id": "syn_020",
+  "gender": "M",
+  "years": 10,
+  "depth": 4,
+  "tools": [
+   "WebdriverIO",
+   "Cypress",
+   "Rest Assured",
+   "Postman",
+   "Cucumber",
+   "Pytest"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "GitLab CI",
+   "Docker"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Nguyễn Quốc Long",
+  "rationale": [
+   "10 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng WebdriverIO, Cypress, Rest Assured, Postman, Cucumber, Pytest cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Azure DevOps, GitLab CI, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_021",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "k6",
+   "Robot Framework",
+   "Cucumber"
+  ],
+  "langs": [
+   "Java",
+   "Python"
+  ],
+  "test_types": [
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đỗ Minh Tuấn",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, k6, Robot Framework, Cucumber for performance testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_022",
+  "gender": "F",
+  "years": 4,
+  "depth": 3,
+  "tools": [
+   "WebdriverIO",
+   "Cypress",
+   "XCUITest",
+   "Cucumber"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Bùi Thu Trang",
+  "rationale": [
+   "4 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Cypress, XCUITest, Cucumber for mobile testing, ui testing.",
+   "Ran tests on Azure DevOps, Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_023",
+  "gender": "M",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Rest Assured",
+   "Cucumber",
+   "Pytest"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions",
+   "Azure DevOps"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Minh Phúc",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Rest Assured, Cucumber, Pytest for api testing, ui testing.",
+   "Ran tests on GitHub Actions, Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_024",
+  "gender": "M",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Postman",
+   "TestNG",
+   "JUnit"
+  ],
+  "langs": [
+   "JavaScript",
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": true,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Bùi Đức Phúc",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Postman, TestNG, JUnit for api testing, ui testing.",
+   "Ran tests on Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_025",
+  "gender": "M",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Espresso",
+   "Postman",
+   "TestNG"
+  ],
+  "langs": [
+   "C#",
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "mobile testing"
+  ],
+  "cicd": [
+   "Jenkins",
+   "GitHub Actions",
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Trần Văn Nam",
+  "rationale": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Espresso, Postman, TestNG cho kiểm thử api testing, manual testing, mobile testing.",
+   "Chạy test trên Jenkins, GitHub Actions, Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_026",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "Cypress",
+   "Rest Assured",
+   "Cucumber",
+   "Robot Framework"
+  ],
+  "langs": [
+   "JavaScript",
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Mai Vy",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Cypress, Rest Assured, Cucumber, Robot Framework for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_027",
+  "gender": "F",
+  "years": 0,
+  "depth": 1,
+  "tools": [
+   "WebdriverIO",
+   "Rest Assured",
+   "Postman",
+   "Robot Framework"
+  ],
+  "langs": [],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Thị Lan",
+  "rationale": [
+   "Executed manual test cases and reported defects in Jira.",
+   "Used WebdriverIO, Rest Assured, Postman, Robot Framework for api testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_028",
+  "gender": "F",
+  "years": 4,
+  "depth": 3,
+  "tools": [
+   "Cypress",
+   "WebdriverIO",
+   "Espresso",
+   "Postman",
+   "Rest Assured",
+   "TestNG",
+   "JUnit"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "GitHub Actions",
+   "Docker"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đỗ Mai Trang",
+  "rationale": [
+   "4 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, WebdriverIO, Espresso, Postman, Rest Assured, TestNG, JUnit for api testing, mobile testing, ui testing.",
+   "Ran tests on Azure DevOps, GitHub Actions, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_029",
+  "gender": "F",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Playwright",
+   "Espresso",
+   "Rest Assured",
+   "Cucumber"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Trần Ngọc Thảo",
+  "rationale": [
+   "2 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Playwright, Espresso, Rest Assured, Cucumber cho kiểm thử api testing, mobile testing, ui testing.",
+   "Chạy test trên Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_030",
+  "gender": "M",
+  "years": 10,
+  "depth": 4,
+  "tools": [
+   "Appium",
+   "k6",
+   "JUnit"
+  ],
+  "langs": [
+   "C#"
+  ],
+  "test_types": [
+   "manual testing",
+   "mobile testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "Docker",
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Phạm Đức Phúc",
+  "rationale": [
+   "10 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng Appium, k6, JUnit cho kiểm thử manual testing, mobile testing, performance testing.",
+   "Chạy test trên Docker, GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_031",
+  "gender": "F",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "JMeter",
+   "Pytest"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": true,
+  "japanese": true,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đặng Thị Hương",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used JMeter, Pytest for manual testing, performance testing."
+  ]
+ },
+ {
+  "cv_id": "syn_032",
+  "gender": "F",
+  "years": 0,
+  "depth": 1,
+  "tools": [
+   "Cypress",
+   "WebdriverIO",
+   "Rest Assured",
+   "Cucumber"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Mai Trang",
+  "rationale": [
+   "Executed manual test cases and reported defects in Jira.",
+   "Used Cypress, WebdriverIO, Rest Assured, Cucumber for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_033",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "Playwright",
+   "Rest Assured",
+   "Postman",
+   "Pytest",
+   "Robot Framework"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Vũ Ngọc Thảo",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Playwright, Rest Assured, Postman, Pytest, Robot Framework for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_034",
+  "gender": "F",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "WebdriverIO",
+   "Playwright",
+   "TestNG",
+   "Cucumber"
+  ],
+  "langs": [
+   "TypeScript",
+   "JavaScript"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins",
+   "GitLab CI"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đặng Thị Vy",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Playwright, TestNG, Cucumber for ui testing.",
+   "Ran tests on Jenkins, GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_035",
+  "gender": "M",
+  "years": 4,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Cypress",
+   "XCUITest",
+   "Postman",
+   "Cucumber",
+   "TestNG"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI",
+   "GitHub Actions",
+   "Docker"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": true,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Phạm Đức Tuấn",
+  "rationale": [
+   "4 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Cypress, XCUITest, Postman, Cucumber, TestNG for api testing, mobile testing, ui testing.",
+   "Ran tests on GitLab CI, GitHub Actions, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_036",
+  "gender": "M",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "WebdriverIO",
+   "k6",
+   "JUnit"
+  ],
+  "langs": [
+   "JavaScript",
+   "C#"
+  ],
+  "test_types": [
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Vũ Đức Nam",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, WebdriverIO, k6, JUnit for performance testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_037",
+  "gender": "M",
+  "years": 10,
+  "depth": 3,
+  "tools": [
+   "Cypress",
+   "Selenium WebDriver",
+   "Rest Assured",
+   "Postman",
+   "Pytest",
+   "Robot Framework"
+  ],
+  "langs": [
+   "TypeScript",
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Hồ Quốc Phúc",
+  "rationale": [
+   "10 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Cypress, Selenium WebDriver, Rest Assured, Postman, Pytest, Robot Framework cho kiểm thử api testing, ui testing.",
+   "Chạy test trên GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_038",
+  "gender": "F",
+  "years": 3,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "WebdriverIO",
+   "TestNG",
+   "Cucumber"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Thị Thảo",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, WebdriverIO, TestNG, Cucumber for ui testing.",
+   "Ran tests on GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_039",
+  "gender": "M",
+  "years": 10,
+  "depth": 3,
+  "tools": [
+   "WebdriverIO",
+   "Cypress",
+   "Appium",
+   "Postman",
+   "Rest Assured",
+   "k6",
+   "TestNG"
+  ],
+  "langs": [
+   "Python",
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Vũ Quốc Khoa",
+  "rationale": [
+   "10 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Cypress, Appium, Postman, Rest Assured, k6, TestNG for api testing, mobile testing, performance testing, ui testing.",
+   "Ran tests on Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_040",
+  "gender": "F",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Playwright",
+   "Espresso",
+   "JUnit"
+  ],
+  "langs": [
+   "JavaScript",
+   "TypeScript"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins",
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hoàng Thị Trang",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Playwright, Espresso, JUnit for mobile testing, ui testing.",
+   "Ran tests on Jenkins, Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_041",
+  "gender": "F",
+  "years": 6,
+  "depth": 2,
+  "tools": [
+   "Playwright",
+   "WebdriverIO",
+   "Postman",
+   "Robot Framework",
+   "Pytest"
+  ],
+  "langs": [
+   "Java",
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Đặng Mai Thảo",
+  "rationale": [
+   "6 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Playwright, WebdriverIO, Postman, Robot Framework, Pytest cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_042",
+  "gender": "F",
+  "years": 10,
+  "depth": 3,
+  "tools": [
+   "Playwright",
+   "Cypress",
+   "Postman",
+   "Pytest"
+  ],
+  "langs": [
+   "Java",
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI",
+   "Jenkins",
+   "Docker"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Thu Lan",
+  "rationale": [
+   "10 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Playwright, Cypress, Postman, Pytest for api testing, ui testing.",
+   "Ran tests on GitLab CI, Jenkins, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_043",
+  "gender": "F",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Espresso",
+   "Pytest",
+   "TestNG"
+  ],
+  "langs": [
+   "Java",
+   "Python"
+  ],
+  "test_types": [
+   "manual testing",
+   "mobile testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": true,
+  "name": "Đỗ Mai Vy",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Espresso, Pytest, TestNG for manual testing, mobile testing.",
+   "Ran tests on Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_044",
+  "gender": "M",
+  "years": 4,
+  "depth": 3,
+  "tools": [
+   "XCUITest",
+   "JMeter",
+   "TestNG",
+   "Pytest"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "manual testing",
+   "mobile testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "GitHub Actions",
+   "Docker"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Đặng Đức Long",
+  "rationale": [
+   "4 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng XCUITest, JMeter, TestNG, Pytest cho kiểm thử manual testing, mobile testing, performance testing.",
+   "Chạy test trên Azure DevOps, GitHub Actions, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_045",
+  "gender": "M",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Cypress",
+   "WebdriverIO",
+   "Gatling",
+   "Robot Framework",
+   "JUnit"
+  ],
+  "langs": [
+   "Java",
+   "TypeScript"
+  ],
+  "test_types": [
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Bùi Văn Tuấn",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Cypress, WebdriverIO, Gatling, Robot Framework, JUnit for performance testing, ui testing.",
+   "Ran tests on GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_046",
+  "gender": "M",
+  "years": 6,
+  "depth": 3,
+  "tools": [
+   "Playwright",
+   "Selenium WebDriver",
+   "Espresso",
+   "Postman",
+   "k6",
+   "JUnit"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI",
+   "Docker",
+   "Jenkins"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Hồ Đức Phúc",
+  "rationale": [
+   "6 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Playwright, Selenium WebDriver, Espresso, Postman, k6, JUnit cho kiểm thử api testing, mobile testing, performance testing, ui testing.",
+   "Chạy test trên GitLab CI, Docker, Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_047",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "Rest Assured",
+   "JMeter",
+   "TestNG",
+   "JUnit"
+  ],
+  "langs": [
+   "Java",
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Trần Minh Phúc",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Rest Assured, JMeter, TestNG, JUnit for api testing, performance testing, ui testing.",
+   "Ran tests on Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_048",
+  "gender": "F",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "WebdriverIO",
+   "Cypress",
+   "Rest Assured",
+   "Postman",
+   "Gatling",
+   "Cucumber"
+  ],
+  "langs": [
+   "Java",
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker",
+   "GitLab CI"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Mai Linh",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Cypress, Rest Assured, Postman, Gatling, Cucumber for api testing, performance testing, ui testing.",
+   "Ran tests on Docker, GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_049",
+  "gender": "F",
+  "years": 4,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Rest Assured",
+   "Cucumber"
+  ],
+  "langs": [
+   "TypeScript",
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins",
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Vũ Ngọc Hương",
+  "rationale": [
+   "4 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Selenium WebDriver, Rest Assured, Cucumber cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Jenkins, GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_050",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "XCUITest",
+   "Postman",
+   "TestNG",
+   "Cucumber"
+  ],
+  "langs": [
+   "TypeScript",
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Đỗ Văn Khoa",
+  "rationale": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng WebdriverIO, XCUITest, Postman, TestNG, Cucumber cho kiểm thử api testing, mobile testing, ui testing.",
+   "Chạy test trên Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_051",
+  "gender": "M",
+  "years": 3,
+  "depth": 2,
+  "tools": [
+   "Playwright",
+   "WebdriverIO",
+   "XCUITest",
+   "Robot Framework"
+  ],
+  "langs": [
+   "Java",
+   "Python"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Bùi Văn Hùng",
+  "rationale": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Playwright, WebdriverIO, XCUITest, Robot Framework cho kiểm thử mobile testing, ui testing.",
+   "Chạy test trên GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_052",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Playwright",
+   "Rest Assured",
+   "Robot Framework",
+   "TestNG"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": true,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Quốc Phúc",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Playwright, Rest Assured, Robot Framework, TestNG for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_053",
+  "gender": "F",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Playwright",
+   "Gatling",
+   "TestNG",
+   "JUnit"
+  ],
+  "langs": [
+   "C#",
+   "Java"
+  ],
+  "test_types": [
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": true,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Vũ Thu Thảo",
+  "rationale": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Selenium WebDriver, Playwright, Gatling, TestNG, JUnit cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_054",
+  "gender": "M",
+  "years": 4,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "Postman",
+   "Rest Assured",
+   "Cucumber"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Quốc Nam",
+  "rationale": [
+   "4 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Postman, Rest Assured, Cucumber for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_055",
+  "gender": "M",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Cypress",
+   "Selenium WebDriver",
+   "Espresso",
+   "Robot Framework",
+   "TestNG"
+  ],
+  "langs": [
+   "JavaScript",
+   "C#"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Trần Minh Hùng",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, Selenium WebDriver, Espresso, Robot Framework, TestNG for mobile testing, ui testing.",
+   "Ran tests on GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_056",
+  "gender": "F",
+  "years": 3,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "Appium",
+   "Postman",
+   "Cucumber",
+   "Robot Framework"
+  ],
+  "langs": [
+   "JavaScript",
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đặng Mai Linh",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Appium, Postman, Cucumber, Robot Framework for api testing, mobile testing, ui testing.",
+   "Ran tests on Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_057",
+  "gender": "M",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "WebdriverIO",
+   "Postman",
+   "Rest Assured",
+   "Cucumber",
+   "TestNG"
+  ],
+  "langs": [
+   "C#",
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": true,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Đỗ Quốc Tuấn",
+  "rationale": [
+   "2 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, WebdriverIO, Postman, Rest Assured, Cucumber, TestNG cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_058",
+  "gender": "F",
+  "years": 7,
+  "depth": 3,
+  "tools": [
+   "WebdriverIO",
+   "Pytest",
+   "Robot Framework"
+  ],
+  "langs": [
+   "TypeScript",
+   "JavaScript"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker",
+   "Jenkins",
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": true,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Nguyễn Ngọc Vy",
+  "rationale": [
+   "7 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Pytest, Robot Framework for ui testing.",
+   "Ran tests on Docker, Jenkins, GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_059",
+  "gender": "M",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Cypress",
+   "WebdriverIO",
+   "Rest Assured",
+   "JUnit",
+   "TestNG"
+  ],
+  "langs": [
+   "C#",
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Quốc Phúc",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, WebdriverIO, Rest Assured, JUnit, TestNG for api testing, ui testing.",
+   "Ran tests on GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_060",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "Cypress",
+   "Pytest"
+  ],
+  "langs": [
+   "C#"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Quốc Phúc",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Cypress, Pytest for ui testing.",
+   "Ran tests on GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_061",
+  "gender": "F",
+  "years": 0,
+  "depth": 1,
+  "tools": [
+   "Postman",
+   "Rest Assured"
+  ],
+  "langs": [
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": true,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Đặng Thu Lan",
+  "rationale": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Sử dụng Postman, Rest Assured cho kiểm thử api testing, manual testing.",
+   "Chạy test trên GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_062",
+  "gender": "F",
+  "years": 5,
+  "depth": 2,
+  "tools": [
+   "k6",
+   "Robot Framework",
+   "JUnit"
+  ],
+  "langs": [
+   "Java",
+   "Python"
+  ],
+  "test_types": [
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Bùi Thị Hương",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used k6, Robot Framework, JUnit for manual testing, performance testing.",
+   "Ran tests on GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_063",
+  "gender": "M",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "XCUITest",
+   "TestNG"
+  ],
+  "langs": [
+   "TypeScript",
+   "Python"
+  ],
+  "test_types": [
+   "manual testing",
+   "mobile testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "Docker",
+   "GitHub Actions"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Bùi Văn Long",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used XCUITest, TestNG for manual testing, mobile testing.",
+   "Ran tests on Azure DevOps, Docker, GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_064",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "Appium",
+   "Postman",
+   "Rest Assured",
+   "Robot Framework",
+   "TestNG"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Đỗ Thị Linh",
+  "rationale": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, Appium, Postman, Rest Assured, Robot Framework, TestNG cho kiểm thử api testing, mobile testing, ui testing.",
+   "Chạy test trên Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_065",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "JMeter",
+   "Cucumber",
+   "TestNG"
+  ],
+  "langs": [
+   "JavaScript",
+   "C#"
+  ],
+  "test_types": [
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hoàng Ngọc Lan",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used JMeter, Cucumber, TestNG for manual testing, performance testing."
+  ]
+ },
+ {
+  "cv_id": "syn_066",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Cypress",
+   "WebdriverIO",
+   "JUnit",
+   "Robot Framework"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Lê Thị Vy",
+  "rationale": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Cypress, WebdriverIO, JUnit, Robot Framework cho kiểm thử ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_067",
+  "gender": "F",
+  "years": 10,
+  "depth": 4,
+  "tools": [
+   "Cypress",
+   "Selenium WebDriver",
+   "Rest Assured",
+   "Cucumber",
+   "Robot Framework"
+  ],
+  "langs": [
+   "Python",
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "GitHub Actions",
+   "Docker"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Trần Thu Trang",
+  "rationale": [
+   "10 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Cypress, Selenium WebDriver, Rest Assured, Cucumber, Robot Framework for api testing, ui testing.",
+   "Ran tests on Azure DevOps, GitHub Actions, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_068",
+  "gender": "M",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Cypress",
+   "Postman",
+   "Rest Assured",
+   "Pytest"
+  ],
+  "langs": [
+   "JavaScript",
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Đức Long",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, Postman, Rest Assured, Pytest for api testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_069",
+  "gender": "F",
+  "years": 0,
+  "depth": 1,
+  "tools": [
+   "Postman",
+   "Rest Assured"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Thị Trang",
+  "rationale": [
+   "Executed manual test cases and reported defects in Jira.",
+   "Used Postman, Rest Assured for api testing, manual testing.",
+   "Ran tests on GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_070",
+  "gender": "M",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Appium",
+   "JUnit",
+   "TestNG"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "manual testing",
+   "mobile testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": true,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Phạm Quốc Long",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Appium, JUnit, TestNG for manual testing, mobile testing.",
+   "Ran tests on GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_071",
+  "gender": "F",
+  "years": 6,
+  "depth": 4,
+  "tools": [
+   "Playwright",
+   "Cypress",
+   "JMeter",
+   "Robot Framework",
+   "JUnit"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Nguyễn Ngọc Linh",
+  "rationale": [
+   "6 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Playwright, Cypress, JMeter, Robot Framework, JUnit for performance testing, ui testing.",
+   "Ran tests on GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_072",
+  "gender": "M",
+  "years": 5,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "Cypress",
+   "JUnit"
+  ],
+  "langs": [
+   "Java",
+   "TypeScript"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hoàng Đức Phúc",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Cypress, JUnit for ui testing.",
+   "Ran tests on Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_073",
+  "gender": "M",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Playwright",
+   "Rest Assured",
+   "TestNG",
+   "Pytest"
+  ],
+  "langs": [
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI",
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Nguyễn Văn Phúc",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Playwright, Rest Assured, TestNG, Pytest for api testing, ui testing.",
+   "Ran tests on GitLab CI, GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_074",
+  "gender": "M",
+  "years": 6,
+  "depth": 3,
+  "tools": [
+   "XCUITest",
+   "Postman",
+   "Gatling",
+   "JUnit",
+   "Cucumber"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "mobile testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "Docker",
+   "GitHub Actions",
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Trần Minh Long",
+  "rationale": [
+   "6 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used XCUITest, Postman, Gatling, JUnit, Cucumber for api testing, manual testing, mobile testing, performance testing.",
+   "Ran tests on Docker, GitHub Actions, Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_075",
+  "gender": "M",
+  "years": 7,
+  "depth": 4,
+  "tools": [
+   "Playwright",
+   "WebdriverIO",
+   "Rest Assured",
+   "Postman",
+   "Pytest"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": true,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Vũ Đức Tuấn",
+  "rationale": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng Playwright, WebdriverIO, Rest Assured, Postman, Pytest cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_076",
+  "gender": "F",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Cypress",
+   "Selenium WebDriver",
+   "Rest Assured",
+   "Postman",
+   "Cucumber"
+  ],
+  "langs": [
+   "Python",
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đỗ Thị Vy",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Cypress, Selenium WebDriver, Rest Assured, Postman, Cucumber for api testing, ui testing.",
+   "Ran tests on Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_077",
+  "gender": "M",
+  "years": 10,
+  "depth": 4,
+  "tools": [
+   "Espresso",
+   "Postman",
+   "Rest Assured",
+   "TestNG",
+   "Cucumber"
+  ],
+  "langs": [
+   "C#",
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "mobile testing"
+  ],
+  "cicd": [
+   "Docker",
+   "Jenkins",
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Nguyễn Văn Hùng",
+  "rationale": [
+   "10 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng Espresso, Postman, Rest Assured, TestNG, Cucumber cho kiểm thử api testing, manual testing, mobile testing.",
+   "Chạy test trên Docker, Jenkins, Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_078",
+  "gender": "M",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Rest Assured",
+   "k6",
+   "JUnit",
+   "Robot Framework"
+  ],
+  "langs": [
+   "C#",
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Đức Khoa",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Rest Assured, k6, JUnit, Robot Framework for api testing, manual testing, performance testing."
+  ]
+ },
+ {
+  "cv_id": "syn_079",
+  "gender": "F",
+  "years": 7,
+  "depth": 4,
+  "tools": [
+   "Cypress",
+   "WebdriverIO",
+   "Espresso",
+   "Robot Framework"
+  ],
+  "langs": [
+   "JavaScript",
+   "Python"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins",
+   "Azure DevOps",
+   "Docker"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hoàng Mai Vy",
+  "rationale": [
+   "7 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Cypress, WebdriverIO, Espresso, Robot Framework for mobile testing, ui testing.",
+   "Ran tests on Jenkins, Azure DevOps, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_080",
+  "gender": "M",
+  "years": 0,
+  "depth": 1,
+  "tools": [
+   "Postman",
+   "Rest Assured"
+  ],
+  "langs": [],
+  "test_types": [
+   "api testing",
+   "manual testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Văn Tuấn",
+  "rationale": [
+   "Executed manual test cases and reported defects in Jira.",
+   "Used Postman, Rest Assured for api testing, manual testing."
+  ]
+ },
+ {
+  "cv_id": "syn_081",
+  "gender": "M",
+  "years": 4,
+  "depth": 2,
+  "tools": [
+   "XCUITest",
+   "Robot Framework",
+   "Cucumber"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "manual testing",
+   "mobile testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Quốc Hùng",
+  "rationale": [
+   "4 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used XCUITest, Robot Framework, Cucumber for manual testing, mobile testing.",
+   "Ran tests on Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_082",
+  "gender": "F",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Rest Assured",
+   "k6",
+   "JUnit",
+   "Pytest"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "Jenkins",
+   "GitHub Actions",
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Mai Hương",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Rest Assured, k6, JUnit, Pytest for api testing, manual testing, performance testing.",
+   "Ran tests on Jenkins, GitHub Actions, GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_083",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Playwright",
+   "XCUITest",
+   "Postman",
+   "k6",
+   "TestNG",
+   "JUnit"
+  ],
+  "langs": [
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Trần Thu Linh",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Playwright, XCUITest, Postman, k6, TestNG, JUnit for api testing, mobile testing, performance testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_084",
+  "gender": "F",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Playwright",
+   "Cucumber"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": true,
+  "name": "Lê Thu Linh",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Playwright, Cucumber for ui testing.",
+   "Ran tests on Azure DevOps, GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_085",
+  "gender": "M",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Rest Assured",
+   "Postman",
+   "JMeter",
+   "JUnit",
+   "Cucumber"
+  ],
+  "langs": [
+   "Python",
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "GitHub Actions",
+   "Docker",
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Trần Đức Long",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Rest Assured, Postman, JMeter, JUnit, Cucumber for api testing, manual testing, performance testing.",
+   "Ran tests on GitHub Actions, Docker, Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_086",
+  "gender": "F",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Playwright",
+   "Rest Assured",
+   "Postman",
+   "k6",
+   "Cucumber"
+  ],
+  "langs": [
+   "JavaScript",
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker",
+   "Jenkins",
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": true,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Hoàng Thu Vy",
+  "rationale": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Playwright, Rest Assured, Postman, k6, Cucumber cho kiểm thử api testing, performance testing, ui testing.",
+   "Chạy test trên Docker, Jenkins, GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_087",
+  "gender": "F",
+  "years": 6,
+  "depth": 3,
+  "tools": [
+   "XCUITest",
+   "JUnit"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "manual testing",
+   "mobile testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Thu Trang",
+  "rationale": [
+   "6 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used XCUITest, JUnit for manual testing, mobile testing.",
+   "Ran tests on Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_088",
+  "gender": "M",
+  "years": 8,
+  "depth": 3,
+  "tools": [
+   "Cypress",
+   "Selenium WebDriver",
+   "Postman",
+   "TestNG",
+   "JUnit"
+  ],
+  "langs": [
+   "Java",
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Phạm Đức Phúc",
+  "rationale": [
+   "8 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, Selenium WebDriver, Postman, TestNG, JUnit for api testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_089",
+  "gender": "F",
+  "years": 7,
+  "depth": 4,
+  "tools": [
+   "Selenium WebDriver",
+   "Espresso",
+   "TestNG"
+  ],
+  "langs": [
+   "Java",
+   "JavaScript"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI",
+   "Docker"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Trần Ngọc Lan",
+  "rationale": [
+   "7 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Selenium WebDriver, Espresso, TestNG for mobile testing, ui testing.",
+   "Ran tests on GitLab CI, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_090",
+  "gender": "F",
+  "years": 4,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "Cypress",
+   "Rest Assured",
+   "Gatling",
+   "Robot Framework",
+   "JUnit"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đỗ Thu Hương",
+  "rationale": [
+   "4 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Cypress, Rest Assured, Gatling, Robot Framework, JUnit for api testing, performance testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_091",
+  "gender": "M",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Playwright",
+   "WebdriverIO",
+   "Postman",
+   "Robot Framework",
+   "TestNG"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": true,
+  "name": "Phạm Minh Nam",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Playwright, WebdriverIO, Postman, Robot Framework, TestNG for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_092",
+  "gender": "M",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Playwright",
+   "Rest Assured",
+   "Postman",
+   "k6",
+   "Robot Framework"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions",
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Vũ Đức Phúc",
+  "rationale": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Playwright, Rest Assured, Postman, k6, Robot Framework cho kiểm thử api testing, performance testing, ui testing.",
+   "Chạy test trên GitHub Actions, Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_093",
+  "gender": "F",
+  "years": 0,
+  "depth": 1,
+  "tools": [
+   "Rest Assured",
+   "Postman"
+  ],
+  "langs": [],
+  "test_types": [
+   "api testing",
+   "manual testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Bùi Ngọc Lan",
+  "rationale": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Sử dụng Rest Assured, Postman cho kiểm thử api testing, manual testing.",
+   "Chạy test trên Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_094",
+  "gender": "M",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Cypress",
+   "Postman",
+   "TestNG"
+  ],
+  "langs": [
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker",
+   "GitLab CI",
+   "Azure DevOps"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Nguyễn Đức Khoa",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Cypress, Postman, TestNG for api testing, ui testing.",
+   "Ran tests on Docker, GitLab CI, Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_095",
+  "gender": "M",
+  "years": 7,
+  "depth": 3,
+  "tools": [
+   "Playwright",
+   "Rest Assured",
+   "Cucumber",
+   "Pytest"
+  ],
+  "langs": [
+   "JavaScript",
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "Docker",
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Vũ Quốc Nam",
+  "rationale": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Playwright, Rest Assured, Cucumber, Pytest cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Azure DevOps, Docker, Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_096",
+  "gender": "F",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Pytest",
+   "JUnit"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Nguyễn Ngọc Hương",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Pytest, JUnit for ui testing.",
+   "Ran tests on Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_097",
+  "gender": "F",
+  "years": 7,
+  "depth": 4,
+  "tools": [
+   "Playwright",
+   "Selenium WebDriver",
+   "Postman",
+   "TestNG"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Nguyễn Mai Trang",
+  "rationale": [
+   "7 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Playwright, Selenium WebDriver, Postman, TestNG for api testing, ui testing.",
+   "Ran tests on GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_098",
+  "gender": "F",
+  "years": 6,
+  "depth": 4,
+  "tools": [
+   "Cypress",
+   "Postman",
+   "Rest Assured",
+   "JMeter",
+   "JUnit"
+  ],
+  "langs": [
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions",
+   "Docker",
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Vũ Thị Hương",
+  "rationale": [
+   "6 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Cypress, Postman, Rest Assured, JMeter, JUnit for api testing, performance testing, ui testing.",
+   "Ran tests on GitHub Actions, Docker, GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_099",
+  "gender": "M",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "Postman",
+   "Rest Assured",
+   "Cucumber"
+  ],
+  "langs": [
+   "JavaScript",
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Văn Phúc",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Postman, Rest Assured, Cucumber for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_100",
+  "gender": "M",
+  "years": 6,
+  "depth": 2,
+  "tools": [
+   "JMeter",
+   "Robot Framework"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Trần Minh Hùng",
+  "rationale": [
+   "6 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used JMeter, Robot Framework for manual testing, performance testing."
+  ]
+ },
+ {
+  "cv_id": "syn_101",
+  "gender": "F",
+  "years": 3,
+  "depth": 2,
+  "tools": [
+   "Cypress",
+   "Espresso",
+   "Rest Assured",
+   "Pytest",
+   "TestNG"
+  ],
+  "langs": [
+   "TypeScript",
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Nguyễn Thị Linh",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Cypress, Espresso, Rest Assured, Pytest, TestNG for api testing, mobile testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_102",
+  "gender": "M",
+  "years": 8,
+  "depth": 3,
+  "tools": [
+   "Cypress",
+   "Pytest",
+   "Robot Framework"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": true,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Nguyễn Quốc Tuấn",
+  "rationale": [
+   "8 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Cypress, Pytest, Robot Framework cho kiểm thử ui testing.",
+   "Chạy test trên GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_103",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Cypress",
+   "TestNG",
+   "Pytest"
+  ],
+  "langs": [
+   "TypeScript",
+   "Java"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Trần Mai Lan",
+  "rationale": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Cypress, TestNG, Pytest cho kiểm thử ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_104",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "Rest Assured",
+   "Cucumber"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Mai Linh",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Rest Assured, Cucumber for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_105",
+  "gender": "F",
+  "years": 4,
+  "depth": 3,
+  "tools": [
+   "Playwright",
+   "WebdriverIO",
+   "k6",
+   "Cucumber",
+   "JUnit"
+  ],
+  "langs": [
+   "TypeScript",
+   "JavaScript"
+  ],
+  "test_types": [
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions",
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Đặng Thu Vy",
+  "rationale": [
+   "4 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Playwright, WebdriverIO, k6, Cucumber, JUnit cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên GitHub Actions, Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_106",
+  "gender": "M",
+  "years": 7,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Playwright",
+   "Rest Assured",
+   "Cucumber"
+  ],
+  "langs": [
+   "Java",
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "Docker",
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Phạm Quốc Khoa",
+  "rationale": [
+   "7 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Playwright, Rest Assured, Cucumber for api testing, ui testing.",
+   "Ran tests on Azure DevOps, Docker, GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_107",
+  "gender": "F",
+  "years": 7,
+  "depth": 3,
+  "tools": [
+   "Playwright",
+   "Rest Assured",
+   "Cucumber",
+   "TestNG"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI",
+   "Docker"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Ngọc Linh",
+  "rationale": [
+   "7 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Playwright, Rest Assured, Cucumber, TestNG for api testing, ui testing.",
+   "Ran tests on GitLab CI, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_108",
+  "gender": "F",
+  "years": 0,
+  "depth": 1,
+  "tools": [
+   "Postman"
+  ],
+  "langs": [],
+  "test_types": [
+   "api testing",
+   "manual testing"
+  ],
+  "cicd": [
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Lê Mai Thảo",
+  "rationale": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Sử dụng Postman cho kiểm thử api testing, manual testing.",
+   "Chạy test trên GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_109",
+  "gender": "M",
+  "years": 0,
+  "depth": 1,
+  "tools": [
+   "XCUITest",
+   "Robot Framework"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "manual testing",
+   "mobile testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Trần Quốc Tuấn",
+  "rationale": [
+   "Executed manual test cases and reported defects in Jira.",
+   "Used XCUITest, Robot Framework for manual testing, mobile testing."
+  ]
+ },
+ {
+  "cv_id": "syn_110",
+  "gender": "M",
+  "years": 4,
+  "depth": 3,
+  "tools": [
+   "Playwright",
+   "Postman",
+   "Pytest"
+  ],
+  "langs": [
+   "Python",
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Hoàng Văn Phúc",
+  "rationale": [
+   "4 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Playwright, Postman, Pytest cho kiểm thử api testing, ui testing.",
+   "Chạy test trên GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_111",
+  "gender": "F",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "XCUITest",
+   "Postman",
+   "Rest Assured",
+   "Pytest"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "mobile testing"
+  ],
+  "cicd": [
+   "GitLab CI",
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Hồ Thu Trang",
+  "rationale": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng XCUITest, Postman, Rest Assured, Pytest cho kiểm thử api testing, manual testing, mobile testing.",
+   "Chạy test trên GitLab CI, Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_112",
+  "gender": "M",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "WebdriverIO",
+   "Cypress",
+   "Appium",
+   "JUnit",
+   "Robot Framework"
+  ],
+  "langs": [
+   "C#",
+   "TypeScript"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "Docker"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Quốc Hùng",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Cypress, Appium, JUnit, Robot Framework for mobile testing, ui testing.",
+   "Ran tests on Azure DevOps, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_113",
+  "gender": "M",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Playwright",
+   "Cypress",
+   "Robot Framework",
+   "TestNG"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Bùi Minh Tuấn",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Playwright, Cypress, Robot Framework, TestNG for ui testing.",
+   "Ran tests on Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_114",
+  "gender": "M",
+  "years": 7,
+  "depth": 2,
+  "tools": [
+   "Appium",
+   "Postman",
+   "Rest Assured",
+   "JUnit"
+  ],
+  "langs": [
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "mobile testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": true,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Đỗ Văn Hùng",
+  "rationale": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Appium, Postman, Rest Assured, JUnit cho kiểm thử api testing, manual testing, mobile testing.",
+   "Chạy test trên Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_115",
+  "gender": "M",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Appium",
+   "Rest Assured",
+   "Postman",
+   "JUnit"
+  ],
+  "langs": [
+   "Java",
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "mobile testing"
+  ],
+  "cicd": [
+   "GitLab CI",
+   "Docker",
+   "Jenkins"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Quốc Tuấn",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Appium, Rest Assured, Postman, JUnit for api testing, manual testing, mobile testing.",
+   "Ran tests on GitLab CI, Docker, Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_116",
+  "gender": "M",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "WebdriverIO",
+   "Selenium WebDriver",
+   "Rest Assured",
+   "Pytest",
+   "Cucumber"
+  ],
+  "langs": [
+   "JavaScript",
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins",
+   "Azure DevOps",
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": true,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Đức Hùng",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Selenium WebDriver, Rest Assured, Pytest, Cucumber for api testing, ui testing.",
+   "Ran tests on Jenkins, Azure DevOps, GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_117",
+  "gender": "F",
+  "years": 10,
+  "depth": 4,
+  "tools": [
+   "WebdriverIO",
+   "Espresso",
+   "TestNG"
+  ],
+  "langs": [
+   "Java",
+   "C#"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Bùi Ngọc Vy",
+  "rationale": [
+   "10 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used WebdriverIO, Espresso, TestNG for mobile testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_118",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Cypress",
+   "Selenium WebDriver",
+   "Espresso",
+   "Cucumber"
+  ],
+  "langs": [
+   "Python",
+   "TypeScript"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Lê Mai Linh",
+  "rationale": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Cypress, Selenium WebDriver, Espresso, Cucumber cho kiểm thử mobile testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_119",
+  "gender": "F",
+  "years": 0,
+  "depth": 1,
+  "tools": [
+   "Playwright",
+   "Rest Assured"
+  ],
+  "langs": [],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Bùi Ngọc Hương",
+  "rationale": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Sử dụng Playwright, Rest Assured cho kiểm thử api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_120",
+  "gender": "M",
+  "years": 6,
+  "depth": 2,
+  "tools": [
+   "Postman",
+   "JMeter",
+   "Pytest",
+   "Cucumber"
+  ],
+  "langs": [
+   "Python",
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Trần Quốc Khoa",
+  "rationale": [
+   "6 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Postman, JMeter, Pytest, Cucumber cho kiểm thử api testing, manual testing, performance testing.",
+   "Chạy test trên Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_121",
+  "gender": "M",
+  "years": 10,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "Rest Assured",
+   "Cucumber"
+  ],
+  "langs": [
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": true,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Bùi Quốc Nam",
+  "rationale": [
+   "10 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Rest Assured, Cucumber for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_122",
+  "gender": "F",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Rest Assured",
+   "Cucumber"
+  ],
+  "langs": [
+   "C#",
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Đặng Mai Lan",
+  "rationale": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Selenium WebDriver, Rest Assured, Cucumber cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Azure DevOps, Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_123",
+  "gender": "M",
+  "years": 8,
+  "depth": 4,
+  "tools": [
+   "JMeter",
+   "Cucumber",
+   "JUnit"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": true,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Minh Long",
+  "rationale": [
+   "8 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used JMeter, Cucumber, JUnit for manual testing, performance testing.",
+   "Ran tests on Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_124",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "JUnit",
+   "Pytest"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Vũ Quốc Nam",
+  "rationale": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, JUnit, Pytest cho kiểm thử ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_125",
+  "gender": "M",
+  "years": 4,
+  "depth": 3,
+  "tools": [
+   "Cypress",
+   "Appium",
+   "Postman",
+   "TestNG"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": true,
+  "name": "Hồ Đức Tuấn",
+  "rationale": [
+   "4 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, Appium, Postman, TestNG for api testing, mobile testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_126",
+  "gender": "F",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Cypress",
+   "Selenium WebDriver",
+   "XCUITest",
+   "Postman",
+   "Cucumber"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": true,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Nguyễn Mai Trang",
+  "rationale": [
+   "2 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Cypress, Selenium WebDriver, XCUITest, Postman, Cucumber cho kiểm thử api testing, mobile testing, ui testing.",
+   "Chạy test trên GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_127",
+  "gender": "F",
+  "years": 7,
+  "depth": 4,
+  "tools": [
+   "Gatling",
+   "JUnit"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Hoàng Mai Lan",
+  "rationale": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng Gatling, JUnit cho kiểm thử manual testing, performance testing.",
+   "Chạy test trên GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_128",
+  "gender": "F",
+  "years": 10,
+  "depth": 3,
+  "tools": [
+   "WebdriverIO",
+   "Rest Assured",
+   "JMeter",
+   "Pytest",
+   "Cucumber"
+  ],
+  "langs": [
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": true,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Trần Mai Hương",
+  "rationale": [
+   "10 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Rest Assured, JMeter, Pytest, Cucumber for api testing, performance testing, ui testing.",
+   "Ran tests on Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_129",
+  "gender": "M",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "Cypress",
+   "XCUITest",
+   "Rest Assured",
+   "Postman",
+   "JMeter",
+   "Robot Framework"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Văn Tuấn",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Cypress, XCUITest, Rest Assured, Postman, JMeter, Robot Framework for api testing, mobile testing, performance testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_130",
+  "gender": "M",
+  "years": 4,
+  "depth": 3,
+  "tools": [
+   "Appium",
+   "Postman",
+   "Rest Assured",
+   "JUnit",
+   "TestNG"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "mobile testing"
+  ],
+  "cicd": [
+   "Docker",
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Trần Văn Phúc",
+  "rationale": [
+   "4 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Appium, Postman, Rest Assured, JUnit, TestNG cho kiểm thử api testing, manual testing, mobile testing.",
+   "Chạy test trên Docker, Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_131",
+  "gender": "F",
+  "years": 5,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "Appium",
+   "Postman",
+   "k6",
+   "TestNG",
+   "Pytest"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Vũ Mai Linh",
+  "rationale": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng WebdriverIO, Appium, Postman, k6, TestNG, Pytest cho kiểm thử api testing, mobile testing, performance testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_132",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "WebdriverIO",
+   "Rest Assured",
+   "Postman",
+   "JUnit",
+   "Pytest"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Thu Thảo",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, WebdriverIO, Rest Assured, Postman, JUnit, Pytest for api testing, ui testing.",
+   "Ran tests on GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_133",
+  "gender": "F",
+  "years": 3,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "Rest Assured",
+   "Robot Framework"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Mai Trang",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Rest Assured, Robot Framework for api testing, ui testing.",
+   "Ran tests on Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_134",
+  "gender": "M",
+  "years": 0,
+  "depth": 1,
+  "tools": [],
+  "langs": [],
+  "test_types": [
+   "manual testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Phạm Văn Khoa",
+  "rationale": [
+   "Executed manual test cases and reported defects in Jira."
+  ]
+ },
+ {
+  "cv_id": "syn_135",
+  "gender": "M",
+  "years": 8,
+  "depth": 3,
+  "tools": [
+   "Playwright",
+   "Selenium WebDriver",
+   "Rest Assured",
+   "Postman",
+   "Robot Framework",
+   "JUnit"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions",
+   "GitLab CI",
+   "Azure DevOps"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Phạm Quốc Long",
+  "rationale": [
+   "8 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Playwright, Selenium WebDriver, Rest Assured, Postman, Robot Framework, JUnit cho kiểm thử api testing, ui testing.",
+   "Chạy test trên GitHub Actions, GitLab CI, Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_136",
+  "gender": "F",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Playwright",
+   "WebdriverIO",
+   "Appium",
+   "Robot Framework"
+  ],
+  "langs": [
+   "Java",
+   "JavaScript"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "Jenkins",
+   "GitLab CI"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Vũ Thu Linh",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Playwright, WebdriverIO, Appium, Robot Framework for mobile testing, ui testing.",
+   "Ran tests on Azure DevOps, Jenkins, GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_137",
+  "gender": "F",
+  "years": 6,
+  "depth": 3,
+  "tools": [
+   "JMeter",
+   "Cucumber"
+  ],
+  "langs": [
+   "JavaScript",
+   "Python"
+  ],
+  "test_types": [
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Phạm Ngọc Linh",
+  "rationale": [
+   "6 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used JMeter, Cucumber for manual testing, performance testing.",
+   "Ran tests on Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_138",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "Postman",
+   "k6",
+   "JUnit",
+   "TestNG"
+  ],
+  "langs": [
+   "TypeScript",
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": true,
+  "name": "Đặng Đức Hùng",
+  "rationale": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, Postman, k6, JUnit, TestNG cho kiểm thử api testing, performance testing, ui testing.",
+   "Chạy test trên GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_139",
+  "gender": "F",
+  "years": 4,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "Playwright",
+   "Postman",
+   "Rest Assured",
+   "Pytest"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Phạm Mai Lan",
+  "rationale": [
+   "4 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Playwright, Postman, Rest Assured, Pytest for api testing, ui testing.",
+   "Ran tests on Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_140",
+  "gender": "M",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Rest Assured",
+   "JMeter",
+   "TestNG"
+  ],
+  "langs": [
+   "Python",
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "Docker",
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": true,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Quốc Long",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Rest Assured, JMeter, TestNG for api testing, manual testing, performance testing.",
+   "Ran tests on Docker, GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_141",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "Playwright",
+   "XCUITest",
+   "TestNG"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đặng Mai Vy",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Playwright, XCUITest, TestNG for mobile testing, ui testing.",
+   "Ran tests on Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_142",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "Playwright",
+   "Rest Assured",
+   "Postman",
+   "JMeter",
+   "Robot Framework",
+   "TestNG"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hoàng Mai Thảo",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Playwright, Rest Assured, Postman, JMeter, Robot Framework, TestNG for api testing, performance testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_143",
+  "gender": "M",
+  "years": 10,
+  "depth": 4,
+  "tools": [
+   "JMeter",
+   "Pytest",
+   "TestNG"
+  ],
+  "langs": [
+   "Java",
+   "Python"
+  ],
+  "test_types": [
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Minh Long",
+  "rationale": [
+   "10 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used JMeter, Pytest, TestNG for manual testing, performance testing.",
+   "Ran tests on Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_144",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Playwright",
+   "Rest Assured",
+   "Postman",
+   "Gatling",
+   "Robot Framework",
+   "Pytest"
+  ],
+  "langs": [
+   "C#",
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Trần Thị Vy",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Playwright, Rest Assured, Postman, Gatling, Robot Framework, Pytest for api testing, performance testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_145",
+  "gender": "M",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Pytest",
+   "Cucumber"
+  ],
+  "langs": [
+   "C#",
+   "TypeScript"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": true,
+  "name": "Lê Minh Nam",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Pytest, Cucumber for ui testing.",
+   "Ran tests on GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_146",
+  "gender": "F",
+  "years": 7,
+  "depth": 3,
+  "tools": [
+   "Appium",
+   "Rest Assured",
+   "Postman",
+   "JUnit"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "mobile testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "GitHub Actions",
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": true,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Bùi Mai Hương",
+  "rationale": [
+   "7 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Appium, Rest Assured, Postman, JUnit for api testing, manual testing, mobile testing.",
+   "Ran tests on Azure DevOps, GitHub Actions, GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_147",
+  "gender": "F",
+  "years": 7,
+  "depth": 4,
+  "tools": [
+   "XCUITest",
+   "Gatling",
+   "JUnit",
+   "TestNG"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "manual testing",
+   "mobile testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Phạm Thu Lan",
+  "rationale": [
+   "7 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used XCUITest, Gatling, JUnit, TestNG for manual testing, mobile testing, performance testing.",
+   "Ran tests on Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_148",
+  "gender": "F",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Playwright",
+   "Robot Framework",
+   "Pytest"
+  ],
+  "langs": [
+   "Python",
+   "JavaScript"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins",
+   "GitHub Actions",
+   "Docker"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Phạm Mai Vy",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Playwright, Robot Framework, Pytest for ui testing.",
+   "Ran tests on Jenkins, GitHub Actions, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_149",
+  "gender": "M",
+  "years": 6,
+  "depth": 3,
+  "tools": [
+   "WebdriverIO",
+   "Gatling",
+   "JUnit"
+  ],
+  "langs": [
+   "C#",
+   "JavaScript"
+  ],
+  "test_types": [
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions",
+   "Azure DevOps",
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Đặng Quốc Nam",
+  "rationale": [
+   "6 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng WebdriverIO, Gatling, JUnit cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên GitHub Actions, Azure DevOps, GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_150",
+  "gender": "F",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Gatling",
+   "Pytest",
+   "TestNG"
+  ],
+  "langs": [
+   "Java",
+   "JavaScript"
+  ],
+  "test_types": [
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "GitHub Actions",
+   "Docker"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Nguyễn Ngọc Lan",
+  "rationale": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Gatling, Pytest, TestNG cho kiểm thử manual testing, performance testing.",
+   "Chạy test trên GitHub Actions, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_151",
+  "gender": "M",
+  "years": 0,
+  "depth": 1,
+  "tools": [],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "manual testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Hoàng Quốc Hùng",
+  "rationale": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Chạy test trên GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_152",
+  "gender": "F",
+  "years": 7,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "WebdriverIO",
+   "Pytest",
+   "Robot Framework"
+  ],
+  "langs": [
+   "TypeScript",
+   "Java"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Trần Thu Vy",
+  "rationale": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, WebdriverIO, Pytest, Robot Framework cho kiểm thử ui testing.",
+   "Chạy test trên Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_153",
+  "gender": "M",
+  "years": 10,
+  "depth": 4,
+  "tools": [
+   "Playwright",
+   "Appium",
+   "Rest Assured",
+   "Postman",
+   "Gatling",
+   "TestNG"
+  ],
+  "langs": [
+   "JavaScript",
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins",
+   "Docker"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đỗ Đức Nam",
+  "rationale": [
+   "10 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Playwright, Appium, Rest Assured, Postman, Gatling, TestNG for api testing, mobile testing, performance testing, ui testing.",
+   "Ran tests on Jenkins, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_154",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "Playwright",
+   "Postman",
+   "Gatling",
+   "TestNG",
+   "Pytest"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Nguyễn Minh Nam",
+  "rationale": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng WebdriverIO, Playwright, Postman, Gatling, TestNG, Pytest cho kiểm thử api testing, performance testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_155",
+  "gender": "F",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Rest Assured",
+   "Postman",
+   "Pytest",
+   "JUnit"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Đặng Thu Vy",
+  "rationale": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Selenium WebDriver, Rest Assured, Postman, Pytest, JUnit cho kiểm thử api testing, ui testing.",
+   "Chạy test trên GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_156",
+  "gender": "M",
+  "years": 3,
+  "depth": 2,
+  "tools": [
+   "Cypress",
+   "WebdriverIO",
+   "JMeter",
+   "TestNG"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Đặng Văn Tuấn",
+  "rationale": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Cypress, WebdriverIO, JMeter, TestNG cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_157",
+  "gender": "M",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Cypress",
+   "Rest Assured",
+   "Robot Framework"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Vũ Văn Nam",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Cypress, Rest Assured, Robot Framework for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_158",
+  "gender": "M",
+  "years": 3,
+  "depth": 2,
+  "tools": [
+   "Playwright",
+   "Cypress",
+   "Espresso",
+   "Postman",
+   "Robot Framework"
+  ],
+  "langs": [
+   "Python",
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Hoàng Văn Khoa",
+  "rationale": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Playwright, Cypress, Espresso, Postman, Robot Framework cho kiểm thử api testing, mobile testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_159",
+  "gender": "F",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "Rest Assured",
+   "Cucumber",
+   "TestNG"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Nguyễn Ngọc Trang",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Rest Assured, Cucumber, TestNG for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_160",
+  "gender": "F",
+  "years": 7,
+  "depth": 3,
+  "tools": [
+   "WebdriverIO",
+   "Rest Assured",
+   "Postman",
+   "TestNG"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Mai Lan",
+  "rationale": [
+   "7 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used WebdriverIO, Rest Assured, Postman, TestNG for api testing, ui testing.",
+   "Ran tests on Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_161",
+  "gender": "F",
+  "years": 8,
+  "depth": 4,
+  "tools": [
+   "WebdriverIO",
+   "Selenium WebDriver",
+   "Rest Assured",
+   "Robot Framework"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker",
+   "Jenkins",
+   "GitLab CI"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Bùi Thị Lan",
+  "rationale": [
+   "8 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used WebdriverIO, Selenium WebDriver, Rest Assured, Robot Framework for api testing, ui testing.",
+   "Ran tests on Docker, Jenkins, GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_162",
+  "gender": "M",
+  "years": 0,
+  "depth": 1,
+  "tools": [
+   "WebdriverIO",
+   "Rest Assured",
+   "Postman",
+   "Cucumber"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Lê Văn Nam",
+  "rationale": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Sử dụng WebdriverIO, Rest Assured, Postman, Cucumber cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_163",
+  "gender": "F",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Cypress",
+   "Selenium WebDriver",
+   "Rest Assured",
+   "Postman",
+   "Cucumber",
+   "TestNG"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Vũ Mai Vy",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, Selenium WebDriver, Rest Assured, Postman, Cucumber, TestNG for api testing, ui testing.",
+   "Ran tests on GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_164",
+  "gender": "M",
+  "years": 0,
+  "depth": 1,
+  "tools": [
+   "Cypress",
+   "Postman",
+   "Rest Assured"
+  ],
+  "langs": [],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Lê Minh Long",
+  "rationale": [
+   "Executed manual test cases and reported defects in Jira.",
+   "Used Cypress, Postman, Rest Assured for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_165",
+  "gender": "F",
+  "years": 0,
+  "depth": 1,
+  "tools": [
+   "Postman",
+   "Rest Assured"
+  ],
+  "langs": [
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing"
+  ],
+  "cicd": [
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Đặng Mai Vy",
+  "rationale": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Sử dụng Postman, Rest Assured cho kiểm thử api testing, manual testing.",
+   "Chạy test trên Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_166",
+  "gender": "F",
+  "years": 4,
+  "depth": 2,
+  "tools": [
+   "Cypress",
+   "WebdriverIO",
+   "Postman",
+   "Pytest",
+   "JUnit"
+  ],
+  "langs": [
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đỗ Mai Linh",
+  "rationale": [
+   "4 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Cypress, WebdriverIO, Postman, Pytest, JUnit for api testing, ui testing.",
+   "Ran tests on Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_167",
+  "gender": "F",
+  "years": 10,
+  "depth": 4,
+  "tools": [
+   "WebdriverIO",
+   "XCUITest",
+   "Postman",
+   "Rest Assured",
+   "TestNG"
+  ],
+  "langs": [
+   "Python",
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Hồ Thị Thảo",
+  "rationale": [
+   "10 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng WebdriverIO, XCUITest, Postman, Rest Assured, TestNG cho kiểm thử api testing, mobile testing, ui testing.",
+   "Chạy test trên Azure DevOps, Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_168",
+  "gender": "F",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Rest Assured",
+   "k6",
+   "Pytest",
+   "TestNG"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hoàng Thị Hương",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Rest Assured, k6, Pytest, TestNG for api testing, manual testing, performance testing."
+  ]
+ },
+ {
+  "cv_id": "syn_169",
+  "gender": "F",
+  "years": 8,
+  "depth": 3,
+  "tools": [
+   "Cypress",
+   "JMeter",
+   "Cucumber"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker",
+   "GitHub Actions"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Lê Thu Lan",
+  "rationale": [
+   "8 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Cypress, JMeter, Cucumber cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên Docker, GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_170",
+  "gender": "M",
+  "years": 0,
+  "depth": 1,
+  "tools": [],
+  "langs": [],
+  "test_types": [
+   "manual testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Hồ Minh Tuấn",
+  "rationale": [
+   "Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.",
+   "Chạy test trên Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_171",
+  "gender": "F",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "WebdriverIO",
+   "Postman",
+   "Cucumber",
+   "TestNG"
+  ],
+  "langs": [
+   "JavaScript",
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hoàng Thu Lan",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, WebdriverIO, Postman, Cucumber, TestNG for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_172",
+  "gender": "M",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "WebdriverIO",
+   "TestNG"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hoàng Văn Phúc",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, WebdriverIO, TestNG for ui testing.",
+   "Ran tests on Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_173",
+  "gender": "M",
+  "years": 7,
+  "depth": 4,
+  "tools": [
+   "Selenium WebDriver",
+   "Appium",
+   "Pytest"
+  ],
+  "langs": [
+   "TypeScript",
+   "C#"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "Docker",
+   "GitLab CI"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Đức Khoa",
+  "rationale": [
+   "7 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Selenium WebDriver, Appium, Pytest for mobile testing, ui testing.",
+   "Ran tests on Azure DevOps, Docker, GitLab CI."
+  ]
+ },
+ {
+  "cv_id": "syn_174",
+  "gender": "M",
+  "years": 7,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Playwright",
+   "Postman",
+   "Rest Assured",
+   "JMeter",
+   "JUnit"
+  ],
+  "langs": [
+   "C#",
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI",
+   "GitHub Actions",
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đặng Minh Nam",
+  "rationale": [
+   "7 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Playwright, Postman, Rest Assured, JMeter, JUnit for api testing, performance testing, ui testing.",
+   "Ran tests on GitLab CI, GitHub Actions, Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_175",
+  "gender": "M",
+  "years": 5,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "XCUITest",
+   "Rest Assured",
+   "JUnit",
+   "Cucumber"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Hồ Quốc Long",
+  "rationale": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, XCUITest, Rest Assured, JUnit, Cucumber cho kiểm thử api testing, mobile testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_176",
+  "gender": "M",
+  "years": 10,
+  "depth": 2,
+  "tools": [
+   "Cypress",
+   "Rest Assured",
+   "k6",
+   "JUnit",
+   "Robot Framework"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Đức Hùng",
+  "rationale": [
+   "10 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Cypress, Rest Assured, k6, JUnit, Robot Framework for api testing, performance testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_177",
+  "gender": "M",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Appium",
+   "Postman",
+   "Pytest",
+   "Robot Framework"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "mobile testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "Docker"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Đỗ Đức Long",
+  "rationale": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Appium, Postman, Pytest, Robot Framework cho kiểm thử api testing, manual testing, mobile testing.",
+   "Chạy test trên Azure DevOps, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_178",
+  "gender": "F",
+  "years": 10,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "Cypress",
+   "Appium",
+   "Robot Framework",
+   "JUnit"
+  ],
+  "langs": [
+   "C#"
+  ],
+  "test_types": [
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Nguyễn Ngọc Hương",
+  "rationale": [
+   "10 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, Cypress, Appium, Robot Framework, JUnit cho kiểm thử mobile testing, ui testing.",
+   "Chạy test trên Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_179",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "WebdriverIO",
+   "Postman",
+   "Robot Framework"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đỗ Thu Vy",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used WebdriverIO, Postman, Robot Framework for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_180",
+  "gender": "F",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Postman",
+   "Cucumber",
+   "Robot Framework"
+  ],
+  "langs": [
+   "Java",
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitHub Actions",
+   "Jenkins",
+   "Docker"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Vũ Mai Hương",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Selenium WebDriver, Postman, Cucumber, Robot Framework for api testing, ui testing.",
+   "Ran tests on GitHub Actions, Jenkins, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_181",
+  "gender": "M",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Appium",
+   "Robot Framework"
+  ],
+  "langs": [
+   "JavaScript",
+   "C#"
+  ],
+  "test_types": [
+   "manual testing",
+   "mobile testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "Jenkins"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Nguyễn Văn Hùng",
+  "rationale": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Appium, Robot Framework cho kiểm thử manual testing, mobile testing.",
+   "Chạy test trên Azure DevOps, Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_182",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Cypress",
+   "Pytest",
+   "TestNG"
+  ],
+  "langs": [
+   "TypeScript",
+   "C#"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Nguyễn Đức Khoa",
+  "rationale": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Cypress, Pytest, TestNG cho kiểm thử ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_183",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "Gatling",
+   "Robot Framework",
+   "TestNG"
+  ],
+  "langs": [
+   "Java",
+   "Python"
+  ],
+  "test_types": [
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Trần Quốc Nam",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Gatling, Robot Framework, TestNG for performance testing, ui testing.",
+   "Ran tests on Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_184",
+  "gender": "M",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "WebdriverIO",
+   "Cypress",
+   "XCUITest",
+   "Rest Assured",
+   "Postman",
+   "JMeter",
+   "JUnit",
+   "TestNG"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker",
+   "Jenkins",
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Vũ Văn Hùng",
+  "rationale": [
+   "5 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng WebdriverIO, Cypress, XCUITest, Rest Assured, Postman, JMeter, JUnit, TestNG cho kiểm thử api testing, mobile testing, performance testing, ui testing.",
+   "Chạy test trên Docker, Jenkins, GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_185",
+  "gender": "M",
+  "years": 8,
+  "depth": 4,
+  "tools": [
+   "Selenium WebDriver",
+   "Cypress",
+   "Rest Assured",
+   "Pytest",
+   "TestNG"
+  ],
+  "langs": [
+   "Python",
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "GitLab CI",
+   "Jenkins"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Đặng Đức Long",
+  "rationale": [
+   "8 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng Selenium WebDriver, Cypress, Rest Assured, Pytest, TestNG cho kiểm thử api testing, ui testing.",
+   "Chạy test trên GitLab CI, Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_186",
+  "gender": "M",
+  "years": 5,
+  "depth": 3,
+  "tools": [
+   "Cypress",
+   "Rest Assured",
+   "Postman",
+   "Gatling",
+   "Robot Framework",
+   "Pytest"
+  ],
+  "langs": [
+   "TypeScript",
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker",
+   "Azure DevOps"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Vũ Minh Long",
+  "rationale": [
+   "5 years of experience in software testing.",
+   "Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.",
+   "Used Cypress, Rest Assured, Postman, Gatling, Robot Framework, Pytest for api testing, performance testing, ui testing.",
+   "Ran tests on Docker, Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_187",
+  "gender": "F",
+  "years": 7,
+  "depth": 3,
+  "tools": [
+   "WebdriverIO",
+   "Gatling",
+   "Pytest",
+   "TestNG"
+  ],
+  "langs": [
+   "TypeScript"
+  ],
+  "test_types": [
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Jenkins",
+   "Docker",
+   "Azure DevOps"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": true,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Bùi Mai Lan",
+  "rationale": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng WebdriverIO, Gatling, Pytest, TestNG cho kiểm thử performance testing, ui testing.",
+   "Chạy test trên Jenkins, Docker, Azure DevOps."
+  ]
+ },
+ {
+  "cv_id": "syn_188",
+  "gender": "M",
+  "years": 7,
+  "depth": 3,
+  "tools": [
+   "JMeter",
+   "Cucumber"
+  ],
+  "langs": [
+   "Java",
+   "Python"
+  ],
+  "test_types": [
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "Docker",
+   "GitHub Actions",
+   "Jenkins"
+  ],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Lê Đức Khoa",
+  "rationale": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng JMeter, Cucumber cho kiểm thử manual testing, performance testing.",
+   "Chạy test trên Docker, GitHub Actions, Jenkins."
+  ]
+ },
+ {
+  "cv_id": "syn_189",
+  "gender": "M",
+  "years": 3,
+  "depth": 3,
+  "tools": [
+   "Selenium WebDriver",
+   "Cucumber",
+   "JUnit"
+  ],
+  "langs": [
+   "Java"
+  ],
+  "test_types": [
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker"
+  ],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Vũ Đức Long",
+  "rationale": [
+   "3 năm kinh nghiệm kiểm thử phần mềm.",
+   "Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.",
+   "Sử dụng Selenium WebDriver, Cucumber, JUnit cho kiểm thử ui testing.",
+   "Chạy test trên Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_190",
+  "gender": "F",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Rest Assured",
+   "JMeter",
+   "Robot Framework",
+   "TestNG"
+  ],
+  "langs": [
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đỗ Ngọc Linh",
+  "rationale": [
+   "2 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Rest Assured, JMeter, Robot Framework, TestNG for api testing, manual testing, performance testing.",
+   "Ran tests on GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_191",
+  "gender": "F",
+  "years": 7,
+  "depth": 4,
+  "tools": [
+   "Cypress",
+   "Rest Assured",
+   "Postman",
+   "TestNG",
+   "Cucumber"
+  ],
+  "langs": [
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Azure DevOps",
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Vũ Thị Hương",
+  "rationale": [
+   "7 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng Cypress, Rest Assured, Postman, TestNG, Cucumber cho kiểm thử api testing, ui testing.",
+   "Chạy test trên Azure DevOps, GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_192",
+  "gender": "F",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Postman",
+   "Rest Assured",
+   "k6",
+   "JUnit"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "performance testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Vũ Ngọc Trang",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Postman, Rest Assured, k6, JUnit for api testing, manual testing, performance testing."
+  ]
+ },
+ {
+  "cv_id": "syn_193",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "Rest Assured",
+   "Postman",
+   "Cucumber",
+   "JUnit"
+  ],
+  "langs": [
+   "TypeScript",
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Nguyễn Đức Hùng",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Selenium WebDriver, Rest Assured, Postman, Cucumber, JUnit for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_194",
+  "gender": "F",
+  "years": 10,
+  "depth": 4,
+  "tools": [
+   "Cypress",
+   "WebdriverIO",
+   "XCUITest",
+   "Rest Assured",
+   "JUnit",
+   "Pytest"
+  ],
+  "langs": [
+   "JavaScript"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [
+   "Docker",
+   "GitHub Actions"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Nguyễn Thị Vy",
+  "rationale": [
+   "10 years of experience in software testing.",
+   "Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.",
+   "Used Cypress, WebdriverIO, XCUITest, Rest Assured, JUnit, Pytest for api testing, mobile testing, ui testing.",
+   "Ran tests on Docker, GitHub Actions."
+  ]
+ },
+ {
+  "cv_id": "syn_195",
+  "gender": "F",
+  "years": 2,
+  "depth": 2,
+  "tools": [
+   "Playwright",
+   "Postman",
+   "Robot Framework"
+  ],
+  "langs": [
+   "TypeScript",
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Lê Thị Hương",
+  "rationale": [
+   "2 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Playwright, Postman, Robot Framework cho kiểm thử api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_196",
+  "gender": "M",
+  "years": 10,
+  "depth": 4,
+  "tools": [
+   "Espresso",
+   "Rest Assured",
+   "JMeter",
+   "JUnit"
+  ],
+  "langs": [
+   "TypeScript",
+   "Java"
+  ],
+  "test_types": [
+   "api testing",
+   "manual testing",
+   "mobile testing",
+   "performance testing"
+  ],
+  "cicd": [
+   "GitHub Actions",
+   "Docker"
+  ],
+  "istqb": false,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": true,
+  "name": "Lê Minh Khoa",
+  "rationale": [
+   "10 năm kinh nghiệm kiểm thử phần mềm.",
+   "Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.",
+   "Sử dụng Espresso, Rest Assured, JMeter, JUnit cho kiểm thử api testing, manual testing, mobile testing, performance testing.",
+   "Chạy test trên GitHub Actions, Docker."
+  ]
+ },
+ {
+  "cv_id": "syn_197",
+  "gender": "M",
+  "years": 3,
+  "depth": 2,
+  "tools": [
+   "Cypress",
+   "k6",
+   "TestNG",
+   "Cucumber"
+  ],
+  "langs": [
+   "TypeScript",
+   "Python"
+  ],
+  "test_types": [
+   "performance testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Hồ Đức Phúc",
+  "rationale": [
+   "3 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Cypress, k6, TestNG, Cucumber for performance testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_198",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Playwright",
+   "WebdriverIO",
+   "Rest Assured",
+   "Postman",
+   "Robot Framework",
+   "Cucumber"
+  ],
+  "langs": [
+   "Python",
+   "C#"
+  ],
+  "test_types": [
+   "api testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": true,
+  "english": true,
+  "japanese": false,
+  "lang_cv": "en",
+  "low_quality": false,
+  "name": "Đặng Minh Tuấn",
+  "rationale": [
+   "1 years of experience in software testing.",
+   "Wrote and maintained automated test scripts for regression suites.",
+   "Used Playwright, WebdriverIO, Rest Assured, Postman, Robot Framework, Cucumber for api testing, ui testing."
+  ]
+ },
+ {
+  "cv_id": "syn_199",
+  "gender": "M",
+  "years": 1,
+  "depth": 2,
+  "tools": [
+   "Selenium WebDriver",
+   "Espresso",
+   "Postman",
+   "TestNG"
+  ],
+  "langs": [
+   "C#",
+   "Python"
+  ],
+  "test_types": [
+   "api testing",
+   "mobile testing",
+   "ui testing"
+  ],
+  "cicd": [],
+  "istqb": false,
+  "english": false,
+  "japanese": false,
+  "lang_cv": "vi",
+  "low_quality": false,
+  "name": "Trần Văn Khoa",
+  "rationale": [
+   "1 năm kinh nghiệm kiểm thử phần mềm.",
+   "Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.",
+   "Sử dụng Selenium WebDriver, Espresso, Postman, TestNG cho kiểm thử api testing, mobile testing, ui testing."
+  ]
+ }
+]

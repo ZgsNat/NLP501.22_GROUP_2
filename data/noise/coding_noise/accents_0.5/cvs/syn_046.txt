@@ -1,0 +1,22 @@
+Ho Đức Phuc
+Automation Test Engineer
+Email: phuc23@example.com
+Dien thoai: 0964450250
+Gioi tính: Nam
+Ngày sinh: 27/12/1991
+
+TOM TAT
+6 năm kinh nghiem kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company C (2020 - nay)
+- Xay dựng framework automation theo Page Object Model, data-driven, tích hop Jenkins pipeline.
+- Sử dụng Playwright, Selenium WebDriver, Espresso, Postman, k6, JUnit cho kiểm thu api testing, mobile testing, performance testing, ui testing.
+- Chay test tren GitLab CI, Docker, Jenkins.
+
+KY NANG
+Ngôn ngu lap trinh: Java
+Chung chi: ISTQB Foundation Level (CTFL)
+Ngoại ngữ: English (TOEIC 750)
+
+Dia chi: 285 Nguyen Trai Street, District 11

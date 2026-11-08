@@ -1,0 +1,22 @@
+Phạm Mai Lan
+Aut@mat%on Tes% En%ine@r
+%mail: ~a@56@e%ample.com
+%hone: 0994685039
+Gender: Female
+Date of @irt#: 23/11/1988
+
+SUMMA~Y
+4 years of ex%erience i# ~@ftware @esting.
+
+EXPERIEN~@
+%o~pany % (@~22 - Present~
+- W@o#e and main%ained @utomate# test scripts for regressi%n suites.
+@ Used WebdriverIO, Play%right, Postman# Rest Assured, Pytest for api tes%ing, ui testi#g.
+- Ra% #ests on Jenkins.
+
+SKILL%
+Pr@gra@ming: JavaScript
+Cer~ification: ISTQB CTFL
+Languag@s: %n#lish (TOEIC @50)
+
+Ad%ress: 7@ Nguy@n T@ai Street, District 5

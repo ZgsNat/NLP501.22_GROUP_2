@@ -1,0 +1,16 @@
+Vũ Mai Linh
+Automation Test Engineer
+Email: linh89@example.com
+Điện thoại: 0969676465 Giới tính: Nữ
+Ngày sinh: 06/04/1992
+
+TÓM TẮT
+5 năm kinh nghiệm kiểm thử phần mềm. 
+KINH NGHIỆM
+Company G (2021 - nay)
+- Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.
+- Sử dụng WebdriverIO, Appium, Postman, k6, TestNG, Pytest cho kiểm thử api testing, mobile testing, performance testing, ui testing.  KỸ NĂNG
+Ngôn ngữ lập trình: Java
+Chứng chỉ: ISTQB Foundation Level (CTFL)
+
+Địa chỉ: 23 Nguyen Trai Street, District 1

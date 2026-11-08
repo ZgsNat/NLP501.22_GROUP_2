@@ -1,0 +1,22 @@
+Vu Duc Tuan
+Automation Test Engineer
+Email: tuan80@example.com
+Dien thoai: 0911419753
+Gioi tinh: Nam
+Ngay sinh: 22/01/1990
+
+TOM TAT
+7 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company A (2019 - nay)
+- Truong nhom QA 5 nguoi, dinh huong automation strategy va mentor thanh vien moi.
+- Su dung Playwright, WebdriverIO, Rest Assured, Postman, Pytest cho kiem thu api testing, ui testing.
+- Chay test tren Azure DevOps.
+
+KY NANG
+Ngon ngu lap trinh: JavaScript
+Chung chi: ISTQB Foundation Level (CTFL)
+Ngoai ngu: English (TOEIC 750), Japanese JLPT N2
+
+Dia chi: 211 Nguyen Trai Street, District 2

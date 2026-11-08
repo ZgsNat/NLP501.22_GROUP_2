@@ -1,0 +1,20 @@
+L# Mai L#nh
+Automatio# Test En~ineer
+Ema#l: linh12@example.com
+Điện %hoại: 09256308~8
+Gi~i tính: Nữ
+Ngày sinh: ~@/03/200@
+
+TÓM TẮT
+1 n~m kinh n#hi@m kiể~ thử phần mềm%
+
+K@NH NGHIỆM
+Co~p~ny D (2025 - n#y)
+- Viết #utoma%ion test scri@ts cho bộ re~res~ion, kiể@ thử tự đ#ng hằng ngày.
+- S% dụng Cypress, Se%enium We~Driver, ~spresso# @%@umber cho kiểm thử @obile te%ting, ui te%ting.
+
+KỸ N%NG
+Ngô~ @gữ ~ập #r%n%: Python, Typ#Script
+Ngoại ng%: English (T%EIC 750)
+
+Đ#a chỉ# 242 N%uyen T#ai Street, Distric% 1

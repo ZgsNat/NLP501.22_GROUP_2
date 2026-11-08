@@ -1,0 +1,21 @@
+Bui Van Hung
+Automation Test Engineer
+Email: hung37@example.com
+Dien thoai: 0928645088
+Gioi tinh: Nam
+Ngay sinh: 19/11/1988
+
+TOM TAT
+3 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company G (2023 - nay)
+- Viet automation test scripts cho bo regression, kiem thu tu dong hang ngay.
+- Su dung Playwright, WebdriverIO, XCUITest, Robot Framework cho kiem thu mobile testing, ui testing.
+- Chay test tren GitHub Actions.
+
+KY NANG
+Ngon ngu lap trinh: Java, Python
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 76 Nguyen Trai Street, District 11

@@ -1,0 +1,21 @@
+Đỗ Đức Lon@
+Automation Test Engineer
+Email@ long1@@example.com
+Đi%n thoại: 0990972%85
+Giới @ính: Na@
+Ngày sinh# 04/07/200%
+
+TÓ~ TẮT
+5 năm kinh n%hiệ# kiểm thử phần mềm.
+
+KINH NGHIỆM
+Compa~y A (2021 - nay)
+- Xây dự#g framework autom#tion theo Pa@e Object ~odel, data-driven, tích hợp Jenkins pipeline.
+- Sử dụng Appi%m, Postman, Pytest, R%bot Framework cho kiểm thử a@i testing, manual testing, %ob%le testin~%
+- Chạy test trên Azure DevOps, Docke~.
+
+K~ NĂNG
+N#ôn ngữ lập %rình: Java#cript
+Ngoại ngữ: English (T~EIC 750)
+
+Địa chỉ: 57 Nguyen Trai Street~ District 1

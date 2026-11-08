@@ -1,0 +1,22 @@
+V# %hu Linh
+Automation Tes# Engineer
+#mail: linh52@examp~e.c%m
+~#one: 093178085~
+Gender: Female
+Date of birth: 0@/0#/1989
+
+S#MMARY
+5 years of experi~n~e in so@tware te#ting.
+
+EXPERIENCE
+Company D (2021 - Present)
+- Designed and bui@t a P@g@ Object Model automation framework and i%tegr~ted i# in#o the C~ #ipeline.
+- Used Playwright, WebdriverIO, Ap%i%m, Robot F#amework ~o@ mobil~ tes~ing, ui t#sti%g~
+- Ran te#ts on Azure Dev#ps, Jenkins, Git~ab CI#
+
+SKI%LS
+Programming: Jav%, J@#aScript
+Certificat~on: IS~QB CTFL
+Languages: En%lish (T#EIC 750)
+
+Address~ 1@3 Ngu%en Trai Street# District 1

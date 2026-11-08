@@ -1,0 +1,18 @@
+Hoà%g Q%ốc Hùng
+Q#/Q# Engine%r
+Email: hùng64@#xample.com
+Điện thoạ%: 0943252079
+Giới tính: N%m
+Ngày sinh@ 20/0%/1993
+
+TÓM T#T
+~ới tốt nghi%p, đam mê ki~m thử.
+
+K%NH NGHIỆM
+- Thực hiện kiểm #hử thủ công, viết test ~a%e và báo lỗi trên @ira.
+- Chạy test trên GitLab CI.
+
+KỸ NĂ~G
+Ngôn ngữ lập trình: JavaScript
+
+Địa chỉ% 128 Nguyen Trai S~reet, District 5

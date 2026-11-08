@@ -1,0 +1,13 @@
+Lê Mai Linh
+Automation Test Engineer
+Email: linh46@example.com
+Phone: 0996861418
+Gender: Female
+Date of birth: 25/11/1992
+
+SUMMARY
+1 years of experience in software testing.
+
+EXPERIENCE
+Company A (2025 - Present)
+- Wrote and maintained automat

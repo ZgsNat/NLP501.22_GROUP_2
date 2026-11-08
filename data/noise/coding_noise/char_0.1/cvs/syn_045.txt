@@ -1,0 +1,22 @@
+Bùi V~n Tuấn
+Automation Test Engine#r
+Email: tuấn7#@%xample.com
+P%one: 097@#06810
+@ender: Male
+Date of @irth: 28/03/1997
+
+SUMMARY
+2 %e@rs of @%%erienc@ in soft%are %esting#
+
+@XP%RIENCE
+Comp%ny G (202~ - Prese%t)
+- Wrote and m##ntained a%toma%ed test sc@ipts for regress@on suites.
+- Used Cypress, We~driverI%, Gatling, Robot Framework, J%nit for perf#rmance testing# u~ testing.
+- R@n tests on GitHub A~ti#ns.
+
+SKILLS
+Progr%mming: Ja#a, TypeScript
+Cer#i~i@ation% ISTQB CTFL
+L#%g@@ges: Eng#ish (TOEIC 750)
+
+Ad#@ess: 179 Nguyen Trai Street, D#strict 10

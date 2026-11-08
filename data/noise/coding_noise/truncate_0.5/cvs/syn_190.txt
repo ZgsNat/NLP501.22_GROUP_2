@@ -1,0 +1,13 @@
+Đỗ Ngọc Linh
+Automation Test Engineer
+Email: linh20@example.com
+Phone: 0987975659
+Gender: Female
+Date of birth: 23/07/1995
+
+SUMMARY
+2 years of experience in software testing.
+
+EXPERIENCE
+Company F (2024 - Present)
+- Wrote and maintained automat

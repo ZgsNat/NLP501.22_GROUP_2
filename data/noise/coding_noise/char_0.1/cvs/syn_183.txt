@@ -1,0 +1,20 @@
+Trần Quốc Nam
+Automati@n Test Engineer
+Email: nam@4@example.com
+Pho~e: 0940%34894
+#~%der: Male
+Date of birth: 04/#5/1999
+
+S##MARY
+1 ye~rs of experience in s%ftware te@t@ng.
+
+EXPE~IE%CE
+Comp@ny A (2#25 - Prese@t)
+@ Wro%e #n% maintained automated test s@ripts fo~ regression s%i~es.
+- #sed Selenium WebDriver, Gatling, Robot Framewor~, TestNG for performance testing, ui t%sting.
+- Ran tests on Docker.
+
+SKILLS
+Progr#mming: Java# #ython
+
+~ddress: 171 Nguyen Trai Street, District 2

@@ -1,0 +1,21 @@
+Nguyen Quoc Tuan
+Automation Test Engineer
+Email: tuấn82@example.com
+Dien thoại: 0927357063
+Gioi tinh: Nam
+Ngay sinh: 07/01/1997
+
+TOM TAT
+8 nam kinh nghiem kiem thử phan mềm.
+
+KINH NGHIỆM
+Company C (2018 - nay)
+- Xay dựng framework automation theo Page Object Model, data-driven, tích hop Jenkins pipeline.
+- Sử dung Cypress, Pytest, Robot Framework cho kiem thu ui testing.
+- Chạy test tren GitHub Actions.
+
+KY NĂNG
+Ngôn ngu lập trình: Java
+Ngoai ngu: Japanese JLPT N2
+
+Dia chỉ: 29 Nguyen Trai Street, District 12

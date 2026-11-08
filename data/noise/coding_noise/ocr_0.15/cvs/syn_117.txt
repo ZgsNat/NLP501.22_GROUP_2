@@ -1,0 +1,20 @@
+Bùi Ngọc Vy
+Automation Test Engineer
+Email: vy40@example.c0m
+Ph0ne: 0968490538
+Gender: Female
+Date of birth: 27/11/1994
+
+SUMMARY
+10 years of experience in software testing.
+
+EXPERIENCE
+C0mpany A (2016 - Present)
+- Defined the test aut0mation strategy, 1ed a team 0f 5 QA engineers and mentored juniors on aut0mation.
+- Used WebdriverlO, Espresso, TestNG for mobile testing, ui testing.
+- Ran tests on Azure Dev0ps.
+
+SKILLS
+Programming: Java, C#
+
+Address: 155 Nguyen Trai 5treet, District 8

@@ -1,0 +1,21 @@
+Vũ Đức Long
+Automation Test Engineer
+Email: long41@example.com
+Điện th0ại: 0961430248
+Giới tinh: Nam
+Ngày sinh: 14/09/2003
+
+TÓM TẮT
+3 nam kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHlỆM
+Company E (2023 - nay)
+- Xay dựng framework automation the0 Page Object Mode1, data-driven, tích hợp Jenkins pipeline.
+- Sử dụng Selenium WebDriver, Cucumber, JUnit cho kiểm thử ui testing.
+- Chạy test trên D0cker.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Java
+Chứng chi: ISTQB Foundation Leve1 (CTFL)
+
+Dia chỉ: 274 Nguyen Trai Street, District 8

@@ -1,0 +1,21 @@
+Bùi Th# Th#o
+Automation Test Engineer
+Email: thảo66@example.com
+Điện thoại: 0928134815
+G~ới t%n%: Nữ
+#gày sinh: 23/09/1993
+
+TÓM TẮT
+1 năm kinh nghiệm kiểm thử phần mềm.
+
+@INH NGHIỆ%
+Co#pany E (@025 - n@y)
+# Vi%t ~utomation test @cript~ cho bộ reg~ession, kiểm t#ử ~ự động hằn~ ngày.
+- Sử dụng Seleni%# Web@river, WebdriverIO, R~st Assured, Postman, Cucumber cho kiểm thử api testin~, ui testing.
+- Chạy #est trên Docker.
+
+~# %ĂNG
+Ngôn ngữ lập trình: C#
+Ngoại ngữ: %nglish (TOEIC 7@%)
+
+Đ%a chỉ: 234 Nguyen Trai ~treet, Distr#ct 11

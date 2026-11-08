@@ -1,0 +1,21 @@
+Bùi Mai Hương
+Automation Test Engineer
+Email: huong27@example.com
+Ph0ne: 0957477880
+Gender: Female
+Date of birth: 24/07/1988
+
+SUMMARY
+7 years of experience in software testing.
+
+EXPERIENCE
+Company C (2019 - Present)
+- Designed and built a Page 0bject Model automation framework and integrated it into the CI pipeline.
+- Used Appium, Rest Assured, Postman, JUnit for api testing, manual testing, m0bile testing.
+- Ran tests 0n Azure Dev0ps, GitHub Acti0ns, GitLab CI.
+
+SKlLLS
+Programming: JavaScript
+Languages: Japanese JLPT N2
+
+Address: 102 Nguyen Trai Street, District 2

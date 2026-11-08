@@ -1,0 +1,13 @@
+Hoàng Đức Tuấn
+Automation Test Engineer
+Email: tuấn16@example.com
+Phone: 0999482259
+Gender: Male
+Date of birth: 07/02/1995
+
+SUMMARY
+2 years of experience in software testing.
+
+EXPERIENCE
+Company F (2024 - Present)
+- Wrote and maintained autom

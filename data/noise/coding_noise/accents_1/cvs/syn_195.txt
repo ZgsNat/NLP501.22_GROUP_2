@@ -1,0 +1,19 @@
+Le Thi Huong
+Automation Test Engineer
+Email: huong19@example.com
+Dien thoai: 0911674728
+Gioi tinh: Nu
+Ngay sinh: 19/07/1992
+
+TOM TAT
+2 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company G (2024 - nay)
+- Viet automation test scripts cho bo regression, kiem thu tu dong hang ngay.
+- Su dung Playwright, Postman, Robot Framework cho kiem thu api testing, ui testing.
+
+KY NANG
+Ngon ngu lap trinh: TypeScript, Python
+
+Dia chi: 94 Nguyen Trai Street, District 8

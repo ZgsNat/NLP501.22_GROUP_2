@@ -1,0 +1,13 @@
+Bùi Mai Lan
+Automation Test Engineer
+Email: lan24@example.com
+Điện thoại: 0987556758
+Giới tính: Nữ
+Ngày sinh: 14/12/1996
+
+TÓM TẮT
+7 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company B (2019 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven, tíc

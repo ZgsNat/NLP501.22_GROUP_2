@@ -1,0 +1,21 @@
+Dang Thu Vy
+Automation Test Engineer
+Email: vy91@example.com
+Dien thoai: 0941061693
+Gioi tinh: Nu
+Ngay sinh: 08/06/2001
+
+TOM TAT
+5 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company D (2021 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung Selenium WebDriver, Rest Assured, Postman, Pytest, JUnit cho kiem thu api testing, ui testing.
+- Chay test tren GitLab CI.
+
+KY NANG
+Ngon ngu lap trinh: TypeScript
+Chung chi: ISTQB Foundation Level (CTFL)
+
+Dia chi: 32 Nguyen Trai Street, District 9

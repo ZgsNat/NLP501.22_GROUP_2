@@ -1,0 +1,21 @@
+Lê Thu %hảo
+Au#omation Te%t En~ineer
+E@ail: ~hảo~5~exam@l%.c@m
+Phone: @978870570
+Gender: @@male
+Date of @irth: 21/0@/1997
+
+SU~MARY
+1 y#ars of exper%#nce #% s@f~war~ t#s@ing.
+
+EXPERIEN~E
+Co@%any E (2@2% - P#e%ent)
+- Wr%#e and m#~n~aine~ automa#ed test @cript@ f%~ reg@es@i%n suites.
+- %sed Se@#ni%m #eb#@~ve@, #%@~@@v@rIO# Rest A~sured, Post~a%, %Unit, Py%es@ for api testing, u@ t%sting.
+- Ran tests on G%tHub Actions@
+
+SK#LL#
+P@@gra~mi~g: Python
+Lang#a~e@: E#glish (TO~IC ~5#~
+
+@d~r%ss: 278 Ng@yen Tra% S%~eet# Di%%%ict ~

@@ -1,0 +1,18 @@
+Hoàng Quốc H%ng
+@A/#C Engineer
+Ema#~: hùn%6@@e~ample.~om
+%iện thoại: 0~4@252#%~
+Gi## tín~: N@%
+Ng%y sinh: 2@/03/%993
+
+TÓM #@T
+Mới t#t nghi@p, ~@~ ~# k~@m thử.
+
+KINH NG#IỆ#
+- T@ực @i~# k%ể@ t#ử t%ủ công, viết test %as# và b#o lỗi %rê# Jira.
+- Ch#y t%st trên GitLab CI.
+
+KỸ %ĂNG
+%gô@ @g~ lậ# trìn~: J#vaScript
+
+Đị% ch~% 128 Nguy@n T#a~ S~re#t, Di@%ric% @

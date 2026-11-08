@@ -1,0 +1,21 @@
+Lê Quốc Hùng
+Automation Test Engineer
+Email: hùng72@example.com
+Phone: 0936933352
+Gender: Male
+Date of birth: 20/07/1993
+
+5UMMARY
+4 years of experience in software testing.
+
+EXPERIENCE
+Company F (2022 - Present)
+- Wr0te and maintained automated test scripts for regression suites.
+- Used XCUITest, Robot Framework, Cucumber for manual testing, mobile testing.
+- Ran tests 0n Docker.
+
+SKlLLS
+Programming: Python
+Certification: ISTQB CTFL
+
+Address: 252 Nguyen Trai 5treet, District 2

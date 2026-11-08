@@ -1,0 +1,21 @@
+Nguyễn Văn Tuấn
+Automation Test Engineer
+Email: tuấn92@example.com
+Dien thoại: 0930658582
+Giới tính: Nam
+Ngay sinh: 23/09/1991
+
+TÓM TẮT
+5 năm kinh nghiem kiểm thử phần mềm.
+
+KlNH NGHlỆM
+Company 8 (2021 - nay)
+- Xây dựng framework automation the0 Page Object Model, data-driven, tích hợp Jenkins pipe1ine.
+- Sử dụng Cypress, Rest Assured, P0stman, Robot Framework ch0 kiểm thử api testing, ui testing.
+- Chạy test trên D0cker, GitHub Actions.
+
+KỸ NANG
+Ngôn ngu lập trinh: Python, Java
+Chung chỉ: ISTQB Foundation Level (CTFL)
+
+Địa chỉ: 250 Nguyen Trai Street, District 4

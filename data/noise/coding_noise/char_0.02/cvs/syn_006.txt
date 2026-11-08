@@ -1,0 +1,22 @@
+Đặng Quốc Nam
+Automation Test Engineer
+#mail: nam30~example.com
+Phone: 0996703417
+Gend%r: Ma~e
+Date of birth: 13/07/1995
+
+SUMMARY
+1 years of experience in so#tware testing.
+
+EXPERIENCE
+Company C (2025 - Present#
+- Wrote and maintained automated test scripts for regression suites.
+- Used Espresso% Postman, k6, Robot Fra#ework for api testing, manual testing, mobile testing@ performance testing.
+- Ran tests on Docker.
+
+SKIL%S
+Progr%mmin%: Python
+Certification: ISTQB CTFL
+Languages: English (TOEIC 750)
+
+Addr#ss: 41 Nguyen Trai Street, District 7

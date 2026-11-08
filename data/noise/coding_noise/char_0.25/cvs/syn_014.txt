@@ -1,0 +1,19 @@
+%%ng ~inh %uấ#
+A##omation T#st E~g~neer
+Ema%l: tuấ#30@example.%o~
+P~on#: 0@#4444996
+Gender: Male
+@#te of birth: 24/01/1991
+
+SUMMARY
+1 year# of e~perie@~% @n software test%~g%
+
+EX#ERI#NCE
+C#mpan# C (#025 @ P~~sent)
+- W#~t% a~@ #~%n#ai~ed aut#mat~d ~%st scripts for regre%s#on suites.
+- Us~d #el@~ium ~ebD@ive%, JMeter~ Pyt%@t #~r pe%form@~ce @esti@g@ ui @%stin##
+
+~KILL%
+%ro~r#mming: Jav~, Java@c%ipt
+
+Address: %47 Nguye@ Trai Stree%, Distri@t 1@

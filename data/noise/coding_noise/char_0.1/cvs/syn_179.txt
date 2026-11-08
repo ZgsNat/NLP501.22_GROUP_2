@@ -1,0 +1,20 @@
+Đ@ Thu Vy
+%uto@ation Test Eng@neer
+E#ail: vy20@example.com
+Phone: 09%7155151
+Ge@~er: Female
+Date of birth: 05%08/2002
+
+SUMMA#~
+1 year~ of ex~erien%e in softwar@ testing.
+
+E~PERIENCE
+Company G (2025 - ~resent)
+- Wrote and maint#ined automated @est @cr@pts for re@ression suites.
+- Used W~bdriverIO, Post#@n, Robot Framewo#k for a@i testing, ui t@stin#.
+
+SKI@LS
+Programming: Type@cript
+#ertification: ISTQB CTFL
+
+Address: 84 Nguyen Trai Stree~, Distr%c# 5

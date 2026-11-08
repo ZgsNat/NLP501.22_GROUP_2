@@ -1,0 +1,21 @@
+Dang Đức Long
+Automation Test Engineer
+Email: long95@example.com
+Điện thoại: 0954335867
+Giới tinh: Nam
+Ngày sinh: 26/06/2002
+
+TOM TẮT
+4 nam kinh nghiệm kiểm thử phần mem.
+
+KINH NGHIỆM
+Company D (2022 - nay)
+- Xây dựng framework automation the0 Page Object M0del, data-driven, tích hợp Jenkins pipeline.
+- Sử dụng XCUITest, JMeter, TestNG, Pytest cho kiểm thu manual testing, m0bile testing, perf0rmance testing.
+- Chạy test trên Azure DevOps, GitHub Acti0ns, D0cker.
+
+KY NĂNG
+Ngôn ngữ 1ập trình: Java
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chi: 16 Nguyen Trai Street, District 2

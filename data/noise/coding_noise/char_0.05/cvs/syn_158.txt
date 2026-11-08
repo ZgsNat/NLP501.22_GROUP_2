@@ -1,0 +1,20 @@
+Hoàn~ Văn Khoa
+Aut~mat@on Test Engine#r
+Email: khoa33@exa~ple.com
+Điện thoại: 0943858172
+G@ới tính: Nam
+Ngày sin#: 16/06/1998
+
+TÓM TẮT
+3 năm kinh ngh%ệm kiểm thử phần mềm.
+
+KIN# NGHIỆM
+C#mpany C (2023 - nay)
+- Viết automation test script# cho bộ regression, kiểm thử tự %ộng hằng ngày.
+- Sử dụng Playwright, Cypress, ~s#resso, Postman, Ro@ot Framework ch@ kiểm thử api testing, mobile tes#ing, ui testing.
+
+KỸ #ĂNG
+Ngôn ngữ lập ~~%nh: Python, Java
+Ngoại ngữ: English (TOEI% 750)
+
+Địa chỉ: 58 Nguyen %rai #tree#, D~strict 2

@@ -1,0 +1,13 @@
+Trần Mai Trang
+Automation Test Engineer
+Email: trang56@example.com
+Phone: 0965325058
+Gender: Female
+Date of birth: 09/03/1997
+
+SUMMARY
+10 years of experience in software testing.
+
+EXPERIENCE
+Company A (2016 - Present)
+- Designed and built a Page Object Model automation frame

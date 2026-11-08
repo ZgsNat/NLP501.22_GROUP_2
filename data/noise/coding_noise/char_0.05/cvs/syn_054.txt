@@ -1,0 +1,20 @@
+Hồ Quốc Na#
+Automati@n Tes# Engineer
+Ema%l: n%m47@example.com
+Phone: 09183766@3
+Gender: %al~
+Date of birth@ 12/09/198@
+
+SUMMARY
+4 years of exper%ence in @oft%are testing.
+
+EXPE~IENCE
+Company A (2022 - Pr%sent)
+- ~rote and m~intained auto#ated test scripts for regression su@tes.
+- Used WebdriverIO, Postman, %est Assured, Cucumber fo# api testing, ui testin%%
+
+SKILLS
+~rogramming: TypeScript
+Languages~ English (TOEIC 750)
+
+Addre#s: 287 Nguyen Trai Street, D~st@ict 6

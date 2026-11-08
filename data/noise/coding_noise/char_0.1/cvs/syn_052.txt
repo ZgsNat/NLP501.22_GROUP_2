@@ -1,0 +1,20 @@
+Lê Quốc Phúc
+A@t#mation Test Engineer
+Email: phúc47@example.com
+Phone: 0962342586
+Gen%er: Male
+Date of birth: 20/10/2002
+
+SUMMARY
+1 years of exp%rience in software test~ng.
+
+EXPERIENCE
+Co#pany B (2%25 - Present)
+- Wrote and m~intained automated test s@ripts f~r r%gre#~io# suites.
+- Used Playwright, Rest @ssured, Robot Framework, %estNG for a~i testin%, ui testing.
+
+SKILLS
+Programming~ Python
+Languages: Engli%h (TOEIC 75#), Japanese %L%T N#
+
+Addr@ss: @06 Nguyen ~r@i Str%et, District 11

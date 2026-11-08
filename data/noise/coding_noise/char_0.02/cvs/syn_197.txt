@@ -1,0 +1,19 @@
+Hồ Đức Phúc
+Automation Test Engineer
+Email: phúc37@e#~mple.com
+Phone: 0923813714
+Gender: Male
+Date of bi#th: 18/05/19%0
+
+SUMMARY
+3 yea#s of experience in software te@ting.
+
+EXPERIENCE
+Company E (2023 - Present)
+- Wrote and mainta~ned automat~d test scripts for regression suites.
+- Used Cypress, k#, TestNG, Cucumber for performance testing, ui testing.
+
+SK#L#S
+Progr#m~ing: TypeScript, Python
+
+Address: 216 Nguyen Trai Street, District 11

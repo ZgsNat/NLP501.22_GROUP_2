@@ -1,0 +1,21 @@
+Ho Quoc Phúc
+Automation Test Engineer
+Email: phuc37@example.com
+Dien thoại: 0920361818
+Giới tính: Nam
+Ngay sinh: 24/06/2003
+
+TÓM TẮT
+10 năm kinh nghiệm kiem thử phan mem.
+
+KINH NGHIEM
+Company B (2016 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hợp Jenkins pipeline.
+- Su dung Cypress, Selenium WebDriver, Rest Assured, Postman, Pytest, Robot Framework cho kiem thu api testing, ui testing.
+- Chạy test trên GitLab CI.
+
+KỸ NĂNG
+Ngon ngữ lap trinh: TypeScript, JavaScript
+Ngoai ngu: English (TOEIC 750)
+
+Địa chỉ: 250 Nguyen Trai Street, District 12

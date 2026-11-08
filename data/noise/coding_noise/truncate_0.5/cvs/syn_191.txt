@@ -1,0 +1,13 @@
+Vũ Thị Hương
+Automation Test Engineer
+Email: huong12@example.com
+Điện thoại: 0958640295
+Giới tính: Nữ
+Ngày sinh: 18/08/1992
+
+TÓM TẮT
+7 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (2019 - nay)
+- Trưởng nhóm QA 5 người, định hướng automation strategy và mento

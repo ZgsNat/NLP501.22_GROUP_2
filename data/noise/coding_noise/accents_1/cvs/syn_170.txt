@@ -1,0 +1,18 @@
+Ho Minh Tuan
+QA/QC Engineer
+Email: tuan20@example.com
+Dien thoai: 0983722452
+Gioi tinh: Nam
+Ngay sinh: 09/12/1992
+
+TOM TAT
+Moi tot nghiep, dam me kiem thu.
+
+KINH NGHIEM
+- Thuc hien kiem thu thu cong, viet test case va bao loi tren Jira.
+- Chay test tren Docker.
+
+KY NANG
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 210 Nguyen Trai Street, District 10

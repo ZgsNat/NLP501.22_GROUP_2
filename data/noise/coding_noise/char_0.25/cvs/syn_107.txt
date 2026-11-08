@@ -1,0 +1,21 @@
+Hồ Ngọc #inh
+%~toma~#o@ Tes~ E~#~n~er
+Email~ #~nh90@@~am%@e#com
+~hone: 096#1%#047
+Ge~der@ Fema#e
+@a#e @f b#rth: @3#@1/@~98
+
+@%MM%%Y
+# y~ars ~f @@peri#nce in s@ftware t@sting.
+
+#XPERIEN~E
+%omp@ny @ (2019 - Pres#~t)
+- D~sign#d and bu@%~ a @age ~b@ect M~del ~u#o#atio~ f#amew#@k and in#egrate~ i@ into t%e %I @ipe#%ne.
+@ Us%d Pla@w@i@ht, Res# Ass~red, Cucumber, TestN~ for api #es%i#g, ui %@st~ng.
+- %## t~s@# %n GitLab CI, Docker~
+
+S%IL@S
+Programmi~g% Java
+Languages# Eng@is~ (@OEIC 750)
+
+Ad@ress~ 115 Ngu~en Tr~i S%#e#~# Distr#ct 11

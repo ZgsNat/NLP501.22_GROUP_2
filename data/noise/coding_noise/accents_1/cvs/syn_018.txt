@@ -1,0 +1,21 @@
+Nguyen Van Tuan
+Automation Test Engineer
+Email: tuan92@example.com
+Dien thoai: 0930658582
+Gioi tinh: Nam
+Ngay sinh: 23/09/1991
+
+TOM TAT
+5 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company B (2021 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung Cypress, Rest Assured, Postman, Robot Framework cho kiem thu api testing, ui testing.
+- Chay test tren Docker, GitHub Actions.
+
+KY NANG
+Ngon ngu lap trinh: Python, Java
+Chung chi: ISTQB Foundation Level (CTFL)
+
+Dia chi: 250 Nguyen Trai Street, District 4

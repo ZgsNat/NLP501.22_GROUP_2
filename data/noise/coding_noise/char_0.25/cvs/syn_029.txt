@@ -1,0 +1,21 @@
+Tr~n Ngọc Thảo
+@u~om~t%@n Test ~~g@ne%r
+Email# thảo%2@example.c@m
+Điệ% th@ại: 09@3586205
+@iới tín#: N@
+@##y sin@~ ~@/0%#2000
+
+TÓM TẮT
+2 n@m ki~h nghi#m k~ểm @@ử p~ần #ề%.
+
+KIN@ ~G~I#M
+Comp~@y B (2024 - n#y)
+# Viế~ autom~ti%n %est s#rip#s ch~ bộ @%g~e%%ion# ki~% th~ #ự @#ng hằng ngày.
+% S@ dụng Playwrig~t% Esp#e~so, @est %ss%r%d, Cucumber cho kiểm th~ a%i tes@~ng, mobile #e##i%g, ui tes#in@.
+- ~hạy test trên Azur~ De#O#s.
+
+@Ỹ N#~~
+Ngô~ n@ữ lập tr%@h@ ~ava
+Ngoại ng%: %~glis# ~TOE@C 75#@
+
+Địa #hỉ# 99 N~u@e~ T%ai Stre@t~ Dis#ri~# 9

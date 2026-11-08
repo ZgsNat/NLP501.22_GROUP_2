@@ -1,0 +1,20 @@
+Lê Thu Trang
+Automation Test E@gineer
+Email: trang72@example.com
+Phone# 09652969~6
+Gen#er: Female
+Date of birth: 11#03/199#
+
+SU@MARY
+6 years o# experience in software test%ng.
+
+EXPERIENC~
+Company B (2020 - Present)
+- Designed and built a Page Object @od~l automation framework and integra@ed i~ into the CI pipeline.
+- Used XCUITest, JU~it for manual tes~ing, mobile testing.
+- Ran tests o% Azure DevOps.
+
+SKILLS
+Programm%ng: TypeScript
+
+Addre#s: 80 Nguyen Trai Street, Distri~t 9

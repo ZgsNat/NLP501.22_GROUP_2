@@ -1,0 +1,20 @@
+~ũ @ai Vy
+~ut#m@tion Te@t @@g@@eer
+Ema@l: v%2#@examp~e.com
+Phon@: 0#6853#809
+Gend~%# ~ema@e
+Date %f birth: 0%/~@/2~01
+
+#~MMARY
+5 ~e~rs of @xp~rience in s~ftwa~% te%tin@.
+
+EXP#RI%NCE
+C~@#~n@ E (20#1 - P@e#ent)
+- Desig%e@ an% bu~lt a Page O@j@ct Model auto@at~o@ %r#mewo~k and i~teg#ate% it into th# CI pipeli@%.
+- U@ed Cypress, ~ele%ium W~bD%@ver, Re~t Assu@%d% Post@an, Cucumber% TestNG %%~ a@i t@sti%## @i testin@~
+% Ran tests on GitHub Ac%~ons@
+
+S#ILLS
+%rogr#mm~ng: P#t@@n
+
+Add~#ss: 258 Nguyen T%ai S~re%~, #~@tri#t 1

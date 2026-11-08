@@ -1,0 +1,22 @@
+%hạ# Đức Phúc
+Automation Test E#gin@er
+Email: phúc88%ex%mple.com
+Phone: 0980551927
+Gen%er: Male
+Date of birth% 28/09/~991
+
+SUMMARY
+8 years of experie~ce ~n sof@w~#e testing.
+
+EXPERIE@CE
+%omp@ny D (#018 - Presen~)
+- Designed and built a Page Object Model aut%mation framework and integrated @t into the ~I pipeli~e~
+- Used Cypress, Sele#ium WebDriver, Post##n, TestNG, J#nit for api testin@, ui t%sting.
+- Ran t@sts on Azure DevOps.
+
+SKILLS
+#rogr#mming: Java, TypeS%ript
+Certi@ication: ISTQB CTF%
+Lan%u~ges: English (TOEIC 750)
+
+Addre#s: 236 ~guyen Tr~i St~~et, Distr~ct 2

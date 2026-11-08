@@ -1,0 +1,21 @@
+Lê Min@ Long
+%utomat~on Test Engineer
+Email: long36@exampl@.~om
+P@one: 0963414658
+G%nder: Male
+Date of birth: 23/05/1988
+
+SU#MARY
+10 years of experie#ce in software testing.
+
+EXPE#IENCE
+Com%an~ ~ (2%16 - Presen#)
+- D#fined #he tes@ automation %trategy, le# a te#m o~ ~ QA engineers and %ento~ed juniors on automation.
+- Used JMeter, Pytest, @e@tNG for manu#l ~esting, perfor~ance %est@ng%
+- Ran tests on A@ur@ DevOps.
+
+S%ILLS
+P%@%ra@ming~ Java, %ython
+Cer%ification@ ISTQB #@F@
+
+Address% 2@2 #g%yen T#ai Street, D~strict 1

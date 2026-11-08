@@ -1,0 +1,21 @@
+T#ần Quốc Khoa
+Automation Test Engineer
+Email: khoa73@example.com
+#iện thoại: 098766660~
+Giới tính: Nam
+Ngày sinh: 20/12/1997
+
+TÓM TẮT
+6 năm kinh nghiệ~ kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (2020 - nay)
+- Viết automation test scri#ts cho bộ regression, kiểm thử tự đ%ng hằng ngày.
+- %ử dụng Postman, JMeter, Pytest, Cucumber cho kiểm thử ap~ testing, manual testing, @erformance testing.
+- Chạy test trên Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Python, C#
+Chứng chỉ: ISTQB Foundation Level (CTFL)
+
+Địa chỉ: 250 Nguyen Trai Street, District 7

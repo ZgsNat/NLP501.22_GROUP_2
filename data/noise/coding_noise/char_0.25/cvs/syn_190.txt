@@ -1,0 +1,20 @@
+Đỗ ~@#c ~inh
+Autom%tion Test Engineer
+Emai#: l#nh20%exa#ple.com
+@h%#e: ~#879%56%9
+Ge#der@ Fem%%e
+Date of birth: 23/0~/19#@
+
+SUM#ARY
+2 @@~rs %f experience in #oftw@r# testing.
+
+@##~%IEN@E
+Compan% F ~2024 - Prese@t)
+@ W@ot% and ~ai@tained auto%a#ed test scri~ts for re%re~sio@ suit#s.
+- Use# R~%t Assured@ JMe%er, Rob~t Frame~or~, T%s#NG f%r api t~@ting@ manual testi#@# ~#@f~%mance @esti~~.
+- Ra~ tes~s on Git~#b Action~.
+
+SK%~LS
+Programming: C#
+
+Ad%@es@# 4@ N~uyen Trai ##~eet, D~#trict 4

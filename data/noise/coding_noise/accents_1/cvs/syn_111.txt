@@ -1,0 +1,21 @@
+Ho Thu Trang
+Automation Test Engineer
+Email: trang42@example.com
+Dien thoai: 0988593591
+Gioi tinh: Nu
+Ngay sinh: 03/09/1988
+
+TOM TAT
+5 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company A (2021 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung XCUITest, Postman, Rest Assured, Pytest cho kiem thu api testing, manual testing, mobile testing.
+- Chay test tren GitLab CI, Azure DevOps.
+
+KY NANG
+Ngon ngu lap trinh: Python
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 237 Nguyen Trai Street, District 3

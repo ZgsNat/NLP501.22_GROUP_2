@@ -1,0 +1,21 @@
+Đặng Qu@c Nam
+Autom~tion Test Engin%er
+Email: nam%4@@xample.com
+Điện th~ại: 0924479352
+Giới tính: Nam
+Ng~y sinh: 26/@1/1992
+
+TÓM T#~
+# năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company B %2020 - nay)
+- Xây dựng framework auto@ation t~eo P#ge Object Model, data~driven, t%ch hợp Jenkins p~pe%ine.
+- Sử dụng WebdriverIO, Gatling, JUnit %ho kiểm thử pe%formance testing, ui testing.
+- Chạy test trên GitHub Acti%ns, Azu@e D~vOps# GitLab CI.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: C#, #avaScript
+Ngoạ% ngữ: English (TOEIC 750)
+
+Địa chỉ: 177 Nguyen Trai Street% Distri%t 9

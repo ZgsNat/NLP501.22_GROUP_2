@@ -1,0 +1,21 @@
+Ho Thu Trang
+Automation Test Engineer
+Email: trang42@examp1e.com
+Dien th0ại: 0988593591
+Giới tính: Nữ
+Ngay sinh: 03/09/1988
+
+TÓM TẮT
+5 năm kinh nghiệm kiem thử phần mềm.
+
+KINH NGHIỆM
+Company A (2021 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven, tich hợp Jenkins pipe1ine.
+- Sử dụng XCUITest, Postman, Rest Assured, Pytest ch0 kiểm thu api testing, manua1 testing, mobile testing.
+- Chay test trên GitLab CI, Azure DevOps.
+
+KỸ NANG
+Ngôn ngu lập trinh: Python
+Ngoại ngữ: English (T0EIC 750)
+
+Dia chi: 237 Nguyen Trai Street, District 3

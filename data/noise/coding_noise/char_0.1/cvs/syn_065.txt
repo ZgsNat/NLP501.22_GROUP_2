@@ -1,0 +1,20 @@
+Hoàn% Ngọc Lan
+Automation ~est Engi~eer
+Em@i%: l@n98@~xample.com
+P@o@e: 099%213415
+Gen~er: Femal#
+Date of birth: 24/05/%996
+
+SUMMARY
+1 years of experience in software testing~
+
+EXPER~ENCE
+Company A (2025 - P%esent)
+- %rote and maintai~ed #utomated test scripts for regression suite#.
+- Use~ JMeter, Cucumber, TestNG %or manual te%ting, p%rformance tes#ing.
+
+S@ILLS
+Programming: JavaScr~pt~ C#
+Languages: Englis% (#OEIC #50)
+
+Address: 243 Nguyen Trai Stre@t, District 10

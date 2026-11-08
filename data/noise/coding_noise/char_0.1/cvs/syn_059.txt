@@ -1,0 +1,21 @@
+Hồ Quốc Phúc
+Automa~ion Test Engineer
+%mail: ph#c33@exa~ple~~om
+Phone: 0970987778
+Gender@ Mal%
+Date of birth: 17/07/2002
+
+~UMM~RY
+3 years of expe%ience in s@ftware testing.
+
+EX#ERIENC@
+Company # (202@ - Present)
+- @esigned and b%il@ a Page Object Mod%~ au%omation framework a#d integrated it ~nto the CI pipel@ne~
+- Used ~y~~e@s, WebdriverI~, Rest Assured, JUnit, Tes#NG for api test~ng, ui testing.
+- Ran tests @n G~tHub Actio#s.
+
+S@ILLS
+Prog~amming: C#, JavaScript
+Certification% ISTQB CTFL
+
+Addres@: 1@2 Nguyen Trai ~treet, D@~trict 4

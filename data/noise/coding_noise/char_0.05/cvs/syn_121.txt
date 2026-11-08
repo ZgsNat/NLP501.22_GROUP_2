@@ -1,0 +1,20 @@
+Bùi Quốc Nam
+%utomation Test Engineer
+Emai@: nam17@ex@mpl@.com
+Phon#: 09#0908408
+Gender: Male
+Date of birth: 01/07/1%98
+
+SUMMAR%
+10 years of experience in so@tware testing.
+
+EXPERIENCE
+Company E (201@ - Present)
+- Wrote and mai%tained a#tomated test scripts ~or regress~on suites.
+- #sed WebdriverIO, Rest Assured, Cucumber for api testing, u@ testing.
+
+SKILLS
+Programming: C#
+La~guag%s: J%panese JLPT N2
+
+Address: 33 Ngu%en Trai Street, District 5

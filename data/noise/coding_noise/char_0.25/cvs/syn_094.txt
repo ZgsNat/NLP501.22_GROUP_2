@@ -1,0 +1,21 @@
+%guy%~ Đ~c @~oa
+Au%%mati~n #est Engin%#r
+Em@il% kh#a%5@example.%#~
+~%o%e~ 095839@~~6
+Gende~~ Ma~e
+Da~e @f birth: ~4@05@1996
+
+SUMM@R@
+3 ye~%s o# ##pe#i%@ce in so@@ware %~sting~
+
+EX@@R%EN@E
+C~mpany E (2~23 % Present)
+- D~%igned a~d bui#t a Pa~e Obje%t Model autom@@io@ fr%me@ork and int@grate% it i~to th@ C~ pi@e%i~~.
+- Use@ Selenium W~bD~ive#% %y#~ess, Po%tm%n% Test%@ #or ~~i te@ting, ui te@t@n#.
+% Ran tests on Docker, Gi~Lab ~I, A@u@e Dev%p~%
+
+@KI@L~
+Progr%~#ing: C#
+Ce%tification~ ISTQB CTF@
+
+Addres%@ 1%6 #gu@e@ Trai St%eet, District %

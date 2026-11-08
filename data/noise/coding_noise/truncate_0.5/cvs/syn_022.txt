@@ -1,0 +1,13 @@
+Bùi Thu Trang
+Automation Test Engineer
+Email: trang79@example.com
+Phone: 0959273033
+Gender: Female
+Date of birth: 15/01/2000
+
+SUMMARY
+4 years of experience in software testing.
+
+EXPERIENCE
+Company F (2022 - Present)
+- Designed and built a Page Object Mode

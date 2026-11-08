@@ -1,0 +1,20 @@
+Vu Quoc Nam
+Automation Test Engineer
+Email: nam50@example.com
+Dien thoai: 0975937784
+Gioi tinh: Nam
+Ngay sinh: 25/03/2002
+
+TOM TAT
+7 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company A (2019 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung Playwright, Rest Assured, Cucumber, Pytest cho kiem thu api testing, ui testing.
+- Chay test tren Azure DevOps, Docker, Jenkins.
+
+KY NANG
+Ngon ngu lap trinh: JavaScript, C#
+
+Dia chi: 97 Nguyen Trai Street, District 3

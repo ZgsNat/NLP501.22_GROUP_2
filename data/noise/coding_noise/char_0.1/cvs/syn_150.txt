@@ -1,0 +1,21 @@
+~gu%ễn Ngọc Lan
+~utomation Te%t Engine~r
+Email: lan96@example.c~m
+Điện t%#ạ#: #955921387
+Giới t#nh: Nữ
+Ngày sinh: %4/1%/%988
+
+TÓM %ẮT
+5 năm kinh nghiệm kiểm @hử phần ~ềm.
+
+KINH N#HIỆ@
+Company D (2021 - nay)
+- Xây dựng framework autom@ti~n theo %age ~#ject Model, dat#-%riven, tích hợp Je@ki~s pipeline.
+% Sử dụng Gatlin%, Pytest, Te@tNG cho kiểm thử m~nual #esti%g, performance testing.
+- Chạy test trên #itHub A~tions, Docke%.
+
+KỸ N~NG
+Ngôn ngữ lập trình: Java, JavaScript
+Chứng chỉ: ISTQB Foundation Lev#l (CTFL)
+
+Địa chỉ@ #46 Nguyen Tra@ Street, Distri@t 5

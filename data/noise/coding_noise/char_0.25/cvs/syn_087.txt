@@ -1,0 +1,20 @@
+L# Thu %r@@g
+Automa@io% Test En#ineer
+#ma#@: t#ang7@%exa~p~e.co#
+Phone: 096~2%~#66
+#end%r: @#male
+D~t@ of ~irth@ #1/0%/1991
+
+SU%MARY
+6 #ea~s o% exp%rience in sof##ar% t@sting#
+
+EXPERI~N#E
+C%%pan@ @ ~2020 - ~res%n@)
+- Desi#ned @n@ bu#%t a P~ge Object Mode% automat%on #%amework #nd #~~e%ra~e# it int# the C# pipelin@.
+- Use% X#UITe#%, JUni% f~r m%nual #es%ing, mobile testi#g.
+- Ran tests #n Az#@e D#vOps.
+
+#KI~%S
+@rogrammin#: Type@%@ipt
+
+Ad#ress: ~0 Nguye~ Trai St@ee#, #istrict 9

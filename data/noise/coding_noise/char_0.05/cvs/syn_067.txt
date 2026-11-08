@@ -1,0 +1,22 @@
+T~ần Thu Trang
+%utomation Test Engine~r
+Email: trang26@exampl@.com
+Phone: 0992650976
+~ender: Female
+Date of birth: 09/0%/1996
+
+SUMMARY
+10 years of ~xperience in software te#ting.
+
+EXPERIENCE
+Company A (2016 - Present)
+- Defi#ed the te#t automation s~rategy, led a tea% of 5 QA engineers an~ ment~r@d juniors on ~utomation.
+- Used Cypr@ss, Selenium WebDriver, Rest As#ured, Cucumber, Robot Framework for ap@ testing, ui t~sting.
+- Ran tests on Azure DevOps, GitHub Actions, Docker.
+
+SKILLS
+Programming: Python, TypeScript
+Certifica@ion: ISTQB CTFL
+Languages: English (TO%IC 750)
+
+Address: 58 Ngu@e~ Tr@i Street, Dis#rict 10

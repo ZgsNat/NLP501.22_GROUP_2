@@ -1,0 +1,22 @@
+Vũ Minh Long
+Autom~tion @est E%gineer
+Email: long19@example.@om
+Phone: 0910292428
+Gend@r: ~~le
+Date of birth: 28#03/~99@
+
+@UMMARY
+5 years of exp#rience in so%tware testin%.
+
+@XPERIENCE
+Co%pany C (2021 - Present)
+- Des#gne# and built a Page Object @odel automat@on fr%mework and i~tegrated it into the CI pipe~~ne.
+- Us@d Cypress, R#st Assured, P#st@an, ~atling, Robot Frame~#rk@ Pytest for ap% testing, perform@nce te%ting, u~ testi##.
+% Ra~ tests o@ Docker, A%ure DevO@s.
+
+SKILL@
+Progr@mm@ng: ~ypeScript, Python
+Certification: I@TQB CTFL
+Lan%#ages: %nglish (TOEIC @50)
+
+Address: @6 Nguyen #rai Stre~t, Distr~ct 7

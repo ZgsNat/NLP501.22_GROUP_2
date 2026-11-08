@@ -1,0 +1,21 @@
+Đặng Quoc Nam
+Automation Test Engineer
+Email: nam24@example.com
+Dien thoại: 0924479352
+Gioi tinh: Nam
+Ngay sinh: 26/01/1992
+
+TÓM TAT
+6 nam kinh nghiem kiem thu phần mềm.
+
+KINH NGHIỆM
+Company B (2020 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven, tich hợp Jenkins pipeline.
+- Su dụng WebdriverIO, Gatling, JUnit cho kiem thử performance testing, ui testing.
+- Chạy test tren GitHub Actions, Azure DevOps, GitLab CI.
+
+KỸ NĂNG
+Ngon ngu lập trình: C#, JavaScript
+Ngoai ngữ: English (TOEIC 750)
+
+Địa chi: 177 Nguyen Trai Street, District 9

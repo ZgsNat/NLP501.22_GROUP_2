@@ -1,0 +1,19 @@
+Trần V#n Khoa
+Automation Test E~g#neer
+Email: k%oa3#@example#com
+Điện thoại: 0990722@5%
+Giới tí%h: #am
+Ngày sinh: 11/1%/200~
+
+TÓM TẮT
+1 năm kinh n%hiệm ki%m thử phần @ềm.
+
+KINH NGHIỆM
+#omp~ny B (202~ - nay)
+- Viết automation @est scripts c#o bộ %egression, @iểm thử tự độn@ hằng ngày#
+- Sử dụng Sel%ni#m W%~Driver, #spresso, Postman, Test~G c%o kiểm t## api testing, mobile testing, ui testing@
+
+KỸ NĂNG
+Ngôn ngữ l@p tr#nh: C#, Py%ho@
+
+Địa chỉ: 296 Nguyen Trai Street, Distr~ct 1

@@ -1,0 +1,21 @@
+Bù~ Thị Hương
+Automation Test Engineer
+Email: huong%7@example.com
+Phone: @947503167
+Gender: Female
+Date of birth: 15/09/1990
+
+@UMMARY
+5 y@ars of experience ~n so##ware testing.
+
+EXP@RIENCE
+@ompany E (2021 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used k%, Robot Framework, JUnit for manual ~esting, performance testing.
+- Ran tests on GitHub Actions.
+
+SKILLS
+Program~ing: Java, Pyt~on
+L@nguages: English (TOEIC 75%)
+
+Address: 46 %guyen Trai Street, District 4

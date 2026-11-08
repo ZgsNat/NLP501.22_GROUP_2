@@ -1,0 +1,21 @@
+Hồ T@~ Thảo
+A~tom%tion Test Eng@neer
+Email: #hảo92@example.c~m
+Phone: 09@031#100
+%ender: #ema#e
+Date of bir~h@ 02##2/2000
+
+%UMMARY
+3 ye#rs of exp~r%%nce in s%f@%a%e testing#
+
+EXPE%I~NCE
+C~mpa%y @ (202~ @ ~re@ent#
+- W#o#e an@ @@intai@%d auto#ated ~e~t scr#pt# %~r @e~%es~ion su@tes%
+- Us%@ ~e%#ni#@ WebDri#e%~ WebdriverIO, T#stN~, C#@um#er for ~@ %es%@#g.
+- ~an te#ts on GitLa@ CI@
+
+SKI@LS
+Program%ing: Python
+C@rtifi@ati#@: ISTQB C#FL
+
+A~#res#: 29 Ngu%%n T#@@ @t~ee@, Dist%@ct 6

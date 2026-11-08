@@ -1,0 +1,20 @@
+Dang Mai Thao
+Automation Test Engineer
+Email: thao83@example.com
+Dien thoai: 0977743626
+Gioi tinh: Nu
+Ngay sinh: 03/04/2001
+
+TOM TAT
+6 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company C (2020 - nay)
+- Viet automation test scripts cho bo regression, kiem thu tu dong hang ngay.
+- Su dung Playwright, WebdriverIO, Postman, Robot Framework, Pytest cho kiem thu api testing, ui testing.
+- Chay test tren Jenkins.
+
+KY NANG
+Ngon ngu lap trinh: Java, TypeScript
+
+Dia chi: 202 Nguyen Trai Street, District 3

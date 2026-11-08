@@ -1,0 +1,21 @@
+Trần Đức @ong
+Aut#matio~ %e~t Engineer
+Email: @%ng33#ex~mple.com
+Ph@n#: 092#68%736
+#e%der: Ma@e
+D~te o@ birth: #0@03/1998
+
+SUMMARY
+3 years of %xperience i~ ##ftwa%e testing.
+
+E%@ERIE#CE
+C%~pa~@ G #2@%% - Presen~)
+- Desi#ned a%d built # P%~e ~b#ect @od%# ~utomat#on fra%ew~rk and i%t~g#ated ~~ into the CI pipe@ine.
+# U@ed Re@t As%ur%d, @~stman, JM%te@, JU@it, Cucu#ber for %#i te@@ing% manua# t~sting, perfo@m#nce testin#.
+- Ran tes%s on @it#ub Actions, D@cker, Az%#e @ev%ps#
+
+S~~LLS
+Progr%m%i#g% Pytho#, Java
+L@ngua@es~ E#@lish ~TOEIC 75@)
+
+Add@e@s# 1~2 Ng#yen Trai ~@reet, Di@~@ict 11

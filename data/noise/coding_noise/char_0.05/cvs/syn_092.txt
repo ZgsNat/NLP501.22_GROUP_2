@@ -1,0 +1,21 @@
+Vũ Đức Phúc
+Automation Test Engin%er
+Email: phúc15@ex#mple.com
+Điện thoạ@: 0987911634
+~iới tính: Na~
+Ngà% %inh: 06/05/1993
+
+T~M TẮT
+3 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NG~IỆ~
+Company E (2023 - nay)
+- Xâ% dựng framework automation the@ Page Object Model, data-driven, tích hợp Jenkins pi@eline.
+- Sử dụn# Playwright, Rest Assured, Pos@man, k6, Ro@ot Fr#mework cho kiểm thử api test~ng, perf%rmance test@ng, ui testing.
+- Chạy test trên GitHub Actions, Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập tr#nh: TypeScri~t
+Ngoại ngữ: Eng~ish (TOEIC 7~0)
+
+Địa chỉ: 253 Nguyen Trai Str~et, District 6

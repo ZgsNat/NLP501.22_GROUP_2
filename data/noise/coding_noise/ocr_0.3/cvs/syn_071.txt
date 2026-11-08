@@ -1,0 +1,21 @@
+Nguyễn Ngọc Linh
+Aut0mation Test Engineer
+Emai1: linh61@example.c0m
+Phone: 0973918769
+Gender: Fema1e
+Date 0f birth: 10/08/1995
+
+5UMMARY
+6 years 0f experience in software testing.
+
+EXPERlENCE
+C0mpany D (2020 - Present)
+- Defined the test automation strategy, led a team 0f 5 QA engineers and mentored juniors on automation.
+- Used P1aywright, Cypress, JMeter, Robot Framework, JUnit f0r perf0rmance testing, ui testing.
+- Ran tests on GitLab CI.
+
+SKILLS
+Pr0gramming: Python
+Languages: English (T0EIC 750)
+
+Address: 200 Nguyen Trai Street, District 8

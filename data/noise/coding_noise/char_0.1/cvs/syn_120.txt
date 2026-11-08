@@ -1,0 +1,21 @@
+Trần Quốc Khoa
+Automation T%st Enginee~
+Email: khoa73@example.com
+Điện thoại: 0987666600
+G@ới tính: Nam
+Ngày sinh: 2~/12/1#9@
+
+TÓM TẮT
+6 năm kin% nghiệm kiểm thử phần m@m%
+
+KINH NGHIỆM
+C~mp#ny A (2020 - nay)
+- Viế@ automati#n test scr%pts cho bộ re#ressio@, kiểm thử t% động hằng ngày.
+- Sử dụng %ostman, J~e#er% Pytest, Cu~@mber cho kiểm thử ap~ t@#ting, manua~ testing, pe#formance testing.
+% Ch%y te~t #rên Jenkins.
+
+KỸ NĂNG
+N#ôn %gữ lập trình: Pytho@, C#
+%hứn% ~hỉ: ISTQB ~ou~dation Level (CTFL)
+
+Địa @hỉ: 250 Nguye% Trai %treet, Di@t@ict 7

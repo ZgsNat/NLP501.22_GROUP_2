@@ -1,0 +1,20 @@
+Hoàng Th# Trang
+Automat#on T~st Eng@ne@r
+Em#il: trang79@exampl@.com
+Phone: 098582132@
+Gender: Fem~le
+@ate of b@@t~: 05/06/1995
+
+SUMMARY
+@ years of ex%erien%e i% soft@are testing.
+
+EX%@RIENCE
+Company B (2021 - Pres@nt)
+- Design~# @nd built a Page Object Model automation fr%mework and integrated ~t into @@e CI p~pe@#ne%
+- Used Playwright~ Espr%sso, JUnit f@r mobile t~sting, ui testi~g.
+- Ran tests on J~nkins, Azure DevOps.
+
+SKILL%
+Prog~a#ming: JavaScri@t, TypeScript
+
+Address: 26 Nguyen T@#i Street, Distr~ct 11

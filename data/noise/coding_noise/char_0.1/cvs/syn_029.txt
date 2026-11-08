@@ -1,0 +1,21 @@
+T@#n Ngọ@ Thảo
+Aut%m#tion Test Engineer
+Email: #hả~22@exa~ple.com
+Điện tho~i: 09%#586205
+Giới tí%h: %ữ
+Ngày sinh: 24/04/2000
+
+TÓM T#T
+2 năm kin@ n~hiệm kiểm thử @hần mềm.
+
+KINH NG#IỆM
+Company B (20~4 - n%~)
+- V@ết automation test s%ripts cho bộ regression% k~ểm thử tự động hằng ngày#
+- Sử dụng Playwright, Espresso, Rest As#ured, Cucumber cho kiểm #hử api test#ng, mobi%e testing, ui testi@g.
+- Chạy test #rên Azure %evOps#
+
+KỸ NĂNG
+Ngôn ngữ lập trì@h: Jav~
+Ngoại ngữ: Engl%sh (TO~IC 75#)
+
+%ịa c#ỉ: 99 Nguy@n Trai Street, District 9

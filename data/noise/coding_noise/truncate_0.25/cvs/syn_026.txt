@@ -1,0 +1,17 @@
+Hồ Mai Vy
+Automation Test Engineer
+Email: vy72@example.com
+Phone: 0980574548
+Gender: Female
+Date of birth: 20/12/1996
+
+SUMMARY
+1 years of experience in software testing.
+
+EXPERIENCE
+Company A (2025 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used WebdriverIO, Cypress, Rest Assured, Cucumber, Robot Framework for api testing, ui testing.
+
+SKILLS
+Pro

@@ -1,0 +1,20 @@
+Đỗ Mai Trang
+A%to@ation Test Engineer
+Email: tr~ng17@exa@p~e.c~m
+Phone: 099%80#389
+#ender: Female
+#a~e of bir%h: 09/#9/1989
+
+SUMMARY
+4 years o% experience in software #esting.
+
+EXPERIENCE
+Company F (@0#2 - P%e#ent)
+- Des#gned and bui#t a P@g% ~bject Mo#el automation fram#work #nd in@egrated it into the CI pipeline.
+- Used Cypress, WebdriverIO, Espresso, ~os@man@ Rest Assured, Test~G@ JUnit for #pi tes%ing, m#%@le testin@, ui testing.
+~ Ran tests on ~@%r# DevOps, GitHub Actions~ Docker.
+
+SKILLS
+Programm%ng% Pyt%on
+
+Add%ess~ 37 Nguyen Trai Street, #istrict 5

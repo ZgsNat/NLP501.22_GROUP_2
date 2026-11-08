@@ -1,0 +1,21 @@
+Phạm Đức Phúc
+Automati~n Test Engineer
+Email: phúc~1@e~ample.com
+%iện thoại: 0965%25133
+Giới tính: Nam
+Ngày sinh: 24/02/%999
+
+TÓM TẮT
+10 năm kinh nghiệm ~iểm thử phần mềm.
+
+~INH NGHIỆ~
+Company F (2016 - nay#
+- Trưởng nhóm QA 5 ng%ời, định hướng automation strateg~ và mentor thành viên mới.
+- Sử d~ng Appium, k6, JUnit cho kiểm thử m@nual testing~ %o%i%e testing, performance testin#.
+- Chạy test trên @ocker, GitLab CI.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: C#
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 235 Nguyen Trai Stree@, District 12

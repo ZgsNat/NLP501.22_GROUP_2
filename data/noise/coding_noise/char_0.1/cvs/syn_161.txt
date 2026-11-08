@@ -1,0 +1,21 @@
+Bùi #hị #an
+Aut~mation T~s~ Engineer
+E%a#l: lan79@~xample.com
+Phone: 0993082165
+%ender: Female
+Date of b~rth: 11/05/20%3
+
+SUMMAR%
+8 year@ o~ experience in softwa@# t@sting.
+
+EXPERIENCE
+Company G (2018 - Present)
+- Defined the test aut~mation st%ategy, led a team of 5 QA %ngineer~ and %entored juniors o# automation.
+- Used Webdri%erIO, Selenium WebDri#e#, R~st Assured, Robot Frame~ork for api testing, ui testing.
+- R~n tests o% @@c~er, Jenk%ns% GitLab CI.
+
+%KILL#
+Programming: JavaScri@t
+Language~: Eng~ish (TOEIC 750)
+
+Addre@s: 104 Ng#yen T#a% Street, District 9

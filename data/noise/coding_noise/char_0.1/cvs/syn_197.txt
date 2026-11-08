@@ -1,0 +1,19 @@
+Hồ Đức P~úc
+Aut#mation Test Engin#er
+Em%%l: phúc37@%x~mple.com
+Phone% 0923%13714
+G~nder: Male
+Date o@ b~rth: @8/05/19%0
+
+SUMMARY
+3 years of expe@ie%ce ~n soft#ar@ testing.
+
+EX%ERIENCE
+Company E (2023 - Pre%ent)
+# Wrote #nd mainta%ned automated test ~c%ipt# for regression suites.
+- Used Cypr@ss, k6, TestNG~ C#~umber for perfor@ance testin@, ui test%#g#
+
+SKILLS
+Prog@amming: Typ@Script, Python
+
+#dd@ess: 216 N#uyen Tr#i Stre#t, Dis%rict 11

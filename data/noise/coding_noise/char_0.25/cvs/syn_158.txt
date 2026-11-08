@@ -1,0 +1,20 @@
+@oàn# Văn %hoa
+#u%%mation ~e#t E@~ine#r
+Ema%l: khoa33@example.com
+Đ#ện %hoại: 094#85#172
+Giới %ính~ #am
+Ngày sinh: 16/~~/19~8
+
+TÓM #ẮT
+# ~%m kin@ n#hiệm kiểm t#ử p%ần %ề%%
+
+%INH NGHIỆ%
+Com@~ny C (202% @ %a%)
+@ V@ết automati~n test scr%@ts c%o b# regres#ion% kiể% @hử t% độ~@ hằng ng#y.
+- S% dụng Playwrig~t, Cypress# Es%ress~, %ostman, ~~%%t @ramewo%k #@# kiểm thử a~i %#~t~n@, mob%le testing@ #i testi%~.
+
+KỸ N@@G
+Ngô@ ngữ lậ@ trì#%: Pytho~, #av#
+Ngoạ@ ngữ% E#g%i~h (T@E#% 750)
+
+@ịa chỉ: 58 @guyen Tr~i S~re#t, @istri%t 2

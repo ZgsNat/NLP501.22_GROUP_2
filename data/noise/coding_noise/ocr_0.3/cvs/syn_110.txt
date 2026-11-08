@@ -1,0 +1,21 @@
+Hoàng Văn Phúc
+Automation Test Engineer
+Email: phúc19@example.com
+Dien thoại: 0916052535
+Giới tính: Nam
+Ngay sinh: 17/02/2001
+
+TÓM TẮT
+4 năm kinh nghiệm kiem thử phần mềm.
+
+KINH NGHIỆM
+Company D (2022 - nay)
+- Xây dung framework automation theo Page 0bject Model, data-driven, tich hợp Jenkins pipe1ine.
+- Sử dụng Playwright, P0stman, Pytest ch0 kiểm thử api testing, ui testing.
+- Chạy test trên GitHub Acti0ns.
+
+KỸ NĂNG
+Ngôn ngữ lập trinh: Pyth0n, TypeScript
+Ngoại ngu: Eng1ish (TOElC 750)
+
+Dia chỉ: 49 Nguyen Trai Street, District 8

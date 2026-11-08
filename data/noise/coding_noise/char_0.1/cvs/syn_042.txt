@@ -1,0 +1,22 @@
+Lê Thu Lan
+Auto~ation Tes@ Engineer
+E@#%l: #an70@exampl%.com
+Ph%n@: 0986697457
+~ender: Fema#e
+Date of birth: 24/01/2000
+
+SUMMARY
+1@ years of experience in @oftware testing.
+
+EXPER~ENCE
+Com@~ny # (2016 - Presen%)
+@ Designed and built a Page Object Model automat~on #ramew#rk and i~t%grated i~ in#o %he CI p~peline.
+- Us@d Playw%ight, Cypre#s, Postman, Py#est for api testing, u% @esting.
+- R%n tests o@ GitLab CI, J@nkins, Docker.
+
+%KILLS
+@rogramm@ng: Java# J#vaScript
+Cer%ification: #S%QB CTFL
+Langua~es: English (TOEIC 750)
+
+@ddress: 4# Ngu#en Trai Street, D%strict 7

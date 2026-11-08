@@ -1,0 +1,21 @@
+Trần Quốc N~#
+Automation Test E~gineer
+Email: nam34@exa@ple#c#m
+Điện thoại: 09~3565097
+Giớ~ #ính: Nam
+Ngày sinh: 27/07/1988
+
+TÓM TẮT
+1 năm k~~h nghiệm kiểm thử phần ~ềm.
+
+KINH NGHI@M
+C@mpany A #20#5 - nay)
+- Viế% @utoma@ion test scripts cho ~ộ #egression, k%ểm thử tự động hằn# n#ày.
+- Sử dụng %laywright, WebdriverIO, k6, JUnit, Cu@umber cho kiểm thử performance @esting, ui t%~ting.
+- ~h%y test trên Jenkins.
+
+KỸ N#NG
+Ngôn ngữ lậ@ trì@~: C#, Java
+Ngoại n%ữ: Engl%sh (TOE~C 7@0), Japa~ese JL@T N2
+
+Địa chỉ: 128 N%uyen Trai Street, Distr~c@ 7

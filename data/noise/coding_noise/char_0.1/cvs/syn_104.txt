@@ -1,0 +1,21 @@
+Lê Mai ~inh
+Automation Test En@ineer
+Email: linh46@exampl#.co#
+P~#ne: 09968~1418
+Gender: %emale
+Date of birth: 25/11/1992
+
+SUM@ARY
+1 years of ex~erience in sof%ware tes@ing.
+
+EXPE@IENCE
+C~mpany A (2025 - @re@ent)
+- Wrote and main%a@ned automated test scripts for r#gr@s%io% suites.
+- @sed %ebd%i~erIO, R#st %s@ured, Cucu%b%r for api tes@ing, #i te@tin%.
+
+SKILLS
+##@gram%ing: TypeScript
+Certification: ISTQB CTFL
+%an%uages: #nglis% (TO@IC 750)
+
+Add#ess: 15~ Ngu%en Trai Street, District 8

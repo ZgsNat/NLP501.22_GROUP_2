@@ -1,0 +1,21 @@
+Vu Van Hung
+Automation Test Engineer
+Email: hung87@example.com
+Dien thoai: 0930280697
+Gioi tinh: Nam
+Ngay sinh: 06/07/1998
+
+TOM TAT
+5 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company E (2021 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung WebdriverIO, Cypress, XCUITest, Rest Assured, Postman, JMeter, JUnit, TestNG cho kiem thu api testing, mobile testing, performance testing, ui testing.
+- Chay test tren Docker, Jenkins, GitHub Actions.
+
+KY NANG
+Ngon ngu lap trinh: TypeScript
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 93 Nguyen Trai Street, District 11

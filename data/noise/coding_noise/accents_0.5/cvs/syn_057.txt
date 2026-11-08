@@ -1,0 +1,21 @@
+Do Quốc Tuấn
+Automation Test Engineer
+Email: tuấn63@example.com
+Dien thoai: 0930705405
+Giới tính: Nam
+Ngay sinh: 10/11/1992
+
+TOM TẮT
+2 nam kinh nghiem kiem thu phần mềm.
+
+KINH NGHIEM
+Company B (2024 - nay)
+- Viết automation test scripts cho bo regression, kiem thử tự động hằng ngày.
+- Su dụng Selenium WebDriver, WebdriverIO, Postman, Rest Assured, Cucumber, TestNG cho kiểm thu api testing, ui testing.
+- Chay test trên Docker.
+
+KY NANG
+Ngôn ngữ lập trinh: C#, Python
+Ngoai ngu: English (TOEIC 750), Japanese JLPT N2
+
+Dia chỉ: 6 Nguyen Trai Street, District 2

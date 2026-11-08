@@ -1,0 +1,21 @@
+Nguyễn Ngọc %an
+Aut#@ation Test Engineer
+Email: lan96@example#com
+Điện thoại: 0955921387
+Giới tính: Nữ
+N%~% sinh: 14/10/1988
+
+TÓM TẮT
+5 năm kinh ~ghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company D (2021 - n%y)
+- Xây dựng framework a@tomat@on theo Page Object Mod~l, data-driven, tích hợp %enkins pipeline.
+- Sử dụng Ga@ling, @ytest, T@stNG cho kiểm t@ử manual testing, performance testing.
+- C%ạy test trên GitHub Actions, Dock~r.
+
+KỸ NĂNG
+Ngô~ ngữ lập t#ình: @ava, JavaScript
+Chứng chỉ: ISTQB Foundation Le~el (CTFL)
+
+Địa chỉ: 246 Nguyen Trai Street, District 5

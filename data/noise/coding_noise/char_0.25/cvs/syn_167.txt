@@ -1,0 +1,20 @@
+H% Thị Thảo
+Automat@%# Test #ngin@%r
+E~a%l: @##o6@@e@ample.%om
+Điện tho~i: 0@7@6#1275
+@i@% t%nh# Nữ
+Ngà~ @inh: @3/12~1@~6
+
+@Ó# @ẮT
+@0 ~ăm kinh nghi~m kiểm t%ử p%ầ# mềm.
+
+KI~@ NG#IỆ%
+Com#any C (~0#6 - #ay)
+@ Tr#~ng nh@m QA 5 @gư@i, đị#h hư#ng au~omation strat@gy %à ~e#to% thàn# viên m@i.
+- S# ~@n~ We~dri@#rI~# XCUIT#~%, @ostman, #@s~ A%sure~, Test~@ cho kiểm @hử #pi test#ng, mobile t~s~#ng, ui %%st#ng.
+- Chạy tes% ~%ên Az#%e @e#Ops, Je#kins#
+
+K@ ~#NG
+Ngôn ngữ lậ% t@ìn@: Py#h%%, Java
+
+#ịa chỉ: 113 N@uy~n Trai #tre~t@ Dis@rict 5

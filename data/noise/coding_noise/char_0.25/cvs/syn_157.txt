@@ -1,0 +1,20 @@
+V@ #ăn Nam
+Au%~m%tion Te@% Eng#ne@r
+E~ail: na%1#@#x#mp@e.com
+P#@n@# 0910#71%31
+@en%er: M#l~
+Date #f b%r%h: #2~1%%#9%8
+
+SU@@ARY
+% year~ ~f @~peri%nc# @n so#~@are te~tin~.
+
+EXPERIENC#
+~ompa@~ B (2024 - Pres~nt)
+- Wrote %nd #~%n~ained aut%mate% test s#ript~ f@# regress%o~ suit#s.
+- Used C~pr~%s, ~@s~ %ssu%e%@ Rob~t F%amewo~k for api tes%@n#, ui @esting.
+
+@KI~LS
+Program#in~: J@@aSc%@pt
+L~#guages~ %ng~@s~ (TOEIC 750)
+
+Addre@s: 1%@ Nguyen Tr~i Street, @ist~i@t 8

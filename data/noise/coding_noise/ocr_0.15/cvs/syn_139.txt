@@ -1,0 +1,22 @@
+Pham Mai Lan
+Automation Test Engineer
+Email: lan56@example.com
+Phone: 0994685039
+Gender: Female
+Date of birth: 23/11/1988
+
+SUMMARY
+4 years of experience in software testing.
+
+EXPERIENCE
+Company F (2022 - Present)
+- Wr0te and maintained automated test scripts for regression suites.
+- Used WebdriverIO, Playwright, Postman, Rest Assured, Pytest for api testing, ui testing.
+- Ran tests on Jenkins.
+
+SKILLS
+Programming: JavaScript
+Certification: ISTQB CTFL
+Languages: English (TOEIC 750)
+
+Address: 76 Nguyen Trai 5treet, District 5

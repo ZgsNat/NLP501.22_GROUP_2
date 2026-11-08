@@ -1,0 +1,20 @@
+Đỗ Ngọc Linh
+Automation Te~t Engineer
+Email: linh20@example.com
+@hone: 0987975659
+Gender: Female
+Date of birth: 23/07/1995
+
+SUMMARY
+2 years of experience i~ software testing.
+
+EXPERIENCE
+Company F (2024 @ Present)
+@ Wrote a~d maintained automat@d test scripts for regression suites.
+- Used Rest Assured, JMeter, Robot Framework, TestNG for api testing, manual testing, performance testing.
+- Ran tests on GitHub Actions.
+
+SKILLS
+Programming: C#
+
+Address: 45 Nguyen Tra# Street, District 4

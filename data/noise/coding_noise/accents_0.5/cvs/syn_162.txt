@@ -1,0 +1,21 @@
+Lê Van Nam
+QA/QC Engineer
+Email: nam34@example.com
+Điện thoai: 0966131539
+Gioi tinh: Nam
+Ngay sinh: 18/12/1996
+
+TÓM TAT
+Mới tốt nghiệp, đam me kiểm thử.
+
+KINH NGHIỆM
+- Thực hiện kiem thu thu công, viết test case va bao loi trên Jira.
+- Su dung WebdriverIO, Rest Assured, Postman, Cucumber cho kiem thu api testing, ui testing.
+- Chạy test trên Jenkins.
+
+KỸ NANG
+Ngon ngu lập trinh: Java
+Chứng chi: ISTQB Foundation Level (CTFL)
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 287 Nguyen Trai Street, District 6

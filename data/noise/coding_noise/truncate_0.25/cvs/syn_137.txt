@@ -1,0 +1,14 @@
+Phạm Ngọc Linh
+Automation Test Engineer
+Email: linh89@example.com
+Phone: 0938606966
+Gender: Female
+Date of birth: 08/08/1998
+
+SUMMARY
+6 years of experience in software testing.
+
+EXPERIENCE
+Company G (2020 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.
+- Used JMeter, Cucumber for manual testing, perfor

@@ -1,0 +1,20 @@
+N%uyễn Đức Hùng
+A#tomation Tes% Eng@neer
+Em@il: hùng99@example.~o#
+Phone: 0929203413
+Gender: Male
+Date of birth: 13/12/1988
+
+SUMM#RY
+# years of exp%ri#n%e ~n softw~re testing.
+
+EXP~RIENCE
+Co@pany ~ (2025 - Pre#~nt)
+- @rot@ an~ maintained automated test scripts for regr~ssio% suites.
+- @sed S~lenium WebDr~ver, Rest Assured, Postman, Cu@umber# JUnit fo@ api testing, ui testing.
+
+SKILLS
+Programming: TypeScript, Python
+Certi%ica%ion~ I#T#B CTFL
+
+Addre%s: 218 Nguyen Trai St@eet, Dist@@c% 6

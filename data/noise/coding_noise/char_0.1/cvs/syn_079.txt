@@ -1,0 +1,20 @@
+Hoàng M#i Vy
+#utomation Test Engineer
+Email: v~19@example.com
+Phone: 0~957#5668
+Gen~er: Female
+@ate of birth: 15/05/2001
+
+SUM@A~Y
+7 years of expe%ience i~ s%@tware tes@ing.
+
+EXP#RIENCE
+Company F (2%19 - ~re~ent)
+- Defined t@e t~st a%tom#tion str#tegy, led a team #f 5 QA engineers and mentored juni~rs on automatio%.
+# Use~ Cy@r%ss, Webdr@%er@O, Espresso, Robot %r%mework fo% m#bile testi@g, ui testing%
+- Ran tests %n Jenkins, Az~re DevOps, D#cker.
+
+SKIL~S
+@@ogramming: JavaScript, P#thon
+
+Address: 166 Ngu@e% Trai Street% Dis%ri#t 5

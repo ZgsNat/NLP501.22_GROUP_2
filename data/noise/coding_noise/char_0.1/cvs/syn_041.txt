@@ -1,0 +1,20 @@
+Đặng M@i Thảo
+Auto~ati@n Test Engineer
+Email: thảo83@example.com
+Điệ~ thoạ#: %9~774362%
+Giới tính: Nữ
+Ngày sin~: 03/04%@001
+
+TÓM T%~
+6 năm kinh nghiệm #iểm thử ~hần mềm.
+
+KINH NGHIỆM
+Compa%@ C (2020 - nay)
+- Vi@t auto@ation test scrip~s ch@ bộ regres@ion, k~ể% @hử tự đ%ng hằng ngày.
+# Sử dụng P%aywr~ght, Webdriver~%, Postman, Robot Framework, Py#est cho kiể# thử api ~esting, u% tes@ing.
+- @hạy test tr#n Je@kins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Jav~@ T#peScript
+
+Địa chỉ: 202 Nguyen Trai S~reet, District 3

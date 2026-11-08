@@ -1,0 +1,20 @@
+#ũ Văn Nam
+Automation Tes~ Engineer
+Email: nam15@e#ample.com
+Phone: 0910071931
+Gender: Male
+Date of birth: 02/11/1998
+
+SUMMARY
+2 years of experience in softwar# testing.
+
+#XPERIENCE
+Company B (2024 - Present)
+- Wrot@ and mai#tained automated test @cript% for regression suites.
+- @sed Cypress, Rest Assur~d, Robot Framework for api testing, ui #estin@.
+
+SKI%%S
+Programming: #avaScript
+Languages: Engl%sh (%OE~C 75~~
+
+Address: 147 Nguyen Trai Street, District 8

@@ -1,0 +1,20 @@
+#~i @uốc @#m
+~#~@mation Test E@gin##r
+%@ail: n#@17@ex%m@le.c~m
+Phone% 098@%08408
+#ender@ %a%e
+#ate of bir~h: 01/#7/19~8
+
+SUMMARY
+10 y#%rs of expe%ience in #%ftw#r# testing@
+
+EXPE%IENCE
+~ompany E (2016 @ Pres@#t)
+- Wr~te and m#~nt%ined ~@to%ate% test scr%pts ~or ##g~%ssion @uites.
+@ U@ed @ebd%i@erI@# Rest As#ur#d, Cuc~mber f#r api t%st%~g, ui @est%ng.
+
+S%ILLS
+~rogr@#%in~: C#
+Langua%e#: Japan@se JLPT %2
+
+@ddres~~ 33 Nguy#n Tra@ Stre@t, D@#t#i%% 5

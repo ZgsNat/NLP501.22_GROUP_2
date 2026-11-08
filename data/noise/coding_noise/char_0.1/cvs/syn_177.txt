@@ -1,0 +1,21 @@
+Đ# Đức Long
+Automation Test %ngineer
+Email% l#ng11@~xample.com
+Điện thoại: 0990972685
+Giới tính# Nam
+Ngày sinh: 0#/0#/2000
+
+#ÓM TẮT
+# năm kinh nghiệm kiểm th% ~h@n mềm.
+
+KIN~ @GHIỆM
+Company A (2021 - nay)
+- Xây dựng framewo~k a#toma~ion th@o Page @bject M~del, data-driven, tích hợp Jenki#s pipeline.
+- S~ dụng A%pium, Postm@n, Pytest# Robot %ra#ewo#k cho kiể# t%ử api testing, manual testin#, mobile testin%.
+- Chạy test trên Azur% DevOps, Do#ker.
+
+KỸ N#NG
+Ngôn ngữ lập trình: JavaScript
+Ngoạ% n#ữ: English (TOEIC 750)
+
+Đ~a chỉ: 57 N@uye~ Trai Street, District 1

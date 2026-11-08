@@ -1,0 +1,22 @@
+L% Đức Kh#a
+~utomation Test Engin#er
+Email: khoa55@example.com
+Điện ~hoại: 0952857838
+Giới @ính: Nam
+Ngày sinh: 1#/07/2#03
+
+TÓM TẮT
+7 năm kinh nghiệm k%~m thử ph#n mềm.
+
+KINH NGHIỆM
+Co@pany F ~2019 - ~ay)
+% Xây dựng framework aut#mation theo ~age Obje#t Model, data-driven, tích h~p Jenkins #i@elin%.
+- Sử dụng JMete#, Cucumber c@~ kiểm thử ma~%al testing, performan#e testing.
+- C~#y t%st trên Docke~, Gi%Hub Actio@s, Jenkins.
+
+KỸ NĂNG
+N#ôn ngữ lập t#ình: J%v%, #yt%on
+Chứng chỉ: ISTQB Foundati#n Level (C#FL)
+Ngoại ngữ: E#glish (TOEI@ 750)
+
+Địa chỉ: 212 Nguyen Tra# S~reet, District 10

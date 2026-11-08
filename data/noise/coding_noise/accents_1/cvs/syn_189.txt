@@ -1,0 +1,21 @@
+Vu Duc Long
+Automation Test Engineer
+Email: long41@example.com
+Dien thoai: 0961430248
+Gioi tinh: Nam
+Ngay sinh: 14/09/2003
+
+TOM TAT
+3 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company E (2023 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung Selenium WebDriver, Cucumber, JUnit cho kiem thu ui testing.
+- Chay test tren Docker.
+
+KY NANG
+Ngon ngu lap trinh: Java
+Chung chi: ISTQB Foundation Level (CTFL)
+
+Dia chi: 274 Nguyen Trai Street, District 8

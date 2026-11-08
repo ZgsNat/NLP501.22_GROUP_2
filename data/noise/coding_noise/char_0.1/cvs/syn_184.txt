@@ -1,0 +1,21 @@
+Vũ Vă% Hùng
+Automati#n Test ~ngineer
+Emai@: %~@g87@example.com
+Điện th~ại: 0930@80%97
+Giới tí%h: Nam
+Ngày sinh: 0#/07/1998
+
+TÓM T@T
+5 năm ~inh nghiệm kiểm thử phần m#%#
+
+KINH #GHIỆ@
+Company E (2021 - nay)
+- Xây dựng %ramework automation theo Page Object Model% da%~-driven# tích hợp Jenkin# pipeline.
+- Sử dụng WebdriverI@, C~pre#s, XCUIT#@t, Rest Assur%d, Po@tman, JM~ter, JUnit, TestNG cho kiểm ~hử api testing@ mobi#~ testing, performance te#tin%~ ui testing.
+- Chạy test tr%n @ocker, Jenkins, GitHub Ac@ions.
+
+KỸ %ĂNG
+~gôn ngữ lập trình% TypeScript
+Ngoại n~ữ: En#li#h %TOEIC 750)
+
+Địa chỉ: 93 Nguy~n Trai Street, District 11

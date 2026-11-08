@@ -1,0 +1,22 @@
+Phạm Quốc Long
+Automat%on Test Engineer
+Email: long98@example.com
+Điện thoại: ~972733686
+Giới t%nh: Nam
+Ngày sinh: ~0/12%1998
+
+TÓM TẮT
+8 n%m #inh nghiệm kiểm thử phần mềm.
+
+%INH NGH~ỆM
+C#mpany G (201~ - nay)
+~ Xây dựng framework automation ~heo P@ge Obj#ct %odel, dat~-driven, tí#h #ợp J%#kin@ pipelin@.
+- Sử dụng Play#r@%ht, S%lenium WebDriver@ Rest Assured, Post#an, Ro@ot Framewo%k, JUnit #ho ki~m thử %pi testin#, ui @e@ting.
+- Chạy tes@ trên GitH%b Actions, GitLab CI, A@ure D#vOps.
+
+KỸ NĂNG
+Ngôn ngữ l#p @rì@h: Type#cript
+%hứng chỉ: #STQB Foundation Level (~TFL)
+Ngoại ngữ: English (TOEIC 750)
+
+~ịa chỉ: 297 N#uyen Trai Street, District 10

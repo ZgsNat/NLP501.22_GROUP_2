@@ -1,0 +1,21 @@
+Vu Đức Phuc
+Automation Test Engineer
+Email: phúc15@example.com
+Điện thoại: 0987911634
+Giới tinh: Nam
+Ngày sinh: 06/05/1993
+
+TOM TẮT
+3 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+C0mpany E (2023 - nay)
+- Xay dựng framew0rk automation theo Page Object Mode1, data-driven, tich hop Jenkins pipe1ine.
+- Sử dụng P1aywright, Rest Assured, Postman, k6, Robot Framew0rk cho kiem thử api testing, performance testing, ui testing.
+- Chạy test trên GitHub Acti0ns, Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: TypeScript
+Ngoại ngữ: English (TOEIC 750)
+
+Dia chỉ: 253 Nguyen Trai Street, District 6

@@ -1,0 +1,21 @@
+Đặng Minh Tuấn
+Automation Test Engineer
+Email: tuấn35@example.com
+Phone: 0936457435
+Gender: Male
+Date of birth: 02/08/2003
+
+SUMMARY
+1 years of experience in software testing.
+
+EXPERIENCE
+Company A (2025 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Playwright, WebdriverIO, Rest Assured, Postman, Robot Framework, Cucumber for api testing, ui testing.
+
+SKILLS
+Programming: Python, C#
+Certification: ISTQB CTFL
+Languages: English (TOEIC 750)
+
+Address: 141 Nguyen Trai Street, District 7

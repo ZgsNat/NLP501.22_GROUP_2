@@ -1,0 +1,22 @@
+Trần M#~ Hương
+Automation Test Engineer
+Email: huong@6@example.com
+Phone: 099%5466%0
+Gender: Female
+Date of birth: 20/01/2002
+
+SUMMARY
+10 ~ear# of experience in software testing.
+
+EXPERIENCE
+Compa#y D (2016 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.
+- Used WebdriverIO, Rest Assured, JMeter, Pytest, Cucumber for api testing, performance testing, ui testing.
+- Ran tests on Docker.
+
+SKILLS
+Programming: C#
+Certific@tion: ISTQB CTFL
+Languages: Jap%nese JLPT N2
+
+Address: 238 Nguyen Trai Street, District 7

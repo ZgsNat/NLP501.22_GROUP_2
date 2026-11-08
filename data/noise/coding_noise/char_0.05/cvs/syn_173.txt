@@ -1,0 +1,21 @@
+Hồ Đức K@oa
+Automation Test Engineer
+Email: khoa38@example.co%
+Phone: 09535@1847
+Gender: Male
+Date of birth~ 09/04/2000
+
+SUMMARY
+7 years of expe~ience in software testing@
+
+E#PERIENCE
+Company # (2019 - Present)
+- Defined the test automation s~r@~egy, led # team of 5 QA engineers an% mentored juniors on automat#on.
+- Used Selen~um We%Driver, Appiu~, Pytest fo~ mobile testing, ui testing.
+- Ran te@ts on Azure DevOps, D%cke@~ GitLab C#.
+
+SKILLS
+Program@ing% TypeScri~t, C#
+Certification: ISTQB CTFL
+
+Address: 229 Nguyen T#ai Street, District 4

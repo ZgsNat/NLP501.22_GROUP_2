@@ -1,0 +1,21 @@
+Đặ@g Th~ ~@
+A%%omation Test Engi%ee#
+Em@i@: %y91@exa#ple.com
+%iện @ho#i~ 094@061693
+~%ới tính: #@
+Ngày sinh% 08/0@/20~1
+
+TÓM T@T
+~ @ăm #~nh ngh%%m ki#m th~ p%ần #ềm.
+
+KINH NGHI~M
+Company @ (20@1 - #a%#
+- X%y dựng fr#%ewo~k au@oma@ion #h@o Pa~e Objec@ Model, %ata-dr%#~n, t~ch hợp Jenk~ns pip@line~
+- Sử d#ng Sel~nium ~~bDriver, Rest %ssure%, P#~tman% P#tes@, #Unit @ho ki~m thử a~i t#stin~, ui ~es@~n%.
+- Ch@~ te#t t@%n #itLab #~~
+
+KỸ %ĂNG
+Ng## n~ữ lập trình: TypeScri@t
+Chứ~% chỉ: ISTQ# Foun%at#on L~~el (CTFL)
+
+@ị~ chỉ: 32 Nguy~n @rai St%@et, Dist~#~~ 9

@@ -1,0 +1,21 @@
+Lê Minh Hung
+Aut0mation Test Engineer
+Email: hùng91@example.com
+Điện thoại: 0971115104
+Giới tính: Nam
+Ngày sinh: 20/08/1996
+
+TÓM TẮT
+7 năm kinh nghiệm kiem thử phan mềm.
+
+KINH NGHIỆM
+Company F (2019 - nay)
+- Xây dung framework automation theo Page Object M0del, data-driven, tích hợp Jenkins pipeline.
+- Sử dụng WebdriverIO, P0stman, k6, Cucumber, Robot Framework ch0 kiem thử api testing, performance testing, ui testing.
+- Chay test trên Azure DevOps.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Java, C#
+Ngoại ngữ: Japanese JLPT N2
+
+Địa chỉ: 252 Nguyen Trai 5treet, District 4

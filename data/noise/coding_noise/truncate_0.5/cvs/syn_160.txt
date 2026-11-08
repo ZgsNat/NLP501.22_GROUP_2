@@ -1,0 +1,13 @@
+Hồ Mai Lan
+Automation Test Engineer
+Email: lan23@example.com
+Phone: 0927513454
+Gender: Female
+Date of birth: 21/12/1991
+
+SUMMARY
+7 years of experience in software testing.
+
+EXPERIENCE
+Company A (2019 - Present)
+- Designed and built a Page Object Model automa

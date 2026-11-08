@@ -1,0 +1,21 @@
+H~ Th# Thảo
+Au#omation Test Engineer
+Email: thảo92%example.com
+Ph#ne: 095031@1@0
+Ge#der: Female
+D~te of birth: 02@12/2000
+
+SUMMAR@
+3 years of experience in software testing.
+
+EXPERIENCE
+Company A (2023 - @resent)
+- Wrote and ~aintained automated tes# scripts for regressi@n suites.
+- Used Se~enium WebDriver, WebdriverIO, TestNG, Cuc%mber for ui testing.
+- Ran tests on GitLab CI.
+
+SKILLS
+Programming: Python
+Cer#%fication: ISTQB @TF#
+
+Address: 29 Nguyen Trai Street, District 6

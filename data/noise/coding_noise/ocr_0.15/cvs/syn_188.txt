@@ -1,0 +1,22 @@
+Lê Đức Khoa
+Automation Test Engineer
+Email: khoa55@example.com
+Điện thoại: 0952857838
+Gioi tính: Nam
+Ngày sinh: 16/07/2003
+
+TÓM TẮT
+7 năm kinh nghiem kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company F (2019 - nay)
+- Xay dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.
+- Sử dụng JMeter, Cucumber cho kiểm thử manua1 testing, performance testing.
+- Chạy test trên Docker, GitHub Actions, Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Java, Pyth0n
+Chứng chi: ISTQB Foundation Level (CTFL)
+Ng0ại ngữ: Eng1ish (TOEIC 750)
+
+Địa chỉ: 212 Nguyen Trai Street, District 10

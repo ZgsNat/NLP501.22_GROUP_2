@@ -1,0 +1,13 @@
+Trần Ngọc Lan
+Automation Test Engineer
+Email: lan71@example.com
+Phone: 0956735943
+Gender: Female
+Date of birth: 10/12/1999
+
+SUMMARY
+7 years of experience in software testing.
+
+EXPERIENCE
+Company B (2019 - Present)
+- Defined the test automation strategy, le

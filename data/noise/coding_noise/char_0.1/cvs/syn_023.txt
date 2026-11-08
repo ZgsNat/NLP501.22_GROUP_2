@@ -1,0 +1,21 @@
+Hồ Minh Phúc
+A~t~mati%~ Test Engine@r
+Em~il@ phúc40@~xample.com
+@hone: 095@042832
+Ge~der: ~#le
+Date of b%%@h: 24/02/200%
+
+SUMMARY
+5 years of experie~ce in softwar# testing.
+
+EX~ER~ENCE
+@%mpany B (2021 - Present)
+- Designed and built a Page Object Model automa%ion framewo@k and int%gra~ed it into t#e CI pi%eline.
+- Used Selenium WebDriver, Rest As@ured, Cu#umber, Pytest for api tes~%ng, ui testing.
+~ ~a% tests on GitHub A~t~on~, Azu#e DevOps.
+
+SKILLS
+Progr#mming: T~peScript
+Certificati@n: ISTQB CTFL
+
+~ddress: 269 Ngu@e@ Trai Stree%, District 11

@@ -1,0 +1,21 @@
+Hoang Van Phuc
+Automation Test Engineer
+Email: phuc19@example.com
+Điện thoai: 0916052535
+Gioi tinh: Nam
+Ngay sinh: 17/02/2001
+
+TÓM TAT
+4 nam kinh nghiệm kiểm thu phần mềm.
+
+KINH NGHIỆM
+Company D (2022 - nay)
+- Xây dung framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.
+- Sử dung Playwright, Postman, Pytest cho kiểm thử api testing, ui testing.
+- Chay test tren GitHub Actions.
+
+KY NANG
+Ngôn ngu lập trinh: Python, TypeScript
+Ngoai ngữ: English (TOEIC 750)
+
+Địa chỉ: 49 Nguyen Trai Street, District 8

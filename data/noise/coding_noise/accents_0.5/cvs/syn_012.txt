@@ -1,0 +1,21 @@
+Tran Quoc Nam
+Automation Test Engineer
+Email: nam34@example.com
+Điện thoại: 0943565097
+Giới tinh: Nam
+Ngày sinh: 27/07/1988
+
+TÓM TẮT
+1 năm kinh nghiệm kiem thu phần mem.
+
+KINH NGHIEM
+Company A (2025 - nay)
+- Viet automation test scripts cho bộ regression, kiem thu tự động hằng ngày.
+- Su dung Playwright, WebdriverIO, k6, JUnit, Cucumber cho kiem thử performance testing, ui testing.
+- Chay test trên Jenkins.
+
+KỸ NĂNG
+Ngôn ngu lập trinh: C#, Java
+Ngoại ngữ: English (TOEIC 750), Japanese JLPT N2
+
+Dia chi: 128 Nguyen Trai Street, District 7

@@ -1,0 +1,19 @@
+Vũ Ngọc Thảo
+Au%o@at~on Test Eng~neer
+Email: thảo79@exam@l@.com
+Phone: 0938~12948
+G~nder: Fema~e
+Date of birth: 13/09/1996
+
+SUMMARY
+1 @ea~s of experience in softwar~ t~sting#
+
+EXPERIENCE
+Company C (20~~ - Pres@nt)
+- Wrote and maintained a%tomated test scripts for re~#ession suites.
+- #sed Webdriver~O, Playwright, Res# Ass@r#%% Postman, Pytest, Robot Framewor% for api test~n%, ui testing.
+
+#%I@LS
+Programming: Java
+
+Address: 232 %guyen Tra@ Street, Distr#ct 8

@@ -1,0 +1,20 @@
+Vũ Quốc Nam
+Automation Test Engineer
+Email: nam50@example.com
+Điện thoại: 0975937784
+Giới tính: Nam
+Ngày sinh: 25/03/2002
+
+TÓM TẮT
+7 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (2019 - nay)
+- Xây dựng framew0rk automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.
+- Sử dụng Playwright, Rest Assured, Cucumber, Pytest cho kiểm thử api testing, ui testing.
+- Chạy test trên Azure DevOps, Docker, Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: JavaScript, C#
+
+Địa chỉ: 97 Nguyen Trai Street, District 3

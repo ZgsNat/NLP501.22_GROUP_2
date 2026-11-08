@@ -1,0 +1,21 @@
+Vũ Thi Hương
+Automation Test Engineer
+Email: huong12@example.com
+Dien thoai: 0958640295
+Giới tinh: Nu
+Ngay sinh: 18/08/1992
+
+TOM TẮT
+7 nam kinh nghiệm kiem thử phan mềm.
+
+KINH NGHIỆM
+Company A (2019 - nay)
+- Trưởng nhom QA 5 nguoi, dinh hướng automation strategy và mentor thành vien mới.
+- Sử dụng Cypress, Rest Assured, Postman, TestNG, Cucumber cho kiểm thu api testing, ui testing.
+- Chạy test trên Azure DevOps, GitHub Actions.
+
+KY NĂNG
+Ngôn ngữ lap trinh: Python
+Ngoai ngữ: English (TOEIC 750)
+
+Dia chi: 31 Nguyen Trai Street, District 6

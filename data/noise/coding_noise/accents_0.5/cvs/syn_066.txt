@@ -1,0 +1,21 @@
+Le Thị Vy
+Automation Test Engineer
+Email: vy47@example.com
+Điện thoại: 0993794410
+Giới tính: Nu
+Ngày sinh: 01/05/2003
+
+TOM TẮT
+1 năm kinh nghiệm kiểm thử phan mem.
+
+KINH NGHIỆM
+Company A (2025 - nay)
+- Viết automation test scripts cho bo regression, kiểm thử tu động hằng ngày.
+- Su dụng Cypress, WebdriverIO, JUnit, Robot Framework cho kiem thu ui testing.
+
+KỸ NANG
+Ngôn ngu lap trinh: TypeScript
+Chứng chi: ISTQB Foundation Level (CTFL)
+Ngoai ngữ: English (TOEIC 750)
+
+Dia chi: 65 Nguyen Trai Street, District 9

@@ -1,0 +1,22 @@
+Đặng Văn Tuấn
+Aut#ma@i@n Test %ngineer
+Ema#%: tuấn24@e@ample.com
+Điện thoạ@: 0946137598
+Giới tính: Nam
+Ngày ~inh: 12/0~/1999
+
+TÓM TẮT
+3 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH N@HIỆM
+Co~pany F (2023 - @ay)
+- Viết automation test scripts cho bộ regress~on, kiểm thử tự động hằ~g ngày.
+- @# dụn~ Cypres#, WebdriverIO, JMeter, TestNG cho kiểm thử performance testing, ui testing.
+- Chạy te#t t#ên Az~re Dev~ps.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: TypeScript
+Chứng chỉ: ISTQB Fo%ndation Level (CTFL)
+Ngoại ngữ: Engl@s# (TOEIC 750)
+
+Địa chỉ: 215 Nguyen Trai Street, Distric% 4

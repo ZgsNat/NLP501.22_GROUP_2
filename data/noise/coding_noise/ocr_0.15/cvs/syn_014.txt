@@ -1,0 +1,19 @@
+Đặng Minh Tuan
+Automation Test Engineer
+Email: tuấn30@example.com
+Phone: 0994444996
+Gender: Male
+Date of birth: 24/01/1991
+
+SUMMARY
+1 years of experience in software testing.
+
+EXPERIENCE
+C0mpany C (2025 - Present)
+- Wr0te and maintained aut0mated test scripts for regression suites.
+- Used Selenium WebDriver, JMeter, Pytest f0r performance testing, ui testing.
+
+SKILLS
+Programming: Java, Java5cript
+
+Address: 247 Nguyen Trai Street, District 11

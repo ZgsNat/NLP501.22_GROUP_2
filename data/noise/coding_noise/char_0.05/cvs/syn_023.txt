@@ -1,0 +1,21 @@
+Hồ Minh Phúc
+Automation Test Engi#eer
+#mail: ph~c40@example.com
+Phone: 0953042832
+Gender: #ale
+Date of birth: 24/02/2000
+
+SUMMARY
+# @ears of experi#nce i@ s@ftware testing%
+
+EXPERIEN#E
+Company B (2021 - Pr%sent)
+- Designed and built a Page Obje@t Model automation fram~work @nd integrated it into th@ #I pipeline.
+- Used Selenium WebDriver, Rest Assur@d, Cucumber, Py#est for api testing, ui testing.
+- Ran tests on GitHub Actions, Azure DevOps.
+
+SKILLS
+Programming: TypeScript
+Cert~fication: ISTQB CTFL
+
+Add%ess: 269 Nguyen Trai Street, District 11

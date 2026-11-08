@@ -1,0 +1,21 @@
+Nguyen Ngọc Vy
+Aut0mation Test Engineer
+Emai1: vy72@example.com
+Ph0ne: 0998305426
+Gender: Female
+Date 0f birth: 14/03/1990
+
+SUMMARY
+7 years 0f experience in s0ftware testing.
+
+EXPERlENCE
+Company B (2019 - Present)
+- Designed and built a Page Object M0del aut0mation framew0rk and integrated it int0 the CI pipeline.
+- Used WebdriverI0, Pytest, Robot Framew0rk f0r ui testing.
+- Ran tests 0n Docker, Jenkins, GitHub Acti0ns.
+
+5KILLS
+Programming: TypeScript, JavaScript
+Languages: Eng1ish (TOEIC 750), Japanese JLPT N2
+
+Address: 213 Nguyen Trai Street, District 8

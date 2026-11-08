@@ -1,0 +1,21 @@
+Hồ Minh Phuc
+Automation Test Engineer
+Email: phúc40@example.com
+Phone: 0953042832
+Gender: Male
+Date of birth: 24/02/2000
+
+SUMMARY
+5 years of experience in software testing.
+
+EXPERIENCE
+Company B (2021 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.
+- Used Selenium WebDriver, Rest Assured, Cucumber, Pytest for api testing, ui testing.
+- Ran tests on GitHub Actions, Azure DevOps.
+
+SKILLS
+Pr0gramming: TypeScript
+Certification: ISTQB CTFL
+
+Address: 269 Nguyen Trai Street, District 11

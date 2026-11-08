@@ -1,0 +1,21 @@
+Ho%ng Đ#c Phú~
+~ut@mat~on Te@t Eng#neer
+Email: phúc65@e~ample.com
+Pho~e% 091159~230
+Gender: Male
+%ate of b@rt#: 10/08/2000
+
+SU%MARY
+5 y%ar# of experi~n~e i@ %oft#ar~ testi@g.
+
+E#PERIENCE
+Company F (2021 - P%esent)
+- #ro#e and maintained aut#mated test s%#i#ts for regression sui%es%
+- Used Webdri~erIO, Cy@ress, JUnit for ui testi#g.
+- Ran tests on Do@ker.
+
+SKILLS
+Programming@ J@va, TypeScript
+Ce@tific~tion: IS@QB CTFL
+
+A~dre%s~ 162 Nguye~ Trai Street, Distric@ 9

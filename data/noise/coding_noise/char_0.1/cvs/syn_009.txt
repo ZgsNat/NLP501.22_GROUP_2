@@ -1,0 +1,22 @@
+Vũ Văn Nam
+Automa@ion Test En~ineer
+E@ail: nam16@example~com
+Phone: 0981802559
+@ender: Male
+Dat# @f birth: 01/03/199@
+
+SUMMA~Y
+3 year% of experience in software te~ting.
+
+EXPERIENCE
+Company C (2%23 - @r~sent)
+- Desig@ed and bui@@ a Page Object Mode# automation framework and in#egrated it into the CI p#peline.
+- Used Selen@um WebDrive%, Postman, TestNG for api testing, ui testing.
+# Ran tes~s o# Azure DevO#s, Doc~e~.
+
+SKILLS
+Programming: Python
+Certifi@ation: ISTQB CTFL
+~anguages: Englis@ (TOEIC 750), Ja@~nese JLPT N2
+
+Add~ess: ~38 Ng%yen Trai St@eet, District 3

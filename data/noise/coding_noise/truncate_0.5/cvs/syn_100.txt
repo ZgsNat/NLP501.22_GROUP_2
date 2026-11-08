@@ -1,0 +1,13 @@
+Trần Minh Hùng
+Automation Test Engineer
+Email: hùng46@example.com
+Phone: 0926373347
+Gender: Male
+Date of birth: 13/06/1991
+
+SUMMARY
+6 years of experience in software testing.
+
+EXPERIENCE
+Company G (2020 - Present)
+- Wrote and maintained automat

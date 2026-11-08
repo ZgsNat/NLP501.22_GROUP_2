@@ -1,0 +1,21 @@
+Đỗ Minh T~ấn
+Automa~ion Test Engineer
+Email: @uấn~9@exampl#.com
+%hone: 094695342#
+Gender: Mal%
+Date of birt~: 2#/10/1993
+
+SUMMARY
+1 years of experience in s@ftware testi#g.
+
+E@PERIENCE
+Company A (2025 - Pr%sent)
+- Wrote an# mai#t@ined ~utomat~d test sc@ipts for regression s~ites.
+- Use# Webdriver@O, k6, Robot Fram%work, C@cumber for perfo@~an@e testing, ui testing.
+- Ra# tests on Azure DevOps@
+
+SKIL%S
+P~ogramming~ #ava, Pyt~on
+%anguages: En@lish (TOE@C 750)
+
+Addres@: @72 Nguyen Tra~ %t~eet, Distr%ct 3

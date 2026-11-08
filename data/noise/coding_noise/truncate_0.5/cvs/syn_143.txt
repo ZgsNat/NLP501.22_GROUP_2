@@ -1,0 +1,13 @@
+Lê Minh Long
+Automation Test Engineer
+Email: long36@example.com
+Phone: 0963414658
+Gender: Male
+Date of birth: 23/05/1988
+
+SUMMARY
+10 years of experience in software testing.
+
+EXPERIENCE
+Company B (2016 - Present)
+- Defined the test automation strategy, led a te

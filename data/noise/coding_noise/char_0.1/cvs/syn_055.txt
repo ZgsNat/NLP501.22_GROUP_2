@@ -1,0 +1,21 @@
+Trần Minh H@n%
+Automation %est E@gineer
+Email@ hù~~40@example.com
+Phone: 09679%3873
+Gender: Male
+D%te of birt#: 23/10/20#0
+
+SUM#ARY
+3 yea@s of ex%erience in software testing.
+
+EXPERIENCE
+Company F (2023 - P%esent)
+- %esigned and bu%lt a Page Object Mod@l automation fram#wo#~ an~ in#egrated it into the ~I pipeline.
+# Used Cypress, Se%e@ium Web#r~%~r% ~%press%, Robot Fra~ework, TestNG %or mobile testing, u# te%ting.
+- Ran %e#ts on Git~ub Actio#s.
+
+SKILLS
+Programm%ng~ Ja%aScr%%%, C#
+Languages: E#g%ish (TOEIC 750)
+
+Address: 163 Nguyen Trai %tr#e%, District 12

@@ -1,0 +1,21 @@
+Ngu%ễn N~ọc L#nh
+Automati%n Test E@gineer
+Email: #inh#1@example.com
+Phone: ~973918769
+Gender: Femal%
+Date of bi#t@: 1~/08/1995
+
+@UMMARY
+6 y#ar~ of experie#@e i% @oftwar# %esting.
+
+EXPERIENCE
+Company D (2020 - Presen~)
+- De%ined the test ~utom@ti@n strategy, led @ team o~ 5 #A engineers #nd me#tored juniors o@ autom@tion#
+- Used @%aywrig%t, Cypress, %Mete#, Robot Framework, JUn~t for %erfor@ance #esting, ui te#tin~.
+- Ran tests on GitLab CI.
+
+SKILLS
+Programm#%g: Python
+%anguages~ Engl%sh (TOEIC 750#
+
+Address: 2@@ Nguyen Trai Stree@, Di#trict 8

@@ -1,0 +1,21 @@
+Đặ~g Quố% Na#
+#ut#@a@ion ~e#t Engineer
+E%ail# #am24@exa~p%e.c%m
+Đ#ện ~ho%i: 0924479352
+Gi#i #@nh: N#m
+Ng@% %i#h: 26/#@/1992
+
+TÓM TẮT
+~ năm @%~h ng%i@# kiểm th% p%ần mềm.
+
+KINH NG#IỆM
+#o%p@ny B #2~20 @ #@y)
+- Xâ@ @ựng @@am~w%rk a#tomati~n th#o Pa@% O@ject Model~ d@ta-@~iv~n, tích %ợ@ Je@kins pipeline.
+@ Sử dụng Web#ri@er#O% Gatl%ng, JUnit ch# #iểm t@ử pe~forman~e testing, ui ##st@#g.
+- Chạy test trên @it~~b ~cti#ns, @z##e D~vO~s, G@tLab CI.
+
+KỸ NĂNG
+Ngôn ng# lậ~ trình: C#, @%va#c@ipt
+Ng~ại @g%: En~%i#h (%OEI@ 750)
+
+Địa c#ỉ: 17# N~u%#n Trai Stre~t, Dis%@ict 9

@@ -1,0 +1,21 @@
+Trần Ma@ Tra~g
+Au@omation Test Engineer
+%m@il: tr@n%56@example.%om
+Ph@~e: #~6~325~@~
+Ge~der: Femal%
+Date of birt#: 0#@03~1##7
+
+SUMM~RY
+10 y#%rs o~ %xp~rience in s@%t%ar# te#t~#g.
+
+EX%#R%ENCE
+Company A @2016 - P~%sent)
+- Designed and ~uil@ a P%ge ##~e#t M@@el au%oma@i@n fram%wo@k and %#te~r@#ed it %nto the CI pi%elin@.
+- Used ##bdriv@rI@@ Play~right, X@UITest, @#cumbe~, Robot Fr%m@work %o~ m@bile %e%ting, u@ test#~g.
+- R%n %e~t~ ~n @i#Lab @I.
+
+SKI~LS
+P~#gr#m@i@g# JavaScri%t
+Lan~~age#: Engl%s~ (TOEIC 750)
+
+Addr#~s@ # ~~u%en Tra@ Street, %istr~~@ 9

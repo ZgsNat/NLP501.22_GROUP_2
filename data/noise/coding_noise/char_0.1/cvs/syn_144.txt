@@ -1,0 +1,19 @@
+Trần Thị Vy
+Automat@on Tes# E#gin%e~
+Email: vy63@@xample.com
+Phone: 098045920@
+Gender: Fe%a%e
+Dat@ of #irth: #4%11/%997
+
+SUMMARY
+1 years of experience in softw@re testing.
+
+~XP#RIEN~E
+Company F %2025 - Pres@nt)
+- Wrote ~~d ~aintained auto@ated test scrip#s f#r regre~s~on su~tes.
+- U%#d Playw~ight, R@st ~#sured, Post#an, Gatl~ng, %obo% Framework# Pyte%t for api test%ng@ performance tes#in%, ui testing#
+
+SKILL@
+Pro#ramming: C#, #ypeScri@t
+
+Address: 221 Nguyen Tra~ Street, Distr%c~ 3

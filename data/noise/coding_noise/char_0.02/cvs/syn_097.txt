@@ -1,0 +1,22 @@
+Nguyễn Mai Trang
+Automation Test @ngineer
+#mail: trang81@example.com
+Phone: 0975122376
+Gender: Female
+Date of birth: 15/08#1991
+
+SUMMARY
+7 years of experience in software testing.
+
+EXPERIENCE
+Co#pany G (2019 - Pr#sent#
+- Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.
+- Us@d Playwright, Selenium WebDriver, Postman, TestNG for api testing, ui testing.
+- Ran tests on GitLab CI.
+
+SKILLS
+Prog~amming: TypeScript
+Certification: ISTQB CTFL
+Languages: English (TOEIC 750)
+
+Address: 76 Nguyen Trai Street, District 2

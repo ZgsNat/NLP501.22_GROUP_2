@@ -1,0 +1,22 @@
+Đỗ Van Khoa
+Automation Test Engineer
+Email: khoa32@example.com
+Điện thoại: 0951343854
+Giới tính: Nam
+Ngày sinh: 13/02/1991
+
+TOM TAT
+1 năm kinh nghiệm kiem thu phan mem.
+
+KINH NGHIỆM
+Company F (2025 - nay)
+- Viet automation test scripts cho bộ regression, kiểm thử tự động hằng ngay.
+- Su dụng WebdriverIO, XCUITest, Postman, TestNG, Cucumber cho kiem thu api testing, mobile testing, ui testing.
+- Chạy test tren Docker.
+
+KỸ NANG
+Ngôn ngữ lap trình: TypeScript, Java
+Chung chỉ: ISTQB Foundation Level (CTFL)
+Ngoai ngu: English (TOEIC 750)
+
+Dia chỉ: 195 Nguyen Trai Street, District 6

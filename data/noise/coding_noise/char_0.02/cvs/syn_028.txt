@@ -1,0 +1,20 @@
+Đỗ Mai Trang
+Automation Test Engineer
+Email: trang17@example.co~
+Phone: 0992803389
+Gender: Female
+Date of birth: 09/09/1989
+
+SUMMARY
+4 years of e#%erience in softw#re testing.
+
+EXPERIENCE
+Company F (2022 - Present)
+- Designed and built a Page Object Model automation f#amework and integrated it into the CI pipeline.
+- Used Cypress, WebdriverIO, Espr@sso, Postman, Rest Assured, Te~tNG, JUnit for api testing, mobile testing, ui testing.
+- R%n tests on Azure DevO@s, GitHub Actions, Docker.
+
+SKILL@
+Programming: Python
+
+Add~ess: 37 Nguyen Trai Street, District 5

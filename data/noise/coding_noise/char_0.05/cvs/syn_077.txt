@@ -1,0 +1,21 @@
+Nguyễn Văn Hùng
+Automation Test Engineer
+Email: hùng86@example.com
+Điện thoại: 0998128100
+Gi~i tín@# Nam
+N#@y sin%: 27/04/1991
+
+TÓM TẮT
+10 ~ăm kinh ngh@ệm kiểm thử phần m~m.
+
+KI#H NGHIỆ%
+Company F (2016 - nay)
+- Trưởng nhóm QA 5 #gười, định hướng a%to~~tio~ strategy v@ mentor thành viên mới.
+- #ử dụ~% Espress~, Postman, Rest Assure#, TestNG, Cucumber cho kiểm thử a@i te~ting, manual testing, mobile testing.
+- Chạy test trên Docker, Jenkins, Azure ~evO~s.
+
+@Ỹ NĂNG
+Ngôn ngữ lập trình: C#, JavaScript
+Ngoại ngữ: E~gl~sh (TOEIC 75%)
+
+Địa c~ỉ: 62 Nguyen Trai Street, District 2

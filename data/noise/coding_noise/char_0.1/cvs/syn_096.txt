@@ -1,0 +1,21 @@
+Nguyễn Ngọc Hương
+Automation Tes~ En~ine@r
+Emai@: huong14@examp~e.com
+Phone: 09731155%5
+Gend@#: Fe~%le
+Date of birth: 09/03/2002
+
+SU~MARY
+3 years of e~perienc% in software testing.
+
+~XP%RIENCE
+Company D (2023 - Prese~t)
+- Designed and built a Page Object Model automation ~ramework @n~ integra~ed it into the C# pipeline.
+- U@ed Selenium W@b~river, Pyt#st, JUni# %#r ~# test~ng.
+- Ran te@ts on Azure DevOps.
+
+SKILLS
+Pro%ramming: JavaScript
+L#ng~ages: English (TOEIC 750)
+
+Add@ess: 60 Nguyen #r#i Street~ Dist@ict #

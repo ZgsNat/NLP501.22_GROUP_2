@@ -1,0 +1,19 @@
+Nguyen Mai Trang
+Automation Test Engineer
+Email: trang86@example.com
+Dien thoai: 0941033204
+Gioi tinh: Nu
+Ngay sinh: 26/01/1999
+
+TOM TAT
+1 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company B (2025 - nay)
+- Viet automation test scripts cho bo regression, kiem thu tu dong hang ngay.
+- Su dung Cypress, Postman, Robot Framework, JUnit cho kiem thu api testing, ui testing.
+
+KY NANG
+Ngon ngu lap trinh: JavaScript
+
+Dia chi: 211 Nguyen Trai Street, District 9

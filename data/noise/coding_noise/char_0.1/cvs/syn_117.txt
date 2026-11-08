@@ -1,0 +1,20 @@
+Bùi Ngọc @y
+Automation Test Enginee#
+Email: vy40@exa#%le.com
+Phone: 0~684905#8
+G@nder: #emale
+Date of birth: 27/1~/1994
+
+SUMMARY
+10 yea@s of exp#rience in softwa%e testing.
+
+EXP%RIENCE
+Company A (2016 - #rese@t)
+- Defined the test a@t@mation s@rategy, #ed a team of 5 QA engineers and ment~red junior% on auto@a@#on.
+- Use# @ebdriv~r#O, Espresso, TestNG fo# %ob%le testi@g@ ~i testin%.
+- #a# tests on Azur@ DevOps%
+
+SKILLS
+Programming# Java, C#
+
+Ad%ress: 15% Nguyen Trai Street, District %

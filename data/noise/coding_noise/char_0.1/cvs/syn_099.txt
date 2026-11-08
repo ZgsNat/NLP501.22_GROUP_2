@@ -1,0 +1,20 @@
+Hồ Văn Phúc
+Autom#tion Test En@ineer
+Emai~: phúc8@@ex#mple.com
+Phon~: 0934235540
+Gender: Male
+Dat# of birth: %4/02/1995
+
+SUMMARY
+2 years of experience in software testi@g@
+
+EXPERI#~CE
+#o~pany G (2024 - Present)
+- Wrote and mai#tai~ed automa#ed test ~@rip~s f@r regr~ssion #u%te%.
+- Used Selenium Web%river, %ostman, Rest A@sured@ ~ucumber for api t@sti%g, ui tes@ing.
+
+SK%LLS
+Pr@gramm#ng: JavaScript, Java
+Certific%t~on% ISTQB CT#L
+
+Address: 256 Nguyen Trai Stree#, Di%tric% 11

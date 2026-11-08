@@ -1,0 +1,18 @@
+Tran Quốc Tuan
+QA/QC Engineer
+Email: tuấn29@example.com
+Ph0ne: 0927151649
+Gender: Male
+Date 0f birth: 22/05/1995
+
+SUMMARY
+Fresh graduate passionate about testing.
+
+EXPERIENCE
+- Executed manual test cases and reported defects in Jira.
+- Used XCUITest, Robot Framework f0r manual testing, mobile testing.
+
+SKlLLS
+Programming: TypeScript
+
+Address: 268 Nguyen Trai Street, District 7

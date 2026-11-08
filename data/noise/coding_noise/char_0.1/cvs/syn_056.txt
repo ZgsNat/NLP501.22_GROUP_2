@@ -1,0 +1,20 @@
+Đặn# Mai L#nh
+Aut@mation Te#t Enginee@
+Email: linh65@example.com
+P#one: 09~3@~#605
+Gender: Fe#ale
+Date of birth: 07/11/1993
+
+SUMMARY
+3 years of experience in sof@ware testing.
+
+EXPE~IENCE
+Compan@ D (2023 - Present#
+- Wrot@ and mainta@ned a#t#mated @est script# for regressi%n suites@
+- Used #elenium WebDriver, Appium, Postman, C%~um~er, Robot Fr#mewor~ ~or api testing, mobile testing, ui testing.
+- Ran tests on Jenkins#
+
+S~ILLS
+Programming: Jav%Scr@pt, Python
+
+Ad~r~ss: 72 N#uyen @@ai Street, District 4

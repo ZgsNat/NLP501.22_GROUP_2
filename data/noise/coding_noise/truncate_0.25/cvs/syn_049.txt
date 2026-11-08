@@ -1,0 +1,14 @@
+Vũ Ngọc Hương
+Automation Test Engineer
+Email: huong94@example.com
+Điện thoại: 0999872888
+Giới tính: Nữ
+Ngày sinh: 03/12/2003
+
+TÓM TẮT
+4 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (2022 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.
+- Sử dụng Selenium WebDriver, Rest Assured, Cucumber cho kiểm thử api testing, ui testing.

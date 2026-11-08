@@ -1,0 +1,15 @@
+Nguyễn Mai Trang
+Automation Test Engineer
+Email: trang81@example.com
+Phone: 0975122376
+Gender: Female
+Date of birth: 15/08/1991
+
+SUMMARY
+7 years of experience in software testing.
+
+EXPERIENCE
+Company G (2019 - Present)
+- Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.
+- Used Playwright, Selenium WebDriver, Postman, TestNG for api testing, ui testing.
+- Ran tests on G

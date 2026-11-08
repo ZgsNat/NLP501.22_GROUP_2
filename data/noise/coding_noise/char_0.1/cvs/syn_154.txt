@@ -1,0 +1,20 @@
+Nguyễn %i~h Nam
+Automati## Test Engineer
+Ema#l: nam2#@exampl#.~om
+Điệ@ tho~i: #967@@7417
+Giới t%nh: @a@
+Ngày sin#: 01/10/1994
+
+#ÓM TẮT
+1 n%m kinh n~hiệm kiểm thử phầ# mề%.
+
+KINH NGHIỆM
+Comp~ny @ (2~25 - nay)
+- Viết automation test scripts cho bộ r~gression, @iể% thử tự động @ằng ngày.
+- #ử %ụng @ebdri~erIO, Playwright, Po%t%an, Gat#ing, TestNG, Pytest @ho ki%m t@~ api testing, performance testin#% ui testin%.
+
+KỸ NĂNG
+Ngôn ngữ lậ~ #rình: Java
+Ngoại ngữ: ~nglish (TOEIC 750)
+
+Đị~ chỉ: 27 Nguyen T@ai Street, District @

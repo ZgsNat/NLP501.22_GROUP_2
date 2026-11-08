@@ -1,0 +1,21 @@
+Hồ #ai V~
+Automation Test Engine#r
+Emai~: vy72@example.com
+Phone: 098057454@
+Gender: Female
+Date of birth: 20/12/#996
+
+SUMMARY
+1 yea@s of experienc# i~ software testing.
+
+EXPERIENCE
+Company A (2025 - Present)
+- Wrote and maintained automated test scripts @or regr@ssion suites.
+- Used Webdri%erIO, Cypress, Rest Assured, C%cumber, Rob@t Framework for a#% testing, ui t%sting.
+
+SKILLS
+Programming: JavaScript, Python
+Certification: I@TQB CTFL
+Languages: English (TOEIC 750)
+
+Address: 188 Ng%yen Trai Street, District 4

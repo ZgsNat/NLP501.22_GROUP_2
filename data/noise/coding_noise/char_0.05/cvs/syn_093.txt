@@ -1,0 +1,18 @@
+Bùi Ngọc La@
+Q%/QC @ngineer
+Email: l~n50@example.com
+Điện thoại: 098119#277
+Giới tính: Nữ
+Ng#y sinh: 14/03/1996
+
+TÓM TẮT
+Mới #ốt nghiệp, %am mê kiểm @h#.
+
+KINH NGHIỆM
+- Thực hiện kiểm thử thủ công, viết test case và bá@ l%i tr%n Jira.
+- Sử dụng Rest Assured, Postman cho kiểm thử api @esting, manual testing.
+- C#ạy te#t trên Jenkins.
+
+KỸ NĂNG
+
+Địa chỉ: 60 Nguy~n Trai Street, District 6

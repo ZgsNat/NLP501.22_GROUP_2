@@ -1,0 +1,21 @@
+Vu Văn Hùng
+Automation Test Engineer
+Email: hùng87@example.com
+Điện thoại: 0930280697
+Giới tinh: Nam
+Ngày sinh: 06/07/1998
+
+TÓM TẮT
+5 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company E (2021 - nay)
+- Xây dựng framework aut0mation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.
+- Sử dụng WebdriverIO, Cypress, XCUITest, Rest Assured, Postman, JMeter, JUnit, TestNG cho kiểm thu api testing, mobile testing, performance testing, ui testing.
+- Chạy test trên D0cker, Jenkins, GitHub Actions.
+
+KỸ NANG
+Ngôn ngữ 1ập trình: TypeScript
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 93 Nguyen Trai Street, District 11

@@ -1,0 +1,20 @@
+Ho Thi Thảo
+Automation Test Engineer
+Email: thao68@example.com
+Dien thoại: 0977621275
+Gioi tính: Nu
+Ngày sinh: 23/12/1996
+
+TOM TAT
+10 năm kinh nghiệm kiem thử phần mềm.
+
+KINH NGHIỆM
+Company C (2016 - nay)
+- Truong nhom QA 5 người, dinh hướng automation strategy va mentor thanh vien mới.
+- Su dụng WebdriverIO, XCUITest, Postman, Rest Assured, TestNG cho kiem thu api testing, mobile testing, ui testing.
+- Chay test trên Azure DevOps, Jenkins.
+
+KY NANG
+Ngôn ngu lap trình: Python, Java
+
+Địa chỉ: 113 Nguyen Trai Street, District 5

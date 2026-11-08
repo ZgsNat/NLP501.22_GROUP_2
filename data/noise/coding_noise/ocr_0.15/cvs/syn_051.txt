@@ -1,0 +1,21 @@
+Bùi Văn Hùng
+Aut0mation Test Engineer
+Email: hùng37@example.com
+Điện thoại: 0928645088
+Giới tinh: Nam
+Ngày sinh: 19/11/1988
+
+TOM TAT
+3 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company G (2023 - nay)
+- Viết automation test scripts cho bộ regression, kiểm thu tự động hang ngày.
+- Sử dụng Playwright, WebdriverIO, XCUITest, R0bot Framew0rk ch0 kiểm thử mobile testing, ui testing.
+- Chạy test trên GitHub Actions.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Java, Python
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 76 Nguyen Trai Street, District 11

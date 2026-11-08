@@ -1,0 +1,13 @@
+Trần Mai Lan
+Automation Test Engineer
+Email: lan61@example.com
+Điện thoại: 0944247519
+Giới tính: Nữ
+Ngày sinh: 06/04/2000
+
+TÓM TẮT
+1 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (2025 - nay)
+- Viết automation test scr

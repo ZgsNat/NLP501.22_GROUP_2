@@ -1,0 +1,20 @@
+Lê Đức Phuc
+QA/QC Engineer
+Email: phúc31@example.com
+Điện th0ại: 0913834774
+Giới tinh: Nam
+Ngày sinh: 02/11/1999
+
+TÓM TẮT
+Mới tốt nghiệp, dam mê kiểm thử.
+
+KINH NGHIỆM
+- Thực hiện kiem thử thu công, viết test case và báo lỗi tren Jira.
+- Sử dụng Se1enium WebDriver, XCUITest cho kiểm thử m0bile testing, ui testing.
+- Chay test trên Docker.
+
+KY NANG
+Ngôn ngữ 1ập trình: Pyth0n
+Chung chỉ: ISTQ8 F0undation Level (CTFL)
+
+Dia chỉ: 167 Nguyen Trai Street, District 8

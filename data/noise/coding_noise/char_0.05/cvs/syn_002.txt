@@ -1,0 +1,21 @@
+Hồ Mai Thảo
+Automation Test Engi@eer
+Emai~: thảo91@example.com
+Phone: 0995836028
+Gender: Female
+Date of birth: 18/05/1999
+
+SUMMARY
+1 years of experience in software test%ng.
+
+EXPERIENCE
+Company # (2025 - Presen~)
+- Wrote and maintained automated t%st scripts fo# reg#ession su%tes@
+- Used WebdriverI#, @#test, JUnit for ui t%sting.
+
+SKILLS
+Programm@ng: J~va, Py#hon
+Certification: ISTQB CTFL
+Languages: English (TOE%C 750)
+
+Address: 277 Nguyen Trai Street, Dist#ict 4

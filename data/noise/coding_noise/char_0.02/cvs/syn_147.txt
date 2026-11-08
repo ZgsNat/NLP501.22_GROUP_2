@@ -1,0 +1,22 @@
+Phạm Thu Lan
+Autom#tion Test Engineer
+Email: lan27@example.com
+Phone: 0962955068
+Gender: Female
+Date of birth: 14/1~/1998
+
+SUMMARY
+7 years of experience in software testing.
+
+EXPERIENCE
+Co%pany A (2019 - Present)
+- Defined the test automation strategy, led a team of 5 QA engi@eers and mentored #uniors on automat@on.
+- Used ~C@ITest, Gatling, JUnit, TestNG for manual testing, mobile test#ng, performance testing.
+- Ran tes@s on Je#kins.
+
+SKILLS
+~rogramming: Python
+Certification: ISTQB CTFL
+Languages: English (TOEIC 750)
+
+Address: 83 Nguyen Trai Street, Di#trict 11

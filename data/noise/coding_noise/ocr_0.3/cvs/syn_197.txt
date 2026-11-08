@@ -1,0 +1,19 @@
+Ho Đức Phuc
+Automation Test Engineer
+Email: phúc37@example.com
+Phone: 0923813714
+Gender: Male
+Date of birth: 18/05/1990
+
+SUMMARY
+3 years of experience in s0ftware testing.
+
+EXPERlENCE
+Company E (2023 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Cypress, k6, TestNG, Cucumber for perf0rmance testing, ui testing.
+
+SKlLLS
+Pr0gramming: TypeScript, Pyth0n
+
+Address: 216 Nguyen Trai Street, District 11

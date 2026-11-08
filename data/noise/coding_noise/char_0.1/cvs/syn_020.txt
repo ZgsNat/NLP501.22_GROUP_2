@@ -1,0 +1,20 @@
+Nguyễn Quố~ Long
+Aut~mat~on Te%t Enginee#
+Ema@l: long66@e#am~le.com
+Đi@% ~hoại: 09#50@1037
+~iới %ính: #am
+Ngày sinh# 10/09/2003
+
+#~M TẮT
+10 năm kinh ngh#ệm kiểm @hử phần @ềm.
+
+KINH NGHIỆM
+~ompany B (2%16 - nay)
+- Trưởng nhóm Q@ 5 người, định hướn~ automation st%ategy và mentor th%nh viê# ~#%.
+- Sử dụn@ Web%riverIO, Cypress, Rest Assured~ Pos#~an, Cucumber% Pytes@ cho kiểm t#ử api testing, #i testing.
+- Chạy #est %rên Azure DevOp@, GitL%b CI, Docker.
+
+KỸ %ĂNG
+Ngôn ngữ lập tr#nh: J#vaScri~t
+
+#ịa chỉ: 291 Nguyen Trai @%re%t, District 3

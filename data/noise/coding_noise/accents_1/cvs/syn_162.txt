@@ -1,0 +1,21 @@
+Le Van Nam
+QA/QC Engineer
+Email: nam34@example.com
+Dien thoai: 0966131539
+Gioi tinh: Nam
+Ngay sinh: 18/12/1996
+
+TOM TAT
+Moi tot nghiep, dam me kiem thu.
+
+KINH NGHIEM
+- Thuc hien kiem thu thu cong, viet test case va bao loi tren Jira.
+- Su dung WebdriverIO, Rest Assured, Postman, Cucumber cho kiem thu api testing, ui testing.
+- Chay test tren Jenkins.
+
+KY NANG
+Ngon ngu lap trinh: Java
+Chung chi: ISTQB Foundation Level (CTFL)
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 287 Nguyen Trai Street, District 6

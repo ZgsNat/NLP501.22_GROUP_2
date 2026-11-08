@@ -1,0 +1,21 @@
+Lê Quốc P@@c
+Automa%ion T%~@ %n#%n~%r
+Ema%%% #húc10@~x#mp@e#com
+Pho@e: ~#8~569592
+Gen#e#@ M~le
+Dat# ~f birt~: %6@12/19~5
+
+SUMMARY
+1 y~ars of e@%eri#nce in softwa#e te%ting.
+
+EXPERIENCE
+@om@an@ F ~202~ - Pr@sen%)
+- @rote and maintai@ed %u#om#te% t#st s%@ipts for regression @u@tes.
+- Used Se%en%u~ WebDriv@r, Cypress, ~yt~st #~% ui @esti~~.
+- Ran te#ts ~n GitLab CI.
+
+##I#LS
+P~ogramm~n~@ C#
+C%rti#ica#ion: @ST#B CTFL
+
+~d#ress: 257 ~guyen Trai St#eet, District 5

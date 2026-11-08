@@ -1,0 +1,21 @@
+Hoàng Đức Tuấn
+Aut0mation Test Engineer
+Email: tuấn16@example.com
+Ph0ne: 0999482259
+Gender: Ma1e
+Date of birth: 07/02/1995
+
+SUMMARY
+2 years of experience in software testing.
+
+EXPERIENCE
+Company F (2024 - Present)
+- Wr0te and maintained automated test scripts for regression suites.
+- Used WebdriverIO, XCUITest, JUnit, Pytest for mobile testing, ui testing.
+- Ran tests 0n Jenkins.
+
+SKILLS
+Pr0gramming: Java
+Languages: English (TOEIC 750)
+
+Address: 223 Nguyen Trai 5treet, District 6

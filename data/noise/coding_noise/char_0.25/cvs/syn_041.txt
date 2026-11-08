@@ -1,0 +1,20 @@
+Đặn~ Mai T%%@
+A~to#a@~%@ T~st %~@in@er
+E%%il: thảo8~@~xa@pl%#co~
+Điệ@ thoạ~: 09~#743626
+#i~i ~ín#: N~
+N#ày s%nh: ~~~04/~001
+
+TÓ~ TẮT
+6 n%m kin~ ~ghi#m k%ểm thử phần m%#.
+
+K%N@ NGHIỆM
+Compa#y C (2#2@ - n#y)
+~ Viết auto#ati~# tes% script% cho b# ~#gre%~@@n, k~@m thử tự động h%ng #gày.
+- Sử #ụng Pl#y#righ@, #ebd~#v~~IO, Postman, Robot Framewo@k, Pyte~~ ch# %%ểm thử ap~ %e%ting% ui testing.
+- Chạy tes% trên %enk@ns~
+
+KỸ NĂNG
+Ng%n ~gữ lập %rình: @~va~ ~ypeScript
+
+Địa c#%: #0@ ~gu%en T#ai #tr%et, Distr@~t 3

@@ -1,0 +1,19 @@
+Lê Thị Hương
+#uto%a~ion Test Engineer
+Ema#l: hu#ng19@example%com
+Điện ~~oại: 091167472%
+%iới tính: Nữ
+Ngày sinh: 19/07/1992
+
+~ÓM TẮT
+2 năm k~nh nghiệm kiểm thử phần %ềm.
+
+KINH NGHIỆ#
+Company G (202~ - nay)
+- #iết automati@n ~est scri@ts cho bộ regression, kiểm thử tự @ộng hằng ngày.
+- Sử dụ@g Playwright, Pos~man@ Rob@t F%amew#rk cho k@ểm thử api testing, ui testing.
+
+KỸ NĂNG
+Ngô% ng% lập trình: TypeScript, #y%hon
+
+#ịa chỉ: 94 Nguyen Trai S%reet, District 8

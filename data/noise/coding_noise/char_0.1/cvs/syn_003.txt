@@ -1,0 +1,21 @@
+Trần Mai Tra~g
+Automation T%st E#gi%eer
+Email: trang~6@e@amp~e.co~
+#hone: 0965325058
+Ge%de#: Femal~
+Date of birth: 09/03/1997
+
+SUMMARY
+10 years o@ ex#e@ience in s@ftwar@ testing@
+
+EXPERIENCE
+C%m%any A (2016 - %resent@
+- D@sig%ed and built a Page Object Model automation fram~work and i@tegrated it into the CI p%p@line.
+- Us%d Webdriv#rIO, Playwri#ht, XCUITest, Cucumber, R@b%t F@amewo#k fo@ @obil~ tes%ing, ui testi%g.
+- Ran tests on GitLab ~~.
+
+#K~LLS
+P%ogramming: JavaS%r~pt
+#a%gua~es: #ng%i@h (TOEIC 75@)
+
+Add@ess: 1 Nguyen Trai Street, Dis%rict 9

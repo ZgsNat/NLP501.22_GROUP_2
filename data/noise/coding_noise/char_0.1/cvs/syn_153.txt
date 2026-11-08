@@ -1,0 +1,21 @@
+Đỗ Đức Nam
+A#tomation Te#t %ngineer
+@mail: nam85@example.com
+Phon~: 0994410590
+Gender: Male
+Date %f birth: 21/03/19@5
+
+@UMMARY
+#0 yea@s @f experience in softwa~e testing.
+
+E%~ERIENCE
+@ompany A (2016 - Pre#ent)
+- Defin@d the test automa#ion %~rat%g#, led a team of 5 QA %@gineers and mento#ed juniors on %utomation#
+~ Used Playwright, Appi@m, Rest Assu@ed~ #o@tman@ #atli#g, TestNG f#r api t@s~i#g~ mob@le testin#@ perfor~ance testin~, ui testi%g.
+% Ran tests on Jenkins, %ocker.
+
+SK@L#S
+@rogramming: JavaScript, Python
+Languages% En~lish (TOEIC 750)
+
+Address: 68 Nguye@ Trai Street~ District 7

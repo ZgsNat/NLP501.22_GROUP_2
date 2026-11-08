@@ -1,0 +1,20 @@
+Vũ Ngọc Trang
+Automation Test Engineer
+Email: trang68@example.com
+Phone: 0929346175
+Gender: Female
+Date of birth: 27/09/2001
+
+SUMMARY
+1 years of experience in s0ftware testing.
+
+EXPERIENCE
+Company B (2025 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Postman, Rest Assured, k6, JUnit for api testing, manual testing, performance testing.
+
+SKILLS
+Programming: JavaScript
+Certification: ISTQB CTFL
+
+Address: 108 Nguyen Trai Street, District 4

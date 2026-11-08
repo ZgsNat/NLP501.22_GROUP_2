@@ -1,0 +1,20 @@
+Bùi Minh Kh0a
+Automation Test Engineer
+Email: kh0a99@example.com
+Điện thoại: 0914259684
+Giới tính: Nam
+Ngày sinh: 11/02/1992
+
+TÓM TẮT
+3 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (2023 - nay)
+- Xây dựng framework automation the0 Page Object Model, data-driven, tich hợp Jenkins pipeline.
+- Sử dụng Selenium WebDriver, Gatling, Pytest, JUnit cho kiểm thử performance testing, ui testing.
+- Chạy test trên GitLab CI, GitHub Acti0ns.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Python, JavaScript
+
+Địa chỉ: 137 Nguyen Trai Street, District 7

@@ -1,0 +1,20 @@
+Nguyễn Quoc Long
+Automation Test Engineer
+Email: long66@example.com
+Điện thoai: 0985031037
+Gioi tính: Nam
+Ngày sinh: 10/09/2003
+
+TÓM TẮT
+10 năm kinh nghiệm kiem thu phan mềm.
+
+KINH NGHIỆM
+Company B (2016 - nay)
+- Truong nhom QA 5 nguoi, định hướng automation strategy và mentor thanh viên moi.
+- Sử dung WebdriverIO, Cypress, Rest Assured, Postman, Cucumber, Pytest cho kiểm thu api testing, ui testing.
+- Chay test trên Azure DevOps, GitLab CI, Docker.
+
+KỸ NĂNG
+Ngon ngữ lap trình: JavaScript
+
+Dia chi: 291 Nguyen Trai Street, District 3

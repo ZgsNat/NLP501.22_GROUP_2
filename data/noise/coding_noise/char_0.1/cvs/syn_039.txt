@@ -1,0 +1,22 @@
+V~ Quốc Kh#a
+Au@#mat@on Te~t Engi@eer
+E~ail: kh@a25@e~ample~com
+P@~ne: 09404%9530
+G#nd%r: Male
+Date of bir#h: 24/11/1988
+
+SUMMARY
+10 years of ex#er@ence in softwa%e #esting.
+
+EXP@RIENCE
+Company F #2016 - Prese@t)
+- Designed and built a Page Ob@ect Mo%el a%tomation fram@work and integr@ted it into the CI pipe@ine.
+- Used Web#river~O, Cypress, Appium, Po~tman, Res~ Assured@ #6, TestNG for ap~ testin~, mobile testi%~, performance testing, ui test#ng.
+- Ran tests on Jenki%s.
+
+SKILLS
+Programming: Python, JavaS#ript
+Certification: ISTQB CTFL
+#angua~%s: English (TOEIC 750)
+
+Address: 196 Nguyen #rai Street, @istri#t 1

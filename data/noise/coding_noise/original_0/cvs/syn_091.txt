@@ -1,0 +1,15 @@
+P##m %inh @%@
+Aut@m#tio# @est #%gineer
+Email~%nam3~@e#ampl~.com~Ph@@e: ~927477597
+Gend%r@#Ma@e
+#ate of birt#: ~3/0%/~~9~
+
+SUMMARY
+2 y#%rs%of e@%er%@%~e in softw@re testing.
+
+~XPERIENCE
+C%mpany A (202~~- Prese@t@
+- Wrote a@d@%aint@i%e# a#to~ated t#st scr#pts for#%egression suite#.
+- U~ed P@aywrig@t,~Webd#iverIO, Postman,#R~b~% @@amework, T~stNG #or ap@~t%#~ing,@%i @esting%
+~SKIL@S
+P~ogr#@ming: P~th

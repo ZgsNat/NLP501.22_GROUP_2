@@ -1,0 +1,21 @@
+Hồ Thị Thảo
+Automation Test Engineer
+Email: thảo92@example.com
+P#one: 0950318100
+Gender: Female
+Date of birth: 02/12/2000
+
+SUMMARY
+3 years of exp%rience in software testing.
+
+EXPERIENCE
+Co@pany A (20@3 - Present)
+- Wrot@ and maintained automated test scripts for regression suit#s.
+- Use~ Selenium WebDriver, WebdriverIO, TestNG, Cucumber for ui testing.
+- Ran tests on GitLab CI.
+
+SKIL~S
+Programming: Python
+Certification: ISTQB CTFL
+
+Address: 29 Nguyen Trai Street, District 6

@@ -1,0 +1,13 @@
+Vũ Văn Nam
+Automation Test Engineer
+Email: nam16@example.com
+Phone: 0981802559
+Gender: Male
+Date of birth: 01/03/1991
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+Company C (2023 - Present)
+- Designed and built a Page Object Model automation framework and integrat

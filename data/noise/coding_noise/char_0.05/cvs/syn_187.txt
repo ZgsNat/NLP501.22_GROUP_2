@@ -1,0 +1,21 @@
+Bù~ Mai Lan
+Automation Test Engi@eer
+E~ai%: lan24@ex~m~le.co@
+Điện tho~i: 09875%675@
+Giới tính: Nữ
+Ngày si@h% 14/12/19%6
+
+TÓM TẮT
+7 năm kinh ngh@ệm kiểm thử phần mềm.
+
+KINH NGHIỆ#
+Com%any B (201# - nay)
+- Xây dựng framework automation theo Page Object Model, d#ta-driven, tích hợp Jenkins pipeline.
+- Sử dụng Webdr@~erIO, Gatling, Pyt#st, TestNG cho ki~m thử performance testing, ui testing.
+- Chạy test trên Jenkins, Doc@er, @z~re DevOps.
+
+#Ỹ NĂNG
+@gôn ngữ ~ập trình: TypeScr#pt
+Ngoại ngữ: Japanese JLPT N2
+
+Địa chỉ: 47 @@uyen Trai Street, District ~

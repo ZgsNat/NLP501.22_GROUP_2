@@ -1,0 +1,22 @@
+Đặ@g Quốc Nam
+Auto#~@ion T%st Engin%er
+Email: %am30%ex~m@le.c@m
+Ph@ne: %996703417
+Gender: %ale
+D#t# of bir@h: @3/07/@@95
+
+%UMMARY
+1 yea#s @f exper#e%ce i@ software t~sti%g.
+
+EXPE@IE~CE
+Compa%y % (2025 - Pres#~t)
+~ Wr%te and mai@ta#ned auto#ated ~e#t scrip@s f~r regre~s%on sui#es%
+- Used E~pr%sso% Postm@n~ k6, Robot Fram~work for ap# testi~g, m%nual te%t~ng, m%b~le testi#~, pe#formanc~ testin~.
+% Ran tests on Do%~e%.
+
+%KI#LS
+Progr@mming: Py#@on
+Certif%cat%on: IST@B CT#L
+La~guage@: En%li%@ (TO%IC 750)
+
+Add~e@s: 41 %@%yen Tr#i @tree%, Dis%rict 7

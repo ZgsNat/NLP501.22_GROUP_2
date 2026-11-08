@@ -1,0 +1,21 @@
+Nguyễn Thị Vy
+Automat~on %est Engineer
+Emai~: v#84@example.com
+Phone: 0919901281
+Gender: Female
+Date of birth: 16/10/1993
+
+@UMMARY
+10 #ears of %xperience in s%ftware testing.
+
+EXPERIENCE
+Company A (2016 - Pre~ent)
+- Defin@d the test @utomation strate@y, led a team of 5 QA engineers and men@ored ~uniors on automation.
+- Used Cypress, WebdriverIO, XCU~Test, Res% Assured, JUnit, Pytest f%r api testing, mobile testin%% ui tes#ing.
+- Ran tests on Docker, GitHub Actions.
+
+SKIL~S
+Programming: JavaScr#pt
+Languages: English (TOEIC 750)
+
+Address: 76 Nguyen Trai Street, District 6

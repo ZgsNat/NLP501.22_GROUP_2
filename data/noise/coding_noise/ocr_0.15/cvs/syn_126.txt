@@ -1,0 +1,22 @@
+Nguyễn Mai Trang
+Aut0mation Test Engineer
+Emai1: trang98@example.com
+Điện thoại: 0918727939
+Giới tính: Nữ
+Ngày sinh: 26/03/1989
+
+TÓM TẮT
+2 nam kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company G (2024 - nay)
+- Viet automation test scripts cho bộ regression, kiểm thử tự động hang ngay.
+- Sử dụng Cypress, Selenium WebDriver, XCUITest, Postman, Cucumber cho kiểm thử api testing, mobile testing, ui testing.
+- Chạy test trên GitHub Actions.
+
+KỸ NĂNG
+Ngôn ngu lập trình: TypeScript
+Chứng chi: ISTQB Foundation Level (CTFL)
+Ng0ại ngữ: Eng1ish (TOEIC 750), Japanese JLPT N2
+
+Địa chỉ: 227 Nguyen Trai 5treet, District 1

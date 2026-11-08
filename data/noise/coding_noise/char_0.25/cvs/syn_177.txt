@@ -1,0 +1,21 @@
+Đỗ Đứ~ L#@g
+@utom%tio% Tes# ~%g@neer
+Em@i#: ~ong11~example@c#m
+Đ#ện t~oại~ #99%972685
+Gi%i tín#: N@m
+Ngày si~h: 04/0~/20#0
+
+TÓM TẮ~
+~ %%% ~inh ~gh@ệ@ k%ểm t~ử ph%n mềm.
+
+K~NH #GHIỆM
+C~mp#~# ~ (20@1 # na~)
+- Xây dựng ~r~m%work %utomatio# th#o P@%e #b~ect M%d%l, data-d~%ven, tích hợp J~%kins p~@~line%
+@ ~ử dụn@ Appi@~% %o~tman, Pytest, #obot Fr#mew%#k cho ~iểm #hử api t~s@i%g, #an@al tes~i@g, m#~il@ testin%#
+% Chạy test trên Azure DevOp%, ~o%ker.
+
+#Ỹ NĂ%G
+Ng@n ngữ lập t%ì#h~ Ja~aScript
+N#o#i ngữ: ~~glish (TOEIC 7%0)
+
+Địa chỉ@ 57 Nguy@n @rai %tree%, District @

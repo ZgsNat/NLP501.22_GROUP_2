@@ -1,0 +1,21 @@
+Hồ Thu Trang
+Automation Test Engineer
+Email: trang42@example.com
+Dien thoai: 0988593591
+Gioi tính: Nu
+Ngay sinh: 03/09/1988
+
+TOM TẮT
+5 năm kinh nghiem kiểm thu phan mềm.
+
+KINH NGHIỆM
+Company A (2021 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tích hop Jenkins pipeline.
+- Sử dung XCUITest, Postman, Rest Assured, Pytest cho kiem thử api testing, manual testing, mobile testing.
+- Chạy test tren GitLab CI, Azure DevOps.
+
+KY NANG
+Ngon ngu lập trình: Python
+Ngoại ngu: English (TOEIC 750)
+
+Địa chi: 237 Nguyen Trai Street, District 3

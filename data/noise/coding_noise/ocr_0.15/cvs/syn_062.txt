@@ -1,0 +1,21 @@
+Bùi Thị Hương
+Automation Test Engineer
+Email: huong77@example.com
+Phone: 0947503167
+Gender: Female
+Date of birth: 15/09/1990
+
+SUMMARY
+5 years of experience in software testing.
+
+EXPERlENCE
+Company E (2021 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used k6, Robot Framework, JUnit for manual testing, performance testing.
+- Ran tests on GitHub Actions.
+
+SKILLS
+Programming: Java, Pyth0n
+Languages: English (T0EIC 750)
+
+Address: 46 Nguyen Trai Street, District 4

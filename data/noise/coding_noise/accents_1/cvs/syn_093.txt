@@ -1,0 +1,18 @@
+Bui Ngoc Lan
+QA/QC Engineer
+Email: lan50@example.com
+Dien thoai: 0981192277
+Gioi tinh: Nu
+Ngay sinh: 14/03/1996
+
+TOM TAT
+Moi tot nghiep, dam me kiem thu.
+
+KINH NGHIEM
+- Thuc hien kiem thu thu cong, viet test case va bao loi tren Jira.
+- Su dung Rest Assured, Postman cho kiem thu api testing, manual testing.
+- Chay test tren Jenkins.
+
+KY NANG
+
+Dia chi: 60 Nguyen Trai Street, District 6

@@ -1,0 +1,21 @@
+Nguyễn Ngọc Hương
+Automation Test Engineer
+Email: huong20@example.com
+Điện thoại: 0945924244
+Giới tính: Nữ
+Ngày sinh: 05/11/1988
+
+TÓM TẮT
+10 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company G (2016 - nay)
+- Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.
+- Sử dụng Selenium WebDriver, Cypress, Appium, Robot Framework, JUnit cho kiểm thử mobile testing, ui testing.
+- Chạy test trên Docker.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: C#
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 5 Nguyen Trai Street, District 2

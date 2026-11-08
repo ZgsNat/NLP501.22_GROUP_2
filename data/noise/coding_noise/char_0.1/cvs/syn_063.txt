@@ -1,0 +1,22 @@
+@ùi Văn Long
+Automation Test Engin#e~
+Email@ l~ng91@e%@mpl%.c~m
+Phone: 0982369~24
+Ge~der: @a%e
+Date of birth: 26/10/1997
+
+SUMMAR#
+3 years of experience in software testi@g.
+
+EXPERIENCE
+Compa#y E (2023 ~ Pres@@t)
+~ Desig@ed and bu#@t a Page Ob%ect @ode~ au%omation framework and inte%rated it into %he CI p@peline.
+- Used XCUITest, TestNG for man~al testing, mobile t%@ting.
+- Ran tests on Azu%e DevOps, Docker, Git%ub Action#.
+
+SK@LL@
+Programming: TypeScri#t, Python
+Certification: ISTQB #TFL
+#ang@ages: English (%OE#C 750)
+
+Address: 28 Nguyen Trai Street, D%s@r~ct 6

@@ -1,0 +1,21 @@
+Nguyễn Văn H@@~
+Automation Test Engin%er
+E@@@l: h~ng8%@e~a#ple.~o%
+Điện thoại: 09#8~28100
+#iới tí#h: Na#
+N#à@ sinh: @7/04/199#
+
+TÓM TẮ~
+10 n%m @%n% nghiệm ki%m t@~ phầ% #ềm.
+
+KINH ~%~IỆM
+C%mp#ny F (2#16 - nay#
+- #r~ởn~ nhóm @A 5 n~%ời, đ@nh hư@%g a@t%@#tion @tr~te%y và me@to# thà#h viên mới@
+- Sử ~ụng Es#resso, %ostm~~, @est A%su%ed% Test~#, Cucumbe% cho k@ểm thử api t~~ti#g~ manual t@#tin#@ @obile t%sti%g.
+- Chạy t~st trên @##@er, #e#kins, @@u#e D#vOps~
+
+KỸ NĂ%G
+N~ô# ngữ lập ~r#n@: C#, #a#a~crip@
+N%#~i ng@: E##l~sh ~TOEIC 75@)
+
+Địa chỉ: 62 Nguyen #rai Street, #i~tr%c@ 2

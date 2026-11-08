@@ -1,0 +1,17 @@
+Hồ Ngọc Linh
+Automation Test Engineer
+Email: linh90@example.com
+Phone: 0967179047
+Gender: Female
+Date of birth: 03/01/1998 
+SUMMARY
+7 years of experience in software testing.
+
+EXPERIENCE
+Company D (2019 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.
+- Used Playwright, Rest Assured, Cucumber, TestNG for api testing, ui testing. - Ran tests on GitLab CI, Docker.  SKILLS
+Programming: Java
+Languages: English (TOEIC 750)
+
+Address: 115 Nguyen Trai Street, District 11

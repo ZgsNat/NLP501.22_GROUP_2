@@ -1,0 +1,21 @@
+Đỗ Đức Nam
+Automation Test Engineer
+Email: nam85@example.com
+Phone: 0994410590
+Gender: Ma1e
+Date of birth: 21/03/1995
+
+SUMMARY
+10 years of experience in software testing.
+
+EXPERIENCE
+C0mpany A (2016 - Present)
+- Defined the test automation strategy, led a team 0f 5 QA engineers and ment0red juniors on automation.
+- Used Playwright, Appium, Rest Assured, Postman, Gatling, TestNG for api testing, mobile testing, performance testing, ui testing.
+- Ran tests on Jenkins, D0cker.
+
+SKILLS
+Pr0gramming: JavaScript, Python
+Languages: English (TOEIC 750)
+
+Address: 68 Nguyen Trai Street, District 7

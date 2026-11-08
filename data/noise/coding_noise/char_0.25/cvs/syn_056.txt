@@ -1,0 +1,20 @@
+@ặng Ma% ~inh
+Auto@atio~ T~st Engin%e~
+E#ai#: li%h6%@e@a%ple%#om
+P@one: 09831@4605
+Gender@ Female
+D%te #f bir~h@ 07/11/19@3
+
+#U~MARY
+@ y#ars of ex~erience in %oftwa~e testin~%
+
+%X%#~~ENCE
+C~mpany D (20@@ - Pr###%t)
+~ Wrot# and m~in%~ined ~ut~%%%#d t~st s@r@pt# for #egr@@si%n suites#
+- Use% Selen#u@ WebDri%e%, App~u~# %ostm#@, @ucumb~r, Ro#%t Fr#me@ork fo~ ap~ test@ng, m~%i~e t#s~i~g, ui #%~t~ng.
+- Ran tests @n J#n%ins.
+
+SKI#LS
+Programm~n~: Ja%a#cri#t, Py@hon
+
+Add%e#s: 72 N@uyen Tr@~ @t#e#t, Distr#%t 4

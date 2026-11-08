@@ -1,0 +1,19 @@
+Ng%yễn Ngọc Trang
+Automation Test Engineer
+Email: trang56@example#com
+Phone: 0958504268
+Gender: F@male
+Date %f birth: 24/10/1%99
+
+SUMMARY
+2 yea#s of exp%r@e@ce in s%ftw~re testin~.
+
+EXPE#IE%CE
+C%mpany B (2024 - Present)
+- Wrote a~d %a@ntai#ed %@t%mated te%# s#ripts #or %egressi~~ su%~es.
+- Used Selen@u~ We#Driver, Res# Assured, Cucumber, Te%tNG for a~i t~s~ing, ui t%sting.
+
+SKILLS
+%rogra@m~ng: Ja@a
+
+Address: %42 Nguyen Tr~i Street, D#strict 4

@@ -1,0 +1,21 @@
+Tran Văn Phuc
+Automation Test Engineer
+Email: phúc18@examp1e.com
+Điện thoại: 0989575878
+Giới tính: Nam
+Ngay sinh: 26/04/1992
+
+TOM TẮT
+4 nam kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company F (2022 - nay)
+- Xay dung framew0rk aut0mation theo Page 0bject Model, data-driven, tích hợp Jenkins pipe1ine.
+- 5ử dụng Appium, Postman, Rest Assured, JUnit, TestNG cho kiem thử api testing, manual testing, mobile testing.
+- Chay test trên Docker, Jenkins.
+
+KỸ NĂNG
+Ngon ngữ 1ập trình: JavaScript
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chi: 261 Nguyen Trai Street, District 5

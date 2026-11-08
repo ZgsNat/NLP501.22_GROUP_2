@@ -1,0 +1,21 @@
+Đặng Mai Lan
+Aut0mation Test Engineer
+Email: lan73@example.com
+Điện th0ại: 0993576934
+Giới tính: Nữ
+Ngày sinh: 21/06/2002
+
+TÓM TẮT
+5 nam kinh nghiệm kiểm thu phan mem.
+
+KINH NGHIỆM
+Company F (2021 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven, tích hop Jenkins pipeline.
+- Sử dụng Selenium WebDriver, Rest Assured, Cucumber cho kiểm thu api testing, ui testing.
+- Chạy test trên Azure DevOps, Jenkins.
+
+KỸ NANG
+Ngôn ngữ 1ập trình: C#, Type5cript
+Ngoại ngu: Eng1ish (TOEIC 750)
+
+Dia chỉ: 224 Nguyen Trai 5treet, District 1

@@ -1,0 +1,19 @@
+Hồ Thị L~~
+QA/QC Engineer
+Ema@l@ lan~6@e##mple.com
+Phone: 09##013189
+#ender# Female
+Date of birth: 16/02/2002
+
+SUMMARY
+Fresh graduat% pas%#onate ab%u~ testing.
+
+EXPERIENCE
+- Exec#te@ man~al test cases and reported defects in Jira.
+- Used Webdriver@O, Rest Assur~d@ Postman, Robot Fr@mewo@k for ~pi test%ng, ~@ %est~ng.
+- Ran tests on Az#re DevOps.
+
+~KILL#
+Languages: Engl%s# (TOE~~ 75%)
+
+Addr#ss: 32 Nguyen Trai Street, Distric# 6

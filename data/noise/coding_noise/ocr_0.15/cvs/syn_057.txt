@@ -1,0 +1,21 @@
+Đỗ Quốc Tuấn
+Automation Test Engineer
+Email: tuấn63@example.com
+Điện thoại: 0930705405
+Giới tính: Nam
+Ngày sinh: 10/11/1992
+
+TÓM TẮT
+2 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company B (2024 - nay)
+- Viết automation test scripts ch0 bộ regression, kiểm thu tự động hang ngày.
+- Sử dụng Se1enium WebDriver, WebdriverIO, Postman, Rest Assured, Cucumber, TestNG ch0 kiểm thử api testing, ui testing.
+- Chạy test trên D0cker.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: C#, Python
+Ngoại ngữ: English (TOEIC 750), Japanese JLPT N2
+
+Địa chỉ: 6 Nguyen Trai Street, District 2

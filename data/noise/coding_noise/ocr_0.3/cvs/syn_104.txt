@@ -1,0 +1,21 @@
+Le Mai Linh
+Automation Test Engineer
+Emai1: linh46@example.com
+Phone: 0996861418
+Gender: Female
+Date of birth: 25/11/1992
+
+SUMMARY
+1 years of experience in software testing.
+
+EXPERIENCE
+Company A (2025 - Present)
+- Wr0te and maintained automated test scripts for regression suites.
+- Used WebdriverIO, Rest Assured, Cucumber for api testing, ui testing.
+
+5KILLS
+Pr0gramming: TypeScript
+Certification: ISTQB CTFL
+Languages: English (T0EIC 750)
+
+Address: 153 Nguyen Trai 5treet, District 8

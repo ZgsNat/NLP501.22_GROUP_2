@@ -1,0 +1,21 @@
+Phạm ~ức Tuấn
+Au@omation Test Engineer
+Email: tuấn12%example.com
+Pho~e: 0947038339
+Gender: Male
+Dat@ of birth: 18/09/19%2
+
+SUMMA~Y
+4 years o@ experi#nce #n software testin@.
+
+EXPE~IE@CE
+Co#pany A (20~% - Present)
+- Des%gned and b@i%t a Page Object Model @@tomati%n fr@mework @nd inte#%ated it into the CI pip~line%
+- Used Selenium WebDriver, Cypress, XCUITest, Postman, Cuc@mber, #es%NG for ap@ testi@g, mobile testing, ui testing.
+- @an %ests on GitLab ~I, GitHub Action#, Docker.
+
+SKILLS
+Pro@rammin#: JavaS%ript
+Lan~u#ges: E~glish (TOEIC 750), Japane@e JLPT ~2
+
+Addres~: 20 Nguyen Trai Street, District 8

@@ -1,0 +1,21 @@
+Dang Đức L0ng
+Aut0mation Test Engineer
+Email: l0ng95@example.com
+Điện thoại: 0954335867
+Giới tính: Nam
+Ngày sinh: 26/06/2002
+
+TÓM TẮT
+4 nam kinh nghiem kiem thử phần mềm.
+
+KINH NGHlỆM
+Company D (2022 - nay)
+- Xây dung framework automation theo Page Object M0del, data-driven, tích hop Jenkins pipeline.
+- 5ử dung XCUITest, JMeter, TestNG, Pytest cho kiểm thử manua1 testing, mobile testing, performance testing.
+- Chạy test trên Azure Dev0ps, GitHub Actions, D0cker.
+
+KY NĂNG
+Ngon ngu lập trinh: Java
+Ngoại ngữ: Eng1ish (TOEIC 750)
+
+Địa chi: 16 Nguyen Trai Street, District 2

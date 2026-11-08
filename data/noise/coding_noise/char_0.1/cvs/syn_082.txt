@@ -1,0 +1,20 @@
+Lê Mai H%ơ#g
+Automati#~ Te~t Engineer
+Email: h~on@~~@exa@ple.com
+Phone: 099@347387
+Gender: Female
+Da%~ of birth: 04~08/1996
+
+SUMMARY
+@ y~ars of experience i# @oftware te%~ing.
+
+%XPERIENCE
+Company A (2023 - Present)
+- D#@igned and built a Page Ob#ect Model automation framew%rk and integrated it i#to t%e C# ~i#eline.
+- ~@ed Rest Assured, k6, JUnit, Pytest for api testing, manual testing, perfor#ance tes#i~g.
+- Ra@ tests on ~en%ins, GitHub Actions, G@tLab CI.
+
+SKILLS
+Pro@r#mmin%# JavaScript
+
+Ad%ress: 18 %guyen Tr#i Street, District 2

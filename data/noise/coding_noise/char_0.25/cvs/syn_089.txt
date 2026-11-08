@@ -1,0 +1,20 @@
+#rần Ngọc La~
+Automat#o# Tes~ @ng@neer
+Em@@#: lan71@example%co@
+Phone: 095673@94%
+~%~der: @@m#le
+Date of b%rt%: 1@/~2/1999
+
+SU@MAR~
+# ye@~s o% #x%~r#@@#e in software testing.
+
+EXPER~E#C~
+C%m~#ny B (@@19 - Present)
+- Def~ned %he tes# ~@tom~t~on %%ra%e@y, led a %eam of % QA eng~%e#%s and m~ntor@d junio#s on @utom~tion.
+- Used S%l@nium W#b@river# Espresso# TestNG @o@ mobile @#s~~ng, u% t@stin~.
+- ~an t@s%s on GitLab CI, Docker#
+
+S~@LLS
+P%~#ramming: Java, JavaS@r#pt
+
+%ddre#~: 2~7 Nguy#% Trai #t~#~t# District 10

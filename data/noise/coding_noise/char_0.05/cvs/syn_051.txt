@@ -1,0 +1,21 @@
+Bùi Văn %ùng
+Automation Test Engineer
+Email: hùng37@example~co%
+Điện thoại: %928645088
+Giới tính: Nam
+Ngày sinh: 19/11/1988
+
+TÓM TẮT
+% năm %inh nghiệm kiểm thử phần m@m.
+
+KINH NGHIỆM
+Company G (2023 % nay)
+- Vi#t automation t@st sc@ipts cho bộ regression, kiểm thử tự động hằ#g ngày.
+- Sử dụn# Playwright, WebdriverIO, XCUITest, Robot Framework cho kiểm t@# mo%ile testing, ui testin~.
+- Ch#y test trê# G#tHub Actions.
+
+KỸ NĂNG
+Ngôn ng@ lập trìn#: Java, Python
+Ng~ại ngữ# English (TOEIC 750)
+
+Địa chỉ: 76 Nguyen Tra@ Street% District 11

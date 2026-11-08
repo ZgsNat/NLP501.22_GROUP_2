@@ -1,0 +1,20 @@
+Phạm Qu%c Kh~a
+Autom%~ion Test Engineer
+Email: ~hoa59@e%a@ple.com
+Phone: 09739%6652
+Gende@: #ale
+Date of birth: 09/10/2001
+
+SUMMARY
+7 @ears @f experi~nce in software tes%ing.
+
+EXP~R~ENCE
+Comp#ny A (2019 - Present)
+% @es#gne@ and built a Page Object Model a#tomation @ramewor% and integrate@ it into @he ## pip@line.
+- Used Seleni%m WebD%iver, ~laywright# R~%t As@ured, Cucumber for api te@ting, ui t~sting.
+- Ran tests o@ %zur# DevO%s, Docker, #itH@b Actions.
+
+SKILL~
+Programming: %ava, TypeS#ript
+
+Add@ess: 217 Nguyen #rai #treet, District 6

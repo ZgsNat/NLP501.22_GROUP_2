@@ -1,0 +1,21 @@
+Trần Văn Nam
+Automation Test Engineer
+Email: nam32@example.com
+Dien thoại: 0914197492
+Giới tinh: Nam
+Ngày sinh: 07/02/2003
+
+TOM TẮT
+5 nam kinh nghiem kiểm thu phan mềm.
+
+KINH NGHIEM
+Company B (2021 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven, tich hợp Jenkins pipeline.
+- Sử dụng Espresso, Postman, TestNG cho kiem thu api testing, manual testing, mobile testing.
+- Chạy test trên Jenkins, GitHub Actions, Azure DevOps.
+
+KỸ NANG
+Ngôn ngữ lập trình: C#, Java
+Ngoại ngu: English (TOEIC 750)
+
+Dia chi: 51 Nguyen Trai Street, District 1

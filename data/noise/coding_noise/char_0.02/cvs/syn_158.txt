@@ -1,0 +1,20 @@
+#oàng Văn Khoa
+Automation Te%t Engineer
+Email: khoa33@example.com
+Điện thoại: 0943858172
+Giớ@ tí#h: Nam
+Ngày sinh: 16/06/1998
+
+TÓM TẮT
+3 năm kinh nghiệm kiểm thử ph%n mềm.
+
+KINH NGHIỆM
+Company C (2023 - nay)
+- Viết automation test scripts cho bộ regression, kiể@ thử tự động hằng ngày.
+- Sử dụng Playwright~ Cypress, E@presso, Postman, Robot Framework cho kiểm thử api testing, m%bile testing, ui testing.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Python, Java
+Ngoại ngữ: English (@OEIC 750)
+
+Địa chỉ: 58 Nguyen Trai Street, District 2

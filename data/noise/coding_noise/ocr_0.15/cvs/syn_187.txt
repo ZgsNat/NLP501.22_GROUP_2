@@ -1,0 +1,21 @@
+8ùi Mai Lan
+Automation Test Engineer
+Emai1: lan24@example.com
+Điện th0ại: 0987556758
+Gioi tính: Nữ
+Ngay sinh: 14/12/1996
+
+TOM TẮT
+7 năm kinh nghiệm kiểm thử phần mềm.
+
+KlNH NGHIỆM
+C0mpany B (2019 - nay)
+- Xây dựng framework automation theo Page Object Mode1, data-driven, tích hop Jenkins pipeline.
+- Sử dụng WebdriverIO, Gatling, Pytest, TestNG ch0 kiểm thu performance testing, ui testing.
+- Chạy test trên Jenkins, Docker, Azure DevOps.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: TypeScript
+Ngoại ngữ: Japanese JLPT N2
+
+Địa chỉ: 47 Nguyen Trai Street, District 6

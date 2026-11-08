@@ -1,0 +1,17 @@
+Trần Thu Trang
+Automation Test Engineer Email: trang26@example.com
+Phone: 0992650976 Gender: Female
+Date of birth: 09/05/1996
+
+SUMMARY
+10 years of experience in software testing. 
+EXPERIENCE
+Company A (2016 - Present)
+- Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation. - Used Cypress, Selenium WebDriver, Rest Assured, Cucumber, Robot Framework for api testing, ui testing.
+- Ran tests on Azure DevOps, GitHub Actions, Docker.
+
+SKILLS Programming: Python, TypeScript
+Certification: ISTQB CTFL
+Languages: English (TOEIC 750)
+
+Address: 58 Nguyen Trai Street, District 10

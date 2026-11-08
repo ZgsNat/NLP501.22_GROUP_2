@@ -1,0 +1,21 @@
+Trần Đức Long
+Automation Test Engineer
+Email: long33@example.com
+Phone: 0922684736
+Gender: Male
+Date of birth: 20/03/1998
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+C0mpany G (2023 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the Cl pipeline.
+- Used Rest Assured, Postman, JMeter, JUnit, Cucumber for api testing, manual testing, performance testing.
+- Ran tests 0n GitHub Actions, Docker, Azure DevOps.
+
+SKlLLS
+Programming: Python, Java
+Languages: English (TOElC 750)
+
+Address: 162 Nguyen Trai Street, District 11

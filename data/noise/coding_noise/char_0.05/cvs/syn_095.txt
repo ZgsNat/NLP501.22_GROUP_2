@@ -1,0 +1,20 @@
+@ũ Quốc Nam
+Automation Test Engineer
+Em~@l: nam50@e@ample.com
+Điện thoại: 0975937784
+Giới tính: Nam
+Ngày s@nh: 25/03/2002
+
+TÓM TẮT
+~ năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHI%M
+Company A (2019 - nay)
+- Xây dựng framework automati%n theo Page Obj~ct Model, data-driven, tích hợp Je%kins pipeli%e@
+- Sử dụng Pl@ywright, Rest A#sured, Cucum#er, Pytest cho kiểm thử api testing, ui testi%g.
+- Chạy test trê% ~zure DevO#s, Docker, Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: JavaS%ript, C#
+
+Địa chỉ: 97 Nguyen Trai Street, Dis#rict 3

@@ -1,0 +1,21 @@
+V@ Thị Hương
+Automation Test Engineer
+Email: huong12@example.com
+Điện thoại: 0%586#0295
+Giới tính: Nữ
+Ngà@ sinh: 18/08/1992
+
+TÓM TẮT
+7 năm kinh %ghiệm kiểm thử phần mềm@
+
+KINH NGHIỆM
+Company # (2019 - nay)
+- Trưởng nhóm QA 5 ng~ời, định hướng automation strategy và mentor thành viên mới.
+- Sử dụn~ Cypress, Rest Assured, Postman, TestNG, Cucumber cho kiểm thử api t~sting, ui testing.
+- Chạy test trên Az@re DevOps, GitHub %ctions.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Pyt@on
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 3~ Nguyen Trai Street, District #

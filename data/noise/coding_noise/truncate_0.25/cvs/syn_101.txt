@@ -1,0 +1,14 @@
+Nguyễn Thị Linh
+Automation Test Engineer
+Email: linh94@example.com
+Phone: 0974405060
+Gender: Female
+Date of birth: 15/11/1996
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+Company E (2023 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Cypress, Espresso, Rest Assured, Pytest, TestNG for api

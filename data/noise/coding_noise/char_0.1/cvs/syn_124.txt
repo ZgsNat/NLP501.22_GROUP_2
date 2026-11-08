@@ -1,0 +1,20 @@
+Vũ Quốc Nam
+Au~om~tion Test E~gineer
+@m#il: nam47@example.com
+%iện thoại: 09623947#9
+Giới tính: Nam
+Ngày sinh: 14%11/199%
+
+TÓM TẮT
+1 năm @inh nghiệm kiểm thử phần mềm.
+
+KINH NGHI%M
+Company G (2025 - na~)
+- Viết aut~mation te~t scr#pt# cho bộ regressi%n, k%ểm thử tự động hằng ngày.
+- Sử dụng Sele@ium WebDriver, JUnit, Pytest cho k%ểm thử u@ testing.
+
+KỸ NĂNG
+Ng@n ngữ lập trình: @av~@cript
+Ngo@i ngữ: English (TOEIC 750)
+
+Địa chỉ# @42 Nguyen Trai Street, Dis~rict 3

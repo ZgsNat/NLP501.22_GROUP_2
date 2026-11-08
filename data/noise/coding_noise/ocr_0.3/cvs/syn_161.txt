@@ -1,0 +1,21 @@
+Bùi Thi Lan
+Aut0mation Test Engineer
+Email: lan79@example.com
+Phone: 0993082165
+Gender: Female
+Date 0f birth: 11/05/2003
+
+5UMMARY
+8 years of experience in software testing.
+
+EXPERlENCE
+C0mpany G (2018 - Present)
+- Defined the test automation strategy, 1ed a team of 5 QA engineers and mentored juni0rs on automation.
+- Used WebdriverIO, Selenium WebDriver, Rest Assured, Robot Framew0rk for api testing, ui testing.
+- Ran tests 0n Docker, Jenkins, GitLab CI.
+
+SKlLLS
+Pr0gramming: JavaScript
+Languages: Eng1ish (TOEIC 750)
+
+Address: 104 Nguyen Trai 5treet, District 9

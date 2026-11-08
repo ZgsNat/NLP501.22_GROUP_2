@@ -1,0 +1,21 @@
+~ỗ #ăn Hùng
+~ut#ma#i@n Test Eng#ne~r
+E~a~@: h%n#6~@~xamp%e.co%
+@iện tho~i: @925660291
+G#ới #í#h: N#m
+Ngày sinh: 01/03/2003
+
+TÓM @ẮT
+~ năm kin@ %@hiệ@ kiểm t%ử ~hần mề%.
+
+%INH NG%IỆM
+#ompa%~ D (2@19 - nay~
+~ Vi%t autom#tion t@st #cript~ c~o #ộ re%r#~sion, k%ể% thử t@ động %ằ#g ngày.
+- Sử ~ụng App~#m# P%#tman, R~s~ ~ssured, JUnit c~o kiểm t@ử %pi test#ng~ ~~nual testing, mobile te%t~@g%
+- C~#~ test trê# Docker.
+
+~~ NĂNG
+Ng~n ngữ lập trình: C#
+Ng%ại ngữ: Eng~@sh @TOE@C 750)# ~apanese JLPT N2
+
+@ịa chỉ: 2@8 Nguyen Tra% Stre%t, D@str@ct ~1

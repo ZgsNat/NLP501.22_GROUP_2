@@ -1,0 +1,21 @@
+Trần ~gọc Thảo
+A%tomation Te%t Engineer
+Email% thảo22@example.com
+Điện thoại: 0%23#86205
+Giới tính: Nữ
+Ngày si#h: 24/04/2000
+
+TÓM TẮT
+2 năm kinh nghiệm kiểm thử phần mềm%
+
+K~NH NGHIỆM
+C%mpany B (2024 - nay)
+- Viết a@tomation test scrip%s cho bộ regression, kiể~ thử tự động hằng ngày.
+- Sử dụng Playwright, Espresso, @est Assured, Cucu%ber cho kiể@ thử api t%sting, mobile tes~ing% u% testing.
+- Ch%y test trên Azure Dev@ps%
+
+KỸ NĂNG
+Ngôn ngữ lập t#ình: Java
+Ngoại ngữ: English (TO%IC 750)
+
+Địa c@ỉ% 99 Nguyen Trai Street, District 9

@@ -1,0 +1,22 @@
+Đỗ Thị Vy
+Automation Test Engineer
+Email: vy67@exa@ple.@o@
+Pho#~: 095717%735
+Gender: Fema@e
+Dat# of birth: 08/12/1997
+
+SUMMARY
+2 years of experien#e in software t~stin#.
+
+EX%ERIENCE
+C@mpany C (2#24 - Present)
+- Wrote @nd maintai@ed auto#ated t%st %cripts for r##ress~o% ~u~tes.
+- Used C%press, Selenium WebDriver, Rest Ass@red, #ostman, Cucu@be% for api testing, ui testin%.
+- Ran t@sts on J~nkins.
+
+SKI#LS
+Prog~amming: Pytho@, C#
+Certification: IST~B CTFL
+#angu~ges: Englis# (T~EIC 750)
+
+@ddress: 99 Nguyen Trai Street, District ~

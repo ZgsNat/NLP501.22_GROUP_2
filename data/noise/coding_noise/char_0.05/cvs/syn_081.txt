@@ -1,0 +1,21 @@
+Lê ~uốc Hùn#
+Automa@ion Test Engineer
+Email: hùng72@example.com
+Phone: 093693335~
+Gender: Male
+Dat~ of birth: 20/07/199@
+
+SUMMARY
+4 years of experience ~n soft~a@e testing.
+
+EXP~RIENCE
+Company F (2022 - Present)
+- #rote and maintained autom%ted test scripts fo# regression suites.
+- Used XCUITest, Robot F~amework, Cucumber for manual testin%, mobile testing.
+- %an tests on Do%ker.
+
+SKILLS
+Prog%amming: Python
+Certificatio~: ISTQB CTFL
+
+Addre#@: 252 Nguyen Trai Street, District 2

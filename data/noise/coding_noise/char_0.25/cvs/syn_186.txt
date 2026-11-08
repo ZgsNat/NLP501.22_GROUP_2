@@ -1,0 +1,22 @@
+@ũ M%nh %%ng
+Autom~t#o~ T~st E%gin#er
+@m~i#: long1#@example.c~m
+Phone: 0910292428
+Gend##: Male
+D#te of b#rt~: 28/~3/1#9%
+
+SU~MAR~
+5 year# of exp#rien@e %n ~~f@ware @est@ng.
+
+EX%ERIEN@E
+C@mpany C (%##1 @ %r~s#n#)
+% D@sign%d a%@ buil@ a Pag@ Object Mod~l auto%a%#on f#amework an% int~gra%e@ %t #n~~ the C@ pipeli@e.
+- Used #ypres%@ R%@t Assured, P#s@man, #atling, %obo# Fr@@ework, #yt@st f~r api tes%#n@% perfor~an%e testing@ ui @esting@
+- Ran te~ts @@ Docker, Azu@e ~evOps@
+
+SKILLS
+#~@g%amm@ng@ ~yp~Sc%~pt@ @yt~o@
+%@%t%fication# ISTQB CTFL
+L@ng~#ges@ E@g%i## (@O#I# 750)
+
+Addr%ss: 76 Ng#ye% @@ai Street, D#strict 7

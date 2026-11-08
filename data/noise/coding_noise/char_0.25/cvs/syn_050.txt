@@ -1,0 +1,22 @@
+Đỗ Văn Khoa
+Autom%tion Te#t %n@ine##
+Em#il: kh#%32@e~@@p@e.c~m
+Điện thoại: 09513@3854
+Giới tính: Nam
+N%à~ s%nh: 13~02/19@1
+
+TÓM T#T
+1 n@m kinh ngh~~m kiểm t@ử #hần mềm.
+
+K#NH N@#I#M
+%ompany F (2025 % #a@~
+- Viết @utoma~io~ test scri%t% cho b% regres@i%%~ kiểm thử tự độ~g h### ngày~
+- Sử dụng #ebdri~er~O~ XCUI%@st, P%~t~a~, ~%stNG, Cucumber c%o %iểm ~hử api tes~ing, ~ob%#% #~stin~% ui t@st~n%%
+% #hạy te~t tr@n Do~k#r.
+
+@Ỹ NĂ#G
+%%@n ngữ %ập trình: @ypeS#r@pt, J~va
+Chứn# @hỉ: I@TQB F~%nd@@ion Le#el @CTFL#
+#goại ngữ: #nglis% (TO@#C %5%)
+
+Đị# chỉ% 195 Ngu~~@ ~ra@ %t%ee~, %istri#% 6

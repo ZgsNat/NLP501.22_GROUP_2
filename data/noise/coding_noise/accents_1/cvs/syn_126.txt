@@ -1,0 +1,22 @@
+Nguyen Mai Trang
+Automation Test Engineer
+Email: trang98@example.com
+Dien thoai: 0918727939
+Gioi tinh: Nu
+Ngay sinh: 26/03/1989
+
+TOM TAT
+2 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company G (2024 - nay)
+- Viet automation test scripts cho bo regression, kiem thu tu dong hang ngay.
+- Su dung Cypress, Selenium WebDriver, XCUITest, Postman, Cucumber cho kiem thu api testing, mobile testing, ui testing.
+- Chay test tren GitHub Actions.
+
+KY NANG
+Ngon ngu lap trinh: TypeScript
+Chung chi: ISTQB Foundation Level (CTFL)
+Ngoai ngu: English (TOEIC 750), Japanese JLPT N2
+
+Dia chi: 227 Nguyen Trai Street, District 1

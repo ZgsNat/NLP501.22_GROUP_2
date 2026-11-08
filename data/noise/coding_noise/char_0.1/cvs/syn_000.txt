@@ -1,0 +1,20 @@
+Lê Đức ##úc
+QA/QC ~n~ineer
+@#@i@: phú~31@exa~p%e.~om
+Đ~ện thoại: 0~#3834774
+Giới tính: N@m
+Ngày ~~nh: 02/11/1999
+
+TÓ% TẮT
+Mới tố# nghiệp# đam mê kiểm thử.
+
+KINH N@HIỆM
+- Thực hiện kiể@ thử thủ cô~g@ viết tes% case và báo lỗi t@ên Jira.
+- Sử dụng Sel%nium %ebD@iver, XC@ITest cho kiểm thử mobile testing, ui te%ting.
+- Chạy t@st trên ~ocker.
+
+KỸ NĂNG
+Ngôn ngữ l@p trìn%: Python
+Chứn@ chỉ: ISTQB Foundation Level (CTFL)
+
+Địa chỉ: 167 Nguyen Trai Street, District 8

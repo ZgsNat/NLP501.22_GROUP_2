@@ -1,0 +1,21 @@
+Hồ %ai Lan
+@u~omation Test Engineer
+Email: la%23@example.com
+Phone: 092751345@
+Gender: F@ma~~
+Date #f birth: 21/12/1991
+
+SUM@ARY
+7 yea~s of experience in software testing.
+
+EXPERIENCE
+Company A (2019 - #resent)
+- Des#gned and b@#lt # P#ge Object Model automatio@ frame%ork a#d integrated it into t@e CI pipelin#.
+- Used Web#riverIO, R%s# Assured, Postman, Tes@NG for api testing, ui t#sting.
+- ~an tests on Jenkins.
+
+SKILLS
+Pr@gramming: Ja@a
+La@g@ages: #ng@ish (TOEIC @50)
+
+@ddr~%s: 9~ Nguye~ Trai Street, D%strict 4

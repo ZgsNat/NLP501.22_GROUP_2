@@ -1,0 +1,19 @@
+Hoàng Thu Lan
+Automation ~est E%gineer
+Email: lan90%exampl~.com
+Phon~: 0911%9696@
+~en#er: Female
+Date of birth: 27/06/~9#5
+
+SUMMARY
+2 years of experien@e in soft%ar~ testing#
+
+EXP%RIEN@E
+Comp~ny ~ (2024 - Pres~nt)
+- Wrote and maintained au@oma@ed test script~ for regres%ion suites.
+- Used Selenium @eb~ri@er, Webdriv@rIO, @os#m%n, Cucumber, Test#G for api %estin#, ui te#ting.
+
+@@ILLS
+Program%i~g: JavaScript, C#
+
+~ddr%ss: 1%4 Nguyen T@ai Street, Distri~~ 3

@@ -1,0 +1,20 @@
+Nguyễn Quốc L~ng
+Automati%n Test Enginee@
+Email: lo~g66%ex~mple.com
+Điện thoại: 0985031037
+Giới tính: Nam
+Ngày sinh: 10/09/2003
+
+TÓM TẮT
+10 năm kinh nghiệm kiểm #hử ~hần mềm.
+
+KINH NGHIỆM
+Company B (2#16 - nay)
+- Trưởn@ nhóm QA 5 người, địn% @ướng automatio# str@tegy và mentor thành viên mới.
+- Sử dụng WebdriverIO, Cypres@, Re%t Assur@d, Postman, Cucumber, Pytest cho kiểm thử api te%ting# ui test@ng.
+- Chạy test trên Azure ~evOps, G~tLab CI, Docker.
+
+#Ỹ NĂNG
+Ngôn ngữ lập #rình% JavaScript
+
+Địa chỉ: 291 Nguyen Trai Stree~~ District 3

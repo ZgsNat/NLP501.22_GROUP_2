@@ -1,0 +1,20 @@
+Hồ Quốc Long
+Automation Test Engineer
+Emai1: long33@example.com
+Điện thoại: 0996914605
+Gioi tính: Nam
+Ngày sinh: 10/01/1997
+
+TÓM TAT
+5 năm kinh nghiệm kiểm thu phần mềm.
+
+KINH NGHlỆM
+C0mpany B (2021 - nay)
+- Viết automation test scripts cho bo regression, kiểm thử tự động hằng ngay.
+- Sử dụng Selenium WebDriver, XCUITest, Rest Assured, JUnit, Cucumber cho kiểm thử api testing, mobile testing, ui testing.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Python
+Chứng chỉ: ISTQB Foundation Leve1 (CTFL)
+
+Địa chỉ: 91 Nguyen Trai Street, District 7

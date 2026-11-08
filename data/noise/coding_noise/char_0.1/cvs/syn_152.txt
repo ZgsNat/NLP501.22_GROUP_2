@@ -1,0 +1,21 @@
+Trầ# Thu Vy
+A~tomation Test Eng%neer
+E@ail: vy41@exampl~#co#
+Điện thoại: 09994@3358
+G%ới ~ính: Nữ
+Ngày sinh: ~7/07@1994
+
+TÓM TẮT
+@ n~m kinh ngh~ệm kiểm thử phần mềm@
+
+KINH NGHIỆM
+Company D (2019 - n@y)
+- Viết automa@ion ~~st scripts cho bộ reg#e#sion, ki#~ th# tự động hằ%g n@ày.
+- Sử dụng Selenium WebDriver% %eb#rive~IO, Pytes#, Robot ~ramewor@ %ho #@ểm thử ui testing.
+- Chạy tes~ trên Jenkins.
+
+KỸ N~NG
+Ngôn ngữ lập trình: TypeScript, Jav%
+N%%ại ng#: English (TOEIC 750)
+
+Đị~ chỉ: 53 N%uy#n Trai Street, Distr#ct 12

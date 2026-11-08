@@ -1,0 +1,20 @@
+Nguyen Quoc Long
+Automation Test Engineer
+Email: long66@example.com
+Dien thoai: 0985031037
+Gioi tinh: Nam
+Ngay sinh: 10/09/2003
+
+TOM TAT
+10 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company B (2016 - nay)
+- Truong nhom QA 5 nguoi, dinh huong automation strategy va mentor thanh vien moi.
+- Su dung WebdriverIO, Cypress, Rest Assured, Postman, Cucumber, Pytest cho kiem thu api testing, ui testing.
+- Chay test tren Azure DevOps, GitLab CI, Docker.
+
+KY NANG
+Ngon ngu lap trinh: JavaScript
+
+Dia chi: 291 Nguyen Trai Street, District 3

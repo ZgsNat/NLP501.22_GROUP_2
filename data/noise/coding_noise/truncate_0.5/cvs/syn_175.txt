@@ -1,0 +1,13 @@
+Hồ Quốc Long
+Automation Test Engineer
+Email: long33@example.com
+Điện thoại: 0996914605
+Giới tính: Nam
+Ngày sinh: 10/01/1997
+
+TÓM TẮT
+5 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company B (2021 - nay)
+- Viết automation test scripts cho bộ regression, kiểm thử

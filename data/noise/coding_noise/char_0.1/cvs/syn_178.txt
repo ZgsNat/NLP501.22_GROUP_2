@@ -1,0 +1,21 @@
+~~uyễn Ngọc Hươ~%
+Au#om#tion #~st Engineer
+@mail: huong20~example.co@
+Điện thoại: 094~924244
+Giới tính: Nữ
+%gày sinh: 05/11/1988
+
+TÓM T%T
+@0 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+C%mpany G (201% - @ay)
+- Vi@t automation test scripts cho bộ regression% kiểm thử tự động hằng ngày.
+- Sử dụn@ Selenium W%bDriv#r, Cypre%s, A~~ium, Robot Framework~ #U#it cho kiểm thử @obi#e te~ting, ui tes@ing.
+- Chạ% #e%t tr~@ Docker.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: C#
+Ngoại ngữ: En@li@h (TOEIC 750)
+
+Đị% chỉ: 5 Nguy@n Trai S#~eet, Distri%t 2

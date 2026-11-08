@@ -1,0 +1,21 @@
+Hồ Thu Tra~g
+Automat%on T~st Engineer
+Email: trang42@example.c#m
+Điện thoại: 098#593591
+Giớ@ tính: Nữ
+Ngà# sinh@ ~@/%9/1988
+
+TÓ@ T%T
+@ năm kinh ng~iệm kiể~ thử phần mềm.
+
+KINH N~HIỆM
+Company A (202~ - nay)
+~ Xây dựng fram%work a%tom%tion th%o Page O#@ect Mo@e#, d~ta-@r@ven, tích hợp Jenkins pipel~ne.
+~ S# dụng XCUITest, Postman, Rest Assured, Pytest ch@ ki%% thử ap~ testing, manual testing, mobile te#~ing~
+- Chạy test trên GitL%@ CI, A%#re D#vOps.
+
+#Ỹ N~NG
+Ngôn #g% lậ@ tr~nh: Py~hon
+#g#ại ngữ: Englis~ (TOE%C ~50)
+
+Địa #hỉ: 23# Nguyen Trai Street, Dis@rict 3

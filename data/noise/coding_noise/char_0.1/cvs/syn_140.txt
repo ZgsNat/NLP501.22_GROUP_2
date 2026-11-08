@@ -1,0 +1,21 @@
+H~ Quốc Long
+Automati~n Test Engineer
+Em%il: long28@examp@e.com
+Phone: 0944129%@2
+Gender: Ma~e
+Date of birth: 08/~#/1993
+
+SU%MARY
+3 yea#s of experien@e in %oftwa%e testi#g.
+
+EXPERIENCE
+Com@any A (2023 - Present)
+- ~esigned and bu#lt a Page %bjec% Mode~ automation framework and i%tegrat~d it into the CI p%peline.
+- Used Rest Assu@ed, JMeter, T@stNG for api testing, manual te@ting, pe@formance testing.
+- Ran tests on Docker, GitHub Acti#ns.
+
+SKILLS
+Pro#ramming: P%thon, C#
+Langu#ges: ~ng%ish (TOEIC 750), Japanes# #LPT N2
+
+Ad%res%: 60 Nguyen Trai Street~ D~stri%t 2

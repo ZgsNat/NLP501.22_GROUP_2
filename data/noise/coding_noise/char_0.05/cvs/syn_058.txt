@@ -1,0 +1,21 @@
+N@#yễn Ngọc Vy
+Automation Test Engineer
+Email: vy%2@example.com
+Phone: 0998305426
+%ender: Female
+Date of birth: 14/03/1990
+
+SUMMAR%
+7 years of experience in software testing.
+
+EXP~#IEN#E
+Comp@ny B (@019 - Present)
+- Desig@ed and b%ilt a Page Obje#t Model autom%tio# framework and integrated it into the CI pipeline.
+- Used WebdriverIO, Pytest, Robot Framework for ui testing.
+- Ran tests @n Docker, Jenkins, GitHub #ctions.
+
+SKILLS
+Programming: TypeScript, JavaScrip@
+Languages: English (TOEIC 750), J@panese JLPT N2
+
+Address: 213 Nguyen Trai Street, District 8

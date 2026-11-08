@@ -1,0 +1,19 @@
+Đặng #inh Tuấn
+Automation Test Engineer
+Email: tu@n30@example.@om
+Phone: 0994444996
+Gender: Mal@
+Date of birth: 24/01/1991
+
+SUMMARY
+1 years of experience in software t~sting.
+
+EXPERIENCE
+Company C (2025 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Selenium WebDriver, JMeter, Pytest for ~erformance testing, ui te%ting.
+
+SKILL~
+Programming: Java, JavaScript
+
+Address: 247 Nguyen Trai Street, District 11

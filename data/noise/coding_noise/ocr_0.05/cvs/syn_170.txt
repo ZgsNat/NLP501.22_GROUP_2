@@ -1,0 +1,18 @@
+Hồ Minh Tuấn
+QA/QC Engineer
+Email: tuấn20@example.com
+Điện thoại: 0983722452
+Giới tính: Nam
+Ngày sinh: 09/12/1992
+
+TÓM TẮT
+Mới tốt nghiệp, đam mê kiểm thử.
+
+KINH NGHlỆM
+- Thực hien kiểm thử thủ công, viết test case và báo lỗi trên Jira.
+- Chạy test trên Docker.
+
+KỸ NĂNG
+Ngoại ngữ: English (TOEIC 750)
+
+Dia chỉ: 210 Nguyen Trai Street, District 10

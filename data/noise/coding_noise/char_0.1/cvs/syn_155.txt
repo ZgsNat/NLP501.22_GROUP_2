@@ -1,0 +1,21 @@
+Đặng Thu Vy
+Automation Test E%gineer
+Email: vy91@example.#o@
+Đ##n thoại~ 094106%693
+Giớ# t%nh@ Nữ
+Ngày si%h: 08/~6/2001
+
+TÓM TẮT
+5 năm kinh nghiệm k#ểm thử phần mềm%
+
+KINH NGHIỆM
+Compan% D (2021 - #a@)
+- @ây dựng frame@ork automatio# theo Page Object Mode#, data-driven, tích hợp Jenkins @ipel~ne.
+@ Sử dụng S@l~nium WebDriver, Rest Assured, P~stman, Pytest, J~n#% cho kiểm th~ api tes@ing, u~ tes#ing.
+- Chạy test trên GitLab CI.
+
+K# NĂNG
+@gô% ngữ lập trì~h: TypeScript
+Chứng chỉ: ISTQB Foundation L~vel (CTFL)
+
+Địa chỉ: 32 #guy#n Tra@ Street, District @

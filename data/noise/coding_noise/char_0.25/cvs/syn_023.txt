@@ -1,0 +1,21 @@
+@% %inh Phúc
+Au@%mation Test En@%neer
+#m%i#: phúc40@example.co~
+~hone~ @%5#042~32
+@%nd@r: Ma~e
+D%t~ of b%@t%: @4/02#%000
+
+#UM#ARY
+5 years #f e%p~@ience in soft%are tes@i#@.
+
+EXPE#IE#CE
+Company B (2021 - P~@s#nt)
+- De%i##ed and #@ilt @ P#g~ ~~ject Model automat~on %r#mework a%d inte@rated i# in#o the CI p~p#line.
+~ Used S~~eni@@ WebDr~ve~, R#%~ A@s@red@ %ucumbe%, Pytest for api %esti@%, ui %est%%@.
+- Ra@ te%ts o~ #%###~ Acti~n@# Az#re D~vOps.
+
+S#ILLS
+Prog@am%#ng% ~y~eScrip@
+Cer@if#cation% IST~B CTFL
+
+Addr%ss: 269 Ngu@en Trai S@r@et, Distri#t ~1

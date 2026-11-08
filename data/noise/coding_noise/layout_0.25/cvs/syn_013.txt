@@ -1,0 +1,15 @@
+Bùi Ngọc Vy Automation Test Engineer
+Email: vy14@example.com
+Phone: 0936733470
+Gender: Female
+Date of birth: 15/12/1991 
+SUMMARY
+2 years of experience in software testing.
+
+EXPERIENCE
+Company E (2024 - Present)
+- Wrote and maintained automated test scripts for regression suites. - Used Playwright, Cypress, Rest Assured, Postman, JMeter, Pytest, TestNG for api testing, performance testing, ui testing.
+ SKILLS
+Programming: JavaScript
+Languages: English (TOEIC 750) 
+Address: 107 Nguyen Trai Street, District 8

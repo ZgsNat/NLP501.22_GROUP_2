@@ -1,0 +1,21 @@
+Bùi V@n Hùng
+Automation Test Engi~eer
+Email: hùng37@example.com
+Điện thoại: 0928645088
+Giới tính: Nam
+Ngày sinh: 19/11/19~8
+
+TÓM ~ẮT
+3 năm kinh nghiệm kiểm thử ph%n mềm.
+
+KINH NGHIỆM
+Company G (2023 - nay)
+- Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.
+- Sử dụng Playwright, WebdriverIO, XCUITest, Ro~ot Framework cho kiểm thử mobile testin~, ui testing.
+- Chạy test trên GitHub Actions.
+
+K~ NĂNG
+Ngôn ngữ lập trình: Java, Python
+Ngoại ngữ: English (TOEIC 750)
+
+Địa #hỉ: 76 Nguyen Trai Street, Distric@ 11

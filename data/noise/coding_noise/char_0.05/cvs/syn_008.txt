@@ -1,0 +1,21 @@
+Lê Minh Hùng
+Automation Test Engineer
+Emai~: h~ng91@example.com
+Điện tho~i: 0@71115104
+Giớ% tín%% Nam
+Ngày sinh: 20/08/1996
+
+~#M TẮT
+7 năm k%nh nghiệm kiểm thử phần mềm.
+
+KINH N@H%@M
+Company F ~2019 - nay~
+- Xây dựng framework automation theo Page O#ject Model, data-driven, tích hợp Jenk%ns ~%pel@ne.
+- Sử dụng WebdriverIO, Postm#n, k6, Cucumber, Robot Frame~ork cho kiểm thử api testing, perfo#mance testing, ui te@ting.
+- Chạy test trên Azure DevOps.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Java, C#
+Ngoại ngữ: Ja#anese JLPT N2
+
+%ịa c%ỉ: %52 Nguyen @rai Street, District 4

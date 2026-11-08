@@ -1,0 +1,21 @@
+Nguyễn Đức Tuấn
+Aut%mation Test Engin~e#
+Em#il: tuấn8@@example.com
+Phone: 0~26~59096
+G%nde@: Male
+Date of %ir#h: 13/04/1988
+
+SUMMARY
+% y~ars of e@pe%ience in software testing.
+
+E@PERIENCE
+C@mpany @ (2024 - Present)
+- Wrote %nd main@ained automa~ed test #cripts for r~g~ession suites#
+- Used Webdri~erIO, P%tes#, Cucumber for ui tes@ing.
+@ Ran tests on GitLab CI.
+
+SK%LLS
+Programming@ Java% C@
+Languages: Japan#se JLPT N2
+
+Add~ess: 298 Nguyen Trai Stree~, District 12

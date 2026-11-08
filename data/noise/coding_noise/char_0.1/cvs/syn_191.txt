@@ -1,0 +1,21 @@
+Vũ T~ị Hương
+Automat%@n Tes% E~gineer
+Email: huong12@exa~ple.com
+#iện thoại: 0~58#40295
+Giới tính: N@
+Ngày sinh: 18/08/19%2
+
+TÓM TẮT
+7 năm kinh nghi#m kiểm #hử phần mềm.
+
+KINH NGHIỆM
+Company A (2019 - n@~)
+- Trưởng n@óm QA 5 người, định hướng auto@ation strategy và mentor t@ành vi~n m@i.
+- S@ d%ng Cypre%~, Res% Assure~, Postman, Tes~NG, Cucumb@r cho k@ểm thử api testing, ui testi@g.
+- Chạy test trên Azure DevOps, #itHub Actions.
+
+KỸ NĂ@~
+N@ôn n~ữ lập trình: Pyth#n
+Ngoại n~ữ: Eng%ish (TOEIC 750)
+
+Địa %hỉ: 31 Nguyen %#ai Str@@t, Di#trict 6

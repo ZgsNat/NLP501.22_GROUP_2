@@ -1,0 +1,21 @@
+Nguyễn Văn Hùng
+Automation Test E@gineer
+Email: hùng79@example.com
+Điện thoại: 0949827566
+Giớ@ tính: Nam
+Ngày sinh: 04/09/20%1
+
+TÓM TẮT
+3 năm ki%h nghiệm kiểm thử phần mềm.
+
+KINH N~HIỆM
+Company B (202~ - nay)
+- Xây dựn~ framework automat~on theo Page Object Model, data-dr%ven, tích hợp Jenkins pipeline.
+- Sử dụng Appium, Robot Framework ch@ kiểm thử manual testing, mobile testing.
+- Chạy test trên Azure DevOps, Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: JavaScript, C#
+Ngoại ngữ: English (TOEIC 750)
+
+Đ#a chỉ: 1 Nguyen Trai Street, District 4

@@ -1,0 +1,19 @@
+Bui Ngọc Huong
+QA/QC Engineer
+Email: huong47@example.com
+Điện thoại: 0986427662
+Giới tinh: Nu
+Ngày sinh: 27/07/1989
+
+TÓM TAT
+Mới tốt nghiệp, đam me kiem thu.
+
+KINH NGHIEM
+- Thực hiện kiểm thu thu cong, viet test case va báo loi trên Jira.
+- Sử dung Playwright, Rest Assured cho kiểm thu api testing, ui testing.
+
+KY NĂNG
+Chung chỉ: ISTQB Foundation Level (CTFL)
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 171 Nguyen Trai Street, District 1

@@ -1,0 +1,21 @@
+Vũ Văn H~ng
+#utomation Test Engineer
+Email: h@ng87@e@ample.com
+Điện thoại: 0930280697
+Giới @ính: Nam
+Ngày sinh: ~6/07/1998
+
+TÓM TẮT
+5 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NG%IỆM
+Company E (2021 - nay)
+- Xây dựng framewor# automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.
+- Sử dụng WebdriverIO, Cypress, XCUITest, Rest Assured, Postman, JMeter, JUnit, TestNG ch~ kiểm thử api testing, mobile testing, performance testing, ui ~esting.
+- Chạy test trên Docker, Jenkins, GitHub Actions.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: TypeScript
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 93 Nguyen Trai Stree#, District 11

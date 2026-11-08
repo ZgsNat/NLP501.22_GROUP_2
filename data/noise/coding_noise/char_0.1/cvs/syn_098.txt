@@ -1,0 +1,21 @@
+Vũ Thị Hươ%g
+Automation Test Engineer
+Email: huong46@example.#om
+Ph%ne@ 0~34247098
+G@n%e%: Female
+Date of birth: 27/03/1996
+
+%UMM#R%
+6 years o~ expe%i%nce in s@ftwa~e tes~%ng.
+
+EXPERIENCE
+Company E (2~20 - Present)
+- De#ine~ ~he test auto%a~%on st%ategy, %e~ a team ~f 5 QA engineers a%d mentored j~nior@ on automation.
+- Used Cyp@es@, Pos@#an, Rest %ssur#d, JMeter, JUnit for api te~ting% pe~for%an%e #es~ing, @i te~~ing%
+- Ran tes#s @n Git%ub Actions, Do#ker, GitLab CI.
+
+SKI%LS
+P#ogramming: C#
+Languages: Eng~ish (TOE#C 750)
+
+%ddress: 300 N%~yen T%ai #treet, Distric@ 4

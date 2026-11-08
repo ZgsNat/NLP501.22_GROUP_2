@@ -1,0 +1,21 @@
+Bùi Thị H@ơ%g
+Automation Tes# @ngineer
+Emai%# %u@ng21@ex~mple#com
+Phone: ~9#02244%3
+Gen@er: Female
+Date of birt@: 01/08/1994
+
+SUMMARY
+8 y~ars of e@perience i# software ~esti@g.
+
+E%PERIENCE
+Company C (2018 - Present~
+- Designed and built a Page Object Model auto#ati~n framework and in%egrated it ~nto the #I pipeline.
+- Used %ostman, Gatli#g, Pytest for api tes~%@@, manual te@#ing, p#rfo~manc@ %e@t~n%.
+- Ran tests on #zure DevOps, Git#a~ CI, Jenk~ns.
+
+~KILL#
+Program@ing: Java
+La@guages: @nglish (TOEIC 750)
+
+Address% 216 Ng#yen Trai S#reet, District 5

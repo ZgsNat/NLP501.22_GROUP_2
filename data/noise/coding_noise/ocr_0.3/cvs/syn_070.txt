@@ -1,0 +1,21 @@
+Pham Quoc Long
+Automation Test Engineer
+Email: long91@example.com
+Phone: 0932452379
+Gender: Male
+Date 0f birth: 07/10/1999
+
+5UMMARY
+2 years of experience in software testing.
+
+EXPERlENCE
+C0mpany A (2024 - Present)
+- Wr0te and maintained automated test scripts for regression suites.
+- Used Appium, JUnit, TestNG f0r manua1 testing, mobile testing.
+- Ran tests 0n GitLab CI.
+
+SKILLS
+Pr0gramming: Java
+Languages: English (TOEIC 750), Japanese JLPT N2
+
+Address: 136 Nguyen Trai 5treet, District 2

@@ -1,0 +1,22 @@
+Do Van Khoa
+Automation Test Engineer
+Email: khoa32@example.com
+Dien thoai: 0951343854
+Gioi tinh: Nam
+Ngay sinh: 13/02/1991
+
+TOM TAT
+1 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company F (2025 - nay)
+- Viet automation test scripts cho bo regression, kiem thu tu dong hang ngay.
+- Su dung WebdriverIO, XCUITest, Postman, TestNG, Cucumber cho kiem thu api testing, mobile testing, ui testing.
+- Chay test tren Docker.
+
+KY NANG
+Ngon ngu lap trinh: TypeScript, Java
+Chung chi: ISTQB Foundation Level (CTFL)
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 195 Nguyen Trai Street, District 6

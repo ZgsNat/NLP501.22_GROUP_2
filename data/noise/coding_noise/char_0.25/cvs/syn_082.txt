@@ -1,0 +1,20 @@
+L~ Mai ~ươn%
+Autom@tion #%st En~%n@%r
+Email~ h@o%g%@@ex@mple.%%m
+~~o@e: 0#9634738#
+Gen~e%@ %emal@
+Date of bi%t@: 04/0~@19%#
+
+#UMMA@@
+% years of exp%rien%e ~# s#ft%are testing.
+
+#XPERI@NCE
+Comp~ny A (2023 @ Pr@sent)
+@ Des~~~ed and built a ~%ge Objec~ Mo#@l a#t~ma~i@n framework a~d %~te~#at#d it into the CI pipelin~.
+- Used Rest As@ured, k~, J~nit, %yte@t for a#i test#n@, manual t~sting, p~r@orm#nce tes%ing.
+@ %a~ t%sts on %enkins, GitHu@ #ct%ons, G~t~~b CI.
+
+S~ILLS
+Prog%amming: JavaScript
+
+A#%ress: 18 Ng%yen T%a@ Stre@t, Distric# %

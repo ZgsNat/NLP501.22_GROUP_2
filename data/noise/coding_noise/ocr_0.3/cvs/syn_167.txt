@@ -1,0 +1,20 @@
+Hồ Thị Thảo
+Automation Test Engineer
+Email: thả068@example.com
+Điện thoại: 0977621275
+Giới tính: Nu
+Ngay sinh: 23/12/1996
+
+TOM TAT
+10 nam kinh nghiệm kiểm thu phần mềm.
+
+KINH NGHIỆM
+C0mpany C (2016 - nay)
+- Trưởng nhom QA 5 nguoi, định hướng automation strategy và ment0r thanh viên moi.
+- Sử dụng WebdriverlO, XCUlTest, P0stman, Rest Assured, TestNG cho kiểm thu api testing, m0bile testing, ui testing.
+- Chay test trên Azure DevOps, Jenkins.
+
+KY NANG
+Ngon ngu lập trinh: Pyth0n, Java
+
+Địa chỉ: 113 Nguyen Trai Street, District 5

@@ -1,0 +1,19 @@
+T#ần Thu Li@h
+Aut%m%tion Test @n~#n~er
+~ma#l: @inh1@%exa%ple.~om
+#hone~ 0976%%0348
+Ge~de%: F#male
+Date of b@rth: 0@%1~~19#8
+
+#UMMAR@
+# years of e~perience in software testing#
+
+E%PE%%E~CE
+Co#@any A (2025 % #rese#~)
+- W~o%e #%d m~intai@%d a@toma%e@ t#st sc#%pt~ for regress#~n su%t#s.
+~ Used Pl@ywrigh~, XCUIT#~t# #ostman, #6% %#~t%G, JUnit for a%i t~#t%ng, m%bil% te#ting, perform#~ce te%~i%g, ui te~#ing.
+
+~~%L##
+#r#grammin%: C#
+
+A~d%%s#: 2~0 Ng~yen @ra% Str@@t, D%strict 5

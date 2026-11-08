@@ -1,0 +1,19 @@
+Đặng Mai Vy
+#A/QC Engineer
+Ema~@% vy78@example.com
+Điện thoại: 097891@1@1
+Giớ# tính: Nữ
+Ngà% sinh: 03/03/2002
+
+TÓM T~T
+Mớ% tốt nghiệp, đam mê %i%m thử.
+
+KINH NGHIỆM
+- Thực hi%n kiểm thử thủ công, viết test case và báo lỗi trên Jira.
+- Sử dụ~g Pos%ma%, Rest As@ured ch~ kiểm th~ api tes%ing, manual testing.
+- Chạy tes# trên Azure ~ev@ps.
+
+K# NĂNG
+Ngôn ngữ lập trì~@: C#
+
+~ịa chỉ: 261 Ng@yen Trai Street, Dist@ict 7

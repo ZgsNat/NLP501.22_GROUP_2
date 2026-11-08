@@ -1,0 +1,22 @@
+Hồ Đứ~ Ph@c
+Automation Test Eng%neer
+Email: phúc2@@example.com
+Điện thoại: 0964450250
+Giới tính: Nam
+Ngày s~nh: 27/12/1991
+
+TÓM TẮT
+6 năm kinh nghi~m kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company C (2020 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven% tích hợp Jenkins pipel~ne.
+- Sử dụng Playwright, Selenium WebDriver, Espresso, Postman, k6, JUnit cho kiểm thử api testing, mobile testing, performance testing, u# testing.
+- Chạy test trên GitLab CI, Docker, Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Java
+Chứng chỉ: ISTQB Foundation Level (CTFL)
+Ngoại ngữ: %nglish (TOEIC 750)
+
+%ịa chỉ: 285 Nguyen Tra~ Street, District 11

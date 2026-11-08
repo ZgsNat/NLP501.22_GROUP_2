@@ -1,0 +1,21 @@
+Bui Van Hùng
+Automation Test Engineer
+Email: hung37@example.com
+Điện thoại: 0928645088
+Giới tính: Nam
+Ngay sinh: 19/11/1988
+
+TÓM TAT
+3 nam kinh nghiem kiem thử phan mem.
+
+KINH NGHIỆM
+Company G (2023 - nay)
+- Viết automation test scripts cho bo regression, kiểm thu tự động hằng ngày.
+- Su dung Playwright, WebdriverIO, XCUITest, Robot Framework cho kiểm thử mobile testing, ui testing.
+- Chạy test trên GitHub Actions.
+
+KỸ NĂNG
+Ngôn ngu lập trinh: Java, Python
+Ngoại ngu: English (TOEIC 750)
+
+Địa chi: 76 Nguyen Trai Street, District 11

@@ -1,0 +1,13 @@
+Hoàng Mai Vy
+Automation Test Engineer
+Email: vy19@example.com
+Phone: 0995735668
+Gender: Female
+Date of birth: 15/05/2001
+
+SUMMARY
+7 years of experience in software testing.
+
+EXPERIENCE
+Company F (2019 - Present)
+- Defined the test automation strategy, led a team of 5

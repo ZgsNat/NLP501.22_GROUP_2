@@ -1,0 +1,14 @@
+Đỗ Thu Vy
+Automation Test Engineer
+Email: vy20@example.com
+Phone: 0937155151 Gender: Female Date of birth: 05/08/2002
+
+SUMMARY 1 years of experience in software testing. 
+EXPERIENCE Company G (2025 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used WebdriverIO, Postman, Robot Framework for api testing, ui testing. 
+SKILLS
+Programming: TypeScript
+Certification: ISTQB CTFL
+
+Address: 84 Nguyen Trai Street, District 5

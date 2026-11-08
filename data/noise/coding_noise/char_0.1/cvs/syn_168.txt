@@ -1,0 +1,19 @@
+Hoàng Thị H@ơng
+Automa@#on Test Engine#r
+Em~il: huo#g38@exa#ple.com
+Phone: 0916122001
+%ender: Female
+Date of birth: 18/04/1997
+
+SUMM%RY
+2 @ear@ of expe~i@nce in software testing.
+
+EXPERIE@CE
+#omp#ny @ (2024 - Present)
+- Wrote and mai#@@ined au#o~ated test scripts for regression suites.
+- Us#d Rest Assur#d, k6, Pytest, Tes#NG for api te#ting# manual te@ting, perfo@mance testi#g.
+
+SKILLS
+Progr~mmi#g: Jav~%c@ipt
+
+Addres~: ~6 Ng%yen Trai Street, Distric@ 5

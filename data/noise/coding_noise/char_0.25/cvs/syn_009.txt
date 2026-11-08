@@ -1,0 +1,22 @@
+Vũ V#n #a%
+Automat@on Test Engineer
+E@ail: n@~1~@exa#pl%#c%m
+P@@ne: @98~8025#9
+Gender% Mal#
+Date of b~r~~: 01#03/1991
+
+S#MM#RY
+3 #ear@ of ex~#r%enc% i% s@ftware %est~ng.
+
+~X~E~IEN#E
+%ompany C %2023 - Pr@s#nt)
+- Des#gned an% built ~ Page Object ~@del automatio~ %ram%~o@k and int%@r~~ed it int@ t%e CI p@%elin#.
+@ Use@ @el@nium W%bDr~v%r~ #%stman# TestNG for api ~estin%, u~ testin@.
+- R%n tests on %zure DevOps, @%ck@r.
+
+SKILLS
+Pro@r@mm#ng~ %ytho~
+Cer#i%ic@tion: #S%QB #@FL
+La%guages: English @T#E#C 750), Jap%n@se JL%T N2
+
+%ddres@: 138 Nguye~ T#ai S#re##, Dis%ri#t 3

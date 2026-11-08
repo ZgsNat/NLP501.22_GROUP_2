@@ -1,0 +1,21 @@
+Vũ Đức Nam
+Automation Test Engineer
+Emai1: nam43@example.com
+Ph0ne: 0959269031
+Gender: Ma1e
+Date of birth: 19/04/1995
+
+SUMMARY
+2 years of experience in software testing.
+
+EXPERIENCE
+Company C (2024 - Present)
+- Wrote and maintained automated test scripts f0r regression suites.
+- Used Selenium WebDriver, WebdriverIO, k6, JUnit f0r performance testing, ui testing.
+- Ran tests on Azure Dev0ps.
+
+SKILLS
+Programming: JavaScript, C#
+Languages: English (TOEIC 750)
+
+Address: 154 Nguyen Trai 5treet, District 2

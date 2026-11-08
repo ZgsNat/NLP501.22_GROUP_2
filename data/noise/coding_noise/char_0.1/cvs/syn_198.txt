@@ -1,0 +1,21 @@
+Đặn~ Minh Tuấn
+Aut%ma@ion Test Engineer
+Email: tuấn35@ex@mple~com
+Phone: 0936457435
+Gender: Male
+Date of birth: 02/0@/2#03
+
+SUMMARY
+@ years of experience in softwar~ t%sting.
+
+EXPERI%NCE
+Company A (2025 - Present)
+- Wrote and maintaine# automated test ~cripts for regression #u~tes.
+- Used Pl@yw@ight~ W~bdriverIO, Re~t Assured, Po~#man, Robot Framework, %uc~mber for api test~n@# ui testing.
+
+SKIL~S
+Prog@amming: Py@hon, C#
+Certification: ISTQB CTFL
+Languages: English (~OEIC 750)
+
+Ad~ress: 1#~ Nguyen Trai Stre@t, Dis#rict 7

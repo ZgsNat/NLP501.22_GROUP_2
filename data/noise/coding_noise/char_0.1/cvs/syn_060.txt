@@ -1,0 +1,21 @@
+Lê Quố~ %húc
+Au@omati~@ Te~t Engineer
+Email: phúc10@e@#mple.%o@
+Phon%: 09~7569#92
+G@nder: M~l%
+~ate of birth: 16/12/1@95
+
+SUMMARY
+1 yea~s of ex@erience in software testing.
+
+EXPERIEN@E
+Company F (2025 - Pr%s~nt)
+- Wrote @nd maintained aut%%ated test s%ripts for regression suites.
+- Used #elenium We#D~iv~r, Cyp#ess, Pytest for @i testing.
+- ~an tests on G%@Lab CI.
+
+SKI%LS
+Programm~ng: C#
+Cer%ifica@ion# IS%Q# ~T#L
+
+@ddress: 257 Nguyen Trai St~~et, District 5

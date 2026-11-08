@@ -1,0 +1,20 @@
+@ỗ M@i %r%n%
+A##o~ati%n T@st Enginee#
+E#ail: t%a~g@7@#%ample@com
+%ho%#: 0@92%03389
+@e%d#r: ~@%ale
+D%t@ o% %i@th: 09/0@/198~
+
+%UMMARY
+4 @ears of experi@n@@ in soft~~#~ tes#i~g.
+
+EXP%RIE%CE
+Co#pany ~ (2022 - Pre#ent#
+- De@ig~ed @nd b~i#t a Pa%e #b~#ct Model au@omation fram#wo@k and int@grated %% i@to the CI pipeline.
+- Use% @y@r@~~, W@bdriverIO, E#pre###, #ostman, R@st Assured, TestNG% J%nit for api t@#tin%, %o~ile te%~ing# ui testing.
+# Ran test~ on Azur@ %evOp@, #itHub A@tions, Dock~r.
+
+SK%LLS
+Pr@g~~mming: Python
+
+Addr#s%: @7 @@uyen %%ai @~ree@, Distr#ct 5

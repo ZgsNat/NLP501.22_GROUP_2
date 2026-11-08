@@ -1,0 +1,20 @@
+Bùi N#ọc Vy
+Aut~mation Te~t En%in~er
+Email: vy14@e#ample.com
+Pho%e: 0936733470
+Gende#: Female
+Date %# ~i#th: 15/1%/1991
+
+SUMMA@Y
+2 years of experience in software testing.
+
+EXPERIENC@
+Company E (2024 - #resent)
+- Wrote and maintained automated test scripts fo% regression suites.
+- Used Playwr~g@t, Cy%re~s, Rest Assured, Postm@n, JMeter, Pytest, TestN% for api testing, perfo#mance testin~, ui testing.
+
+SKILLS
+Programming: JavaScript
+Lan#uages: Engl#~h (@OEIC 750)
+
+Address: 107 Nguyen Trai Street, Distri@t 8

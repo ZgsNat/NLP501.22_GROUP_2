@@ -1,0 +1,21 @@
+Tran Ngoc Thao
+Automation Test Engineer
+Email: thao22@example.com
+Dien thoai: 0923586205
+Gioi tinh: Nu
+Ngay sinh: 24/04/2000
+
+TOM TAT
+2 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company B (2024 - nay)
+- Viet automation test scripts cho bo regression, kiem thu tu dong hang ngay.
+- Su dung Playwright, Espresso, Rest Assured, Cucumber cho kiem thu api testing, mobile testing, ui testing.
+- Chay test tren Azure DevOps.
+
+KY NANG
+Ngon ngu lap trinh: Java
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 99 Nguyen Trai Street, District 9

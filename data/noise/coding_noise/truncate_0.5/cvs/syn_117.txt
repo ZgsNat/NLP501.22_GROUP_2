@@ -1,0 +1,13 @@
+Bùi Ngọc Vy
+Automation Test Engineer
+Email: vy40@example.com
+Phone: 0968490538
+Gender: Female
+Date of birth: 27/11/1994
+
+SUMMARY
+10 years of experience in software testing.
+
+EXPERIENCE
+Company A (2016 - Present)
+- Defined the test automation st

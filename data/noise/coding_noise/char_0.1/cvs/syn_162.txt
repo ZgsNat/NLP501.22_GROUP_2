@@ -1,0 +1,21 @@
+~@ Văn Nam
+QA/QC Engineer
+Email: n%m34@example.co~
+Đi~n t~oại: ##6#13153%
+Giới tính: Na@
+Ngày sinh: 18/12/1996
+
+TÓM TẮT
+Mới tốt nghiệp, đam mê kiểm #hử.
+
+KINH NGH~ỆM
+~ Th@c hiện kiểm thử thủ công, #iết te@t case và báo lỗi trên Jira.
+- Sử dụn# Webd@iverIO, %est Assu#@d, Postman, Cucumber cho k~ểm thử #pi testing~ ui tes#ing.
+- Ch~y ~est tr@n Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trì~h: Jav@
+Chứ%g ch#% ISTQB F%undatio# Le%%l (CTFL)
+Ngoại %gữ: Engl#sh (TO%IC 7%0)
+
+Địa %hỉ: 287 ~%uyen Trai Street% Distric% 6

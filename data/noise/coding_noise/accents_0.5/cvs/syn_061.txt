@@ -1,0 +1,20 @@
+Dang Thu Lan
+QA/QC Engineer
+Email: lan14@example.com
+Dien thoại: 0986255745
+Giới tinh: Nữ
+Ngày sinh: 16/12/1999
+
+TOM TAT
+Moi tốt nghiệp, dam mê kiem thu.
+
+KINH NGHIỆM
+- Thuc hien kiểm thử thu công, viet test case và báo loi tren Jira.
+- Sử dụng Postman, Rest Assured cho kiem thu api testing, manual testing.
+- Chạy test trên GitLab CI.
+
+KỸ NANG
+Ngon ngữ lap trình: C#
+Ngoại ngu: Japanese JLPT N2
+
+Địa chỉ: 58 Nguyen Trai Street, District 10

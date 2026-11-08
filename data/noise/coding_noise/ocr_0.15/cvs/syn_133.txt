@@ -1,0 +1,21 @@
+Lê Mai Trang
+Automation Test Engineer
+Emai1: trang87@examp1e.com
+Phone: 0956023301
+Gender: Female
+Date of birth: 10/06/1988
+
+SUMMARY
+3 years 0f experience in software testing.
+
+EXPERIENCE
+Company E (2023 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Selenium WebDriver, Rest Assured, Robot Framework f0r api testing, ui testing.
+- Ran tests on Azure Dev0ps.
+
+5KILLS
+Programming: TypeScript
+Languages: English (TOEIC 750)
+
+Address: 75 Nguyen Trai Street, District 1

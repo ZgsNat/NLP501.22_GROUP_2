@@ -1,0 +1,21 @@
+Đặng Thị Vy
+Auto#a@io~ T#s# @~gine#%
+E~#il: vy1%@%x%mple.c@m
+Phone: 094#182550
+G~nd~r: Fema~~
+Date o% birt@# 20/#1/1~92
+
+SUMMARY
+# years of exp~%ien%e i# #%ftw@re @e~t@ng.
+
+EXPERI~NCE
+C@m%a#@ ~ (%021 - Present@
+- @~signed ~nd buil~ a @a%e O@j~ct Mo%%# aut@m@t~on fr~%ework and ~ntegr#te# it int@ th% ~I pi~elin#.
+- ~#@d @ebdriv#rIO~ %la#wright, #e%t@G, Cuc~##er %o# %i ~#%ting.
+- Ran tests on J%nk@ns, Git@a@ C@.
+
+S~IL#S
+#ro~ram~i%g: Ty~eScr%@t# J#vaSc~ip#
+#e#tificati%n: IS~Q~ CT~L
+
+#~dress: ~ Ngu#en %r#@ Stree~, %@s#ri#t @

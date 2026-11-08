@@ -1,0 +1,21 @@
+Nguyễn Quốc Tuấn
+@ut#mation Test @@~ine@r
+Em~il~ tuấn#%@exa%#le.co%
+Đ@%% thoại: 092735@#@3
+G@ớ% t~n@: Na%
+Ngày s#nh: 0~/01/@99@
+
+T~M TẮT
+8 năm k@nh nghiệ~ ki%m thử p#%n mề@.
+
+K~#@ N~HIỆ%
+C~mpa%# # %2018 @ @ay)
+- Xâ~ dự~g fra#@#ork automat@on @heo @#%e Obje#t M@del, data-d@%ven# t#ch h~p Je@kins pipeli#e.
+- S# dụng Cypress, P%te@t% Ro%ot @~%%ew@rk cho kiểm @@@ u~ @~sting.
+- C@ạ@ t~st tr#n @itHub Actions.
+
+#Ỹ NĂ~G
+Ngô~ ngữ ~ập t@ình: Jav%
+Ngo#i ngữ: J%pa@ese JLPT ~@
+
+Địa chỉ: 2~ Ng%y@n #~a% Stree@, Distr~ct 1@

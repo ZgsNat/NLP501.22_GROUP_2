@@ -1,0 +1,20 @@
+@ùi Thu T@ang
+Automation Test Eng~ne#r
+Em%il: #rang79@exa%ple.com
+Phone: 0959273033
+Gender: F#male
+%ate of birth% 15/01/2000
+
+SUMMARY
+4 @ears of experience in sof@ware testing.
+
+EXPER#ENCE
+~ompany F %2022 - Pre#~nt)
+- Design~d and b@ilt a Pag% Object Mo@el a~tomati#n #ramework and integra#ed it into the CI pipeline.
+- Used Webdrive~@O, Cypress, XCUITest, Cu~umber #or mobile t@@ting% ui tes~ing.
+- Ran tests on ~zure DevOps, Je@kins.
+
+@KILLS
+Programmin@: JavaScript
+
+Addre~s: 95 Nguyen Trai Str#et, Di%trict 1

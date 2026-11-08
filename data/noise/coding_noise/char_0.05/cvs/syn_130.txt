@@ -1,0 +1,21 @@
+Trần Vă# Phúc
+Automation Test Engineer
+Email: %h#c18@example.@om
+Điện thoại: 0989575878
+Giới tính: Nam
+Ngày si~h: 2%/04/1992
+
+TÓ# TẮT
+4 năm kinh n@hiệm kiểm thử phần mềm.
+
+KINH NG#IỆM
+Compan@ F @2022 - n%y)
+- Xây dựng framewor@ auto#a%ion theo Page Object Model, data-d#iven, tích hợp Jenkins pipeli~e.
+- Sử dụng Appium, Postman, Rest Assured, JUn@t, @estNG cho kiểm #@ử api testing, manual testing, ~obil@ testing.
+- Chạy test trên Dock#r, Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: J#vaScript
+Ngoại n@ữ: English (TO#IC 750)
+
+Địa chỉ: 26~ Nguyen Tra@ Street, District 5

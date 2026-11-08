@@ -1,0 +1,20 @@
+Lê ~hị Trang
+QA/QC Engineer
+E~ail: trang#0@example.com
+Phone: 0929470999
+Gende~: Female
+Date of birth: 20/03/2003
+
+SUMMARY
+Fresh gr~dua@e @assiona#e ab@ut testing.
+
+EXPERIENCE
+- E@ecuted manua% test cases and reported defects %n Jira.
+~ Us~d Postma@, Rest Assur%d for api testi#g, manual testing.
+- Ran tests on GitLab CI.
+
+SKILLS
+Programming: JavaScript
+L#nguages: Engli%h (TOEIC 750)
+
+Addre#s# 212 Nguyen T%ai Street, D%strict 7

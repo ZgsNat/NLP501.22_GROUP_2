@@ -1,0 +1,20 @@
+Hồ Quoc Long
+Automation Test Engineer
+Email: long33@example.com
+Dien thoại: 0996914605
+Giới tính: Nam
+Ngày sinh: 10/01/1997
+
+TÓM TẮT
+5 năm kinh nghiem kiểm thử phần mem.
+
+KINH NGHIỆM
+Company B (2021 - nay)
+- Viet automation test scripts cho bộ regressi0n, kiểm thử tự động hằng ngày.
+- 5ử dung Selenium WebDriver, XCUITest, Rest Assured, JUnit, Cucumber cho kiểm thu api testing, mobi1e testing, ui testing.
+
+KỸ NĂNG
+Ngôn ngữ lập trinh: Python
+Chứng chỉ: lSTQB F0undation Leve1 (CTFL)
+
+Dia chỉ: 91 Nguyen Trai Street, District 7

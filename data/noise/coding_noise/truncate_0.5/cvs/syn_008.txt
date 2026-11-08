@@ -1,0 +1,13 @@
+Lê Minh Hùng
+Automation Test Engineer
+Email: hùng91@example.com
+Điện thoại: 0971115104
+Giới tính: Nam
+Ngày sinh: 20/08/1996
+
+TÓM TẮT
+7 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company F (2019 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven, tích hợ

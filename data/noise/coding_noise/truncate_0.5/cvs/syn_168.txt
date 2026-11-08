@@ -1,0 +1,13 @@
+Hoàng Thị Hương
+Automation Test Engineer
+Email: huong38@example.com
+Phone: 0916122001
+Gender: Female
+Date of birth: 18/04/1997
+
+SUMMARY
+2 years of experience in software testing.
+
+EXPERIENCE
+Company A (2024 - Present)
+- Wrote an

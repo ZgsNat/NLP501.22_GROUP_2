@@ -1,0 +1,21 @@
+Nguyễn Đức Khoa
+Aut0mation Test Engineer
+Email: khoa45@example.com
+Phone: 0958397866
+Gender: Male
+Date 0f birth: 14/05/1996
+
+SUMMARY
+3 years of experience in s0ftware testing.
+
+EXPERlENCE
+Company E (2023 - Present)
+- Designed and built a Page Object Model automation framework and integrated it int0 the CI pipeline.
+- Used Selenium WebDriver, Cypress, Postman, TestNG for api testing, ui testing.
+- Ran tests on Docker, GitLab Cl, Azure DevOps.
+
+SKILLS
+Programming: C#
+Certification: ISTQB CTFL
+
+Address: 136 Nguyen Trai Street, District 9

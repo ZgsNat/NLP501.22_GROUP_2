@@ -1,0 +1,19 @@
+Nguyễn Đức Khoa
+@utoma#io@ Test Enginee~
+Email: khoa59@example.com
+Điện th#ại: 092978@540
+Giới t~nh: Na#
+Ngày sinh: 12/11/1997
+
+TÓM TẮT
+1 năm kin@ nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Comp#ny B ~2025 - nay)
+- Viết automa~io# test sc@i@ts c#o bộ regr~ss@on, kiểm thử tự ~ộng hằng n%ày.
+% Sử dụng Cypress, Pytest, Test#G %ho kiểm thử ui te@t~ng.
+
+KỸ #ĂNG
+Ngôn ngữ lập trình: TypeScript, C#
+
+Địa chỉ: 197 Nguyen Trai Street@ Di%tr@ct 11

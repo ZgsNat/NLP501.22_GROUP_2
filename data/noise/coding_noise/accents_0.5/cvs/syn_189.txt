@@ -1,0 +1,21 @@
+Vu Đức Long
+Automation Test Engineer
+Email: long41@example.com
+Dien thoại: 0961430248
+Giới tính: Nam
+Ngày sinh: 14/09/2003
+
+TÓM TAT
+3 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIEM
+Company E (2023 - nay)
+- Xay dựng framework automation theo Page Object Model, data-driven, tích hop Jenkins pipeline.
+- Su dụng Selenium WebDriver, Cucumber, JUnit cho kiểm thử ui testing.
+- Chay test tren Docker.
+
+KỸ NANG
+Ngôn ngu lap trình: Java
+Chứng chi: ISTQB Foundation Level (CTFL)
+
+Dia chỉ: 274 Nguyen Trai Street, District 8

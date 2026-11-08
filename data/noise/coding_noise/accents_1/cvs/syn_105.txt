@@ -1,0 +1,21 @@
+Dang Thu Vy
+Automation Test Engineer
+Email: vy87@example.com
+Dien thoai: 0927620998
+Gioi tinh: Nu
+Ngay sinh: 12/11/1991
+
+TOM TAT
+4 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company G (2022 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung Playwright, WebdriverIO, k6, Cucumber, JUnit cho kiem thu performance testing, ui testing.
+- Chay test tren GitHub Actions, Jenkins.
+
+KY NANG
+Ngon ngu lap trinh: TypeScript, JavaScript
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 189 Nguyen Trai Street, District 9

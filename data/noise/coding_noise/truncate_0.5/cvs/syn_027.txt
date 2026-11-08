@@ -1,0 +1,12 @@
+Hồ Thị Lan
+QA/QC Engineer
+Email: lan36@example.com
+Phone: 0998013189
+Gender: Female
+Date of birth: 16/02/2002
+
+SUMMARY
+Fresh graduate passionate about testing.
+
+EXPERIENCE
+- Executed manual test cases and reported d

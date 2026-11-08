@@ -1,0 +1,13 @@
+Nguyễn Ngọc Hương
+Automation Test Engineer
+Email: huong14@example.com
+Phone: 0973115555
+Gender: Female
+Date of birth: 09/03/2002
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+Company D (2023 - Present)
+- Designed and built a Page Object Mo

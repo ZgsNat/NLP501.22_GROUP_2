@@ -1,0 +1,21 @@
+Do Van Hung
+Automation Test Engineer
+Email: hung60@example.com
+Điện thoại: 0925660291
+Gioi tính: Nam
+Ngày sinh: 01/03/2003
+
+TOM TẮT
+7 nam kinh nghiem kiem thử phan mem.
+
+KINH NGHIỆM
+Company D (2019 - nay)
+- Viết automation test scripts cho bộ regression, kiểm thử tu động hang ngay.
+- Sử dung Appium, Postman, Rest Assured, JUnit cho kiem thử api testing, manual testing, mobile testing.
+- Chay test tren Docker.
+
+KY NANG
+Ngôn ngữ lap trình: C#
+Ngoai ngữ: English (TOEIC 750), Japanese JLPT N2
+
+Địa chi: 208 Nguyen Trai Street, District 11

@@ -1,0 +1,21 @@
+Nguyễ% Ngọ# H~ơng
+A~%omat#o# Tes% ~@gin@er
+E#a#l: %uong14@examp%%.com
+P~one: 0@7311%555
+@e%der~ Female
+Date of bir@h: 09/03@200~
+
+SUM~ARY
+3 @ear@ o@ exper#en~e in s#ftware testing~
+
+#XP~RIE@C%
+Comp%ny D %2023 - P#es%nt)
+- Des%gned ~nd b~ilt ~ ~a~e %b%ec% M#del a%tomat~on framew#%k a~@ i~@eg%ated it int@ #he CI pipeli~e@
+- Used Selen%um WebDri~er, Pytes~, #Uni@ %or ~i testing.
+- @a~ tests o# Azure ~evO@s.
+
+S%ILLS
+P@ogr#mming: #avaScript
+Langua@es: E~gl@~h %TO%@C 750)
+
+A@#r@ss: ~0 Nguyen Trai St%eet, D%@tr%#t %

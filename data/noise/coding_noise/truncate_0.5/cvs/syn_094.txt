@@ -1,0 +1,13 @@
+Nguyễn Đức Khoa
+Automation Test Engineer
+Email: khoa45@example.com
+Phone: 0958397866
+Gender: Male
+Date of birth: 14/05/1996
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+Company E (2023 - Present)
+- Designed and built a Page Object Model automation fra

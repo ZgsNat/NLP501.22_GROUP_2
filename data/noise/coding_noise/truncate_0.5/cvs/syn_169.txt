@@ -1,0 +1,13 @@
+Lê Thu Lan
+Automation Test Engineer
+Email: lan92@example.com
+Điện thoại: 0943421297
+Giới tính: Nữ
+Ngày sinh: 27/04/1991
+
+TÓM TẮT
+8 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (2018 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins p

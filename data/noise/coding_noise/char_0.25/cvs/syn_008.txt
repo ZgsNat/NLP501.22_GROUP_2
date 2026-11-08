@@ -1,0 +1,21 @@
+~ê Minh Hùng
+Auto#ati@n Te%t %%gineer
+Em~@l: hù@g91@exampl@.c#@
+Điện thoạ@: 097%@~5104
+Giớ@ tí@#: Na@
+N~ày si#h: 20/0#/199~
+
+TÓM TẮT
+~ năm @i@h @ghi@m kiểm #hử phần m~@.
+
+KINH NGHIỆM
+Company F (2#19 - na#@
+% Xây dựn~ fram~work aut%#at#on #heo %age @bje@t Model, data-dri%e~, tích hợp Jen~~ns p@peline.
+- S~ dụn% ~~bdrive@@O, P@st@@n, k@, Cu~umber, ~#bot Framework cho kiểm thử @~i testing, performan#e t@sting@ #i t%sting.
+- C@#@ test t@ê~ @zure #e@Ops.
+
+~Ỹ N~NG
+N@ôn n~# #ậ~ t%ình: ~a@~, C#
+Ngoại ng%: Jap@%~s% J%PT N2
+
+Đ#a c~ỉ~ 252 N~uy#n Trai S%ree#, Distr#c~ 4

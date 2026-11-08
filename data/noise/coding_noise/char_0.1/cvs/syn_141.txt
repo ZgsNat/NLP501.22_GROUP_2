@@ -1,0 +1,21 @@
+Đặng Mai Vy
+Automation Test Engineer
+#mail: vy#5@~xample.c@m
+Phone~ 0920#@4168
+Ge#der: Female
+Date of @~rth: 17/04/2001
+
+SUMMARY
+1 years of experience in software testing#
+
+EXPERIE#CE
+Co~pany B (2025 - Present)
+- @rote and maint%i%@d #u@omated test %c#ipts for regres%ion suit@s@
+- Used Selenium WebDriver# Playwright, XCUITest, Te#tNG for mobi#e testin%, ui test@ng.
+- R~n tests @n Je%kins.
+
+SKILLS
+Programmin~: Python
+Languages: Eng%is% (#OEIC 750)
+
+Addr~ss: 219 Nguyen Trai Stre@t, District 5

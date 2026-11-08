@@ -1,0 +1,21 @@
+Do Đức Long
+Automation Test Engineer
+Email: long11@example.com
+Dien thoai: 0990972685
+Gioi tinh: Nam
+Ngay sinh: 04/07/2000
+
+TÓM TAT
+5 năm kinh nghiệm kiem thu phan mem.
+
+KINH NGHIỆM
+Company A (2021 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven, tích hop Jenkins pipeline.
+- Su dung Appium, Postman, Pytest, Robot Framework cho kiem thu api testing, manual testing, mobile testing.
+- Chạy test tren Azure DevOps, Docker.
+
+KỸ NANG
+Ngon ngu lap trinh: JavaScript
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 57 Nguyen Trai Street, District 1

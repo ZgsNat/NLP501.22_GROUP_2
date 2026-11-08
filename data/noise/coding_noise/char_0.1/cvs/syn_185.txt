@@ -1,0 +1,21 @@
+Đặng Đức @ong
+Automation Test Engineer
+Email: %ong97@exa%p#e.com
+Điện thoại: 0950475203
+Giới tính: Nam
+~gày sin@: 20/05/#99~
+
+TÓM TẮT
+8 ~ă@ kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (2018 - nay)
+- Trư#ng nhóm QA 5 ngườ#, địn@ %ướng automation @trategy và mentor thàn% viên mới.
+- Sử dụng Seleniu~ WebDriver, Cypress, Rest Assured, Pyt~%t, Tes%NG cho kiể% thử api ~es@#ng, ui testing.
+- Chạy te#t trên G~tLab C#, Jenkins.
+
+K~ NĂNG
+Ngôn ngữ lập trình: Python, Jav%Script
+%h~ng ch@: ISTQB ~ou~dat#on #evel (CT@L@
+
+Đị# ~hỉ: 139 Nguy## Tra~ Street, @ist~ict 8

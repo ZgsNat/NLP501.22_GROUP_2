@@ -1,0 +1,11 @@
+Hoàng Mai Vy Automation Test Engineer Email: vy19@example.com Phone: 0995735668 Gender: Female Date of birth: 15/05/2001  SUMMARY
+7 years of experience in software testing.
+
+EXPERIENCE
+Company F (2019 - Present)
+- Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation. - Used Cypress, WebdriverIO, Espresso, Robot Framework for mobile testing, ui testing.
+- Ran tests on Jenkins, Azure DevOps, Docker.
+
+SKILLS Programming: JavaScript, Python
+
+Address: 166 Nguyen Trai Street, District 5

@@ -1,0 +1,19 @@
+Hoàng Mai Thảo
+Autom@tion Test Engineer
+Email: thảo#9@example.com
+Phone: 0965245223
+~ender: Fema%e
+Date of birth: 25/12/1990
+
+SUMMARY
+1 years o% experience in software testing.
+
+EXPERIENCE
+Company A (2025 - Pre#ent)
+- Wrote and maintained automated test scripts for regression suites.
+- Used WebdriverIO, Playwright, Rest Assured, Postman, JMeter, Robot Framework, TestNG for api testing, performance testing, ui testing.
+
+SKILLS
+Programming: Java
+
+Addr~ss: 294 Nguyen Trai Street, District 6

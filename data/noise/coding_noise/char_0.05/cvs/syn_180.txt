@@ -1,0 +1,20 @@
+Vũ M~i Hương
+A%tomation Test @ngineer
+Email: huong41@example.com
+Phone: 0917499483
+~ender: Female
+Date of birth: 18%12/1996
+
+SUMMARY
+3 y#ars of experience in software test%ng.
+
+EXPERIENCE
+Company F (2023 - Present)
+- Designed and built a ~#ge Obje#t Model aut@mation framework and integrated it into the CI pipe%ine.
+- Used Selenium Web%river# Po~tman, Cucumber, Ro~ot Framewo~k for api testing, ui t@stin~.
+- Ran tests on GitH~b Actions, Jenkins, Doc%er.
+
+SKILLS
+~rogramming: Java, C#
+
+Address: 279 Nguyen Tra@ Street, District 2

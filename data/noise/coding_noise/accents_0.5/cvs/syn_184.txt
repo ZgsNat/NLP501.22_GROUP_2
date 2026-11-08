@@ -1,0 +1,21 @@
+Vũ Văn Hung
+Automation Test Engineer
+Email: hung87@example.com
+Điện thoại: 0930280697
+Gioi tính: Nam
+Ngày sinh: 06/07/1998
+
+TOM TAT
+5 nam kinh nghiệm kiểm thử phần mem.
+
+KINH NGHIEM
+Company E (2021 - nay)
+- Xây dung framework automation theo Page Object Model, data-driven, tích hop Jenkins pipeline.
+- Sử dụng WebdriverIO, Cypress, XCUITest, Rest Assured, Postman, JMeter, JUnit, TestNG cho kiểm thu api testing, mobile testing, performance testing, ui testing.
+- Chay test trên Docker, Jenkins, GitHub Actions.
+
+KỸ NĂNG
+Ngôn ngu lap trinh: TypeScript
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chi: 93 Nguyen Trai Street, District 11

@@ -1,0 +1,21 @@
+Vu Duc Phuc
+Automation Test Engineer
+Email: phuc15@example.com
+Dien thoai: 0987911634
+Gioi tinh: Nam
+Ngay sinh: 06/05/1993
+
+TOM TAT
+3 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company E (2023 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung Playwright, Rest Assured, Postman, k6, Robot Framework cho kiem thu api testing, performance testing, ui testing.
+- Chay test tren GitHub Actions, Jenkins.
+
+KY NANG
+Ngon ngu lap trinh: TypeScript
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 253 Nguyen Trai Street, District 6

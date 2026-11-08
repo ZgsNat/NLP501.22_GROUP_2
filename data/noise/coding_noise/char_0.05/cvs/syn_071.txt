@@ -1,0 +1,21 @@
+Nguyễn Ngọc Li%h
+Automation Test Engineer
+Email: linh6#@example.com
+Phone: 0973918769
+G%nder: @emale
+Date #f birth: 10/08/1995
+
+SUMMARY
+6 years o% experience in so#tware testing.
+
+EXPERIENCE
+Company D (20@0 - Pres%n~#
+- Defined the test %utomation strategy~ led a team of 5 QA engineers #nd @entored juniors on a%tomation.
+- Used Playwright, Cypr@ss, JMeter, Robot Fram~work, JUnit for per@ormance testing, ui testin@.
+- Ran ~ests on GitLab CI.
+
+SKILLS
+Programming: Pyth@n
+Lan%u%ge@: English (TOEIC 750)
+
+Address: 200 N#uyen Trai Street, District 8

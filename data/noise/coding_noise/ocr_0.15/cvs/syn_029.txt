@@ -1,0 +1,21 @@
+Trần Ngọc Thảo
+Automation Test Engineer
+Email: thảo22@example.com
+Điện thoại: 0923586205
+Gioi tính: Nu
+Ngày sinh: 24/04/2000
+
+TÓM TAT
+2 nam kinh nghiem kiểm thử phan mềm.
+
+KINH NGHIỆM
+Company B (2024 - nay)
+- Viết automation test scripts ch0 bộ regression, kiểm thử tự động hằng ngày.
+- Sử dụng Playwright, Espresso, Rest Assured, Cucumber cho kiểm thử api testing, mobi1e testing, ui testing.
+- Chạy test tren Azure DevOps.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Java
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 99 Nguyen Trai Street, District 9

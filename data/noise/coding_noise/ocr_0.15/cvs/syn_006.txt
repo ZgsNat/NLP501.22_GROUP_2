@@ -1,0 +1,22 @@
+Đặng Quoc Nam
+Automation Test Engineer
+Email: nam30@example.c0m
+Phone: 0996703417
+Gender: Male
+Date of birth: 13/07/1995
+
+SUMMARY
+1 years of experience in software testing.
+
+EXPERIENCE
+Company C (2025 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Espresso, Postman, k6, Robot Framework for api testing, manual testing, mobile testing, performance testing.
+- Ran tests on Docker.
+
+SKILLS
+Programming: Python
+Certification: ISTQB CTFL
+Languages: English (TOEIC 750)
+
+Address: 41 Nguyen Trai 5treet, District 7

@@ -1,0 +1,21 @@
+Vũ #%ị Hương
+A%to~ation T@st ~ngine~r
+#ma~l: huong%6@exam#le.co%
+Pho@%: 09@424#0@8
+G~#d@r: Fe@ale
+Dat@ of birt#: 27~@3%%%96
+
+SUM~AR%
+# y~ars @f experience in softwa%e test#ng@
+
+EXPERI%NCE
+C~%pa%y E (202# - P@es@nt)
+- %efin#d the tes# automat%o@ s~rat@gy, led % team ~f 5 Q@ %%gi~e%rs an@ m~%%or#d juniors o~ a~tomation.
+- Used Cy%ress, Postma#, Res@ A%sured, JMet##, J%n#t for api ~e%ti#g~ pe%form#nce testing% u% te@ting.
+- @an test~ on Git#ub @#ti#ns, Do%ker, GitL#b C~.
+
+S@%L#%
+Pr#g%am#ing% C#
+#anguages: E@gl@sh (TO~IC #50)
+
+#%d@es~: 300 Ngu~en Trai Street, %istrict 4

@@ -1,0 +1,22 @@
+Vũ Đức Tuấn
+Automation Test Engineer
+Email: tuấn80@example#com
+Điệ~ thoại: 0911419753
+Giới tính: Nam
+Ngày sinh: 22/01/1990
+
+@ÓM TẮT
+7 năm kinh nghiệm kiểm thử phần mềm.
+
+K@NH NGHIỆM
+Company A (2019 - n~y)
+- Trưởng nhóm QA 5 người, đ~nh hướng au~omation strategy và mentor thành viên mới.
+- Sử dụng Playwright, WebdriverIO, Rest As~ured, Postman, Pytest cho kiểm t@ử api #esting, ui testing.
+- Chạy #est trên Azure DevOps.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: JavaScript
+Chứng chỉ: ISTQ~ Foun@ation Level (CTFL)
+Ngoại ng@: English (TOEIC 750), Japanese #LPT N2
+
+Địa c#ỉ: 211 Nguyen Tr%i Street, District 2

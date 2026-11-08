@@ -1,0 +1,12 @@
+Bùi Ngọc Lan
+QA/QC Engineer
+Email: lan50@example.com
+Điện thoại: 0981192277
+Giới tính: Nữ
+Ngày sinh: 14/03/1996
+
+TÓM TẮT
+Mới tốt nghiệp, đam mê kiểm thử.
+
+KINH NGHIỆM
+- Thực hiện kiểm thử thủ c

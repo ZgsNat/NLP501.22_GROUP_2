@@ -1,0 +1,21 @@
+Hồ Văn Tuấn
+Aut%mation T@st ~@~ine~r
+Ema@l% #uấn93@example.@om
+Phone: 0913485913
+G%nder: Male
+D%te of birth~ 15/09/199#
+
+SUMM@RY
+2 y%ars of ~xperience i% sof%ware testing.
+
+EXPERIENCE
+Compan~ E (2024 - Present)
+~ W@ote and main#ained automate# test @cripts fo@ ~egression suites.
+@ %sed Webdr@verIO, Cypress, X~#ITest, Rest @ssured, Postma%, JMeter, Ro#ot Framework for ap# #esting, mobile @esting, performance testing, u@ testing.
+
+SKILLS
+Prog#amming: Python
+Cer%ification: ISTQB CT~L
+Languages: Engl~sh (TOEIC 750~
+
+A#dr@ss: 99 Nguyen Trai St@eet# Dist#~c~ 2

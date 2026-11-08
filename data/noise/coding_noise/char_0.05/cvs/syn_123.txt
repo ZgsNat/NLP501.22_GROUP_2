@@ -1,0 +1,22 @@
+Lê Minh Long
+A%tomation Test Engineer
+Email: long34@exam~le.co~
+Phone: 097@980385
+Ge#der: Male
+Date of bi%th: 12/08/#995
+
+SUMMARY
+8 @ears of experience i# sof~ware te@ting.
+
+@XPERIENCE
+Company E (2018 - Pres~nt%
+- De#ined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation.
+- Used JMeter, Cucumber, JUnit for manual t@sting, performance testing.
+- Ran tests on Azure Dev#ps.
+
+SKILLS
+Programming: Python
+Certification: IST#B CTFL
+Languages: Japanese JLPT N2
+
+Addre#%: 113 Nguyen Trai Street, District 10

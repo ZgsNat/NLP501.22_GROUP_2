@@ -1,0 +1,20 @@
+Lê Đức Phúc
+QA/QC Engineer
+Email: phúc31@example.com
+Điện thoại~ 0913834774
+Giới tính: Nam
+Ngày sinh@ 02/11/1999
+
+TÓM TẮT
+Mới tốt nghiệp, đam mê kiểm thử.
+
+KINH NGHIỆM
+- ~hực hiệ@ kiểm thử thủ công, viết test @ase và báo lỗi tr@n Jira.
+- Sử dụn# Selenium WebDriver, XCUITest cho k@ểm thử mobile testing, ui testing.
+- Chạy test trên Docker~
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Python
+Chứng chỉ: ISTQB Foundation Level (CTFL)
+
+Địa chỉ: 167 Nguyen Trai St#eet, D~strict 8

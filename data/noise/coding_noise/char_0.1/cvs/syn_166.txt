@@ -1,0 +1,21 @@
+Đỗ ~ai Linh
+Automation Test Engi#eer
+Email: linh8%@exa%ple.com
+@hone: 0946439@33
+Ge#der: Female
+Date of bi%th: 07/03/198@
+
+SUMMARY
+@ y~ars of e#perience in so#tware testing.
+
+EXPER@ENCE
+Co%@a#y B (2022 - Pre~ent)
+- Wrote and maintained automated test s%%%pts for regress~on suites.
+- Used Cypr~ss, #@bdriverIO, Postman@ Pytest, J#~it for api testing, %i testing.
+- Ran tests %n Jenkins.
+
+SKILLS
+Progra#ming: C#
+L%nguages: English (TOEI% 750)
+
+Address: 293 N~uyen Trai Street, District 4

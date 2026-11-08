@@ -1,0 +1,21 @@
+Đặng Đức Long
+Aut0mation Test Engineer
+Email: long97@example.com
+Dien thoại: 0950475203
+Giới tinh: Nam
+Ngày sinh: 20/05/1999
+
+TÓM TẮT
+8 năm kinh nghiệm kiem thử phan mềm.
+
+KINH NGHIỆM
+Company A (2018 - nay)
+- Trưởng nhom QA 5 nguoi, định hướng automation strategy và mentor thành viên mới.
+- 5ử dụng Selenium WebDriver, Cypress, Rest Assured, Pytest, TestNG cho kiểm thử api testing, ui testing.
+- Chạy test tren GitLab CI, Jenkins.
+
+KỸ NANG
+Ngon ngữ lập trình: Python, JavaScript
+Chung chỉ: ISTQB Foundation Level (CTFL)
+
+Địa chỉ: 139 Nguyen Trai Street, District 8

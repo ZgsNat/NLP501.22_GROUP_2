@@ -1,0 +1,21 @@
+Lê Thu Thả0
+Automation Test Engineer
+Email: thảo65@examp1e.com
+Phone: 0978870570
+Gender: Female
+Date of birth: 21/06/1997
+
+SUMMARY
+1 years of experience in software testing.
+
+EXPERIENCE
+Company E (2025 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used 5elenium WebDriver, WebdriverI0, Rest Assured, Postman, JUnit, Pytest for api testing, ui testing.
+- Ran tests 0n GitHub Actions.
+
+SKlLLS
+Pr0gramming: Pyth0n
+Languages: Eng1ish (TOEIC 750)
+
+Address: 278 Nguyen Trai Street, District 3

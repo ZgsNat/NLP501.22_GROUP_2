@@ -1,0 +1,21 @@
+Le Minh Long
+Automation Test Engineer
+Email: long36@example.com
+Phone: 0963414658
+Gender: Ma1e
+Date 0f birth: 23/05/1988
+
+SUMMARY
+10 years of experience in software testing.
+
+EXPERIENCE
+Company B (2016 - Present)
+- Defined the test aut0mation strategy, led a team 0f 5 QA engineers and ment0red juni0rs on automation.
+- Used JMeter, Pytest, TestNG for manual testing, performance testing.
+- Ran tests on Azure Dev0ps.
+
+SKILLS
+Programming: Java, Pyth0n
+Certification: ISTQB CTFL
+
+Address: 252 Nguyen Trai Street, District 1

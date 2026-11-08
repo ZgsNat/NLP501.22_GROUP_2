@@ -1,0 +1,22 @@
+Pham Quoc Long
+Automation Test Engineer
+Email: long98@example.com
+Dien thoai: 0972733686
+Gioi tinh: Nam
+Ngay sinh: 20/12/1998
+
+TOM TAT
+8 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company G (2018 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung Playwright, Selenium WebDriver, Rest Assured, Postman, Robot Framework, JUnit cho kiem thu api testing, ui testing.
+- Chay test tren GitHub Actions, GitLab CI, Azure DevOps.
+
+KY NANG
+Ngon ngu lap trinh: TypeScript
+Chung chi: ISTQB Foundation Level (CTFL)
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 297 Nguyen Trai Street, District 10

@@ -1,0 +1,20 @@
+Vũ Ng%c Trang
+Automation Test En#i%eer
+Email: trang%8@example.com
+Phone: 0929%46175
+Gender: Female
+Date of birth: 27/09/200@
+
+S@MMARY
+1 years @f experience in software testing.
+
+EXPERIENCE
+Company B (2025 - Present~
+- Wrote and maintained automated test scri~ts for regression suites.
+- U~ed Postman, Rest Assured, k6, JUnit for api testing, manu@l testing, perfor@ance testing#
+
+SKILLS
+Programm%ng: #avaScript
+Certification: ISTQB CTFL
+
+Address: 108 Nguyen T#ai Str#et% D#strict 4

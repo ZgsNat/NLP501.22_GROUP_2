@@ -1,0 +1,22 @@
+Đỗ Van Khoa
+Aut0mation Test Engineer
+Email: khoa32@examp1e.com
+Dien thoại: 0951343854
+Giới tính: Nam
+Ngày sinh: 13/02/1991
+
+TÓM TẮT
+1 năm kinh nghiệm kiem thử phần mềm.
+
+KINH NGHIỆM
+C0mpany F (2025 - nay)
+- Viet automation test scripts cho bộ regressi0n, kiểm thử tự động hằng ngày.
+- Sử dụng WebdriverIO, XCUITest, Postman, TestNG, Cucumber ch0 kiểm thử api testing, mobile testing, ui testing.
+- Chạy test trên Docker.
+
+KỸ NĂNG
+Ngôn ngữ 1ập trình: TypeScript, Java
+Chứng chỉ: ISTQB F0undation Leve1 (CTFL)
+Ng0ại ngữ: English (TOEIC 750)
+
+Địa chỉ: 195 Nguyen Trai Street, District 6

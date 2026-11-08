@@ -1,0 +1,19 @@
+Hồ M~i Trang
+%#/QC E%gineer
+Email: trang5#@examp%e.com
+Phone~ %983830667
+Gender: Female
+Date of birth: 11/06/2001
+
+SUMMARY
+Fresh g@ad#@te passionate about testi#g.
+
+EXPERIENCE
+@ Ex~cute# man#%l test ~ases @n% reporte~ de@ects in Jira~
+- Used Cypress, Web@riverIO, Rest As%ured, Cucum@er for @pi te~ting, ui te@t@ng.
+
+SKILLS
+Progra@mi@g: P#thon
+Certification: ISTQB @TFL
+
+Addre#s: @21 Nguyen Tr~i St~eet, Dis#rict 12

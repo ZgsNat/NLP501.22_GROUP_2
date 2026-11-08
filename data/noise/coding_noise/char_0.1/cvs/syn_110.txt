@@ -1,0 +1,21 @@
+Hoàng Văn Phú~
+Autom@ti@@ Tes@ Engineer
+Email: phúc19@example.com
+Đ#@n thoại: 091@%52535
+Giới t#nh@ N%m
+N%ày sinh: 17/02@2001
+
+TÓM TẮT
+4 ~~~ kinh nghi#m ~iể% thử p%ầ% mềm.
+
+KINH N%HI~M
+Company @ (2022 - nay)
+- Xây %ựng f~am%wo#k automation theo Page Object Model, @ata-driven, tích hợp Jenkins pipeline.
+- Sử dụn# Playwright, Postma## Pytest ch~ kiểm thử ap# testing, ui test#ng.
+- Ch#y test trê# %itHub Actions.
+
+KỸ NĂNG
+Ng~n ngữ %ập trình: Pytho~, TypeS#ri@t
+N@oạ% ngữ: En%lis@ (TOE@C 7~#)
+
+Địa chỉ: 49 Nguyen Tr#i Street, District 8

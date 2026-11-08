@@ -1,0 +1,21 @@
+Đỗ Mai L@n%
+Automation Tes# Engineer
+Email: linh87@example.com
+Phone: 0946439333
+Gender: Female
+Date of birth: ~7/0%/1988
+
+S%M%ARY
+4 years of exp~rien@e in software te~ting.
+
+EXPERIENCE
+Company B (2022 - Present)
+- Wrot% and maintained automa%ed test scripts for regression s~ite#.
+- %sed Cypress, WebdriverIO, Postman, Pytest, JUni# for api testing, ui testing.
+- Ra@ tests on Jenkins.
+
+SKILLS
+Program~ing: C#
+Languages: English (TOE@C 750)
+
+Address: 293 Nguyen Trai Street, District 4

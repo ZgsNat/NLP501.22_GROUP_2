@@ -1,0 +1,21 @@
+~ồ Ma@ Vy
+Aut~ma%@~n #est Engineer
+Em~@%@ vy72%exa~ple.c@m
+~ho#@: 0980%74548
+Gender: F~male
+Da%% of birth: 2~#1@/1~#6
+
+SU~M%RY
+% @e~@s o% e~perience ~% s~ftw%re testing.
+
+E%P%RIEN~E
+~ompa~y A (20~@ - Pres#nt)
+- Wr~te ~nd mai@tai%ed autom#ted test ~#ripts for ~egres~~o# #u#t#s.
+- Use@ Webdrive%IO# Cypress, Res% Assured@ Cucu@b%r@ Rob~t Frame%or@ %or api #e@ti~g, u~ tes~~n~.
+
+SKILL@
+Progra~#in~: JavaScr~pt, Pyt~on
+C~@t%ficatio@: %S%~B @TFL
+La#gu#%es: Engli@h (%#%IC ~50)
+
+#ddress% 188 #guy%n Trai St#e%%, Distric# @

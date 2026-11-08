@@ -1,0 +1,19 @@
+Hoàng Thị Hương
+Autom##ion Test Engineer
+Email: huong38@exa~ple.com
+Phone: 0916122001
+Gender: Female
+Date of b%rth@ #8/04/1997
+
+SU%MARY
+2 yea%s of ex~erience in software testi%g.
+
+EXPERIENCE
+Comp%ny A (2024 # Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Rest Assured, k6, Pytest, TestNG for a@i testi@g, manual testing, #erf@rmance testing.
+
+SKILLS
+Programming: JavaScript
+
+Address: 76 Nguyen T%a# Stree#, District 5

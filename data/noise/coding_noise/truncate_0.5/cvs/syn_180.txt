@@ -1,0 +1,13 @@
+Vũ Mai Hương
+Automation Test Engineer
+Email: huong41@example.com
+Phone: 0917499483
+Gender: Female
+Date of birth: 18/12/1996
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+Company F (2023 - Present)
+- Designed and built a Page Object Model automatio

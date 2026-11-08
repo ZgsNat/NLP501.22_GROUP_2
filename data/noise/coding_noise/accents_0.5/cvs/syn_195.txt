@@ -1,0 +1,19 @@
+Lê Thị Hương
+Automation Test Engineer
+Email: huong19@example.com
+Điện thoai: 0911674728
+Giới tinh: Nu
+Ngày sinh: 19/07/1992
+
+TÓM TAT
+2 năm kinh nghiem kiểm thu phan mềm.
+
+KINH NGHIEM
+Company G (2024 - nay)
+- Viết automation test scripts cho bộ regression, kiem thử tự động hang ngay.
+- Su dụng Playwright, Postman, Robot Framework cho kiem thử api testing, ui testing.
+
+KỸ NANG
+Ngon ngu lập trình: TypeScript, Python
+
+Địa chi: 94 Nguyen Trai Street, District 8

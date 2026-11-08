@@ -1,0 +1,20 @@
+Le Mai Linh
+Automation Test Engineer
+Email: linh12@example.com
+Điện thoai: 0925630838
+Giới tính: Nu
+Ngày sinh: 06/03/2002
+
+TOM TAT
+1 năm kinh nghiệm kiem thu phan mềm.
+
+KINH NGHIEM
+Company D (2025 - nay)
+- Viết automation test scripts cho bo regression, kiem thu tu dong hang ngày.
+- Sử dụng Cypress, Selenium WebDriver, Espresso, Cucumber cho kiem thu mobile testing, ui testing.
+
+KY NANG
+Ngon ngữ lap trình: Python, TypeScript
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 242 Nguyen Trai Street, District 1

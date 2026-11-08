@@ -1,0 +1,19 @@
+Lê Ma% Thảo
+@A/QC Eng@neer
+Email: thả%90@example.com
+Điện thoại: 0996869121
+Giới tín%# Nữ
+Ngày sinh: 17/02/1997
+
+~ÓM TẮT
+Mới tốt #ghiệp, đam mê kiểm thử.
+
+KINH N#HIỆM
+- Thự@ hiện ki~m thử thủ c#ng, viết test ca~e và báo lỗi t@ên Jira.
+~ Sử dụng P~stman cho kiểm thử api testing, m~nual testing.
+- Ch@y test t%ên Git~ub Actions.
+
+KỸ NĂNG
+Ngoại ngữ: Englis~ %TOEIC 750)
+
+Địa chỉ: 240 Nguyen Trai St%eet, District 7

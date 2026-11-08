@@ -1,0 +1,13 @@
+Hoàng Văn Phúc
+Automation Test Engineer
+Email: phúc94@example.com
+Phone: 0988283995
+Gender: Male
+Date of birth: 04/12/2000
+
+SUMMARY
+2 years of experience in software testing.
+
+EXPERIENCE
+Company F (2024 - Present)
+- Wrote and maintain

@@ -1,0 +1,12 @@
+Bùi Ngọc Hương
+QA/QC Engineer
+Email: huong47@example.com
+Điện thoại: 0986427662
+Giới tính: Nữ
+Ngày sinh: 27/07/1989
+
+TÓM TẮT
+Mới tốt nghiệp, đam mê kiểm thử.
+
+KINH NGHIỆM
+- Thực hiện kiểm thử thủ công, viết test case v

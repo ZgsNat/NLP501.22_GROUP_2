@@ -1,0 +1,22 @@
+H# Quố% Tuấn
+Au@oma#ion T@st @ng%ne%r
+~@ail% tu~n8@@exa#ple.@om
+@hone# 0~92@78089
+@ende#: Ma@e
+D@#e of birth: 12%12/2000
+
+@U~MARY
+5 y~a#s @% e#per@e%ce ~n s@f@ware te%tin@#
+
+~XPE#IENCE
+Com@~n# G (~021 ~ Pre#ent)
+% D%si%#ed and bui@t a Pa@e Ob#e@t ~odel au@om@tion ~%amework and ~ntegrated i% int@ th~ C% p~pe@#ne.
+- Use@ App@um~ Res# A#sur@d~ P~stman% JUnit for api @e%tin~, %an%%l t#sting% m@bile tes@ing~
+# Ran ~ests ~% @itLa% CI, Doc@e@, ~@nki~s.
+
+SKI%LS
+Progra#%@~g: Java, JavaScript
+C#rtif%@ati%n@ ~STQB @~FL
+La~@uag##: E#@l@s# @TOEIC 7@@~
+
+Ad#re~s: %5@ N%uye% Trai ~~reet, Di~t@ict 2

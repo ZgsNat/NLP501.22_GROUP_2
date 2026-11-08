@@ -1,0 +1,13 @@
+Vũ Quốc Khoa
+Automation Test Engineer
+Email: khoa25@example.com
+Phone: 0940429530
+Gender: Male
+Date of birth: 24/11/1988
+
+SUMMARY
+10 years of experience in software testing.
+
+EXPERIENCE
+Company F (2016 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the CI pip

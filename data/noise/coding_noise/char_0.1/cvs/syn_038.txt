@@ -1,0 +1,21 @@
+Hồ Thị Thảo
+Aut#mation Test Engineer
+E#ail: thảo~2~example.com
+Phone: 0@~#318100
+Gender: Female
+Date of birth: 02/12/2000
+
+SUMM#RY
+3 years of experi%nce in sof@ware #esti%g.
+
+EXPE%IENCE
+%ompany A (#023 - Presen#)
+- Wrote and maint@@ned automated %%@t scripts for re@res#ion suites@
+- Used Se@enium WebDriver, Webdri~erIO, ~estN~, Cucumber for ui testin#.
+- R%n #e#ts on Gi#Lab CI.
+
+SKILLS
+Prog%amming: Python
+Cert@ficati~n: ISTQB @TFL
+
+Address: @@ Nguyen Trai Street, District 6

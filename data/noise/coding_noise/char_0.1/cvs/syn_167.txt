@@ -1,0 +1,20 @@
+Hồ ##ị Thảo
+Automatio@ Test En@ineer
+Ema~l: %hảo68@ex%mple.com
+Điện thoại: 0977621275
+Giới tính: Nữ
+Ngày sinh: 23/12/~996
+
+TÓM TẮT
+10 %ăm kinh nghiệm kiểm thử phần mề%.
+
+KI%H NGH~ỆM
+Com#an% C (2%16 % nay)
+- T~ư#ng nhóm #A 5 người, định hướn# a%tomat#on strategy và mentor thành v%ên mới.
+- Sử d@ng WebdriverIO, XC%ITest, Postman# Rest Assured, TestNG cho kiể~ thử api testing, mo#ile testing, u% testing#
+- Chạy test trên A%ure DevOps, %enkins.
+
+KỸ N~NG
+Ngôn ngữ lập trình: Python, Java
+
+Địa chỉ: 11@ Nguy~n Trai Str@et, District 5

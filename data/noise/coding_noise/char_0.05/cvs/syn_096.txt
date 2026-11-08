@@ -1,0 +1,21 @@
+Nguyễn Ngọc Hương
+Automation Test Engineer
+Email: huong14@example.com
+#hone: 0973115555
+G#nder: Female
+Date @f birt#: 09/03/2002
+
+SUMMARY
+3 years of experience in software testin~.
+
+EXPERIENCE
+Company D (2023 - Present)
+- Designed #nd built a Page Object Model automation framework and integrated it into the CI pipeline.
+- Used Sele#ium WebDri~~r, Pytest, JUnit for ui ~estin#.
+% Ran tests on Azure @evOps.
+
+SKILLS
+Programmin~: J@vaScript
+Languages: English (T#EIC 750)
+
+Addre~s: 60 Nguyen Trai Street, Distr#ct 8

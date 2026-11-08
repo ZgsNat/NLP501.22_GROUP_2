@@ -1,0 +1,21 @@
+Trần Quoc Khoa
+Automation Test Engineer
+Email: khoa73@example.com
+Dien thoại: 0987666600
+Giới tinh: Nam
+Ngay sinh: 20/12/1997
+
+TÓM TAT
+6 nam kinh nghiem kiểm thử phần mem.
+
+KINH NGHIỆM
+Company A (2020 - nay)
+- Viet automation test scripts cho bộ regression, kiểm thu tự dong hang ngay.
+- Su dụng Postman, JMeter, Pytest, Cucumber cho kiem thử api testing, manual testing, performance testing.
+- Chạy test tren Jenkins.
+
+KY NANG
+Ngon ngữ lập trinh: Python, C#
+Chung chi: ISTQB Foundation Level (CTFL)
+
+Dia chỉ: 250 Nguyen Trai Street, District 7

@@ -1,0 +1,20 @@
+Ho Quoc Long
+Automation Test Engineer
+Email: long33@example.com
+Dien thoai: 0996914605
+Gioi tinh: Nam
+Ngay sinh: 10/01/1997
+
+TOM TAT
+5 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company B (2021 - nay)
+- Viet automation test scripts cho bo regression, kiem thu tu dong hang ngay.
+- Su dung Selenium WebDriver, XCUITest, Rest Assured, JUnit, Cucumber cho kiem thu api testing, mobile testing, ui testing.
+
+KY NANG
+Ngon ngu lap trinh: Python
+Chung chi: ISTQB Foundation Level (CTFL)
+
+Dia chi: 91 Nguyen Trai Street, District 7

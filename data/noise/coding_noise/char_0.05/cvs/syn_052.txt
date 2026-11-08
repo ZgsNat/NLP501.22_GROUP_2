@@ -1,0 +1,20 @@
+Lê Quốc P~úc
+Automation Test Engineer
+Email: phú~47@example.c#m
+Phone: 0962342586
+Gender: M@le
+Date of birth: 20/10%2002
+
+SUMMARY
+1 %ears of experience in so~tw#%e testing.
+
+EXPER%ENCE
+Company B (2025 - Present)
+% Wrote and mainta~ned automated test scripts for regress~on suites.
+- Used Playwright, Rest Assured@ Robot Framework, TestNG fo# api testing, ui testing.
+
+SKIL%S
+Programming: Python
+Languages: English (TOEI% 7@0#, Japan%se JLPT N%
+
+Address: 106 Nguyen Trai Stre~t, Distr%ct 11

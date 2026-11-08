@@ -1,0 +1,21 @@
+Nguyễn Ngọc Vy
+Automation Test Engineer
+E@ail: vy72@example.com
+Phone: 0998305426
+Gen%@r: Femal@
+%a#@ of b@rth: 14/03/19@%
+
+SU%MARY
+7 y~%rs of exp%#i~nce i# software t~sti%g.
+
+EXPERIENCE
+Co%@any B (2019 - Present)
+- Designed and built @ %age Obj#ct Model a#tomation fr@mework and integrat@d it into the CI pipeli~e.
+- Use~ Webdriv%rIO, Pytest, Rob@t Framewor@ f## ui #esting.
+~ Ran t@sts on Docker~ Jen@ins, G~tHub Actio~s.
+
+SKILLS
+Programming: T#peScript, J~vaScript
+L#nguages: Engl@s@ (TOEIC 750), J%panese JLPT N2
+
+Address: 213 Nguyen Tr@i Street, District 8

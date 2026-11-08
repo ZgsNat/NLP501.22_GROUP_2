@@ -1,0 +1,20 @@
+Đặng Thu Lan
+QA/QC Engineer
+Emai1: lan14@example.com
+Dien th0ại: 0986255745
+Giới tính: Nữ
+Ngày sinh: 16/12/1999
+
+TOM TẮT
+Mới tốt nghiệp, đam me kiểm thu.
+
+KINH NGHIỆM
+- Thực hiện kiểm thu thủ công, viết test case và bá0 lỗi trên Jira.
+- Sử dụng P0stman, Rest Assured cho kiểm thử api testing, manual testing.
+- Chạy test trên GitLab Cl.
+
+KỸ NĂNG
+Ngôn ngữ lập trinh: C#
+Ngoại ngu: Japanese JLPT N2
+
+Dia chỉ: 58 Nguyen Trai 5treet, District 10

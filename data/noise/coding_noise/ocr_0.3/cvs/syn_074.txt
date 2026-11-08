@@ -1,0 +1,21 @@
+Tran Minh Long
+Automation Test Engineer
+Email: long84@example.com
+Phone: 0962499769
+Gender: Ma1e
+Date of birth: 15/11/1995
+
+5UMMARY
+6 years of experience in s0ftware testing.
+
+EXPERlENCE
+Company F (2020 - Present)
+- Designed and built a Page Object Mode1 automation framework and integrated it int0 the CI pipe1ine.
+- Used XCUITest, Postman, Gatling, JUnit, Cucumber f0r api testing, manual testing, mobile testing, performance testing.
+- Ran tests on D0cker, GitHub Actions, Azure DevOps.
+
+SKILLS
+Pr0gramming: TypeScript
+Languages: English (TOEIC 750)
+
+Address: 100 Nguyen Trai Street, District 9

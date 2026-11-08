@@ -1,0 +1,18 @@
+Lê Minh Long
+QA/@C Engineer
+Email: long26@example.com
+Phone~ 0948877018
+Ge%der: Male
+Date of birth: 02/10/1989
+
+SUMMARY
+Fresh graduate passionate abo%t testing.
+
+EXP#RIENCE
+- Ex~cuted manual test cases an# r%po~ted defect@ in Jira.
+- Used Cyp@ess, Postman, Rest Assur@d #or a~i ~esting# ui testing.
+
+SKILLS
+Languages: English (TOEIC 75#)
+
+~~dres%: 98 Nguyen Trai Street, District 12

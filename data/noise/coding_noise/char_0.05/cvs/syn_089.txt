@@ -1,0 +1,20 @@
+Trần Ngọc Lan
+Automation Test Engineer
+E@a@#: lan71@~xample.%om
+Ph#ne: ~95673%943
+G%n#er: Female
+Date of birth: 10/12/1999
+
+SUMMARY
+7 years of experience in softwa%e test%ng.
+
+EXPERIENCE
+Company B (2019 - Present)
+- Defined the ~est au%omation strategy, led a team #f 5 QA eng#ne@rs and mentored juni@rs on automation.
+- Used Sel@nium WebD%iver, Espresso, TestNG for mobile test~ng, ui test~ng.
+- Ran tests o~ GitLab CI, Docker.
+
+SKILLS
+Programming: Java, JavaScript
+
+Address: 227 Nguye# Trai Street~ District @0

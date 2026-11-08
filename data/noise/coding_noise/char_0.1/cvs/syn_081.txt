@@ -1,0 +1,21 @@
+L# Quốc Hùng
+#utoma@ion Te#% Engineer
+Em#i~: hùng72@examp%e.com
+@ho#e# 093@9@33#2
+Gender: Male
+Date of birth: 20/07/1993
+
+SUMMARY
+@ years %f ~xperience in softw~re testing.
+
+EXPERIENCE
+Company F (2022 - Present)
+- ~rote and ma#n@ained automated test script~ for r@%ression suites.
+- %sed XC%ITest, Robot Fram~work, Cuc@mber for @anual te%ting, ~obile test~ng@
+- Ra~ tests on Docker.
+
+SKILL%
+Programming: Pyth#n
+~~rtification: ISTQB %TFL
+
+@ddress: ~52 Nguyen Trai Street, Di~trict #

@@ -1,0 +1,20 @@
+Nguyễn Quốc L0ng
+Aut0mation Test Engineer
+Email: 1ong66@example.com
+Điện thoại: 0985031037
+Gioi tinh: Nam
+Ngày sinh: 10/09/2003
+
+TÓM TẮT
+10 năm kinh nghiệm kiểm thử phần mem.
+
+KINH NGHIỆM
+Company B (2016 - nay)
+- Trưởng nhom QA 5 người, định huong automation strategy và mentor thành vien mới.
+- Sử dụng WebdriverIO, Cypress, Rest Assured, Postman, Cucumber, Pytest cho kiểm thử api testing, ui testing.
+- Chay test trên Azure DevOps, GitLab CI, Docker.
+
+KỸ NĂNG
+Ngôn ngu lập trình: JavaScript
+
+Địa chỉ: 291 Nguyen Trai Street, District 3

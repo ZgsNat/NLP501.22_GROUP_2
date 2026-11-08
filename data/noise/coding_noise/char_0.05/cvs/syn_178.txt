@@ -1,0 +1,21 @@
+Nguyễn Ngọc Hương
+Automa~ion Test Engineer
+Email: huong@0@exam#le.com
+Điện th%ại: %945924%44
+Giới tính: Nữ
+Ngày sinh: 05/11#1%88
+
+TÓM TẮT
+10 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company G (2016 - nay)
+- Viết automation test sc~ipt@ #ho bộ regression, kiểm thử %ự động hằ~g ng@y.
+- S# dụng Selenium WebDriver, Cypress, A~pium, Robot Framework, ~Unit cho kiểm thử mobile testing, ui ~esting.
+- Chạy test trên Do~ker.
+
+KỸ NĂNG
+Ngôn ngữ lập trình~ C#
+@goại ngữ: English (TOEIC 750)
+
+Địa chỉ: 5 Nguyen Tr%i S@reet, District 2

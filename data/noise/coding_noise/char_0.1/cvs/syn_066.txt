@@ -1,0 +1,21 @@
+~ê Thị Vy
+@u#omation Test Engineer
+Ema@l: vy47@example.#om
+Điện th@ại: 09937#4410
+Giới tí#h: Nữ
+@gà# sin#: 01/0~/2003
+
+TÓM TẮT
+1 n#m kinh ng@iệm kiểm #~~ phần mềm.
+
+KINH NGHIỆM
+Company A (2025 - nay@
+- Viết a#~omation t%st sc#ipts cho bộ r#g%es#ion, kiểm thử tự @ộng hằng ngày.
+- Sử dụng Cypress, Webdr~v@rIO, JUnit, Robot Fr~%e~ork ch@ kiểm thử ui testing.
+
+KỸ NĂ#G
+Ngôn n%ữ lập trình: Typ@Script
+Ch~ng chỉ: @STQ# Foundation ~evel (CTFL)
+Ngoại ngữ: @ngl~~h (TOEIC 750)
+
+#ịa ch~~ 65 Nguyen Trai Street, District 9

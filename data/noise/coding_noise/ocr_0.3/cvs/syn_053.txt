@@ -1,0 +1,22 @@
+Vu Thu Thảo
+Aut0mation Test Engineer
+Email: thảo96@example.com
+Dien th0ại: 0950876026
+Giới tinh: Nữ
+Ngày sinh: 14/12/1999
+
+TOM TAT
+3 nam kinh nghiệm kiểm thu phần mềm.
+
+KlNH NGHIỆM
+C0mpany A (2023 - nay)
+- Xây dựng framework automation theo Page 0bject Model, data-driven, tích hợp Jenkins pipe1ine.
+- Sử dụng 5elenium WebDriver, Playwright, Gat1ing, TestNG, JUnit cho kiểm thử performance testing, ui testing.
+- Chay test trên GitLab CI.
+
+KỸ NĂNG
+Ngôn ngữ 1ập trình: C#, Java
+Chứng chi: ISTQB Foundation Level (CTFL)
+Ngoại ngữ: Eng1ish (TOEIC 750), Japanese JLPT N2
+
+Địa chi: 299 Nguyen Trai Street, District 1

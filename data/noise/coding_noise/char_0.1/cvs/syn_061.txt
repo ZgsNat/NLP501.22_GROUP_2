@@ -1,0 +1,20 @@
+Đặng Thu Lan
+QA/Q~ Engineer
+Email: la#14@e%ample.com
+Điện @hoại: 0986255745
+Giới tính: Nữ
+Ngày sinh: 16/12@1999
+
+T@M TẮT
+Mới tốt ngh#ệp, đam mê kiểm thử.
+
+KINH %GHIỆM
+- Thự# hiện kiểm thử thủ công, viết te%t case và báo lỗi trên Jira.
+# Sử dụng Postman, Rest Assured cho kiểm t@ử api testing% man#al testing~
+- Chạ# t#st t@ên Gi@Lab @I.
+
+KỸ NĂNG
+Ngô@ ngữ lập trình: C#
+Ngo~i ngữ: Japanese JLPT N2
+
+Đ@a chỉ: 58 @guyen Trai Street, Distri@t 10

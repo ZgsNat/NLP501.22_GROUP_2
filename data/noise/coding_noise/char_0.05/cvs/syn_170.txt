@@ -1,0 +1,18 @@
+Hồ Minh T%ấn
+QA/QC Engi~eer
+Email: %uấ@20@example.co%
+Điện thoại: 098372245~
+Giới tính: Nam
+Ngày sinh: %9/1@/1992
+
+TÓM TẮT
+Mới tốt nghiệp@ đam mê ki~m thử.
+
+KINH NGHIỆM
+- Thực hiện @iểm thử thủ công, viết ~est case và báo lỗi t@ên Ji#a.
+- Chạy test trên Docker.
+
+KỸ NĂNG
+Ngoại ngữ: En%lish (TOEIC 750)
+
+Đ%a chỉ: 210 Nguyen Trai Stree~, #%st~ict 10

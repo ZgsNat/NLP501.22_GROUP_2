@@ -1,0 +1,20 @@
+Hoàng Ngọc Lan
+Au@omation Tes% En~ineer
+Email: lan98@example.com
+P%on~% 0990213415
+Gender: Female
+Date of b#rth: 24/05/1996
+
+SUMMARY
+1 years of experience in soft~ar% testing.
+
+E@PE#IENCE
+Company A (2025 # Present)
+- Wrote and maintai~ed a~tomated test scrip~s for regression suites.
+- Used JMe@er, Cucumber, TestNG for manual testing, performance tes#ing.
+
+SKILLS
+Progra#mi~g: JavaScript, C#
+Languages: English ~TOEI~ 750)
+
+Address: 2#3 Nguyen Trai #t%eet, D%stri%~ 10

@@ -1,0 +1,20 @@
+Lê Mai L~nh
+Au~om@tion Tes~ Engineer
+Email: linh%2@example.com
+Điện th%ại: 0925630838
+Giới tính% Nữ
+Ngày sinh: 06/@3/2002
+
+TÓM TẮT
+1 năm kinh nghiệm kiểm thử phần mềm.
+
+K@NH NGHIỆM
+Company D (2025 - nay)
+- Viết aut@mation test ~cripts cho bộ regression, kiểm thử tự động hằng ngày.
+- Sử dụng Cypress, Selenium WebDriver, Espresso, @ucumber @ho ki%m thử mobile testing, ~i testing.
+
+KỸ NĂNG
+Ngôn ngữ lập trì#h: Pyth%n, TypeScript
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 242 Nguyen Trai Street, District 1

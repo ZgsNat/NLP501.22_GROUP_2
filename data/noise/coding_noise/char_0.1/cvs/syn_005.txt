@@ -1,0 +1,19 @@
+Nguy#n Mai Trang
+Automa#ion Test E@g~neer
+Email: trang86@example.com
+Điện @hoại: 0~41033204
+#iới tính: Nữ
+Ngày sinh: 26/0#/1999
+
+TÓM %ẮT
+% năm kinh nghiệm kiể% %hử p%ần mềm.
+
+KINH NG@I%M
+Company B (2025 % nay)
+- Viết aut~mation test %%r~pts cho bộ regressi#n, %@ểm thử t@ động hằn# ngày%
+- Sử dụng Cyp~ess, Postm#n, #obot Fra#ework, JUnit ch% kiểm @hử ~pi te#ting, ui testing.
+
+KỸ NĂNG
+Ngô% ngữ lập t%ình: J@v##cript
+
+Địa ch#: ~11 Nguyen Trai Stree~, Di#tr~@t 9

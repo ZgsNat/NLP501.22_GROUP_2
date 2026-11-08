@@ -1,0 +1,20 @@
+Vũ Ng@c Hư~ng
+Automati%n Tes@ #n%ineer
+Emai@: h#ong94@exa~p@@~~~m
+@iệ# thoạ%: %9998%288~
+G#ới tí%h: Nữ
+N~à% sinh: ~#~#2/2%03
+
+TÓM TẮT
+4 năm k#nh n@~iệm %iểm thử p@ần m#~.
+
+K~NH NGHIỆM
+C%mpany A (2%@2 - n#y#
+- @~y dựng frame#o%k aut%mation ~heo P%~e Object Model, d@~#%dr#ven, tí%% hợp J~nkins #ipeline#
+- %ử d@ng Sel@n%um ~ebD~~v#r, Re@t Assure%@ Cuc#@b#r c%o ~#ểm thử a#i t@st%ng, u@ %esti@g#
+- C%ạ% #e%t trên @enkin#, GitH#b A%~i~#~.
+
+@Ỹ NĂ%#
+Ngôn #@% lập trình: Ty%#~cript, C#
+
+Đ#a chỉ: 2@8 Nguy#@ T#ai Stree%~ Distr@ct 6

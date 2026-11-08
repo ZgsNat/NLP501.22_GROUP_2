@@ -1,0 +1,21 @@
+Phạm Quốc Long
+Automation Test Engineer
+Emai~: long91@example.com
+Phone: 0932452379
+Gender: Male
+Date of birth: 07/10@199~
+
+SUM@A%Y
+2 years of ~xperience in s#ft%are testing.
+
+EXPERIENCE
+Comp%ny A (2024 - Present)
+@ ~rote and maintained automated test scripts for r~gression suites#
+- Used Appium@ JUnit, TestNG for manua@ t#sting, mo~ile testing.
+- Ran tests %n GitLab CI.
+
+SKILLS
+Programming: Java
+Languages: English (T@EIC 750), Japanese JLPT N2
+
+Address: 136 Nguyen Trai #treet, District 2

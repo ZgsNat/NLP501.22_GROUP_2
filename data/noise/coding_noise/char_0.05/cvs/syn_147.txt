@@ -1,0 +1,22 @@
+P%ạm Thu Lan
+Automation Test #ngineer
+E%%il: lan27@example.com
+Phone: 0962955068
+Ge@der: Female
+Date of birth: 14/1#/1998
+
+SUMMARY
+7 y~ars of e#perience in software testin@.
+
+EXPERIENCE
+Com~any A (20~9 - Present)
+- Defined the test automation st@ategy, led a team of 5 QA engineers and mentored juniors on automation.
+- Used XCUITest, Gatling, JUnit, TestNG for manual testing, mobile tes%ing, performance @esting.
+- Ran tes@s on Jenkins.
+
+SKIL@S
+Programming: Pyth#n
+Cert%ficatio@: @STQB CTFL
+Languages: Engl@sh (TOEIC 750)
+
+Address: @3 Nguyen T~ai Street, District 11

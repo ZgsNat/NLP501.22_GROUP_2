@@ -1,0 +1,21 @@
+T~ần Văn Nam
+Au#omation Test Engine@r
+Email: nam32@exa#pl@.com
+Điện thoại: 09141974~2
+Giới tính: Nam
+Ngày sinh: @7/02/200~
+
+TÓM TẮT
+5 năm k%nh nghiệm ki@m thử p#ần mềm.
+
+KINH NGHIỆM
+Company B (2021 - nay)
+- Xây dựng f#amewo#k au@@mation theo Page Object Model, data-driven, tí#h hợp Jenkins pipeli~e#
+- Sử dụng @spress#, Postm~n, T~stNG cho kiểm thử ap% testing, ma#ual testing, mobile testing~
+- Chạy tes~ trên Jenkins, GitH%b Actions, Azure DevOp@.
+
+K# NĂNG
+Ngôn ngữ lập trình: C#, Java
+Ngoại ngữ: Englis@ (TOEIC 750)
+
+@ịa chỉ: 51 Nguyen Trai Str#et, D%strict 1

@@ -1,0 +1,21 @@
+Đỗ Mai Linh
+Aut0mation Test Engineer
+Email: linh87@example.com
+Phone: 0946439333
+Gender: Fema1e
+Date of birth: 07/03/1988
+
+SUMMARY
+4 years of experience in software testing.
+
+EXPERIENCE
+Company 8 (2022 - Present)
+- Wrote and maintained aut0mated test scripts for regression suites.
+- Used Cypress, WebdriverIO, Postman, Pytest, JUnit for api testing, ui testing.
+- Ran tests 0n Jenkins.
+
+SKILLS
+Programming: C#
+Languages: English (T0EIC 750)
+
+Address: 293 Nguyen Trai Street, District 4

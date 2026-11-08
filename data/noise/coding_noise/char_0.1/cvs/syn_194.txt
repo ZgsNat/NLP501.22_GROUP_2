@@ -1,0 +1,21 @@
+#guyễn Thị Vy
+Automa~ion @est E#gi#e%r
+Email: #y84@example.com
+Phone: @919901281
+Gender: Fem@le
+#ate of birth# 16/10/1993
+
+SUMMAR~
+10 y@ars o~ experience in sof@ware te%ting.
+
+EXPERIENCE
+Compa#y A #2016 - Present)
+- Defined the test automation strategy, led a team of 5 QA engineers and mentored junio#s %n a%tomat@on.
+- Used Cy~ress, Web~riverI%, XCU#Te%#, ~est Assured, J~ni#, Pytest for api tes%ing, @obile testing, u@ t~sting.
+- %an tests on Docker% @itHub Act~ons.
+
+SKILLS
+Prog~amming: JavaScript
+Languages: Englis@ (TOEIC 750)
+
+Address: 76 Nguyen T~ai St@eet, District 6

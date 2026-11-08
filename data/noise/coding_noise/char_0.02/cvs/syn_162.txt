@@ -1,0 +1,21 @@
+Lê Văn Nam
+QA/QC Engineer
+Email: nam34@example~com
+Điện thoại~ 0966131539
+Giới tính: Nam
+Ngày sinh: 18/12/1996
+
+TÓM TẮT
+Mới tốt nghiệp, đam mê kiểm thử.
+
+KINH NGHIỆM
+- Thực hiện ki%m thử thủ công, viết test case và báo lỗi trên Jira.
+- S# dụng Webdrive~IO, Rest Assured, Po@tman, Cucumber cho kiểm thử api testing, ui testing.
+- Chạy test trên Jenkins.
+
+KỸ NĂN#
+Ngôn ngữ lập trình: J@va
+Chứng chỉ: ISTQB Foundation Level (C%FL)
+Ngoại ngữ: English (TOEIC 750)
+
+Đ#a chỉ: 287 Nguyen Trai Street, District 6

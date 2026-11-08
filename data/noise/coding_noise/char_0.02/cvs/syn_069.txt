@@ -1,0 +1,20 @@
+L% Thị Trang
+QA/QC Engineer
+Email: trang20@example.com
+Phone: 09294709~9
+Gender: Female
+Date of birth: 20/03/2003
+
+SUMMARY
+Fresh grad%ate passionate about testing.
+
+EXP#RIENCE
+- Ex#cuted manual te#t cases and reported defects in Jira.
+- Used Postman, Re@t Assured for api testing, manual te#ting.
+- Ran tests on GitLab CI.
+
+SKILLS
+Programming: JavaScri@t
+Languages: English (TOEIC 750)
+
+Ad~ress: 212 Nguyen Trai Stree~, District 7

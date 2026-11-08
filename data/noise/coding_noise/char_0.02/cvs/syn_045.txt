@@ -1,0 +1,22 @@
+Bùi Văn Tuấn
+Automation Test Engineer
+#mail: tuấn71@example.com
+Phone: 0971906810
+Gender: Male
+Date of birth: 28/03/1997
+
+SUMMARY
+2 years of experience in softw@re testing.
+
+EXPERIENCE
+Company G (2024 - Present)
+- Wro#e and maintained automated test scripts fo@ regr%ssion suites.
+- Used Cypress, WebdriverIO, Gatling, Robot Framework, JUnit for performance testing, ui testi#g.
+- Ran tests on GitHub Actions.
+
+SKILLS
+Programming: Java, TypeScript
+C#rtification: ISTQB CTFL
+Languages: English (TOEIC 750)
+
+Add#ess: 179 Nguyen Trai Street, District 10

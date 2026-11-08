@@ -1,0 +1,21 @@
+Phạm Đức Tuấn
+Automation Test Engineer
+Email: tuấn12@example.com
+Phone: 0947038339
+Gender: Male
+Date of birth: 18/09/1992
+
+SUMMARY
+4 years of experience in software testing.
+
+EXPERIENCE
+Company A (2022 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the CI pipe1ine.
+- Used Selenium WebDriver, Cypress, XCUITest, P0stman, Cucumber, TestNG for api testing, mobi1e testing, ui testing.
+- Ran tests on GitLab CI, GitHub Actions, Docker.
+
+SKILLS
+Programming: JavaScript
+Languages: English (TOEIC 750), Japanese JLPT N2
+
+Address: 20 Nguyen Trai Street, District 8

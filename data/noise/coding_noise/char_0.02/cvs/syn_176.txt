@@ -1,0 +1,20 @@
+Hồ Đức Hùng
+Au@omation Test Engineer
+Emai~: hùng28@example.com
+Phone: 0919670211
+Gender: Male
+#ate of birth: 14/04/2002
+
+SUMMARY
+10 years o~ experience in software testing.
+
+EXPERIENCE
+Company F (2016 - Pr%sent)
+- Wrote and mai@tained automated test ~cripts for regr@ssion suites.
+- Used Cypress, Re#t Assured, k6, JUnit, Robot Framework for api testing, perform#nce testing, ui testing.
+
+#KILLS
+Programming: JavaScript
+Langu%ges: English (TO~IC 750)
+
+Address: 207 Nguyen Trai Street, District 2

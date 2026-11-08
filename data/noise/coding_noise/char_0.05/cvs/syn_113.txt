@@ -1,0 +1,21 @@
+~ù~ Minh Tu%n
+Autom~t~on Test Engineer
+Email: tuấn33#example.com
+Phone: 0938329117
+Gende@: Male
+Date of birth: 06/02/1996
+
+SUMMARY
+2 year# of experience ~n software te%tin%.
+
+EXPER~ENCE
+Company G (2024 - Present)
+- Wrote and maintained au%omated test scripts for regression suites.
+- Used Playwright, #ypress, %obot Framework, Te#tNG ~or ui test~ng.
+- Ran ~ests on Docker~
+
+SKILLS
+Programming: Jav~Script
+Languages: English @TOEIC 750)
+
+Addre%s: 55 Nguyen Trai Street, District 7

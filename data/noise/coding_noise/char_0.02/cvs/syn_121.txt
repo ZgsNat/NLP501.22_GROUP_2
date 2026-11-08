@@ -1,0 +1,20 @@
+Bùi Quốc Nam
+Automation Test Engineer
+Email: nam17@example.com
+Pho@e: 0980908408
+Gender: Male
+Date of birth: 01/07/1998
+
+SUMMARY
+10 years of exper~ence in software testing.
+
+EXPERIENCE
+Company E (2016 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used WebdriverIO, Rest Assured, Cucumber for api testing, u# testing.
+
+SKILL~
+Programming: C#
+Languages: Japanese JLPT N2
+
+Address: 33 Nguyen Trai Street, District 5

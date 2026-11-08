@@ -1,0 +1,13 @@
+Hồ Thu Trang
+Automation Test Engineer
+Email: trang42@example.com
+Điện thoại: 0988593591
+Giới tính: Nữ
+Ngày sinh: 03/09/1988
+
+TÓM TẮT
+5 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (2021 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven, tích h

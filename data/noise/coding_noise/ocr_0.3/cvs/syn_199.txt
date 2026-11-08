@@ -1,0 +1,19 @@
+Trần Văn Khoa
+Automation Test Engineer
+Emai1: khoa31@example.com
+Điện thoại: 0990722659
+Gioi tính: Nam
+Ngay sinh: 11/10/2000
+
+TOM TẮT
+1 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company B (2025 - nay)
+- Viet automation test scripts ch0 bộ regressi0n, kiem thử tu động hằng ngay.
+- Sử dụng Selenium WebDriver, Espresso, P0stman, TestNG cho kiểm thu api testing, mobile testing, ui testing.
+
+KỸ NĂNG
+Ngôn ngữ 1ập trình: C#, Pyth0n
+
+Dia chỉ: 296 Nguyen Trai Street, District 1

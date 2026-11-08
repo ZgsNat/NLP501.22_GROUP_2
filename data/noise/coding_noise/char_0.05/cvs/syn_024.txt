@@ -1,0 +1,21 @@
+B~i Đức Phúc
+Automation %est En@ineer
+Email: phúc46@example.com
+Phone: 0~53298644
+Ge#der: Male
+Da~e of birth: 14/11/1998
+
+SUMMARY
+3 years of %xperience in s%ftware testi~g.
+
+EXPERIENCE
+Company A (2023 - Present)
+- Designed and built a Page O~ject Model automation framework and i@tegrated it into the %I pipeline.
+- Used Selenium WebD@iver, #ostm@n, TestNG, JUnit for api testing@ ui testing.
+- Ran tests on Docker.
+
+SK#LLS
+Programming: Java#cript, C@
+~anguages: Japanese JLPT N2
+
+Add#ess: 50 Nguyen %rai Street, District 9

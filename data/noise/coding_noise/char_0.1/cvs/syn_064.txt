@@ -1,0 +1,22 @@
+Đ# Thị Linh
+Aut@mation Test E@gineer
+Email: l@nh6~@ex@mple.com
+Điện thoại: 0978808477
+Giới tí#h: Nữ
+Ng## sinh: 16/10/19%8
+
+TÓ~ TẮT
+1 năm kinh %g#iệm kiểm th# phần mềm.
+
+KI@H NGHIỆM
+Company D (2025 - na@)
+- V%ế# automation test scripts cho bộ reg~ession, @iểm thử tự đ~ng hằn% ngày.
+- Sử dụng Selenium WebDriver, Appi@m, Postman, ~est Assured, @obot Framew#rk, TestNG cho #iểm thử api te@ting% mob~le testing, ui testi%g.
+- Chạy test trên Azure DevOps~
+
+KỸ NĂNG
+Ngôn ~gữ lập trình@ Python
+Chứng chỉ: ISTQB Found#tion Level (CTFL)
+Ngoại ngữ: En%@ish (TOEIC 750)
+
+Đị% chỉ: 181 Ngu@en Trai Street, ~istrict 5

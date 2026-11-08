@@ -1,0 +1,19 @@
+Nguyễ# Mai Trang
+Automation Tes% %ngineer
+Email: trang86@ex~m#le.co%
+Điện thoại: 0941033204
+#i#i tính: Nữ
+Ngày sinh: 26/01/1999
+
+TÓM TẮT
+1 năm kinh nghiệm kiểm thử phần mềm.
+
+K@~H NGHIỆM
+@ompany B (2025 - nay)
+- Viết #utomation test scripts cho b# @egre#sion, kiểm thử tự động hằng ngày.
+- Sử dụng Cypress, P@stma@, Robot Framework, JUnit cho kiểm thử api tes@ing, ui t@sting.
+
+KỸ NĂNG
+Ngôn ngữ lập ~rình: JavaScript
+
+Địa %hỉ: 211 Nguyen Tr~i Stree%, District 9

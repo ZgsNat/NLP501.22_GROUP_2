@@ -1,0 +1,21 @@
+#ũ Đức Phúc
+Au%omat#on Test Enginee%
+E@ail: phúc@5@ex@mple.c@m
+Điện thoại: 09879116@4
+Giới tín~: Na%
+Ngày @i#h: 06/0%/1993
+
+TÓM TẮT
+3 năm kinh nghiệm %iểm thử phần mềm#
+
+KINH NGHI@M
+Comp~#y E (202@ - nay)
+- Xây d@n# framew%rk automation the# P%ge Object Model, data-d~iven, t%ch h#p Je~kins pipelin@.
+- Sử dụng Playwright, Rest Assured, Postman, k6, Robot Framew%%k cho kiểm ~hử a#i testing, performan%e testing, ui testing.
+- Chạy t%st trê@ GitHub Act@ons, %en~i#s.
+
+K# NĂNG
+Ngôn ngữ %ậ% trình: TypeScript
+Ng~ại n~ữ: English (T~EIC @5@)
+
+Địa chỉ: 253 Nguyen Trai Street# District #

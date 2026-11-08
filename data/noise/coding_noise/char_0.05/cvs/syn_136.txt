@@ -1,0 +1,22 @@
+Vũ T@u Lin%
+Aut#mation #est Engineer
+Email: linh5~@exampl~.com
+Pho#e: 0931780851
+Gender: Female
+Date of ~irth: 04/08/1989
+
+SUMMAR%
+5 yea~s of experience in soft%are %esting.
+
+EXPE@IENC%
+Company D (2021 - Present)
+- Designed and built @ Page Object Model automation framework and integrated it into @he CI pipeline.
+- Used Pla@wrig%t, Webdriver#O, Appium, Robot Framework for mobile test@ng, ui @est%ng.
+- Ran tests on %zure DevOps, Jenkins, Git#ab CI.
+
+SKILLS
+Pr%grammi#g: Java, JavaScr@pt
+Certific@ti~n: ISTQB CTFL
+Langu#ge~: English (TOEIC 750)
+
+Ad##ess: 113 Ng~yen Trai Street, District 1

@@ -1,0 +1,15 @@
+Nguyễn Ngọc Lan Automation Test Engineer Email: lan96@example.com
+Điện thoại: 0955921387 Giới tính: Nữ
+Ngày sinh: 14/10/1988
+
+TÓM TẮT
+5 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company D (2021 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.
+- Sử dụng Gatling, Pytest, TestNG cho kiểm thử manual testing, performance testing.
+- Chạy test trên GitHub Actions, Docker.
+ KỸ NĂNG Ngôn ngữ lập trình: Java, JavaScript Chứng chỉ: ISTQB Foundation Level (CTFL)
+
+Địa chỉ: 246 Nguyen Trai Street, District 5

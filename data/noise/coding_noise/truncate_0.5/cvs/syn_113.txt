@@ -1,0 +1,13 @@
+Bùi Minh Tuấn
+Automation Test Engineer
+Email: tuấn33@example.com
+Phone: 0938329117
+Gender: Male
+Date of birth: 06/02/1996
+
+SUMMARY
+2 years of experience in software testing.
+
+EXPERIENCE
+Company G (2024 - Present)
+- Wrote and maintained aut

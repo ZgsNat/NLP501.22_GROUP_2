@@ -1,0 +1,20 @@
+Tran Mai Lan
+Aut0mation Test Engineer
+Emai1: lan61@example.com
+Dien thoại: 0944247519
+Gioi tính: Nu
+Ngày sinh: 06/04/2000
+
+TÓM TẮT
+1 năm kinh nghiem kiem thử phần mềm.
+
+KlNH NGHIỆM
+Company A (2025 - nay)
+- Viet automation test scripts cho bộ regression, kiểm thử tự dong hằng ngay.
+- 5ử dụng Cypress, TestNG, Pytest cho kiểm thử ui testing.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: TypeScript, Java
+Ng0ại ngữ: English (TOElC 750)
+
+Dia chỉ: 11 Nguyen Trai Street, District 4

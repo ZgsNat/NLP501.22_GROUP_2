@@ -1,0 +1,21 @@
+Nguyễn Văn H%n~
+Autom%tion Tes# Engineer
+Email: hùng79@#xa%ple.com
+@iện @ho~i: 0949827566
+Giới tính: N@m
+Ngày sinh: 04/09/2001
+
+#ÓM T#T
+3 năm kinh nghi#m kiểm thử phần m%m.
+
+KINH NGHIỆM
+Company B (2023 - nay)
+- Xây dựng framework automation the~ Page Object Mo~el, data-driven, tích hợp Jenkins pipelin%.
+- S@ dụng Appium, Robot Framework cho @iểm th# manu%l testing, mobile te%tin%.
+- Chạy tes@ trên Azure DevOps, J#nkins.
+
+KỸ NĂNG
+Ng@n n#ữ lập ~rình: JavaScript, C#
+Ngoại ngữ: English (T@EIC 750)
+
+Địa chỉ: 1 Nguyen Trai Street, Dist#%ct 4

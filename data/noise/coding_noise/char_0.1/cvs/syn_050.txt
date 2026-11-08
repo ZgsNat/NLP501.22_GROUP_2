@@ -1,0 +1,22 @@
+Đỗ Văn Khoa
+Automatio# Test En@ineer
+Em~il: kh~a32@exampl~.com
+Điện thoại: 095~343854
+Giới tín~: Nam
+Ngày s#nh: 13/02/~991
+
+T~M TẮT
+1 @~m kinh nghiệm k%ểm @hử phần #ềm.
+
+%INH NGHIỆM
+Company F (2025 - nay)
+- Viết automa#ion test @@@i@#s cho bộ regression, kiểm thử tự #ộng hằng ngày.
+- Sử d~ng WebdriverIO, XCUITe~t, Pos%~an, #estNG, Cucumber ch@ kiểm thử api tes#ing, mobil% testin@, ui testing.
+- Chạy test t~ên Docker.
+
+KỸ N#NG
+Ngôn ngữ lập trìn%: ~ypeScript, J%%a
+Chứng chỉ: IS%~B Foundation Leve# (CTF#)
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ% 195 Ngu%en Trai Street, District 6

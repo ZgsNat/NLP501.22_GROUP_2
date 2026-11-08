@@ -1,0 +1,21 @@
+Bùi Thu Thảo
+Automation Test Engineer
+Email: thảo66@example.com
+Điện thoại: 0928134815
+Giới tính: Nữ
+Ngày sinh: 23/09/1993
+
+TÓM TẮT
+1 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHlỆM
+Company E (2025 - nay)
+- Viết automation test scripts cho bo regression, kiểm thử tu động hằng ngày.
+- Sử dụng Selenium WebDriver, WebdriverIO, Rest Assured, Postman, Cucumber cho kiểm thử api testing, ui testing.
+- Chạy test trên Docker.
+
+KỸ NĂNG
+Ngôn ngu lập trình: C#
+Ngoại ngu: English (TOEIC 750)
+
+Địa chi: 234 Nguyen Trai Street, District 11

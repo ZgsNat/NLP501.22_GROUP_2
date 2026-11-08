@@ -1,0 +1,14 @@
+Hồ Thị Thảo
+Automation Test Engineer
+Email: thảo68@example.com
+Điện thoại: 0977621275
+Giới tính: Nữ
+Ngày sinh: 23/12/1996
+
+TÓM TẮT
+10 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company C (2016 - nay)
+- Trưởng nhóm QA 5 người, định hướng automation strategy và mentor thành viên mới.
+- Sử dụng WebdriverIO, XCUITest, Postman, Rest Assured, TestNG cho kiểm thử api testing, mobile testing, ui te

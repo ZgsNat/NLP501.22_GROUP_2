@@ -1,0 +1,21 @@
+Trần ~inh H~n%
+A#tomation Test %ngineer
+Email: h~ng46@examp~e.c#m
+P@one# 0926373347
+G~nder: Male
+Date of birth: 13/06/1@91
+
+SUM@@RY
+6 ~e~rs of experience #n s@ftware testing.
+
+%XPERIENCE
+Company G (2020 - Present)
+- Wrote and maintained a#tomated test scripts for regression suites.
+- U~ed JMeter, Rob%t Framewor~ for man~al testing# performance testing.
+
+SKILLS
+Progra~~ing: Ty%eScript
+Certi%icatio~: IS~QB CT~L
+Langu%~es: Engl#sh (TOEIC 750)
+
+Address: 166 Nguyen Trai Street, District 3

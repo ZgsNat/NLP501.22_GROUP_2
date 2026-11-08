@@ -1,0 +1,21 @@
+Trần Mai Trang
+Automation Test Engineer
+Email: trang56@example.com
+Phone: 0965325058
+Gender: Fema1e
+Date of birth: 09/03/1997
+
+SUMMARY
+10 years of experience in software testing.
+
+EXPERIENCE
+C0mpany A (2016 - Present)
+- Designed and built a Page 0bject Model automation framework and integrated it int0 the Cl pipeline.
+- Used WebdriverIO, Playwright, XCUlTest, Cucumber, Robot Framew0rk for m0bile testing, ui testing.
+- Ran tests on GitLab Cl.
+
+SKILLS
+Programming: Java5cript
+Languages: English (TOElC 750)
+
+Address: 1 Nguyen Trai Street, District 9

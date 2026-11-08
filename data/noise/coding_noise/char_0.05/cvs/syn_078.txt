@@ -1,0 +1,19 @@
+H% Đức #hoa
+Automation Test Engineer
+Email: khoa94@example.com
+Phone: 0996960449
+Ge~der# Male
+Date of birth: 19/03/1991
+
+SU@MARY
+2 years of e~perience in software testing.
+
+EXPERIENCE
+Company F (2024 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- @sed Rest Ass@red, @6, JUnit, Robot Framework for api testing, manual testing, performance testing.
+
+SKILLS
+Progr~mming: C#, JavaScript
+
+Add#ess: %5 Nguyen Trai Street, District 5

@@ -1,0 +1,17 @@
+Phạm Văn Khoa
+QA/QC Engineer
+Email: khoa54@example.com
+Phone: 0936227100
+Gender: Male
+Date of birth: 07/11/1994
+
+SUMMARY
+Fresh graduate passionate ab0ut testing.
+
+EXPERIENCE
+- Executed manual test cases and reported defects in Jira.
+
+SKILLS
+Certification: ISTQB CTFL
+
+Address: 36 Nguyen Trai Street, District 6
