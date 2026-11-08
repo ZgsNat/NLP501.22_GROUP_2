@@ -1,0 +1,20 @@
+Hồ Quốc Long
+Automation Test Engineer
+#mail: long33@example%com
+@iện t#oại: 0996@14605
+Giới tính: Na~
+Ngày sinh~ 10/01/1997
+
+TÓM TẮT
+5 năm kinh nghiệm kiểm th~ ph#n mềm@
+
+KIN@ N#HIỆM
+Co~pany B (~021 - n@y)
+- Viết automa%ion test scripts cho bộ regression, k#ểm thử tự đ@ng hằng ngày.
+- Sử dụng Sel#nium WebDriver, XC#ITest, Rest Ass#red, JUnit, Cucumber cho kiểm thử api testing, mobile #estin%, ui testing.
+
+KỸ N#NG
+Ngôn ngữ lập %rình: Pyt@on
+Chứng chỉ: ISTQB Foundation Level (CTFL)
+
+Địa chỉ: 9~ Ngu#en Trai Stre~t, District 7

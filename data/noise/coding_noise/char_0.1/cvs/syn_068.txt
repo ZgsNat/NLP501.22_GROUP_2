@@ -1,0 +1,20 @@
+@ê Đức Lon#
+Automation Test #n%%neer
+E%#i%: ~ong67@example~com
+Phone: 0959629#63
+Gender: M#l~
+Da@e of birth: 26/03/1996
+
+SUMMA@Y
+5 ye~rs of exp%rienc@ in softw%re testing.
+
+#XP@RIEN~E
+Compan@ G (2021 ~ Pr%sent)
+- #esign~d a#d built a Page Obj@ct Model automation framework and #@tegr%ted it into the CI pipeline.
+- Used Cypr@ss, Pos@ma~, Rest Assur#d, Pytest f~# api testin#~ ui testing.
+- Ran te%ts on @z~re DevOps.
+
+SKILLS
+Programmi@~: @avaS%ript, Java
+
+Address: 121 Nguyen Trai %treet# District 8

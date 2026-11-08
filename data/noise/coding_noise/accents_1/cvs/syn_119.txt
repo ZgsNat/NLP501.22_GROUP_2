@@ -1,0 +1,19 @@
+Bui Ngoc Huong
+QA/QC Engineer
+Email: huong47@example.com
+Dien thoai: 0986427662
+Gioi tinh: Nu
+Ngay sinh: 27/07/1989
+
+TOM TAT
+Moi tot nghiep, dam me kiem thu.
+
+KINH NGHIEM
+- Thuc hien kiem thu thu cong, viet test case va bao loi tren Jira.
+- Su dung Playwright, Rest Assured cho kiem thu api testing, ui testing.
+
+KY NANG
+Chung chi: ISTQB Foundation Level (CTFL)
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 171 Nguyen Trai Street, District 1

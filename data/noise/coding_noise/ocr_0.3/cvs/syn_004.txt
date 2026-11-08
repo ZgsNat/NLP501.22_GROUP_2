@@ -1,0 +1,20 @@
+Lê Thu Trang
+Automation Test Engineer
+Emai1: trang70@example.com
+Phone: 0981819757
+Gender: Female
+Date 0f birth: 01/12/2003
+
+SUMMARY
+2 years 0f experience in software testing.
+
+EXPERIENCE
+C0mpany G (2024 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Selenium WebDriver, WebdriverI0, Rest Assured, Cucumber, R0bot Framework for api testing, ui testing.
+
+SKlLLS
+Pr0gramming: C#, Java
+Languages: English (T0EIC 750)
+
+Address: 245 Nguyen Trai 5treet, District 5

@@ -1,0 +1,21 @@
+Pham Duc Phuc
+Automation Test Engineer
+Email: phuc81@example.com
+Dien thoai: 0965725133
+Gioi tinh: Nam
+Ngay sinh: 24/02/1999
+
+TOM TAT
+10 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company F (2016 - nay)
+- Truong nhom QA 5 nguoi, dinh huong automation strategy va mentor thanh vien moi.
+- Su dung Appium, k6, JUnit cho kiem thu manual testing, mobile testing, performance testing.
+- Chay test tren Docker, GitLab CI.
+
+KY NANG
+Ngon ngu lap trinh: C#
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 235 Nguyen Trai Street, District 12

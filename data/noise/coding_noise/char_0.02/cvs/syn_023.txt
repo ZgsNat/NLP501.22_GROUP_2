@@ -1,0 +1,21 @@
+Hồ Minh Phúc
+Automation Test Engin@er
+Email: phúc40@example.com
+Phone: 09530428#2
+Gender: Male
+Date of bi@th: 24/02/2000
+
+SUMMARY
+5 years of experience in software testing.
+
+EXPERIENCE
+Co@pany B (2021 - Present)
+- De@igned and built a Page Object Model automation frame~ork and integrated it into the CI pipeline.
+- Used Selenium WebDriver, Rest Assured, C#cumber@ Pyte~t for api testing# ui testing.
+- Ran tests on GitHub Actions, Azure DevOps.
+
+SKILLS
+Programming: TypeScript
+Ce@tification: IST%B CTFL
+
+#ddress: 269 Nguyen Trai Street, District 11

@@ -1,0 +1,21 @@
+L@ T~ị Vy
+@utom~%ion Test ##%~ne%@
+Em%i%: vy47@exa@ple.com
+Đ@@n th~%i: 09#37944%#
+Giới t@nh~ @ữ
+@#~y s~nh: 01/0#/2003
+
+TÓM #Ắ~
+1 n%% kinh ngh@ệm #~%m th@ p@ầ@ mề@.
+
+KINH %GH@ỆM
+Co@~a%y A (@025 - nay)
+- Viết au#%m%tion #est ~#%%%ts cho @% r@gr@ssi#n, ~i%~ th% #ự động hằ%g ng%@.
+- Sử dụng C@pres%, %eb#rive@IO, @U@it# R%bot Fra~~%o~k ch% k%ểm thử u@ tes@ing.
+
+KỸ NĂ@%
+Ngôn %gữ %ập t#ình: ~yp%Sc%i@t
+%hứng chỉ: ISTQB Found@tio~ @evel (CTFL)
+Ngo~i %gữ: Eng#~~% #TOEIC 75%)
+
+Địa ch~: ~5 #~uy@n T~ai #treet% Dis#rict @

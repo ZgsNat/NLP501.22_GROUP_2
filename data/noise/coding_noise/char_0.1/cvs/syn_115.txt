@@ -1,0 +1,22 @@
+Hồ Quố% Tuấn
+Auto#%tio# Test Engineer
+Email: @uấn%9@%x%mple.com
+@hone: %99@778089
+Gender: %~le
+Date %f birth: 1##12/2000
+
+SU@~ARY
+5 ~ears of experience %n s@ftware testin#.
+
+EXPE@IENCE
+Compa%y % (2021 - Pres#nt#
+- De%~gne% and built a #age Obj~ct Model automati#n frame~ork and in#egrated it i@to the CI pipeli~#.
+- Used Appium, Rest Ass#red, Postman, JUnit %or api testing, m@nu@l testing, %obile tes@ing.
+@ Ran t@st@ on GitL@b CI, Docker, Jenkins.
+
+SKILL#
+Progra~ming: Ja%a, JavaScr#@t
+C@rtification: #STQB CTFL
+Languages: English (TOEIC ~5~~
+
+Address: 155 Nguyen Tra~ Street, Distr~c% 2

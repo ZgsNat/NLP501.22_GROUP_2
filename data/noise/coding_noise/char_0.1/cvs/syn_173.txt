@@ -1,0 +1,21 @@
+%ồ Đ@% Khoa
+Automation Test Engineer
+Email: khoa3@@ex#mple.com
+Phone@ 0953521847
+Gende~: Mal#
+Date of bi~th: #9/04@2000
+
+SUMMARY
+7 years of e#perie~ce in s@ftw%re #%sti~g.
+
+EXPERIENCE
+Compan# B (2019 - %r%sen~)
+- Defi#ed the test automation st@ategy, led a team of @ ~A eng~neers ~nd mentored juniors on automation.
+- Used Se#enium WebDri@er, Appium, Pytest for mobile %%stin~, ui tes%in%.
+- R#n tests on Azure DevOps, Do~ker, GitLab C~.
+
+SKI#LS
+Programming: Typ@%cript, C#
+Certification: ISTQB CTFL
+
+Address: 229 Ngu%e% Trai Str%et, District 4

@@ -1,0 +1,22 @@
+L~ Mai Linh
+Automation Test E#ginee~
+E~#il@ linh18@example.com
+Phone: 0955@29880
+Gende#: Female
+Da%e of birth: @7/12/2001
+
+SUMMARY
+5 years of expe#ienc@ in software testing.
+
+EXPERIENCE
+C%mpany G (2021 - Present)
+# Designed and built a Page Obje%t Model automation framew#rk ~nd integrated it into the CI %ipeline@
+- Used @ebdrive%IO, C@pres%, R@st Assured, Postman, Gatling, Cucu@#er for a#i ~e%%in@, perf~rmance testing, ui testin~.
+- Ran test% on Docker, GitLab CI.
+
+SK~#LS
+Programming: Java, C~
+Certification: ISTQB CTF%
+Languages: English (TOEIC 750)
+
+Address: 223 N~uyen Tra# Street, %istrict 10

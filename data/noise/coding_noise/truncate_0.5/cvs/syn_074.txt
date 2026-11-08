@@ -1,0 +1,13 @@
+Trần Minh Long
+Automation Test Engineer
+Email: long84@example.com
+Phone: 0962499769
+Gender: Male
+Date of birth: 15/11/1995
+
+SUMMARY
+6 years of experience in software testing.
+
+EXPERIENCE
+Company F (2020 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into

@@ -1,0 +1,22 @@
+Đỗ Thị Linh
+Automation Test Engineer
+Email: linh68@example.com
+Điện th0ại: 0978808477
+Gioi tinh: Nữ
+Ngày sinh: 16/10/1998
+
+TÓM TẮT
+1 năm kinh nghiệm kiểm thu phần mem.
+
+KINH NGHIỆM
+Company D (2025 - nay)
+- Viết aut0mation test scripts cho bộ regression, kiểm thu tự động hang ngày.
+- Sử dụng Se1enium WebDriver, Appium, Postman, Rest Assured, Robot Framework, TestNG cho kiểm thu api testing, mobile testing, ui testing.
+- Chạy test trên Azure DevOps.
+
+KỸ NĂNG
+Ngon ngữ 1ập trình: Python
+Chứng chỉ: ISTQB Foundation Leve1 (CTFL)
+Ngoại ngữ: English (TOElC 750)
+
+Địa chỉ: 181 Nguyen Trai Street, District 5

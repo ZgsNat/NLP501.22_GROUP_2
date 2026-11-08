@@ -1,0 +1,21 @@
+Lê Quốc Phúc
+Automation Test Engineer
+Email: phúc@0@example.com
+Phone: 0987569592
+Gender: Male
+Date of birth@ 16/12/1995
+
+SUMMARY
+1 years of experience in so@tware testing.
+
+EXPERIENC~
+Company F (2025 - Present)
+# Wrote and mai%tained automated test scripts for regression suit~s.
+- Used Selenium WebDriver, Cypress, Pytest for ui testing.
+- Ran tests on GitLab CI.
+
+SKILLS
+Program~ing: C#
+Certification: ISTQB CTFL
+
+Address: 257 Nguyen Tr@i Str%et, District 5

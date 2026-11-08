@@ -1,0 +1,21 @@
+Bùi Van Hùng
+Aut0mation Test Engineer
+Email: hùng37@example.com
+Dien th0ại: 0928645088
+Giới tính: Nam
+Ngày sinh: 19/11/1988
+
+TOM TẮT
+3 nam kinh nghiệm kiểm thu phan mem.
+
+KINH NGHIỆM
+Company G (2023 - nay)
+- Viet aut0mation test scripts cho bộ regression, kiểm thử tự động hằng ngày.
+- Sử dung Playwright, WebdriverIO, XCUITest, Robot Framework ch0 kiểm thử mobile testing, ui testing.
+- Chạy test trên GitHub Actions.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Java, Python
+Ngoại ngữ: Eng1ish (TOEIC 750)
+
+Dia chỉ: 76 Nguyen Trai Street, District 11

@@ -1,0 +1,21 @@
+Đỗ Quốc Tuấn
+Automation Test Engineer
+Email: ~uấn63@e~ample.c~m
+Điệ# ~hoại: 09~0705@05
+Giới tính: %a@
+Ngày sinh: 10/11/1992
+
+TÓM TẮT
+2 nă% ~in% @gh@ệm #iểm th@ phần mềm@
+
+KI@H NG~IỆM
+Company B (2024 - nay)
+- Viết automation ~est scrip@s cho bộ regressio#, %iểm thử tự đ~ng hằng ng@%.
+~ Sử dụng Selenium WebDriver, Webdri~%rIO, Po%tman, Rest Assured, Cucumber, TestNG cho kiểm ~h@ api testin~, ui te#tin@.
+- Chạy test trê@ Docker.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: ~~, Python
+Ngoại ngữ: Englis~ %TOEIC 7%0), Japanese JLPT N@
+
+Đị% #hỉ: 6 Nguy%n Trai Street, Distric# 2

@@ -1,0 +1,22 @@
+Vu Duc Tuan
+Automation Test Engineer
+Email: tuấn80@example.com
+Dien thoại: 0911419753
+Giới tinh: Nam
+Ngày sinh: 22/01/1990
+
+TÓM TAT
+7 nam kinh nghiem kiem thử phan mềm.
+
+KINH NGHIEM
+Company A (2019 - nay)
+- Truong nhóm QA 5 nguoi, định hướng automation strategy và mentor thành vien mới.
+- Sử dụng Playwright, WebdriverIO, Rest Assured, Postman, Pytest cho kiểm thử api testing, ui testing.
+- Chay test tren Azure DevOps.
+
+KỸ NĂNG
+Ngon ngu lập trình: JavaScript
+Chứng chỉ: ISTQB Foundation Level (CTFL)
+Ngoai ngu: English (TOEIC 750), Japanese JLPT N2
+
+Địa chỉ: 211 Nguyen Trai Street, District 2

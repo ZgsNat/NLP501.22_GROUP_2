@@ -1,0 +1,19 @@
+Trần Thu Linh
+Autom%tion Test Eng~neer
+~mai@: linh12@example.com
+Phone: 09768@034~
+%ender: Female
+Date of b#rt%: 05/11/1988
+
+SUMMA~Y
+1 years o~ exp@rience in softwa~e %esting#
+
+EX#ERIEN~E
+Company A (%025 - Present)
+- Wrote and mainta#ned automated test scripts for regress@on suites.
+- Used Playw@igh%, XCUITe%t, Postm@#, k6, T%stNG, JUnit for a#i testin%, m#bile %esting, #erform@nce testing, ui testi@g.
+
+SKILLS
+Program%ing: C#
+
+Address: 200 Nguye% Trai Street, D%strict 5

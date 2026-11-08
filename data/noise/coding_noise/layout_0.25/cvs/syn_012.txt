@@ -1,0 +1,16 @@
+Trần Quốc Nam
+Automation Test Engineer Email: nam34@example.com
+Điện thoại: 0943565097
+Giới tính: Nam
+Ngày sinh: 27/07/1988
+
+TÓM TẮT
+1 năm kinh nghiệm kiểm thử phần mềm.  KINH NGHIỆM
+Company A (2025 - nay)
+- Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày. - Sử dụng Playwright, WebdriverIO, k6, JUnit, Cucumber cho kiểm thử performance testing, ui testing.
+- Chạy test trên Jenkins.
+ KỸ NĂNG
+Ngôn ngữ lập trình: C#, Java
+Ngoại ngữ: English (TOEIC 750), Japanese JLPT N2
+
+Địa chỉ: 128 Nguyen Trai Street, District 7

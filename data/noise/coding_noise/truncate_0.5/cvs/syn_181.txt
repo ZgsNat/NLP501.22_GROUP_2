@@ -1,0 +1,13 @@
+Nguyễn Văn Hùng
+Automation Test Engineer
+Email: hùng79@example.com
+Điện thoại: 0949827566
+Giới tính: Nam
+Ngày sinh: 04/09/2001
+
+TÓM TẮT
+3 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company B (2023 - nay)
+- Xây dựng framework automation theo Page Object Model, data-

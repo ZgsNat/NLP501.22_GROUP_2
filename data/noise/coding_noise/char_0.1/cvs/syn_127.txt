@@ -1,0 +1,20 @@
+Hoàng Mai Lan
+Automation #est En@in#er
+Ema~l: lan23@example.com
+Điện th~ại: 091@488001
+Giới tính: Nữ
+Ngày sinh: 18/01/1997
+
+T%M TẮT
+7 năm kinh nghiệm ki~m thử phần mềm.
+
+KINH NGHIỆM
+Company G (201~ - nay)
+~ Trưởng nhóm QA 5 ngư%i, định hướng autom~tion strategy và %entor thà%h viên mới.
+- Sử dụng Gatlin#, JUni# cho kiểm thử manua~ te@ting, per~ormance testing.
+- C##@ test trên GitLab CI.
+
+#Ỹ NĂNG
+Ngôn ngữ l@@ trình: TypeSc~ipt
+
+Đị@ chỉ: 196 ~gu%en ~r#i Street, ~istrict 7

@@ -1,0 +1,19 @@
+#rần Thị Vy
+Aut%ma%ion Te~t #ngi@e%r
+%mail: v#@@@%@ample.%om
+Pho%e: #980#59205
+@en%er~ Fema~#
+Date of #ir@h: 14/1%/1%97
+
+S#~MA%Y
+1 yea@s %# experience i@ s#ftware testing.
+
+EXPE@IENC~
+Comp%ny F (20#5 - P#esent)
+- W@@te a@# main~aine@ a%t#@#t~d te#@ s~r@pt~ %or %eg%ession suites.
+- Used ~lay#right, R%s@ #%sured, P~@tm~~, Gat~in#, @%%~t Fra@ework, Pytest for %pi test@ng, ~er~%rm~nc~ %esting, ui #esti~g.
+
+SKILL~
+Progr~%m#@g: C## TypeScript
+
+A@dress: 221 N#%@#n Trai Street, D#st@ict 3

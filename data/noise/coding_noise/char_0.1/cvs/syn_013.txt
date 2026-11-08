@@ -1,0 +1,20 @@
+Bùi Ngọc Vy
+Aut#ma#ion Test Engineer
+Email: vy14@example.com
+Phone: 0936733470
+G~nder: Fema@e
+Date %f birth: 15/12/19#1
+
+~UMMARY
+2 years of exp@rience in soft#are t#sting.
+
+EXPERIENCE
+C~@pany E (202@ - Present)
+- #rote and ma%ntai~e@ automated te%t s~ripts for regress@on suites.
+- Used Playwri@h~, Cy~re%@, R~st Assu#ed, Pos%m%n% JMeter, Pytest, TestNG #%r api tes%##g, pe#formance te@ting, ui testing.
+
+SK#LLS
+Programmi#g: JavaScript
+Lan%ua%es: English (TOEI# 750)
+
+Add%ess# 107 N@uyen Trai Street, Distr%ct 8

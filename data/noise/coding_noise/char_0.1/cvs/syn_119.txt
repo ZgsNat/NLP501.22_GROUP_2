@@ -1,0 +1,19 @@
+Bùi Ngọc Hư@ng
+QA/QC Engineer
+Em~il: huong%7@example#com
+Điện thoại: #%@6427662
+Giớ% tính: Nữ
+Ngày sinh: 27/07/198@
+
+TÓM TẮT
+Mới tốt nghiệ~, đam mê %@ểm thử~
+
+KINH NGHIỆM
+- Thực hiện kiểm thử thủ công~ viết test case và #áo lỗi trên Jira.
+# Sử dụ%g %laywr#gh@, R%st Ass#red cho kiểm thử api testin@, ui testing.
+
+@Ỹ NĂN@
+Chứng c~ỉ: I%TQB Fo#ndat#on Level (CTFL)
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 171 Nguyen Trai Street, @istrict 1

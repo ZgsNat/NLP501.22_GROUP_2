@@ -1,0 +1,21 @@
+Nguyễn Quốc Tuấn
+Automat#on #est Engine#r
+E#%i~: tuấn8%@exa@pl@.com
+Điện t#oại: 092735%063
+Giớ~ tính: Nam
+Ngày sinh@ 07@01/1997
+
+TÓM TẮT
+% năm kinh nghi#m kiểm thử phần mề@.
+
+KINH NGHIỆM
+Com@any C (2018 @ nay)
+- @ây dựng fr%mework aut@mat~~n t~eo P%ge Objec# Mod~l, data-dr#ven, tích hợp Jen@ins p#peline@
+- Sử dụng Cypre~s, Pytest, Rob%t #ramewo%% cho kiểm thử ui testing.
+- Chạy test %r%n GitHub Actions.
+
+KỸ NĂNG
+Ngôn ng~ l@p tr%nh: Java
+Ngoại n%ữ: J%panese JLPT N2
+
+Địa chỉ: #9 Nguyen Trai Street, D%s~r%ct 1~

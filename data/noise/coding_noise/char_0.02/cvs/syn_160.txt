@@ -1,0 +1,21 @@
+Hồ Mai Lan
+Automation Test Engineer
+Email# lan23@example.com
+Phone: 09275134%4
+Gender: Female
+Date of birth: 21/12/1991
+
+SUMMARY
+7 years of experience ~n software testing%
+
+EXPERIENC%
+Com@any A (2019 - Present)
+# Designed a#d built a Page Ob~ect Model automation framework and integrated %t into the CI pipeline.
+- Used @ebdriverIO, Rest Assured, Postman, TestNG for api @esting, ui testing.
+- Ran tests on Jenkins.
+
+SKILLS
+Programming: Java
+L%nguages: E~glish (TOEIC 750)
+
+Address: 98 Nguyen Trai Stree~, District 4

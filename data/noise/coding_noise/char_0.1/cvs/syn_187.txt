@@ -1,0 +1,21 @@
+Bù% Ma# ~an
+Automation Test Engineer
+Email: lan24@ex@~ple.com
+Điện thoại: 0987556758
+Giới tính: Nữ
+@g~y sinh: 1@/12/1996
+
+TÓM TẮT
+7 năm kinh ng%~ệm kiểm thử phần mềm.
+
+KI#H NGHIỆM
+Comp#ny @ (2@19 - na%%
+- Xây dựn~ f~amework automation theo @age %bject M%del~ data-driven, tích hợp Jen#ins pipelin@.
+~ Sử dụng WebdriverIO, Gatling, P##est, TestNG cho kiểm thử pe%formance testing, ui te#ting.
+- Chạy test t%ên Jen%i%s, Docker, Az%r% @evOps.
+
+KỸ NĂNG
+Ngôn n~ữ lập t@ình: TypeScript
+Ngo@@ ngữ: %apanese JLPT N2
+
+Đ@a %hỉ: 47 Nguyen Tr@i Street# Di@trict ~

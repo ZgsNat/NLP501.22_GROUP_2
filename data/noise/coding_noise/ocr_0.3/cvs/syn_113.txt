@@ -1,0 +1,21 @@
+Bùi Minh Tuan
+Automation Test Engineer
+Emai1: tuấn33@example.com
+Ph0ne: 0938329117
+Gender: Male
+Date of birth: 06/02/1996
+
+SUMMARY
+2 years of experience in s0ftware testing.
+
+EXPERIENCE
+Company G (2024 - Present)
+- Wr0te and maintained automated test scripts for regression suites.
+- Used P1aywright, Cypress, Robot Framew0rk, TestNG f0r ui testing.
+- Ran tests 0n Docker.
+
+SKILLS
+Programming: JavaScript
+Languages: English (TOElC 750)
+
+Address: 55 Nguyen Trai Street, District 7

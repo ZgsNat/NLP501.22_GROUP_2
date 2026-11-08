@@ -1,0 +1,20 @@
+Nguy#n M@nh Nam
+Automation Test Engineer
+Email: nam28@example.com
+Điện thoại: 0967217417
+Giới tính: Nam
+N#ày sinh: 01/1#/1994
+
+TÓM TẮT
+1 năm kinh nghiệm kiể@ thử phần mềm.
+
+KINH NGHIỆM
+Company A (2025 - nay)
+- Viết aut#mati@n test scr~pts cho bộ regression, kiểm thử tự động hằng ngày.
+- Sử dụng We@driverIO, Playwright, Postman, Gatling, TestNG, Pyt@st cho kiểm thử api test%ng, performance testing, ui testing.
+
+KỸ NĂNG
+N~ôn ngữ lập trình: Java
+Ngoạ# ngữ: English (TOEIC 750)
+
+Địa chỉ: 27 Nguyen Trai Stre~#, District 7

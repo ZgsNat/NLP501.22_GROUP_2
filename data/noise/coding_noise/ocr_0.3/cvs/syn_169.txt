@@ -1,0 +1,22 @@
+Lê Thu Lan
+Automation Test Engineer
+Email: lan92@example.com
+Điện th0ại: 0943421297
+Gioi tính: Nữ
+Ngày sinh: 27/04/1991
+
+TÓM TẮT
+8 năm kinh nghiem kiểm thử phần mem.
+
+KINH NGHlỆM
+Company A (2018 - nay)
+- Xây dựng framework automation theo Page 0bject M0del, data-driven, tích hop Jenkins pipeline.
+- 5ử dung Cypress, JMeter, Cucumber cho kiểm thử performance testing, ui testing.
+- Chay test trên Docker, GitHub Actions.
+
+KỸ NANG
+Ngôn ngu lập trinh: Type5cript
+Chứng chi: ISTQB Foundation Level (CTFL)
+Ngoại ngữ: English (TOElC 750)
+
+Dia chi: 178 Nguyen Trai 5treet, District 11

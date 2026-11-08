@@ -1,0 +1,22 @@
+@ũ Quốc Khoa
+Automation Test Engineer
+Email: khoa25@example@com
+Phone: 0~40429530
+Gender: Male
+Dat@ of b~rth: 24/1#/198@
+
+SUMMARY
+10 years of experience in ~oftware testing.
+
+EXPERIENCE
+Company F (2016 - Present)
+- Designe# and bu~lt a Page Object Model automation framework #nd integrated it into the CI #ipeline.
+- U@ed Webdrive@IO, Cypress, Appi#m@ Postman, Rest Assured, k6, TestNG for api testing, mobile testing, performance te@ting, ui testing.
+- Ran tests on Jenkins.
+
+S~IL~S
+Programmin#: Py%hon, JavaScri#t
+Certification: ISTQB CTF#
+Langua@es: English (TOEIC 750)
+
+Address: 196 Nguyen Trai Street, District 1

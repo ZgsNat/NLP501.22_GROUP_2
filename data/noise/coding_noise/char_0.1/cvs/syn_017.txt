@@ -1,0 +1,21 @@
+Bù@ Ngọc Trang
+Au@omation Te@t Enginee%
+Email: trang21@exampl~#co%
+Phone: 0943382936
+Gender: Femal~
+Da%e of birth: 06/0#/1990
+
+SUMMARY
+3 yea@s o@ e~perience in softwa%e t#sting.
+
+EXPERIENC#
+@ompany F (2023 - Present)
+- Designed and built a Page Object Model automation framework and in%egrated it into th~ CI pipeline.
+- Used Cypress, Espresso% R@st Assured, k6@ @yte%t f@r a@i testin@, mobile testing, p~rfo#m%nce testing, ui testing.
+- Ran tests #n Git%ub A%tions, Azu@e DevOps, Gi~L%b CI.
+
+~KILLS
+Programming~ Java, JavaScript
+Languag#s: English (T@E~C 750), Japan%se JLPT N2
+
+Addr@ss# 17~ Nguyen Trai @treet, District ~1

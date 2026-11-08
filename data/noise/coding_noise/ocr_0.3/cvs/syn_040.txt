@@ -1,0 +1,20 @@
+H0àng Thi Trang
+Automation Test Engineer
+Emai1: trang79@example.com
+Phone: 0985821325
+Gender: Female
+Date of birth: 05/06/1995
+
+5UMMARY
+5 years 0f experience in s0ftware testing.
+
+EXPERIENCE
+Company 8 (2021 - Present)
+- Designed and bui1t a Page Object Model aut0mation framework and integrated it int0 the CI pipe1ine.
+- Used P1aywright, Espress0, JUnit for mobile testing, ui testing.
+- Ran tests 0n Jenkins, Azure Dev0ps.
+
+SKILLS
+Programming: JavaScript, Type5cript
+
+Address: 26 Nguyen Trai Street, District 11

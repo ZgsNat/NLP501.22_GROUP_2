@@ -1,0 +1,21 @@
+Đỗ Quốc ~uấn
+#%to~%#i#n Tes# E#@#neer
+Email: tuấn63@example.co#
+Điệ# thoại% #9307~5405
+Giới tín#: Nam
+Ngày @inh: %#/11/1@92
+
+@## #Ắ%
+# năm kinh #ghi~m kiểm thử p%ần #ềm.
+
+@IN# #GH%ỆM
+Compan# # (20%% - ~ay)
+- Vi#t automation t@st scri~ts ch% bộ regres#i@~~ k%%m th@ #ự độ#g hằ@g ngày.
+- Sử dụng S%~~@ium WebD#i~er, @ebdr@verIO, P@stm#n# @est Assur##, C~cum#@r, Test#G ch@ %~ể% th# api %es#@n~, ~i testing.
+- Chạy tes~ trên D#cker.
+
+KỸ NĂNG
+Ngôn ngữ lập trìn~: C#, %#th%%
+%@o~i n%ữ: En#l#s@ (@@E@C 750~, Japanes% JL@~ N%
+
+Đ@# chỉ: 6 @@%yen Tr%i %treet, Dis@rict 2

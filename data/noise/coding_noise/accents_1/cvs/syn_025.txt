@@ -1,0 +1,21 @@
+Tran Van Nam
+Automation Test Engineer
+Email: nam32@example.com
+Dien thoai: 0914197492
+Gioi tinh: Nam
+Ngay sinh: 07/02/2003
+
+TOM TAT
+5 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company B (2021 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung Espresso, Postman, TestNG cho kiem thu api testing, manual testing, mobile testing.
+- Chay test tren Jenkins, GitHub Actions, Azure DevOps.
+
+KY NANG
+Ngon ngu lap trinh: C#, Java
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 51 Nguyen Trai Street, District 1

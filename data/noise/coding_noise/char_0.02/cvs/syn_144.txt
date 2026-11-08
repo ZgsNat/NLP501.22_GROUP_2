@@ -1,0 +1,19 @@
+T%ần Thị Vy
+Automation Test Engineer
+Email: vy63@example.com
+Phone: 0980459205
+Gender: Female
+Date of birth: 14/11/1997
+
+SUMMARY
+1 years of experience in software testing.
+
+E#PERIENCE
+Company F (2@25 ~ Present)
+- Wrote and maintain#d automated test scripts for regression suites.
+- Used Playwright, Rest Assured, Postman, Gatling, Robot Framework, Pytest for api testing, performance testing, ui testing.
+
+SKILLS
+Programming: C#, TypeSc#ipt
+
+Address: 221 Nguyen Trai Stree#, District 3

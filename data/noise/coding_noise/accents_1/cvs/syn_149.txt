@@ -1,0 +1,21 @@
+Dang Quoc Nam
+Automation Test Engineer
+Email: nam24@example.com
+Dien thoai: 0924479352
+Gioi tinh: Nam
+Ngay sinh: 26/01/1992
+
+TOM TAT
+6 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company B (2020 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung WebdriverIO, Gatling, JUnit cho kiem thu performance testing, ui testing.
+- Chay test tren GitHub Actions, Azure DevOps, GitLab CI.
+
+KY NANG
+Ngon ngu lap trinh: C#, JavaScript
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 177 Nguyen Trai Street, District 9

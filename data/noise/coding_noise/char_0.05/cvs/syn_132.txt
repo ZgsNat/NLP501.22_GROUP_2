@@ -1,0 +1,21 @@
+Lê Thu Thảo
+Automation Test Engineer
+Email: thảo65@example.com
+Phone: 0978#70570
+#ender: Fem@le
+Date of %irth: 21/06/1997
+
+SUMMARY
+1 years of ex~er@ence in software testing.
+
+EXPERIENCE
+Company ~ (20%5 - Present)
+- Wrote and maintained @utomated te%t scripts for regression suites.
+- Used Se%enium WebDriv~r, Webdri%erIO, Rest As~ured, Postman, JU#it, Pytest for api @esting, ui testing.
+- Ran tests on GitHub ~ct%ons.
+
+SKILLS
+P#ogra%ming: Python
+Languages: ~nglish (TOEIC 750)
+
+Address: 278 Nguyen Trai Street, District 3

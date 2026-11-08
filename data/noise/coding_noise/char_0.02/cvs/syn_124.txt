@@ -1,0 +1,20 @@
+Vũ Quốc Nam
+Automation Test Engineer
+Email: nam47@example.com
+Điệ# thoại: 0962394739
+Giới tính: Nam
+Ngày sinh: 14/11/1999
+
+TÓM TẮT
+1 năm kinh nghiệm kiểm thử phần m%m.
+
+KINH NGHIỆM
+C~mpany G (2025 - nay)
+- Viết auto@ation test scripts cho bộ regression, %i%m thử tự động hằng ngày.
+- Sử dụng Selenium WebDriver, JUnit, Pytest cho kiểm thử ui testing.
+
+KỸ NĂNG
+Ngôn ngữ lập ~rình: @avaScrip#
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 242 Nguyen Trai Street, District 3

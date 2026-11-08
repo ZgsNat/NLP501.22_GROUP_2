@@ -1,0 +1,20 @@
+Tr%@ Quốc %am
+@ut~mati%# Test %ngin%er
+Email: nam#4~e#ampl~@c##
+Ph%ne: 09@013489@
+Gender% Male
+%ate of #i~th: 04/05/%99~
+
+S~M@ARY
+% ye@@% #~ experience in softw#re %%st@n#.
+
+E#PER@EN@E
+Comp@ny A ~202# - Pre%@nt%
+# Wrote @nd m#inta#ne@ autom~t@d %@st scripts @or reg#es#ion su#tes~
+- U~ed Seleniu% WebDriver, Gatli~#, Ro%ot F@~~ewo~k, Tes@N@ for perfo#mance t~sting, ui ~estin#.
+- Ran te~ts o~ Do#%er.
+
+SKILL~
+%~ogra##ing: J~va, Py#hon
+
+Address~ ~71 @guyen Trai %treet, D~s~rict 2

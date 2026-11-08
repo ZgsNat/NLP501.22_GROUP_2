@@ -1,0 +1,22 @@
+%r~n Mai Hư~ng
+Auto%a~ion Test ~n~%neer
+##a@#: huong@6@ex%mple.co~
+Phon~% 0%9~5~%6#0
+Ge@der: ~ema@@
+D#te @f birt#: 2%/01/~002
+
+S%MMAR%
+@0 ye#rs of %xpe@ie@ce i~ softwa#e testi%g~
+
+EXPERIENCE
+Comp~ny D (2~16 - @rese@t%
+- Designed and bu@lt a P##e O#je@# Model #~~o~at##@ ~~amework ~~~ #ntegr@ted it i~t# the #I p~p%l%ne.
+~ Us~@ %ebdriverIO% Rest @s#u#ed~ JMeter, P%test, Cu%u@ber fo@ api t~@t~ng@ p#r~ormance testing, ui testi%%.
+- @an ~est% on Do~ke%.
+
+SKILLS
+Progra~~i%g# C%
+%ertificati~n~ ISTQ@ CTF~
+L@ngu~ges~ Ja%#nese JLPT N2
+
+@ddre%s: 2~8 ~guyen Tr~i Street, Distric@ #

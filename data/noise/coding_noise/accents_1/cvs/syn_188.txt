@@ -1,0 +1,22 @@
+Le Duc Khoa
+Automation Test Engineer
+Email: khoa55@example.com
+Dien thoai: 0952857838
+Gioi tinh: Nam
+Ngay sinh: 16/07/2003
+
+TOM TAT
+7 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company F (2019 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung JMeter, Cucumber cho kiem thu manual testing, performance testing.
+- Chay test tren Docker, GitHub Actions, Jenkins.
+
+KY NANG
+Ngon ngu lap trinh: Java, Python
+Chung chi: ISTQB Foundation Level (CTFL)
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 212 Nguyen Trai Street, District 10

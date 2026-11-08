@@ -1,0 +1,20 @@
+Le Mai Hương
+Automation Test Engineer
+Email: huong88@examp1e.com
+Ph0ne: 0996347387
+Gender: Fema1e
+Date of birth: 04/08/1996
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERlENCE
+C0mpany A (2023 - Present)
+- Designed and built a Page Object Mode1 aut0mation framework and integrated it int0 the Cl pipeline.
+- Used Rest Assured, k6, JUnit, Pytest f0r api testing, manua1 testing, perf0rmance testing.
+- Ran tests on Jenkins, GitHub Acti0ns, GitLab CI.
+
+SKILLS
+Programming: JavaScript
+
+Address: 18 Nguyen Trai Street, District 2

@@ -1,0 +1,20 @@
+Hồ Đức Hùng
+Automation T#st Engineer
+Email: hùng28@example.com
+Phone: 0919670211
+Gender: Male
+Date of birth: 14/04/2002
+
+SUMMARY
+10 y~ars of ex~erience in software t%sting.
+
+EXPER@E#CE
+Compa@y F (2016 - %resent)
+- W#%te and maintained auto#ated test scripts for regression sui~es.
+- U~@d C%press, Rest Assured, k6, #Unit, Robot Framework for api testing, performance testin@, ui testing.
+
+SKILLS
+Programming~ JavaScript
+Languages: English (TOEIC 750)
+
+Address: #07 Nguyen Trai Street, District 2

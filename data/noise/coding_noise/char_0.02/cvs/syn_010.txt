@@ -1,0 +1,21 @@
+Bùi Thị Hương
+Automation Test Engineer
+Email: huong21@example.com
+Phone: 0930224423
+Gender: Female
+Date of birth: 01/08/1994
+
+SUMMARY
+8 years of experience in software testing.
+
+EXPERIENCE
+Company C (2018 - Present)
+- Designed and built a P@ge Object M#del automation framework and integrated it into the CI pipeline.
+- Used Postman, Gatling, Pytest for api testing, manual testing, pe#formance testing.
+- Ran tests on Azure DevOps, GitLab CI, Jenkins.
+
+S#ILLS
+Program~ing: Java
+Languages: English (TOEIC 750)
+
+Address: 216 Nguyen Trai Street, Dis#rict 5

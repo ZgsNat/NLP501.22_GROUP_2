@@ -1,0 +1,21 @@
+@rần Minh %ong
+A%t@mat~on Test #ngin@~r
+#m%il# long#4@e#@mpl@.#om
+P%one# 09%24@976@
+Ge%@er% Mal#
+Da%e @f ~irt~: 15/#@/1~@%
+
+SUM%ARY
+6 ~ears of expe~ienc# %n softwar% test~ng.
+
+EXPERIENCE
+Company F (@020 - #resen%#
+- Design@d an@ built a Page Object Mod@# #utom%ti#n fr%@ew%rk and ~n~@g~#~e~ i@ i%%o t#e C~ pipe~in#.
+- Us~d XCUITest, P%stman, Gat%ing, JUnit, Cucumb#r ~or api testin#, m%%ual te#tin%, mobile test%~~, ~e@form@~ce %e~t%ng#
+- Ran tes%# on @@ck~r, @i#Hub @ctio%s, Az#re @evO%~.
+
+S#IL~S
+Programming: %@~e~crip@
+~anguages@ Englis~ (@OEI# %%0)
+
+Ad#r#ss: 10@ Ng~yen Tr#i S#~e#t, #i@tr#c# 9

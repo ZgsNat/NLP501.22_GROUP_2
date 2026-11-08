@@ -1,0 +1,13 @@
+Nguyễn Ngọc Vy
+Automation Test Engineer
+Email: vy72@example.com
+Phone: 0998305426
+Gender: Female
+Date of birth: 14/03/1990
+
+SUMMARY
+7 years of experience in software testing.
+
+EXPERIENCE
+Company B (2019 - Present)
+- Designed and built a Page Object Model automation framework and 

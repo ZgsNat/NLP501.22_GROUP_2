@@ -1,0 +1,21 @@
+Bùi Thị Hương
+A#tomat%on Test Engineer
+Email: huong21@example.com
+Phone: 0930224~23
+Gender: Fem%le
+D~te of birth: 01/08/1994
+
+S@MMARY
+8 years of experience @n software testing.
+
+EXPERIENCE
+Compa~y C (2018 - Present)
+- Designed and built a Page Object Model automation framework and in%egrated it into the CI pipeline.
+- Us@d Postman, Gatling, Pytest for api testing, m#nual testi@g, performance testing%
+- Ran tests o@ #zure DevOps, Gi%Lab CI, Jenkins.
+
+SKILLS
+@rogramming: Java
+Languages: English (TOEIC 750)
+
+Addr@ss: 216 Nguyen #rai Street, District 5

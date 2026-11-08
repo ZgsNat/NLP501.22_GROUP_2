@@ -1,0 +1,21 @@
+Do Mai Linh
+Aut0mation Test Engineer
+Emai1: linh87@example.com
+Phone: 0946439333
+Gender: Female
+Date of birth: 07/03/1988
+
+SUMMARY
+4 years of experience in s0ftware testing.
+
+EXPERIENCE
+Company B (2022 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Cypress, WebdriverIO, Postman, Pytest, JUnit f0r api testing, ui testing.
+- Ran tests on Jenkins.
+
+SKlLLS
+Programming: C#
+Languages: English (T0EIC 750)
+
+Address: 293 Nguyen Trai Street, District 4

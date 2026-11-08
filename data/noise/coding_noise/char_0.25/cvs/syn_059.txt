@@ -1,0 +1,21 @@
+#ồ Quốc P#úc
+A%tom%tio~ Test E~gi@eer
+Email: phúc33#example.%om
+#hon#~ 0970987778
+Gende#: Mal@
+Date #f b%rth: 17~07/#002
+
+SUMMA@#
+% years of exp@rie@ce in sof@wa%@ testing.
+
+EXPE~IENCE
+~ompan@ # (%023 - %~esent)
+- %e%ig#ed and %u%l% a Pag# ~bje#t Mod~l automatio~ f%amew@rk a@d i%tegrated it ##@o t%e C% pipeline.
+- Use# Cyp@ess, #eb#riverIO@ Rest Assu~ed, JU~i~, @estN~ for ap@ te~ti@g, ui te@ting%
+% R%n tests o% GitHub #cti~ns~
+
+S@#LLS
+Progr#mming~ C#@ JavaScript
+Certif#catio%: ISTQB #TF%
+
+@ddr#%s: @82 Nguy#n Trai Stree#, Dis@rict 4

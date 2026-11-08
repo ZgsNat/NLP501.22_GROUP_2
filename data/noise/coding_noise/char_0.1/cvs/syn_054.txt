@@ -1,0 +1,20 @@
+H% Quốc Nam
+Automation Tes# E#gineer
+Emai#: nam47@exampl~.c@m
+Ph%ne: 0918376603
+~end@r: M#le
+Da#e @f birth: 12/09/1989
+
+~UMMARY
+4 years of experie#ce in @oftware testing.
+
+~~PERIENCE
+Compa#y A (2022 - Pr~sent)
+- Wrote and maintai#@d automated test scr%pts for regression su@%e~.
+- Used W~%driverIO# Postman~ @e~t Assur#d, Cucumber for api testing, ui testing.
+
+@KILLS
+Progra#ming~ Typ@Script
+Languages: Englis~ (TOEIC 750)
+
+Address: 287 N~~y@n Trai Street, District 6

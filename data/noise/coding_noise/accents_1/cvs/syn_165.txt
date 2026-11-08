@@ -1,0 +1,19 @@
+Dang Mai Vy
+QA/QC Engineer
+Email: vy78@example.com
+Dien thoai: 0978919151
+Gioi tinh: Nu
+Ngay sinh: 03/03/2002
+
+TOM TAT
+Moi tot nghiep, dam me kiem thu.
+
+KINH NGHIEM
+- Thuc hien kiem thu thu cong, viet test case va bao loi tren Jira.
+- Su dung Postman, Rest Assured cho kiem thu api testing, manual testing.
+- Chay test tren Azure DevOps.
+
+KY NANG
+Ngon ngu lap trinh: C#
+
+Dia chi: 261 Nguyen Trai Street, District 7

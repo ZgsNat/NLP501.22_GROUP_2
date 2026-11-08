@@ -1,0 +1,20 @@
+Đỗ Thu Hương
+Automation Test Engineer
+Email: huong48@example.com
+Phone: 0913860039
+Gende%: Female
+Date of birth: 24/02/1995
+
+SUMMARY
+4 years of expe%ience in software testing.
+
+EXPE@IENCE
+Company B (2022 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Selenium WebDriver, Cypress, Rest Assured, Gatling, @obot Framework, JUnit for api testin~~ performance testing, ui testing.
+
+SKILLS
+Programming: Java
+Languages: English (TOEIC 750)
+
+Address: 73 Nguyen Trai Street, District 12

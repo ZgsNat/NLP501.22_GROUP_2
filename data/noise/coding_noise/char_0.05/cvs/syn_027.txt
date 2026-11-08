@@ -1,0 +1,19 @@
+Hồ Thị Lan
+QA/QC Engineer
+Email: lan36@example.~om
+Ph%ne# @998013189
+Ge#der: Female
+Date of birth: 16/0@/2002
+
+SUMMARY
+Fresh graduate passionate about testi~g.
+
+E#PE~IENCE
+- Executed manual test ~ases and reported defects in Jira.
+- Used Webdri%erIO, Rest Assured% Postman, Robot #ra@ewo#k for api testing, ui testing.
+- R#n tests ~n Azure DevOps.
+
+SKILLS
+Languages% English (TO#IC 750)
+
+Addr~ss: 32 Nguyen Trai Street, Dist%%ct 6

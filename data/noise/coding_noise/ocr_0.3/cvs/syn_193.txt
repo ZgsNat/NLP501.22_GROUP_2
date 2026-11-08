@@ -1,0 +1,20 @@
+Nguyễn Đức Hùng
+Automation Test Engineer
+Emai1: hùng99@examp1e.com
+Phone: 0929203413
+Gender: Male
+Date 0f birth: 13/12/1988
+
+5UMMARY
+1 years 0f experience in software testing.
+
+EXPERIENCE
+Company F (2025 - Present)
+- Wr0te and maintained aut0mated test scripts f0r regression suites.
+- Used Se1enium WebDriver, Rest Assured, Postman, Cucumber, JUnit f0r api testing, ui testing.
+
+SKILLS
+Programming: Type5cript, Python
+Certification: ISTQB CTFL
+
+Address: 218 Nguyen Trai Street, District 6

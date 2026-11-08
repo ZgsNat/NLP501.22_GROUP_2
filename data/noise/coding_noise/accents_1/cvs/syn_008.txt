@@ -1,0 +1,21 @@
+Le Minh Hung
+Automation Test Engineer
+Email: hung91@example.com
+Dien thoai: 0971115104
+Gioi tinh: Nam
+Ngay sinh: 20/08/1996
+
+TOM TAT
+7 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company F (2019 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung WebdriverIO, Postman, k6, Cucumber, Robot Framework cho kiem thu api testing, performance testing, ui testing.
+- Chay test tren Azure DevOps.
+
+KY NANG
+Ngon ngu lap trinh: Java, C#
+Ngoai ngu: Japanese JLPT N2
+
+Dia chi: 252 Nguyen Trai Street, District 4

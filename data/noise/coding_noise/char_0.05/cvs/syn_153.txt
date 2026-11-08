@@ -1,0 +1,21 @@
+Đỗ Đức @am
+Automation Test Engineer
+Email: nam85@example.com
+Phone: 0994410590
+Ge%der: Mal%
+Date of birth: 21/03/1~95
+
+SUMMARY
+10 years o@ experi#nce in so~tware testing.
+
+EXPERIENCE
+Company ~ (2016 - Prese@t)
+- Defined the t#st automation strategy, led a team of 5 QA engine~rs and me@tored juniors on automation.
+- Used Playwright, Appium, Rest Assured, Postman, Gat%ing, Test@G for api testing, mobile t%stin%, performance testing, ui testing.
+- Ran tests on Jenkins, Docker.
+
+SKILLS
+Prog@ammi@g: JavaScript, Python
+L~ngua~es: English (TOEIC 750)
+
+Address: 68 N#uyen Trai Street, District 7

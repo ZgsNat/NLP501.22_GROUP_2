@@ -1,0 +1,22 @@
+Đặng Văn Tuấn
+Automation ~es~ Engineer
+E%ail: ~uấn2#@exam~le.%@m
+Điện th~ại: 0946137598
+Giới tính@ Nam
+Ngày sinh: 12/05/1~99
+
+TÓM TẮT
+3 năm kinh nghiệm ~iểm thử phần mềm.
+
+KINH NGHIỆM
+Company F (202~ - nay%
+- %iết autom%tion tes% sc@ipts cho bộ regressio@, kiểm thử tự động hằng ngày.
+- Sử dụng Cypress, Webd~iverIO, JMeter, Tes~~G cho kiểm thử performance testing, ui testing.
+- Chạy test trên Azure DevO%~.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Type~cript
+Chứng chỉ: ISTQB F#und~ti#n L#vel (CTFL)
+Ngoại ngữ: E#glish (TO@IC 750)
+
+Đ#a @hỉ: 215 N#uye# T#ai S@reet, Distr@ct 4

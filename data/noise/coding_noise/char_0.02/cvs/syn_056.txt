@@ -1,0 +1,20 @@
+Đặng Mai Linh
+Automation Test Engineer
+Email: linh65@example.com
+Phone: 0983164605
+Gender: Female
+Date of birth: 07/11/1#93
+
+SUMMARY
+3 years #f experience in software testing.
+
+EXPE~IENCE
+Company D (2023 - Present)
+- Wrote and maintained automated test scri#ts for #egression suites.
+- Used Selenium WebDriver, Appium, Postman, Cucumber, @obot Framework for api testing, mobile testing, ui testing.
+- Ra# tests on Jenkins.
+
+SKILLS
+Programming~ J~vaScript, Python
+
+Address: 72 Nguyen Trai Street, District 4

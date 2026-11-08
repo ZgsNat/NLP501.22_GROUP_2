@@ -1,0 +1,18 @@
+Lê Văn Tuấn
+QA/QC Engineer
+Emai1: tuấn17@example.com
+Phone: 0961378412
+Gender: Male
+Date 0f birth: 13/06/1989
+
+SUMMARY
+Fresh graduate passionate about testing.
+
+EXPERlENCE
+- Executed manual test cases and rep0rted defects in Jira.
+- Used P0stman, Rest Assured for api testing, manua1 testing.
+
+SKlLLS
+Languages: English (TOElC 750)
+
+Address: 133 Nguyen Trai 5treet, District 5

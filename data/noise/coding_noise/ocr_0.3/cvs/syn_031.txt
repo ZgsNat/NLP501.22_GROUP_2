@@ -1,0 +1,21 @@
+Đặng Thị Hương
+Automation Test Engineer
+Email: huong33@examp1e.com
+Ph0ne: 0983815115
+Gender: Fema1e
+Date 0f birth: 13/09/1998
+
+5UMMARY
+2 years of experience in software testing.
+
+EXPERIENCE
+Company F (2024 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used JMeter, Pytest for manua1 testing, performance testing.
+
+SKILLS
+Programming: Python
+Certification: ISTQB CTFL
+Languages: English (TOEIC 750), Japanese JLPT N2
+
+Address: 81 Nguyen Trai 5treet, District 9

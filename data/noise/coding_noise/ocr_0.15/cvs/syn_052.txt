@@ -1,0 +1,20 @@
+Lê Quốc Phuc
+Automation Test Engineer
+Email: phúc47@example.com
+Ph0ne: 0962342586
+Gender: Male
+Date of birth: 20/10/2002
+
+SUMMARY
+1 years of experience in software testing.
+
+EXPERIENCE
+Company B (2025 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Playwright, Rest Assured, Robot Framework, TestNG for api testing, ui testing.
+
+SKILLS
+Pr0gramming: Python
+Languages: English (TOEIC 750), Japanese JLPT N2
+
+Address: 106 Nguyen Trai Street, District 11

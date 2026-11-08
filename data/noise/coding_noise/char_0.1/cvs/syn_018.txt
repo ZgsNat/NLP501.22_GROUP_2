@@ -1,0 +1,21 @@
+Nguyễn Văn Tuấn
+A@tomation Test E%gineer
+Email: tuấn92@~xample.com
+Đi@@ #h%ại: 093~@58582
+G~ới t@nh: Nam
+N~ày si#h: 23/09#~991
+
+T%M TẮT
+5 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+~om%any B (2021 @ nay)
+- Xây @ựng framework auto#ation theo Page Objec% Model, data-driven, t@ch hợp Jenkins pip%line%
+- Sử ~ụn# Cypr@ss, Res~ A@~ured, Postman, Robot Frame#ork cho kiểm thử api testing, ui testing.
+- Chạy test trên Docker, GitHub A@ti@ns~
+
+KỸ NĂNG
+@g~n #g% lập #rình: Python, Java
+Chứng ch%: ISTQB Founda@io# Lev#l (CTFL)
+
+Địa c~ỉ: 25@ Nguyen @rai Street, Distric@ 4

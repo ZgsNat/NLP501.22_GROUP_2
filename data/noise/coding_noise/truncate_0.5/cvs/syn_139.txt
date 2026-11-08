@@ -1,0 +1,13 @@
+Phạm Mai Lan
+Automation Test Engineer
+Email: lan56@example.com
+Phone: 0994685039
+Gender: Female
+Date of birth: 23/11/1988
+
+SUMMARY
+4 years of experience in software testing.
+
+EXPERIENCE
+Company F (2022 - Present)
+- Wrote and maintained automated test scripts for r

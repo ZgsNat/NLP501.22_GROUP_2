@@ -1,0 +1,19 @@
+Tran Van Khoa
+Automation Test Engineer
+Email: khoa31@example.com
+Dien thoai: 0990722659
+Gioi tinh: Nam
+Ngay sinh: 11/10/2000
+
+TOM TAT
+1 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company B (2025 - nay)
+- Viet automation test scripts cho bo regression, kiem thu tu dong hang ngay.
+- Su dung Selenium WebDriver, Espresso, Postman, TestNG cho kiem thu api testing, mobile testing, ui testing.
+
+KY NANG
+Ngon ngu lap trinh: C#, Python
+
+Dia chi: 296 Nguyen Trai Street, District 1

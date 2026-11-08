@@ -1,0 +1,21 @@
+Do Văn Hùng
+Automation Test Engineer
+Email: hùng60@example.com
+Điện thoại: 0925660291
+Gioi tính: Nam
+Ngày sinh: 01/03/2003
+
+TÓM TẮT
+7 năm kinh nghiem kiểm thử phần mem.
+
+KINH NGHIỆM
+Company D (2019 - nay)
+- Viet automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.
+- 5ử dụng Appium, P0stman, Rest Assured, JUnit cho kiểm thử api testing, manual testing, mobile testing.
+- Chay test tren Docker.
+
+KỸ NĂNG
+Ngôn ngữ 1ập trình: C#
+Ng0ại ngữ: English (TOEIC 750), Japanese JLPT N2
+
+Địa chi: 208 Nguyen Trai 5treet, District 11

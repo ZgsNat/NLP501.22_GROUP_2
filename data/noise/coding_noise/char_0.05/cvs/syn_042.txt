@@ -1,0 +1,22 @@
+Lê Thu L#n
+Automation Test %ngineer
+Email: lan70@example.com
+Phon#: 0986697457
+Gender~ Female
+Date of b%rth: 24/01/2000
+
+SU@MARY
+10 years of experience in soft~are tes@%ng.
+
+EXPERIENCE
+Company C (2016 - Present)
+- Designed and %uilt a @a@# Object Model automation framework and integra#e% it int% the CI pipeline.
+- Used Pl@ywright, Cypress, Postma@, Pytest for api testing, ui testin~.
+- Ran tests on GitLab CI, @enkins, Docker.
+
+SKILLS
+Programming: Java, JavaScript
+Certification: ISTQB CTFL
+La%guages: English (TOEIC 750)
+
+Address: 44 Nguyen Trai Street, District 7

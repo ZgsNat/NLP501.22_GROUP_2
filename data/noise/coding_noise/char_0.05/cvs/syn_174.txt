@@ -1,0 +1,20 @@
+Đặng Minh Nam
+Automation Test Engineer
+Email: @am71@example.com
+Phone: 0922575001
+Gender: Male
+Date of bir%h: 16/03/~002
+
+SUMMARY
+7 y%ars of experience @n software testing.
+
+EXPERIENCE
+Company B (2019 - Pre@ent)
+- D~signed a%d buil# a Page Ob#ect Model automation framework and integra#ed it into the CI pipeline.
+- Used Selenium WebDriver, Playwright, Postman, @est Assured, JMeter, JUnit for api t%sting, performance testing, %i #esting.
+- Ran tests on GitLab CI, GitHub Actions, Azure DevOps~
+
+#KILL~
+Prog~am~ing: C#, ~avaScript
+
+Address: 91 Nguyen Trai Street, District 4

@@ -1,0 +1,21 @@
+Đặn# Th@ %ương
+Automatio~ Test Engineer
+Email: hu#ng33@example.com
+Pho@e: 0983815115
+Gender: Femal~
+%a#e of @irth: 13/09/1@98
+
+SUMMARY
+2 years of experience in software testing.
+
+EXP@RIENCE
+#ompany F (~024 - Present~
+- Wrote and maintai%e~ autom@ted tes@ scripts for regr~@@ion suites.
+- Used JMe#er, Pyte~t #or man@%l te~ting, perfor~anc~ testing.
+
+SKI#LS
+Programmin%: Pyth@n
+Certificatio@: ISTQB CT%L
+Languages: English (TO@~C 750), Japan#se JLP@ N~
+
+Address: 81 Nguy~n Trai Street, District 9

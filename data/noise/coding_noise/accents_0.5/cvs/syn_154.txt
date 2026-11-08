@@ -1,0 +1,20 @@
+Nguyễn Minh Nam
+Automation Test Engineer
+Email: nam28@example.com
+Dien thoại: 0967217417
+Gioi tinh: Nam
+Ngay sinh: 01/10/1994
+
+TÓM TẮT
+1 nam kinh nghiem kiểm thu phan mem.
+
+KINH NGHIỆM
+Company A (2025 - nay)
+- Viết automation test scripts cho bộ regression, kiem thu tu động hằng ngày.
+- Su dụng WebdriverIO, Playwright, Postman, Gatling, TestNG, Pytest cho kiem thử api testing, performance testing, ui testing.
+
+KY NĂNG
+Ngon ngu lap trình: Java
+Ngoai ngữ: English (TOEIC 750)
+
+Dia chỉ: 27 Nguyen Trai Street, District 7

@@ -1,0 +1,20 @@
+Vũ Mai V#
+Auto#ati#n Test Engin~er
+Email: vy2~@exam@le.com
+Phone: 0968535809
+#end@#: Female
+Date of birth: 03/08/2~01
+
+SUMMARY
+5 #ears of experienc# in so#tware testing.
+
+EXPERIENCE
+Com%any E %2021 - Pr#se#t)
+- Desig#ed and built @ Page Object Model automation framework and inte%rated it int~ the CI pipeline.
+- Used %ypress, Sele~ium WebDrive~, Rest A%sured, Post%an, Cu@umbe~, @estN# for api te@ting, ui %%sting.
+- Ran tes@s on GitHub Actions.
+
+SKILLS
+Program~ing: Python
+
+Ad@ress~ 258 Nguyen Trai #treet, District 1

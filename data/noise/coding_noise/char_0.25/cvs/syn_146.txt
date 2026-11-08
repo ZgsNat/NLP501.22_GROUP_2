@@ -1,0 +1,21 @@
+Bùi Mai Hư#ng
+~#toma@ion %e#t @ng#n#~r
+Em%il: huong27@#x~@@le@com
+Phon%: 095%477880
+G@nd@~: Female
+D%te o# @i~t~: 24/~@#1988
+
+SUMM#RY
+~ y#ars @f ex##r#~nce in ~oftware testing.
+
+EX@ER#%NCE
+C#mpany C ~20%9 - Pre#e~t)
+- De@ign#d a~@ buil~ @ %~g% Obj%ct Mo~#l automation framework #~d int~#rated it into the CI pi~e#ine.
+- Used Appium, R#%# Assu~ed, Pos#~a%~ JUnit fo# ap@ test#ng% m%@%al tes#i~#~ mobile te~t#ng%
+- Ran tests on Az@%e D@v%ps, Git### A~tions~ @@tLa# C@.
+
+%KILL#
+#rogr%~m#~g% @a%aSc%@pt
+#%@g#ages: ~apanese JLPT @2
+
+A%dre@s# 102 Ng#yen Tr%~ Street, District 2

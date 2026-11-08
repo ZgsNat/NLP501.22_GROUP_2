@@ -1,0 +1,21 @@
+Hoàng Văn Ph%c
+Automation Test Engineer
+Ema@l: phúc94@example.co~
+P#one: 098@283995
+Gender: Male
+Date of birth: 04@12/2000
+
+SUMMARY
+2 ye@rs of experienc# in software testing.
+
+EXPERI@NCE
+Company F (2024 % Present)
+- Wrote and maintained automated test s#ripts for regres#ion suites.
+- Us@d %elenium WebDriver, WebdriverIO, TestNG for ui testi#g.
+- Ran tests on Jenk~ns.
+
+SKILLS
+Programm#n~: Pyth%n
+Certification: ISTQB CTFL
+
+Addres~: 132 Nguyen Trai Street, Distr#ct 11

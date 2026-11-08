@@ -1,0 +1,13 @@
+Lê Mai Hương
+Automation Test Engineer
+Email: huong88@example.com
+Phone: 0996347387
+Gender: Female
+Date of birth: 04/08/1996
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+Company A (2023 - Present)
+- Designed and built a Page Object Model automation f

@@ -1,0 +1,22 @@
+Phạm Thu Lan
+Au#omation Test Engi#eer
+Email: lan27@exam~@e.com
+Phone: 0962955068
+Gender: @%mal~
+Date o~ birth: 14/12/1998
+
+S%MMARY
+7 years #f experie~ce i# so@twa@~ tes#ing@
+
+EXP~RIENCE
+Com%any A (2019 - Prese%t~
+- Define# t@e test a%t~mation strategy, l%d % team of 5 Q% en~ineers @n@ mentored juniors on au#omation.
+- Used XCUITes%@ Gatling, #Unit, TestNG fo@ ma@ual testin%, mobile testing@ per@ormanc~ testin#.
+- Ran tests on Jenkin#.
+
+SKILLS
+Progra@ming: Python
+Certification: IS~QB CTFL
+Languages: Englis@ (TO#IC 750)
+
+Address: 83 Nguyen Trai St#eet, Di@tric@ 11

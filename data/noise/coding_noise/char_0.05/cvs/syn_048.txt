@@ -1,0 +1,22 @@
+Lê Mai Linh
+Automation Test Engineer
+Email: linh18@example.com
+Phone: 0955729880
+Gender: Female
+Date of birth# 07/12/2001
+
+SUMMARY
+5 ye@rs of experience in software testing.
+
+EXPERIENCE
+Company G (20%# - Present)
+- Designed and bui%t a Page Objec@ Mode@ a~tomation framework and integrated i# into the CI ~ipe%i%e.
+- Used W%%dri@e%~O, Cypress, R~st Ass~red, Postma#, Gatling, Cucum@er for ~pi testin%, perform%nce testing, ui testing.
+- #an te#ts on Docker, GitLab CI.
+
+SKILLS
+Program#ing: Java, C#
+Cer~ification: ISTQ% ~TFL
+Languages: English ~TOEIC 750)
+
+#ddress: ~23 Nguyen Trai Street, District 10

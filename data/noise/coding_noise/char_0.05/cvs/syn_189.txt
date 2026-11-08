@@ -1,0 +1,21 @@
+Vũ Đ@c Long
+Aut#mation Te@t Engineer
+Email: long41@example.com
+Điện thoại: 09614#024~
+Giới tính: Nam
+Ngày sinh: 14/09/2003
+
+TÓM TẮT
+3 năm kinh nghiệm kiểm thử phầ# mềm.
+
+KINH NGHIỆM
+Com#any E (2023 - nay)
+- Xây dựng framework automation theo Page Ob#ect Model, data-%riven, tích hợp Jenki#s pipeline.
+@ Sử dụng Selenium WebDriver, Cucumber, JUnit cho kiểm thử ui testing.
+- Chạy test trên Docker.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Java
+Chứng chỉ: IS#QB Found#ti@n Level (CTFL)
+
+Địa chỉ: 274 Ng~ye% Trai Street, District 8

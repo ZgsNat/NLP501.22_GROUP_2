@@ -1,0 +1,21 @@
+Lê Minh Hùng
+Aut0mation Test Engineer
+Email: hùng91@example.com
+Dien thoại: 0971115104
+Giới tính: Nam
+Ngay sinh: 20/08/1996
+
+TOM TẮT
+7 nam kinh nghiệm kiểm thử phan mềm.
+
+KINH NGHIỆM
+C0mpany F (2019 - nay)
+- Xây dung framework automation the0 Page 0bject Mode1, data-driven, tích hop Jenkins pipeline.
+- Sử dụng WebdriverI0, Postman, k6, Cucumber, Robot Framework cho kiểm thu api testing, performance testing, ui testing.
+- Chạy test trên Azure Dev0ps.
+
+KỸ NĂNG
+Ngôn ngu lập trình: Java, C#
+Ngoại ngữ: Japanese JLPT N2
+
+Dia chỉ: 252 Nguyen Trai 5treet, District 4

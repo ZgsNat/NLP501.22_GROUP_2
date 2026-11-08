@@ -1,0 +1,21 @@
+Đặng Thu %@
+Automati#n T@st En@ineer
+Email: vy87%example.com
+Điện thoại: 0927620998
+Giới tính: Nữ
+Ngày sinh: 12/11/1991
+
+TÓM TẮT
+4 năm kin@ nghiệm kiểm thử phần #~m.
+
+KI~H NGHIỆM
+Company G ~20@2 - nay)
+- Xây dựng framework automation theo Page Object Model, dat~-driven, tích hợp #enkins pipe~ine.
+- Sử dụng Playwright% WebdriverIO, k6, Cucumber, JUnit cho kiểm thử pe@fo@mance testing, ui testi%g#
+- Chạy test tr#~ GitHub Actions, Jenkins.
+
+KỸ N@N~
+N%ôn ngữ lập trình: TypeScript, JavaScript
+Ngoại ngữ: Englis~ (T%EIC 750)
+
+Đị# chỉ: 189 Nguyen Trai Street, District 9

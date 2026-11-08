@@ -1,0 +1,22 @@
+Trần Mai #ương
+Automation Test Engineer
+Email: huong86@example.com
+Phone: 0998546660
+Ge#der: Female
+Date of birth: 20/01/2002
+
+SUMMARY
+10 years of exper#%n@e in software testing.
+
+EXPERIENCE
+C#mpany D (2016 - Present)
+- Designed and built a P#ge Object Mode@ automation framework and integrated it into the CI pipeline.
+- Used WebdriverIO, Rest Assured, JMeter, Pyt~st, Cucum%er for api testing, performance testing, u@ testing.
+- Ran ~ests on Do%ker.
+
+S#ILLS
+Programming: C#
+Certification: ISTQB CTF~
+La%guages: Japanese JLPT N2
+
+Address: 238 N%uyen Trai Street~ District 7

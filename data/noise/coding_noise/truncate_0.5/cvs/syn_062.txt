@@ -1,0 +1,13 @@
+Bùi Thị Hương
+Automation Test Engineer
+Email: huong77@example.com
+Phone: 0947503167
+Gender: Female
+Date of birth: 15/09/1990
+
+SUMMARY
+5 years of experience in software testing.
+
+EXPERIENCE
+Company E (2021 - Present)
+- Wrote and maintained automated 

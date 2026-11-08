@@ -1,0 +1,21 @@
+N~uyễn Đức Tuấn
+Autom~tion Test Engineer
+~mail: tuấn84@example.%om
+Phone: @926059096
+Gender: Male
+Date of birth: 13/04/1988
+
+~UMMARY
+2 years #f experience in software testing.
+
+EXPERIENCE
+Company A (2024 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used ~ebdriverIO, Pytest, Cucumber for ui testing.
+- R#n tests on G~tLa% CI.
+
+SKILLS
+Programming: Java, C@
+Languages: Japanese JLPT N2
+
+Address: 298 Nguyen Tra# #tre#t, Di#trict 12

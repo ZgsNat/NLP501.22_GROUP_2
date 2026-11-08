@@ -1,0 +1,22 @@
+Nguyễ@ Mai ~rang
+Automati~n T~s# ~ngineer
+Em@il: tran#98@example.com
+Đi#n thoại: 091872~939
+Giới tính: Nữ
+Ngày #~nh: 26/0~/19%9
+
+TÓ% TẮT
+2 năm kinh ng#%ệm kiểm t~ử phầ% mềm.
+
+KINH NGH#ỆM
+Company G %2024 - nay)
+- Viết automation test script~ cho bộ r%gre%sion, kiểm thử tự động hằng ngày.
+- Sử dụ@g Cypres@, Selenium WebDriver, XCUIT%s~, Postm#n, Cucumber @h~ ki%m th~ ap% testing, mobile test~n~, ui testing.
+- Chạy test trên GitHub Actions.
+
+KỸ NĂNG
+Ngôn ng~ lập tr%nh: TypeScri@t
+C%ứng ch%: ISTQB Fou@da%ion L%vel (CTFL)
+Ngoại ngữ: ~nglish (TOEIC 750), Japanese JL~T N2
+
+%ịa c#ỉ: 227 %guyen Trai Street, Distri#~ 1

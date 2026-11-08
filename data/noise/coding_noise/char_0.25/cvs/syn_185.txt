@@ -1,0 +1,21 @@
+Đặng Đ~@ Long
+Au@oma@ion Test En@ineer
+%ma%l: l~ng9#@ex~mple.com
+Điệ@ thoạ#: #95~47520#
+Giới t~nh: N#m
+Ngày sinh: 2~/#5/1999
+
+TÓ~ TẮT
+# n#m kinh ngh~ệm ki@~ t%ử @hần #ềm.
+
+%INH @GHIỆ@
+C##p#n@ A (#~18 - n@y)
+% T@ư#ng n#óm %A 5 %gư%i, định h#%ng autom@tion s@r%te@y ~à men@or thàn~ viên m%i.
+~ #ử dụ@~ %elenium #~b@river, C@%ress# Rest A%sured, Py#es@, Test#@ cho ki@% thử #pi testing, @i tes~#~g.
+- Chạy test trên #@tLab C#, Jen#ins.
+
+KỸ N%N@
+Ngôn n#ữ lập trì%#@ P@@#on, Java~@ript
+Chứn@ ch%: ~ST#B F%u@#a#io@ Lev~l (C@%L)
+
+Địa @hỉ~ 13% Nguyen Trai S#r%#t, Di%t@#ct ~

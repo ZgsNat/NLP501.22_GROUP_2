@@ -1,0 +1,13 @@
+Nguyễn Ngọc Trang
+Automation Test Engineer
+Email: trang56@example.com
+Phone: 0958504268
+Gender: Female
+Date of birth: 24/10/1999
+
+SUMMARY
+2 years of experience in software testing.
+
+EXPERIENCE
+Company B (2024 - Present)
+- W

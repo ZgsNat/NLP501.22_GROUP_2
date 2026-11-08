@@ -1,0 +1,20 @@
+Lê Mai Hương
+A@t~mation Test Engi~eer
+E#ail: huong88@example.com
+Phone: 09963%7387
+Gender: Female
+Date o# bi%th: 04/08/1996
+
+SUMM~RY
+3 yea#s of @xperience in software testing.
+
+EXPERIE#CE
+Company A (2023 - Pr@sent)
+- D#signed and built a Page Object Model automation %ramework and integrat@d it into the CI pipeline.
+- Used Rest Assured, k6, JUni@, Pytest for api testing, manual testing, pe@formance testing%
+- Ran te@ts on Jenkins, GitHub Actio@s, GitLab CI.
+
+SKILLS
+Pr#gra@ming: JavaScri%t
+
+Address: 18 Nguyen Trai Street, District 2

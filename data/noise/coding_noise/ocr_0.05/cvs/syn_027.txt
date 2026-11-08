@@ -1,0 +1,19 @@
+Hồ Thị Lan
+QA/QC Engineer
+Email: lan36@example.com
+Phone: 0998013189
+Gender: Female
+Date 0f birth: 16/02/2002
+
+SUMMARY
+Fresh graduate passionate about testing.
+
+EXPERIENCE
+- Executed manual test cases and reported defects in Jira.
+- Used WebdriverIO, Rest Assured, Postman, Robot Framework for api testing, ui testing.
+- Ran tests 0n Azure DevOps.
+
+SKILLS
+Languages: English (TOEIC 750)
+
+Address: 32 Nguyen Trai Street, District 6

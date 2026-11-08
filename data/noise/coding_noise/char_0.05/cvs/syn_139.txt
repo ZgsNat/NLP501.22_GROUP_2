@@ -1,0 +1,22 @@
+Ph@m Mai Lan
+Autom~tion Test Engineer
+Email: lan56@%xample.com
+Phone: 0994685039
+Gender@ Female
+Da~e of birth: 23/11/1988
+
+SUMMARY
+4 years #f experienc% in software testing.
+
+EXPERIENCE
+Company F (2022 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used WebdriverIO, Play%ri%ht, Postman, Re#t Assu#ed, Pytest for api testing, ui testing.
+- Ran tests on Jenkins.
+
+SKILLS
+Programming# JavaScript
+@ertif#cation: @ST#B CTFL
+Languages: English (~OEI% 7@0)
+
+A~dress: 76 Nguyen Tr~i S#reet, District 5

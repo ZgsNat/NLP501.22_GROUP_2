@@ -1,0 +1,20 @@
+Hồ Van Phúc
+Aut0mation Test Engineer
+Emai1: phúc83@example.com
+Phone: 0934235540
+Gender: Ma1e
+Date of birth: 14/02/1995
+
+5UMMARY
+2 years 0f experience in software testing.
+
+EXPERIENCE
+C0mpany G (2024 - Present)
+- Wrote and maintained aut0mated test scripts f0r regression suites.
+- Used Selenium WebDriver, P0stman, Rest Assured, Cucumber f0r api testing, ui testing.
+
+SKILLS
+Programming: JavaScript, Java
+Certification: ISTQB CTFL
+
+Address: 256 Nguyen Trai Street, District 11

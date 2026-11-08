@@ -1,0 +1,21 @@
+Vũ Đ@c Long
+Au@om#t~on Test ~ngineer
+Em@il: long41@example.com
+Điệ# thoại: 096143%%48
+Gi%@ tính: %am
+Ngày #inh: 14/09/2003
+
+TÓM TẮ#
+3 n~m kin# nghiệm ki@m thử phần %~m.
+
+K~NH NGHIỆM
+Company E #2023 - nay%
+- #ây dựng %rame#ork auto%at@on theo Page O@ject Mod%l, d#ta-dri#e%@ tích h~p Je#kins pipeli#e%
+- Sử #ụn# Selenium Web@@iver, Cucumbe~, JUnit cho kiểm thử ui @esting.
+% Chạy test trê@ D@cker.
+
+KỸ NĂNG
+Ngôn n@ữ lập trình: Java
+Chứng chỉ: ISTQB Fo@@da@i~~ Leve~ (CTFL)
+
+~ịa chỉ: 2%4 Nguyen Trai Street, Dis~rict 8

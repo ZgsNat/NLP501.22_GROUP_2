@@ -1,0 +1,18 @@
+@rần Qu@c Tuấn
+QA/QC @ngineer
+%mail: tuấn29@ex#mple.com
+Phone: 0927151#49
+Gen%er: Mal%
+Date @f birth: 22/05/1995
+
+SUMMAR~
+@resh #ra~~ate passionate about %esting.
+
+E%PERIENCE
+- Exe%ute# manual %est ca%es and ~epor#ed defec%s in Jira.
+- Used XCUIT%st, Robot Framework for manual testing, mobile testing.
+
+SKILL~
+~ro@ramm#ng: TypeScri%t
+
+~dd@ess: 268 Nguyen Trai Street, District 7

@@ -1,0 +1,13 @@
+Đặng Mai Vy Automation Test Engineer Email: vy85@example.com
+Phone: 0920784168
+Gender: Female
+Date of birth: 17/04/2001 
+SUMMARY 1 years of experience in software testing.
+
+EXPERIENCE Company B (2025 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Selenium WebDriver, Playwright, XCUITest, TestNG for mobile testing, ui testing. - Ran tests on Jenkins.
+
+SKILLS Programming: Python
+Languages: English (TOEIC 750)
+ Address: 219 Nguyen Trai Street, District 5

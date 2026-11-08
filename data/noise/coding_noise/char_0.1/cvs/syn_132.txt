@@ -1,0 +1,21 @@
+~ê Thu Thảo
+Automa@io% Test Eng@~eer
+Email: thảo65@exampl#.c#m
+Ph%ne: 0978870%70
+Gender: Female
+Dat% of ~irt@: 21/06/1997
+
+#UMM#RY
+1 ~ears of experience #n software testin@.
+
+EXPERIENC%
+Company E #2025 - Present)
+- W%ote %n~ maintain#d automate@ test scripts fo% regr~ssion su%tes.
+- U%e# Se~enium WebD~iver, WebdriverIO, Rest Assured, Postman, #Unit, P@t%st #or api t~sting, ui t#sting.
+~ Ran tests o@ GitHu# Act@ons.
+
+SKILLS
+%ro~ramming: Python
+Languages: English (TOEIC 750)
+
+Ad#ress: 278 Nguyen T#ai Street, Di@trict 3

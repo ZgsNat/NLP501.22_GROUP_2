@@ -1,0 +1,19 @@
+Hoàng Mai %~%@
+Automation ##st Engineer
+Email: th~o~9@~xample.com
+Phone: #96%#45~@3
+Gen%er: Fema@%
+Date of birth: @5/12~199@
+
+S@MMARY
+1 years of experience in software testing.
+
+EXPERIENCE
+#om#any A (2025 - Present)
+# W%ote and ~aintained automated test scri~t% for #egressi#n ~uite#.
+- Used WebdriverIO, Playw~ight, Res@ Assure@, P~stman, JMeter, Rob@t Framework, TestNG for ap~ testin@, perf#rmance testing, ~i test~ng.
+
+SKILLS
+Program#@@g: Java
+
+Address: 2%4 Nguyen Trai Str%et, District 6

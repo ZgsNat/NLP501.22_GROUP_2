@@ -1,0 +1,21 @@
+Hồ Mai Lan
+Automation Te%t Engineer
+Email: lan23@example.com
+Phone: 092751345@
+Gender: Fe#ale
+%ate of %irth: 21/12%1991
+
+SUMM@RY
+7 #ears of experience in software testing.
+
+EXPERIENCE
+Co@pany A (2019 - Present)
+- Designed and built a Page Object Model automation framework and inte@rated it into the CI pipel#n~.
+- Used WebdriverIO, Rest Assured, Po@tman, TestNG for api ~esting@ ui testing.
+- Ran tests on Jenkins.
+
+SKILLS
+Programming: Java
+Languages: English (TOEIC 750)
+
+Add%ess: 98 Nguyen Trai Street, Distri#t 4

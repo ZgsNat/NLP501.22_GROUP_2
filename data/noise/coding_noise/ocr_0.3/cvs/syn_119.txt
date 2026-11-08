@@ -1,0 +1,19 @@
+Bùi Ngọc Hương
+QA/QC Engineer
+Email: huong47@example.com
+Dien thoại: 0986427662
+Giới tính: Nữ
+Ngay sinh: 27/07/1989
+
+TOM TẮT
+Moi tốt nghiệp, dam mê kiem thử.
+
+KINH NGHlỆM
+- Thực hiện kiểm thử thủ công, viết test case va báo 1ỗi trên Jira.
+- 5ử dung Playwright, Rest Assured cho kiem thử api testing, ui testing.
+
+KY NANG
+Chứng chỉ: ISTQB Foundation Leve1 (CTFL)
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 171 Nguyen Trai Street, District 1

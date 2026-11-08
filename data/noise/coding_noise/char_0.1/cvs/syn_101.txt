@@ -1,0 +1,19 @@
+Nguyễn Thị Linh
+A~tomat~on Tes% E#gineer
+Email: linh94@example.com
+Pho@e: 097440~060
+@ender: Female
+Date of birth: 15/1%/1996
+
+SUMMARY
+3 years of exper%ence in software testing.
+
+~XPER%ENCE
+Company E (2023 - Pr##ent)
+% Wrote and m@intained autom%ted test scri%ts for reg%ession suites.
+- Used Cyp%es#% Esp@esso, Re%t Assured, P@test@ TestNG for api te~ti~g, mobi~e testing, ui test#ng.
+
+SKILLS
+Progr%mming: TypeScript, C#
+
+Address: 3 Ng@yen Tr~i Street, Di~tric% 6

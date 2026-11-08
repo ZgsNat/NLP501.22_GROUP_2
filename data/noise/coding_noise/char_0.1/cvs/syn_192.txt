@@ -1,0 +1,20 @@
+Vũ Ngọc Trang
+Au@~mation @est Engineer
+%#a%l: trang~8%example.%o%
+Phone: 0929346175
+Gender: Female
+Date of bir~h: 27/09/2001
+
+SUMMARY
+# years of experience in ~%#tware t#stin~.
+
+EXPERIENCE
+Company B (20%5 - Pre@ent)
+- Wrote and main%ained auto~ated te~t scripts for regression suites.
+- Used Pos~man, Re%t Assu#e@, k6, JUnit for api testing, manual testing, performance testing.
+
+SKILLS
+Progr~mming: Java#%#ipt
+Certification: I#TQB CTFL
+
+Address: 108 Nguyen T%ai Street, Di~trict @

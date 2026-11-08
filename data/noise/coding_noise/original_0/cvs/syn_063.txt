@@ -1,0 +1,22 @@
+Bùi Văn Long
+Automation Test Engineer
+Email: long91@example.com
+Phone: 0982369824
+Gender: Male
+Date of birth: 26/10/1997
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+Company E (2023 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.
+- Used XCUITest, TestNG for manual testing, mobile testing.
+- Ran tests on Azure DevOps, Docker, GitHub Actions.
+
+SKILLS
+Programming: TypeScript, Python
+Certification: ISTQB CTFL
+Languages: English (TOEIC 750)
+
+Address: 28 Nguyen Trai Street, District 6

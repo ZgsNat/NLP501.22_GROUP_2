@@ -1,0 +1,20 @@
+Lê Thu Trang
+Automation @%st Engineer
+Emai@: trang72@ex@mpl#.com
+@hone: 09~52969%6
+G~nder: Female
+Date of birth% 11/03/1991
+
+SUMMARY
+6 year@ @f experience in software testing.
+
+E@P@R@ENCE
+Com~a@y B (~020 - Present)
+- Design@d and built a Page Object Model auto#a@i~n framework and inte@%ate@ it into the CI pip%#ine#
+- U%#d XCUITest, JU#~# f~r manual testing, m@bi%% ~esting.
+- Ran @ests o% @zure D@v~ps.
+
+~KILL@
+Prog%amming: Type%c%i#t
+
+~d@ress: 80 Nguye# Tra# Str~et, District 9

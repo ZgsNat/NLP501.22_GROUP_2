@@ -1,0 +1,21 @@
+Bùi Mai Lan
+Automation Test Engineer
+Email: lan24@example.com
+Điện thoại: 0987556758
+Giới tính: Nữ
+Ngày sinh: 14/12/1996
+
+TÓM TẮT
+7 n~m kinh nghiệm kiểm thử ph~n mềm#
+
+KINH NGHIỆM
+Company B (2019 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.
+- Sử dụng WebdriverIO, Gatling, Pytest, TestNG cho kiểm thử perf%rmance testing, ui testing.
+- Chạy test trên Jenkins, Docker, Azure ~evOps.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: TypeScript
+Ngoại ngữ: Japanese JLPT N%
+
+Địa ch%: 47 Nguyen Trai Street, District 6

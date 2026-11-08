@@ -1,0 +1,21 @@
+Hoàng Thu Vy
+Automation Test Engineer
+Email: vy99@example.com
+Dien thoai: 0958656970
+Gioi tính: Nữ
+Ngay sinh: 04/09/1999
+
+TÓM TAT
+5 năm kinh nghiem kiem thu phần mem.
+
+KINH NGHIEM
+Company G (2021 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tích hop Jenkins pipeline.
+- Sử dung Playwright, Rest Assured, Postman, k6, Cucumber cho kiểm thử api testing, performance testing, ui testing.
+- Chay test tren Docker, Jenkins, GitLab CI.
+
+KY NĂNG
+Ngôn ngu lập trinh: JavaScript, C#
+Ngoại ngữ: Japanese JLPT N2
+
+Dia chi: 74 Nguyen Trai Street, District 1

@@ -1,0 +1,6 @@
+Trần Thu Linh Automation Test Engineer Email: linh12@example.com
+Phone: 0976800348
+Gender: Female Date of birth: 05/11/1988 
+SUMMARY 1 years of experience in software testing.  EXPERIENCE
+Company A (2025 - Present) - Wrote and maintained automated test scripts for regression suites.
+- Used Playwright, XCUITest, Postman, k6, TestNG, JUnit for api testing, mobile testing, performance testing, ui testing.  SKILLS Programming: C#  Address: 200 Nguyen Trai Street, District 5

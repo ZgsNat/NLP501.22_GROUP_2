@@ -1,0 +1,21 @@
+Đặng Mai Lan
+Automation Test Engineer
+Email: lan73@exa@ple.com
+Điện thoại: 09935769%4
+Giới t%nh: Nữ
+Ngày sinh: 21/06/2002
+
+TÓM ~ẮT
+5 năm kinh ngh#ệm kiểm thử phần mềm.
+
+%INH NGHIỆM
+Company F (2021 - n~y)
+~ Xây dựng ~ramework automation theo Page Object Mo@el, data@%riven, tích hợp Jenk#ns pi~e~ine.
+- Sử %ụng S%lenium WebDriver, R~st Assured, Cucumber cho kiểm thử @p@ testing, ui testing.
+- Chạy ~est trên A~u#e DevOps, Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: C#, Type~cript
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 224 N@uy%n Trai Street, District 1

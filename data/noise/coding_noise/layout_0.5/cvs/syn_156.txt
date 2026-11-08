@@ -1,0 +1,8 @@
+Đặng Văn Tuấn Automation Test Engineer
+Email: tuấn24@example.com Điện thoại: 0946137598 Giới tính: Nam Ngày sinh: 12/05/1999  TÓM TẮT
+3 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company F (2023 - nay)
+- Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.
+- Sử dụng Cypress, WebdriverIO, JMeter, TestNG cho kiểm thử performance testing, ui testing. - Chạy test trên Azure DevOps.  KỸ NĂNG Ngôn ngữ lập trình: TypeScript Chứng chỉ: ISTQB Foundation Level (CTFL) Ngoại ngữ: English (TOEIC 750)  Địa chỉ: 215 Nguyen Trai Street, District 4

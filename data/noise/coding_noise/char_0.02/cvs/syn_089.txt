@@ -1,0 +1,20 @@
+Trần Ngọc Lan
+Automation Test Engineer
+Email: lan71@exam#le.com
+Phone: 0956735943
+Gender: Female
+Da@e of birth: 10/12/1999
+
+SUMMARY
+7 years of experienc~ in software t%sting.
+
+EXPERIENCE
+Company B (2019 - Prese%t)
+- Defined the test automation strategy, led ~ team of 5 QA engineers and mentored junior@ on automation.
+- Used Selenium WebDriver, Esp#esso, TestNG for mobile testing, ui testing.
+~ Ran tests on GitLab CI, Docker.
+
+SKILLS
+Prog#amming: Java, JavaScript
+
+Address: 227 Nguyen Trai Street, District 10

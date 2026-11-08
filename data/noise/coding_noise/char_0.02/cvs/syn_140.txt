@@ -1,0 +1,21 @@
+H# Quốc Long
+Automation Test Engineer
+Email: long28@example.com
+Phone: 0944129962
+Gender: Male
+Date of birth: 08/10/19~3
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+Company A (2023 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.
+- Used Rest Assured, JMeter, TestNG for api testing, manual testing, performance testing.
+- Ran tests on Docker, ~itHub Actions.
+
+SKILLS
+Programming# Py@hon, C#
+Languages: English (TO~IC %50), Japanese JLPT N2
+
+Address: 60 Nguyen Trai Street, District 2

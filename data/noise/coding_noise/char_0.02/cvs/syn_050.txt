@@ -1,0 +1,22 @@
+Đỗ Văn Khoa
+Automation Test Engi@eer
+Email: khoa32@~xample.com
+Điện thoại: 0951343854
+Giới tính: Nam
+Ngày si%h: 13/02/1991
+
+TÓM TẮT
+1 năm kin# nghiệ% kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company F (2025 - nay)
+- Viết automation test scripts cho @ộ regression~ kiểm thử tự động hằng ngày.
+- Sử dụng WebdriverIO, XCUITest, Postman, TestNG, Cucu~be% cho kiểm thử api testing, mobile testing, ui testing.
+- Chạy test trên Docker.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: TypeScript, Java
+Chứng chỉ: ISTQB Foundat~on Level (CTFL)
+Ngoại ngữ: Engl%sh (TOEIC 75@)
+
+Địa chỉ: 195 Nguyen Trai Street, District 6

@@ -1,0 +1,13 @@
+Hồ Đức Phúc
+Automation Test Engineer
+Email: phúc37@example.com
+Phone: 0923813714
+Gender: Male
+Date of birth: 18/05/1990
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+Company E (2023 - Present)
+- Wrote 

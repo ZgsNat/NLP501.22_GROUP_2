@@ -1,0 +1,13 @@
+Phạm Mai Vy
+Automation Test Engineer
+Email: vy44@example.com
+Phone: 0925944033
+Gender: Female
+Date of birth: 14/08/2003
+
+SUMMARY
+5 years of experience in software testing.
+
+EXPERIENCE
+Company G (2021 - Present)
+- Designed and built a Page Object Model automation fram

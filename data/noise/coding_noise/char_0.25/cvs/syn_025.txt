@@ -1,0 +1,21 @@
+Trầ# Văn Nam
+Aut%matio@ Test Engineer
+E%ai@: ~a%%2@examp~e~~om
+Điện th%~i: 091~197492
+Gi%# t%nh: Nam
+Ngà~ @in#: 07/02/200#
+
+T@M TẮT
+@ n%m kinh @ghiệm ki#m t%ử phần mềm.
+
+%INH #@HIỆM
+Compan# B (202~ - nay~
+- Xây ~%n% fr~#ewor% @u##ma~ion @@e% %age Obj%ct M#del, data-dr%ven, @@ch ##p ~enkin@ p#pelin#.
+% Sử dụn% Espre~#@, ~ost%#%, @estN~ c~o kiểm thử a~i t%@ti@g, manual t@~tin~, mobile testing.
+- Chạ@ t#st tr#n J~n%%ns, GitHub Action@, Azure DevOps.
+
+K@ NĂNG
+N@ôn ngữ lập trìn#~ C#, J%@%
+Ngo~i ng%% En@l#sh @TOE%~ ~5%)
+
+Địa chỉ: 51 Ngu%en Trai S@reet, D@strict %

@@ -1,0 +1,22 @@
+Phạm Quốc Long
+Automa~ion Test Engineer
+Email: long98@@xamp~e#com
+Điện thoại: 097@733686
+Giới tính: ~~m
+N~ày sinh% 20/1~/1998
+
+TÓM TẮT
+8 năm ki@h @ghiệm kiểm thử phần mềm.
+
+KI~H NG#IỆM
+Compa~y G (201# - nay)
+- Xây dựng framework auto#ation the~ @age Object Model, data-driven, tí@h hợp Jenk%n@ pipeline.
+- Sử dụng Playwright, Selenium WebDriver, Rest Assured, Postman, Robot F@amework, JUnit cho ~iểm thử api testing, ui testing.
+- Chạy test trên GitHub Actions, GitLab CI, Azure DevOps.
+
+KỸ NĂNG
+Ngôn ngữ lập tr#nh: Typ~Script
+Chứng chỉ: IST%B Foundation L@vel (CTFL)
+Ngo#i ngữ: English (TOEIC 750)
+
+Địa @hỉ: 297 Nguyen Trai Street, District 10

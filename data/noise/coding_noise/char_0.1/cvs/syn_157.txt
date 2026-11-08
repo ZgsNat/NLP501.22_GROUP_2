@@ -1,0 +1,20 @@
+Vũ Văn Nam
+Auto~ation Te@t Engi%e%r
+Emai~: nam15@examp%e.co#
+Phone: %91007@931
+Ge#der# Male
+Date of birt#: 02/11/199@
+
+SUMMARY
+2 ye@~s of ~xpe~ience in software ~esting.
+
+EXPER@E%CE
+Company B (2024 - P#esent)
+- Wrote and %aintained automated test scrip%s for re%ressio@ ~uites.
+# Use% C@press, Rest Assured, Robot Fra%e#ork for api testing, ui tes~ing.
+
+SK~LLS
+Progr%mming: JavaScript
+Langu#ges: English (TOEIC 750)
+
+Address: 147 Nguyen Trai Street, District 8

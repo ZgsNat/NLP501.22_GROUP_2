@@ -1,0 +1,22 @@
+Trần %ai Hương
+~u~om~tion T#st En%ineer
+Em@il: huong86@exa~pl@.c@m
+Phone: 09~8546660
+G@%der: F~male
+Date o@ birth: 20/01/~002
+
+SUM%ARY
+1# yea~s of exp@rience in s@ft%are testing.
+
+EXPERIEN@#
+Company D (#0@6 - P~#se@t~
+- Designed and buil@ a Pa#e Object Model automa@ion fra#ework and i%tegra~ed it int~ %he CI pip@line.
+- @se@ WebdriverIO, Rest Assured, JMet@r, Pyt@st, Cucumber f@@ api tes%ing% #erformance tes~ing, ui testing.
+- Ran tests on Docker.
+
+SK~LLS
+Programming: C#
+Certification: IST@~ C~FL
+Languag@s: Japanese JLPT N2
+
+Address: 238 Nguyen Trai Stre%@, %#strict 7

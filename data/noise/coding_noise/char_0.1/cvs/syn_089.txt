@@ -1,0 +1,20 @@
+Trần N%ọc Lan
+Automation Test ~ngi#eer
+E#ail: l@n71@exa@ple.com
+P%one: 0956735943
+Gender: #emale
+Date of bi%#h: %%/12/1~99
+
+SUMMARY
+7 ye##s of %x~erien~e in so%tware testing.
+
+EXPERIENCE
+Company B (2019 - Pres%nt)
+- ~efin%d the test automation strategy, l%d a team of 5 QA enginee#s and mentored j~ni~r% %n automation.
+- Used ~elenium WebDrive~, Espr~sso, Tes@NG for m@bile #esting, ui testi%g.
+- Ran tests o% GitLab @I, Docker.
+
+SKILLS
+Programming: Java@ JavaScript
+
+Addres#: 2~7 #guyen ~rai Stree%, Dist@ict 10

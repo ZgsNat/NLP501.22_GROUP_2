@@ -1,0 +1,21 @@
+Đặng M#i Vy
+Autom@tion Test Engineer
+Email: vy85@%xample.co~
+Phone: 0920784168
+Gender: Female
+Date of birth: 17/04/2001
+
+SUMMARY
+1 yea#s of experience in software testi%g.
+
+EXPERIENCE
+Company B (2~25 - Present)
+# Wrote and maintained automate@ test scripts for re#ressi#n suites.
+- Used Selenium WebDriver, Playwright~ XCUITe~t, TestNG for mobi%e testing, ui testing.
+- Ran tes@s on Jenkins.
+
+SKILLS
+Pro##amming~ Python
+L@nguages: Englis# (TOEIC 750)
+
+A~dress: 219 Nguyen %rai S%reet, District 5

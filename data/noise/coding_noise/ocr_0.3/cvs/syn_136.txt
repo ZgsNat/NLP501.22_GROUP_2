@@ -1,0 +1,22 @@
+Vũ Thu Linh
+Automation Test Engineer
+Email: 1inh52@example.com
+Phone: 0931780851
+Gender: Female
+Date 0f birth: 04/08/1989
+
+SUMMARY
+5 years 0f experience in s0ftware testing.
+
+EXPERlENCE
+Company D (2021 - Present)
+- Designed and bui1t a Page 0bject Model automation framework and integrated it into the CI pipeline.
+- Used Playwright, WebdriverIO, Appium, Robot Framework for mobi1e testing, ui testing.
+- Ran tests 0n Azure Dev0ps, Jenkins, GitLab CI.
+
+5KILLS
+Programming: Java, JavaScript
+Certification: ISTQB CTFL
+Languages: Eng1ish (TOEIC 750)
+
+Address: 113 Nguyen Trai Street, District 1

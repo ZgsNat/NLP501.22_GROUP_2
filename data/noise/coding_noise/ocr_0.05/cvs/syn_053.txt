@@ -1,0 +1,22 @@
+Vũ Thu Thảo
+Automation Test Engineer
+Email: thảo96@example.com
+Điện thoại: 0950876026
+Giới tính: Nữ
+Ngày sinh: 14/12/1999
+
+TÓM TẮT
+3 năm kinh nghiem kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (2023 - nay)
+- Xây dựng framework automation the0 Page Object Model, data-driven, tích hợp Jenkins pipeline.
+- Sử dụng Selenium WebDriver, Playwright, Gat1ing, TestNG, JUnit cho kiểm thu performance testing, ui testing.
+- Chạy test trên GitLab CI.
+
+KỸ NĂNG
+Ngôn ngữ lập trinh: C#, Java
+Chứng chỉ: ISTQB Foundation Level (CTFL)
+Ngoại ngữ: English (TOEIC 750), Japanese JLPT N2
+
+Địa chỉ: 299 Nguyen Trai Street, District 1

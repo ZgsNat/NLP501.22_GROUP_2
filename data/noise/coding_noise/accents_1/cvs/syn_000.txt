@@ -1,0 +1,20 @@
+Le Duc Phuc
+QA/QC Engineer
+Email: phuc31@example.com
+Dien thoai: 0913834774
+Gioi tinh: Nam
+Ngay sinh: 02/11/1999
+
+TOM TAT
+Moi tot nghiep, dam me kiem thu.
+
+KINH NGHIEM
+- Thuc hien kiem thu thu cong, viet test case va bao loi tren Jira.
+- Su dung Selenium WebDriver, XCUITest cho kiem thu mobile testing, ui testing.
+- Chay test tren Docker.
+
+KY NANG
+Ngon ngu lap trinh: Python
+Chung chi: ISTQB Foundation Level (CTFL)
+
+Dia chi: 167 Nguyen Trai Street, District 8

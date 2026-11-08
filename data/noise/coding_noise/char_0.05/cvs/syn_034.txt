@@ -1,0 +1,21 @@
+Đặng Thị Vy
+Automation Test Engineer
+Email: vy1#@example.com
+Phone: 0948182550
+Gender: Female
+Date o~ birth: 20/01/1992
+
+SUMMAR~
+5 years of expe~ien#e in software testing@
+
+EXPERIENCE
+Co#pany C (%021 - Present)
+- Designed #nd built a Pag~ Object #o#el automation framework and integrat%d it into the CI p~peline.
+- Used WebdriverIO, Playwright, TestNG, Cucumb%r for ui testing.
+- Ran t@sts on Je#kins, GitLab CI.
+
+SKI@LS
+Programming: TypeScript, JavaScript
+C#rtification: %STQB CTFL
+
+Address: 4 Nguyen Trai Street, District #

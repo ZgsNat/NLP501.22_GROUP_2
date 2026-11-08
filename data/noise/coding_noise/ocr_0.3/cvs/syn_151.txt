@@ -1,0 +1,18 @@
+Hoàng Quoc Hùng
+QA/QC Engineer
+Email: hùng64@example.com
+Dien th0ại: 0943252079
+Giới tinh: Nam
+Ngay sinh: 20/03/1993
+
+TÓM TAT
+Mới tốt nghiệp, đam mê kiểm thu.
+
+KINH NGHlỆM
+- Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.
+- Chay test trên GitLab Cl.
+
+KỸ NĂNG
+Ngon ngữ lập trình: Java5cript
+
+Địa chỉ: 128 Nguyen Trai 5treet, District 5

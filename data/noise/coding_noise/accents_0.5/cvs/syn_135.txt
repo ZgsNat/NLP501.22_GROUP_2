@@ -1,0 +1,22 @@
+Pham Quốc Long
+Automation Test Engineer
+Email: long98@example.com
+Dien thoai: 0972733686
+Gioi tinh: Nam
+Ngay sinh: 20/12/1998
+
+TÓM TẮT
+8 năm kinh nghiem kiem thử phần mềm.
+
+KINH NGHIỆM
+Company G (2018 - nay)
+- Xay dựng framework automation theo Page Object Model, data-driven, tich hợp Jenkins pipeline.
+- Su dung Playwright, Selenium WebDriver, Rest Assured, Postman, Robot Framework, JUnit cho kiểm thử api testing, ui testing.
+- Chay test trên GitHub Actions, GitLab CI, Azure DevOps.
+
+KY NĂNG
+Ngon ngu lập trinh: TypeScript
+Chung chi: ISTQB Foundation Level (CTFL)
+Ngoại ngu: English (TOEIC 750)
+
+Dia chỉ: 297 Nguyen Trai Street, District 10

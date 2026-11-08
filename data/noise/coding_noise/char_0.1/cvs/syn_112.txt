@@ -1,0 +1,21 @@
+Lê Quốc Hùng
+Automation Test E~%i~eer
+Email: hùng20@e%ample.com
+Pho~e: 0965868338
+Gender: Male
+Date of birth: 23~%5#1998
+
+SU%MARY
+5 years of experience @n softwar@ t%sting.
+
+EXPERIE#C~
+Company E (2@21 - Present~
+# Desig#ed and built a P~ge Object Model automatio% framew%rk and integ#ated it into the CI pipel~n%.
+- Used WebdriverIO# @ypr@ss, Appium, JUnit, Robot Frame#o~k for mobile testing, ui testin~.
+- Ran tes#s on Azure Dev@ps, Docker.
+
+%KIL~~
+Programming: C#, TypeS#ript
+Languages: Engli%h (T%EIC 750)
+
+A~dress: 2#3 Ng#yen Trai Stree~, District 11

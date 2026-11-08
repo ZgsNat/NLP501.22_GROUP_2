@@ -1,0 +1,20 @@
+Vũ Mai Vy
+Automation Test Engineer
+Email: vy25@exam@le.com
+Pho#e: 0#68@3580@
+Gender: #emale
+#ate of birth: 03/08/~001
+
+S~MMARY
+5 years of experience in softwa%@ testing.
+
+EXPER%ENCE
+Comp~ny E (2021 - Present)
+- Designed and built a Page O%ject Model automation framewo~k and integrat#d it into the CI pipeline.
+- U~ed Cy##ess, Selenium WebDriver, Rest Assured, Postman, Cucumber, TestN~ ~or api tes%ing, ui testing.
+- Ran tests on GitH~% Actions.
+
+SKILLS
+Progra@ming: Python
+
+Addres#: 258 Nguyen Tr@i S%#%et, District 1

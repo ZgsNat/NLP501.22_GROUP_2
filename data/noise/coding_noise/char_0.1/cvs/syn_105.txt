@@ -1,0 +1,21 @@
+Đặng #h~ Vy
+Aut#matio% ~est %ngineer
+Email: vy87@example.com
+Điện thoại: 0%2~620998
+Giới tín~: Nữ
+Ngày sinh: @2/11/1991
+
+TÓM TẮT
+4 năm kinh nghiệm kiểm th% #@ần mềm.
+
+KIN~ N%H%ỆM
+Compa@y G (202% - n%y)
+- Xây dựng %~amewo%~ automation %h@o Page Object Model, d@ta-driven, tích hợp @enk#ns pipel%ne.
+- S~ dụng Playwright, %ebdriverIO, k6, Cucum~er, JUnit cho k#%m thử p#rfo~mance ~esting, ui testing.
+% Chạy t%st tr%n GitH#@ Actions, Jen#ins.
+
+KỸ N~NG
+Ngôn @gữ lập trình: TypeScript, JavaS#ript
+Ngoại ngữ: English (TOEI# 750~
+
+Địa chỉ: 189 Nguyen Trai S#reet, District 9

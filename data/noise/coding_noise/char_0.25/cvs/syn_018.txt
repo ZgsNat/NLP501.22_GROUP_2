@@ -1,0 +1,21 @@
+Ngu#ễn Vă@ Tu%n
+Autom~ti@n Te#t Engi~e%r
+E~ail% tu~n92@ex@@ple@com
+Đ@ện t%oại: 09306585~2
+Giới tính~ N#m
+N%#y sinh: 23/09/199%
+
+TÓM TẮT
+5 n#@ kin@ ng~iệ% kiểm t~# phầ% mềm.
+
+~IN# #GHI@M
+Com@a~~ B #2021 # @ay)
+- Xây d@ng @#ame~o~k #uto@a~io@ theo Pa~e Obj~%t Mod@l, data-%@i#e#, t#c# hợp Jenk#ns pipeli@e@
+- Sử dụn~ C#pres#, Res# Assur#d, Po~tman@ Robot Fra%ework cho ki#m ~hử api %~sting, u% ~~s~in#.
+- Chạy tes~ #rên Do@#er% Gi#Hub #cti#n%.
+
+K@ @Ă##
+Ngôn ngữ lập t@ình: Pyt@~n, J@va
+%hứng ch@: @@TQB #o@ndat~on Le%el (C~~L)
+
+Đ@a ch%: 250 @g%@en Trai S~ree%, Dist%ict #

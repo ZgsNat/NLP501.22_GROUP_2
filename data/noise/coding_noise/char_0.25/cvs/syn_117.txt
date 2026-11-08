@@ -1,0 +1,20 @@
+%ùi N%@c Vy
+@~toma~ion Test Eng@ne#r
+E%ail: ~y40@e#a#ple@c~m
+Ph@n~: 0~6@49~538
+%en~e@: %~ma#e
+D#te of bir#~# 27@11/1%94
+
+SU%MA~Y
+1% %#~r~ ~f ex@eri~#ce #n %o#~wa@e t%s~@#g.
+
+EX@ER%EN%E
+#o~pany # (2016 # P@esent@
+@ Def@n#% the t%st au%oma#i%@ s#@at%gy, le~ a tea~ of 5 #A engin~ers and #e#tor%@ j~nio~s #n auto~ation.
+~ @se~ Webdriver@O, @sp#esso@ Tes#NG ##r m%@ile testing, u# %#sti%g.
+- Ran t@#ts on Azu#e D#vO#s.
+
+@K~LLS
+Program~ing: Java, C#
+
+Ad#ress: ~@# Ngu#~~ Tra# Street% ~ist%@ct 8

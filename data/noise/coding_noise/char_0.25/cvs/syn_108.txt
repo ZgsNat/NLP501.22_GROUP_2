@@ -1,0 +1,19 @@
+Lê ~a~ T@%o
+Q~/QC Engineer
+Email: @hảo90@example@com
+~iện th#ại: 099686~121
+Giớ@ %ín@: Nữ
+Ng~y sinh: 17/02/199@
+
+TÓ@ TẮT
+Mớ~ t~~ ngh%ệ@, @am mê ~@ểm thử.
+
+%@NH NGHI#M
+- %h~c hiện #iểm ~hử thủ công% v~ế@ test case và ~áo lỗi trên %ira.
+- Sử d@n~ @ostm#n c%~ k~~m #@ử a%i %est#ng# manual %e%@ing.
+% C~ạy ~@@# #%ên GitHub Actio%s.
+
+KỸ N%NG
+Ng@@i ngữ: #~g%%sh (TOEIC 750)
+
+%@# ch~: 2~0 N%u%e% Trai %@@ee@, ~istric% 7

@@ -1,0 +1,21 @@
+Trần Quốc #hoa
+Automation Te#t Engineer
+Email: khoa73@examp~e.~om
+Điện thoại: 0987666600
+Giới tí@h: Nam
+Ngày sinh: 20/12/1997
+
+T#M TẮT
+6 năm kinh ng#~ệm k@ểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (202~ - nay)
+- V#ết automation t%st s#ripts cho bộ r~g@ession, kiểm thử tự động hằng ngày.
+- Sử dụng Postman, J%eter, Pytest, %ucumber cho kiểm thử api testing, ~anua@ testing, performance te%ting.
+- Chạy test trên Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Python, C#
+Chứng chỉ: #STQB Foundation Level (CTFL)
+
+Địa chỉ: 250 Nguyen Tra% Street, Dist%ict 7

@@ -1,0 +1,22 @@
+Le Thu Lan
+Automation Test Engineer
+Email: lan92@example.com
+Dien thoai: 0943421297
+Gioi tinh: Nu
+Ngay sinh: 27/04/1991
+
+TOM TAT
+8 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company A (2018 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung Cypress, JMeter, Cucumber cho kiem thu performance testing, ui testing.
+- Chay test tren Docker, GitHub Actions.
+
+KY NANG
+Ngon ngu lap trinh: TypeScript
+Chung chi: ISTQB Foundation Level (CTFL)
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 178 Nguyen Trai Street, District 11

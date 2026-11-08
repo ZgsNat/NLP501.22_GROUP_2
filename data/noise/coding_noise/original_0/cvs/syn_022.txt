@@ -1,0 +1,20 @@
+Bùi Thu Trang
+Automation Test Engineer
+Email: trang79@example.com
+Phone: 0959273033
+Gender: Female
+Date of birth: 15/01/2000
+
+SUMMARY
+4 years of experience in software testing.
+
+EXPERIENCE
+Company F (2022 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.
+- Used WebdriverIO, Cypress, XCUITest, Cucumber for mobile testing, ui testing.
+- Ran tests on Azure DevOps, Jenkins.
+
+SKILLS
+Programming: JavaScript
+
+Address: 95 Nguyen Trai Street, District 1

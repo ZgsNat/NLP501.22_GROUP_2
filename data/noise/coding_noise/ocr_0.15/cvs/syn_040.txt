@@ -1,0 +1,20 @@
+Hoàng Thị Trang
+Automation Test Engineer
+Email: trang79@example.com
+Phone: 0985821325
+Gender: Female
+Date of birth: 05/06/1995
+
+SUMMARY
+5 years of experience in software testing.
+
+EXPERIENCE
+C0mpany B (2021 - Present)
+- Designed and built a Page Object Model aut0mation framew0rk and integrated it into the CI pipeline.
+- Used Playwright, Espresso, JUnit for mobile testing, ui testing.
+- Ran tests on Jenkins, Azure DevOps.
+
+SKILLS
+Programming: JavaScript, Type5cript
+
+Address: 26 Nguyen Trai 5treet, District 11

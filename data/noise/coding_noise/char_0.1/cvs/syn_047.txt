@@ -1,0 +1,22 @@
+Trần Minh Phúc
+Automation Test Engineer
+Emai#: p@úc69@ex%mple.com
+Phone: 09637966#6
+Gender: Male
+Date of bir#h@ #9@07#1995
+
+SUMMARY
+1 years of exp%rience in softw@re testing.
+
+E%PERIENCE
+%ompany E (2025 - Present)
+- Wrote and maintained a~tomated test scr%pts f#r re#ression ~uit#s.
+# Used Selenium WebDriver, Rest Assu%ed, JMet@r, TestNG, JUnit for api testin%, performanc~ testing, u# testing~
+- Ran tests on D%cker@
+
+SKILLS
+Programming: Java, Pyt~o@
+@ertif~c~tion: ISTQB CTFL
+Language%: Engli%h (TOEIC 7#0)
+
+Address~ 125 Nguy~n Tr@i Street, Distri#t 9

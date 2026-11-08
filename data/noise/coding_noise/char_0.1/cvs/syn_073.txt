@@ -1,0 +1,21 @@
+Nguyễ# Văn Ph@#
+Automa@ion Tes@ E#gineer
+Email: #húc@%@example.com
+Phone: 095749000~
+Gender: Male
+Da%e of birth: 28/@7/1996
+
+S@MMA#Y
+3 %ear~ ~f experien~e ~n software testing.
+
+EXPERIENC@
+Company C (2023 - Present)
+- @esigned and built a Page Object Model a@tomation f@amework and integrated i% into the CI pipeline.
+- ~s@d Playwright, Rest As#ured, ~e~tN@, Pytest %or api testing, ui tes@ing.
+- Ran te@%s on GitLa~ CI, Git~ub Actions.
+
+SKILLS
+Progra%~#ng: C#
+Languages: Eng~ish (T~EIC 750)
+
+#ddress: 139 N%uy#n Trai Str#et, District 5

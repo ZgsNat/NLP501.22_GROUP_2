@@ -1,0 +1,21 @@
+~~ạm ~ứ@ %%ú#
+Automati@n Test ~@gine~r
+@mail: #húc81%e~ampl%.@om
+Đi#n @ho~i% 096%7#@13@
+%~ới tí%@: Nam
+N#ày s~nh: 24/0%/~999
+
+T~M TẮT
+10 năm kinh ngh#ệm %i#m t@ử phần %ề#.
+
+KIN@ N@HIỆ@
+C%m%an% F (2%1% ~ nay)
+- Tr~#ng nhóm QA 5 n#ườ@, định ~ướng automa%i~n stra~e#y và ~%@tor ##ành @i@@ m@#.
+- ~ử #@ng Appium, ~6, JU%it cho k~ểm ~#ử manual t@sting# #obil# t~sting, pe#for@ance %e#ting.
+- Chạy te%t @r#n ~ocker, Gi#Lab CI.
+
+K# NĂ@G
+Ng@n ngữ lậ~ t%ì@h: ~#
+Ngoại ngữ: #nglish (~#EIC #50)
+
+%ịa chỉ: @@5 Ng#y%n T@~@ #treet, Dist~ict @2

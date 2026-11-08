@@ -1,0 +1,18 @@
+Trần Quốc Tuấn
+QA/%C Engineer
+Em@il: tuấn29@example.com
+Phone: 09271516~9
+Gender: Male
+Date %f birth: 22/05/1995
+
+SUMMARY
+Fresh g~aduate passionate about testing.
+
+EXPERIENCE
+- Executed manual tes~ cases an# reported defects in Jira.
+- Used XCUITest, Robot Framework for ma%ual tes~ing, mobile testing.
+
+SKILLS
+Programming: TypeScript
+
+Address: 268 Nguyen Trai Street, Dist##ct 7

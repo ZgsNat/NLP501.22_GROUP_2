@@ -1,0 +1,22 @@
+Vũ Quốc Khoa
+Automation Test Engineer
+Email: khoa25@example.com
+Phone: 0~40429530
+Gender: Male
+D%te of birth: 24/11/1988
+
+SUMMARY
+10 years of exp%rience in softwa#e te#ting.
+
+EXPERIENCE
+Company F (2016 - Present)
+- De@igned and @uilt a Page Object Model automation framework and integ~ated it into the CI pipeline.
+- Used WebdriverIO, Cypress, Appium, Postman, Rest Assured% k6, TestNG f%r api testing, mobile t%sting@ performance testing, ui testing.
+% Ran tests on Jenkins.
+
+SKILLS
+Programming: Python, JavaS#ript
+Certification: ISTQB CTFL
+Languages: English (TOEIC 750)
+
+Address: 196 Nguye% Trai S#reet, District 1

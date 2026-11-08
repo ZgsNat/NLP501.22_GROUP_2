@@ -1,0 +1,22 @@
+Hồ Đức P~úc
+Automation Test E%%ineer
+Email: ph%c23@example.com
+Điện thoại: 0964450250
+@iới tính% Nam
+Ngày sinh: @7/12/1991
+
+%ÓM T~T
+6 năm kinh ng#iệm kiểm thử phần mềm.
+
+KI@H NGHIỆM
+Company C (202% - nay)
+- Xâ~ dựng f#amew~rk automation theo Page O#ject #%%el, data-@riven, %ích hợp Jenkins p~pelin#.
+- Sử dụng Playwright, Selen@um W@bDriver, Esp#e%so, Postman, k6@ JUnit c~o kiểm thử api tes#i%g, mobile testing, perf~rma~ce #e%@ing, ui testing.
+- Chạy test trên Gi#@%b CI, Doc~er, Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập #rình: Java
+Chứng chỉ: ISTQB Foundation Le~el (CTF%#
+Ngoại ngữ% English (TOEIC 750%
+
+Địa chỉ: #85 Nguyen Tr~i Str%et, District 11

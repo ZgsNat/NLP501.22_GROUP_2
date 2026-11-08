@@ -1,0 +1,20 @@
+Vũ Mai Vy
+Automation Test Engineer
+Email: vy25@example.com
+Phone: 0968535809
+Gender: Fema1e
+Date 0f birth: 03/08/2001
+
+SUMMARY
+5 years of experience in software testing.
+
+EXPERIENCE
+Company E (2021 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.
+- Used Cypress, Selenium WebDriver, Rest Assured, Postman, Cucumber, TestNG for api testing, ui testing.
+- Ran tests 0n GitHub Actions.
+
+SKILLS
+Pr0gramming: Python
+
+Address: 258 Nguyen Trai Street, District 1

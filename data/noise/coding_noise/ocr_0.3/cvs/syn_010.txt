@@ -1,0 +1,21 @@
+Bùi Thi Huong
+Aut0mation Test Engineer
+Emai1: huong21@example.com
+Phone: 0930224423
+Gender: Female
+Date of birth: 01/08/1994
+
+SUMMARY
+8 years 0f experience in s0ftware testing.
+
+EXPERlENCE
+Company C (2018 - Present)
+- Designed and bui1t a Page Object Model aut0mation framework and integrated it int0 the Cl pipeline.
+- Used P0stman, Gatling, Pytest for api testing, manual testing, perf0rmance testing.
+- Ran tests on Azure DevOps, GitLab CI, Jenkins.
+
+SKILLS
+Pr0gramming: Java
+Languages: English (TOEIC 750)
+
+Address: 216 Nguyen Trai Street, District 5

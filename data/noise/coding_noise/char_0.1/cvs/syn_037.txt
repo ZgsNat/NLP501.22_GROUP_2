@@ -1,0 +1,21 @@
+Hồ Q%@~ P%úc
+Automation Test Engineer
+Email: phúc37@e#ample.co%
+Điện thoại: 0920361818
+Gi%i tính: Nam
+Ngày sinh: 24/06/20~3
+
+TÓ~ TẮT
+10 nă~ kinh nghiệ# kiểm thử phần m%m.
+
+KI%H NGHIỆM
+Company B (2016 ~ #a#)
+- Xâ@ dựng framework au#omation @heo Page Ob~ect Model, data#driven, ~ích hợp Je@%ins pipel%ne.
+- Sử dụn@ Cypress, S#lenium WebD#iver, Rest A%sured, ~os~man, Pytest, Rob@# Framework ch% kiểm t#ử #pi #es@ing% ui testing.
+- Chạy test t@ên GitLab CI.
+
+KỸ NĂNG
+@gôn ngữ l@p trình~ T%pe@crip#, JavaSc#ipt
+Ngoại ngữ: English (TO~IC 750)
+
+Địa chỉ: 2~@ Nguyen Trai Street, District 12

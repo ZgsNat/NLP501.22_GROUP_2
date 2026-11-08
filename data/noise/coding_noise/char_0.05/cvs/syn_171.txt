@@ -1,0 +1,19 @@
+Hoàng Thu L#n
+@utomation Test Engineer
+Email: lan90@e~a#ple.c~m
+Pho~e: 091%396963
+Gender: Fema~e
+Date of ~irth: 27/06/1995
+
+SUMMARY
+2 years of experience in software tes#ing.
+
+EXPERIENCE
+Company F (2024 - Present)
+- Wrote and maintained automate# test scripts for regr~ssion suites.
+- Use@ Selenium WebDriver, Webdriv@rIO, Postman, Cucumber, Test~G for api testing, ui tes@ing.
+
+SKILLS
+Programming: JavaS~ript% C#
+
+Address: 144 Nguyen Tr~i Street# Di@trict 3

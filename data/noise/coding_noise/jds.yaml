@@ -1,0 +1,122 @@
+# JD set. `gold_spec` = hidden annotation rubric for the SYNTHETIC gold labels only;
+# `hr_answers` = what the (simulated) HR answers to clarification questions (H6).
+# The FPT Software JD is a representative posting written for this course project.
+
+- id: fpt_automation_test
+  title: Automation Test Engineer – FPT Software
+  company_type: outsourcing
+  profile: Outsourcing
+  split: test
+  text: |
+    Automation Test Engineer – FPT Software (Hà Nội / TP.HCM)
+    FPT Software delivers offshore projects for clients in Japan, the US and Europe.
+    We are looking for Automation Test Engineers to join our testing center.
+
+    Job description
+    - Write and maintain automated test scripts for web and mobile applications
+    - Build and improve the automation framework, integrate test runs into the CI pipeline
+    - Perform API testing and report defects in Jira
+
+    Requirements
+    - At least 2 years of experience in automation testing
+    - Hands-on with Selenium WebDriver, Playwright or Appium
+    - Programming skills in Java or Python
+    - Able to read and write technical documents in English
+
+    Nice to have
+    - ISTQB Foundation certificate is a plus
+    - Japanese (JLPT N3 or above) is an advantage
+    - Experience with Jenkins or GitLab CI
+    - API testing with Postman or Rest Assured; performance testing with JMeter
+  gold_spec:
+    must: {years: 2, depth: 2, tools_any: [selenium, playwright, appium]}
+    nice: {tools: [postman, rest assured, jmeter], langs: [java, python], istqb: true, japanese: true}
+
+- id: bank_api_qa
+  title: QA Automation Engineer (API) – Ngân hàng
+  company_type: banking
+  profile: Ngân hàng
+  split: test
+  text: |
+    QA Automation Engineer (API) – Core Banking
+    Requirements
+    - Minimum 3 years of experience in software testing
+    - API testing with Rest Assured or Postman is mandatory
+    - Good SQL knowledge for database testing
+    - Java programming
+    Nice to have
+    - ISTQB certification preferred
+    - Performance testing with JMeter or k6 is a plus
+  gold_spec:
+    must: {years: 3, depth: 2, tools_any: [rest assured, postman]}
+    nice: {tools: [jmeter, k6], langs: [java], istqb: true}
+
+- id: startup_framework
+  title: Founding QA Automation Engineer – Startup
+  company_type: startup
+  profile: Startup
+  split: test
+  text: |
+    Founding QA Automation Engineer
+    Requirements
+    - Design and build an automation framework from scratch
+    - Playwright or Cypress with TypeScript or JavaScript
+    - Set up test runs on GitHub Actions or GitLab CI
+    Nice to have
+    - Docker
+    - Performance testing with k6
+  gold_spec:
+    must: {years: 1, depth: 3, tools_any: [playwright, cypress]}
+    nice: {tools: [k6], langs: [typescript, javascript]}
+
+- id: ambiguous_senior
+  title: Senior QA Automation
+  company_type: outsourcing
+  profile: Mặc định
+  split: test
+  ambiguous: true
+  text: |
+    Senior QA Automation
+    We need an experienced automation tester with good English.
+    Requirements
+    - Strong skills with automation tools, scripting, CI, etc.
+    - Good English communication
+  hr_answers: {seniority_years: 1, english_level: 1, tool_family: 0}
+  gold_spec:
+    must: {years: 5, depth: 3, english: true, tools_any: [selenium, playwright, cypress]}
+    nice: {tools: [jenkins], langs: [java, python]}
+
+- id: ambiguous_junior
+  title: Junior Automation Tester
+  company_type: default
+  profile: Mặc định
+  split: dev
+  ambiguous: true
+  text: |
+    Junior Automation Tester
+    Requirements
+    - At least 4 years of experience in testing
+    - Write automation test scripts with Selenium or Cypress
+    - Python or JavaScript
+  hr_answers: {junior_vs_years: 0}
+  gold_spec:
+    must: {years: 1, depth: 2, tools_any: [selenium, cypress]}
+    nice: {langs: [python, javascript]}
+
+- id: mobile_offshore
+  title: Mobile Automation Tester – Japan project
+  company_type: outsourcing
+  profile: Outsourcing
+  split: dev
+  text: |
+    Mobile Automation Tester – Japan project
+    Requirements
+    - At least 2 years of experience with mobile automation testing
+    - Appium is required
+    - Java or Kotlin
+    Nice to have
+    - Japanese JLPT N2 is a big plus
+    - ISTQB certificate
+  gold_spec:
+    must: {years: 2, depth: 2, tools_any: [appium, espresso, xcuitest]}
+    nice: {langs: [java, kotlin], istqb: true, japanese: true}

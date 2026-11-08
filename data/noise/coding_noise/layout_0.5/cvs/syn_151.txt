@@ -1,0 +1,12 @@
+Hoàng Quốc Hùng
+QA/QC Engineer Email: hùng64@example.com
+Điện thoại: 0943252079 Giới tính: Nam
+Ngày sinh: 20/03/1993
+
+TÓM TẮT Mới tốt nghiệp, đam mê kiểm thử.
+
+KINH NGHIỆM - Thực hiện kiểm thử thủ công, viết test case và báo lỗi trên Jira.
+- Chạy test trên GitLab CI.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: JavaScript  Địa chỉ: 128 Nguyen Trai Street, District 5

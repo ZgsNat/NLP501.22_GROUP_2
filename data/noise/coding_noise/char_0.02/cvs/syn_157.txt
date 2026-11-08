@@ -1,0 +1,20 @@
+Vũ Văn Nam
+Automation Test Engineer
+Email: nam15@example.co@
+Phone: 0910071931
+Gender: Male
+Date of birth: 02/11/1998
+
+S#MMARY
+2 years of ex#erience in software testing.
+
+E%PERIENCE
+Company B (2024 - Presen#)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Cypress, Rest Assured, Robot Framework for api testing, ui testing.
+
+SKILLS
+Program%ing: JavaScript
+Languages: English (TOEIC ~50)
+
+Address: 147 Nguyen Trai Str@et, District 8

@@ -1,0 +1,22 @@
+Vũ %ức T#~n
+Au#omation Test Enginee#
+Ema~l# t#ấn80@exam@%e.co%
+Đi~n th%~@: @9%141#75%
+Giới tính: #am
+~gày %in#: 22#01/@99@
+
+TÓM #ẮT
+7 năm #inh ngh%#@ kiểm %hử phần mề%.
+
+KINH NGHIỆM
+C#mpa~y ~ (2#19 - nay)
+~ @rưởn~ %hóm @A 5 ~gườ#~ đ%n~ hướng automa@@on @trat%gy ~~ me#tor ~hành v@ên %#~.
+- @ử dụng Playwright, W%bdri~erI~, R#st Assured, Po@tman, #y#est ch~ %iểm %~ử a~i testi~g, ui test#%g.
+- ~@ạy test #rên Az%re Dev%ps.
+
+KỸ N~NG
+Ngôn ngữ l%p @rìn#: Jav~Script
+Chứn~ c~ỉ: %S%QB Foundatio% Level (C#FL)
+@goại %gữ: Engli@% (TOEIC 7#0), ~%@anese #L%T N2
+
+#ịa chỉ: 211 Ng%~#n T%%~ #treet, Dist@%ct 2

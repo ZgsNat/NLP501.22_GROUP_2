@@ -1,0 +1,20 @@
+Lê Đức Long
+Automation Te%t Engine#r
+Email: long#7@example.com
+Phone: 0959629263
+Gender: Male
+D~te of birth: 26/03/1996
+
+SUMMARY
+5 years of experience %n sof~ware testing.
+
+EXPERIENCE
+Company G (2021 - Present)
+- Designed and #uilt a Page #b@ect Mode# automation framew#rk and int#grated it into the CI pipeline.
+- Used Cypress, Postman, Rest @ssured, Py#est fo~ api te~ting, ui testing~
+- Ran tests on Azure DevO#s.
+
+SKIL#S
+Programming: @avaScript, Java
+
+Address: 121 Nguyen ~rai Street, D@@trict 8

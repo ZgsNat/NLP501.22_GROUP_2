@@ -1,0 +1,21 @@
+Bùi Văn Hùng
+Autom@tion T~st Engineer
+Email: hùn#37@exa@ple.co~
+Điện thoại% 092#645088
+Giới tính: Nam
+Ngày sinh: 19/11/1988
+
+TÓM TẮT
+3 n~~ kin@ nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆ#
+Company G (2023 - nay)
+- Viết automation te#t scripts cho bộ regression, kiể% thử tự đ#ng hằng ngày.
+- S~ dụng Playwright, Web@riverIO, XCUITest, Robot Fr@mework ch~ kiểm thử mo#%le tes#ing, ui testing.
+- Chạy test t#ên GitHub Actions.
+
+KỸ ~Ă@G
+Ngôn ngữ lập trình: Java, Python
+#go@i ngữ: E@g~ish (TOEIC 750)
+
+#ịa chỉ: 76 Nguyen Trai Street, Di#trict 1%

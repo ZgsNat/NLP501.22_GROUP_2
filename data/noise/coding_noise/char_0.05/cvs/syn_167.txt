@@ -1,0 +1,20 @@
+Hồ Thị Thảo
+Automatio~ Test En@ineer
+Email: thảo68@exam@le.com
+Điện thoại: 0977621275
+Giớ~ tính: Nữ
+Ngày sinh: 23/12/1~96
+
+TÓM TẮT
+10 năm kinh nghiệm kiểm thử phần m~m.
+
+KINH NGHIỆM
+Company C (2016 - nay)
+- #rưởng nhóm @A 5 người, định hướ%@ automation stra@egy và mentor thành viên mới.
+- Sử dụng WebdriverIO, XCUITest, Postman, Rest Assured, ~estNG cho kiểm thử api testing, mob@le testing, ui testing.
+- Chạy test #rên Azure DevOps, Jenk#ns.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Python, ~ava
+
+Đ#a c%ỉ: 113 Nguyen Trai Street, Distr#ct 5

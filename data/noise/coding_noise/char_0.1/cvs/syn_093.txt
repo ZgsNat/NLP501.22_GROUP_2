@@ -1,0 +1,18 @@
+Bù~ Ngọc Lan
+QA/QC %ngine~r
+E~ai%: #an50@example.com
+Đ%ện thoại: 0981192#77
+G#ới tính: Nữ
+Ngày s%nh: 14/03~1996
+
+TÓM TẮT
+Mới tốt nghiệp, đam mê kiể# @hử.
+
+KINH NGHIỆM
+% Th@~ hi#n kiểm thử thủ c~ng, #iế@ test case và báo lỗi trên Jira.
+- Sử dụng @e@t Assured, @ostman cho kiểm thử @pi testing, manual testing.
+- Chạy t#@t trên Jen@ins.
+
+KỸ NĂN@
+
+Đ~a chỉ: 60 Nguyen T~ai #tree#, District 6

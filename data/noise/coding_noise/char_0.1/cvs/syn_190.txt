@@ -1,0 +1,20 @@
+Đỗ Ngọ@ @@nh
+Automation T#st @@gineer
+Email: linh20@examp~e.com
+~hone: 0987975659
+Gender: Female
+Date of b@rt#: 23/07/1995
+
+SUM#ARY
+2 years of #xperien@e in software testing.
+
+EX@ERIENCE
+Com~any F (2024 - Present)
+- Wrote a#d maintained automate@ tes# scripts for @egression sui~es~
+- Us~d Rest Assure@, JM#ter, Rob%t Frame#ork# ~est@G for ap# testing, manual testing, ~erforma~ce testing.
+- R%n tes~s on GitHub Actions.
+
+#K~%LS
+@rogram@in@: C%
+
+Address: 45 Nguyen Trai St@eet, District 4

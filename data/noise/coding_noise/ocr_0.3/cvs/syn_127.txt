@@ -1,0 +1,20 @@
+Hoàng Mai Lan
+Automation Test Engineer
+Emai1: 1an23@example.com
+Điện thoại: 0917488001
+Giới tinh: Nữ
+Ngày sinh: 18/01/1997
+
+TÓM TAT
+7 nam kinh nghiệm kiểm thử phần mềm.
+
+KlNH NGHlỆM
+C0mpany G (2019 - nay)
+- Trưởng nhóm QA 5 người, định hướng aut0mation strategy và ment0r thành vien mới.
+- Sử dụng Gatling, JUnit cho kiểm thu manual testing, performance testing.
+- Chạy test trên GitLab CI.
+
+KỸ NĂNG
+Ngôn ngữ lập trinh: TypeScript
+
+Địa chỉ: 196 Nguyen Trai 5treet, District 7

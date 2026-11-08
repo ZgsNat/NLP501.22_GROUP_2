@@ -1,0 +1,21 @@
+Nguyễn Văn Phúc
+Automation Test Engineer
+Email: phúc91@example.com
+Phone: 0957490002
+Gender: Male
+Date of bi@th: 28/#7/1996
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+Company C (2023 - Present)
+- Designed and built a Page Object Model automation framewo%k and integrated it into the ~I pipeline.
+- Used Playwright, Rest Assured, T#stN#, Pytest for api testing, ui testing.
+- Ran tests on GitLab CI, GitHub Actions.
+
+S#ILLS
+Programming: C#
+Languages: English (TOEIC 750)
+
+Address: ~39 Nguyen Trai Street, District 5

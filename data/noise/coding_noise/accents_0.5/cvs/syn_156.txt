@@ -1,0 +1,22 @@
+Dang Van Tuấn
+Automation Test Engineer
+Email: tuấn24@example.com
+Dien thoại: 0946137598
+Gioi tinh: Nam
+Ngay sinh: 12/05/1999
+
+TÓM TẮT
+3 nam kinh nghiem kiem thử phan mềm.
+
+KINH NGHIEM
+Company F (2023 - nay)
+- Viet automation test scripts cho bo regression, kiem thu tự động hang ngày.
+- Su dụng Cypress, WebdriverIO, JMeter, TestNG cho kiểm thu performance testing, ui testing.
+- Chay test trên Azure DevOps.
+
+KỸ NĂNG
+Ngon ngu lập trinh: TypeScript
+Chung chỉ: ISTQB Foundation Level (CTFL)
+Ngoai ngữ: English (TOEIC 750)
+
+Địa chi: 215 Nguyen Trai Street, District 4

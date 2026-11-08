@@ -1,0 +1,20 @@
+Vũ Ngọc Hương
+Automation Test @ngineer
+Email# hu~n#94@example.c@m
+Điện thoại: 09#9872888
+Giới ~ính: N%
+Ngày @inh: 03@12/2003
+
+TÓM TẮ@
+4 năm %i#h nghiệm kiểm th% phần mềm.
+
+KI@H NG%IỆM
+Company A (2022 - nay)
+- Xây dựng framework automation theo Page Object Model, data-dr@ven, tích %ợp Jenkins pipeline.
+- Sử dụn@ Selenium We#Driver, Rest Assur@d, ~ucum~er ch% kiể@ thử api testing, ui testing.
+- Chạy test trên Je#kins, Git~ub Act#ons@
+
+KỸ NĂNG
+Ngôn ngữ lập t%ì@h: %ypeScript, C%
+
+Địa chỉ: 238 Ngu#en Trai Street, D@strict 6

@@ -1,0 +1,21 @@
+Hồ M%i %#
+#utomation Tes~ Engineer
+~mail~ vy72@example.@om
+Phone: 0980574548
+Gend@r: Fema@e
+Date of birth@ 20/~2/199#
+
+SUMMARY
+1 years of expe@%ence in software ~esting.
+
+E%PERIEN%E
+Company # (20~5 - Pre%ent)
+@ Wrote an% maintained aut%mated test scr#pts for @egress~on suites.
+- Us#d WebdriverIO, Cypress% ~es~ Assu%%d, Cucumber, Robot Frame%o~k for api testing, ui testing.
+
+SKILLS
+Prog@ammi#%: JavaScri#t% Pytho@
+Certification: ISTQ# CTFL
+~angu@ges: Engli%h (TOEIC 750)
+
+Addre#s: 188 #guyen Trai Street, District 4

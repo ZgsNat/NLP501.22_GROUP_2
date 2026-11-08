@@ -1,0 +1,21 @@
+Lê Đức Hùng
+Automation Te@t Engineer
+Email: hùng34@#xample.com
+Phone: %925020641
+Gender: Male
+Date of birth: 27/01/1994
+
+SUMMARY
+5 years of experience in sof%ware testi@g.
+
+EXPERIENCE
+Company G (2021 - Present)
+- Designed and built a Page Object Model aut#mation framework and integrated it into the CI pipel#ne.
+- Used WebdriverIO, Selenium WebDriver, Rest A%sured, Pytest, Cucumber for api testing, ui testing.
+- Ran tests on Jenkins, Azure DevOps, GitHub Actions.
+
+SKILLS
+Programming: J%vaScript, Java
+@anguages: English (TOEIC 750), Japanese JLPT N2
+
+Address: 14 Nguyen Trai Street, Dis@rict 4

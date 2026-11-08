@@ -1,0 +1,19 @@
+N@u#~n Ngọc Trang
+Auto~%tio~ Test Engi@~er
+E%a~~: trang56@e@ample.#@m
+Pho@e~ 0@~8504268
+Gen#e~: F~ma%~
+Da@e of birth: %4#%0/1999
+
+SUM@ARY
+% %ears of e#perien%e in sof@war@ te~tin#.
+
+E@P#RIENCE
+C~m@#n% B (2024 ~ Pr@sen%)
+- Wr%te @nd ~ai@tai%ed ~utomated tes# scr%pts f@r reg~#~s#on sui~es.
+- U#ed ~eleniu~ We~Driv@~, Re%t As@ured, Cucumber, #estNG @or api tes~%ng% @% %esting~
+
+SK#LL#
+@ro#ra~ming: ~ava
+
+%ddres#: #42 #guy~~ Trai St#ee~, Distr~c# 4

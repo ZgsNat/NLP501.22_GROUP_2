@@ -1,0 +1,20 @@
+Vũ Mai Hương
+Automation Test Engineer
+Email: huong41@example.com
+Ph0ne: 0917499483
+Gender: Female
+Date of birth: 18/12/1996
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERlENCE
+C0mpany F (2023 - Present)
+- Designed and built a Page 0bject Model automation framework and integrated it into the CI pipeline.
+- Used 5elenium WebDriver, Postman, Cucumber, Robot Framew0rk for api testing, ui testing.
+- Ran tests 0n GitHub Actions, Jenkins, Docker.
+
+SKILLS
+Programming: Java, C#
+
+Address: 279 Nguyen Trai Street, District 2

@@ -1,0 +1,20 @@
+H% Đức Hùn#
+A%@om~tion Test Engineer
+Email: hùng28%ex@mple.com
+Phone: 09@96702~1
+Ge@der: M%~e
+Da#e of birth% 14#04/~002
+
+SUMMARY
+10 years of experience in s%ftwar@ t#sting.
+
+EXPERIENCE
+Company F (%016 % #resent#
+% Wrote and mainta%ned au~o~ated test scripts f%r re~r~s%i@n suite~.
+- Used Cypr%ss, ~est Assured, k6, JUnit, Robot Fra#ework for api testing, pe##or#ance testing, ui test%ng.
+
+SKILLS
+#rogr~mming: JavaScrip~
+Lang~ages: En%l#sh ##OEI@ 750)
+
+Address: 207 Nguye% Trai Street, Dist#ict 2

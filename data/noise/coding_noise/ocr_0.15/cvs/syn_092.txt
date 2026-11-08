@@ -1,0 +1,21 @@
+Vũ Đức Phuc
+Automation Test Engineer
+Emai1: phúc15@examp1e.com
+Điện thoại: 0987911634
+Gioi tính: Nam
+Ngày sinh: 06/05/1993
+
+TÓM TẮT
+3 năm kinh nghiệm kiểm thu phan mem.
+
+KlNH NGHIỆM
+Company E (2023 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.
+- Sử dụng Playwright, Rest Assured, Postman, k6, R0bot Framework cho kiểm thử api testing, perf0rmance testing, ui testing.
+- Chay test trên GitHub Actions, Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: TypeScript
+Ngoại ngữ: English (TOElC 750)
+
+Địa chỉ: 253 Nguyen Trai Street, District 6

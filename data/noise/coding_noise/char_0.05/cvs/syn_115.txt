@@ -1,0 +1,22 @@
+Hồ Quốc Tuấn
+Automation Test Engineer
+Email: t@ấn89@example.com
+Phone: 0992778089
+Gender: Male
+Date of birth: 12/12/2000
+
+SUMMARY
+5 ye#rs of experience in softwar# testing.
+
+EXPERIENCE
+#ompany G (2021 - P@esent)
+- Designe% an# built a Page Object Model automation framework and %nt%grated it into th# CI p%peline.
+- Used Appium, R@st Assure~, Postman, JUni% for api testin%, ma%ual testing, mobi%e testing.
+- Ran t@sts on GitLab CI, Docker, Jenkins.
+
+SKILLS
+Programming: Jav~, JavaScript
+Certificatio@: ISTQB CT@L
+Languag@s~ Englis# (TOEIC 750)
+
+A%dress: 155 N%uyen Trai %treet, District 2

@@ -1,0 +1,18 @@
+Hoàng Quốc Hùng
+QA/QC En%ineer
+Email: hù#g64@example.com
+Đi#n th@ại: 0943252079
+G@ới tính: Nam
+N#ày sinh: 20/03/1@93
+
+TÓM TẮT
+Mới tốt @ghiệp, đam mê kiểm thử.
+
+KI#H NGHIỆM
+- Thực hiện kiểm thử th@ công, viết tes# case và báo lỗ% t~ên Jira.
+- Chạy test trên GitLab CI.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Java~cript
+
+Địa chỉ: 12@ Nguyen T%a@ Street, District 5

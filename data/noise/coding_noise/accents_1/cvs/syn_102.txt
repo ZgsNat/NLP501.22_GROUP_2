@@ -1,0 +1,21 @@
+Nguyen Quoc Tuan
+Automation Test Engineer
+Email: tuan82@example.com
+Dien thoai: 0927357063
+Gioi tinh: Nam
+Ngay sinh: 07/01/1997
+
+TOM TAT
+8 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company C (2018 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung Cypress, Pytest, Robot Framework cho kiem thu ui testing.
+- Chay test tren GitHub Actions.
+
+KY NANG
+Ngon ngu lap trinh: Java
+Ngoai ngu: Japanese JLPT N2
+
+Dia chi: 29 Nguyen Trai Street, District 12

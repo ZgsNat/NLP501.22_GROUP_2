@@ -1,0 +1,21 @@
+Trần Minh Lon#
+Automation Test Eng~neer
+Email: l%ng84@example.com
+Phone: 0962499769
+Gender: Male
+Date of birth: 15/11/19@#
+
+SUMMARY
+% years of experience in @oftware t@sti@g.
+
+~XPERIENCE
+Comp@%y F (2020 - Present)
+- Designed and built a Page Object Model automation framework and integr@t#d it in%o the CI pi~eline.
+- Used XCUITest, P%stman, Gatling~ JUnit, Cucumber for api testing, m%nual test@n~, mob~~e test%ng@ performance t#sting.
+- Ran tests on Docker, Git%ub Actions, Azure De%Ops.
+
+SKILLS
+Programming: TypeScript
+La~guages: English (TOEIC 750)
+
+Address: 100 %#uyen Trai Street, District 9

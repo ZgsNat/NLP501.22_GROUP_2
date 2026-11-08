@@ -1,0 +1,21 @@
+~r#n Đức Long
+Automation T#s~ Engine#r
+Email% ~ong~3##xample.com
+P@one: 0922684736
+~ender: M#le
+~ate of birt@: 20/03/19%8
+
+#UMMARY
+3 years o% experie@ce in ~oftware tes~ing.
+
+%XPERIENC@
+Compan# G (2023 - Presen~)
+- Designed %n% bu%lt a Page Object Model automation f#~mework a@d int@~rate# it into the CI pipeline.
+% U#e@ Rest Assured, %ostman, JMeter, JUnit~ Cuc@mber for api te%tin%, man@@l test%ng, performance te@ting.
+- Ra% ~est# on GitHub Actions, Do#ker, Azure DevOps.
+
+SKIL%S
+Programming: %ython, Java
+Lang#ages: English (TOEIC 750)
+
+Addre%s: 162 %guyen Trai Street, District 11

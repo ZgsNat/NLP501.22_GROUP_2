@@ -1,0 +1,22 @@
+Dang Văn Tuấn
+Automation Test Engineer
+Email: tuấn24@example.c0m
+Điện thoại: 0946137598
+Giới tính: Nam
+Ngay sinh: 12/05/1999
+
+TOM TẮT
+3 năm kinh nghiệm kiểm thử phan mềm.
+
+KINH NGHIỆM
+Company F (2023 - nay)
+- Viet automation test scripts cho bo regression, kiểm thử tự động hằng ngay.
+- Sử dung Cypress, WebdriverIO, JMeter, TestNG cho kiểm thu performance testing, ui testing.
+- Chạy test trên Azure DevOps.
+
+KỸ NĂNG
+Ngôn ngữ 1ập trinh: Type5cript
+Chứng chỉ: I5TQB Foundation Level (CTFL)
+Ngoại ngu: English (TOEIC 750)
+
+Địa chỉ: 215 Nguyen Trai Street, District 4

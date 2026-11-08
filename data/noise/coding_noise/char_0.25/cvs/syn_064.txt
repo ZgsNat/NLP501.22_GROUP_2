@@ -1,0 +1,22 @@
+Đ# Th@ Linh
+A#t@m@t#on T~%t Enginee@
+Emai#: lin~68~#xa%ple~com
+Điện t@oại: 0978808477
+Giới tí~h# N#
+Ngày @inh: 1~#10/#998
+
+TÓM #~T
+1 nă@ %%nh %%hiệm kiểm thử ph~n mề~@
+
+@INH NGH#Ệ@
+C~mpany D (2#25 - n%y@
+- %iết a%@oma@ion test scr#p%s cho bộ r~%~e~%io%, kiể@ #@% tự độn~ #@ng %gà~.
+- #ử d~ng S@l~ni~m WebDriver, Appium, Postman~ Res~ Assure@, Robot Frame#%rk, Tes~%G cho ki%m thử ap# tes@i#%, mobi#@ t~st%ng, ui tes#i#g.
+@ Chạ~ %~st trên Azur% D#vOp~.
+
+KỸ NĂN#
+Ngôn n~ữ l#p trìn#: Python
+Chứ~g @hỉ~ I@TQ% Fou~dati~~ L#v#l (CTF%#
+~g#%i %g~# English %TO%IC 750)
+
+Địa chỉ: 181 Nguy%n ###i Street, ##@trict 5

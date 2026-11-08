@@ -1,0 +1,22 @@
+Vũ Thu Thảo
+Automation Test Engineer
+Email: @h@o96@@xampl@.com
+Điện thoại: 0950876026
+Giới tính: Nữ
+Ngày sinh: 14/12/1999
+
+TÓM TẮT
+3 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆ%
+Company A (2023 - nay)
+- %ây dựn~ f%amework automation theo Page Object Model, data#driven, tíc# hợp Jenkins pipeline.
+- Sử dụng Selenium Web%river, Playw%@ght, Gatling, TestNG~ JUnit cho kiểm thử ~erformance tes#ing, %i testing.
+- Chạy test trên @itLab CI.
+
+KỸ NĂNG
+Ngô~ ngữ lập trìn%: C#, Java
+Chứng chỉ: ISTQB @ou~dation Level (CTFL)
+Ngoại ngữ: English (TOEIC 750), Japanese JLP~ N2
+
+Địa chỉ: ~%9 Nguyen Trai St@eet, District 1

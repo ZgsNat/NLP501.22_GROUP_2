@@ -1,0 +1,13 @@
+Phạm Minh Tuấn
+Automation Test Engineer
+Email: tuấn93@example.com
+Phone: 0981396350
+Gender: Male
+Date of birth: 26/05/2001
+
+SUMMARY
+7 years of experience in software testing.
+
+EXPERIENCE
+Company B (2019 - Present)
+- Designed and built a Page Object Model automation framework

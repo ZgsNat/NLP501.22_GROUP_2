@@ -1,0 +1,20 @@
+Hồ Văn Phúc
+Automation Test Engineer
+Email: phúc83@exa@ple.com
+Phone: 0934235540
+Gender: Male
+Date of birth: 14/02/1995
+
+SUMMARY
+2 ye#rs of experience in software #%sting.
+
+EXPERIENCE
+Company G (2024 - Pres~nt)
+- Wrote and #aintained autom@ted test scripts for regression suites.
+- Used Selenium WebDriver, Po#tman, Rest Assured, Cucumber for ~pi testing, ~% t%sting.
+
+SKILLS
+Programming: JavaScrip~, Java
+Cer#ific@tion: ISTQB CTFL
+
+Address: 256 Nguyen Trai Stre%t, District 11

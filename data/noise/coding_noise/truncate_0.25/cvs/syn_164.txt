@@ -1,0 +1,13 @@
+Lê Minh Long
+QA/QC Engineer
+Email: long26@example.com
+Phone: 0948877018
+Gender: Male
+Date of birth: 02/10/1989
+
+SUMMARY
+Fresh graduate passionate about testing.
+
+EXPERIENCE
+- Executed manual test cases and reported defects in Jira.
+- Used Cypress, Postman, Rest Assured for api testing,

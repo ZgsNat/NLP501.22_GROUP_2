@@ -1,0 +1,21 @@
+Nguyen Ngoc Huong
+Automation Test Engineer
+Email: huong20@example.com
+Dien thoai: 0945924244
+Gioi tinh: Nu
+Ngay sinh: 05/11/1988
+
+TOM TAT
+10 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company G (2016 - nay)
+- Viet automation test scripts cho bo regression, kiem thu tu dong hang ngay.
+- Su dung Selenium WebDriver, Cypress, Appium, Robot Framework, JUnit cho kiem thu mobile testing, ui testing.
+- Chay test tren Docker.
+
+KY NANG
+Ngon ngu lap trinh: C#
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 5 Nguyen Trai Street, District 2

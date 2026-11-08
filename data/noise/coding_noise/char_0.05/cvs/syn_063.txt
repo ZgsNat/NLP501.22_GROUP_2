@@ -1,0 +1,22 @@
+%ùi Văn Long
+A@to%ation Te%t Engineer
+Email: long91@example.com
+Phone: 0982369824
+Gender: Male
+Date of birth: 26/10/199@
+
+SUMM@RY
+3 year@ of e%perience in software testing.
+
+EXPER~ENCE
+Company E (2023 - Present)
+- Designed #nd bui#~ a Page Object Model autom%tion framework and integrated it int@ the CI pip#~ine.
+@ Used XCUITest, T@%tNG for manua~ testing, mobile testing.
+- Ran ~ests on Azu%e DevOps, Docker, GitHub Actions.
+
+SKIL#S
+Programming: TypeScript, Python
+Certificati~n: ISTQB CTFL
+Languages: English (T#EIC 7%0)
+
+A%dres~: 28 Nguyen Trai Street, District 6

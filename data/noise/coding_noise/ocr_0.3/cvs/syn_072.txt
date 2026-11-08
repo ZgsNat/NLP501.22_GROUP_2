@@ -1,0 +1,21 @@
+H0àng Duc Phúc
+Automation Test Engineer
+Emai1: phúc65@examp1e.com
+Phone: 0911592230
+Gender: Male
+Date of birth: 10/08/2000
+
+SUMMARY
+5 years of experience in software testing.
+
+EXPERIENCE
+Company F (2021 - Present)
+- Wr0te and maintained automated test scripts for regression suites.
+- Used WebdriverIO, Cypress, JUnit for ui testing.
+- Ran tests on Docker.
+
+SKILLS
+Programming: Java, TypeScript
+Certification: ISTQB CTFL
+
+Address: 162 Nguyen Trai 5treet, District 9

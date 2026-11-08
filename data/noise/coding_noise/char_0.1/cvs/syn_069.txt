@@ -1,0 +1,20 @@
+Lê T~ị Trang
+QA/QC Eng#neer
+Email: tran~20@example.#om
+Phone: 09294709#9
+G#nder: Female
+Dat% of birth: 2#/03/200@
+
+@~MMARY
+Fr%sh %#aduate pa@~io%ate abou# testing.
+
+EXPERIENCE
+- Executed ma%ual test cases and reported def%cts in Jira.
+- Used Postman, Rest As@ured for api t~#ting, manual testing.
+- Ran te~ts on Gi@Lab CI.
+
+@KILLS
+Progra@~in#: Java%crip%
+Langu@ges: E%#lish (TOEIC 75%)
+
+Address: 212 ~guyen Tr@i S#reet, Dist@%ct 7

@@ -1,0 +1,21 @@
+Lê Đức H#ng
+@utomat@~n Test Engineer
+E#@il: hùng34@e%%mple%com
+P#one# #925020641
+Gende~: Male
+Date of birth: 27/%#/1994
+
+SUMMARY
+5 y%ars of @xpe#ience in sof~wa~e tes%%ng.
+
+#X@E%IENCE
+Company G (2021 - Present)
+% Designe@ and built a Page Object Model automation framework and integrate% it int% t%e CI pipeline.
+- Us@d WebdriverIO, Selenium We%Driver, Rest Assured, Pytest, Cucumb@r fo% api testing, ui testing.
+- Ran t#@ts on %@nki~s, Azur~ DevOps, G#tHub A~tions.
+
+SKI#LS
+Pr%gramming: JavaSc#ipt, Java
+La@gua#e#: English ~TOEIC 750)# J%panese JLPT N2
+
+Address: 14 #guyen Trai Stree%, District 4

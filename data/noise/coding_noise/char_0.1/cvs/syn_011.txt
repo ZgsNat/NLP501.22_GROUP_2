@@ -1,0 +1,20 @@
+Bùi Minh Khoa
+Automation Test Engineer
+Email: khoa99@example.com
+Điện thoại# 0#14259684
+Giới tín%: @am
+Ngày sinh: 11/02/1#92
+
+TÓM TẮ#
+3 năm ki@h nghi@m #iểm thử @hần mề%.
+
+KIN% NGHIỆM
+~ompany A (202~ - nay)
+- Xây dựng frame@or% automation t#~o %~g~ Object Model@ d%ta-driven, tíc% hợp Jen~ins pipeline.
+- Sử dụng Selenium We@Driver, Gat~ing, #ytest, JUnit cho kiểm thử perf~rmance testi@g, ui test#ng.
+- Chạy test trên GitLab ~I, GitH~# Actio~s.
+
+KỸ %ĂN%
+Ngôn #gữ #ập tr~nh: Python, JavaScri@t
+
+Địa ~hỉ: 137 Nguyen Trai Street, @@st@ict 7

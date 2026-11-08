@@ -1,0 +1,13 @@
+Phạm Đức Tuấn
+Automation Test Engineer
+Email: tuấn12@example.com
+Phone: 0947038339
+Gender: Male
+Date of birth: 18/09/1992
+
+SUMMARY
+4 years of experience in software testing.
+
+EXPERIENCE
+Company A (2022 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the C

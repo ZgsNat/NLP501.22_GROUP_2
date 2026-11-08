@@ -1,0 +1,13 @@
+Đặng Thu Vy
+Automation Test Engineer
+Email: vy91@example.com
+Điện thoại: 0941061693
+Giới tính: Nữ
+Ngày sinh: 08/06/2001
+
+TÓM TẮT
+5 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company D (2021 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven, tích h

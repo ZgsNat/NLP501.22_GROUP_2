@@ -1,0 +1,19 @@
+Hồ Đức Khoa
+Automation Test Engineer
+Email: khoa94@example.com
+Phone: 0996960449
+Gender: Male
+Date of birth: 19/03/1991
+
+SUMMARY
+2 years 0f experience in s0ftware testing.
+
+EXPERlENCE
+Company F (2024 - Present)
+- Wrote and maintained aut0mated test scripts for regression suites.
+- Used Rest Assured, k6, JUnit, Robot Framework for api testing, manua1 testing, perf0rmance testing.
+
+SKILLS
+Pr0gramming: C#, JavaScript
+
+Address: 95 Nguyen Trai Street, District 5

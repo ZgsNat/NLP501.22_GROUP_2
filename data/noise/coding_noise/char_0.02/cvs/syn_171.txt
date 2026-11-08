@@ -1,0 +1,19 @@
+Hoàng Thu Lan
+Automation Test Engineer
+Email: l%n90@example.com
+Phone: 0911396963
+Gender: Female
+Da#e of birth: 27/0@/1995
+
+SUMMARY
+2 years of experience in software test%ng.
+
+EXPERIENCE
+Company F (2024 - Pre~ent)
+# Wrote and main#ained automate@ test script@ for regres#ion suites.
+- Used Selenium WebDriver, WebdriverIO, Postman, Cucumber, Tes@NG for api testing, ui testing%
+
+SKILLS
+Programming: JavaScript, C#
+
+Address: 144 Nguyen Trai Street, #istrict 3

@@ -1,0 +1,20 @@
+Bùi Minh Kho@
+Automation Test Engineer
+E#ail: @hoa99@example.com
+Điện thoại: 09142596@4
+Giới tính: Nam
+Ng@y sinh: 11/02/#992
+
+TÓM TẮ#
+3 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆ%
+Company A (2023 - nay)
+- Xây dựng f%amework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.
+- Sử dụng Selenium W~bDriver, Gatling, Pytest, JUnit cho k~ể@ thử performance testing, ui %estin#.
+- Chạy test trên GitLab CI, GitHub A#tions.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Python, JavaScript
+
+Địa chỉ: 1%7 Nguyen Trai S%re@t, District 7

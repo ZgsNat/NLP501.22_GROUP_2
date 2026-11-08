@@ -1,0 +1,21 @@
+Bù# Thị Lan
+Au%oma#ion Test E@g~nee~
+%ma~l# lan79%example#@om
+Phone: 099#082165
+Ge%der: Female
+Date of ~irt~: ~@@05/20@3
+
+SUMMARY
+8 ye~@s @f ~xperience in %oft@%~e t#s#ing.
+
+E%PERIE%CE
+#ompa@y G (%#18 - @re%ent)
+- @e~#ned the tes~ au%om@tion strategy, l@~ a #ea# of 5 QA eng@neer@ and men~o%e@ jun~or# on aut~ma%ion@
+- ~se% @e@@riverIO, Se@@nium WebDriver, R%st Assu%ed, ~obot F@amework fo~ api t%stin%, ui test@ng.
+@ #a~ t#sts #n Do#%~r, J%nk#@s@ GitLab CI.
+
+%#ILLS
+P%~g@amming@ %avaScript
+L%ngua~es: E#gli%h @TO~I# %5~)
+
+Addres%: 104 Nguyen Trai St~eet, Dis#@i#t 9

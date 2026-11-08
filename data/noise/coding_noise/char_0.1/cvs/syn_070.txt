@@ -1,0 +1,21 @@
+Phạ% Quốc Lo%g
+A@@om~tion %est Engineer
+E%ail% long91@example.com
+%hone: 0932452379
+%ender: Male
+Da#e of birth% 07/10/199~
+
+SUMMARY
+% years @f expe@ienc# %n sof~ware testing.
+
+EXPERIEN%E
+Comp~ny A (2024 - Presen~)
+- Wrote and maintained automate@ test scripts for ~egression suites.
+- Used Appium, JUn~t, TestNG for ma~ual t#st#ng, mo@ile t~sting.
+- R%n tests on GitLab CI.
+
+SKILLS
+%ro~ramming: Java
+Languages: English (TO~~C 750)~ Ja@anese JLPT N2
+
+#ddress: 1@6 Nguyen Tra# Stre#t, Distric@ 2

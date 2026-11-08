@@ -1,0 +1,20 @@
+Vũ Quốc Nam
+Au#omation Tes# Engineer
+~mail: @am50~examp~e~%om
+Điện thoại: %9759%778@
+Gi#i tí%h: Nam
+Ngày sinh: 25/#3/2002
+
+TÓM TẮT
+7 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (2019 - nay)
+- Xây dựng %ramework aut#m#tion theo Pag~ Objec~ %odel, data-driven, #ích @ợp Jenkins pipeline.
+@ Sử dụng Playwrigh~, Rest Assured, Cucumber~ %ytest cho kiể% thử api te%ting, ui testing~
+- Chạy tes~ trên Azu%e Dev#ps, @ocker, Jenkins.
+
+KỸ NĂNG
+Ng~n ngữ #ập tr#nh: JavaScript, C#
+
+Đị% chỉ: ~% Nguyen Trai Street, District 3

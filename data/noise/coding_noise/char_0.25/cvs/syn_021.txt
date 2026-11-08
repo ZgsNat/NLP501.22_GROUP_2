@@ -1,0 +1,21 @@
+Đỗ M~nh T%ấn
+A#tomation Te@t E@gineer
+Email: ~@ấ%6@@~xampl#@com
+#h~ne: 0946953423
+Ge~der: ##l@
+%ate of birth: 28/~%/#993
+
+SUMMARY
+1 years o# exp#r#ence i% sof~w##e testi#g.
+
+@X@~~IE%CE
+Com~a#y A (#025 % P#~##nt)
+# Wrote a%@ %a~nt~i#ed auto@ate% test scripts @o~ re%r%ssion ~ui@es~
+- Used Web##iverIO@ k~, Robot F@amewo~k% %uc#mb#r f%r p#rfo@##nce @esti@g, ui t@st@@g~
+- Ran tes@s on Azure DevOps.
+
+SK%#L#
+@rogrammi@g: Ja%a, ~@##on
+L#n%@@g#s~ E#gli~h %TOEIC 75%)
+
+Address: 272 Ng#yen Trai #~%ee#~ D~strict 3

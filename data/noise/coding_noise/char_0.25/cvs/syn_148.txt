@@ -1,0 +1,21 @@
+P@ạm M%i V%
+Aut#@~%i#~ Te~% Engi~eer
+Ema#~: #y44#ex#mple.com
+Phone: ~92~~44033
+G~nder# Femal~
+~a%e of bir~h: ~4/08/2003
+
+SUMM~RY
+5 yea~s #f e~perien%~ in @of#%ar% @est@~g.
+
+@X~E#IENCE
+@%~~an~ G (20~1 - Pre#e@t)
+- @es#gned a~d @ui#% a %age O~#%ct ~odel automa#io% fr~mew#rk a@d i%te%rat~% it i@to th# C~ pipeli@@.
+@ @sed P#~y@rig#t, #%bot Framework, Pyte@t for @% t@sting.
+- @an test# @@ ~en~ins, Git%ub Action%, Doc~er.
+
+S~#L#~
+Program~i@#: Pyth@n, J#va#c%~pt
+L%ng#age~~ E@gl~sh (TO#IC 7%0)
+
+Add~e~#: 66 ~gu#en Tr@i Street% Dis~%%#t 6

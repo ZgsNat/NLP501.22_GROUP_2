@@ -1,0 +1,12 @@
+Trần Mai Hương Automation Test Engineer Email: huong86@example.com
+Phone: 0998546660 Gender: Female
+Date of birth: 20/01/2002
+
+SUMMARY
+10 years of experience in software testing.  EXPERIENCE Company D (2016 - Present) - Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.
+- Used WebdriverIO, Rest Assured, JMeter, Pytest, Cucumber for api testing, performance testing, ui testing.
+- Ran tests on Docker.
+ SKILLS Programming: C#
+Certification: ISTQB CTFL
+Languages: Japanese JLPT N2 
+Address: 238 Nguyen Trai Street, District 7

@@ -1,0 +1,21 @@
+Bùi Ngọc Trang
+Automation Test Engineer
+Email: trang21@example.com
+Phone: 0943382936
+Gender: Female
+Date of birth: 06/08/1990
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+Company F (2023 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.
+- Used Cypress, Espresso, Rest Assured, k6, Pytest for api testing, mobile testing, performance testing, ui testing.
+- Ran tests on GitHub Actions, Azure DevOps, GitLab CI.
+
+SKILLS
+Programming: Java, JavaScript
+Languages: English (TOEIC 750), Japanese JLPT N2
+
+Address: 174 Nguyen Trai Street, District 11

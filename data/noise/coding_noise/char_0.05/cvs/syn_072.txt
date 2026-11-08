@@ -1,0 +1,21 @@
+Hoàng Đức Phúc
+Automation Test Engineer
+E~a@l: p@úc%5@example.com
+Phone: 0911~92230
+Gender: Male
+Date of birth: 10/08/2000
+
+S~MMARY
+# years of experience in software testing.
+
+EXPERIENCE
+C~mpany F (2021 - Present)
+- Wrote and maintained automated test scripts fo% regression suites.
+- Used @ebdriverI@, Cyp#ess, JUnit for ui testing.
+- Ran tests on Docker.
+
+SKILLS
+Programming: Java, TypeScript
+Ce@tifi#a@ion: ISTQB CTFL
+
+Addr@ss: ~62 Nguyen T@ai Street, District 9

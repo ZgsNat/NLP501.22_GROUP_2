@@ -1,0 +1,21 @@
+Dang Thị Vy
+Aut0mation Test Engineer
+Email: vy14@example.com
+Ph0ne: 0948182550
+Gender: Fema1e
+Date of birth: 20/01/1992
+
+5UMMARY
+5 years 0f experience in software testing.
+
+EXPERIENCE
+C0mpany C (2021 - Present)
+- Designed and bui1t a Page Object Model automation framew0rk and integrated it into the Cl pipe1ine.
+- Used WebdriverIO, Playwright, TestNG, Cucumber f0r ui testing.
+- Ran tests on Jenkins, GitLab Cl.
+
+SKILLS
+Programming: TypeScript, JavaScript
+Certificati0n: ISTQB CTFL
+
+Address: 4 Nguyen Trai Street, District 5

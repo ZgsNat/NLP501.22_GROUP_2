@@ -1,0 +1,21 @@
+Dang Duc Long
+Automation Test Engineer
+Email: long95@example.com
+Dien thoai: 0954335867
+Gioi tinh: Nam
+Ngay sinh: 26/06/2002
+
+TOM TAT
+4 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company D (2022 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung XCUITest, JMeter, TestNG, Pytest cho kiem thu manual testing, mobile testing, performance testing.
+- Chay test tren Azure DevOps, GitHub Actions, Docker.
+
+KY NANG
+Ngon ngu lap trinh: Java
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 16 Nguyen Trai Street, District 2

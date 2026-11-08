@@ -1,0 +1,21 @@
+Phạ@ Minh Tuấn
+A~tomati@n Te%t Eng#n~er
+Email: tuấn93@exampl#.com
+Pho~e: 0981396350
+Gender: Male
+#%te of birth@ 26/05@2001
+
+SUMMARY
+% %ears of experienc~ in software testing.
+
+EXPE#~ENCE
+Com%~ny B (2019 - Prese#t)
+@ ~es%gned and bui%t a Page Object @o@el automa#i@n frame%ork and integ@ated it into the CI pipeline.
+- Used ~elenium WebDriver, W#bdriverIO, Appium, Postman, Test#G fo~ api te~ting, mobile test@ng, ui @estin#.
+- Ran test@ on J@nkins.
+
+SKILLS
+Programming: Python
+Languag@s: English (@OEIC 75%)
+
+Address~ 36 Nguyen T#ai Stree~, District 3

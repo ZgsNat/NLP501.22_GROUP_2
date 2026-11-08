@@ -1,0 +1,13 @@
+Hồ Đức Khoa
+Automation Test Engineer
+Email: khoa38@example.com
+Phone: 0953521847 Gender: Male
+Date of birth: 09/04/2000 
+SUMMARY 7 years of experience in software testing.  EXPERIENCE
+Company B (2019 - Present)
+- Defined the test automation strategy, led a team of 5 QA engineers and mentored juniors on automation. - Used Selenium WebDriver, Appium, Pytest for mobile testing, ui testing.
+- Ran tests on Azure DevOps, Docker, GitLab CI.
+ SKILLS
+Programming: TypeScript, C#
+Certification: ISTQB CTFL
+ Address: 229 Nguyen Trai Street, District 4

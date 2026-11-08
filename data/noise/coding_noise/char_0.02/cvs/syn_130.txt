@@ -1,0 +1,21 @@
+Trần Văn Phúc
+Automation Test Engineer
+Email: phúc18@example.com
+Điện thoại: 0989575878
+Giới tính: Nam
+Ngày sinh: 26/04/1992
+
+T%M TẮT
+4 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company F (202~ - nay)
+- Xây dựng framework automation theo Page Object Mode@, d@ta-driven, tích hợp Jenkins pipeline.
+- Sử dụng Appium, Postman, Rest Assured, JUnit, TestNG cho kiểm thử ap@ testing, man@al testing, mobile %esting.
+- Chạy test trên Docker, Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trìn%: JavaScript
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 261 Ngu@en Trai Street, District 5

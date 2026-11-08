@@ -1,0 +1,21 @@
+Trần Minh Hù#g
+Aut~matio~ Test Engineer
+Email: hùng40@example.com
+Phone: 09679%3873
+Gender: ~ale
+Date of bi~th: 23/10/2000
+
+SUMMARY
+3 years of experience i# software testing.
+
+EXPERIENCE
+%ompany F (2023 - P#@sent)
+- Designed and built a Page Object Model aut%m%tion framework and integra%ed it into the CI pipeline.
+- Use% Cypress, Selenium WebDr@ver, Espresso, Rob~t Framework, TestNG for mobile testing, ui testing.
+- Ran tests on GitHub A%tions.
+
+SKILLS
+Programming: Java#cript, C#
+Languages: English (TOEIC 750)
+
+Address: 163 Nguyen T%ai Street, District 12

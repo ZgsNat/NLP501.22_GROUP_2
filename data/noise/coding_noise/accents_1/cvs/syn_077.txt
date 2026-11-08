@@ -1,0 +1,21 @@
+Nguyen Van Hung
+Automation Test Engineer
+Email: hung86@example.com
+Dien thoai: 0998128100
+Gioi tinh: Nam
+Ngay sinh: 27/04/1991
+
+TOM TAT
+10 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company F (2016 - nay)
+- Truong nhom QA 5 nguoi, dinh huong automation strategy va mentor thanh vien moi.
+- Su dung Espresso, Postman, Rest Assured, TestNG, Cucumber cho kiem thu api testing, manual testing, mobile testing.
+- Chay test tren Docker, Jenkins, Azure DevOps.
+
+KY NANG
+Ngon ngu lap trinh: C#, JavaScript
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 62 Nguyen Trai Street, District 2

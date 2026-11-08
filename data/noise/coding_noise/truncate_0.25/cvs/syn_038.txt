@@ -1,0 +1,15 @@
+Hồ Thị Thảo
+Automation Test Engineer
+Email: thảo92@example.com
+Phone: 0950318100
+Gender: Female
+Date of birth: 02/12/2000
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+Company A (2023 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Selenium WebDriver, WebdriverIO, TestNG, Cucumber for ui testing.
+- R

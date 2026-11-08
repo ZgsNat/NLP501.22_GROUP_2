@@ -1,0 +1,21 @@
+Hoang Van Phuc
+Automation Test Engineer
+Email: phuc19@example.com
+Dien thoai: 0916052535
+Gioi tinh: Nam
+Ngay sinh: 17/02/2001
+
+TOM TAT
+4 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company D (2022 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung Playwright, Postman, Pytest cho kiem thu api testing, ui testing.
+- Chay test tren GitHub Actions.
+
+KY NANG
+Ngon ngu lap trinh: Python, TypeScript
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 49 Nguyen Trai Street, District 8

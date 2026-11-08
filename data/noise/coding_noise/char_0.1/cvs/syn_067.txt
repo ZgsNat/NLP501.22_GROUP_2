@@ -1,0 +1,22 @@
+Trần Thu Trang
+Au@omation T#st E#gineer
+Email: trang26@#xampl~.com
+P@one: @9@2650976
+Gender: %e~ale
+~ate of %irt~: 09/05/1996
+
+SUMMARY
+10 yea#~ of experience in #oftware testi@g.
+
+EXPERIENCE
+Company A (2016 - Present)
+- Defined the test autom#tion strategy, l#d a team of 5 QA #ngineers and mentor#d juniors on automation.
+- Used @ypr%ss, Selenium Web@river, Res% Assure%, Cucum%@r, Robo~ Framework #or api testing, ui tes#ing.
+- Ran test@ on Azure DevOps@ GitHub Actions, #ock@r.
+
+SKILLS
+Programming: Python, Ty@eScript
+Certificat@o#: ISTQB CT@L
+~ang~ages: English (TOEIC 750)
+
+Address: 58 Nguy#n Trai Street, District 10

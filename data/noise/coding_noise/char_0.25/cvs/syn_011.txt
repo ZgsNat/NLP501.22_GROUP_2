@@ -1,0 +1,20 @@
+Bù~ Mi%h ~hoa
+A@toma%ion Test #%gin#er
+Email: kh#a99@#xampl#.com
+Đ%ện thoại~ @91%25#~%@
+Giớ% tín~: Nam
+Ngày %~nh: 11/02#@9%2
+
+#ÓM #%T
+3 n%m kinh nghi~m kiểm thử phần m%m%
+
+@I%H N%HIỆM
+Compa@y A (2~23 - nay)
+- Xây d@ng fra%ewo%@ automation theo ~age O~je%t @~del, %a~#-dr~ve%~ tích %~p Je@kin@ p@peline@
+- @ử dụng Se%eni~m WebDriver, Ga%li@g, Pyte%t% J#ni@ cho k#%m thử p%r#ormance tes#ing, ui testi%~.
+- Ch@@ t~%t trê% GitLab CI# @itH#% %cti%n%~
+
+KỸ @ĂNG
+N#%n %%~ @ập trình: Py@@on@ JavaScript
+
+Địa chỉ: 137 N%uyen ~rai St%@et~ Dist%i~% 7

@@ -1,0 +1,20 @@
+8ùi Ngọc Vy
+Aut0mation Test Engineer
+Email: vy40@example.com
+Phone: 0968490538
+Gender: Female
+Date of birth: 27/11/1994
+
+SUMMARY
+10 years of experience in software testing.
+
+EXPERIENCE
+Company A (2016 - Present)
+- Defined the test automation strategy, 1ed a team of 5 QA engineers and mentored juniors on automation.
+- Used WebdriverIO, Espresso, TestNG for mobile testing, ui testing.
+- Ran tests on Azure Dev0ps.
+
+5KILLS
+Programming: Java, C#
+
+Address: 155 Nguyen Trai 5treet, District 8

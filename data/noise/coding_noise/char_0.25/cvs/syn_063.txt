@@ -1,0 +1,22 @@
+Bùi V@n Lon#
+Autom%tio# T#s@ @nginee#
+Emai@: #ong~1~~xample.co@
+P~one: 098#369~24
+G#@der: ~ale
+Date o~ birth@ 26/%0/1997
+
+#UMMA@Y
+% yea%s of exper%ence in software testing.
+
+EXP@R#ENCE
+Co@pany E (##23 - Prese%~)
+- De#i%ned @nd b@#lt a Page Objec% Mod~l automat#on frame@ork an# integ~a~~d it in%% @he CI pipeline.
+@ Used %CUIT@s%, Tes%NG for ~a~@al testi@@, mobi%e ~esting~
+- Ran te@#s on Azure D#v@ps@ D%ck#%, G~#Hub Actions.
+
+%KILLS
+Pr@gra@mi%g: Type@c%ipt% %yth%n
+Ce~tif#%ati~n: @%TQB C@@~
+Languages: ~#@li@~ (TOE%C 750)
+
+#ddress: #8 Ng@ye% Tr~i ~tre~t, #istri%~ 6

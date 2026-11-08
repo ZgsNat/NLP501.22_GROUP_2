@@ -1,0 +1,21 @@
+@ùi Đức Phúc
+Automation Test Engineer
+Email: phúc46@example.com
+Phone: 0953298644
+Gender: Male
+Date ~f birth: 14/11/1998
+
+SUM@ARY
+3 years of experience in software testing.
+
+EXPERIENCE
+Company A (2023 - Present)
+- Desi@ned and built a Page Object Model automati@n framework and integrated it into the CI pipeline.
+- Used Selenium WebDriver, Postman, TestNG, JUnit for api testing, ui testing.
+- Ran tests o@ Docker.
+
+SKILLS
+Programming: JavaScript, C#
+Languages: Japanese JLPT N2
+
+Address: 50 Nguyen Trai Str#et, District 9

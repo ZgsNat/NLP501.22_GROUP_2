@@ -1,0 +1,22 @@
+Lê Th% La#
+Automation Test Engineer
+~mail: lan92@example.com
+Điện thoại: ~943%21297
+Giới tí#h: Nữ
+Ngày sinh: 27/04/1991
+
+TÓM TẮT
+8 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Compa#y A (2018 - %ay)
+- Xây dựng framework automation theo Page Object Model, data-drive@, tích hợp Jenkins pipel#ne.
+- Sử dụn@ Cypress, JMeter, Cucumber cho kiểm thử performance testing, ui testi%g.
+- Chạy test trên Docker, GitHub Action@.
+
+KỸ NĂNG
+Ngôn n@ữ ~ập trình: TypeScri~t
+Chứng chỉ: ISTQB Foundation Leve~ (CTFL)
+Ngo%i ngữ: #nglish (TOEIC 750)
+
+Địa chỉ: 178 Nguyen Trai S#ree@, District 11

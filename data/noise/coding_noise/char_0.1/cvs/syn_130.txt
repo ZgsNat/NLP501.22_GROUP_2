@@ -1,0 +1,21 @@
+%rần Văn Phúc
+Automa%ion T@st %ngi@eer
+Email@ ~hú#18@e~am%le.com
+Điện thoại: 09895%5878
+Giới tính~ #@m
+Ngày si#h: 26/#4/1992
+
+T~@ TẮT
+4 năm kinh n#hiệm k%ểm thử ph%% mềm.
+
+KINH NGHIỆM
+Company F (20#2 # n~y)
+- Xây dựng fra%ework automation theo Page ~#ject Model, data-driven# tích hợp J~nk%ns p~pelin~.
+- Sử dụng Appiu%, Postman, Rest Assu%ed, JUnit, Test@G ch~ kiể@ thử #pi testing, ma%ual testing, mobi#e ~esting.
+- Chạy test #rên Docker, Jenkins.
+
+KỸ NĂNG
+Ng@% ngữ lập trình: Java%cript
+Ngoại ngữ: English (%OE#C 750)
+
+Đ~a chỉ: 261 Nguyen Tra% Str@et, Distri%# 5

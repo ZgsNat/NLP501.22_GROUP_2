@@ -1,0 +1,21 @@
+~ê @ai Trang
+Aut~mation Test Engineer
+Email# tra@g87@example.com
+Phone: 0956023301
+Gende@: Femal@
+Date of birth: 10/~6/%98@
+
+SUM%ARY
+3 ~ears of experien#e i~ @o@tware testi~g.
+
+EXPERIENCE
+C@m#a@y E (20#3 - Present)
+- Wr~te %n% mainta#%ed automated test scripts for %egression suites.
+- Used Sel#nium WebDriver, Rest Assured, #obot Fr#mewor@ #@r %pi testing, ui testin##
+- Ran tes%s on Azure De@O~@.
+
+%KILLS
+Program#ing: TypeSc#ipt
+Lang%#ge~: Engli@h (TOEI~ 750)
+
+Address: 75 Nguyen Trai Street, D%s#rict 1

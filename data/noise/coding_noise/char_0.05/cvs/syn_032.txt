@@ -1,0 +1,19 @@
+Hồ Mai Trang
+QA/QC Eng%neer
+Email: trang50@ex~mple.com
+Phone: 0#83%30667
+Gender@ Female
+Date o# birth: 11/0%#2001
+
+SUM~A#Y
+Fr%sh graduate passionate about testing.
+
+E@PERIENCE
+- #xe@uted manual te~t cases a#d reported defects in Jira.
+- Used Cypres#, Webdrive~IO, Rest Assu#ed, Cucumber for api testing, ui testing.
+
+SKILLS
+Programming: Python
+Certification: ISTQB CTFL
+
+Address: 221 N@@yen Trai %treet, District 12

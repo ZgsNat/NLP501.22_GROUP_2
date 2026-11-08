@@ -1,0 +1,14 @@
+Vũ Thu Thảo
+Automation Test Engineer
+Email: thảo96@example.com
+Điện thoại: 0950876026
+Giới tính: Nữ
+Ngày sinh: 14/12/1999
+
+TÓM TẮT
+3 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (2023 - nay)
+- Xây dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.
+- Sử 

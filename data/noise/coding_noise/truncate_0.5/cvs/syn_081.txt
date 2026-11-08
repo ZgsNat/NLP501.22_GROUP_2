@@ -1,0 +1,13 @@
+Lê Quốc Hùng
+Automation Test Engineer
+Email: hùng72@example.com
+Phone: 0936933352
+Gender: Male
+Date of birth: 20/07/1993
+
+SUMMARY
+4 years of experience in software testing.
+
+EXPERIENCE
+Company F (2022 - Present)
+- Wrote and maintained autom

@@ -1,0 +1,21 @@
+Phạm Mai Vy
+A%tomation Tes~ Engineer
+Email: vy44@e%ample.com
+Phone: 09~5#44@33
+Gender: Female
+Date of b~rth: 14/08@2003
+
+SU@MARY
+5 years of e@~erienc@ in softwar# testing.
+
+EXPERIENCE
+Company G (20@1 - Present)
+- Designed and built a Page O%ject Model automa@ion fr%m@work an# i#@egrated it into the CI pipeline.
+- @sed Pla%wright~ Robot Fr#mewor~@ Pyte%t for ui te#%ing#
+- Ran tests on Je%kins, GitHub ~ctions, Doc@er.
+
+SKILLS
+Prog@ammin#: Pyth#n, JavaScript
+Lang#ages: Engl~sh (TOEIC #50)
+
+Address: 66 #guyen Trai Str@et, D#strict 6

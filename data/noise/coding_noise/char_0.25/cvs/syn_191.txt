@@ -1,0 +1,21 @@
+Vũ Thị Hương
+Au%omation T~%t ~n@in#e@
+Email: @uo%g12@example@~@@
+Đi@n th~ại: 0@58640@95
+Giớ% %í@h~ @ữ
+Ngày @i%h: 18/~%/1992
+
+TÓM TẮT
+7 #ăm ki%h %ghiệm ~iểm thử #~ần #%%.
+
+KIN~ %G#IỆM
+C%mp~ny @ (20#9 - na##
+- Tr#%@g nhó~ QA ~ người@ định h#ớng @%@o#%~ion strategy v# @ento% th@nh %i#n m%i.
+@ Sử dụng Cyp%#ss, Rest Ass%r@d@ Pos#man, Tes#%G, C~cum%er c%o #iểm %hử ap# t~stin%, u% te#%ing.
+- Ch~y test ~r@~ Azure DevO@s, GitHub Actio@@.
+
+KỸ ~Ă~G
+N~ôn ng% lập t%ình: Python
+Ngo~i n#ữ: En@#is~ (TOEIC 750)
+
+Đ#a c~ỉ: 31 Ng%~e% Tra% St@eet~ Dis%@#ct 6

@@ -1,0 +1,19 @@
+Hoàng Thị Hương
+Automation Test Engineer
+Email: huong38@examp1e.com
+Ph0ne: 0916122001
+Gender: Fema1e
+Date 0f birth: 18/04/1997
+
+5UMMARY
+2 years of experience in s0ftware testing.
+
+EXPERlENCE
+Company A (2024 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Rest Assured, k6, Pytest, TestNG for api testing, manual testing, perf0rmance testing.
+
+SKlLLS
+Programming: JavaScript
+
+Address: 76 Nguyen Trai 5treet, District 5

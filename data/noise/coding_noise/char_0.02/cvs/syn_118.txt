@@ -1,0 +1,20 @@
+Lê Mai Linh
+Automation Test E@gineer
+Email: linh12@example.com
+Điện @hoại: 0925630838
+Giới tính: Nữ
+N%ày sinh: 06/03/2002
+
+TÓM TẮT
+1 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Compa#y D (2025 - nay)
+- V%ết automation test scripts cho bộ regression, kiểm thử t~ động hằng ngày.
+- Sử dụng Cypress, Selenium WebDriver, Espresso, Cucumber cho kiểm thử mobile testin~, ui testing.
+
+KỸ NĂ~G
+~gôn ngữ lập trình: Python, TypeScript
+Ngoại ngữ: English ~TOEIC 750)
+
+Địa chỉ: 242 Nguyen Trai Street, District 1

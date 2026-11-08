@@ -1,0 +1,21 @@
+Nguyễn Quốc Tuấn
+Automation Test Engineer
+Email: tu#n82@example.com
+Điện thoại: 09273570%3
+Giới tính: Nam
+Ngà~ sinh: 07/01/1997
+
+TÓM TẮT
+8 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company C (2018 - nay)
+- Xây dựng framework automation theo Page Object Model, data~driven, tích hợ% J~nkins pipeline.
+- Sử dụng Cypress, Pytest, Robot Framework cho kiểm thử ui testing.
+- Chạy test tr#n GitHub Actions.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: %ava
+Ngoại ngữ: Japanese JLPT N2
+
+Địa chỉ: 29 Nguyen Trai Street, District 12

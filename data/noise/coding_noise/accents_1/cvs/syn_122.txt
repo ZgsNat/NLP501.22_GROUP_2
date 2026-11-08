@@ -1,0 +1,21 @@
+Dang Mai Lan
+Automation Test Engineer
+Email: lan73@example.com
+Dien thoai: 0993576934
+Gioi tinh: Nu
+Ngay sinh: 21/06/2002
+
+TOM TAT
+5 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company F (2021 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung Selenium WebDriver, Rest Assured, Cucumber cho kiem thu api testing, ui testing.
+- Chay test tren Azure DevOps, Jenkins.
+
+KY NANG
+Ngon ngu lap trinh: C#, TypeScript
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 224 Nguyen Trai Street, District 1

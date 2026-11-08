@@ -1,0 +1,22 @@
+Đỗ Thị Vy
+Automation Test Engineer
+Email: vy67@example.com
+Phone: 0957179735
+Gender: Female
+Date of birth: 08/12/1997
+
+SUMMARY
+2 years of experience in software testing.
+
+EXPERIENCE
+Company C (2024 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Cypress, Selenium WebDriver, Rest Assured, Postman, Cucumber for api testing, ui testing.
+- Ran tests on Jenkins.
+
+SKILLS
+Programming: Python, C#
+Certification: ISTQB CTFL
+Languages: English (TOEIC 750)
+
+Address: 99 Nguyen Trai Street, District 1

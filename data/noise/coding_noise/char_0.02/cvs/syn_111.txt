@@ -1,0 +1,21 @@
+Hồ Thu Trang
+Automation Test Engineer
+Email: trang42@example.com
+Điện thoại: 09885935@1
+Giới t@nh: Nữ
+Ngày %inh: 03/09/1988
+
+TÓM TẮT
+5 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (2021 - nay)
+- Xây dựng framework automation theo Page Ob@ect Model, data-driven, tích @ợp Jenkins pipeline.
+- Sử dụng XCUITest, Postman, Rest Assured, Pytest cho kiểm thử api test#ng, manual testing, mobile %esting.
+- Chạy test trên GitLab CI, Azure DevOps.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Python
+N%oại ngữ: English (TOEIC 750)
+
+Địa chỉ: 237 Nguyen Trai Street, District 3

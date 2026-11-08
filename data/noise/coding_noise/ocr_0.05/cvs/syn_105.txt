@@ -1,0 +1,21 @@
+Đặng Thu Vy
+Automation Test Engineer
+Email: vy87@example.com
+Điện thoại: 0927620998
+Giới tính: Nữ
+Ngày sinh: 12/11/1991
+
+TÓM TẮT
+4 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company G (2022 - nay)
+- Xay dựng framework automation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.
+- Sử dung Playwright, WebdriverIO, k6, Cucumber, JUnit cho kiểm thử performance testing, ui testing.
+- Chạy test trên GitHub Actions, Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: TypeScript, JavaScript
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 189 Nguyen Trai Street, District 9

@@ -1,0 +1,22 @@
+Lê Min@ Long
+Auto%at#on Test Engineer
+~mail: ~o~g%4@exam#le.com
+Phone# 0972980385
+Gender: Male
+Date #f birth: 12/08/1~95
+
+SUMMARY
+8 years ~~ experience i# softw#re testing.
+
+EXP@R@ENCE
+Com~any E (2~1@ % Present)
+- Defined t@e test #%tomatio% strateg@, led % team of 5 Q% engineers and ~ento#ed juniors #n automation.
+- Use% JMeter, Cucumber~ J#nit for ma#ual test#ng, performance tes@ing.
+- Ran tests on Azure DevOps.
+
+SKILLS
+Pr~gramming: P@thon
+Cer~if#cati#n: ISTQB C@F%
+La#gua%%s: Ja~a@ese %@PT ~2
+
+Addre~s: @13 @guyen Tr#i Street, District 10

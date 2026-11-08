@@ -1,0 +1,21 @@
+Phạm Minh Tuan
+Automation Test Engineer
+Email: tuấn93@example.com
+Phone: 0981396350
+Gender: Male
+Date of birth: 26/05/2001
+
+5UMMARY
+7 years of experience in software testing.
+
+EXPERIENCE
+C0mpany B (2019 - Present)
+- Designed and bui1t a Page Object M0del automation framework and integrated it into the CI pipe1ine.
+- Used Selenium WebDriver, WebdriverIO, Appium, Postman, TestNG for api testing, mobile testing, ui testing.
+- Ran tests on Jenkins.
+
+5KILLS
+Programming: Python
+Languages: English (TOEIC 750)
+
+Address: 36 Nguyen Trai Street, District 3

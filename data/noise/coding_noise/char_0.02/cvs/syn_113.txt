@@ -1,0 +1,21 @@
+Bùi Minh Tuấn
+Automation Tes# Engineer
+Email: tuấn33@example.com
+Phone: 0938329%17
+Gender: Male
+Date of birth: 06/02/1996
+
+SUMMARY
+2 years of experience in software testing.
+
+EXPERIENCE
+Company # (2024 - Present)
+- Wrote and ma#ntained automated te#t scripts for r@g#ession suites.
+- Used Playwright, Cypress, Robot Framew@rk, TestNG for ui testing.
+- Ran tests on Docker.
+
+SKILLS
+Programming: JavaScript
+Languages: English (TOEIC 750)
+
+Addre@s: 55 Nguyen Trai Street, District 7

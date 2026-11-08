@@ -1,0 +1,21 @@
+Nguyen Quốc Tuấn
+Aut0mation Test Engineer
+Emai1: tuấn82@example.com
+Điện th0ại: 0927357063
+Giới tính: Nam
+Ngày sinh: 07/01/1997
+
+TOM TAT
+8 nam kinh nghiệm kiem thử phần mềm.
+
+KINH NGHIỆM
+C0mpany C (2018 - nay)
+- Xay dung framework automation theo Page 0bject Mode1, data-driven, tích hop Jenkins pipeline.
+- Sử dụng Cypress, Pytest, R0bot Framework cho kiem thử ui testing.
+- Chay test tren GitHub Acti0ns.
+
+KỸ NANG
+Ngon ngữ lập trình: Java
+Ngoại ngữ: Japanese JLPT N2
+
+Địa chi: 29 Nguyen Trai Street, District 12

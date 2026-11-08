@@ -1,0 +1,21 @@
+@ũ Đức Nam
+A#~omat~~n ~est Enginee@
+~mail: nam4#@exampl~.c#m
+%hone: 095~26%031
+G~nder: Male
+Date %f birth: 19/%~/1995
+
+SUMMA#Y
+2 years of @xpe~ience in software testing.
+
+EXPERIENCE
+Company C (2024 - Present)
+- Wrot% @nd m%intained automat~d test scr%pt# for r#gres@ion suites.
+- @sed Se%eni~m @ebDriver, Webdriv#rIO, k6@ JUnit for perfor%@nce #esting, ui tes~ing.
+- ~an tests on Azure D%vOps.
+
+SKILLS
+Progra@m#n~: JavaScript~ C#
+Languages: Engl#@h (TOEIC @#0)
+
+Address: 154 %@uyen Trai S~reet, District 2

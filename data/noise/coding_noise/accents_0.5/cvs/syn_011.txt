@@ -1,0 +1,20 @@
+Bùi Minh Khoa
+Automation Test Engineer
+Email: khoa99@example.com
+Dien thoai: 0914259684
+Giới tính: Nam
+Ngay sinh: 11/02/1992
+
+TÓM TẮT
+3 nam kinh nghiem kiểm thu phần mềm.
+
+KINH NGHIEM
+Company A (2023 - nay)
+- Xay dựng framework automation theo Page Object Model, data-driven, tích hop Jenkins pipeline.
+- Su dụng Selenium WebDriver, Gatling, Pytest, JUnit cho kiem thu performance testing, ui testing.
+- Chay test tren GitLab CI, GitHub Actions.
+
+KY NANG
+Ngôn ngữ lập trinh: Python, JavaScript
+
+Địa chi: 137 Nguyen Trai Street, District 7

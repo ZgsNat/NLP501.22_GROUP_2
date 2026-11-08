@@ -1,0 +1,9 @@
+Hồ Quốc Nam Automation Test Engineer Email: nam47@example.com
+Phone: 0918376603
+Gender: Male
+Date of birth: 12/09/1989
+ SUMMARY 4 years of experience in software testing. 
+EXPERIENCE Company A (2022 - Present) - Wrote and maintained automated test scripts for regression suites. - Used WebdriverIO, Postman, Rest Assured, Cucumber for api testing, ui testing.
+
+SKILLS Programming: TypeScript Languages: English (TOEIC 750) 
+Address: 287 Nguyen Trai Street, District 6

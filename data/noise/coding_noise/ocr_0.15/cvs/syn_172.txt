@@ -1,0 +1,21 @@
+Hoàng Văn Phúc
+Automation Test Engineer
+Email: phúc94@example.com
+Phone: 0988283995
+Gender: Male
+Date of birth: 04/12/2000
+
+SUMMARY
+2 years of experience in software testing.
+
+EXPERIENCE
+Company F (2024 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used 5elenium WebDriver, WebdriverIO, TestNG f0r ui testing.
+- Ran tests on Jenkins.
+
+5KILLS
+Programming: Pyth0n
+Certification: ISTQB CTFL
+
+Address: 132 Nguyen Trai Street, District 11

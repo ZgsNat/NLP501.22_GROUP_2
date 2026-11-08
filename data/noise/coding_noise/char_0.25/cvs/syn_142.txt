@@ -1,0 +1,19 @@
+Ho~ng Mai %h%@
+%utomation T@st Engin%e~
+Em#il: thảo49@example.com
+P~one: 0#~%@45~23
+Ge~der: Fema~e
+Date of bi@t@: 2~/%2/1990
+
+@@M#AR#
+1 #@%rs of #%#er#ence i% software ~e#@ing%
+
+E~PERIEN%E
+Co#pa#y A (2025 - Pr~sent)
+- ~r#~e an% maint%@ned au~o~a@ed te~t @crip#s f~r r@gres@@on su#tes@
+- Used @ebdri@erIO, Playwright~ Re@# @s~#red% Postman, %Mete#@ Robot ~ramewo%k# T~stNG %@# api %est@ng, per@orm~nc% te#@ing, ui testi#g.
+
+SKILLS
+Pr%gr#mmin#: Java
+
+Addres%: #94 Nguyen Trai Str#et, Dist~@ct 6

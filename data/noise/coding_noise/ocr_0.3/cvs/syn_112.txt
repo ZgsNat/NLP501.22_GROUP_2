@@ -1,0 +1,21 @@
+Lê Quốc Hung
+Automation Test Engineer
+Email: hùng20@example.c0m
+Phone: 0965868338
+Gender: Ma1e
+Date of birth: 23/05/1998
+
+SUMMARY
+5 years of experience in s0ftware testing.
+
+EXPERlENCE
+C0mpany E (2021 - Present)
+- Designed and built a Page Object Mode1 automation framework and integrated it int0 the CI pipe1ine.
+- Used WebdriverIO, Cypress, Appium, JUnit, Robot Framework for mobile testing, ui testing.
+- Ran tests 0n Azure Dev0ps, Docker.
+
+SKILLS
+Programming: C#, TypeScript
+Languages: English (TOEIC 750)
+
+Address: 233 Nguyen Trai Street, District 11

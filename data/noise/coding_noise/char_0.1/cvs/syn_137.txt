@@ -1,0 +1,20 @@
+#hạm Ngọc Li%h
+Automation Tes# En@ineer
+E@ail~ %inh89@example.~o#
+Phone: 093860696~
+Gen~er: Fe%ale
+Date o# birth: 0%/08/199@
+
+SUMMARY
+6 years ~f experience in software testing.
+
+EXPERIENCE
+Company G (@020 - Pre@ent)
+- Designed and bu#lt a Page Object Model automation framework and integrated it into the CI pipe#in%.
+- U%e~ JMete~, Cucumber fo# manual test@ng, performan@e te~ting.
+- Ran tests on Je~kins.
+
+SKIL%S
+Progra@ming: Jav#Script, P@thon
+
+Addre##: 193 Nguyen Tra# Stre#t, Distr#ct 4

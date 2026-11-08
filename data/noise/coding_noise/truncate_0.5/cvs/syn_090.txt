@@ -1,0 +1,13 @@
+Đỗ Thu Hương
+Automation Test Engineer
+Email: huong48@example.com
+Phone: 0913860039
+Gender: Female
+Date of birth: 24/02/1995
+
+SUMMARY
+4 years of experience in software testing.
+
+EXPERIENCE
+Company B (2022 - Present)
+- Wrote and maintained automated test scrip

@@ -1,0 +1,21 @@
+Lê Q~ốc Hùng
+Auto%a#ion Test Engineer
+E#ail: hùng20@exam%le.com
+Phone: 0965@68338
+Gender: Male
+Date of birth: 23/05/1~98
+
+SUMMARY
+5 yea#s of exp%rience in software testin#.
+
+EXPERIENCE
+Co%pany E (2021 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.
+- Us%d WebdriverIO, Cypress, Appium, JUnit, Robot Framework fo@ mobile te%ting, ui testing.
+- Ran tests on Azure DevOps, Docker.
+
+SKILLS
+Progra~ming: C#, @ypeSc~ipt
+Langu@ges: English (TOEIC 750)
+
+A~dress: 233 Nguyen Trai %treet, District 11

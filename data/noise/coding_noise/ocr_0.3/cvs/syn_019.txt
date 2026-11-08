@@ -1,0 +1,18 @@
+Vũ Minh Kh0a
+QA/QC Engineer
+Email: kh0a34@example.com
+Ph0ne: 0912865928
+Gender: Male
+Date 0f birth: 23/07/1999
+
+SUMMARY
+Fresh graduate passionate about testing.
+
+EXPERlENCE
+- Executed manual test cases and rep0rted defects in Jira.
+- Used Cucumber for manua1 testing.
+
+SKILLS
+Languages: English (TOElC 750)
+
+Address: 69 Nguyen Trai Street, District 5

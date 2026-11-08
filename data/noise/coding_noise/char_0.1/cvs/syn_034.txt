@@ -1,0 +1,21 @@
+Đặng T%ị Vy
+Auto%ation Test Eng@nee#
+Email: %#14@example.com
+Pho@e: 094818@550
+Gender: F%m%le
+Date of b#r%h: 20/01/@992
+
+S~M~~RY
+5 years of e#peri%nce in softw~r% testing.
+
+EXPERIENCE
+Company C ~2021 - Present)
+- Designed and built a Page Object Mode~ aut#mation fr%mework an% integrated it into the CI pip~line.
+- Used @ebdriverIO, Playwright, Te%%N#, Cucumber for ui t~sting.
+- ~an test# on Jenkins, GitLab CI.
+
+SKILLS
+Progr@mming~ TypeScrip#, ~avaScript
+Certifica@ion: ISTQB CTFL
+
+Address: 4 #guyen %rai Street, District 5

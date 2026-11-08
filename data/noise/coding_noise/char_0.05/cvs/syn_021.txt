@@ -1,0 +1,21 @@
+Đỗ Minh Tuấn
+Autom~tion Test Engineer
+Email: tuấn69@example.com
+Ph@ne: 09@6953423
+Gender: Male
+~ate of birth: 28/10/1993
+
+SUMMARY
+1 years of experience in software t%sting.
+
+E~PERIENCE
+Company A (202% - Present)
+# Wrote and maintained automated test scripts fo~ regression suites.
+- Used @ebdriverIO, k6, Robot %ramew~rk, Cucumber for performance testing, ui testing.
+# Ran tests on Azure @evOps.
+
+#KILLS
+Programming@ @ava, Py#hon
+Languages: English (TOEIC 750)
+
+Add@ess: 272 Nguy@n Trai Street, District %

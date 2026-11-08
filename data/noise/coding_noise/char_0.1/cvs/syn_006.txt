@@ -1,0 +1,22 @@
+%ặng Quốc Nam
+A#tomati%n Test E~~inee~
+~@ai@: nam30@example.com
+Phone: 09967@3417
+Gen~er: Male
+Date of ~irth: 13/0#/1995
+
+SUMMA%Y
+1 years of experi@n~e i~ softw#re @#stin@.
+
+EXPERI%NCE
+Company % (2#25 - %rese~t)
+- Wrote and @ainta%ned automated t@st scripts for regr~ssion sui~es.
+@ Used Es%resso, Pos#man, k6, %obot Framework for api testing, manual testing, mob#l~ testing, ~e%formanc@ testing.
+- Ran tests on D~cker.
+
+S@~LLS
+Pro@ramming: Pyth#n
+Cer#ification: IS#QB CTFL
+Languages: English ~TOEIC 75~)
+
+Address: 41 Nguyen Trai Street, District 7

@@ -1,0 +1,21 @@
+%ù# Thị Hươn#
+Auto#at@%n @@st En@%ne@r
+Email: @uong21@exa~ple.com
+#hone% 0#3~22%42~
+G~nd#r: Fema%e
+D#te ~% ~i~th: 01#08/1994
+
+SUMMAR~
+# y%ars of ex@erien#@ i% %oftware test~#%~
+
+EXP##I~NC%
+~omp~#y C (%018 - Present)
+- @esigned an% b%ilt a Page Object M#d#l auto@ation fr@mework and i%tegr@ted it i%%@ t@@ CI #ipeli@e.
+- @s~~ Po%tman~ Gatling# Py~@st for a~i t#s#ing, manual tes~in@, pe#forman#e te~ting.
+- Ran tests o# ~zure D~vO#s% G@~%ab ~I, Jenkins.
+
+SKI@LS
+P#ogramming: ~a@a
+L@nguages: Engl#sh @TOEI# 7#0)
+
+Add%e%@: 216 @#u@%n T#ai ~treet# Distric@ 5

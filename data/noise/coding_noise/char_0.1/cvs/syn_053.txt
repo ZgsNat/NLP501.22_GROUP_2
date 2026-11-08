@@ -1,0 +1,22 @@
+Vũ Thu Thảo
+Automa@ion T%st Engineer
+Email: thảo96@~xample.com
+Đ~ện thoại: 0950876026
+G#ớ% tính: Nữ
+N@#y si#h: 14@12/1999
+
+TÓM TẮT
+3 năm kinh nghiệ@ ki~m thử phần mềm.
+
+KINH ~GHI%M
+Company A (2023 - nay)
+- @ây dựng frame@ork #utomation theo Page O#ject Model, %ata%%#iven, tí%h hợp Jen~ins pipeline~
+- Sử dụng Sel~nium WebDr%ver, Playwright, Gatling, TestNG, JUnit c%o kiểm thử perfor@ance testi#g% @i testin@.
+- Chạy test trên GitLab CI.
+
+KỸ NĂNG
+Ngôn ngữ @ập trình: C#, Java
+#hứng chỉ# ISTQB @oundatio@ ~evel (CTFL)
+Ngoại ngữ: @ng@ish (TOEIC 75%), Japan~se JL~T N2
+
+Địa ch@: 299 N#uyen Trai Street, Dist@ict 1

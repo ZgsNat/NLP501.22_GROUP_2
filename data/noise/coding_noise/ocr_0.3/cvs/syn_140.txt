@@ -1,0 +1,21 @@
+Hồ Quốc L0ng
+Automation Test Engineer
+Email: long28@example.com
+Phone: 0944129962
+Gender: Male
+Date 0f birth: 08/10/1993
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+C0mpany A (2023 - Present)
+- Designed and built a Page Object Model automation framew0rk and integrated it int0 the CI pipeline.
+- Used Rest Assured, JMeter, TestNG f0r api testing, manua1 testing, performance testing.
+- Ran tests on Docker, GitHub Actions.
+
+SKILLS
+Programming: Pyth0n, C#
+Languages: English (T0EIC 750), Japanese JLPT N2
+
+Address: 60 Nguyen Trai 5treet, District 2

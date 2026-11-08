@@ -1,0 +1,19 @@
+Đặng Minh ~uấn
+~utoma%ion Test Engineer
+Email: tuấn30@example.com
+Phone: 09@4@44996
+Gender: Male
+Date of birth: 24/01~1991
+
+SUMMARY
+1 years o# expe~ience in software t@sting.
+
+EXPERIENCE
+Compa#y C (2025 - ##e#ent)
+- Wrote and maintained @utomated test ~cripts for regression suites.
+- Used Selenium WebDriver, JMete~, Pytest for performance testing, ui test%ng.
+
+SKILLS
+Programming: Java, JavaScript
+
+Add@ess: 247 Nguye@ Trai Street, District 11

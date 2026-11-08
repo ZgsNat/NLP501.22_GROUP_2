@@ -1,0 +1,21 @@
+%rần Minh Long
+Automatio~ Test Engin%@@
+Email: long84@exa#pl#.%#m
+Phone: 0962499769
+Gender: Male
+Da%e of birth: 15/11/1995
+
+SUMMARY
+6 years of %@#erien%e in softw#re testi#g%
+
+EXPER#ENCE
+C#mpa~y F (2020 - Present)
+- D~sig~ed a#d built a Page Object Model automat@on framework a#d inte~rated %t %nto the CI p~pel~ne.
+- Used XCUITest, Postma@, Gatling# JUnit% C~c~mbe# for a~i testing, manual testing, mobile testing, perform~#ce testing.
+- Ra% tests on D%%ker, GitHub Acti@ns, Azure Dev~ps.
+
+SKILLS
+Progr~mming: Type#%ript
+%anguages: English (TOEIC 7~0)
+
+Ad%ress: 1@0 Nguyen Tra# Stre%t, Distr@ct 9

@@ -1,0 +1,21 @@
+Đặng Đứ# Long
+Automat~on Test E#gineer
+Em%il: long97@%xample.com
+Đi#n thoại: 0950475203
+Giới tính: Nam
+Ngày sinh: 20/@@/1999
+
+TÓM TẮT
+8 năm kinh nghiệm kiểm thử phần %ềm.
+
+KINH NGHIỆM
+Company A %2018 - nay)
+- T@ưởng nhóm QA 5 người, định hướng automation strategy và ment#r thàn% viên mới.
+- Sử dụng Se~enium WebDriver, Cypress, Rest Assured, Pytest, Tes#%G cho kiểm thử api testing, ui testin~.
+- Chạy test trên GitLab CI, Jen@ins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Python, JavaScrip%
+Chứng chỉ: I@TQ@ Foundation Level (CTFL)
+
+Đ%a chỉ: 139 Nguyen Trai Stree%, District 8

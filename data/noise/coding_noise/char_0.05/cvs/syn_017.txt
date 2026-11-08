@@ -1,0 +1,21 @@
+B%i Ngọc ~rang
+Autom~~io~ Test Engineer
+Email: t%ang21@example.co@
+Phone: 09433829@6
+Gender: %emale
+Date ~f birth: 06/08/1990
+
+SUMMARY
+3 years of ex~erience @n s%ftware te@ting.
+
+@XPERIENCE
+Compa~y F (2023 - Present)
+- D%signed and ~uilt % Page Object Model automation framework and integrated it into the CI pipeline.
+- Used Cypress, Espresso, Rest Assu#ed, k6, %ytest for a~i testing, mobile testing, performance testing, ui testin~.
+- Ran tests on GitHub Act@ons, A#ure DevOp%, GitLab CI.
+
+SKILLS
+Programming: Ja#a, JavaScript
+L%nguag@s: English (TOEIC 750), @%%%nese JLPT N2
+
+Address: 1#4 Nguyen Trai Street, %istrict 11

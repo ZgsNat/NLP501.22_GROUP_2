@@ -1,0 +1,21 @@
+#~ Đức Na%
+Auto#at~%n Tes# Enginee#
+E%ail: nam#3@e@%mp~#.com
+%@one: 0%592690~~
+~e@%er: M~%e
+%at@ of bir~h# 19%0@@1995
+
+%UMMARY
+2 years of experie#ce in software ~est%ng.
+
+E%PE#I#NC@
+Comp%n~ C (~02# - P%es@nt)
+- Wrote and m%%nta#ned automated t~st scrip#s #@r regressi@n su@tes~
+- ~sed S~leniu% W~bDri%e#, #ebdriv~@~O% %6~ JUn%t for p#@%or~a@c# te~tin%, ui tes%ing.
+- Ran #est@ on A#ure @evOps@
+
+SKILLS
+P%ogramming: Ja~aScri~t% C#
+Langu@~es: E%gli@h (TOE#C 750)
+
+@@dr%%s: %5# Ngu%en T@ai ~treet, D%@tr##t 2

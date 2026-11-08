@@ -1,0 +1,22 @@
+Do Thi Linh
+Automation Test Engineer
+Email: linh68@example.com
+Dien thoai: 0978808477
+Gioi tinh: Nu
+Ngay sinh: 16/10/1998
+
+TOM TAT
+1 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company D (2025 - nay)
+- Viet automation test scripts cho bo regression, kiem thu tu dong hang ngay.
+- Su dung Selenium WebDriver, Appium, Postman, Rest Assured, Robot Framework, TestNG cho kiem thu api testing, mobile testing, ui testing.
+- Chay test tren Azure DevOps.
+
+KY NANG
+Ngon ngu lap trinh: Python
+Chung chi: ISTQB Foundation Level (CTFL)
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 181 Nguyen Trai Street, District 5

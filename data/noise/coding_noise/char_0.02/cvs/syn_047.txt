@@ -1,0 +1,22 @@
+Trần Minh Phúc
+Au@omation Test Engineer
+Email: phúc69@examp~e.com
+Phone: 0963796676
+Gender: Male
+Date of birth: 19/07/1995
+
+SUMMARY
+1 years of experienc# in softwar~ testing.
+
+EXPERIENCE
+Company E (2025 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used Selen#um WebDriver, Rest Assured, JMeter, TestNG, JUnit for ~pi testing, performance testin#, ui testing.
+- Ran tests on Docker.
+
+SKILLS
+Programming: Java, Python
+Certification: ISTQ@ CTFL
+Languages: English (TOEIC 750)
+
+Address: 125 Nguyen Trai Street, District 9

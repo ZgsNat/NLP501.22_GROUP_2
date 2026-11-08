@@ -1,0 +1,20 @@
+#oàng Mai Lan
+Automation Test Engineer
+Email: lan23@e#a@ple.com
+Điện thoại: 09%7488001
+Giới tính: Nữ
+~gày sinh: 18/01/1997
+
+@ÓM TẮT
+7 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company G (@@19 - nay)
+- Trưởng @hóm QA 5 người, đị~h hướng automation strategy và mentor thành viên mới.
+- Sử dụng Gatling, JUnit cho kiểm thử manual testing, performance testing.
+- Chạy test trên GitLab CI.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Ty#eScript
+
+Địa chỉ: 196 Nguyen Trai Street, District 7

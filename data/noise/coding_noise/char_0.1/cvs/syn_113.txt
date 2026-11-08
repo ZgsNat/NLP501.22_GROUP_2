@@ -1,0 +1,21 @@
+Bùi Minh Tuấ~
+Automation Tes~ En~i@eer
+Email: tuấn33@example.%om
+Phone: 0938329117
+Gender: Male
+Date of @irth: 06/02/19%6
+
+SUMMARY
+@ years of experience in s#ft#are testing.
+
+EXPERIENCE
+Compa@y G (2024 @ Pre%en#)
+- Wrote and maintained aut@@ated test ~cripts fo~ regres@ion @uites.
+- U#ed Playwright, Cypress, Robo% Framework@ T#stNG #or ui testing.
+- Ran tests on Docker.
+
+SKIL~S
+Pr~gramming: JavaScript
+Languages: Engl~sh #T%EIC 750)
+
+~ddress: 55 Ng#yen Trai Street, D~strict 7

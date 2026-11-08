@@ -1,0 +1,21 @@
+#rần Văn %húc
+@utom~t#on T~s% @%gineer
+E#%#l: phúc18@ex%mple#co#
+Điện tho~i: %9#95@5%7~
+Gi~i #ính: #a@
+Ngày si~h: #6/04/1#92
+
+@Ó% TẮT
+4 %ăm kinh %g~iệ# k#ểm t%ử p~ần mềm.
+
+K%NH NGHIỆM
+%om#any F (20%2 - nay)
+- #%y dựn@ @rame#o@k a#tomat@#~ theo @@#% Object ~od~l, %ata-dr%ven, @í~h h@p Jenkin# pipel~ne~
+# S% d#~g Appiu@# Postman, Re@# #s#ure@, JU@it~ TestNG cho @~ểm th% api %%sti%g, manua~ t%%ti#@, m#bile test~ng%
+- Chạy @@%t trên Docke@@ J%@kins.
+
+KỸ NĂNG
+Ng@n ~g# l#~ ~r~nh: Java%@rip~
+N@oại ngữ: English #TO#IC 7%0)
+
+Địa @hỉ: 2~1 Nguye~ ~ra% St~eet, %ist#ict 5

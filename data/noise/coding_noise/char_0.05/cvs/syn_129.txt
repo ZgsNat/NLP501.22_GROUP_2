@@ -1,0 +1,21 @@
+Hồ Văn Tuấn
+Automation Test Engineer
+Email: tuấn93@example.com
+Phone: 0913485913
+Gender: Male
+Date of bi@th# 15/09~1998
+
+~UMMAR%
+2 %ears of experience in software testing.
+
+EXPERIENCE
+Comp#ny E (2024 - Prese~t%
+- Wrote and maintained @utomated te%t scri##s for regression sui%es.
+- Used Webdr~verIO, Cypress, XCUITest, Rest Assured, Postman, JMeter% Robot Framework fo# api te~ting, ~obile testin@, perfor#ance testing, ui testing.
+
+SKILLS
+Programming: Python
+Cert~fication: ISTQB CTFL
+L%nguages: English (TOEIC 750)
+
+Address: 99 Ngu@en Trai Street, District 2

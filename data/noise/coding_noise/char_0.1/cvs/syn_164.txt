@@ -1,0 +1,18 @@
+Lê M#%h Long
+@A/QC E@gineer
+Email: long26@example@com
+Phone: 0948877018
+Gender: Male
+D#te o@ birth% ~~/%0/1989
+
+SUMMARY
+@r%sh g%aduate passionate about testing.
+
+EXPE@IENCE
+- Executed ma~%@l @est cases and #eported defects in J%ra@
+- Used Cypres~, Po~tman, Rest Assured for api testing, ui testing.
+
+SKILLS
+Languages: English (T#EIC ~50~
+
+Addr#@s: %8 Nguyen Tra# Stre#t, District 12

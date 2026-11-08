@@ -1,0 +1,20 @@
+Phạm Q#ốc Khoa
+Automation Test Engineer
+Email: %hoa59@example.com
+Phone% 0973946652
+Gender: Mal@
+Date of birth: 09/10/2001
+
+SUMM@RY
+7 years of experien~e in software tes%ing.
+
+EXPERIENCE
+Company # (2019 - Present)
+- Designed and b#ilt a Pag# Obje%t Model automation framework and integ%ated it into ~he CI pipe@ine.
+- Used Sel%nium WebDriv@r~ Playwright, Rest Assured, Cucumber for api testi~g, ui t@sting.
+- Ran tests on @zure DevOps, Docker, GitHub Actions.
+
+SKILLS
+Programming: Java, TypeSc%ipt
+
+Ad~re@s: 217 Nguyen Trai Street, District 6

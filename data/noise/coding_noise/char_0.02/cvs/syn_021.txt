@@ -1,0 +1,21 @@
+Đỗ Minh Tuấn
+Automation Test En%ineer
+Email: tuấn69@exampl~.com
+P#one: 0946953423
+Gender: Male
+Date of birth: 28/10/1993
+
+SUMMARY
+1 years of experience in softw%re testing.
+
+EX#ERIENCE
+Company A (2025 - @resent)
+- Wrote and maintained automa%ed test scripts for regression suites.
+- Used WebdriverIO, k6, Robot Framework, @ucumber for performance testing, ui test@ng.
+- Ra% tests on Azure DevOps.
+
+SKILLS
+Programming: Java, Python
+Languages: English (TOEIC 750)
+
+Address: 272 Nguyen Trai Street, District 3

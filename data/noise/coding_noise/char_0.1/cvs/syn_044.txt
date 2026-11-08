@@ -1,0 +1,21 @@
+Đặn# Đức Long
+Automation T#st Engineer
+Ema%l: long95@exam#le#com
+%iện th@ại: 0954335867
+Giới tính: Nam
+Ngày %inh: 26/06/20~2
+
+TÓ~ TẮT
+~ năm kinh nghiệm kiểm thử phần mềm.
+
+K~NH NG#IỆM
+Company D (2022 ~ %ay)
+- Xây dựng framework aut#mation theo Page Object Model, data-drive%, tích hợp Jenkins pi@~#ine.
+- Sử dụng XCUIT~st~ J~eter, TestNG, Py@est cho kiể~ thử %anua~ testing, mo#ile testi@g, ~erforman~e testing.
+- Chạ# test trên A~ure DevOps, G~tHub Actions, Docker%
+
+KỸ NĂNG
+Ngôn ngữ l~p trì~h: %a%a
+~go@i ngữ: English (TOEIC 750)
+
+@ịa chỉ: 16 Nguyen Trai Stree~# Di%trict ~

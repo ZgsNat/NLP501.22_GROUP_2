@@ -1,0 +1,22 @@
+Ng%@ễn Mai Tra#g
+Auto~ation Test Engineer
+Email: tra#g81@ex~mple.com
+Phone: 097%122376
+Gender# Fe#ale
+Date of bir@h: 15/08/%9~1
+
+S#MMARY
+7 years of expe@ie~ce in software te@ting.
+
+EXPERIENCE
+Company G ~2019 - Pr%sent)
+- Def%n#d t@e tes@ auto#ation strategy# led a tea@ of 5 @@ engineers and mentored juni@rs on %u#omation.
+# Used Playwright, Sel%nium WebD%iver, Pos%man, TestNG fo@ api testing, ui testi@g%
+- Ra@ tests on GitLab ~I#
+
+#%ILL~
+Programming: TypeScript
+C##t@fi~atio%: ISTQB C#@L
+Languages: English (TOEIC 750)
+
+A~dress: 76 N%uyen Trai Street@ Dist#ict 2

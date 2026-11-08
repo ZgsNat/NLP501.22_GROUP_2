@@ -1,0 +1,18 @@
+Hoang Quoc Hung
+QA/QC Engineer
+Email: hung64@example.com
+Dien thoai: 0943252079
+Gioi tinh: Nam
+Ngay sinh: 20/03/1993
+
+TOM TAT
+Moi tot nghiep, dam me kiem thu.
+
+KINH NGHIEM
+- Thuc hien kiem thu thu cong, viet test case va bao loi tren Jira.
+- Chay test tren GitLab CI.
+
+KY NANG
+Ngon ngu lap trinh: JavaScript
+
+Dia chi: 128 Nguyen Trai Street, District 5

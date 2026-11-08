@@ -1,0 +1,20 @@
+Đặng Mai Thảo
+Automation Test Engineer
+Em#il: thảo83@example.com
+Điện thoại: 0977@43626
+Giới tính: Nữ
+Ngày sinh: 03/04/2001
+
+TÓM #ẮT
+6 năm kinh @gh%ệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company C (2020 # n@y)
+- Viết automati~n test scripts cho ~ộ reg#ession@ kiểm thử tự độ%g hằng ng~y.
+- S% dụn# Playwright, WebdriverIO, Postman, Robot %ramework, Pytest cho kiểm thử ap# testing, ui #es%ing.
+- Chạy test trên Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: Java, TypeScript
+
+Địa chỉ: 202 %guyen Trai Stre%t, District 3

@@ -1,0 +1,22 @@
+Phạm Đức Phúc
+Automation Test Engineer
+Email: phúc88@example.com
+@hone: 0980551927
+Gender@ Male
+Date of birth: 28/09/1991
+
+SUMMARY
+8 years of experience i# software testing.
+
+EXPERIENCE
+Company D (2018 - Present)
+- Designed and built a Page Objec@ Model automation framework and int#grated it i@to t~e CI pipeline.
+- Used Cypress, Selenium WebDriver, Postman, TestNG, JUnit for api testing, ui testing.
+- Ran tests on Azure DevOps~
+
+S#ILLS
+Programming: Java, TypeScript
+Certification: ISTQB CTFL
+Languages: English (TOEIC 750)
+
+Address: 236 Nguyen Trai Street, Distric@ 2

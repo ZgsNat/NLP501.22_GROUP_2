@@ -1,0 +1,21 @@
+Đỗ Văn Hùng
+Aut#mation Test Engi@#er
+Email: hùn@6%@example.com
+Điện thoại: 09256#0291
+Giới t@nh: Nam
+@gày sinh: 01/03/200%
+
+TÓM TẮT
+7 năm kinh nghiệm kiểm thử phần mềm%
+
+KINH NGHI~M
+Company D (2019 - nay)
+- Viế@ automat#~# %%st scripts c@o bộ regressi~n~ #iểm thử tự độ@g hằn~ ngày.
+- Sử dụng Appium, Postman, Re#t A@sured, JUnit cho kiểm thử api testi#g, manual testing, #obi~e testing.
+- Chạy test trên Dock%r.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: C#
+Ng@ại n~ữ: English (TOE~~ 75@), Jap@ne#e JLPT N2
+
+Địa chỉ: 208 Nguyen Trai Street, Distri@t 11

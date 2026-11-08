@@ -1,0 +1,22 @@
+~ũ Minh Long
+A@toma~ion Test Engineer
+Emai@: long19@example#com
+Phone: 0910292%28
+Gender: M~le
+Date of birth: 28/03/1992
+
+SUMMARY
+5 years of experience in sof@ware testin~.
+
+EXP@RIENCE
+Company C (2021 - Present)
+- Designed and built a Pag% Object Mod#l automation f%amework and integrated it into the CI pip@li%e.
+- Used Cypress, Rest Assured, Postman, G@tling, Robot Framewo%k, Pytest for api testing, performance testing, ui testing.
+- #an te#ts on Docker, Azure DevOps.
+
+SKILLS
+P%ogramming: TypeScript, Py@hon
+Certification: ISTQB CTFL
+Languages: English (T#EI~ 750)
+
+Address: 76 Nguy@% Tr%i Street, ~istrict 7

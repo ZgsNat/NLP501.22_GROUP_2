@@ -1,0 +1,21 @@
+@guyễn Đức Tu#n
+Autom@tion Test Eng~neer
+@ma~%: tuấn8#@example%@om
+Ph@n#: 0926059#96
+G%nder: M%le
+Da%e ~# bi@th: 1@/0%~~988
+
+SUMMARY
+2 yea@# of ~xperienc@ in s@ftwar~ t#~t@n#.
+
+EXP%RIENC#
+Company A (%0%4 - Pres#nt)
+- W%o#e an~ m~~~t@ined aut~#@te~ t@~t scripts f@r r@gres@ion #uites%
+- @~ed We%dri#~@IO, Pyte%~, Cu~umber @o~ #i te@t~ng.
+- #an #e~t# @~ Gi#Lab CI%
+
+SKILLS
+Pr~g@ammi%g: J@v#, C#
+L%n#u%~es: J~@ane~e @~PT ~2
+
+Ad~ress@ 298 #%u%en T#ai #treet% Di@trict 1@

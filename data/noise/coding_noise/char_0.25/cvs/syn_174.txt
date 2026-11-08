@@ -1,0 +1,20 @@
+Đ@ng Minh Nam
+Auto@a%i@n Test En%i~@%#
+Email: nam@#@exa~pl~.com
+%#one~ ~922@75001
+#e~der% Male
+Da@e of bi@t~% 16~0%/2002
+
+#%MMARY
+# y%ars of e@perien%e i~ s%~#wa~e testi#g.
+
+EX~ER#ENC#
+Co~p#ny B (2019 - Pres%nt)
+@ Des~gned a@@ built a P~ge ~bj~ct @od~% @utomat%o% @r##ework ~nd ~ntegrated i% #n#o th% #~ pip~l@n%.
+- @%ed Selenium WebD~iver, Play~@%ght, P@@tman, Rest @%su~ed, %%ete@~ JU~it for api @esti~g~ per@orma~ce testing, #i testing.
+# Ra% t~s~s on Git#a# %I# G%tHu@ A~tions~ Azure DevOp@.
+
+SKI#LS
+Programmin#: C#~ Jav%Scri%t
+
+Address: 9# ~guy~n Tra# ##@%#t, D@strict 4

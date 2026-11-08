@@ -1,0 +1,20 @@
+Ph%m Qu%c #ho#
+Automation @#~t Engi~%er
+Ema#%: kh#%@@@ex@mple.c%m
+P#one% @9~39466~2
+Ge~der: ~ale
+D%te of bir##: ~9/10/200@
+
+SUMMARY
+7 years of expe@ience in s%%twar% test%ng.
+
+E@PER@ENC%
+Co#pany A (2019 - ~resen@)
+- @esi%ne@ an@ buil% a Pa~e @#jec~ M~del au@~#ation fram%work and inte#ra%#d @t int~ the CI %i#e%in~.
+- U@ed Selen%u% WebDr@v#r, Pla@w~ight, R~st Assur#d, Cu~#mb#r #or @pi @esti#g, %% %esti%#~
+- Ran te@ts @~ Azur@ D%~~ps, D@#ker, GitHu~ ~ctio@s.
+
+%K%LLS
+Pr#grammin%: Ja#a, Type~cr~%t
+
+Ad%ress: 2@7 Nguyen Trai St#ee~, District #

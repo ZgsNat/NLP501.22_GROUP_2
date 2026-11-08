@@ -1,0 +1,21 @@
+Tran Van Phuc
+Automation Test Engineer
+Email: phuc18@example.com
+Dien thoai: 0989575878
+Gioi tinh: Nam
+Ngay sinh: 26/04/1992
+
+TOM TAT
+4 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company F (2022 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung Appium, Postman, Rest Assured, JUnit, TestNG cho kiem thu api testing, manual testing, mobile testing.
+- Chay test tren Docker, Jenkins.
+
+KY NANG
+Ngon ngu lap trinh: JavaScript
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 261 Nguyen Trai Street, District 5

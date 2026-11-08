@@ -1,0 +1,21 @@
+Đặng Đức Long
+Automa%ion Test Engineer
+Email: long@5@exampl#.com
+Điện thoại: ~954335867
+#iới tính: Nam
+~gày sinh: 26/06/2002
+
+TÓM TẮT
+4 năm kinh nghiệm kiểm thử phầ@ mềm#
+
+~INH NGHIỆM
+Company D (2022 - nay)
+- Xây dựng fra~ework aut#mation theo Page Object Model, d%ta-d@iven, tíc# hợp Jenkins pipeline.
+- S% dụng #CUI%est, JMeter, TestNG, Pytest cho kiểm th~ manual testi~g, mobile testing, performanc% testing.
+- Chạy test trên Az~r@ DevOps, Git%~b Actions, Docker~
+
+KỸ NĂNG
+Ngôn ngữ lập trình: ~ava
+Ngo@i ng~: English (TO#IC 75#)
+
+Địa ~hỉ: 16 Ngu%en Trai Stree%, District 2

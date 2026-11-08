@@ -1,0 +1,19 @@
+Le Mai Thảo
+QA/QC Engineer
+Email: thao90@example.com
+Điện thoại: 0996869121
+Giới tính: Nữ
+Ngay sinh: 17/02/1997
+
+TÓM TAT
+Moi tốt nghiệp, đam mê kiểm thu.
+
+KINH NGHIEM
+- Thực hien kiem thử thu công, viết test case và bao loi tren Jira.
+- Sử dụng Postman cho kiem thu api testing, manual testing.
+- Chay test trên GitHub Actions.
+
+KY NĂNG
+Ngoai ngữ: English (TOEIC 750)
+
+Dia chỉ: 240 Nguyen Trai Street, District 7

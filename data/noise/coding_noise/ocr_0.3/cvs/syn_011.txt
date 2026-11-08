@@ -1,0 +1,20 @@
+8ùi Minh Kh0a
+Automation Test Engineer
+Email: khoa99@examp1e.com
+Điện thoại: 0914259684
+Giới tinh: Nam
+Ngay sinh: 11/02/1992
+
+TOM TẮT
+3 năm kinh nghiem kiểm thử phần mềm.
+
+KINH NGHIỆM
+C0mpany A (2023 - nay)
+- Xây dung framework aut0mation theo Page 0bject Model, data-driven, tích hợp Jenkins pipeline.
+- 5ử dụng 5elenium WebDriver, Gatling, Pytest, JUnit ch0 kiểm thử performance testing, ui testing.
+- Chay test trên GitLab CI, GitHub Acti0ns.
+
+KỸ NĂNG
+Ngon ngữ 1ập trình: Python, Java5cript
+
+Địa chỉ: 137 Nguyen Trai 5treet, District 7

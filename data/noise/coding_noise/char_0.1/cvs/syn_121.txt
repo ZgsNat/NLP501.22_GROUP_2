@@ -1,0 +1,20 @@
+Bùi Quốc Nam
+Autom%tio@ %est En~ineer
+E@%il: %#m17@example.com
+Phone: 0980#08~08
+Gen%er: Male
+D%te of birth: 01/07/1998
+
+SUMM%@Y
+10 @ear@ of ex~erience in softw~re test~ng~
+
+EXPE%IENCE
+Company E (2016 - Present)
+- Wro~e an~ maintained autom~t@d test scripts f~r regression suite@.
+- Used Webdriver%O~ Rest Assured, Cucumber fo@ ap@ te#ting, ui testing.
+
+S#ILLS
+Programming: C%
+Languages: J@@anese JLPT N2
+
+@d@re#s% #3 Nguyen Trai Stree%, Dist~ic~ 5

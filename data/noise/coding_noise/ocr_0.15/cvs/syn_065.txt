@@ -1,0 +1,20 @@
+Hoàng Ngọc Lan
+Automation Test Engineer
+Email: 1an98@example.com
+Phone: 0990213415
+Gender: Female
+Date 0f birth: 24/05/1996
+
+SUMMARY
+1 years of experience in software testing.
+
+EXPERlENCE
+Company A (2025 - Present)
+- Wr0te and maintained automated test scripts for regression suites.
+- Used JMeter, Cucumber, TestNG for manua1 testing, performance testing.
+
+SKILLS
+Programming: JavaScript, C#
+Languages: English (TOEIC 750)
+
+Address: 243 Nguyen Trai Street, District 10

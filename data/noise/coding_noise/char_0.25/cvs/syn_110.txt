@@ -1,0 +1,21 @@
+Hoàng V@~ P@#c
+~utom@tion %es~ En~in@er
+E%ail: %húc19#exa@~~e.%om
+Đ~%n thoại: 091~0#2@#5
+@~ớ@ tí~h: #@m
+@g~y @i~h: ~7/02/2001
+
+TÓM TẮT
+4 nă% %inh nghiệ# k#@@ t@ử p@ần %ềm.
+
+K~NH NG~IỆM
+Com%any D (20%2 # n@y~
+@ X@y %@ng f@a@ewor~ a%tomatio@ t#e% Page Ob~e%t M~de%, d~#~#drive~# tích h%# ~en#in@ pi~eline#
+% Sử d#~g P~a@wright# @ostm#%, Pytest ch# ki@m t%ử api testing, u% tes#ing.
+% C#ạy test trên G%tHu% Act~o~s.
+
+K~ N#NG
+#gôn ngữ lập tr@n~: P#thon, TypeScript
+%@@ại #gữ: English #T%@I# 750)
+
+Địa %hỉ: 4# @guye@ Trai %t#eet, D%#t@i@@ 8

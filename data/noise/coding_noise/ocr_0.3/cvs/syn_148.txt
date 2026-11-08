@@ -1,0 +1,21 @@
+Phạm Mai Vy
+Aut0mation Test Engineer
+Email: vy44@example.c0m
+Phone: 0925944033
+Gender: Female
+Date of birth: 14/08/2003
+
+SUMMARY
+5 years of experience in s0ftware testing.
+
+EXPERIENCE
+Company G (2021 - Present)
+- Designed and bui1t a Page 0bject Model automation framew0rk and integrated it into the CI pipeline.
+- Used P1aywright, Robot Framework, Pytest for ui testing.
+- Ran tests on Jenkins, GitHub Acti0ns, D0cker.
+
+SKILLS
+Programming: Python, JavaScript
+Languages: Eng1ish (T0EIC 750)
+
+Address: 66 Nguyen Trai Street, District 6

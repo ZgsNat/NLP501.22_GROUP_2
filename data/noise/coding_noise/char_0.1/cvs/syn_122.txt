@@ -1,0 +1,21 @@
+Đ#n% Mai Lan
+Aut~matio# Test Eng%neer
+Email~ lan73@exa~ple.com
+@iện tho@i~ 099357693#
+G~ới tính: Nữ
+Ng#y sinh: 2#/06/2002
+
+TÓM TẮT
+5 năm kin% n%hiệm kiểm thử ph%n mềm.
+
+KINH N#HIỆM
+Com%@ny F (2021 % %ay)
+- Xâ~ dựng fr%mework au~omation the% Pag% %bject Model, d@ta-dri%en, t@~% h~p Jenkins pipeline.
+- Sử d#ng S#lenium WebDriver, R~st Assured, Cucu@ber cho ki#m %hử api testing~ ui te~ting.
+- %hạy #est trên A@ure DevOps, J~nkins.
+
+KỸ %ĂNG
+Ngôn ngữ lập tr@nh% C#, T#peSc@ipt
+N@oại #g@: Engli## (TOEI@ 750)
+
+Địa chỉ: 2~% Nguyen T#ai Street, District 1

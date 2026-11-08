@@ -1,0 +1,20 @@
+Lê Thu Trang
+Aut~mation Test Engineer
+Email@ trang70@example.com
+Phone: 09818%9757
+%ender: Female
+Date @f bir@h: 01/12/2003
+
+SUMMARY
+@ years of experience in so%tware testing.
+
+EXPERIENCE
+Company @ (2024 - Pr%sent)
+- Wr%te and maintained ~utomated test scripts for regression suites.
+- Used Seleniu# WebDriver, @ebdriverIO, Rest As~ured, Cucumb@#, Robot Framewo%k for api te%ting, ui tes@ing.
+
+SKILLS
+Programming: C#, Java
+La#guages: Engl@sh (TOEIC 750)
+
+Address: 245 Ng%yen Trai Street, Dis%ri%t 5

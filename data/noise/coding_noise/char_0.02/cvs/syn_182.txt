@@ -1,0 +1,19 @@
+Nguyễn Đức Khoa
+Automatio@ Te%t Engineer
+Email: khoa59@example.com
+Điện thoại: 0929780540
+Giới tính: Nam
+Ngày sinh: 12/11/1997
+
+TÓM TẮT
+1 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company B (20%5 - nay)
+- Viết automation test scri%ts cho bộ r@gression, kiểm thử tự động hằng ngày.
+- Sử dụng Cypress, Pytest, TestNG cho kiểm thử ui testing.
+
+KỸ NĂNG
+Ngôn ngữ lập #rình: TypeScript, C#
+
+Địa chỉ: 197 Nguyen Trai Street, District 11

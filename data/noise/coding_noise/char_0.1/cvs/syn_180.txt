@@ -1,0 +1,20 @@
+Vũ Mai Hương
+Automation Test Engin~@r
+E%@il: h#ong41@@xa~#le.com
+Phone: 0917499483
+Gende#: Fe~ale
+Dat@ of %irth: @8/12/19%6
+
+SUMMA@Y
+3 years of experience in s#ftware tes@ing~
+
+EXPERIENCE
+Company F (20~3 - Present)
+- Designed and bu%lt a Pag% Object Model automa@ion f#amework and integrated it into the CI #ipeline~
+- Us~d Selenium WebDriv@@% Pos~man, Cucumbe~, Ro#ot Fra@ewo#k for api testing, ui t@st%ng.
+- Ran tests on GitHub Actions, Jenkins, Do%ker#
+
+SKILL@
+Program#ing: Jav%, C#
+
+A#d%es%: 279 Ng~yen Trai Street, Dist#i#t 2

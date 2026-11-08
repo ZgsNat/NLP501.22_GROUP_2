@@ -1,0 +1,19 @@
+Hồ Đức K%o@
+Automatio@ Tes~ Engineer
+E@ai%: khoa94@ex#mple.com
+P#one: 0996960449
+Gen@er: Male
+Dat# of birth: 19/03/1991
+
+SUMMARY
+2 #ears of experienc@ in software testing.
+
+EXPERIENCE
+%ompany F @20## - Present)
+- Wrote and maintai%ed #utomated test scripts fo# regression suites.
+- Used Rest Assured, k@, JUnit, Robot Framework f#r api tes@ing, m#nual testing, per@ormance te%t#ng.
+
+S%ILLS
+Programming: C#% JavaScript
+
+#dd@ess: 95 Nguyen Trai Street, Distr%ct 5

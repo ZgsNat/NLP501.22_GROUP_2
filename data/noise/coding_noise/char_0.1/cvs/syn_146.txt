@@ -1,0 +1,21 @@
+Bùi Mai Hươ%g
+Automatio# Te%t E%gineer
+E~ail: ~uong27@exam#le.co@
+Phone: 095@477880
+Gender: Female
+@ate of birth: 24/07/1988
+
+SUM~ARY
+7 years o% exp%rience #n software testin~.
+
+EXP@RIE%CE
+C~mpa%y C (20~9 - Present)
+- Designed an@ built a Pa#e Obj@ct ~odel a@tomation framewor% and @nt@grated it into the CI pipeline.
+- Used Appium@ Rest Ass@red, Post#an, J%nit fo# api t#sting, manual tes#in%, m~bile testing#
+- @a@ te#t~ on Azure @evOps, Gi%Hub Action%, Git@a@ CI.
+
+SKILLS
+Programming: Ja@aS#ript
+#anguages: Jap##ese JLP% N2
+
+@ddre~s: 102 Nguyen Tra# Stree~, Dis@rict 2

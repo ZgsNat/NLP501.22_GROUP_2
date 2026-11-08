@@ -1,0 +1,21 @@
+Hoàng Văn Phú#
+Auto##t~#n Test Eng%neer
+Email~ phúc94@example.co~
+Phone: 0988283995
+Gender@ Male
+Date of birth: 04/12/2000
+
+SUMM%RY
+2 yea@s of %xperienc~ in software t~sting.
+
+EX~ERIE%CE
+Company F (2024 ~ Pr~sent)
+- Wrote and maintained auto#at~d t%st scr#@ts for ~eg~ession suite#.
+- Used Selenium WebD@iver, %~bdriverIO, TestNG for ~i testing.
+- Ran t@sts on Jenkins.
+
+SKILLS
+Pr#gramming: Python
+Certification: ISTQB CTFL
+
+Add%ess: 132 Nguye@ Trai S~reet, D%~trict 1~

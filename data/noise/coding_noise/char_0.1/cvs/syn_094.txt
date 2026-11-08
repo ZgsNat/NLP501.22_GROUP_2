@@ -1,0 +1,21 @@
+N#uyễn Đức Kho~
+Aut#m~tion Test Engineer
+Email# k%oa45@exam~~e.com
+Phone# 0958397866
+Gender: Male
+Date of birth: 14/05/1996
+
+SUMMARY
+3 years of %xpe%ien#e in softw%re testing.
+
+EX%ERIE@CE
+#ompany E (@023 - Pre#~nt)
+- Designed and bui#t a Page Object Model automation framewor# and i~tegrated it into %he CI p~peline.
+- Us@d Seleniu% WebDr%ver@ Cypress, Post~an, Tes%NG for ap~ testing, ui testing.
+- Ran ~est@ on %ocker, ~itLab CI, Az%re DevOps.
+
+SKILLS
+Progra~ming: C#
+Cert%ficati%n: ISTQB C%FL
+
+Address: 13# Nguyen Trai Street, Distric@ ~

@@ -45,6 +45,7 @@ cd backend && uv run python -m app.eval.djinni_holdout verify   # E29: locked 6-
 cd backend && uv run python -m app.eval.benchmark_v1_1 report   # E27: v1 re-scored with the 120 blind human pairs
 cd backend && uv run python -m app.eval.defense_numbers  # E31: every deck number → formula, source file:line, command (docs/DEFENSE_NUMBERS.md); `verify`
 cd backend && uv run python -m app.eval.real_evidence    # E32: NLP pipeline on every real CV on disk → docs/REAL_DATA_EVIDENCE.md + per-file CSV (paths, valid/partial/invalid)
+cd backend && uv run python -m app.eval.noise_robustness # E33: seeded noise on the coding CVs (gold unchanged) → docs/NOISE_ROBUSTNESS_RESULTS.md; level 0 = EXTRACTION_RESULTS
 cd backend && uv run python -m app.eval.nlp_ablation     # E19: nDCG cost of switching off hedge scope / evidence / depth cue / dated years
 cd backend && uv run --group ml python -m app.eval.finetune train   # E20: cross-encoder fine-tuned on dev JDs; `score` = test + Djinni
 cd backend && uv run python -m app.eval.token_cost       # E21: tokens of B4 / P6 vs E-every (LLM on every candidate), after `run agent --systems B4,P6,E-every`

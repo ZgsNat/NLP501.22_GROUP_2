@@ -1,0 +1,21 @@
+Dang Mai Lan
+Automation Test Engineer
+Emai1: 1an73@example.com
+Điện thoại: 0993576934
+Giới tính: Nữ
+Ngày sinh: 21/06/2002
+
+TÓM TẮT
+5 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company F (2021 - nay)
+- Xay dựng framework automation the0 Page Object Model, data-driven, tích hợp Jenkins pipeline.
+- 5ử dung Selenium WebDriver, Rest Assured, Cucumber cho kiểm thử api testing, ui testing.
+- Chạy test trên Azure DevOps, Jenkins.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: C#, TypeScript
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 224 Nguyen Trai Street, District 1

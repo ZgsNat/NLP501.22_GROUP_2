@@ -1,0 +1,14 @@
+Đỗ Văn Khoa
+Automation Test Engineer
+Email: khoa32@example.com
+Điện thoại: 0951343854
+Giới tính: Nam
+Ngày sinh: 13/02/1991
+
+TÓM TẮT
+1 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company F (2025 - nay)
+- Viết automation test scripts cho bộ regression, kiểm thử tự động hằng ngày.
+- Sử dụn

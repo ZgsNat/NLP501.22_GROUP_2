@@ -1,0 +1,21 @@
+Hồ Đứ@ @hoa
+Aut~ma#i%n Test En@ineer
+Email: khoa3@@ex~mpl~.c~m
+Pho%e: 0953521847
+Gender: Ma~e
+Date of b%rt%~ 09/04/2~00
+
+S~MMARY
+7 year% #@ e%~~rience in soft%are %estin%~
+
+EXPE#IE@CE
+Com#an% B (%019 - P##%ent)
+- Def@~ed ~#~ test a#to%ati@n str%%egy, led % ~%a# of 5 QA en~##eers and me%tore~ juni@rs %n a~t%@ation%
+# Us~d #ele~iu# W~bDrive@, ~p##um, P~test for m%bil~ te@tin%, u~ t#sting.
+- Ran tes~s on Az#~e Dev%ps, Doc@er% Git@ab C@.
+
+SK@@LS
+P~ogrammi%g: Type@cr~p%, C@
+C%rtification: %%TQB ##FL
+
+~ddres%: 229 @guyen ~r@i Stre%#~ %istri~t 4

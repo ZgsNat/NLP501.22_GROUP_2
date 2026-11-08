@@ -1,0 +1,21 @@
+Bùi Đức Phú@
+Automa#ion T~st Engineer
+Email: phú#46@example.com
+Phone: 0953298644
+Ge%der: Male
+Date of bi~th@ #4/11/1998
+
+SU~MAR@
+3 years @f expe#ience in so#tware testing.
+
+EXPERIENCE
+~ompany A (2023 - Present%
+# D~signed ~@d b~ilt a Page Object Model auto~ation framework and integrated it into the CI %ipeline.
+- U~ed Seleniu# W~bDriver, Postman, TestN@, JUnit #or ~pi testing, ui testing.
+~ Ran ~ests on Docker.
+
+SK~LLS
+Pr#gram@ing: JavaScript% ~#
+L~ngua~es: Japanese JLPT N2
+
+Add~ess: 50 #guye# Trai St#eet, Distri#t 9

@@ -1,0 +1,21 @@
+Hồ Quốc P~úc
+Au%omation Test Engineer
+Email: phúc33@example.~@m
+Phone: 0970987778
+Gender: Male
+Date of birth: 1~/07/2002
+
+S#MMARY
+3 years of experience in software test%ng.
+
+EXPERIE@CE
+Company D (2023 - Present)
+- Designed and built a Page Objec@ Model #utomation @ramework and int~gr@ted it into the CI pipeline.
+- Us%d Cypress@ WebdriverI#, Rest Assured, JUnit, TestNG for api te#ting, ui testing.
+- Ran tests on GitHub Actions.
+
+%KILLS
+P%og@amming: C#, JavaScr#pt
+Certi@ication: ISTQB C@FL
+
+Address: 182 Nguyen Trai Street, District @

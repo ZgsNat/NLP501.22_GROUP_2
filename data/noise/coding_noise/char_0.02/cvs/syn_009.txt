@@ -1,0 +1,22 @@
+Vũ Văn Nam
+Automation Test Engineer
+Email: nam16@example.com
+Phone: 0981802559
+Gender% Mal%
+Date of b#rth: 01/03/1991
+
+SUMMARY
+3 years of experience in software testing.
+
+E#PERIENCE
+Company C (2%23 - Present)
+- Designed and built a Page Object Model automation framework and integrated it into the CI pipeline.
+- Used Selenium WebDriver, Postman, Tes#NG for api tes%#ng, ui testing.
+- Ran tests on Azure DevOps, Docker.
+
+SKILLS
+P%ogramming: Pyt~on
+Certification: ISTQB CTFL
+Languages: English (TOEIC 750), Japanese JLPT N2
+
+Address: 138 Nguyen Trai Street, District 3

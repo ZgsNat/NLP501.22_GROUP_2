@@ -1,0 +1,19 @@
+Nguyễn Ngọc Trang
+Automation Test Engineer
+Email: trang56@example.%om
+Phone: 0958504268
+Gender: Female
+Date of birth: 24/10/1999
+
+SUMMARY
+2 years of experience in software testing.
+
+EXPERIENCE
+Company B (2024 - Present)
+- Wro%e and maintained automated test scripts for regression %uites.
+- Used Selenium WebDriver, Rest Assured, Cucumber, TestNG for api testing, ui testing.
+
+SKILL%
+Programming: Java
+
+Address: 142 Nguyen Trai Street, District 4

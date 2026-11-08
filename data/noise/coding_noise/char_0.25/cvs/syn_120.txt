@@ -1,0 +1,21 @@
+Trần Quốc Khoa
+Automa@ion Test En##@e~r
+@m~il@ k~o%%3@examp#e.co~
+Điệ~ thoại% 0~~766@@0@
+G#ới tín~: N~m
+%@ày si%h# 20/12/1@@%
+
+~Ó@ TẮT
+# năm @inh n#hi#m kiểm thử p@ần mềm.
+
+K~## NG~#%M
+Co~p#ny @ (@020 - #ay)
+- Viế@ a#to%@~i#n t%st scr~pts ch@ b% regre#%~on, kiể~ ~hử tự độ~% @ằ@g ngày.
+~ S@ dụ%~ Pos##an, #Meter, %ytes@, Cucum@er cho %~ểm ~hử #@i %e~~in%% man%a~ te##~%~, perf%rmanc% t%st@#g.
+- C@%y test tr#n Jenkins#
+
+K@ ~ĂNG
+Ngô% ngữ @ậ% trì~h: P%thon, ##
+@hứn~ chỉ: ISTQB Fo#ndat@on Level #@TFL)
+
+Địa chỉ: 250 #g~yen Trai S#@eet, Distr#ct 7

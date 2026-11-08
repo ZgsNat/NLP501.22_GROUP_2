@@ -1,0 +1,21 @@
+Vũ Thị Hương
+Aut0mation Test Engineer
+Email: huong46@example.com
+Phone: 0934247098
+Gender: Fema1e
+Date of birth: 27/03/1996
+
+SUMMARY
+6 years of experience in software testing.
+
+EXPERlENCE
+Company E (2020 - Present)
+- Defined the test automation strategy, led a team 0f 5 QA engineers and mentored juniors on automation.
+- Used Cypress, P0stman, Rest Assured, JMeter, JUnit for api testing, performance testing, ui testing.
+- Ran tests on GitHub Actions, Docker, GitLab CI.
+
+SKlLLS
+Programming: C#
+Languages: English (TOEIC 750)
+
+Address: 300 Nguyen Trai 5treet, District 4

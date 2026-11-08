@@ -1,0 +1,21 @@
+Đặng Thu Vy
+Aut0mation Test Engineer
+Emai1: vy91@example.com
+Điện thoại: 0941061693
+Giới tính: Nữ
+Ngày sinh: 08/06/2001
+
+TÓM TẮT
+5 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company D (2021 - nay)
+- Xây dựng framew0rk automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Sử dụng Selenium WebDriver, Rest Assured, Postman, Pytest, JUnit ch0 kiểm thử api testing, ui testing.
+- Chạy test trên GitLab CI.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: TypeScript
+Chứng chỉ: ISTQB Foundation Level (CTFL)
+
+Dia chỉ: 32 Nguyen Trai Street, District 9

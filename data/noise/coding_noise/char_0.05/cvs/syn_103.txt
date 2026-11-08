@@ -1,0 +1,20 @@
+Trần Mai Lan
+A@tomation T#st Engi~eer
+Email: lan61@example.com
+Điện ~hoại: 0944247519
+Giới tính: Nữ
+Ng@y sinh: 06/04/2000
+
+T%M TẮT
+1 năm kinh nghiệm kiểm th@ phần mềm.
+
+KINH N@HIỆM
+Company A (2025 - nay)
+- Viế@ automation test s~%ipts cho bộ reg@ession, kiểm thử tự động hằng ngày.
+- Sử dụng Cypres%, TestNG, P#test cho kiểm thử ui testing.
+
+KỸ NĂNG
+Ngôn ngữ lập trình: TypeS%ript, Java
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 11 Ngu@en Trai @treet, District 4

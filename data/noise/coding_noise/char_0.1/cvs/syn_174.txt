@@ -1,0 +1,20 @@
+Đặ~g #inh Nam
+Automation Test Engine#r
+Email: #am71@%xample.com
+Phone: 092~575001
+Gend@r: #~%~
+Date o# birth: 16@03/2002
+
+SUMMARY
+7 y@ars of experien%e in softwa#e %#sting.
+
+EX%ERIENCE
+Company B (2019 - P%esent)
+- Designed and built a Pa~e Object Model auto~ation fra~ework a%d in@egrated it @nt@ the CI pipeline.
+@ Used S~lenium WebDriver# Playwr~~ht, P%stman% Rest Assured, JMet@r, JUnit for api %esting, perfor%ance #esting, ui tes@ing.
+- Ran te~ts on Gi~%ab CI, GitHub %~tions~ Azure DevO~s~
+
+SKIL~S
+Programming: C#, JavaScript
+
+~ddress: 91 Ng@#en Trai S#reet, @i~t~ic% 4

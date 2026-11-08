@@ -1,0 +1,21 @@
+Đỗ Đức Long
+Automation Test Engineer
+Emai1: long11@example.com
+Điện th0ại: 0990972685
+Giới tính: Nam
+Ngay sinh: 04/07/2000
+
+TOM TẮT
+5 năm kinh nghiệm kiểm thử phan mem.
+
+KINH NGHIỆM
+Company A (2021 - nay)
+- Xây dựng framework aut0mation theo Page Object Model, data-driven, tích hợp Jenkins pipeline.
+- Sử dụng Appium, Postman, Pytest, Robot Framew0rk cho kiểm thử api testing, manual testing, mobile testing.
+- Chạy test trên Azure DevOps, Docker.
+
+KỸ NĂNG
+Ngôn ngu lập trình: JavaScript
+Ngoại ngữ: English (TOEIC 750)
+
+Địa chỉ: 57 Nguyen Trai Street, District 1

@@ -1,0 +1,13 @@
+Vũ Thu Linh
+Automation Test Engineer
+Email: linh52@example.com
+Phone: 0931780851
+Gender: Female
+Date of birth: 04/08/1989
+
+SUMMARY
+5 years of experience in software testing.
+
+EXPERIENCE
+Company D (2021 - Present)
+- Designed and built a Page Object Model automation framework and integrated it in

@@ -1,0 +1,21 @@
+Phạm Đ~~ Tu#n
+Au#omati@n Te~t Eng%ne@r
+Email% tu#n12@exa~pl@%co~
+#~one: 094703~339
+Gende@: M~le
+~ate of birth: 18/%9/19@@
+
+S%MMA~Y
+4 ye@r# o@ exp~ri%n#e i# sof@~are %es@%ng.
+
+EXPE#IENCE
+Com#any A (#0~2 - #~ese#t)
+- Designed an% bu~lt a Pag~ Object Mo%el %~toma%~on frame%ork %#d ~ntegr~ted it %nt# the CI pi#e#%~e.
+- ~sed Sele%@u@ WebDr#ver, Cypre%~, XC%@T@s#~ P%stm#n, Cucumber~ Tes%NG #or #pi te#ting, mo%i#e @~st%ng, %i testin#.
+- Ran @est% on GitL%b C#, Gi%Hub ~ct@ons# Docker@
+
+SKILLS
+Prog@ammi### JavaSc~ipt
+L~nguag%s# English (TOEIC 750), J@pane%e JLPT ~2
+
+Add@%ss# 2% Nguye# Trai S#reet, Distri~t #

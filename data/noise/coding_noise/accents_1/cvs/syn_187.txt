@@ -1,0 +1,21 @@
+Bui Mai Lan
+Automation Test Engineer
+Email: lan24@example.com
+Dien thoai: 0987556758
+Gioi tinh: Nu
+Ngay sinh: 14/12/1996
+
+TOM TAT
+7 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company B (2019 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung WebdriverIO, Gatling, Pytest, TestNG cho kiem thu performance testing, ui testing.
+- Chay test tren Jenkins, Docker, Azure DevOps.
+
+KY NANG
+Ngon ngu lap trinh: TypeScript
+Ngoai ngu: Japanese JLPT N2
+
+Dia chi: 47 Nguyen Trai Street, District 6

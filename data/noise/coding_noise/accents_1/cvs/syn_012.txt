@@ -1,0 +1,21 @@
+Tran Quoc Nam
+Automation Test Engineer
+Email: nam34@example.com
+Dien thoai: 0943565097
+Gioi tinh: Nam
+Ngay sinh: 27/07/1988
+
+TOM TAT
+1 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company A (2025 - nay)
+- Viet automation test scripts cho bo regression, kiem thu tu dong hang ngay.
+- Su dung Playwright, WebdriverIO, k6, JUnit, Cucumber cho kiem thu performance testing, ui testing.
+- Chay test tren Jenkins.
+
+KY NANG
+Ngon ngu lap trinh: C#, Java
+Ngoai ngu: English (TOEIC 750), Japanese JLPT N2
+
+Dia chi: 128 Nguyen Trai Street, District 7

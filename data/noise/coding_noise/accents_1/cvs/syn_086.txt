@@ -1,0 +1,21 @@
+Hoang Thu Vy
+Automation Test Engineer
+Email: vy99@example.com
+Dien thoai: 0958656970
+Gioi tinh: Nu
+Ngay sinh: 04/09/1999
+
+TOM TAT
+5 nam kinh nghiem kiem thu phan mem.
+
+KINH NGHIEM
+Company G (2021 - nay)
+- Xay dung framework automation theo Page Object Model, data-driven, tich hop Jenkins pipeline.
+- Su dung Playwright, Rest Assured, Postman, k6, Cucumber cho kiem thu api testing, performance testing, ui testing.
+- Chay test tren Docker, Jenkins, GitLab CI.
+
+KY NANG
+Ngon ngu lap trinh: JavaScript, C#
+Ngoai ngu: Japanese JLPT N2
+
+Dia chi: 74 Nguyen Trai Street, District 1

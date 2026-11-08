@@ -1,0 +1,22 @@
+@@ Minh Long
+A%tomatio# Test Engineer
+Email: lo~g34@%#@%ple.com
+%~one% ~@72980~85
+Gende@: M~%e
+Date of birt%@ 12/08/1%95
+
+S%MMARY
+% years #f %xperi@n%e in #@f%war# te@#ing.
+
+EXPERIENCE
+Comp%n% E ~@@18 - Presen%)
+# Defined the test auto%@ti~n stra@egy# @ed a tea# ~f % QA enginee## a%d mentore~ ju%##r# #n #u@@%ation%
+- Used #Meter@ ~uc~m%~#, JUnit for ma@ual te%ti~g, per~orm#nc~ test#~g.
+% R#n tests on Azu#~ D@vOp#.
+
+S@ILLS
+P@ogr~mmi@g: %@~hon
+~#rt%~%cat~on: ~S%QB CT~L
+L%n~uages# #apa%ese JL#T N2
+
+Ad#re%s% 11@ Nguyen @rai Stre##, Dist~ict ~#

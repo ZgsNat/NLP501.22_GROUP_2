@@ -1,0 +1,21 @@
+Trần Văn N#m
+Autom#tio% Test #ngi~#er
+Email: nam32%example.com
+Điện thoại: 091419#492
+Giới tính: Nam
+Ngày sinh: 07/02/2003
+
+T@M TẮT
+5 #%m kinh nghiệm kiểm thử phần mề@.
+
+KINH NGHIỆM
+Company B (%021 - #ay)
+# Xâ@ dựng %rame@ork au#%mation theo Pag# O~jec@ Model, data-driven, tích hợp Jenkins pipel#ne.
+# Sử dụng @spr~sso, Pos%man, T#%tNG c@o kiểm thử api t~sting, m~nua% testing, mobil% %esting.
+- Chạy #%st t%ên J#nkin~, Git#~b Action@, Azure DevO@s.
+
+KỸ NĂNG
+Ngôn @g# lập trình: C#, Java
+~goạ~ ngữ@ English (TOEIC 750)
+
+~ịa ~hỉ: #1 N%uyen Trai Street, Distri#t 1

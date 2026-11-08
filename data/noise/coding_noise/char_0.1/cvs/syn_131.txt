@@ -1,0 +1,20 @@
+Vũ M%i L#nh
+Automation Test Enginee@
+Email: linh89@example.co%
+Điện th~ạ%: 096#676465
+Giới tính: Nữ
+Ngày si%h: %6/04#1~9@
+
+TÓM TẮT
+5 năm kinh nghiệm kiểm thử ~hần mềm.
+
+KINH NGHIỆM
+Company G (2021 - nay)
+- V%~t automat%on tes# scrip#s cho b~ regressi~#, kiểm thử t~ động hằ@g ngày.
+- @ử dụn@ WebdriverIO, Appium, Postman, k6, TestNG, %ytes~ #ho kiểm thử api te#ting, @obile testi@%, per%ormance testing, u~ te#ting.
+
+%Ỹ NĂNG
+Ngôn ngữ lập tr#nh: Ja#a
+Ch#ng #hỉ: I@#QB Foundation Level (CTFL)
+
+Đ#a chỉ: 23 ~#uyen Trai S~reet, District 1

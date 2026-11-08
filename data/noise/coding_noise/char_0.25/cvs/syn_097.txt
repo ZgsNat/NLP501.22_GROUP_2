@@ -1,0 +1,22 @@
+Nguyễn %ai Tr%ng
+Automa~ion @#st Engineer
+Email: tr%ng81#example.%om
+Phone~ 097512@@7%
+Gende#: Fe@ale
+Date of b~~t~: #@/08/1991
+
+SUMM#R#
+7 ~ears of expe#i@%ce in s@ftwa%e testi~#.
+
+EXPER#E#CE
+Compa@y G (20%9 - Presen%)
+- ~%~%ned t@e t~st autom%tion strategy# le% a team of % Q% e@gin~ers %nd ment#r~d @unior% on automa#@on.
+- Used Playwri~~t, Selenium WebD%ive%, Postman, TestN@ f%r api te~ting, ui te#ti#@.
+~ Ra@ tests on Git~ab CI@
+
+SKIL#S
+P#ogra#mi@g: Type#cri~t
+%er@ifi#@tio@: IST~B #TFL
+L@ng#ages: %ngl@sh %TOE#C 7@@)
+
+Addres## @6 N~uy@n Trai Street, Distr@ct 2

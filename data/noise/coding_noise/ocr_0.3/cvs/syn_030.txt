@@ -1,0 +1,21 @@
+Phạm Duc Phuc
+Automation Test Engineer
+Email: phúc81@example.com
+Dien thoại: 0965725133
+Gioi tính: Nam
+Ngày sinh: 24/02/1999
+
+TÓM TẮT
+10 năm kinh nghiệm kiểm thử phần mem.
+
+KINH NGHlỆM
+Company F (2016 - nay)
+- Trưởng nhóm QA 5 người, định huong aut0mation strategy và mentor thành viên mới.
+- 5ử dung Appium, k6, JUnit cho kiểm thử manual testing, mobile testing, performance testing.
+- Chạy test trên Docker, GitLab CI.
+
+KỸ NĂNG
+Ngon ngữ 1ập trình: C#
+Ng0ại ngữ: Eng1ish (TOEIC 750)
+
+Dia chỉ: 235 Nguyen Trai 5treet, District 12

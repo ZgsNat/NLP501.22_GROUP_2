@@ -1,0 +1,20 @@
+Lê Thị Trang
+QA/QC Engineer
+Email: trang20@example.com
+Phone: 0929470999
+Gender: Female
+Date 0f birth: 20/03/2003
+
+SUMMARY
+Fresh graduate passi0nate ab0ut testing.
+
+EXPERIENCE
+- Executed manua1 test cases and rep0rted defects in Jira.
+- Used Postman, Rest Assured f0r api testing, manua1 testing.
+- Ran tests on GitLab Cl.
+
+SKILLS
+Pr0gramming: Java5cript
+Languages: English (TOEIC 750)
+
+Address: 212 Nguyen Trai 5treet, District 7

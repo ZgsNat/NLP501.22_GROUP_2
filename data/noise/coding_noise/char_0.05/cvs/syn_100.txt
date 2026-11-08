@@ -1,0 +1,21 @@
+Trần Minh Hùng
+Automation Tes% Enginee~
+Email: hùng46@e#ample.com
+Phone: 0926373347
+Gender: Male
+Date of birth: 13/06/1991
+
+SUMMARY
+6 years of experience in softw#@e te%ting.
+
+E%PERIENCE
+Company # (2020 - Present)
+- Wrote #nd main@ained automated test scripts for regression su@tes.
+- Used JMeter, Robot @ramework for ~anua@ testing, performance t#stin%.
+
+SKILLS
+Programmi#g: TypeScript
+Certif~cation: ISTQ~ CTFL
+Languages: Engl#sh @TOEIC 750)
+
+Address: 166 Nguyen Trai Street, District 3

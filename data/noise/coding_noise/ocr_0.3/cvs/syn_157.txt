@@ -1,0 +1,20 @@
+Vu Van Nam
+Aut0mation Test Engineer
+Email: nam15@example.com
+Phone: 0910071931
+Gender: Ma1e
+Date of birth: 02/11/1998
+
+5UMMARY
+2 years of experience in software testing.
+
+EXPERIENCE
+Company B (2024 - Present)
+- Wrote and maintained automated test scripts f0r regression suites.
+- Used Cypress, Rest Assured, Robot Framework f0r api testing, ui testing.
+
+SKILLS
+Pr0gramming: Java5cript
+Languages: English (TOElC 750)
+
+Address: 147 Nguyen Trai Street, District 8

@@ -1,0 +1,21 @@
+Ho Thi Thảo
+Aut0mation Test Engineer
+Emai1: thảo92@examp1e.com
+Phone: 0950318100
+Gender: Female
+Date 0f birth: 02/12/2000
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+Company A (2023 - Present)
+- Wrote and maintained automated test scripts f0r regression suites.
+- Used Selenium WebDriver, WebdriverI0, TestNG, Cucumber for ui testing.
+- Ran tests on GitLab Cl.
+
+SKILLS
+Pr0gramming: Pyth0n
+Certification: lSTQB CTFL
+
+Address: 29 Nguyen Trai Street, District 6

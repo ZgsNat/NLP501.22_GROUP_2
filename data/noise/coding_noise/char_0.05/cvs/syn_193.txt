@@ -1,0 +1,20 @@
+~guyễn Đức Hùng
+Au%omati~n Test Engineer
+Email: hùng99@example.com
+Phone: 09%9203413
+G%nder: #ale
+Date of birth% 13/12/1988
+
+SUM~@RY
+1 year% of experie@ce in software testing.
+
+EXPERIENCE
+Company @ (2025 - Present)
+- Wrote and maintained automated test scrip@s for regres~ion suites.
+- Us~d Se@eniu~ WebDrive#, Rest Assured, Postman, Cucumber, JUnit fo~ ap# testing, ui testing.
+
+SKILLS
+Programmin@: TypeScript, Python
+Certification: ISTQB CTFL
+
+Address: 218 Ngu%e% Trai Street, #istrict 6

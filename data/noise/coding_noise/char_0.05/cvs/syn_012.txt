@@ -1,0 +1,21 @@
+#rần Quốc Nam
+#utomat%o~ @est Engineer
+Email: nam34@example.com
+Điện tho@i: 094@565097
+Giới tính# Nam
+Ngày ~inh: 27/07/~988
+
+TÓM TẮT
+1 năm kinh nghiệm k#ểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (%025 % @ay)
+- Viết automation test sc~ipts cho bộ regression, kiểm thử tự động hằng ngày@
+- Sử dụng Playwright, W~bdri~erIO, k6, JUnit, Cucumb#r cho kiểm thử performance testing, ui tes~%ng.
+- Chạy test trên Jenkin~.
+
+KỸ NĂNG
+Ngôn ngữ ~ập trình: C#@ Jav~
+Ngoại ngữ: English (TOEIC 750), Jap%nese JLPT N2
+
+Địa chỉ: 128 Nguyen Trai Street, District 7

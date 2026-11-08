@@ -1,0 +1,21 @@
+Hồ Quốc Phúc
+Automation Test Engineer
+Email: phúc33@example.com
+Ph0ne: 0970987778
+Gender: Male
+Date of birth: 17/07/2002
+
+SUMMARY
+3 years of experience in software testing.
+
+EXPERIENCE
+Company D (2023 - Present)
+- Designed and built a Page Object Model automation framew0rk and integrated it into the CI pipeline.
+- Used Cypress, WebdriverIO, Rest Assured, JUnit, TestNG for api testing, ui testing.
+- Ran tests on GitHub Actions.
+
+SKILLS
+Programming: C#, JavaScript
+Certification: ISTQB CTFL
+
+Address: 182 Nguyen Trai 5treet, District 4

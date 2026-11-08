@@ -1,0 +1,20 @@
+Phạm Ngọc ~inh
+Automation Test Engineer
+Email: linh89@example.com
+Phone: 0938606966
+Gender: Female
+Date o# birth: 08/08/1~@8
+
+SUMMARY
+6 years of experienc% in software testing.
+
+EXPERI@NCE
+Company G (2020 - Present)
+- Designed and built a #age Object Model automation framework and integrated it i#to the CI pipeline.
+- Used J~eter, Cuc@mber for manual #estin#, performance %esting.
+@ Ran tes%s on Jenkins.
+
+SKILLS
+Progr@mmin%: JavaScript, Python
+
+Addres~: 193 Nguyen @rai Street, Distri@t 4

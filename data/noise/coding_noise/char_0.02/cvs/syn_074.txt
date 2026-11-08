@@ -1,0 +1,21 @@
+Tr#n Minh Long
+Automation Test Engineer
+Email: long84@example.com
+Phone: 0962499769
+Gender: Male
+Date #f birth: 15/11/1995
+
+SUM%ARY
+6 years of experience @n software testin@.
+
+EXPERIENCE
+Company F (2%20 - Present)
+- Designe@ and built a Page Object Model auto#ation framework and integrated it into the CI pipeline.
+- Used XCUITest, Postman, Gatling, JUnit, Cucum~er for api testing, manua% testing, mobile testing, performance testi%g.
+- Ran tests on Docker, GitHub Actions, Azure DevOps.
+
+SKILLS
+Program#ing: TypeScript
+Languages: English (TOEIC 750)
+
+Address: 100 Ngu~en Trai Street, District 9

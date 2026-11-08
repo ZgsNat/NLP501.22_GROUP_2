@@ -1,0 +1,21 @@
+N#uy~n V%n Hùng
+Aut%mation Test E%gi@eer
+E~ail: hùng86@exampl~.com
+Đi#% thoại: 099~12810@
+Gi~i tính: #a~
+Ngày sinh: 27/04/1991
+
+TÓM TẮT
+10 năm kinh ng#i#m k@ểm thử phần m@m%
+
+KINH #GHI~M
+Com@~ny F (2016 % nay)
+% Trưởn@ nhó# QA ~ ng~#i, định h%ớng automatio% str%tegy và mentor t%ành viên mới.
+- Sử dụng Es~resso, Postman, Rest Assured, TestN@, Cucu%ber cho kiểm thử ~pi testing, %anual te%ting, m@bile tes%ing.
+- Chạy test trê@ Docker, Jen@ins, Azure DevOps.
+
+KỸ NĂNG
+Ng~n ngữ lập trình: C#, JavaScrip%
+Ng%ại n%ữ: English (TOEIC 750)
+
+Đ%a chỉ: 6# Nguyen T~ai Stree%, Distr#c~ 2

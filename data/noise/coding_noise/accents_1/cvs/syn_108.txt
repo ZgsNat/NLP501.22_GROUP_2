@@ -1,0 +1,19 @@
+Le Mai Thao
+QA/QC Engineer
+Email: thao90@example.com
+Dien thoai: 0996869121
+Gioi tinh: Nu
+Ngay sinh: 17/02/1997
+
+TOM TAT
+Moi tot nghiep, dam me kiem thu.
+
+KINH NGHIEM
+- Thuc hien kiem thu thu cong, viet test case va bao loi tren Jira.
+- Su dung Postman cho kiem thu api testing, manual testing.
+- Chay test tren GitHub Actions.
+
+KY NANG
+Ngoai ngu: English (TOEIC 750)
+
+Dia chi: 240 Nguyen Trai Street, District 7

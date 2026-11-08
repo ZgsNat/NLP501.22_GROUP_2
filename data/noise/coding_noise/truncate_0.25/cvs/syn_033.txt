@@ -1,0 +1,14 @@
+Vũ Ngọc Thảo
+Automation Test Engineer
+Email: thảo79@example.com
+Phone: 0938712948
+Gender: Female
+Date of birth: 13/09/1996
+
+SUMMARY
+1 years of experience in software testing.
+
+EXPERIENCE
+Company C (2025 - Present)
+- Wrote and maintained automated test scripts for regression suites.
+- Used WebdriverIO, Playwright, Rest Assured, Postman, Pytest,

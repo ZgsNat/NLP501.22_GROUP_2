@@ -1,0 +1,19 @@
+Nguyễn Đức Kh0a
+Aut0mation Test Engineer
+Email: khoa59@example.com
+Dien thoại: 0929780540
+Gioi tính: Nam
+Ngày sinh: 12/11/1997
+
+TOM TAT
+1 năm kinh nghiem kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company 8 (2025 - nay)
+- Viết automation test scripts cho bộ regression, kiểm thu tu dong hằng ngày.
+- Sử dụng Cypress, Pytest, TestNG cho kiểm thu ui testing.
+
+KY NĂNG
+Ngôn ngữ 1ập trình: Type5cript, C#
+
+Dia chi: 197 Nguyen Trai Street, District 11

@@ -1,0 +1,13 @@
+Vũ Minh Khoa
+QA/QC Engineer
+Email: khoa34@example.com
+Phone: 0912865928
+Gender: Male
+Date of birth: 23/07/1999
+
+SUMMARY
+Fresh graduate passionate about testing.
+
+EXPERIENCE
+- Executed manual test cases and reported defects in Jira.
+- Used Cucumber for manual tes

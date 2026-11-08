@@ -1,0 +1,20 @@
+Lê Thu Trang
+Automation Test Engineer
+E~ai#: t%ang70@example.com
+#hone: 0981819757
+Gen@er: Fe%al~
+Date of birth: 0%/12/~003
+
+SUM%ARY
+2 ye#rs of ~%perience in sof~ware t#stin%.
+
+EXPERI%NCE
+Comp@ny G (2024 - Pre~ent)
+- Wrote and ma#nt~ined au#omated @est @c@ipts for regression %u@%es.
+- Used %#lenium WebDrive#, WebdriverI#, Rest A~sured, Cucu%ber, Rob%t F@amework for a@i testing, ui testin@.
+
+SKILLS
+Programming: C#, Java
+L~ng%ages: E%gl@sh (T@EIC 750)
+
+%d~@ess: 245 Nguyen Trai Street, District 5

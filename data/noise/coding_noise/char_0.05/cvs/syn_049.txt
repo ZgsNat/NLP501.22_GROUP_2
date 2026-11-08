@@ -1,0 +1,20 @@
+Vũ Ngọc Hươn@
+Automation Test Eng%n~er
+Email: h#o#@94@example.com
+Điện thoại: 0999872888
+Gi#i tính: Nữ
+Ngày s%nh: 03/12/2003
+
+TÓM TẮT
+4 năm kinh nghiệm kiểm thử phần mềm.
+
+KINH NGHIỆM
+Company A (2022 - nay)
+- X@y dựng framework automation theo P%ge Obj@ct Model, data-driven, tích hợp Jenkins @ipeline.
+- Sử dụn@ Seleniu~ WebDriver, Rest ~ssured, Cucumber cho kiểm thử %pi testing, ui testing.
+- Chạy test trên Jenki@s, #itHub Actions.
+
+KỸ NĂNG
+Ngô@ ngữ lập trình: TypeScript, C#
+
+Đị% c~ỉ: 238 Nguye# Trai Street, District 6

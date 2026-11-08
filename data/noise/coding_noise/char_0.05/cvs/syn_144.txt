@@ -1,0 +1,19 @@
+Trần Thị Vy
+Automation Test Engi@eer
+Em#i#: vy63@example.com
+Phone: 0980459205
+Gender: Fema@e
+Date of birth: 14/11/1997
+
+SUMMARY
+1 ye#rs of ~xpe#ience in softw@re te@ting.
+
+EXPERIENCE
+Company F (2025 - Present)
+- Wro%e and maintained automated test scripts for regression suites.
+- Used Playwright, Rest Assured, P@stman, Gatling, ~ob~t Framework, Pytest for api testing, %erform#nce testing, ui #esting.
+
+SKI@~S
+Programming: C#, Typ#Script
+
+Address: 221 N%uyen Tr~i ~treet@ Di~t@ict 3

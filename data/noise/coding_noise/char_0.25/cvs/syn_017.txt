@@ -1,0 +1,21 @@
+Bù% Ngọc Tra#%
+Aut%mat%on %est En#%nee#
+Email: %r~ng21@exam%%e.com
+Ph~ne@ 09@3@829%6
+Ge#der: F%m@le
+~ate of bi~th: 06~08/%~@0
+
+SU~M~RY
+3 y@%rs of experien#e in so#t%are test@n#.
+
+@XPER%~NCE
+C#mpany F (2023 @ P#esent)
+- De@ign#d an~ built # Page O#j~ct Model au#omati%# #@am#wo~k and integ#~t#d it #n%o the @% #i~%line.
+- Used C%pr~ss, Espr@@so, Res~ ~ssured, %6, Pytest f%# a#i tes~#%g, mobil% te@t~ng, pe%fo%m~nce tes~ing# ui testing.
+- R~n tests o@ @itHub Ac~ions, %~ur% Dev@p~, GitL@% @I~
+
+SKIL#S
+Program~ing: Java~ %ava#cript
+#anguage@: %nglish (%OE%C %50), J@pa#ese JLP% N2
+
+A%dr%ss: 1#4 %g~@en Trai St%ee%~ #i~trict ~1
