@@ -42,9 +42,32 @@ INLINE = {
 }
 
 
+# "Label: value" in the middle of a line, as when a PDF lost its line breaks ("… 0928134815 Giới tính: Nữ Ngày sinh: …").
+# Only labels that are unambiguous mid-sentence ("name", "age", "address" alone are not: "Project name: Payment app"),
+# and only a value of the expected shape, so the words after it survive.
+_LABEL_START = r"marital|gender|sex|date|dob|birthday|born|nationality|religion|address|phone|email|mobile|age|" \
+               r"giới|ngày|năm|quốc|dân|tôn|tình|địa|điện"
+_NAME_TOKEN = rf"(?!(?i:{_LABEL_START})\b)[A-ZĐÀ-Ỹ][\w'’-]*"  # a capitalised word that does not start the next label
+_WORDS = r"[^\s:：.,;|]+(?:\s+[^\s:：.,;|]+){0,2}"
+INLINE_LABELLED = {
+    "name": (r"full name|họ và tên|họ tên", rf"{_NAME_TOKEN}(?:\s+{_NAME_TOKEN}){{0,4}}"),
+    "birth_date": (r"date of birth|dob|birthday|ngày sinh|năm sinh", r"\d{1,2}[/.-]\d{1,2}[/.-]\d{2,4}|\d{4}"),
+    "gender": (r"gender|giới tính", r"(?i:male|female|nam|nữ|other|khác)\b"),
+    "marital_status": (r"marital status|tình trạng hôn nhân", _WORDS),
+    "nationality": (r"nationality|quốc tịch|dân tộc", _WORDS),
+    "religion": (r"religion|tôn giáo", _WORDS),
+}
+INLINE_LABEL = {k: re.compile(rf"(?<!\w)(?i:{label})\s*[:：]\s*(?:{value})") for k, (label, value) in INLINE_LABELLED.items()}
 # A gender value on a short "label: value" line, even when OCR noise broke the label ("%%nd~r: Female").
 GENDER_VALUE = re.compile(r"^[^\n:：]{0,20}[:：]\s*(?:male|female|nam|nữ)\s*$", re.I | re.M)
 # Words that make a header line a job title or a heading, not a person's name.
+FLAT_STOP = {"email", "e-mail", "phone", "mobile", "điện", "sđt", "address", "địa", "gender", "giới", "ngày", "date"}
+# Capitalised words of job titles ("Java Software Engineer", "Full Stack Web Developer"): never part of a person's name.
+TITLE_WORDS = {"software", "quality", "architect", "stack", "full", "front", "back", "end", "web", "middle", "manual",
+               "principal", "staff", "chief", "head", "devops", "continuous", "integration", "delivery", "data", "cloud",
+               "security", "systems", "system", "product", "project", "business", "analyst", "mobile", "game", "embedded",
+               "java", "python", "javascript", "typescript", "c#", ".net", "go", "golang", "php", "ruby", "node", "react",
+               "frontend", "backend", "fullstack", "performance", "assurance", "control", "technical", "solution"}
 NOT_A_NAME = re.compile(
     r"\b(?:qa|qc|tester|test|testing|engineer|automation|developer|senior|junior|lead|manager|sdet|intern|cv|resume|"
     r"curriculum|vitae|profile|summary|experience|skills|kỹ sư|kiểm thử|chuyên viên|lập trình|hồ sơ)\b", re.I)
@@ -53,11 +76,31 @@ NOT_A_NAME = re.compile(
 def header_name(text: str) -> str | None:
     """The candidate's name when it heads the CV unlabelled (the most common layout): one of the first 3 non-empty
     lines with 2-5 capitalised tokens, no digits, no contact punctuation and no job or heading words."""
-    for line in [ln.strip().lstrip("#").strip().strip("*").strip() for ln in text.split("\n") if ln.strip()][:3]:
+    lines = [ln.strip().lstrip("#").strip().strip("*").strip() for ln in text.split("\n") if ln.strip()]
+    for line in lines[:3]:
         tokens = line.split()
         if (2 <= len(tokens) <= 5 and all(t[0].isupper() for t in tokens) and not re.search(r"[\d:|@/,()]", line)
                 and not NOT_A_NAME.search(line) and heading_kind(line) is None):
             return line
+    return flattened_name(lines[0]) if lines else None
+
+
+def flattened_name(line: str) -> str | None:
+    """A header that lost its line breaks ("Bùi Thu Thảo Automation Test Engineer Email: …"): the leading capitalised
+    words, when 2-5 of them are followed directly by a job or contact-label word. Anything else ("Professional
+    SummaryHighly motivated …") is not taken for a name."""
+    tokens = line.split()
+    if len(tokens) < 3:
+        return None
+    for i, token in enumerate(tokens[:6]):
+        if NOT_A_NAME.search(token) or token.rstrip(":").lower() in FLAT_STOP:
+            name = tokens[:i]
+            # all-caps first lines are job titles in real CVs ("CUSTOMER SERVICE MANAGER"), not names
+            return " ".join(name) if 2 <= i <= 5 and not all(t.isupper() for t in name) else None
+        glued = any(a.islower() and b.isupper() for a, b in zip(token, token[1:]))  # "SummaryHighly"
+        if (not token[0].isupper() or len(token) < 2 or glued or re.search(r"[\d:|@/,()]", token)
+                or token.lower() in TITLE_WORDS):
+            return None
     return None
 
 
@@ -93,6 +136,10 @@ def redact(text: str) -> tuple[str, dict[str, int]]:
         return f"[REDACTED:{kind}]"
 
     text = LOOSE_LINE.sub(loose, text)
+    for kind, rx in INLINE_LABEL.items():
+        text, k = rx.subn(f"[REDACTED:{kind}]", text)
+        if k:
+            counts[kind] = counts.get(kind, 0) + k
     if name := header_name(text):
         text, k = re.subn(re.escape(name), "[REDACTED:name]", text, flags=re.I)
         counts["name"] = counts.get("name", 0) + k
