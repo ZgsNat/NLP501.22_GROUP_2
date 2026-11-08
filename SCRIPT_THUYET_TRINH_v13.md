@@ -190,8 +190,7 @@ Nhóm dùng bốn nguồn dữ liệu với vai trò cố định:
 
 - **ours:** 50 CV × 12 JD, nhãn silver do hai LLM gán, cùng 120 cặp do người chấm mù.
 - **coding:** 200 CV × 6 JD, nhãn rubric từ data generator.
-- **Djinni:** dữ liệu thực tế, 250 CV × 8 JD, 424 cặp có nhãn người (Vũ và Đán), dùng cho test v2 và external
-  validation.
+- **Djinni:** dữ liệu thực tế, 250 CV × 8 JD, 424 cặp có nhãn **Dual-annotator Aggregate Human Gold** do anh Vũ và anh Đán chấm mù độc lập, dùng cho test v2 và external validation.
 - **Kaggle:** 2.484 CV PDF thuộc 24 ngành, không có nhãn xếp hạng, chỉ dùng để kiểm tra NLP pipeline.
 
 NLP501-bench v1 gồm 250 CV tổng hợp ẩn danh và 18 JD; 10 JD test chỉ báo cáo một lần; 268 tệp đầu vào được cố định bằng
@@ -284,8 +283,7 @@ ranking chỉ cải thiện trên nhãn do LLM tạo nên không được tính 
 ### Slide 21 · Hạn chế và đạo đức · Vũ · 0:30
 
 Dữ liệu xếp hạng chủ yếu là tổng hợp, giá trị tuyệt đối không chuyển sang dữ liệu thật (0.85 so với 0.64); test split
-10 JD nên P6 so với rubric ranker chưa có ý nghĩa thống kê; nhãn Djinni là trung bình hai người, chưa adjudicate, một
-bộ được gán khi thấy điểm của mô hình; HR trong E15 và E26 là kịch bản. Về đạo đức: protected attribute bị xoá trước
+10 JD nên P6 so với rubric ranker chưa có ý nghĩa thống kê; nhãn Djinni là Dual-annotator Aggregate Human Gold do hai người chấm mù độc lập (metadata saw_model nhập nhầm trước đó đã được đính chính); điểm lấy trung bình thực không làm tròn, phân tầng độ tin cậy và kiểm định độ nhạy với cận min/max; HR trong E15 và E26 là kịch bản. Về đạo đức: protected attribute bị xoá trước
 khi lập chỉ mục, hệ thống chỉ gợi ý, HR quyết định, và yêu cầu lọc theo tuổi hay giới tính bị harness từ chối.
 
 ### Slide 22 · Mức độ giải quyết G1–G5 · Vũ · 1:00
@@ -347,7 +345,7 @@ kiểm tra tự động; và benchmark NLP501-bench ở các phiên bản v1, v1
 | Hệ thống có thật sự agentic không, hay chỉ là pipeline? | Đán | P7: LLM chọn bước trong 17 tool theo mục tiêu HR, kiểm tra tính khả thi trước khi xếp hạng, hỏi lại khi cần, tự kiểm kết quả và khai phần chưa đạt (slide 18, hai lượt chạy thật). P6 đi 8 path khác nhau trên 18 JD, fixed pipeline đi 1. |
 | Vì sao không để LLM chấm điểm? | Thịnh | Đã đo: ở v2 LLM chấm 5/8 tiêu chí làm nDCG giảm 0.033. LLM cũng có position bias (arbiter tự lật khi đảo thứ tự). Luật chấm, LLM giải thích và phân xử near-tie. |
 | Agent không hơn fixed pipeline về nDCG, vậy agent để làm gì? | Hoa | Đúng theo thiết kế, vì luật chấm cả hai. Giá trị nằm ở JD mơ hồ (+0.129), CV lỗi ký tự, kiểm soát hallucination và mục tiêu HR phức tạp. |
-| Nhãn do LLM gán thì đánh giá có vòng lặp không? | Hoa | Có rủi ro, nên: 120 cặp chấm mù bởi người cho v1.1 (thứ tự giữ nguyên, τ 1.00); Djinni dùng nhãn người; con số nào chỉ có nhãn cùng họ mô hình chấm thì không công bố và tính năng để tắt. |
+| Nhãn do LLM gán thì đánh giá có vòng lặp không? | Hoa | Có rủi ro, nên: 120 cặp chấm mù bởi người cho v1.1 (thứ tự giữ nguyên, τ 1.00); Djinni dùng Dual-annotator Aggregate Human Gold (chấm mù độc lập 100%, kiểm định độ nhạy min/max); con số nào chỉ có nhãn cùng họ mô hình chấm thì không công bố và tính năng để tắt. |
 | Dữ liệu tổng hợp có đại diện không? | Vũ | Không cho giá trị tuyệt đối (0.85 so với 0.64). Kết luận dựa trên thứ tự giữa các hệ thống, đã được xác nhận trên 8 JD thật với nhãn người. |
 | Vì sao gazetteer mà không phải NER học máy? | Thịnh | Tên công cụ là tập từ vựng đóng; gazetteer với boundary và evidence strength cho F1 0.978. NER học máy là hướng phát triển cho CV mô tả công cụ mà không gọi tên. |
 | Có học từ phản hồi của HR không? | Đán | Có hiệu chỉnh trọng số trong phiên bằng pairwise logistic regression; học qua nhiều phiên đã đo (E24) và không cải thiện (−0.008), nên quyết định loại của HR được giữ như quyết định cứng. |
