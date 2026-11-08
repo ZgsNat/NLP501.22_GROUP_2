@@ -1,6 +1,6 @@
 # Annotation Guidelines for Real-World CV Information Extraction Benchmark
 
-Version: 1.0 (Frozen 2026-11-08)  
+Version: 1.1 (Registered 2026-11-08)
 Scope: Djinni Unseen Candidate Profiles Benchmark (50 Held-Out Profiles)
 
 ---
@@ -15,7 +15,7 @@ Information extraction on candidate CVs must decouple syntactic recognition from
    - `used`: The tool was actively applied in a past project or professional role (e.g., *"Built UI test automation suites using Selenium and Java"*).
    - `listed`: The tool is merely stated in a skills inventory, profile summary, or keyword list without contextual job narrative (e.g., *"Skills: Selenium, Postman, Git"*).
    - `hedged`: The tool mention is qualified by uncertainty, beginner status, self-study, or attribution to others (e.g., *"familiar with Cypress"*, *"currently learning Playwright"*, *"worked with backend developers writing Go"*).
-4. **Candidate-Level Qualification (`candidate_level`)**: Boolean determination of whether the candidate genuinely possesses the skill. A candidate is credited with the skill if they have at least one `used` or `listed` mention; candidate-level is `false` if all mentions are `hedged` or purely theoretical.
+4. **Candidate-Level Qualification (`candidate_confirmed`)**: A boolean judgement attached to each mention. It records whether that evidence supports crediting the candidate with the skill. `used` normally supports `true`, `hedged` normally supports `false`, and `listed` requires the annotator to judge whether the list represents the candidate's own stack. The export keeps this decision explicit rather than deriving it after the fact.
 
 ---
 
@@ -50,10 +50,17 @@ Information extraction on candidate CVs must decouple syntactic recognition from
 
 ## 4. Inter-Annotator Agreement (IAA) Protocol
 
-Two independent annotators (Annotator A and Annotator B) annotate all 50 profiles independently in double-blind mode:
-1. **Span-Level Agreement**: Measured by **Token-Level Overlap $F_1$** (two spans match if Jaccard token overlap $\ge 0.5$).
-2. **Status Agreement**: Evaluated on aligned spans using **Weighted Cohen's $\kappa$** (penalizing confusion between `used` and `hedged` more severely than `used` and `listed`).
-3. **Candidate-Level Agreement**: Evaluated using **Macro-$F_1$** and **Jaccard similarity** over the binary skill vectors.
+Two distinct people (Annotator A and Annotator B) annotate all 50 profiles independently. Each receives a differently ordered offline kit. They must not see system predictions, weak labels, the other person's labels, or benchmark scores before export. The export records `human=true`, `independent=true`, `saw_system_output=false`, annotator identity, document hashes, and protocol hashes.
+
+The following metrics are registered before labels are opened:
+
+1. **Span agreement:** exact-boundary precision/recall/$F_1$ and token-overlap precision/recall/$F_1$. Alignment is one-to-one and uses token Jaccard $\ge 0.5$.
+2. **Canonical agreement:** exact canonical-skill agreement on aligned spans, with OOV names normalized only for whitespace and case.
+3. **Status agreement:** **unweighted Cohen's $\kappa$** on aligned spans. `used`, `listed`, and `hedged` are nominal labels; no ordinal distance is assumed.
+4. **Candidate agreement:** micro precision/recall/$F_1$, macro-$F_1$, and mean Jaccard over confirmed skill sets.
+5. **OOV audit:** each annotator's OOV rate and OOV-versus-in-taxonomy agreement on aligned spans.
 
 ### Adjudication
-Any span or status discrepancy between Annotator A and Annotator B is reviewed by a third adjudicator. The adjudicated consensus forms the official **Human-Adjudicated Reference**.
+Only after both files pass validation does the tool reveal a conflict-only kit. A third person, distinct from A and B, resolves every boundary, canonical, status, candidate-confirmation, and unmatched-span conflict. No heuristic or model may adjudicate. The builder refuses incomplete decisions and refuses to overwrite an existing frozen Gold file.
+
+The official **Human-Adjudicated Reference** exists only after this gate succeeds. Before then, the benchmark status is `HUMAN_ANNOTATION_PENDING`; generated weak labels may be used only for debugging and cannot support IAA, model selection, or headline results.

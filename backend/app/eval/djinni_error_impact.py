@@ -1,4 +1,4 @@
-"""E29b: Extraction-Induced Knockout & Skill Grounding Impact Evaluation.
+"""Extraction-induced impact evaluation gated on human-adjudicated Gold.
 
 Investigates how errors in the information extraction stage propagate to
 downstream scoring and knock-out decisions on real-world candidates.
@@ -12,6 +12,7 @@ Specifically compares:
 
 from __future__ import annotations
 
+import argparse
 import json
 import math
 from pathlib import Path
@@ -21,12 +22,19 @@ import yaml
 from app.config import ROOT, get_settings
 from app.nlp.pipeline import process
 from app.nlp.jd import parse as parse_jd
-from app.eval.extraction_benchmark import run_e0_keyword, run_e1_no_context, run_e2_full_pipeline
+from app.eval.extraction_benchmark import (
+    GOLD_PATH,
+    WEAK_REF_PATH,
+    load_reference,
+    run_e0_keyword,
+    run_e1_no_context,
+    run_e2_full_pipeline,
+)
 
 JDS_FILE = get_settings().runtime_dir / "bench" / "djinni" / "jds.yaml"
-REF_PATH = ROOT / "data" / "eval" / "djinni_extraction_reference_50.json"
 CVS_DIR = get_settings().runtime_dir / "bench" / "djinni_extraction" / "cvs"
 OUT_REPORT = ROOT / "docs" / "DJINNI_ERROR_IMPACT.md"
+OUT_METRICS = ROOT / "data" / "eval" / "djinni_extraction_impact_metrics.json"
 
 
 def load_jds() -> list[dict]:
@@ -34,9 +42,11 @@ def load_jds() -> list[dict]:
         return yaml.safe_load(f)
 
 
-def evaluate_error_propagation():
-    ref_payload = json.loads(REF_PATH.read_text(encoding="utf-8"))
-    ref_profiles = ref_payload["profiles"]
+def evaluate_error_propagation(*, weak_diagnostic: bool = False):
+    ref_profiles, _ = load_reference(
+        WEAK_REF_PATH if weak_diagnostic else GOLD_PATH,
+        weak_diagnostic=weak_diagnostic,
+    )
     jds = load_jds()
 
     jd_reqs = {}
@@ -71,7 +81,12 @@ def evaluate_error_propagation():
     for cid, ref_item in ref_profiles.items():
         text = (CVS_DIR / f"{cid}.txt").read_text(encoding="utf-8")
 
-        ref_skills = set(ref_item["candidate_skills"])
+        ref_skills = {
+            mention["canonical_skill"]
+            for mention in ref_item.get("mentions", [])
+            if mention.get("candidate_confirmed", mention.get("evidence_status") != "hedged")
+            and mention.get("canonical_skill") is not None
+        } or {skill for skill in ref_item["candidate_skills"] if not skill.startswith("oov:")}
         e0_pred = set(run_e0_keyword(text)["candidate_skills"])
         e1_pred = set(run_e1_no_context(text)["candidate_skills"])
         e2_pred = set(run_e2_full_pipeline(cid, text)["candidate_skills"])
@@ -115,6 +130,7 @@ def evaluate_error_propagation():
 
     tau_corrs = {s: [] for s in systems}
     rho_corrs = {s: [] for s in systems}
+    top5_turnover = {s: [] for s in systems}
 
     for jid in jd_reqs:
         ref_order = [score for _, score in sorted(jd_rankings["Reference"][jid], key=lambda x: x[0])]
@@ -124,6 +140,9 @@ def evaluate_error_propagation():
             rho, _ = spearmanr(ref_order, sys_order)
             tau_corrs[s].append(tau if not math.isnan(tau) else 1.0)
             rho_corrs[s].append(rho if not math.isnan(rho) else 1.0)
+            ref_top = {cid for cid, _ in sorted(jd_rankings["Reference"][jid], key=lambda x: (-x[1], x[0]))[:5]}
+            sys_top = {cid for cid, _ in sorted(jd_rankings[s][jid], key=lambda x: (-x[1], x[0]))[:5]}
+            top5_turnover[s].append(1 - len(ref_top & sys_top) / max(1, len(ref_top)))
 
     lines = [
         "# Extraction-Induced Knockout & Skill Grounding Impact Evaluation",
@@ -136,8 +155,8 @@ def evaluate_error_propagation():
         f"- **Total Candidate-Job Pairs:** {total_eval_pairs}",
         f"- **Eligible Pairs under Skill Reference:** {total_eligible_pairs} | **Ineligible Pairs:** {total_ineligible_pairs}",
         "",
-        "| System | False Knockouts (Eligible excluded) | False Exclusion Rate (%) | False Acceptances (Ineligible passed) | Skill Score MAE | Mean Kendall's τ vs Reference |",
-        "|---|---|---|---|---|---|",
+        "| System | False Knockouts (Eligible excluded) | False Exclusion Rate (%) | False Acceptances (Ineligible passed) | Skill Score MAE | Mean Kendall's τ | Mean top-5 turnover |",
+        "|---|---|---|---|---|---|---|",
     ]
 
     for s in systems:
@@ -146,8 +165,9 @@ def evaluate_error_propagation():
         fk_pct = fk / max(1, total_eligible_pairs) * 100
         mae = sum(score_errors[s]) / len(score_errors[s])
         m_tau = sum(tau_corrs[s]) / len(tau_corrs[s])
+        turnover = sum(top5_turnover[s]) / len(top5_turnover[s])
         lines.append(
-            f"| **{s}** | {fk} / {total_eligible_pairs} | **{fk_pct:.1f}%** | {fa} / {total_ineligible_pairs} | **{mae:.3f}** | **{m_tau:.3f}** |"
+            f"| **{s}** | {fk} / {total_eligible_pairs} | **{fk_pct:.1f}%** | {fa} / {total_ineligible_pairs} | **{mae:.3f}** | **{m_tau:.3f}** | **{turnover:.3f}** |"
         )
 
     lines.extend([
@@ -161,17 +181,49 @@ def evaluate_error_propagation():
         "2. **Rank Stability:**",
         f"   - The rank correlation between Skill Oracle scoring and Pipeline `E2` scoring reaches Kendall's **τ = {sum(tau_corrs['E2 (Full Pipeline)']) / len(tau_corrs['E2 (Full Pipeline)']):.3f}**.",
         "",
-        "3. **Qualitative Trace (Investigator Agent Behavior):**",
-        "   - On noisy profiles where text extraction flags OCR/token anomalies, the Investigator agent (`agent/investigate.py`, N12) inspects unindexed passages to verify candidate claims before finalizing rejection decisions.",
+        "3. **Scope:**",
+        "   - This is an Oracle Skill Profile analysis, not a full relevance benchmark; nDCG is intentionally not reported.",
+        "   - Investigator-agent rescue remains qualitative unless a separate run records quantitative traces and decisions.",
         "",
     ])
 
-    OUT_REPORT.write_text("\n".join(lines), encoding="utf-8")
-    print(f"Error impact evaluation written to {OUT_REPORT}")
+    metrics_payload = {
+        "status": "WEAK_DIAGNOSTIC_ONLY" if weak_diagnostic else "HUMAN_GOLD_MEASURED",
+        "total_pairs": total_eval_pairs,
+        "eligible_pairs": total_eligible_pairs,
+        "ineligible_pairs": total_ineligible_pairs,
+        "systems": {
+            s: {
+                "false_exclusions": false_knockouts[s],
+                "false_exclusion_rate": false_knockouts[s] / max(1, total_eligible_pairs),
+                "false_acceptances": false_acceptances[s],
+                "skill_score_mae": sum(score_errors[s]) / len(score_errors[s]),
+                "mean_kendall_tau": sum(tau_corrs[s]) / len(tau_corrs[s]),
+                "mean_top5_turnover": sum(top5_turnover[s]) / len(top5_turnover[s]),
+            }
+            for s in systems
+        },
+    }
+
+    if weak_diagnostic:
+        out_report = get_settings().runtime_dir / "bench" / "djinni_extraction" / "weak_error_impact.md"
+        lines.insert(1, "\n> **WEAK DIAGNOSTIC ONLY.** The reference is generated by a related heuristic, not by humans.\n")
+    else:
+        out_report = OUT_REPORT
+    out_report.parent.mkdir(parents=True, exist_ok=True)
+    out_report.write_text("\n".join(lines), encoding="utf-8")
+    metrics_path = (
+        get_settings().runtime_dir / "bench" / "djinni_extraction" / "weak_error_impact_metrics.json"
+        if weak_diagnostic else OUT_METRICS
+    )
+    metrics_path.write_text(json.dumps(metrics_payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"Error impact evaluation written to {out_report}")
     for s in systems:
         fk = false_knockouts[s]
         print(f"{s:25s}: False Exclusions = {fk}/{total_eligible_pairs} ({fk/total_eligible_pairs*100:.1f}%), MAE = {sum(score_errors[s]) / len(score_errors[s]):.3f}, tau = {sum(tau_corrs[s]) / len(tau_corrs[s]):.3f}")
 
 
 if __name__ == "__main__":
-    evaluate_error_propagation()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--weak-diagnostic", action="store_true")
+    evaluate_error_propagation(weak_diagnostic=parser.parse_args().weak_diagnostic)

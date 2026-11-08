@@ -1,16 +1,20 @@
-"""Djinni Real-World Information Extraction Benchmark.
+"""Djinni real-world information-extraction benchmark.
 
-Evaluates extraction quality on 50 held-out, human-adjudicated real-world CVs.
-Compares deterministic systems against Human-Adjudicated Reference:
+The primary benchmark is fail-closed: it runs only against a provenance-checked
+human-adjudicated Gold artifact. The historical generated reference is accepted
+only with ``--weak-diagnostic`` and its output never updates reports or headline
+metrics.
+
+Compares deterministic systems against a reference:
   E0: Naive Exact Keyword Matching (word-boundary regex over taxonomy keys)
   E1: Heuristic No-Context Gazetteer (full aliases, but no NegEx/context awareness)
   E2: Full Deterministic Hybrid NLP Pipeline (Our proposed method: Gazetteer + NegEx + Context)
-  E3: Zero-shot LLM (Deferred due to expired API token; documented as not run)
+  E3: not run unless a separate result carries a real trace, model and token use
 
 Metrics:
   - Inter-Annotator Agreement (IAA): Span Token-Overlap F1, Unweighted Cohen's Kappa for status, candidate Jaccard
   - In-Taxonomy Micro-F1, Macro-F1, Precision, Recall
-  - All-Entity Open Recall (accounting for 17.54% OOV tools)
+  - Candidate-level all-skill recall with OOV skills retained in the denominator
   - Paired Bootstrap significance testing (E2 vs E1)
   - Cluster Bootstrap 95% Confidence Intervals (resampling by CV)
   - Latency (ms/CV) and Token Cost ($)
@@ -18,27 +22,30 @@ Metrics:
 
 from __future__ import annotations
 
+import argparse
 import json
 import math
 import random
 import re
 import time
-from collections import defaultdict
 from pathlib import Path
 from typing import Callable
 
-import yaml
-
 from app.config import ROOT, get_settings
+from app.eval.djinni_extraction_annotation import (
+    AnnotationError,
+    compute_iaa as compute_human_iaa,
+    validate_gold,
+)
 from app.nlp.pipeline import process
 from app.nlp.taxonomy import aliases, skills
 
 BENCH_MANIFEST = ROOT / "data" / "eval" / "djinni_extraction_benchmark_manifest.json"
-ANN_A_PATH = ROOT / "data" / "eval" / "human_extraction_a.json"
-ANN_B_PATH = ROOT / "data" / "eval" / "human_extraction_b.json"
-REF_PATH = ROOT / "data" / "eval" / "djinni_extraction_reference_50.json"
+GOLD_PATH = ROOT / "data" / "eval" / "djinni_extraction_human_gold_50.json"
+WEAK_REF_PATH = ROOT / "data" / "eval" / "heuristic_extraction_reference_50.json"
 CVS_DIR = get_settings().runtime_dir / "bench" / "djinni_extraction" / "cvs"
 REPORT_MD = ROOT / "docs" / "DJINNI_EXTRACTION_BENCHMARK.md"
+METRICS_JSON = ROOT / "data" / "eval" / "djinni_extraction_metrics.json"
 
 
 def prf(tp: int, fp: int, fn: int) -> tuple[float, float, float]:
@@ -60,53 +67,28 @@ def unweighted_cohen_kappa(ann1: list[str], ann2: list[str], categories: list[st
     return (po - pe) / (1 - pe) if 1 - pe > 1e-9 else 1.0
 
 
-def compute_iaa() -> dict:
-    ann_a = json.loads(ANN_A_PATH.read_text(encoding="utf-8"))
-    ann_b = json.loads(ANN_B_PATH.read_text(encoding="utf-8"))
+def compute_iaa(path_a: Path, path_b: Path) -> dict:
+    """Measure IAA only after both files pass the blind-human validator."""
+    metrics, _ = compute_human_iaa(path_a, path_b)
+    return metrics
 
-    total_a = 0
-    total_b = 0
-    matched_spans = 0
 
-    aligned_status_a = []
-    aligned_status_b = []
-    jaccards = []
-
-    for cid in ann_a:
-        spans_a = ann_a[cid]["mentions"]
-        spans_b = ann_b[cid]["mentions"]
-        total_a += len(spans_a)
-        total_b += len(spans_b)
-
-        # Token-overlap alignment
-        for ma in spans_a:
-            matched_b = next((mb for mb in spans_b if not (ma["end"] <= mb["start"] or mb["end"] <= ma["start"])), None)
-            if matched_b:
-                matched_spans += 1
-                aligned_status_a.append(ma["evidence_status"])
-                aligned_status_b.append(matched_b["evidence_status"])
-
-        set_a = set(ann_a[cid]["candidate_skills"])
-        set_b = set(ann_b[cid]["candidate_skills"])
-        inter = len(set_a & set_b)
-        union = len(set_a | set_b)
-        jaccards.append(inter / union if union else 1.0)
-
-    p_span = matched_spans / total_a if total_a else 0.0
-    r_span = matched_spans / total_b if total_b else 0.0
-    f1_span = 2 * p_span * r_span / (p_span + r_span) if p_span + r_span else 0.0
-
-    kappa_status = unweighted_cohen_kappa(aligned_status_a, aligned_status_b, ["used", "listed", "hedged"])
-    mean_jaccard = sum(jaccards) / len(jaccards) if jaccards else 0.0
-
-    return {
-        "span_overlap_f1": f1_span,
-        "status_unweighted_kappa": kappa_status,
-        "candidate_jaccard": mean_jaccard,
-        "n_aligned": len(aligned_status_a),
-        "total_spans_a": total_a,
-        "total_spans_b": total_b,
-    }
+def load_reference(path: Path, *, weak_diagnostic: bool = False) -> tuple[dict, dict]:
+    if not path.exists():
+        raise AnnotationError(
+            "Human Gold is not available. Complete two blind annotations and third-human adjudication first."
+        )
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    meta = payload.get("metadata", {})
+    if weak_diagnostic:
+        if meta.get("evaluation_status") != "WEAK_DIAGNOSTIC_ONLY" or meta.get("human") is not False:
+            raise AnnotationError("--weak-diagnostic requires the registered generated weak reference")
+    else:
+        if meta.get("artifact_type") != "human_adjudicated_extraction_gold":
+            raise AnnotationError("Primary extraction benchmark requires frozen human-adjudicated Gold")
+        payload = validate_gold(path)
+        meta = payload["metadata"]
+    return payload["profiles"], meta
 
 
 # ── Systems ──────────────────────────────────────────────────────────────────
@@ -162,14 +144,29 @@ def evaluate_system(sys_func: Callable, ref_data: dict, cvs_dir: Path) -> dict:
     per_cv_stats = []
 
     micro_tp, micro_fp, micro_fn = 0, 0, 0
-    total_gold_all_mentions = 0
+    total_gold_all_skills = 0
     macro_f1s = []
 
     for cid, item in ref_data.items():
         text = (cvs_dir / f"{cid}.txt").read_text(encoding="utf-8")
         pred = sys_func(cid, text) if "cv_id" in sys_func.__code__.co_varnames else sys_func(text)
 
-        gold_cand_skills = set(item["candidate_skills"])
+        mentions = item.get("mentions", [])
+        if mentions and "candidate_confirmed" in mentions[0]:
+            gold_cand_skills = {
+                m["canonical_skill"]
+                for m in mentions
+                if m["candidate_confirmed"] and m["canonical_skill"] is not None
+            }
+            gold_all_skills = {
+                m["canonical_skill"] or "oov:" + m["oov_name"].strip().casefold()
+                for m in mentions
+                if m["candidate_confirmed"]
+            }
+        else:
+            # Legacy generated weak reference; diagnostic mode only.
+            gold_cand_skills = set(item["candidate_skills"])
+            gold_all_skills = gold_cand_skills | {"oov:" + x.casefold() for x in item.get("oov_mentions", [])}
         pred_cand_skills = set(pred["candidate_skills"])
 
         tp = len(pred_cand_skills & gold_cand_skills)
@@ -180,7 +177,7 @@ def evaluate_system(sys_func: Callable, ref_data: dict, cvs_dir: Path) -> dict:
         micro_fp += fp
         micro_fn += fn
 
-        total_gold_all_mentions += item.get("all_mention_count", len(gold_cand_skills))
+        total_gold_all_skills += len(gold_all_skills)
 
         _, _, cv_f1 = prf(tp, fp, fn)
         macro_f1s.append(cv_f1)
@@ -199,8 +196,8 @@ def evaluate_system(sys_func: Callable, ref_data: dict, cvs_dir: Path) -> dict:
     p, in_tax_r, micro_f1 = prf(micro_tp, micro_fp, micro_fn)
     macro_f1 = sum(macro_f1s) / len(macro_f1s) if macro_f1s else 0.0
 
-    # Open-Vocabulary Recall accounting for OOV mentions
-    open_recall = micro_tp / total_gold_all_mentions if total_gold_all_mentions else 0.0
+    # Candidate-level all-skill recall. OOV skills remain in the denominator.
+    all_skill_recall = micro_tp / total_gold_all_skills if total_gold_all_skills else 0.0
 
     # Cluster bootstrap 95% CI over CVs
     rng = random.Random(42)
@@ -230,7 +227,7 @@ def evaluate_system(sys_func: Callable, ref_data: dict, cvs_dir: Path) -> dict:
     return {
         "precision": p,
         "in_tax_recall": in_tax_r,
-        "open_recall": open_recall,
+        "all_skill_recall": all_skill_recall,
         "micro_f1": micro_f1,
         "macro_f1": macro_f1,
         "ci_95": (ci_low, ci_high),
@@ -263,89 +260,63 @@ def paired_bootstrap_test(stats_a: list[dict], stats_b: list[dict]) -> float:
     return p_val
 
 
-def generate_benchmark_report():
-    ref_payload = json.loads(REF_PATH.read_text(encoding="utf-8"))
-    ref_data = ref_payload["profiles"]
-    meta = ref_payload["metadata"]
-
-    iaa = compute_iaa()
-
+def generate_benchmark_report(*, weak_diagnostic: bool = False) -> dict:
+    ref_path = WEAK_REF_PATH if weak_diagnostic else GOLD_PATH
+    ref_data, meta = load_reference(ref_path, weak_diagnostic=weak_diagnostic)
     systems = {
         "E0 (Naive Exact Keyword)": run_e0_keyword,
         "E1 (Heuristic No-Context)": run_e1_no_context,
-        "E2 (Our Full Deterministic Pipeline)": run_e2_full_pipeline,
+        "E2 (Full Deterministic Pipeline)": run_e2_full_pipeline,
     }
-
-    results = {}
-    for name, fn in systems.items():
-        results[name] = evaluate_system(fn, ref_data, CVS_DIR)
-
-    # Paired test E2 vs E1
-    p_val_e2_e1 = paired_bootstrap_test(results["E2 (Our Full Deterministic Pipeline)"]["per_cv_stats"],
-                                        results["E1 (Heuristic No-Context)"]["per_cv_stats"])
-
-    lines = [
-        "# Djinni Real-World Information Extraction Benchmark",
-        "",
-        "Evaluation on **50 genuinely unseen real-world candidate profiles** sampled from the Djinni Recruitment Dataset (UNLP 2024, Drushchak & Romanyshyn).",
-        "Strictly separated from the 250 production CVs and 40 ranking holdout CVs. Annotation guidelines and taxonomy were frozen prior to measurement.",
-        "",
-        "## 1. Inter-Annotator Agreement (IAA) & Disagreement Audit",
-        "",
-        f"- **Annotated Profiles:** 50 (Stratified: 30 QA Automation, 15 QA Manual, 5 Developers/DevOps)",
-        f"- **Annotator A Spans:** {iaa['total_spans_a']} | **Annotator B Spans:** {iaa['total_spans_b']} | **Aligned Mentions:** {iaa['n_aligned']}",
-        f"- **Disagreements Resolved:** {meta['disagreements_status']} status disagreements (used vs listed vs hedged) and {meta['disagreements_spans']} span misses/boundary differences adjudicated by third-party reviewer.",
-        f"- **Out-Of-Vocabulary (OOV) Rate:** **{meta['oov_rate_pct']}%** ({meta['total_oov_spans']} / {meta['total_annotated_spans']} mentions: authentic tools outside closed taxonomy, e.g. Allure, Groovy, Gradle, Swagger, Jira, Datadog).",
-        f"- **Span Token-Overlap F1:** **{iaa['span_overlap_f1']:.3f}**",
-        f"- **Status Unweighted Cohen's κ:** **{iaa['status_unweighted_kappa']:.3f}** (Substantial agreement on nominal categories)",
-        f"- **Candidate-Level Skill Jaccard:** **{iaa['candidate_jaccard']:.3f}**",
-        "",
-        "## 2. Multi-System Comparative Benchmark",
-        "",
-        "| System | Precision | In-Tax Recall | All-Skills Open Recall | Micro-F1 [95% CI] | Macro-F1 | QA Auto F1 | Manual QA F1 | Dev F1 (N=5)* | Latency | Cost |",
-        "|---|---|---|---|---|---|---|---|---|---|---|",
-    ]
-
-    for name, r in results.items():
-        ci_str = f"[{r['ci_95'][0]:.3f}, {r['ci_95'][1]:.3f}]"
-        lines.append(
-            f"| **{name}** | {r['precision']:.3f} | {r['in_tax_recall']:.3f} | **{r['open_recall']:.3f}** | "
-            f"**{r['micro_f1']:.3f}** {ci_str} | {r['macro_f1']:.3f} | {r['domain_f1']['QA Automation']:.3f} | "
-            f"{r['domain_f1']['QA']:.3f} | {r['domain_f1']['other']:.3f} | {r['latency_ms']:.1f} ms | $0.00 |"
-        )
-
-    lines.append(
-        "| **E3 (LLM Zero-Shot Supplemental)** | *Not run* | *Not run* | *Not run* | *Not run* | *Not run* | *Not run* | *Not run* | *Not run* | >1,000 ms | API token |"
+    results = {name: evaluate_system(fn, ref_data, CVS_DIR) for name, fn in systems.items()}
+    p_value = paired_bootstrap_test(
+        results["E2 (Full Deterministic Pipeline)"]["per_cv_stats"],
+        results["E1 (Heuristic No-Context)"]["per_cv_stats"],
     )
+    serializable = {
+        "status": "WEAK_DIAGNOSTIC_ONLY" if weak_diagnostic else "HUMAN_GOLD_MEASURED",
+        "reference": str(ref_path.relative_to(ROOT)),
+        "reference_metadata": meta,
+        "e3": {"status": "NOT_RUN", "reason": "no registered trace/model/token record"},
+        "paired_bootstrap_e2_vs_e1_p": p_value,
+        "systems": {
+            name: {key: value for key, value in result.items() if key != "per_cv_stats"}
+            for name, result in results.items()
+        },
+    }
+    if weak_diagnostic:
+        out = get_settings().runtime_dir / "bench" / "djinni_extraction" / "weak_extraction_metrics.json"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(serializable, indent=2, ensure_ascii=False), encoding="utf-8")
+        print(f"WEAK DIAGNOSTIC ONLY: {out}")
+        return serializable
 
-    lines.extend([
+    METRICS_JSON.write_text(json.dumps(serializable, indent=2, ensure_ascii=False), encoding="utf-8")
+    lines = [
+        "# Djinni Human Gold Information Extraction Benchmark",
         "",
-        "*Note on Dev F1: N=5 is an exploratory slice for hard negatives.*",
-        f"*Paired Bootstrap Significance (E2 vs E1): p = {p_val_e2_e1:.3f} (difference is not statistically significant).* ",
+        "Status: **HUMAN_GOLD_MEASURED**. Numbers below are generated from the frozen metrics JSON.",
         "",
-        "## 3. Academic Discussion of Findings",
-        "",
-        "1. **In-Taxonomy vs Open-Vocabulary Recall Trade-off:**",
-        f"   - On in-taxonomy tools, the deterministic pipeline achieves high recall ({results['E2 (Our Full Deterministic Pipeline)']['in_tax_recall']:.3f}).",
-        f"   - However, when evaluated on **all authentic candidate mentions** (including the {meta['oov_rate_pct']}% OOV tools like Allure, Gradle, Swagger), open-vocabulary recall drops to **{results['E2 (Our Full Deterministic Pipeline)']['open_recall']:.3f}**.",
-        "   - This mathematically proves the inherent limitation of a closed gazetteer and motivates statistical NER in future work.",
-        "",
-        "2. **Neutral/Negative Result on Context Handling (`E1` vs `E2`):**",
-        f"   - Heuristic No-Context matching (`E1`, Micro-F1 = {results['E1 (Heuristic No-Context)']['micro_f1']:.3f}) slightly edges out Full Pipeline (`E2`, Micro-F1 = {results['E2 (Our Full Deterministic Pipeline)']['micro_f1']:.3f}), with p = {p_val_e2_e1:.3f} (no significant difference).",
-        "   - **Reasoning:** In clean real-world candidate profiles, explicit hedge phrasing ('familiar with', 'learning') occurs in only ~3.5% of mentions. NegEx scoping occasionally over-hedges ambiguous bullet sentences, causing a minor recall reduction (0.993 vs 1.000).",
-        "   - **Where Context Matters:** NegEx is essential for adversarial/trap CVs (as demonstrated on the `ours` benchmark), but does not inflate accuracy on clean real-world text.",
-        "",
-        "3. **Zero Egress & High Throughput:**",
-        "   - `E2` operates entirely on-premise without cloud API dependencies (zero CV egress), processing each candidate in 12.7 ms at $0.00 token cost.",
-        "",
-    ])
+        "| System | Precision | In-tax recall | Micro-F1 | Macro-F1 | 95% cluster CI |",
+        "|---|---:|---:|---:|---:|---:|",
+    ]
+    for name, result in results.items():
+        lines.append(
+            f"| {name} | {result['precision']:.3f} | {result['in_tax_recall']:.3f} | "
+            f"{result['micro_f1']:.3f} | {result['macro_f1']:.3f} | "
+            f"[{result['ci_95'][0]:.3f}, {result['ci_95'][1]:.3f}] |"
+        )
+    lines += ["", "E3: **NOT RUN** because no registered trace, model identifier and token record exists."]
+    REPORT_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return serializable
 
-    REPORT_MD.write_text("\n".join(lines), encoding="utf-8")
-    print(f"Benchmark completed successfully. Report written to {REPORT_MD}")
-    print(f"IAA: Span F1 = {iaa['span_overlap_f1']:.3f}, Unweighted Kappa = {iaa['status_unweighted_kappa']:.3f}")
-    for name, r in results.items():
-        print(f"{name:35s}: Micro-F1 = {r['micro_f1']:.3f} [{r['ci_95'][0]:.3f}, {r['ci_95'][1]:.3f}], In-Tax R = {r['in_tax_recall']:.3f}, Open R = {r['open_recall']:.3f}")
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--weak-diagnostic", action="store_true")
+    args = parser.parse_args()
+    generate_benchmark_report(weak_diagnostic=args.weak_diagnostic)
 
 
 if __name__ == "__main__":
-    generate_benchmark_report()
+    main()

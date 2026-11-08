@@ -1,4 +1,12 @@
 {
+  "_metadata": {
+    "artifact_type": "generated_weak_extraction_annotation",
+    "human": false,
+    "independent": false,
+    "simulated": true,
+    "generated_by": "app.eval.djinni_extraction_weak_labels",
+    "variant": "B"
+  },
   "dj_ext_860542955b": {
     "mentions": [
       {

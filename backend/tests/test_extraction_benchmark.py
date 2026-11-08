@@ -1,13 +1,39 @@
-from app.eval.extraction_benchmark import compute_iaa, run_e0_keyword, run_e1_no_context, run_e2_full_pipeline
+import pytest
+
+from app.eval.djinni_extraction_annotation import AnnotationError
+from app.eval.extraction_benchmark import (
+    GOLD_PATH,
+    WEAK_REF_PATH,
+    generate_benchmark_report,
+    load_reference,
+    run_e0_keyword,
+    run_e1_no_context,
+    run_e2_full_pipeline,
+)
 from app.eval.djinni_error_impact import evaluate_error_propagation
 
 
-def test_iaa_returns_valid_metrics():
-    res = compute_iaa()
-    assert "span_overlap_f1" in res
-    assert "status_unweighted_kappa" in res
-    assert 0.0 <= res["span_overlap_f1"] <= 1.0
-    assert -1.0 <= res["status_unweighted_kappa"] <= 1.0
+def test_generated_reference_cannot_enter_primary_benchmark():
+    with pytest.raises(AnnotationError, match="human-adjudicated Gold"):
+        load_reference(WEAK_REF_PATH)
+
+
+def test_generated_reference_is_explicitly_weak_only():
+    profiles, metadata = load_reference(WEAK_REF_PATH, weak_diagnostic=True)
+    assert profiles
+    assert metadata["human"] is False
+    assert metadata["evaluation_status"] == "WEAK_DIAGNOSTIC_ONLY"
+
+
+def test_primary_benchmark_fails_closed_while_human_gold_is_missing():
+    assert not GOLD_PATH.exists()
+    with pytest.raises(AnnotationError, match="Human Gold is not available"):
+        generate_benchmark_report()
+
+
+def test_error_impact_fails_closed_while_human_gold_is_missing():
+    with pytest.raises(AnnotationError, match="Human Gold is not available"):
+        evaluate_error_propagation()
 
 
 def test_systems_e0_e1_e2_extract_skills():

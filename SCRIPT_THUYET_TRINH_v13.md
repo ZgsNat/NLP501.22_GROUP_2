@@ -200,12 +200,12 @@ Metric chính là nDCG@10, kèm P@5, R@20, MRR và Kendall τ; khoảng tin cậ
 one-sided paired bootstrap; inter-annotator agreement bằng quadratic-weighted Cohen's κ. Chống leakage (G5): chỉ tune
 trên dev, TREC-style pooling, holdout chỉ mở khi có gold labels.
 
-### Slide 14 · Chất lượng NLP pipeline & Benchmark trích xuất · Hoa · 0:45
+### Slide 14 · Chất lượng NLP pipeline và trạng thái benchmark trích xuất · Hoa · 0:45
 
-- **Benchmark trích xuất thực tế (50 profile Djinni unseen, có nhãn Human-Adjudicated Reference):** Micro-F1 đạt **0.943 [0.872, 0.986]**, vượt trội baseline từ khóa E0 (0.847); độ đồng thuận gán nhãn unweighted κ = **0.818**, overlap F1 = **0.991** (giải quyết 53 ca bất đồng status); ghi nhận trung thực 17.54% công cụ OOV ngoài từ điển (Allure, Gradle, Swagger, Jira...).
-- **Đánh giá Trade-off NegEx (E1 vs E2):** Trên hồ sơ CV thực tế, No-Context E1 (0.947) nhỉnh hơn nhẹ Full Pipeline E2 (0.943) với p = 0.627 (không có ý nghĩa thống kê) do hồ sơ thực tế rất ít dùng từ lấp liếm (~3.5%); NegEx phát huy vai trò quyết định trong việc chặn trap CV trên tập kiểm thử bẫy (`ours`).
-- **Kiểm định lan truyền sai số (Extraction-induced Knockouts):** Pipeline E2 đạt **0/308 (0.0%)** trường hợp loại nhầm ứng viên đủ điều kiện (so với 7/308 tương đương 2.3% của E0); tương quan thứ hạng kỹ năng với nhãn người đạt Kendall τ = **0.900** (Spearman ρ = 0.916).
-- **Độ bền vững & Bảo mật:** Không truyền văn bản CV ra ngoài môi trường máy chủ nội bộ ở cấu hình deterministic; 0 trường hợp rò rỉ PII; thời gian xử lý 12.7 ms/CV với chi phí 0 token.
+- Bộ 200 CV tổng hợp đạt F1 0.978 nhưng đây là dev result vì nhóm đã dùng bộ này để sửa pipeline.
+- Nhóm đã khóa riêng 12 profile pilot và 50 profile test Djinni bằng ID và hash. Kiểm tra lại cho thấy hai file “Annotator A/B” trước đây đều do một script regex/taxonomy sinh ra, nên κ 0.818 và F1 0.943 không phải kết quả nhãn người và đã rút khỏi bảng chính.
+- Trạng thái hiện tại là **HUMAN_ANNOTATION_PENDING**. Hai người sẽ chấm mù bằng hai HTML kit khác thứ tự; validator kiểm tra đủ 50 profile, offset, OOV, hash và provenance trước khi tính IAA. Người thứ ba chỉ thấy các conflict sau khi A/B hoàn tất.
+- Benchmark E0-E2 và phân tích false exclusion chỉ chạy chính thức sau khi Human Gold được khóa. E3 vẫn **NOT RUN** vì chưa có trace, model ID và token record hợp lệ.
 
 ### Slide 15 · Benchmark chính thức v1 · Hoa · 1:15
 
@@ -343,6 +343,6 @@ kiểm tra tự động; và benchmark NLP501-bench ở các phiên bản v1, v1
 | Agent không hơn fixed pipeline về nDCG, vậy agent để làm gì? | Hoa | Đúng theo thiết kế, vì luật chấm cả hai. Giá trị nằm ở JD mơ hồ (+0.129), CV lỗi ký tự, kiểm soát hallucination và mục tiêu HR phức tạp. |
 | Nhãn do LLM gán thì đánh giá có vòng lặp không? | Hoa | Có rủi ro, nên: 120 cặp chấm mù bởi người cho v1.1 (thứ tự giữ nguyên, τ 1.00); Djinni dùng Dual-annotator Aggregate Human Gold (chấm mù độc lập 100%, kiểm định độ nhạy min/max); con số nào chỉ có nhãn cùng họ mô hình chấm thì không công bố và tính năng để tắt. |
 | Dữ liệu tổng hợp có đại diện không? | Vũ | Không cho giá trị tuyệt đối (0.85 so với 0.64). Kết luận dựa trên thứ tự giữa các hệ thống, đã được xác nhận trên 8 JD thật với nhãn người. |
-| Bước trích xuất có benchmark uy tín không, sai số có ảnh hưởng xếp hạng không? | Thịnh | Có benchmark độc lập: 50 profile Djinni unseen có nhãn Human-Adjudicated Reference (unweighted κ = 0.818, overlap F1 = 0.991), Micro-F1 đạt 0.943 [0.872, 0.986] (vượt E0 keyword 0.847, OOV 17.5%). Kiểm định trên 308 cặp đủ điều kiện cho 0% loại nhầm và Kendall τ = 0.900; Agent Investigator hỗ trợ mở rộng context cho các ca nghi ngờ. |
-| Vì sao gazetteer mà không phải NER học máy? | Thịnh | Tên công cụ là tập từ khóa có ranh giới rõ; gazetteer kết hợp NegEx và boundary đạt Micro-F1 0.943 trên 50 CV thật và 0.978 trên dev set, chi phí 0 token và không rò rỉ dữ liệu. NER học máy là hướng mở rộng để khắc phục 17.5% OOV cho các công cụ chưa có trong từ điển. |
+| Bước trích xuất có benchmark uy tín không, sai số có ảnh hưởng xếp hạng không? | Thịnh | Bộ Djinni 50 profile đã được khóa nhưng Human Gold đang chờ hai người chấm mù và người thứ ba phân xử conflict. Các số κ 0.818, F1 0.943 và 0% loại nhầm trước đây đến từ weak labels do script sinh, nên nhóm đã rút claim và khóa benchmark chính cho đến khi validation hoàn tất. |
+| Vì sao gazetteer mà không phải NER học máy? | Thịnh | Gazetteer kết hợp boundary và NegEx cho phép chạy local, dễ audit và có regression result F1 0.978 trên bộ tổng hợp. Đây chỉ là dev evidence. So sánh với NER hoặc kết luận về OOV trên dữ liệu thật phải chờ Human Gold Djinni. |
 | Có học từ phản hồi của HR không? | Đán | Có hiệu chỉnh trọng số trong phiên bằng pairwise logistic regression; học qua nhiều phiên đã đo (E24) và không cải thiện (−0.008), nên quyết định loại của HR được giữ như quyết định cứng. |

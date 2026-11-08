@@ -1,8 +1,8 @@
 """Stratified sampling for Djinni Information Extraction Benchmark.
 
-Selects:
+Selects and hash-locks:
 - 12 pilot profiles (for annotator alignment / training)
-- 50 test profiles (frozen human-adjudicated reference benchmark)
+- 50 test profiles (frozen before blind human annotation)
 
 Strict exclusion:
 - All 250 production Djinni CVs
@@ -22,8 +22,6 @@ import json
 import random
 from pathlib import Path
 from typing import Iterable
-
-import pyarrow.parquet as pq
 
 from app.config import ROOT, get_settings
 
@@ -106,6 +104,8 @@ def get_excluded_sets() -> tuple[set[str], set[str]]:
 
 
 def sample_profiles() -> dict:
+    import pyarrow.parquet as pq
+
     excluded_ids, excluded_hashes = get_excluded_sets()
 
     # Targets:
@@ -212,6 +212,35 @@ def sample_profiles() -> dict:
     print(f"Manifest written to {MANIFEST_FILE}")
     print(f"Text files saved to {OUT_CVS}")
     return manifest_data
+
+
+def verify_frozen_manifest() -> dict:
+    """Fail if the frozen split changed or overlaps earlier Djinni pools."""
+    manifest = json.loads(MANIFEST_FILE.read_text(encoding="utf-8"))
+    records = manifest["profiles"]
+    ids = [item["candidate_id"] for item in records]
+    hashes = [item["sha256"] for item in records]
+    if len(ids) != len(set(ids)) or len(hashes) != len(set(hashes)):
+        raise ValueError("Frozen extraction manifest contains duplicate IDs or text hashes")
+    if sum(item["is_pilot"] for item in records) != manifest["n_pilot"]:
+        raise ValueError("Pilot count changed")
+    if sum(not item["is_pilot"] for item in records) != manifest["n_test"]:
+        raise ValueError("Test count changed")
+
+    _, excluded_hashes = get_excluded_sets()
+    overlap = sorted(set(hashes) & excluded_hashes)
+    if overlap:
+        raise ValueError(f"Frozen extraction split overlaps prior pools by {len(overlap)} text hashes")
+    for item in records:
+        path = OUT_CVS / f"{item['candidate_id']}.txt"
+        raw_text = path.read_bytes().decode("utf-8") if path.exists() else ""
+        if (
+            not path.exists()
+            or len(raw_text) != item["text_length"]
+            or _sha_text(raw_text) != item["sha256"]
+        ):
+            raise ValueError(f"Frozen document missing or changed: {item['candidate_id']}")
+    return {"n_pilot": manifest["n_pilot"], "n_test": manifest["n_test"], "overlap_hashes": 0}
 
 
 if __name__ == "__main__":

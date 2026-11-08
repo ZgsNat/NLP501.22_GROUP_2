@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "benchmark": "Djinni real-world information extraction",
+  "status": "HUMAN_ANNOTATION_PENDING",
+  "frozen_manifest": "data/eval/djinni_extraction_benchmark_manifest.json",
+  "n_pilot": 12,
+  "n_test": 50,
+  "human_annotation_a": null,
+  "human_annotation_b": null,
+  "human_adjudication": null,
+  "human_gold": null,
+  "weak_reference": "data/eval/heuristic_extraction_reference_50.json",
+  "weak_reference_policy": "diagnostic_only_no_iaa_no_headline_claims_no_model_selection",
+  "registered_span_alignment_token_iou": 0.5,
+  "e3_status": "NOT_RUN_NO_QUANTITATIVE_TRACE"
+}

@@ -1,6 +1,13 @@
 {
   "metadata": {
-    "benchmark": "Djinni Real-World Information Extraction Benchmark",
+    "artifact_type": "generated_heuristic_extraction_reference",
+    "evaluation_status": "WEAK_DIAGNOSTIC_ONLY",
+    "human": false,
+    "independent": false,
+    "simulated": true,
+    "generated_by": "app.eval.djinni_extraction_weak_labels",
+    "heuristic_adjudication": true,
+    "benchmark": "Djinni extraction weak-label diagnostic",
     "n_profiles": 50,
     "total_annotated_spans": 513,
     "total_oov_spans": 90,
