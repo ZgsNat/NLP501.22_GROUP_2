@@ -65,11 +65,12 @@ def _sha(path: Path) -> str:
 
 
 def _tree_sha(paths: list[Path]) -> str:
+    """Raw bytes: the fetched CVs are not git-managed (no autocrlf), and some keep a CR inside the profile text."""
     digest = hashlib.sha256()
     for path in sorted(paths):
         digest.update(path.name.encode())
         digest.update(b"\0")
-        digest.update(_bytes(path))
+        digest.update(path.read_bytes())
         digest.update(b"\0")
     return digest.hexdigest()
 
@@ -108,7 +109,7 @@ def production_manifest() -> dict[str, Any]:
             "unjudged": "ignored, never mapped to grade 0",
         },
         "inputs": {
-            str(GOLD.relative_to(ROOT)): _sha(GOLD),
+            GOLD.relative_to(ROOT).as_posix(): _sha(GOLD),
             ".runtime/bench/djinni/jds.yaml": _sha(BENCH / "jds.yaml"),
             ".runtime/bench/djinni/cvs/*": _tree_sha(list((BENCH / "cvs").glob("*.txt"))),
         },
